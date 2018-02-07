@@ -1,0 +1,9 @@
+package kr.co.gotthem.store.service;
+
+import java.util.List;
+
+import kr.co.gotthem.store.bean.StoreBean;
+
+public interface StroreService {
+	public List<StoreBean> list();
+}
