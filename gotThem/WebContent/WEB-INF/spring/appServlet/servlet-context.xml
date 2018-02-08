@@ -8,7 +8,6 @@
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
 	
 	<annotation-driven />
-	
 	<context:annotation-config/>
 	
 	<resources mapping="/resources/**" location="/resources/" />
@@ -17,6 +16,23 @@
 	<beans:bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<beans:property name="prefix" value="/WEB-INF/views/" />
 		<beans:property name="suffix" value=".jsp" />
+	</beans:bean>
+	
+	<!-- DB (Mybatis, MariaDB 연결) -->
+	<beans:bean id="dataSource" class="org.springframework.jdbc.datasource.SimpleDriverDataSource">
+		<beans:property name="driverClass" value="org.mariadb.jdbc.Driver" />
+		<beans:property name="url" value="jdbc:mariadb://localhost:3306/test" />
+		<beans:property name="username" value="root" />
+		<beans:property name="password" value="1234" />
+	</beans:bean>	
+
+	<beans:bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<beans:property name="configLocation" value="classpath:kr/co/gotthem/mybatis/mybatis-config.xml" />
+		<beans:property name="dataSource" ref="dataSource" />
+	</beans:bean>
+	
+	<beans:bean id="sqlSessionTemplate" class="org.mybatis.spring.SqlSessionTemplate">
+		<beans:constructor-arg index="0" ref="sqlSessionFactory" />
 	</beans:bean>
 	
 	<!-- Multipart 파일업로드 빈 객체 생성 -->

@@ -3,10 +3,6 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
 	
-	<welcome-file-list>
-        <welcome-file>index.jsp</welcome-file>
-    </welcome-file-list>
-	
 	<!-- Spring-Security 설정 파일  -->
 	<context-param>
 		<param-name>contextConfigLocation</param-name>
@@ -19,22 +15,57 @@
 		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
 	</listener>
 
-	<!-- DispatcherServlet / mvc-context.xml : 빈 설정파일 / URL Mapping -->
+	<!-- DispatcherServlet / URL Mapping -->
 	<servlet>
-		<servlet-name>appServlet</servlet-name>
+		<servlet-name>defaultServlet</servlet-name>
 		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
 		<init-param>
 			<param-name>contextConfigLocation</param-name>
 			<param-value>
 				/WEB-INF/spring/appServlet/servlet-context.xml
-				/WEB-INF/spring/appServlet/mvc-context.xml
+				/WEB-INF/spring/appServlet/member-context.xml
+				/WEB-INF/spring/appServlet/board-context.xml
 			</param-value>
 		</init-param>
 		<load-on-startup>1</load-on-startup>
 	</servlet>
 	<servlet-mapping>
-		<servlet-name>appServlet</servlet-name>
-		<url-pattern>/</url-pattern>
+		<servlet-name>defaultServlet</servlet-name>
+		<url-pattern>*.gt</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>storeServlet</servlet-name>
+		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+		<init-param>
+			<param-name>contextConfigLocation</param-name>
+			<param-value>
+				/WEB-INF/spring/appServlet/servlet-context.xml
+				/WEB-INF/spring/appServlet/store-context.xml
+			</param-value>
+		</init-param>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>storeServlet</servlet-name>
+		<url-pattern>*.st</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>adminServlet</servlet-name>
+		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+		<init-param>
+			<param-name>contextConfigLocation</param-name>
+			<param-value>
+				/WEB-INF/spring/appServlet/servlet-context.xml
+				/WEB-INF/spring/appServlet/admin-context.xml
+			</param-value>
+		</init-param>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>adminServlet</servlet-name>
+		<url-pattern>*.ad</url-pattern>
 	</servlet-mapping>
 	
 	<!-- Encoding Filter -->
