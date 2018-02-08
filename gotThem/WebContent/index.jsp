@@ -39,104 +39,12 @@
 <!--[if lt IE 9]>
         <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
         <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
-  <link rel="stylesheet" href="resources/slidertemplate/tether/tether.min.css">
-  <link rel="stylesheet" href="resources/slidertemplate/bootstrap/css/bootstrap.min.css">
-  <link rel="stylesheet" href="resources/slidertemplate/bootstrap/css/bootstrap-reboot.min.css">
-  <link rel="stylesheet" href="resources/slidertemplate/theme/css/style.css">
-  <link rel="stylesheet" href="resources/slidertemplate/mobirise/css/mbr-additional.css" type="text/css">
 </head>
 <body>
-	<!-- navbar-->
-	<header class="header">
-		<nav class="navbar navbar-expand-lg fixed-top">
-			<a href="/gotthem/index.jsp" class="navbar-brand">Got Them!</a>
-			<button type="button" data-toggle="collapse"
-				data-target="#navbarSupportedContent"
-				aria-controls="navbarSupportedContent" aria-expanded="false"
-				aria-label="Toggle navigation"
-				class="navbar-toggler navbar-toggler-right">
-				<span></span><span></span><span></span>
-			</button>
-			<div id="navbarSupportedContent" class="collapse navbar-collapse">
-				<ul
-					class="navbar-nav ml-auto align-items-start align-items-lg-center">
-					<li class="nav-item"><a href="#about-us"
-						class="nav-link link-scroll">Got them?</a></li>
-					<li class="nav-item"><a href="#features"
-						class="nav-link link-scroll">Notice</a></li>
-					<li class="nav-item"><a href="#testimonials"
-						class="nav-link link-scroll">Event</a></li>
-					<li class="nav-item"><a href="text.html" class="nav-link">Question</a></li>
-				</ul>
-				<div class="navbar-text">
-					<!-- Button trigger modal-->
-					<a href="#" data-toggle="modal" data-target="#exampleModal"
-						class="btn btn-primary navbar-btn btn-shadow btn-gradient">Sign
-						Up</a> <a href="#" data-toggle="modal" data-target="#exampleModal"
-						class="btn btn-primary navbar-btn btn-shadow btn-gradient">Login</a>
-				</div>
-			</div>
-		</nav>
-	</header>
 
-	<section class="carousel slide cid-qIWOeW23YU" data-interval="false"
-		id="slider1-t">
-		<div class="full-screen">
-			<div class="mbr-slider slide carousel" data-pause="true"
-				data-keyboard="false" data-ride="false" data-interval="false">
-				<ol class="carousel-indicators">
-					<li data-app-prevent-settings="" data-target="#slider1-t"
-						class=" active" data-slide-to="0"></li>
-					<li data-app-prevent-settings="" data-target="#slider1-t"
-						data-slide-to="1"></li>
-				</ol>
-				<div class="carousel-inner" role="listbox">
-					<div class="carousel-item slider-fullscreen-image active"
-						data-bg-video-slide="false"
-						style="background-image: url(assets/images/1.jpg);">
-						<div class="container container-slide">
-							<div class="image_wrapper">
-								<div class="mbr-overlay"></div>
-								<img src="assets/images/1.jpg">
-								<div class="carousel-caption justify-content-center">
-									<div class="col-10 align-center">
-										<h2 class="mbr-fonts-style display-1">FULL SCREEN SLIDER</h2>
-										<p class="lead mbr-text mbr-fonts-style display-5">Choose
-											from the large selection of latest pre-made blocks -
-											jumbotrons, hero images, parallax scrolling, video
-											backgrounds, hamburger menu, sticky header and more.</p>
-										<div class="mbr-section-btn" buttons="0">
-											<a class="btn  btn-success display-4"
-												href="https://mobirise.com">FOR WINDOWS</a> <a
-												class="btn  btn-white-outline display-4"
-												href="https://mobirise.com">FOR MAC</a>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="carousel-item slider-fullscreen-image"
-						data-bg-video-slide="https://www.youtube.com/watch?v=fwkKc6M60-0">
-						<div class="mbr-overlay"></div>
-						<div class="container container-slide">
-							<div class="image_wrapper">
-								<img src="assets/images/2.jpg" style="opacity: 0;">
-								<div class="carousel-caption justify-content-center">
-									<div class="col-10 align-left">
-										<h2 class="mbr-fonts-style display-1">VIDEO SLIDE</h2>
-										<p class="lead mbr-text mbr-fonts-style display-5">Slide
-											with youtube video background and color overlay. Title and
-											text are aligned to the left.</p>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</section>
+<header>
+<%@include file="nav.jsp" %>
+</header>
 
 	<section id="cvssearch" class="newsletter bg-gray">
 		<div class="container text-center">
@@ -243,8 +151,7 @@
 	</footer>
 	<!-- Javascript files-->
 	<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-	<script
-		src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js">
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js">
 		
 	</script>
 	<script src="resources/landy/vendor/bootstrap/js/bootstrap.min.js"></script>
@@ -253,16 +160,5 @@
 	</script>
 	<script src="resources/landy/vendor/owl.carousel/owl.carousel.min.js"></script>
 	<script src="resources/landy/js/front.js"></script>
-	<!-- Google Analytics: change UA-XXXXX-X to be your site's ID.-->
-	<!---->
-	  <script src="resources/slidertemplate/popper/popper.min.js"></script>
-  	  <script src="resources/slidertemplate/tether/tether.min.js"></script>
-      <script src="resources/slidertemplate/bootstrap/js/bootstrap.min.js"></script>
-      <script src="resources/slidertemplate/ytplayer/jquery.mb.ytplayer.min.js"></script>
-      <script src="resources/slidertemplate/vimeoplayer/jquery.mb.vimeo_player.js"></script>
-      <script src="resources/slidertemplate/bootstrapcarouselswipe/bootstrap-carousel-swipe.js"></script>
-      <script src="resources/slidertemplate/smoothscroll/smooth-scroll.js"></script>
-      <script src="resources/slidertemplate/theme/js/script.js"></script>
-      <script src="resources/slidertemplate/slidervideo/script.js"></script>
 </body>
 </html>
