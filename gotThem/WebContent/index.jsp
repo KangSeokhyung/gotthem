@@ -70,7 +70,7 @@
 				</ul>
 				<div class="navbar-text">
 					<!-- Button trigger modal-->
-					<a href="#" data-toggle="modal" data-target="#exampleModal"
+					<a href="/gotThem/join.do" data-toggle="modal" data-target="#exampleModal"
 						class="btn btn-primary navbar-btn btn-shadow btn-gradient">Sign
 						Up</a> <a href="#" data-toggle="modal" data-target="#exampleModal"
 						class="btn btn-primary navbar-btn btn-shadow btn-gradient">Login</a>

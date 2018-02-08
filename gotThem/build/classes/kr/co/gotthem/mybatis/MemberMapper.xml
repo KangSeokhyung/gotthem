@@ -4,7 +4,7 @@
               
 <mapper namespace="kr.co.gotthem.store.mybatis.MemberMapper">
 
-	<select id="list" resultType="kr.co.gotthem.store.bean.StoreBean">
+	<select id="list" resultType="kr.co.gotthem.member.bean.MemberBean">
 		select * from member
 	</select>
 
