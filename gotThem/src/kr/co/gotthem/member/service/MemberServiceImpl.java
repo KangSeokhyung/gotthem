@@ -2,6 +2,7 @@ package kr.co.gotthem.member.service;
 
 import java.util.List;
 
+import kr.co.gotthem.member.bean.MemberBean;
 import kr.co.gotthem.member.dao.MemberDao;
 import kr.co.gotthem.store.bean.StoreBean;
 import kr.co.gotthem.store.dao.StoreDao;
@@ -17,5 +18,10 @@ public class MemberServiceImpl implements MemberService{
 	@Override
 	public List<StoreBean> list() {
 		return memberDao.list();
+	}
+	
+	@Override
+	public void insert(MemberBean memberBean) {
+		memberDao.insert(memberBean);
 	}
 }

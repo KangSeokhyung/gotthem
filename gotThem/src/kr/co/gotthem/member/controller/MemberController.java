@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import kr.co.gotthem.member.bean.MemberBean;
 import kr.co.gotthem.member.service.MemberService;
 import kr.co.gotthem.store.bean.StoreBean;
 
@@ -23,19 +24,22 @@ public class MemberController {
 		this.memberService = memberService;
 	}
 	
-	@RequestMapping(value = "/join.do", method = RequestMethod.GET)
+	@RequestMapping(value = "/join.gt", method = RequestMethod.GET)
 	public String memberJoin() {	
-		System.out.println("오는지확인");
-		System.out.println("오는지확인");
-		System.out.println("오는지확인");
-		System.out.println("오는지확인");
-		System.out.println("오는지확인");
-		System.out.println("오는지확인");
-		System.out.println("오는지확인");
-		System.out.println("오는지확인");
 		return "member/join";
 	}
 	
+	@RequestMapping(value = "/joinSccess.gt", method = RequestMethod.POST)
+	public String joinSccess(MemberBean memberBean) {
+		System.out.println(memberBean);
+		memberService.insert(memberBean);
+		return "redirect:index.gt";
+	}
+	
+	@RequestMapping(value = "/index.gt", method = RequestMethod.GET)
+	public String index() {	
+		return "redirect:index.jsp";
+	}
 
 	@RequestMapping(value = "/myPage.gt", method = RequestMethod.GET)
 	public String memberIndex() {

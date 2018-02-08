@@ -70,7 +70,7 @@
 				</ul>
 				<div class="navbar-text">
 					<!-- Button trigger modal-->
-					<a href="/gotThem/join.do" data-toggle="modal" data-target="#exampleModal"
+					<a href="join.gt" data-target="#exampleModal"
 						class="btn btn-primary navbar-btn btn-shadow btn-gradient">Sign
 						Up</a> <a href="#" data-toggle="modal" data-target="#exampleModal"
 						class="btn btn-primary navbar-btn btn-shadow btn-gradient">Login</a>
@@ -78,7 +78,7 @@
 			</div>
 		</nav>
 	</header>
-
+	
 	<section class="carousel slide cid-qIWOeW23YU" data-interval="false"
 		id="slider1-t">
 		<div class="full-screen">
