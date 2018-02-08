@@ -166,7 +166,7 @@
 					hidden in the middle of text. or randomised words which don't look
 					even slightly believable.</p>
 			</div>
-			<a href="storeIndex.ow" class="btn btn-primary btn-shadow btn-gradient">Discover
+			<a href="storeIndex.st" class="btn btn-primary btn-shadow btn-gradient">Discover
 				More</a>
 		</div>
 	</section>

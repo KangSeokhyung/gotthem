@@ -70,10 +70,15 @@
 				</ul>
 				<div class="navbar-text">
 					<!-- Button trigger modal-->
-					<a href="#" data-toggle="modal" data-target="#exampleModal"
-						class="btn btn-primary navbar-btn btn-shadow btn-gradient">Sign
-						Up</a> <a href="#" data-toggle="modal" data-target="#exampleModal"
-						class="btn btn-primary navbar-btn btn-shadow btn-gradient">Login</a>
+					<a href="#" class="btn btn-primary navbar-btn btn-shadow btn-gradient">Sign
+						Up</a> 
+						<c:if test="${id==null }">
+							<a href="loginForm.st" class="btn btn-primary navbar-btn btn-shadow btn-gradient">Login</a>
+						</c:if>
+						<%-- <c:if test="${id!=null }">
+							<a href="#" data-toggle="modal" data-target="#exampleModal"
+							class="btn btn-primary navbar-btn btn-shadow btn-gradient">MyPage</a>
+						</c:if> --%>
 				</div>
 			</div>
 		</nav>
