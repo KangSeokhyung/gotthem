@@ -1,3 +1,5 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -34,36 +36,9 @@
 	href="../../../resources/simpleAccordion/styles/style.css">
 </head>
 <body>
-	<header class="header">
-		<nav class="navbar navbar-expand-lg fixed-top">
-			<a href="index.html" class="navbar-brand">Got Them!</a>
-			<button type="button" data-toggle="collapse"
-				data-target="#navbarSupportedContent"
-				aria-controls="navbarSupportedContent" aria-expanded="false"
-				aria-label="Toggle navigation"
-				class="navbar-toggler navbar-toggler-right">
-				<span></span><span></span><span></span>
-			</button>
-			<div id="navbarSupportedContent" class="collapse navbar-collapse">
-				<ul
-					class="navbar-nav ml-auto align-items-start align-items-lg-center">
-					<li class="nav-item"><a href="#about-us"
-						class="nav-link link-scroll">Got them?</a></li>
-					<li class="nav-item"><a href="#features"
-						class="nav-link link-scroll">Notice</a></li>
-					<li class="nav-item"><a href="#testimonials"
-						class="nav-link link-scroll">Event</a></li>
-					<li class="nav-item"><a href="text.html" class="nav-link">Question</a></li>
-				</ul>
-				<div class="navbar-text">
-					<!-- Button trigger modal-->
-					<a href="#" data-toggle="modal" data-target="#exampleModal"
-						class="btn btn-primary navbar-btn btn-shadow btn-gradient">Sign
-						Up</a> <a href="#" data-toggle="modal" data-target="#exampleModal"
-						class="btn btn-primary navbar-btn btn-shadow btn-gradient">Login</a>
-				</div>
-			</div>
-		</nav>
+<header>
+<%@include file="../../../nav.jsp" %>
+</header>   
 	</header>
 
 	<div class="container-login100 ">
@@ -73,29 +48,29 @@
 			<form class="login100-form validate-form">
 
 				<div class="text-center p-t-55 p-b-30">
-					<span class="txt1"> 회원 정보 수정</span>
+					<span class="txt1"> íì ì ë³´ ìì </span>
 				</div>
 
 				<div class="wrap-input100 validate-input m-b-16">
 					<input class="input100" type="text" name="email"
-						placeholder="아이디 입력"> <span class="focus-input100"></span>
+						placeholder="ìì´ë ìë ¥"> <span class="focus-input100"></span>
 				</div>
 				<div class="example2">
 					<div class="panel panel-default">
-						<div class="panel-heading txt1 text-center" data-acc-link="demo2" >비밀번호 변경을
-							원하면 클릭</div><br>
+						<div class="panel-heading txt1 text-center" data-acc-link="demo2" >ë¹ë°ë²í¸ ë³ê²½ì
+							ìíë©´ í´ë¦­</div><br>
 						<div class="panel-body" data-acc-content="demo2">
 							<div class="wrap-input100 validate-input m-b-20"
 								data-validate="Please enter password">
 								<span class="btn-show-pass"> <i class="fa fa fa-eye"></i>
 								</span> <input class="input100" type="password" name="pass"
-									placeholder="변경할 비밀번호 입력"> <span class="focus-input100"></span>
+									placeholder="ë³ê²½í  ë¹ë°ë²í¸ ìë ¥"> <span class="focus-input100"></span>
 							</div>
 							<div class="wrap-input100 validate-input m-b-20"
 								data-validate="Please enter password">
 								<span class="btn-show-pass"> <i class="fa fa fa-eye"></i>
 								</span> <input class="input100" type="password" name="pass"
-									placeholder="한번 더 입력하세요"> <span class="focus-input100"></span>
+									placeholder="íë² ë ìë ¥íì¸ì"> <span class="focus-input100"></span>
 							</div>
 						</div>
 					</div>
@@ -103,29 +78,29 @@
 				<br>
 				<div class="wrap-input100 validate-input m-b-16">
 					<input class="input100" type="text" name="email"
-						placeholder="회원 이름을 입력하세요"> <span class="focus-input100"></span>
+						placeholder="íì ì´ë¦ì ìë ¥íì¸ì"> <span class="focus-input100"></span>
 				</div>
 				<div class="wrap-input100 validate-input m-b-16">
 					<input class="input100" type="email" name="email"
-						placeholder="이메일을 입력하세요"> <span class="focus-input100"></span>
+						placeholder="ì´ë©ì¼ì ìë ¥íì¸ì"> <span class="focus-input100"></span>
 				</div>
 				<div class="wrap-input100 validate-input m-b-16">
 					<input class="input100" type="text" name="email"
-						placeholder="전화번호를 입력하세요"> <span class="focus-input100"></span>
+						placeholder="ì íë²í¸ë¥¼ ìë ¥íì¸ì"> <span class="focus-input100"></span>
 				</div>
 				<div class="container-login100-form-btn">
-					<button onclick="sample6_execDaumPostcode()">우편번호 찾기</button>
+					<button onclick="sample6_execDaumPostcode()">ì°í¸ë²í¸ ì°¾ê¸°</button>
 				</div>
 				<br>
 				<div class="wrap-input100 validate-input m-b-20">
 					<input type="text" class="input100" id="sample6_postcode"
-						placeholder="우편번호"> <input type="text" class="input100"
-						id="sample6_roadAddress" placeholder="도로명주소"> <input
+						placeholder="ì°í¸ë²í¸"> <input type="text" class="input100"
+						id="sample6_roadAddress" placeholder="ëë¡ëªì£¼ì"> <input
 						type="text" class="input100" id="sample6_jibunAddress"
-						placeholder="지번주소">
+						placeholder="ì§ë²ì£¼ì">
 				</div>
 				<div class="container-login100-form-btn">
-					<button class="login100-form-btn">가입하기</button>
+					<button class="login100-form-btn">ê°ìíê¸°</button>
 				</div>
 			</form>
 		</div>
@@ -177,43 +152,43 @@
 			new daum.Postcode(
 					{
 						oncomplete : function(data) {
-							// 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
+							// íììì ê²ìê²°ê³¼ í­ëª©ì í´ë¦­íìë ì¤íí  ì½ëë¥¼ ìì±íë ë¶ë¶.
 
-							// 각 주소의 노출 규칙에 따라 주소를 조합한다.
-							// 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
-							var fullAddr = ''; // 최종 주소 변수
-							var extraAddr = ''; // 조합형 주소 변수
+							// ê° ì£¼ìì ë¸ì¶ ê·ì¹ì ë°ë¼ ì£¼ìë¥¼ ì¡°í©íë¤.
+							// ë´ë ¤ì¤ë ë³ìê° ê°ì´ ìë ê²½ì°ì ê³µë°±('')ê°ì ê°ì§ë¯ë¡, ì´ë¥¼ ì°¸ê³ íì¬ ë¶ê¸° íë¤.
+							var fullAddr = ''; // ìµì¢ ì£¼ì ë³ì
+							var extraAddr = ''; // ì¡°í©í ì£¼ì ë³ì
 
-							// 사용자가 선택한 주소 타입에 따라 해당 주소 값을 가져온다.
-							if (data.userSelectedType === 'R') { // 사용자가 도로명 주소를 선택했을 경우
+							// ì¬ì©ìê° ì íí ì£¼ì íìì ë°ë¼ í´ë¹ ì£¼ì ê°ì ê°ì ¸ì¨ë¤.
+							if (data.userSelectedType === 'R') { // ì¬ì©ìê° ëë¡ëª ì£¼ìë¥¼ ì ííì ê²½ì°
 								fullAddr = data.roadAddress;
 
-							} else { // 사용자가 지번 주소를 선택했을 경우(J)
+							} else { // ì¬ì©ìê° ì§ë² ì£¼ìë¥¼ ì ííì ê²½ì°(J)
 								fullAddr = data.jibunAddress;
 							}
 
-							// 사용자가 선택한 주소가 도로명 타입일때 조합한다.
+							// ì¬ì©ìê° ì íí ì£¼ìê° ëë¡ëª íìì¼ë ì¡°í©íë¤.
 							if (data.userSelectedType === 'R') {
-								//법정동명이 있을 경우 추가한다.
+								//ë²ì ëëªì´ ìì ê²½ì° ì¶ê°íë¤.
 								if (data.bname !== '') {
 									extraAddr += data.bname;
 								}
-								// 건물명이 있을 경우 추가한다.
+								// ê±´ë¬¼ëªì´ ìì ê²½ì° ì¶ê°íë¤.
 								if (data.buildingName !== '') {
 									extraAddr += (extraAddr !== '' ? ', '
 											+ data.buildingName
 											: data.buildingName);
 								}
-								// 조합형주소의 유무에 따라 양쪽에 괄호를 추가하여 최종 주소를 만든다.
+								// ì¡°í©íì£¼ìì ì ë¬´ì ë°ë¼ ììª½ì ê´í¸ë¥¼ ì¶ê°íì¬ ìµì¢ ì£¼ìë¥¼ ë§ë ë¤.
 								fullAddr += (extraAddr !== '' ? ' ('
 										+ extraAddr + ')' : '');
 							}
 
-							// 우편번호와 주소 정보를 해당 필드에 넣는다.
-							document.getElementById('sample6_postcode').value = data.zonecode; //5자리 새우편번호 사용
+							// ì°í¸ë²í¸ì ì£¼ì ì ë³´ë¥¼ í´ë¹ íëì ë£ëë¤.
+							document.getElementById('sample6_postcode').value = data.zonecode; //5ìë¦¬ ìì°í¸ë²í¸ ì¬ì©
 							document.getElementById('sample6_address').value = fullAddr;
 
-							// 커서를 상세주소 필드로 이동한다.
+							// ì»¤ìë¥¼ ìì¸ì£¼ì íëë¡ ì´ëíë¤.
 							document.getElementById('sample6_address2').focus();
 						}
 					}).open();
@@ -225,9 +200,9 @@
 		         data : {"id":$('#m_id').val()},	              
 		         success : function(data){
 		              if(data=="0"){
-		           	   $("#idcheck").html('<p style="color:blue"> 사용가능한 아이디입니다.</p>');
+		           	   $("#idcheck").html('<p style="color:blue"> ì¬ì©ê°ë¥í ìì´ëìëë¤.</p>');
 		              }else if(data=="1"){
-		           	   $("#idcheck").html('<p style="color:red"> 다른 사람이 사용중입니다.</p>');
+		           	   $("#idcheck").html('<p style="color:red"> ë¤ë¥¸ ì¬ëì´ ì¬ì©ì¤ìëë¤.</p>');
 		              }
 		         },    error: function(jqXHR, textStatus, errorThrown) {
 		       	  console.log(jqXHR);
@@ -242,10 +217,10 @@
 		var pw2 = document.getElementById("m_pass2").value;
 		 if(pw1 != pw2){
 			 	document.getElementById('pwCheck').style.color = "red";
-			    document.getElementById('pwCheck').innerHTML = "동일한 암호를 입력하세요."; 
+			    document.getElementById('pwCheck').innerHTML = "ëì¼í ìí¸ë¥¼ ìë ¥íì¸ì."; 
 		 		}else {
 		 		document.getElementById('pwCheck').style.color = "blue";
-		 		document.getElementById('pwCheck').innerHTML = "암호가 확인 되었습니다."; 
+		 		document.getElementById('pwCheck').innerHTML = "ìí¸ê° íì¸ ëììµëë¤."; 
 		 		} 			 
 		 } 	  */
 	</script>

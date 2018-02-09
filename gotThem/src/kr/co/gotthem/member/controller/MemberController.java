@@ -3,6 +3,9 @@ package kr.co.gotthem.member.controller;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
@@ -21,6 +24,10 @@ public class MemberController {
 	
 	private MemberService memberService;
 
+	public void setMemberService(MemberService memberService) {
+		this.memberService = memberService;
+	}
+	
 	@RequestMapping(value = "/login.gt", method = RequestMethod.GET)
 	public String login() {
 	
@@ -51,9 +58,6 @@ public class MemberController {
 		return "redirect:index.jsp";
 	}
 	
-	public void setMemberService(MemberService memberService) {
-		this.memberService = memberService;
-	}
 	
 	@RequestMapping(value = "/join.gt", method = RequestMethod.GET)
 	public String memberJoin() {	
