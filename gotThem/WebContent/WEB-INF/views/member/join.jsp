@@ -80,13 +80,14 @@
 
 					<div class="wrap-input100 validate-input m-b-16">
 						<input class="input100" type="text" name="mem_id"
-							placeholder="아이디 입력"> <span class="focus-input100"></span>
-					</div>
+							placeholder="아이디 입력"> <span class="focus-input100"></span> 
+						
+					</div><button class="container-login100-form-btn" onclick="checkId()">아이디 중복체크</button>
 					<div class="wrap-input100 validate-input m-b-20" data-validate = "Please enter password">
 						<span class="btn-show-pass">
 							<i class="fa fa fa-eye"></i>
 						</span>
-						<input class="input100" type="password" name="mem_pw" placeholder="패스워드 입력">
+						<input class="input100" type="password" name="mem_pw" placeholder="패스워드 입력" onkeydown="pwCheck()">
 						<span class="focus-input100"></span>
 					</div>
 					<div class="wrap-input100 validate-input m-b-20" data-validate = "Please enter password">
@@ -95,7 +96,7 @@
 						</span>
 						<input class="input100" type="password" name="mem_pw2" placeholder="한번 더 입력하세요">
 						<span class="focus-input100"></span>
-					</div>
+					</div> <div id="pwCheck">여기</div>
 					<div class="wrap-input100 validate-input m-b-16">
 						<input class="input100" type="text" name="mem_name"
 							placeholder="회원 이름을 입력하세요"> <span class="focus-input100"></span>
@@ -173,9 +174,9 @@
     }
 	 	/* function checkId(){ 
 	          $.ajax({
-	              url : "./MemberIdCheckAction.aq",
+	              url : "./MemberIdCheck.gt",
 	              type: "POST",
-	              data : {"id":$('#m_id').val()},	              
+	              data : {"mem_id":$('#mem_id').val()},	              
 	              success : function(data){
 	                   if(data=="0"){
 	                	   $("#idcheck").html('<p style="color:blue"> 사용가능한 아이디입니다.</p>');
@@ -188,11 +189,11 @@
 	            	  console.log(errorThrown);
 	              }
 	          });
-		  }
-   
+		  } 
+   */
       function pwCheck(){
-    	 var pw1 = document.getElementById("m_pass1").value;
-    	 var pw2 = document.getElementById("m_pass2").value;
+    	 var pw1 = document.getElementById("mem_pw").value;
+    	 var pw2 = document.getElementById("mem_pw2").value;
     		 if(pw1 != pw2){
     			 	document.getElementById('pwCheck').style.color = "red";
     			    document.getElementById('pwCheck').innerHTML = "동일한 암호를 입력하세요."; 
@@ -200,7 +201,7 @@
     		 		document.getElementById('pwCheck').style.color = "blue";
     		 		document.getElementById('pwCheck').innerHTML = "암호가 확인 되었습니다."; 
     		 		} 			 
-    		 } 	  */
+    	}	 
 </script>
 </body>
 </html>

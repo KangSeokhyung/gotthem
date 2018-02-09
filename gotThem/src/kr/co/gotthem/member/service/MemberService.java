@@ -9,4 +9,6 @@ public interface MemberService {
 	public List<StoreBean> list();
 	
 	public void insert(MemberBean memberBean);
+
+	public MemberBean login(String id);
 }

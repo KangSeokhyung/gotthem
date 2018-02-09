@@ -11,4 +11,6 @@ public interface MemberDao {
 	
 	public void insert(MemberBean memberBean);
 	
+	public MemberBean login(String id);
+
 }

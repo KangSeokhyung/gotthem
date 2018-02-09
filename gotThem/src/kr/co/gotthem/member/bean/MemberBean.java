@@ -1,5 +1,6 @@
 package kr.co.gotthem.member.bean;
 
+
 import java.sql.Date;
 
 public class MemberBean {
@@ -89,6 +90,9 @@ public class MemberBean {
 	}
 	
 	
+
 	
-	
+	public MemberBean() {
+		super();
+	}
 }

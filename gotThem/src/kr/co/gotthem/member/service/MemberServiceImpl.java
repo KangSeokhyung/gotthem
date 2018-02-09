@@ -24,4 +24,10 @@ public class MemberServiceImpl implements MemberService{
 	public void insert(MemberBean memberBean) {
 		memberDao.insert(memberBean);
 	}
+
+	@Override
+	public MemberBean login(String id) {
+		return memberDao.login(id);
+	}
+
 }

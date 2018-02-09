@@ -25,8 +25,9 @@ public class StoreController {
 
 	@RequestMapping(value = "/storeIndex.ow", method = RequestMethod.GET)
 	public String storeIndex() {
-		
-		
+
+
+			System.out.println("꺼져");
 			List<StoreBean> list = new ArrayList<StoreBean>();
 			list = storeService.list();
 			System.out.println(list);

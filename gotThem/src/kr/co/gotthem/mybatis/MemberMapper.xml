@@ -2,6 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
               "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
               
+<<<<<<< HEAD
 <mapper namespace="kr.co.gotthem.store.mybatis.MemberMapper">
 
 	<select id="list" resultType="kr.co.gotthem.member.bean.MemberBean">
@@ -13,5 +14,13 @@
 		 values (#{mem_id},	#{mem_pw}, #{mem_name}, #{mem_email}, #{mem_phone}, #{mem_post}, #{mem_address1},
 		 #{mem_address2}, current_timestamp, 0)
 	</insert>
+	
+	<select id="list" resultType="kr.co.gotthem.member.bean.MemberBean">
+		select * from member
+	</select>
+	<select id="login" resultType="kr.co.gotthem.member.bean.MemberBean">
+		select mem_id, mem_pw from member where mem_id = #{id}
+	</select>
 
 </mapper>
+
