@@ -18,4 +18,10 @@ public class StoreServiceImpl implements StroreService {
 		return storeDao.list();
 	}
 
+	@Override
+	public StoreBean FindById(String sto_id) {
+		
+		return storeDao.FindById(sto_id);
+	}
+
 }

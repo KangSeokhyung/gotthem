@@ -40,22 +40,30 @@ public class StoreController {
 	}
 	
 	@RequestMapping(value = "/loginForm.st", method = RequestMethod.GET)
-	protected ModelAndView loginForm(HttpServletRequest request, HttpSession session) throws Exception{
-		ModelAndView mav = new ModelAndView();
-		System.out.println("안오냐");
-		String sto_id = request.getParameter("sto_id");
-		session.setAttribute("sto_id", sto_id);
-		mav.setViewName("store/storeLogin");
-		return mav;
+	public String loginForm() {
+		return "store/storeLogin";
 	}
 	
 	@RequestMapping(value = "/login.st", method = RequestMethod.POST)
-	protected ModelAndView login(HttpServletRequest request, HttpSession session) throws Exception{
-		ModelAndView mav = new ModelAndView();
-				
+	public String login(HttpServletRequest request, HttpSession session) throws Exception{
+		
 		String sto_id = request.getParameter("sto_id");
+		String sto_pw = request.getParameter("sto_pw");
+		
+		StoreBean dto = storeService.FindById(sto_id);
+		
 		session.setAttribute("sto_id", sto_id);
-		mav.setViewName("store/storeLogin");
-		return mav;
+		if(dto==null) {
+			return "store/fail2";
+		}
+		
+		String pw = dto.getSto_pw();
+		
+		if(sto_pw.equals(pw)) {
+			session.setAttribute("sto_id", sto_id);
+		}else {
+			return "fail";
+		}
+		return "store/storeIndex";
 	}
 }

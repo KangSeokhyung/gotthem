@@ -2,8 +2,8 @@ package kr.co.gotthem.admin.service;
 
 import java.util.List;
 
-import kr.co.gotthem.store.bean.StoreBean2;
+import kr.co.gotthem.store.bean.StoreBean;
 
 public interface AdminService {
-	public List<StoreBean2> list();
+	public List<StoreBean> list();
 }
