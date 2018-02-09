@@ -1,9 +1,10 @@
-	<%@ page language="java" contentType="text/html; charset=UTF-8"
+<%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%String id=(String)session.getAttribute("id");%>
 	<!-- navbar-->
 	<header class="header">
 		<nav class="navbar navbar-expand-lg fixed-top">
-			<a href="/gotthem/index.jsp" class="navbar-brand">Got Them!</a>
+			<a href="index.jsp" class="navbar-brand">Got Them!</a>
 			<button type="button" data-toggle="collapse"
 				data-target="#navbarSupportedContent"
 				aria-controls="navbarSupportedContent" aria-expanded="false"
@@ -24,10 +25,13 @@
 				</ul>
 				<div class="navbar-text">
 					<!-- Button trigger modal-->
-					<a href="#" data-toggle="modal" data-target="#exampleModal"
-						class="btn btn-primary navbar-btn btn-shadow btn-gradient">Sign
-						Up</a> <a href="#" data-toggle="modal" data-target="#exampleModal"
-						class="btn btn-primary navbar-btn btn-shadow btn-gradient">Login</a>
+					  <%if(id==null) {%> 
+					<a href="#" class="btn btn-primary navbar-btn btn-shadow btn-gradient">Sign Up</a> 				
+					<a href="login.gt" class="btn btn-primary navbar-btn btn-shadow btn-gradient">Login</a>
+					 <% } else { %>
+					<a href="#" class="btn btn-primary navbar-btn btn-shadow btn-gradient">Modify</a> 				
+					<a href="logout.gt" class="btn btn-primary navbar-btn btn-shadow btn-gradient">Logout</a>
+					 <% } %>
 				</div>
 			</div>
 		</nav>

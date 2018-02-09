@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ page session="false"%>
+<%String getId=(String)session.getAttribute("id");%>
+<%-- <%String uri = request.getRequestURI(); System.out.println(uri);%> --%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -41,10 +41,10 @@
         <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
 </head>
 <body>
-
+<input type="hidden"  name="uri" value="<%request.getRequestURI();%>">
 <header>
 <%@include file="nav.jsp" %>
-</header>
+</header> 
 
 	<section id="cvssearch" class="newsletter bg-gray">
 		<div class="container text-center">
@@ -133,6 +133,7 @@
 				</div>
 			</div>
 		</div>
+		
 		<div class="copyrights">
 			<div class="container">
 				<div class="row">
@@ -151,13 +152,9 @@
 	</footer>
 	<!-- Javascript files-->
 	<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js">
-		
-	</script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"></script>
 	<script src="resources/landy/vendor/bootstrap/js/bootstrap.min.js"></script>
-	<script src="resources/landy/vendor/jquery.cookie/jquery.cookie.js">
-		
-	</script>
+	<script src="resources/landy/vendor/jquery.cookie/jquery.cookie.js"></script>
 	<script src="resources/landy/vendor/owl.carousel/owl.carousel.min.js"></script>
 	<script src="resources/landy/js/front.js"></script>
 </body>

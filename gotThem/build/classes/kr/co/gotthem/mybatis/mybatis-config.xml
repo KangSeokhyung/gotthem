@@ -4,9 +4,8 @@
     "http://mybatis.org/dtd/mybatis-3-config.dtd">
     
 <configuration>
-
 	<mappers>
-		<mapper resource="kr/co/gotthem/store/mybatis/StoreMapper.xml" />
+		<mapper resource="kr/co/gotthem/mybatis/StoreMapper.xml" />
+		<mapper resource="kr/co/gotthem/mybatis/MemberMapper.xml" />
 	</mappers>
-
 </configuration>
