@@ -30,12 +30,6 @@ public class StoreController {
 	@RequestMapping(value = "/storeIndex.st", method = RequestMethod.GET)
 	public String storeIndex() {
 		
-		System.out.println("aaaaaa");
-		System.out.println("두번쨰테스트dddd");
-		List<StoreBean> list = new ArrayList<StoreBean>();
-		list = storeService.list();
-		System.out.println(list+"잘된다");
-		
 		return "store/storeIndex";
 	}
 	
