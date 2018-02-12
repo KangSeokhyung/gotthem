@@ -4,7 +4,7 @@ import java.util.List;
 
 import org.mybatis.spring.SqlSessionTemplate;
 
-import kr.co.gotthem.store.bean.StoreBean2;
+import kr.co.gotthem.store.bean.StoreBean;
 
 public class AdminDaoImpl implements AdminDao {
 
@@ -15,7 +15,7 @@ public class AdminDaoImpl implements AdminDao {
 	}
 
 	@Override
-	public List<StoreBean2> list() {
+	public List<StoreBean> list() {
 		return sqlSessionTemplate.selectList("list");
 	}
 

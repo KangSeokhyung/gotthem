@@ -8,6 +8,7 @@
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
 	
 	<annotation-driven />
+	
 	<context:annotation-config/>
 	
 	<resources mapping="/resources/**" location="/resources/" />
@@ -15,7 +16,7 @@
 	<!-- ViewResolver -->
 	<beans:bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<beans:property name="prefix" value="/WEB-INF/views/" />
-		<beans:property name="suffix" value=".jsp" />
+		<beans:property name="suffix" value=".html" />
 	</beans:bean>
 	
 	<!-- DB (Mybatis, MariaDB 연결) -->

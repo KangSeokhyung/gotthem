@@ -1,268 +1,566 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ page session="false"%>
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<title>Landy: Bootstrap 4 landing page template by
-	Bootstrapious.com</title>
-<meta name="description" content="">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="robots" content="all,follow">
-<!-- Bootstrap CSS-->
-<link rel="stylesheet"
-	href="resources/landy/vendor/bootstrap/css/bootstrap.min.css">
-<!-- Font Awesome CSS-->
-<link rel="stylesheet"
-	href="resources/landy/vendor/font-awesome/css/font-awesome.min.css">
-<!-- Custom Font Icons CSS-->
-<link rel="stylesheet" href="resources/landy/css/landy-iconfont.css">
-<!-- Google fonts - Open Sans-->
-<link rel="stylesheet"
-	href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700,800">
-<!-- owl carousel-->
-<link rel="stylesheet"
-	href="resources/landy/vendor/owl.carousel/assets/owl.carousel.css">
-<link rel="stylesheet"
-	href="resources/landy/vendor/owl.carousel/assets/owl.theme.default.css">
-<!-- theme stylesheet-->
-<link rel="stylesheet" href="resources/landy/css/style.default.css"
-	id="theme-stylesheet">
-<!-- Custom stylesheet - for your changes-->
-<link rel="stylesheet" href="resources/landy/css/custom.css">
-<!-- Favicon-->
-<link rel="shortcut icon" href="favicon.png">
-<!-- Tweaks for older IEs-->
-<!--[if lt IE 9]>
-        <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-        <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
-  <link rel="stylesheet" href="resources/slidertemplate/tether/tether.min.css">
-  <link rel="stylesheet" href="resources/slidertemplate/bootstrap/css/bootstrap.min.css">
-  <link rel="stylesheet" href="resources/slidertemplate/bootstrap/css/bootstrap-reboot.min.css">
-  <link rel="stylesheet" href="resources/slidertemplate/theme/css/style.css">
-  <link rel="stylesheet" href="resources/slidertemplate/mobirise/css/mbr-additional.css" type="text/css">
+<meta charset="UTF-8">
+<title>Got Them?</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+	<link rel="shortcut icon" href="${pageContext.request.contextPath }/resources/ownerTemplate/images/favicon.ico">
+	<link rel="stylesheet" href="${pageContext.request.contextPath }/resources/ownerTemplate/bootstrap/css/bootstrap.css">
+	<link rel="stylesheet" href="${pageContext.request.contextPath }/resources/ownerTemplate/css/font-awesome.min.css">
+	<link rel="stylesheet" href="${pageContext.request.contextPath }/resources/ownerTemplate/css/style.css">
+	<link href="https://fonts.googleapis.com/css?family=Droid+Serif:400,400i,700,700i|Montserrat:200,200i,300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
 </head>
 <body>
-	<!-- navbar-->
-	<header class="header">
-		<nav class="navbar navbar-expand-lg fixed-top">
-			<a href="/gotthem/index.jsp" class="navbar-brand">Got Them!</a>
-			<button type="button" data-toggle="collapse"
-				data-target="#navbarSupportedContent"
-				aria-controls="navbarSupportedContent" aria-expanded="false"
-				aria-label="Toggle navigation"
-				class="navbar-toggler navbar-toggler-right">
-				<span></span><span></span><span></span>
-			</button>
-			<div id="navbarSupportedContent" class="collapse navbar-collapse">
-				<ul
-					class="navbar-nav ml-auto align-items-start align-items-lg-center">
-					<li class="nav-item"><a href="#about-us"
-						class="nav-link link-scroll">Got them?</a></li>
-					<li class="nav-item"><a href="#features"
-						class="nav-link link-scroll">Notice</a></li>
-					<li class="nav-item"><a href="#testimonials"
-						class="nav-link link-scroll">Event</a></li>
-					<li class="nav-item"><a href="text.html" class="nav-link">Question</a></li>
-				</ul>
-				<div class="navbar-text">
-					<!-- Button trigger modal-->
-					<a href="#" data-toggle="modal" data-target="#exampleModal"
-						class="btn btn-primary navbar-btn btn-shadow btn-gradient">Sign
-						Up</a> <a href="#" data-toggle="modal" data-target="#exampleModal"
-						class="btn btn-primary navbar-btn btn-shadow btn-gradient">Login</a>
+	<section class="cover-1 text-center">
+			<nav class="navbar navbar-expand-lg navbar-dark navbar-custom">
+				<div class="container">
+					<a class="navbar-brand" href="#">Got Them!</a>
+					<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+						<span class="navbar-toggler-icon"></span>
+					</button>
+					<div class="collapse navbar-collapse pull-xs-right justify-content-end" id="navbarSupportedContent">
+						<ul class="navbar-nav mt-2 mt-md-0">
+							<li class="nav-item active">
+								<a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link" href="#">About</a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link" href="#">Our Work</a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link" href="#">Contact</a>
+							</li>
+							<li class="nav-item">
+								<a class="btn btn-outline-white btn-outline" href="#">Buy Now</a>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</nav>
+			<div class="cover-container pb-5">
+				<div class="cover-inner container">
+					<h1 class="jumbotron-heading">Say <em>hello</em> to our	<strong>Startup UI Kit</strong></h1>
+					<p class="lead">A collection of coded HTML and CSS elements to help your build your startup website. Clean design, fully responsive and based on Bootstrap 4.</p>
+					<p>
+						<a href="#" class="btn btn-primary btn-lg mb-2 mr-2 ml-2">Main call to action</a>
+						<a href="#" class="btn btn-outline-white btn-lg mb-2 ml-2 ml-2">Secondary action</a>
+					</p>
 				</div>
 			</div>
-		</nav>
-	</header>
-
-	<section class="carousel slide cid-qIWOeW23YU" data-interval="false"
-		id="slider1-t">
-		<div class="full-screen">
-			<div class="mbr-slider slide carousel" data-pause="true"
-				data-keyboard="false" data-ride="false" data-interval="false">
-				<ol class="carousel-indicators">
-					<li data-app-prevent-settings="" data-target="#slider1-t"
-						class=" active" data-slide-to="0"></li>
-					<li data-app-prevent-settings="" data-target="#slider1-t"
-						data-slide-to="1"></li>
-				</ol>
-				<div class="carousel-inner" role="listbox">
-					<div class="carousel-item slider-fullscreen-image active"
-						data-bg-video-slide="false"
-						style="background-image: url(assets/images/1.jpg);">
-						<div class="container container-slide">
-							<div class="image_wrapper">
-								<div class="mbr-overlay"></div>
-								<img src="assets/images/1.jpg">
-								<div class="carousel-caption justify-content-center">
-									<div class="col-10 align-center">
-										<h2 class="mbr-fonts-style display-1">FULL SCREEN SLIDER</h2>
-										<p class="lead mbr-text mbr-fonts-style display-5">Choose
-											from the large selection of latest pre-made blocks -
-											jumbotrons, hero images, parallax scrolling, video
-											backgrounds, hamburger menu, sticky header and more.</p>
-										<div class="mbr-section-btn" buttons="0">
-											<a class="btn  btn-success display-4"
-												href="https://mobirise.com">FOR WINDOWS</a> <a
-												class="btn  btn-white-outline display-4"
-												href="https://mobirise.com">FOR MAC</a>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
+		</section>
+		
+		<section class="cover-2 text-left">
+			<nav class="navbar navbar-expand-lg navbar-dark navbar-custom">
+				<div class="container">
+					<a class="navbar-brand" href="#">Navbar</a>
+					<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+						<span class="navbar-toggler-icon"></span>
+					</button>
+					<div class="collapse navbar-collapse pull-xs-right justify-content-end" id="navbarSupportedContent">
+						<ul class="navbar-nav mt-2 mt-md-0">
+							<li class="nav-item active">
+								<a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link" href="#">About</a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link" href="#">Our Work</a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link" href="#">Contact</a>
+							</li>
+							<li class="nav-item">
+								<a class="btn btn-success pill-btn" href="#">Buy Now</a>
+							</li>
+						</ul>
 					</div>
-					<div class="carousel-item slider-fullscreen-image"
-						data-bg-video-slide="https://www.youtube.com/watch?v=fwkKc6M60-0">
-						<div class="mbr-overlay"></div>
-						<div class="container container-slide">
-							<div class="image_wrapper">
-								<img src="assets/images/2.jpg" style="opacity: 0;">
-								<div class="carousel-caption justify-content-center">
-									<div class="col-10 align-left">
-										<h2 class="mbr-fonts-style display-1">VIDEO SLIDE</h2>
-										<p class="lead mbr-text mbr-fonts-style display-5">Slide
-											with youtube video background and color overlay. Title and
-											text are aligned to the left.</p>
-									</div>
-								</div>
-							</div>
+				</div>
+			</nav>
+			<div class="cover-container">
+				<div class="cover-inner container">
+						<div class="row justify-center">
+							<div class="col-lg-5 mt-5 mb-5 text-center text-lg-left">
+								<h1 class="jumbotron-heading">Medialoot Startup UI Kit</h1>
+								<p class="lead">A collection of coded HTML and CSS elements to help your build your startup website. Clean design, fully responsive and based on Bootstrap 4.</p>
+								<p>
+								<a href="#" class="btn btn-outline-success btn-lg mb-2 mr-2 ml-2 pill-btn">Buy Now</a>
+								<a href="#" class="btn link-white mb-2 ml-2 ml-2 pill-btn">Find out more</a>
+							</p>
+						</div>
+						<div class="col-lg-5 offset-lg-2 mt-5 mb-5 text-center">
+							<img class="img-fluid mt-5 mb-5" src="${pageContext.request.contextPath }/resources/ownerTemplate/images/placeholder-phone.png" >
 						</div>
 					</div>
 				</div>
 			</div>
-		</div>
-	</section>
-
-	<section id="cvssearch" class="newsletter bg-gray">
-		<div class="container text-center">
-			<h2>지금 맛있고 간단한 식사를 위해 검색해보세요</h2>
-			<p class="lead">검색버튼으로 근처 편의점의 재고 조회가 가능합니다.</p>
-			<div class="form-holder">
-				<form id="newsletterForm" action="#">
-					<div class="form-group">
-						<input type="text" name="email" id="email"
-							placeholder="원하는 단어를 검색해보세요 (ex. 강남역 삼각김밥)">
-						<button type="submit" class="btn btn-primary btn-gradient submit">검색</button>
+		</section>
+		
+		<section class="cover-5 text-center">
+			<nav class="navbar navbar-expand-lg navbar-light navbar-custom">
+				<div class="container">
+					<a class="navbar-brand" href="#">Navbar</a>
+					<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+						<span class="navbar-toggler-icon"></span>
+					</button>
+					<div class="collapse navbar-collapse pull-xs-right justify-content-end" id="navbarSupportedContent">
+						<ul class="navbar-nav mt-2 mt-md-0">
+							<li class="nav-item active">
+								<a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link" href="#">About</a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link" href="#">Our Work</a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link" href="#">Contact</a>
+							</li>
+							<li class="nav-item">
+								<a class="btn btn-outline-success btn-outline" href="#">Buy Now</a>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</nav>
+			<div class="cover-container pb-5 ">
+				<div class="cover-inner container">
+					<p class="lead ">A collection of coded HTML and CSS elements</p>
+					<div class="divider"></div>
+					<h1 class="jumbotron-heading">Say <em>hello</em> to our	<strong>Startup UI Kit</strong></h1>
+					<div class="row">
+						<div class="m-auto col-md-4 mt-5">
+							<button type="submit" class="btn btn-lg btn-success pill-btn mt-5">Get Started</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+		
+		<section class="features-1 text-center">
+			<div class="container">
+				<h2>Features</h2>
+				<div class="divider"></div>
+				<div class="row">
+					<div class="col-md-4 col-feature">
+						<div class="rounded-circle justify-center">
+							<em class="fa fa-2x fa-paint-brush"></em>
+						</div>
+						<h4>Clean Design</h4>
+						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse cursus erat sed sem sagittis cursus.</p>
+						<p><a class="btn btn-outline-primary mt-2" href="#" role="button">View details</a></p>
+					</div>
+					<div class="col-md-4 col-feature">
+						<div class="rounded-circle justify-center">
+							<em class="fa fa-2x fa-desktop"></em>
+						</div>
+						<h4>Responsive</h4>
+						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse cursus erat sed sem sagittis cursus.</p>
+						<p><a class="btn btn-outline-primary mt-2" href="#" role="button">View details</a></p>
+					</div>
+					<div class="col-md-4 col-feature">
+						<div class="rounded-circle justify-center">
+							<em class="fa fa-2x fa-code"></em>
+						</div>
+						<h4>Bootstrap 4</h4>
+						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse cursus erat sed sem sagittis cursus.</p>
+						<p><a class="btn btn-outline-primary mt-2" href="#" role="button">View details</a></p>
+					</div>
+				</div>
+			</div>
+		</section>
+		
+		<section class="features-4 text-center">
+			<div class="container">
+				<div class="row justify-center">
+					<div class="col-md-8 text-center" >
+						<h2>Features</h2>
+						<p class="lead mt-3">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse cursus erat sed sem sagittis cursus.</p>
+						<div class="divider"></div>
+					</div>	
+				</div>
+				<div class="row">
+					<div class="col-md-3 col-feature">
+						<div class="rounded-circle justify-center">
+							<em class="fa fa-2x fa-paint-brush"></em>
+						</div>
+						<h4>Clean Design</h4>
+						<p>Donec sed odio dui. Etiam porta sem malesuada magna mollis euismod.</p>
+					</div>
+					<div class="col-md-3 col-feature">
+						<div class="rounded-circle justify-center">
+							<em class="fa fa-2x fa-mobile"></em>
+						</div>
+						<h4>Responsive</h4>
+						<p>Donec sed odio dui. Etiam porta sem malesuada magna mollis euismod.</p>
+					</div>
+					<div class="col-md-3 col-feature">
+						<div class="rounded-circle justify-center">
+							<em class="fa fa-2x fa-code"></em>
+						</div>
+						<h4>Bootstrap 4</h4>
+						<p>Donec sed odio dui. Etiam porta sem malesuada magna mollis euismod.</p>
+					</div>
+					<div class="col-md-3 col-feature">
+						<div class="rounded-circle justify-center">
+							<em class="fa fa-2x fa-pencil"></em>
+						</div>
+						<h4>Easy to Edit</h4>
+						<p>Donec sed odio dui. Etiam porta sem malesuada magna mollis euismod.</p>
+					</div>
+				</div>
+			</div>
+		</section>
+		
+		<section class="content-1">
+			<div class="container">
+				<div class="row justify-center">
+					<div class="col-md-6 text-center">
+						<img class="mb-4 img-fluid" src="${pageContext.request.contextPath }/resources/ownerTemplate/images/placeholder-phone.png" >
+					</div>
+					<div class="col-md-6 text-center text-md-left" >
+						<h2 class="mb-4 mt-4">Talk about your awesome features</h2>
+						<p class="mb-4">Donec sed odio dui. Etiam porta sem malesuada magna mollis euismod. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
+						<p><a class="btn btn-outline-secondary" href="#" role="button">Find out more	</a></p>
+					</div>
+				</div>
+			</div>
+		</section>
+		
+		<section class="content-2">
+			<div class="container">
+				<div class="row justify-center">
+					<div class="col-md-6 text-center text-md-left pl-5">
+						<h2 class="mb-4 mt-4">Talk about your awesome features</h2>
+						<p class="mb-4">Donec sed odio dui. Etiam porta sem malesuada magna mollis euismod. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
+						<p><a class="btn btn-outline-secondary" href="#" role="button">Find out more	</a></p>
+					</div>
+					<div class="col-md-6 text-center">
+						<img class="mb-4 img-fluid" src="${pageContext.request.contextPath }/resources/ownerTemplate/images/placeholder-beats-x.png" >
+					</div>
+				</div>
+			</div>
+		</section>
+		
+		<section class="content-4">
+			<div class="container">
+				<div class="row justify-center mt-5">
+					<div class="col-md-6 pl-5 pr-5 text-center" >
+						<img class="mb-4 img-fluid" src="${pageContext.request.contextPath }/resources/ownerTemplate/images/placeholder-chair.jpg" >
+					</div>
+					<div class="col-md-6 text-left" >
+						<h2>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</h2>
+						<p class="lead mt-4 mb-5">Integer libero nunc, elementum eu venenatis sed, molestie non tortor. Duis suscipit pulvinar justo. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. </p>
+						
+						<div class="row">
+							<div class="col-md-6 col-feature mb-4">
+								<h4 class="mb-3">Clean Design</h4>
+								<p>Donec sed odio dui. Etiam porta sem malesuada magna mollis euismod. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.</p>
+							</div>
+							<div class="col-md-6 col-feature mb-4">
+								<h4 class="mb-3">Bootstrap 4</h4>
+								<p>Donec sed odio dui. Etiam porta sem malesuada magna mollis euismod. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.</p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+		
+		<section class="cta-2 text-center">
+			<div class="container">
+				<h3 class="mt-2 mb-4">Sign up now to save 10% on your first order</h3>
+				<form class="subscribe">
+					<div class="form-group row pt-3">
+						<div class="col-sm-8 mb-3">
+							<input type="text" class="form-control-custom" id="inputName" placeholder="Your Name">
+						</div>
+						<div class="col-sm-4">
+							<button type="submit" class="btn btn-lg btn-outline-success">Sign me up</button>
+						</div>
 					</div>
 				</form>
 			</div>
-		</div>
-	</section>
+		</section>
 
-	<section id="about-us">
-		<div class="container">
-			<h2>저희와 제휴 하고 싶으신가요?</h2>
-			<div class="row">
-				<p class="lead col-lg-10">There are many variations of passages
-					of Lorem Ipsum available, but the majority have suffered alteration
-					in some form, by injected humour, or randomised words which don't
-					look even slightly believable. If you are going to use a passage of
-					Lorem Ipsum, you need to be sure there isn't anything embarrassing
-					hidden in the middle of text. or randomised words which don't look
-					even slightly believable.</p>
+		<section class="cta-4 text-center justify-center">
+			<div class="container">
+				<h2 class="mb-5">Download this UI Kit and use it to help your startup get started up</h2>
+				<div class="divider"></div>
+				<form class="subscribe">
+					<div class="form-group row pt-4 pb-2 m-auto col-md-8">
+						<div class="col-md-6 mb-3">
+							<input type="text" class="form-control-custom" id="inputName" placeholder="Your Name">
+						</div>
+						<div class="col-md-6 mb-3">
+							<input type="email" class="form-control-custom" id="inputEmail" placeholder="Your Email">
+						</div>
+					</div>
+					<div class="row">
+						<div class="m-auto col-md-4">
+							<button type="submit" class="btn btn-lg btn-primary pill-btn">Get Started</button>
+						</div>
+					</div>
+				</form>
 			</div>
-			<a href="storeIndex.ow" class="btn btn-primary btn-shadow btn-gradient">Discover
-				More</a>
-		</div>
-	</section>
-
-	<div id="scrollTop">
-		<div class="d-flex align-items-center justify-content-end">
-			<i class="fa fa-long-arrow-up"></i>To Top
-		</div>
-	</div>
-	<footer class="main-footer">
-		<div class="container">
-			<div class="row">
-				<div class="col-lg-3 col-md-6">
-					<a href="#" class="brand">Landy</a>
-					<ul class="contact-info list-unstyled">
-						<li><a href="mailto:sales@landy.com">Sales@Landy.com</a></li>
-						<li><a href="tel:123456789">+00 123 456 789</a></li>
-					</ul>
-					<ul class="social-icons list-inline">
-						<li class="list-inline-item"><a href="#" target="_blank"
-							title="Facebook"><i class="fa fa-facebook"></i></a></li>
-						<li class="list-inline-item"><a href="#" target="_blank"
-							title="Twitter"><i class="fa fa-twitter"></i></a></li>
-						<li class="list-inline-item"><a href="#" target="_blank"
-							title="Instagram"><i class="fa fa-instagram"></i></a></li>
-						<li class="list-inline-item"><a href="#" target="_blank"
-							title="Pinterest"><i class="fa fa-pinterest"></i></a></li>
-					</ul>
-				</div>
-				<div class="col-lg-3 col-md-6">
-					<h5>Selected Cases</h5>
-					<ul class="links list-unstyled">
-						<li><a href="#">Guess Conntect</a></li>
-						<li><a href="#">Postly</a></li>
-						<li><a href="#">Iris Vor Arnim</a></li>
-						<li><a href="#">Yapital</a></li>
-					</ul>
-				</div>
-				<div class="col-lg-3 col-md-6">
-					<h5>Selected Cases</h5>
-					<ul class="links list-unstyled">
-						<li><a href="#">Guess Conntect</a></li>
-						<li><a href="#">Postly</a></li>
-						<li><a href="#">Iris Vor Arnim</a></li>
-						<li><a href="#">Yapital</a></li>
-					</ul>
-				</div>
-				<div class="col-lg-3 col-md-6">
-					<h5>Selected Cases</h5>
-					<ul class="links list-unstyled">
-						<li><a href="#">Guess Conntect</a></li>
-						<li><a href="#">Postly</a></li>
-						<li><a href="#">Iris Vor Arnim</a></li>
-						<li><a href="#">Yapital</a></li>
-					</ul>
+		</section>
+		
+		<section class="cta-5 text-center">
+			<div class="container">
+				<div class="row align-items-center">
+					<div class="col-lg-8 text-center text-lg-left">
+						<h2 class="mt-4 mb-2">Do you like what you see?</h2>
+						<p class="lead mb-3">Sign up now to save 10% on your first order.</p>
+					</div>
+					<div class="col-lg-4">
+						<button type="submit" class="btn btn-lg btn-success pill-btn mt-3">Get Started</button>
+					</div>
 				</div>
 			</div>
-		</div>
-		<div class="copyrights">
+		</section>
+
+		<section class="contact-1">
+			<div id="map"></div>
+				<script src="${pageContext.request.contextPath }/resources/ownerTemplate/js/maps.js"></script>
+			<!--YOU MUST REPLACE WITH YOUR OWN API KEY FOR THE MAP TO WORK-->
+			<script async defer
+				src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBptaDKT_ntSoNEytCnSang5JenaNAj_Us&callback=initMap">
+			</script>
+			<div class="container">
+				<div class="row contact-details">
+					<div class="col-sm-8 text-center text-md-left mb-4">
+						<h3>Ask us a question</h3>
+						<form class="contact-form mt-4">
+							<div class="row">
+								<div class="col-md-5">
+									<input type="text" class="form-control-custom mb-4" placeholder="Name" value="Your name">
+								</div>
+								<div class="col-md-5">
+									<input type="text" class="form-control-custom mb-4" placeholder="Email address" value="Email address">
+								</div>
+								<br />
+							</div>
+							<div class="row">
+								<div class="col-md-10">
+									<textarea class="form-control-custom mb-4" rows="3">Your Message</textarea><br />
+									<button type="submit" class="btn btn-primary btn-lg mb-4">Send Message</button>
+								</div> 
+							</div>
+						</form>
+					</div>
+					<div class="col-sm-4 text-center text-md-left">
+						<h3>Contact</h3>
+						<h4 class="pt-4">Email</h4>
+						<p>hello@startup.co</p>
+						<h4 class="pt-2">Phone</h4>
+						<p>+111 234 567 89</p>
+						<h4 class="pt-2">Address</h4>
+						<p>1 Street Name, City, Zip Code<br />
+						United States</p>
+						<ul class="social">
+							<li><a href="#" title="Facebook" class="fa fa-facebook"></a></li>
+							<li><a href="#" title="Twitter" class="fa fa-twitter"></a></li>
+							<li><a href="#" title="Google+" class="fa fa-google"></a></li>
+							<li><a href="#" title="Dribbble" class="fa fa-dribbble"></a></li>
+							<li><a href="#" title="Instagram" class="fa fa-instagram"></a></li>
+							<div class="clear"></div>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</section>
+		
+		<section class="contact-2">
+			<div class="container">
+				<div class="row contact-details">
+					<div class="col-sm-8 m-auto text-center">
+						<h2>Contact Us</h2>
+						<p class="lead constrain-width mt-4">Lorem ipsum dolor sit amet, consectetur adipiscing elit. At aliquam rhoncus donec magna turpis, dictum sit amet tellus at, commodo elementum sapien.</p>
+						<div class="divider"></div>
+						<h4>Ask us a question</h4>
+						<form class="contact-form mt-4">
+							<div class="row">
+								<div class="col-md-6">
+									<input type="text" class="form-control-custom mb-4" placeholder="Name" value="Your name">
+								</div>
+								<div class="col-md-6">
+									<input type="text" class="form-control-custom mb-4" placeholder="Email address" value="Email address">
+								</div>
+								<br />
+							</div>
+							<div class="row">
+								<div class="col-md-12">
+									<textarea class="form-control-custom mb-4" rows="3">Your Message</textarea><br />
+									<button type="submit" class="btn btn-primary btn-lg mb-4">Send Message</button>
+								</div> 
+							</div>
+						</form>
+					</div>
+					
+				</div>
+			</div>
+		</section>
+		
+		<footer class="footer-2">
 			<div class="container">
 				<div class="row">
-					<div class="col-md-7">
-						<p>&copy; 2017 Landy.com. All rights reserved.</p>
+					<div class="col-md-4 text-center text-md-left">
+						<a class="logo" href="#">Startup UI Kit</a>
 					</div>
-					<div class="col-md-5 text-right">
-						<p>
-							Template By <a href="https://bootstrapious.com/" class="external">Bootstrapious</a>
-						</p>
-						<!-- Please do not remove the backlink to Bootstrapious unless you support us at http://bootstrapious.com/donate. It is part of the license conditions. Thanks for understanding :) -->
+					<div class="col-md-8">
+						<ul class="nav-footer mt-2 mt-md-0 ">
+							<li class="nav-item active">
+								<a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link" href="#">About</a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link" href="#">Our Work</a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link" href="#">Contact</a>
+							</li>
+						</ul>
 					</div>
 				</div>
 			</div>
-		</div>
-	</footer>
-	<!-- Javascript files-->
-	<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-	<script
-		src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js">
+		</footer>
 		
-	</script>
-	<script src="resources/landy/vendor/bootstrap/js/bootstrap.min.js"></script>
-	<script src="resources/landy/vendor/jquery.cookie/jquery.cookie.js">
+		<footer class="footer-3">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-12">
+						<ul class="nav-footer mt-2 mt-md-0 ">
+							<li class="nav-item active">
+								<a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link" href="#">About</a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link" href="#">Our Work</a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link" href="#">Contact</a>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+			<div class="container-fluid">
+				<div class="divider"></div>
+			</div>
+			<div class="container">
+				<div class="row">
+					<div class="col-md-6 text-center text-md-left mt-2 mb-3 pt-1">
+						<p>Copyright &copy; YourStartup. All rights reserved.</p>
+					</div>
+					<div class="col-md-6 text-center text-md-right mb-4">
+						<ul class="social">
+							<li><a href="#" title="Facebook" class="fa fa-facebook"></a></li>
+							<li><a href="#" title="Twitter" class="fa fa-twitter"></a></li>
+							<li><a href="#" title="Google+" class="fa fa-google"></a></li>
+							<li><a href="#" title="Dribbble" class="fa fa-dribbble"></a></li>
+							<li><a href="#" title="Instagram" class="fa fa-instagram"></a></li>
+							<div class="clear"></div>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</footer>
 		
-	</script>
-	<script src="resources/landy/vendor/owl.carousel/owl.carousel.min.js"></script>
-	<script src="resources/landy/js/front.js"></script>
-	<!-- Google Analytics: change UA-XXXXX-X to be your site's ID.-->
-	<!---->
-	  <script src="resources/slidertemplate/popper/popper.min.js"></script>
-  	  <script src="resources/slidertemplate/tether/tether.min.js"></script>
-      <script src="resources/slidertemplate/bootstrap/js/bootstrap.min.js"></script>
-      <script src="resources/slidertemplate/ytplayer/jquery.mb.ytplayer.min.js"></script>
-      <script src="resources/slidertemplate/vimeoplayer/jquery.mb.vimeo_player.js"></script>
-      <script src="resources/slidertemplate/bootstrapcarouselswipe/bootstrap-carousel-swipe.js"></script>
-      <script src="resources/slidertemplate/smoothscroll/smooth-scroll.js"></script>
-      <script src="resources/slidertemplate/theme/js/script.js"></script>
-      <script src="resources/slidertemplate/slidervideo/script.js"></script>
+		<footer class="footer-4">
+			<div class="container">
+				<div class="row mb-5 text-center text-md-left">
+					<div class="col-md-3 col-lg-4 mb-3">
+						<a class="logo" href="#">Startup UI Kit</a>
+					</div>
+					<div class="col-md-3 offset-lg-2 col-lg-2 pt-2">
+						<h5>Category 1</h5>
+						<ul class="nav-footer">
+							<li class="nav-item">
+								<a class="nav-link" href="#">Home</a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link" href="#">About</a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link" href="#">Our Work</a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link" href="#">Contact</a>
+							</li>
+						</ul>
+					</div>
+					<div class="col-md-3 col-lg-2 pt-2">
+						<h5>Category 2</h5>
+						<ul class="nav-footer">
+							<li class="nav-item">
+								<a class="nav-link" href="#">Home</a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link" href="#">About</a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link" href="#">Our Work</a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link" href="#">Contact</a>
+							</li>
+						</ul>
+					</div>
+					<div class="col-md-3 col-lg-2 pt-2">
+						<h5>Category 3</h5>
+						<ul class="nav-footer">
+							<li class="nav-item">
+								<a class="nav-link" href="#">Home</a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link" href="#">About</a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link" href="#">Our Work</a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link" href="#">Contact</a>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+			<div class="container-fluid">
+				<div class="divider"></div>
+			</div>
+			<div class="container">
+				<div class="row">
+					<div class="col-md-6 text-center text-md-left mt-2 mb-3 pt-1">
+						<p class="copyright">Copyright &copy; YourStartup. All rights reserved.</p>
+					</div>
+					<div class="col-md-6 text-center text-md-right mb-4">
+						<ul class="social">
+							<li><a href="#" title="Facebook" class="fa fa-facebook"></a></li>
+							<li><a href="#" title="Twitter" class="fa fa-twitter"></a></li>
+							<li><a href="#" title="Google+" class="fa fa-google"></a></li>
+							<li><a href="#" title="Dribbble" class="fa fa-dribbble"></a></li>
+							<li><a href="#" title="Instagram" class="fa fa-instagram"></a></li>
+							<div class="clear"></div>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</footer>
+		
+		<!-- Placed at the end of the document so the pages load faster -->
+		<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
+		<script src="${pageContext.request.contextPath }/resources/ownerTemplate/bootstrap/js/bootstrap.min.js"></script>
+	
 </body>
 </html>

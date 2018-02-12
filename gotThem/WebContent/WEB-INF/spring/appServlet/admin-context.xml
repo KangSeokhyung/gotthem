@@ -4,21 +4,17 @@
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 	
 	<!-- Controller -->
-	<bean id="storeController" class="kr.co.gotthem.store.controller.StoreController">
-		<property name="storeService" ref="storeService" />
-	</bean>
-	
 	<bean id="adminController" class="kr.co.gotthem.admin.controller.AdminController">
-		<property name="storeService" ref="storeService" />
+		<property name="adminService" ref="adminService" />
 	</bean>
 	
 	<!-- Service -->
-	<bean id="storeService" class="kr.co.gotthem.store.service.StoreServiceImpl">
-		<property name="storeDao" ref="storeDao" />
+	<bean id="adminService" class="kr.co.gotthem.admin.service.AdminServiceImpl">
+		<property name="adminDao" ref="adminDao" />
 	</bean>
 	
 	<!-- DAO -->
-	<bean id="storeDao" class="kr.co.gotthem.store.dao.StoreDaoImpl">
+	<bean id="adminDaoImpl" class="kr.co.gotthem.admin.dao.AdminDaoImpl">
 		<property name="sqlSessionTemplate" ref="sqlSessionTemplate" />
 	</bean>
 	

@@ -2,8 +2,8 @@ package kr.co.gotthem.admin.dao;
 
 import java.util.List;
 
-import kr.co.gotthem.store.bean.StoreBean2;
+import kr.co.gotthem.store.bean.StoreBean;
 
 public interface AdminDao {
-	public List<StoreBean2> list();
+	public List<StoreBean> list();
 }

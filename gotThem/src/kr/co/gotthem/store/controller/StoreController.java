@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import kr.co.gotthem.store.bean.StoreBean;
-import kr.co.gotthem.store.bean.StoreBean2;
+import kr.co.gotthem.store.bean.StoreBean;
 import kr.co.gotthem.store.service.StroreService;
 
 @Controller
