@@ -26,20 +26,20 @@
 					</button>
 					<div class="collapse navbar-collapse pull-xs-right justify-content-end" id="navbarSupportedContent">
 						<ul class="navbar-nav mt-2 mt-md-0">
-							<li class="nav-item active">
-								<a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+							<li class="nav-item">
+								<a class="nav-link" href="#">알림사항</a>
+							</li>					
+							<li class="nav-item">
+								<a class="nav-link" href="#">점포관리</a>
 							</li>
 							<li class="nav-item">
-								<a class="nav-link" href="#">About</a>
+								<a class="nav-link" href="#">재고관리</a>
 							</li>
 							<li class="nav-item">
-								<a class="nav-link" href="#">Our Work</a>
+								<a class="nav-link" href="#">회사소개</a>
 							</li>
 							<li class="nav-item">
-								<a class="nav-link" href="#">Contact</a>
-							</li>
-							<li class="nav-item">
-								<a class="btn btn-outline-white btn-outline" href="#">사장님 Login</a>
+								<a class="btn btn-outline-white btn-outline" href="#">사장님 로그인</a>
 							</li>
 						</ul>
 					</div>
@@ -51,7 +51,6 @@
         <div class="col-lg-6">
           <h1 class="jumbotron-heading">지금 <strong>Got them에</strong> 점포를	<strong>등록하세요</strong></h1>
 			<p class="lead">A collection of coded HTML and CSS elements to help your build your startup website. Clean design, fully responsive and based on Bootstrap 4.</p>
-			<a href="#" class="btn btn-outline-white btn-lg mb-2 ml-2 ml-2">등록하기</a>
         </div>
 
         <div class="col-lg-6">

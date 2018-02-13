@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<<<<<<< HEAD
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ page session="false"%>
 <!DOCTYPE html>
@@ -185,8 +186,6 @@
 	</script>
 	<script src="resources/landy/vendor/bootstrap/js/bootstrap.min.js"></script>
 	<script src="resources/landy/vendor/jquery.cookie/jquery.cookie.js">
-		
-	</script>
 	<script src="resources/landy/vendor/owl.carousel/owl.carousel.min.js"></script>
 	<script src="resources/landy/js/front.js"></script>
 </body>

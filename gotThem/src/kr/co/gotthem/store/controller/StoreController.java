@@ -29,13 +29,7 @@ public class StoreController {
 
 	@RequestMapping(value = "/storeIndex.st", method = RequestMethod.GET)
 	public String storeIndex() {
-		
 		return "store/storeIndex";
-	}
-	
-	@RequestMapping(value = "/loginForm.st", method = RequestMethod.GET)
-	public String loginForm() {
-		return "store/storeLogin";
 	}
 	
 	@RequestMapping(value = "/login.st", method = RequestMethod.POST)
@@ -59,5 +53,30 @@ public class StoreController {
 			return "fail";
 		}
 		return "store/storeIndex";
+	}
+	
+	@RequestMapping(value = "/stock.st", method = RequestMethod.POST)
+	public String stock(HttpServletRequest request, HttpSession session) throws Exception{
+		
+		/*session.getAttribute("sto_id", sto_id);
+		if(dto==null) {
+			return "store/fail2";
+		}
+		
+		String pw = dto.getSto_pw();
+		
+		if(sto_pw.equals(pw)) {
+			session.setAttribute("sto_id", sto_id);
+		}else {
+			return "fail";
+		}*/
+		return "store/stock";
+	}
+	
+	@RequestMapping(value = "/cvs.st", method = RequestMethod.POST)
+	public String cvs(HttpServletRequest request, HttpSession session) throws Exception{
+		
+		
+		return "store/cvs";
 	}
 }
