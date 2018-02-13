@@ -98,7 +98,7 @@ public class StoreBean {
 	public void setSto_status(String sto_status) {
 		this.sto_status = sto_status;
 	}
-
+	
 	@Override
 	public String toString() {
 		return "StoreBean [sto_no=" + sto_no + ", sto_id=" + sto_id + ", sto_pw=" + sto_pw + ", sto_owner=" + sto_owner
