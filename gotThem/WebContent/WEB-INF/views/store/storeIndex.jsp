@@ -1,25 +1,22 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ page session="false"%>
-
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Got Them?</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-	<link rel="shortcut icon" href="${pageContext.request.contextPath }/resources/ownerTemplate/images/favicon.ico">
-	<link rel="stylesheet" href="${pageContext.request.contextPath }/resources/ownerTemplate/bootstrap/css/bootstrap.css">
-	<link rel="stylesheet" href="${pageContext.request.contextPath }/resources/ownerTemplate/css/font-awesome.min.css">
-	<link rel="stylesheet" href="${pageContext.request.contextPath }/resources/ownerTemplate/css/style.css">
+	<link rel="shortcut icon" href="images/favicon.ico">
+	<link rel="stylesheet" href="bootstrap/css/bootstrap.css">
+	<link rel="stylesheet" href="css/font-awesome.min.css">
+	<link rel="stylesheet" href="css/style.css">
 	<link href="https://fonts.googleapis.com/css?family=Droid+Serif:400,400i,700,700i|Montserrat:200,200i,300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
 </head>
 <body>
-	<section class="cover-1 text-center">
+		<section class="cover-1 text-center">
 			<nav class="navbar navbar-expand-lg navbar-dark navbar-custom">
 				<div class="container">
-					<a class="navbar-brand" href="#">Got Them!</a>
+					<a class="navbar-brand" href="#">Navbar</a>
 					<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
 						<span class="navbar-toggler-icon"></span>
 					</button>
@@ -96,7 +93,7 @@
 							</p>
 						</div>
 						<div class="col-lg-5 offset-lg-2 mt-5 mb-5 text-center">
-							<img class="img-fluid mt-5 mb-5" src="${pageContext.request.contextPath }/resources/ownerTemplate/images/placeholder-phone.png" >
+							<img class="img-fluid mt-5 mb-5" src="images/placeholder-phone.png" >
 						</div>
 					</div>
 				</div>
@@ -224,7 +221,7 @@
 			<div class="container">
 				<div class="row justify-center">
 					<div class="col-md-6 text-center">
-						<img class="mb-4 img-fluid" src="${pageContext.request.contextPath }/resources/ownerTemplate/images/placeholder-phone.png" >
+						<img class="mb-4 img-fluid" src="images/placeholder-phone.png" >
 					</div>
 					<div class="col-md-6 text-center text-md-left" >
 						<h2 class="mb-4 mt-4">Talk about your awesome features</h2>
@@ -244,7 +241,7 @@
 						<p><a class="btn btn-outline-secondary" href="#" role="button">Find out more	</a></p>
 					</div>
 					<div class="col-md-6 text-center">
-						<img class="mb-4 img-fluid" src="${pageContext.request.contextPath }/resources/ownerTemplate/images/placeholder-beats-x.png" >
+						<img class="mb-4 img-fluid" src="images/placeholder-beats-x.png" >
 					</div>
 				</div>
 			</div>
@@ -254,7 +251,7 @@
 			<div class="container">
 				<div class="row justify-center mt-5">
 					<div class="col-md-6 pl-5 pr-5 text-center" >
-						<img class="mb-4 img-fluid" src="${pageContext.request.contextPath }/resources/ownerTemplate/images/placeholder-chair.jpg" >
+						<img class="mb-4 img-fluid" src="images/placeholder-chair.jpg" >
 					</div>
 					<div class="col-md-6 text-left" >
 						<h2>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</h2>
@@ -270,49 +267,8 @@
 								<p>Donec sed odio dui. Etiam porta sem malesuada magna mollis euismod. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.</p>
 							</div>
 						</div>
-=======
-<html lang="ko">
-	<head>
-		<meta charset="utf-8">
-		<title>Startup UI Kit - Free Sample</title>
-		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-		<link rel="shortcut icon" href="resources/ownerindex/images/favicon.ico">
-		<link rel="stylesheet" href="resources/ownerindex/bootstrap/css/bootstrap.css">
-		<link rel="stylesheet" href="resources/ownerindex/css/font-awesome.min.css">
-		<link rel="stylesheet" href="resources/ownerindex/css/style.css">
-		<link href="https://fonts.googleapis.com/css?family=Droid+Serif:400,400i,700,700i|Montserrat:200,200i,300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
-	</head>
-	<body>
-		
-		<section class="cover-1 text-center">
-			<nav class="navbar navbar-expand-lg navbar-dark navbar-custom">
-				<div class="container">
-					<a class="navbar-brand" href="#">Got them</a>
-					<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-						<span class="navbar-toggler-icon"></span>
-					</button>
-					<div class="collapse navbar-collapse pull-xs-right justify-content-end" id="navbarSupportedContent">
-						<ul class="navbar-nav mt-2 mt-md-0">
-							<li class="nav-item active">
-								<a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-							</li>
-							<li class="nav-item">
-								<a class="nav-link" href="#">About</a>
-							</li>
-							<li class="nav-item">
-								<a class="nav-link" href="#">Our Work</a>
-							</li>
-							<li class="nav-item">
-								<a class="nav-link" href="#">Contact</a>
-							</li>
-							<li class="nav-item">
-								<a class="btn btn-outline-white btn-outline" href="#">사장님 Login</a>
-							</li>
-						</ul>
->>>>>>> branch 'sungwoo' of https://github.com/KangSeokhyung/gotthem.git
 					</div>
 				</div>
-<<<<<<< HEAD
 			</div>
 		</section>
 		
@@ -327,32 +283,11 @@
 						<div class="col-sm-4">
 							<button type="submit" class="btn btn-lg btn-outline-success">Sign me up</button>
 						</div>
-=======
-			</nav>
-			<div class="cover-container pb-5">
-				<div class="cover-inner container">
-					<h1 class="jumbotron-heading">지금 <em>Got them에</em> 점포를	<strong>등록하세요</strong></h1>
-					<div>
-						<form>
-						<input type="text"> <input type="text"><br>
-						
-						</form>
->>>>>>> branch 'sungwoo' of https://github.com/KangSeokhyung/gotthem.git
 					</div>
-<<<<<<< HEAD
 				</form>
 			</div>
-=======
-					<p class="lead">A collection of coded HTML and CSS elements to help your build your startup website. Clean design, fully responsive and based on Bootstrap 4.</p>
-					<p>
-						<a href="#" class="btn btn-outline-white btn-lg mb-2 ml-2 ml-2">등록하기</a>
-					</p>
-				</div>
-		</div>
->>>>>>> branch 'sungwoo' of https://github.com/KangSeokhyung/gotthem.git
 		</section>
 
-<<<<<<< HEAD
 		<section class="cta-4 text-center justify-center">
 			<div class="container">
 				<h2 class="mb-5">Download this UI Kit and use it to help your startup get started up</h2>
@@ -372,13 +307,7 @@
 						</div>
 					</div>
 				</form>
-=======
-		<footer class="footer-3">
-			<div class="container-fluid">
-				<div class="divider"></div>
->>>>>>> branch 'sungwoo' of https://github.com/KangSeokhyung/gotthem.git
 			</div>
-<<<<<<< HEAD
 		</section>
 		
 		<section class="cta-5 text-center">
@@ -397,7 +326,7 @@
 
 		<section class="contact-1">
 			<div id="map"></div>
-				<script src="${pageContext.request.contextPath }/resources/ownerTemplate/js/maps.js"></script>
+				<script src="js/maps.js"></script>
 			<!--YOU MUST REPLACE WITH YOUR OWN API KEY FOR THE MAP TO WORK-->
 			<script async defer
 				src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBptaDKT_ntSoNEytCnSang5JenaNAj_Us&callback=initMap">
@@ -478,19 +407,11 @@
 		</section>
 		
 		<footer class="footer-2">
-=======
->>>>>>> branch 'sungwoo' of https://github.com/KangSeokhyung/gotthem.git
 			<div class="container">
 				<div class="row">
-<<<<<<< HEAD
 					<div class="col-md-4 text-center text-md-left">
 						<a class="logo" href="#">Startup UI Kit</a>
-=======
-					<div class="col-md-6 text-center text-md-left mt-2 mb-3 pt-1">
-						<p>Copyright &copy; YourStartup. All rights reserved.</p>
->>>>>>> branch 'sungwoo' of https://github.com/KangSeokhyung/gotthem.git
 					</div>
-<<<<<<< HEAD
 					<div class="col-md-8">
 						<ul class="nav-footer mt-2 mt-md-0 ">
 							<li class="nav-item active">
@@ -505,23 +426,12 @@
 							<li class="nav-item">
 								<a class="nav-link" href="#">Contact</a>
 							</li>
-=======
-					<div class="col-md-6 text-center text-md-right mb-4">
-						<ul class="social">
-							<li><a href="#" title="Facebook" class="fa fa-facebook"></a></li>
-							<li><a href="#" title="Twitter" class="fa fa-twitter"></a></li>
-							<li><a href="#" title="Google+" class="fa fa-google"></a></li>
-							<li><a href="#" title="Dribbble" class="fa fa-dribbble"></a></li>
-							<li><a href="#" title="Instagram" class="fa fa-instagram"></a></li>
-							<div class="clear"></div>
->>>>>>> branch 'sungwoo' of https://github.com/KangSeokhyung/gotthem.git
 						</ul>
 					</div>
 				</div>
 			</div>
 		</footer>
 		
-<<<<<<< HEAD
 		<footer class="footer-3">
 			<div class="container">
 				<div class="row">
@@ -650,17 +560,7 @@
 		<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
-		<script src="${pageContext.request.contextPath }/resources/ownerTemplate/bootstrap/js/bootstrap.min.js"></script>
+		<script src="bootstrap/js/bootstrap.min.js"></script>
 	
 </body>
 </html>
-=======
-		<!-- Placed at the end of the document so the pages load faster -->
-		<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
-		<script src="resources/ownerindex/bootstrap/js/bootstrap.min.js"></script>
-
-	</body>
-</html>
->>>>>>> branch 'sungwoo' of https://github.com/KangSeokhyung/gotthem.git

@@ -4,18 +4,9 @@
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 	
 	<!-- Controller -->
-	<bean id="adminController" class="kr.co.gotthem.admin.controller.AdminController">
-		<property name="adminService" ref="adminService" />
-	</bean>
 	
 	<!-- Service -->
-	<bean id="adminService" class="kr.co.gotthem.admin.service.AdminServiceImpl">
-		<property name="adminDao" ref="adminDao" />
-	</bean>
 	
 	<!-- DAO -->
-	<bean id="adminDaoImpl" class="kr.co.gotthem.admin.dao.AdminDaoImpl">
-		<property name="sqlSessionTemplate" ref="sqlSessionTemplate" />
-	</bean>
 	
 </beans>
