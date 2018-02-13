@@ -12,6 +12,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndView;
 
 import kr.co.gotthem.member.bean.MemberBean;
 import kr.co.gotthem.member.service.MemberService;
@@ -29,9 +30,29 @@ public class MemberController {
 	}
 	
 	@RequestMapping(value = "/login.gt", method = RequestMethod.GET)
-	public String login() {
-	
-		return "member/mlogin";
+	public ModelAndView login(
+
+		@RequestParam(value = "error", required = false) String error,
+
+		@RequestParam(value = "logout", required = false) String logout) {
+
+		ModelAndView model = new ModelAndView();
+
+		if (error != null) {
+
+			model.addObject("error", "사용자 이름 및 비밀번호가 올바르지 않습니다.");
+
+		}
+		
+		if (logout != null) {
+
+			model.addObject("msg", "로그아웃 되었습니다.");
+
+		}
+
+		model.setViewName("member/mlogin");
+
+		return model;
 	}
 	
 	@RequestMapping(value = "/login.gt", method = RequestMethod.POST)

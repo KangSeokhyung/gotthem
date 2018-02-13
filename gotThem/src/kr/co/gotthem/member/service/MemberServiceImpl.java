@@ -29,5 +29,6 @@ public class MemberServiceImpl implements MemberService{
 	public MemberBean login(String id) {
 		return memberDao.login(id);
 	}
+	
 
 }
