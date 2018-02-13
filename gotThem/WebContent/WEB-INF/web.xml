@@ -33,6 +33,7 @@
 		<init-param>
 			<param-name>contextConfigLocation</param-name>
 			<param-value>
+			 	/WEB-INF/spring/appServlet/servlet-context.xml
 				/WEB-INF/spring/appServlet/member-context.xml
 				/WEB-INF/spring/appServlet/pob-context.xml
 			</param-value>
@@ -50,6 +51,7 @@
 		<init-param>
 			<param-name>contextConfigLocation</param-name>
 			<param-value>
+				 /WEB-INF/spring/appServlet/servlet-context.xml
 				/WEB-INF/spring/appServlet/store-context.xml
 			</param-value>
 		</init-param>
@@ -66,6 +68,7 @@
 		<init-param>
 			<param-name>contextConfigLocation</param-name>
 			<param-value>
+			 	/WEB-INF/spring/appServlet/servlet-context.xml
 				/WEB-INF/spring/appServlet/admin-context.xml
 			</param-value>
 		</init-param>

@@ -8,8 +8,10 @@
     <!-- 검사 URL -->
     <http use-expressions="true">
         <intercept-url pattern="/**" access="permitAll" />
+        <intercept-url pattern="/storeIndex.st" access="permitAll" />
+        <intercept-url pattern="/login.st" access="permitAll" />
         
-        <form-login login-page="/login/loginForm.do"
+        <form-login login-page="/login.st"
                     default-target-url="/storeIndex.st"
                     authentication-failure-url="/login/loginForm.do?error"
                     username-parameter="sto_id"
@@ -30,7 +32,7 @@
         <jdbc-user-service 
             data-source-ref="dataSource"
             role-prefix=""
-            users-by-username-query="select STO_ID, STO_PW enabled from store where STO_ID = ?"
+            users-by-username-query="select STO_ID, STO_PW from store where STO_ID = ?"
             authorities-by-username-query="select STO_ID, STO_STATUS from authorities where STO_ID = ?"
             group-authorities-by-username-query="select g.id, g.group_name, ga.authority from groups g, group_members gm, group_authorities ga where gm.username = ? and g.id = ga.group_id and g.id = gm.group_id"
         />

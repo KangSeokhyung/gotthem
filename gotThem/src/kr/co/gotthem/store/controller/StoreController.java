@@ -32,44 +32,14 @@ public class StoreController {
 		return "store/storeIndex";
 	}
 	
-	@RequestMapping(value = "/login.st", method = RequestMethod.POST)
-	public String login(HttpServletRequest request, HttpSession session) throws Exception{
-		
-		String sto_id = request.getParameter("sto_id");
-		String sto_pw = request.getParameter("sto_pw");
-		
-		StoreBean dto = storeService.FindById(sto_id);
-		
-		session.setAttribute("sto_id", sto_id);
-		if(dto==null) {
-			return "store/fail2";
-		}
-		
-		String pw = dto.getSto_pw();
-		
-		if(sto_pw.equals(pw)) {
-			session.setAttribute("sto_id", sto_id);
-		}else {
-			return "fail";
-		}
-		return "store/storeIndex";
+	@RequestMapping(value = "/login.st", method = RequestMethod.GET)
+	public String stlogin(HttpServletRequest request, HttpSession session) throws Exception{
+		System.out.println("로그인 페이지 진입했다.");
+		return "store/stLogin";
 	}
 	
-	@RequestMapping(value = "/stock.st", method = RequestMethod.POST)
+	@RequestMapping(value = "/stock.st", method = RequestMethod.GET)
 	public String stock(HttpServletRequest request, HttpSession session) throws Exception{
-		
-		/*session.getAttribute("sto_id", sto_id);
-		if(dto==null) {
-			return "store/fail2";
-		}
-		
-		String pw = dto.getSto_pw();
-		
-		if(sto_pw.equals(pw)) {
-			session.setAttribute("sto_id", sto_id);
-		}else {
-			return "fail";
-		}*/
 		return "store/stock";
 	}
 	
