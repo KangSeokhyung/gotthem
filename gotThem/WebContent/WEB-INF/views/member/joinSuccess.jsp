@@ -4,9 +4,11 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Got Them?</title>
+<title>Insert title here</title>
 </head>
 <body>
-	
+<script>
+	alert('회원가입을 환영합니다!!');
+</script>
 </body>
 </html>

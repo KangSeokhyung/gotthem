@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ page session="false"%>
+<%String getId= (String)session.getAttribute("id");%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -41,38 +40,10 @@
         <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
 </head>
 <body>
-	<!-- navbar-->
-	<header class="header">
-		<nav class="navbar navbar-expand-lg fixed-top">
-			<a href="/gotthem/index.jsp" class="navbar-brand">Got Them!</a>
-			<button type="button" data-toggle="collapse"
-				data-target="#navbarSupportedContent"
-				aria-controls="navbarSupportedContent" aria-expanded="false"
-				aria-label="Toggle navigation"
-				class="navbar-toggler navbar-toggler-right">
-				<span></span><span></span><span></span>
-			</button>
-			<div id="navbarSupportedContent" class="collapse navbar-collapse">
-				<ul
-					class="navbar-nav ml-auto align-items-start align-items-lg-center">
-					<li class="nav-item"><a href="#about-us"
-						class="nav-link link-scroll">Got them?</a></li>
-					<li class="nav-item"><a href="#features"
-						class="nav-link link-scroll">Notice</a></li>
-					<li class="nav-item"><a href="#testimonials"
-						class="nav-link link-scroll">Event</a></li>
-					<li class="nav-item"><a href="text.html" class="nav-link">Question</a></li>
-				</ul>
-				<div class="navbar-text">
-					<!-- Button trigger modal-->
-					<a href="#" data-toggle="modal" data-target="#exampleModal"
-						class="btn btn-primary navbar-btn btn-shadow btn-gradient">Sign
-						Up</a> <a href="#" data-toggle="modal" data-target="#exampleModal"
-						class="btn btn-primary navbar-btn btn-shadow btn-gradient">Login</a>
-				</div>
-			</div>
-		</nav>
-	</header>
+<input type="hidden"  name="uri" value="<%request.getRequestURI();%>">
+<header>
+<%@include file="nav.jsp" %>
+</header> 
 
 	<section id="cvssearch" class="newsletter bg-gray">
 		<div class="container text-center">
@@ -161,6 +132,7 @@
 				</div>
 			</div>
 		</div>
+		
 		<div class="copyrights">
 			<div class="container">
 				<div class="row">
@@ -179,14 +151,9 @@
 	</footer>
 	<!-- Javascript files-->
 	<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-	<script
-		src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js">
-		
-	</script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"></script>
 	<script src="resources/landy/vendor/bootstrap/js/bootstrap.min.js"></script>
-	<script src="resources/landy/vendor/jquery.cookie/jquery.cookie.js">
-		
-	</script>
+	<script src="resources/landy/vendor/jquery.cookie/jquery.cookie.js"></script>
 	<script src="resources/landy/vendor/owl.carousel/owl.carousel.min.js"></script>
 	<script src="resources/landy/js/front.js"></script>
 </body>

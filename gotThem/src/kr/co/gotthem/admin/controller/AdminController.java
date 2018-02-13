@@ -15,35 +15,20 @@ import kr.co.gotthem.store.service.StroreService;
 @Controller
 public class AdminController {
 	
-	private static final Logger logger = LoggerFactory.getLogger(AdminController.class);
-	
 	private StroreService storeService;
 
 	public void setStoreService(StroreService storeService) {
 		this.storeService = storeService;
 	}
 
-	@RequestMapping(value = "/storeIndex.ad", method = RequestMethod.GET)
-	public String storeIndex() {
-		
-		System.out.println("aaaaaa");
-		System.out.println("두번쨰테스트dddd");
-		List<StoreBean> list = new ArrayList<StoreBean>();
-		list = storeService.list();
-		System.out.println(list+"잘된다");
-		
-		return "store/storeIndex";
+	@RequestMapping(value = "/adminIndex.ad")
+	public String adminIndex() {
+		return "admin/adminIndex";
 	}
 	
-	@RequestMapping(value = "/storeIndex.gt", method = RequestMethod.GET)
+	@RequestMapping(value = "/adminTest.gt", method = RequestMethod.GET)
 	public String storeIndex2() {
 		
-		System.out.println("aaaaaa");
-		System.out.println("두번쨰테스트dddd");
-		List<StoreBean> list = new ArrayList<StoreBean>();
-		list = storeService.list();
-		System.out.println(list+"잘된다");
-		
-		return "store/storeIndex";
+		return "admin/chart";
 	}
 }

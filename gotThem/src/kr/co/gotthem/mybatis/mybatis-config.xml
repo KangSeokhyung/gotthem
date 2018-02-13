@@ -8,6 +8,7 @@
 	<mappers>
 		<mapper resource="kr/co/gotthem/mybatis/StoreMapper.xml" />
 		<mapper resource="kr/co/gotthem/mybatis/AdminMapper.xml" />
+		<mapper resource="kr/co/gotthem/mybatis/MemberMapper.xml" />
 	</mappers>
 
 </configuration>

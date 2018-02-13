@@ -1,66 +1,40 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-	<link rel="stylesheet" type="text/css" href="../../../resources/Login_v7/css/util.css">
-	<link rel="stylesheet" type="text/css" href="../../../resources/Login_v7/css/main.css">
+	<link rel="stylesheet" type="text/css" href="resources/Login_v7/css/util.css">
+	<link rel="stylesheet" type="text/css" href="resources/Login_v7/css/main.css">
 <!-- Bootstrap CSS-->
 <link rel="stylesheet"
-	href="../../../resources/landy/vendor/bootstrap/css/bootstrap.min.css">
+	href="resources/landy/vendor/bootstrap/css/bootstrap.min.css">
 <!-- Font Awesome CSS-->
-<link rel="stylesheet" href="../../../resources/landy/vendor/font-awesome/css/font-awesome.min.css">
+<link rel="stylesheet" href="resources/landy/vendor/font-awesome/css/font-awesome.min.css">
 <!-- Custom Font Icons CSS-->
 <link rel="stylesheet"
-	href="../../../resources/landy/css/landy-iconfont.css">
+	href="resources/landy/css/landy-iconfont.css">
 <!-- Google fonts - Open Sans-->
 <link rel="stylesheet"
 	href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700,800">
 <!-- owl carousel-->
 <link rel="stylesheet"
-	href="../../../resources/landy/vendor/owl.carousel/assets/owl.carousel.css">
+	href="resources/landy/vendor/owl.carousel/assets/owl.carousel.css">
 <link rel="stylesheet"
-	href="../../../resources/landy/vendor/owl.carousel/assets/owl.theme.default.css">
+	href="resources/landy/vendor/owl.carousel/assets/owl.theme.default.css">
 <!-- theme stylesheet-->
 <link rel="stylesheet"
-	href="../../../resources/landy/css/style.default.css"
+	href="resources/landy/css/style.default.css"
 	id="theme-stylesheet">
 <!-- Custom stylesheet - for your changes-->
-<link rel="stylesheet" href="../../../resources/landy/css/custom.css">
+<link rel="stylesheet" href="resources/landy/css/custom.css">
 </head>
 <body>
-	<header class="header">
-		<nav class="navbar navbar-expand-lg fixed-top">
-			<a href="index.html" class="navbar-brand">Got Them!</a>
-			<button type="button" data-toggle="collapse"
-				data-target="#navbarSupportedContent"
-				aria-controls="navbarSupportedContent" aria-expanded="false"
-				aria-label="Toggle navigation"
-				class="navbar-toggler navbar-toggler-right">
-				<span></span><span></span><span></span>
-			</button>
-			<div id="navbarSupportedContent" class="collapse navbar-collapse">
-				<ul
-					class="navbar-nav ml-auto align-items-start align-items-lg-center">
-					<li class="nav-item"><a href="#about-us"
-						class="nav-link link-scroll">Got them?</a></li>
-					<li class="nav-item"><a href="#features"
-						class="nav-link link-scroll">Notice</a></li>
-					<li class="nav-item"><a href="#testimonials"
-						class="nav-link link-scroll">Event</a></li>
-					<li class="nav-item"><a href="text.html" class="nav-link">Question</a></li>
-				</ul>
-				<div class="navbar-text">
-					<!-- Button trigger modal-->
-					<a href="#" data-toggle="modal" data-target="#exampleModal"
-						class="btn btn-primary navbar-btn btn-shadow btn-gradient">Sign
-						Up</a> <a href="#" data-toggle="modal" data-target="#exampleModal"
-						class="btn btn-primary navbar-btn btn-shadow btn-gradient">Login</a>
-				</div>
-			</div>
-		</nav>
-	</header>
-
+<header>
+<%@include file= "../../../nav.jsp" %>
+</header>  
 		<div class="container-login100 " >
 			<div class="wrap-login100 p-t-0 p-b-30 col-xs-4">
 				
@@ -68,40 +42,41 @@
 			</div>
 			
 			<div class="wrap-login100 p-t-0 p-b-30 col-xs-8">
-				<form class="login100-form validate-form">
+				<form action="joinSccess.gt" method="post" class="login100-form validate-form">
 
 					<div class="text-center p-t-55 p-b-30">
 						<span class="txt1"> 회원가입 </span>
 					</div>
 
 					<div class="wrap-input100 validate-input m-b-16">
-						<input class="input100" type="text" name="email"
-							placeholder="아이디 입력"> <span class="focus-input100"></span>
-					</div>
+						<input class="input100" type="text" name="mem_id"
+							placeholder="아이디 입력"> <span class="focus-input100"></span> 
+						
+					</div><button onclick="checkId()">아이디 중복체크</button>
 					<div class="wrap-input100 validate-input m-b-20" data-validate = "Please enter password">
 						<span class="btn-show-pass">
 							<i class="fa fa fa-eye"></i>
 						</span>
-						<input class="input100" type="password" name="pass" placeholder="패스워드 입력">
+						<input class="input100" type="password" name="mem_pw" placeholder="패스워드 입력" onkeydown="pwCheck()">
 						<span class="focus-input100"></span>
 					</div>
 					<div class="wrap-input100 validate-input m-b-20" data-validate = "Please enter password">
 						<span class="btn-show-pass">
 							<i class="fa fa fa-eye"></i>
 						</span>
-						<input class="input100" type="password" name="pass" placeholder="한번 더 입력하세요">
+						<input class="input100" type="password" name="mem_pw2" placeholder="한번 더 입력하세요">
 						<span class="focus-input100"></span>
-					</div>
+					</div> <div id="pwCheck">여기</div>
 					<div class="wrap-input100 validate-input m-b-16">
-						<input class="input100" type="text" name="email"
+						<input class="input100" type="text" name="mem_name"
 							placeholder="회원 이름을 입력하세요"> <span class="focus-input100"></span>
 					</div>
 					<div class="wrap-input100 validate-input m-b-16">
-						<input class="input100" type="email" name="email"
+						<input class="input100" type="email" name="mem_email"
 							placeholder="이메일을 입력하세요"> <span class="focus-input100"></span>
 					</div>
 					<div class="wrap-input100 validate-input m-b-16">
-						<input class="input100" type="text" name="email"
+						<input class="input100" type="text" name="mem_phone"
 							placeholder="전화번호를 입력하세요"> <span class="focus-input100"></span>
 					</div>
 					<div class="container-login100-form-btn">
@@ -109,18 +84,19 @@
 					우편번호 찾기</button></div>
 						<br>
 					<div class="wrap-input100 validate-input m-b-20" >
-						<input type="text" class="input100" id="sample6_postcode" placeholder="우편번호"> 
-						<input type="text" class="input100" id="sample6_roadAddress" placeholder="도로명주소"> 
-						<input type="text" class="input100" id="sample6_jibunAddress" placeholder="지번주소">
+						<input type="text" class="input100" name="mem_post" id="sample6_postcode" placeholder="우편번호"> 
+						<input type="text" class="input100" name="mem_address1" id="sample6_Address" placeholder="주소"> 
+						<input type="text" class="input100" name="mem_address2" id="sample6_detailAddress" placeholder="상세주소">
 					</div>
 					<div class="container-login100-form-btn">
-						<button class="login100-form-btn">가입하기</button>
+						<button class="login100-form-btn" type="submit">가입하기
+						</button><button class="login100-form-btn" onclick="history.back()">뒤로가기</button>
 					</div>
 				</form>
 			</div>
 		</div>
 <script src="http://code.jquery.com/jquery-3.2.1.min.js"></script>
-<script src="../../../resources/Login_v7/js/main.js"></script>
+<script src="resources/Login_v7/js/main.js"></script>
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
@@ -159,18 +135,18 @@
 
                 // 우편번호와 주소 정보를 해당 필드에 넣는다.
                 document.getElementById('sample6_postcode').value = data.zonecode; //5자리 새우편번호 사용
-                document.getElementById('sample6_address').value = fullAddr;
+                document.getElementById('sample6_Address').value = fullAddr;
 
                 // 커서를 상세주소 필드로 이동한다.
-                document.getElementById('sample6_address2').focus();
+                document.getElementById('sample6_detailAddress').focus();
             }
         }).open();
     }
 	 	/* function checkId(){ 
 	          $.ajax({
-	              url : "./MemberIdCheckAction.aq",
+	              url : "./MemberIdCheck.gt",
 	              type: "POST",
-	              data : {"id":$('#m_id').val()},	              
+	              data : {"mem_id":$('#mem_id').val()},	              
 	              success : function(data){
 	                   if(data=="0"){
 	                	   $("#idcheck").html('<p style="color:blue"> 사용가능한 아이디입니다.</p>');
@@ -183,11 +159,11 @@
 	            	  console.log(errorThrown);
 	              }
 	          });
-		  }
-   
+		  } 
+   */
       function pwCheck(){
-    	 var pw1 = document.getElementById("m_pass1").value;
-    	 var pw2 = document.getElementById("m_pass2").value;
+    	 var pw1 = document.getElementById("mem_pw").value;
+    	 var pw2 = document.getElementById("mem_pw2").value;
     		 if(pw1 != pw2){
     			 	document.getElementById('pwCheck').style.color = "red";
     			    document.getElementById('pwCheck').innerHTML = "동일한 암호를 입력하세요."; 
@@ -195,7 +171,7 @@
     		 		document.getElementById('pwCheck').style.color = "blue";
     		 		document.getElementById('pwCheck').innerHTML = "암호가 확인 되었습니다."; 
     		 		} 			 
-    		 } 	  */
+    	}	 
 </script>
 </body>
 </html>
