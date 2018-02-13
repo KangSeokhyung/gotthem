@@ -19,4 +19,9 @@ public class StoreDaoImpl implements StoreDao {
 		return sqlSessionTemplate.selectList("list");
 	}
 
+	@Override
+	public StoreBean FindById(String sto_id) {
+		return (StoreBean)sqlSessionTemplate.selectOne("FindById", sto_id);
+	}
+
 }
