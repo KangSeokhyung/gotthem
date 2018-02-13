@@ -7,17 +7,15 @@
     
     <!-- 검사 URL -->
     <http use-expressions="true">
-        <intercept-url pattern="/storeIndex.st" access="permitAll" />
-        <intercept-url pattern="/index.do" access="permitAll" />
-        <intercept-url pattern="/**" access="hasAnyRole('USER, ADMIN')" />
+        <intercept-url pattern="/**" access="permitAll" />
         
         <form-login login-page="/login/loginForm.do"
-                    default-target-url="/home.do"
+                    default-target-url="/storeIndex.st"
                     authentication-failure-url="/login/loginForm.do?error"
-                    username-parameter="id"
-                    password-parameter="password" />
+                    username-parameter="sto_id"
+                    password-parameter="sto_pw" />
         <logout logout-url="/logout"
-                logout-success-url="/home.do" />
+                logout-success-url="/storeIndex.st" />
                 
         <access-denied-handler error-page="/login/accessDenied.do" />
     </http>
