@@ -47,20 +47,53 @@
 			</nav>
 			<div class="cover-container pb-5">
 				<div class="cover-inner container">
-					<h1 class="jumbotron-heading">지금 <em>Got them에</em> 점포를	<strong>등록하세요</strong></h1>
-					<div>
-						<form>
-						<input type="text"> <input type="text"><br>
-						
-						</form>
-					</div>
-					<p class="lead">A collection of coded HTML and CSS elements to help your build your startup website. Clean design, fully responsive and based on Bootstrap 4.</p>
-					<p>
-						<a href="#" class="btn btn-outline-white btn-lg mb-2 ml-2 ml-2">등록하기</a>
-					</p>
-				</div>
+		 <div class="row marketing">
+        <div class="col-lg-6">
+          <h1 class="jumbotron-heading">지금 <strong>Got them에</strong> 점포를	<strong>등록하세요</strong></h1>
+			<p class="lead">A collection of coded HTML and CSS elements to help your build your startup website. Clean design, fully responsive and based on Bootstrap 4.</p>
+			<a href="#" class="btn btn-outline-white btn-lg mb-2 ml-2 ml-2">등록하기</a>
+        </div>
+
+        <div class="col-lg-6">
+         <div class="container">
+                <div class="col-xs-12 mx-auto">
+                    <div class="card border-secondary">
+                        <div class="card-header">
+ 
+                        </div>
+                        <div class="card-body">
+                            <form class="form" role="form" autocomplete="off">
+                                <div class="form-group">
+                                    <label for="inputName">Name</label>
+                                    <input type="text" class="form-control" id="inputName" placeholder="full name">
+                                </div>
+                                <div class="form-group">
+                                    <label for="inputEmail3">Email</label>
+                                    <input type="email" class="form-control" id="inputEmail3" placeholder="email@gmail.com" required="">
+                                </div>
+                                <div class="form-group">
+                                    <label for="inputPassword3">Password</label>
+                                    <input type="password" class="form-control" id="inputPassword3" placeholder="password" title="At least 6 characters with letters and numbers" required="">
+                                </div>
+                                <div class="form-group">
+                                    <label for="inputVerify3">Verify</label>
+                                    <input type="password" class="form-control" id="inputVerify3" placeholder="password (again)" required="">
+                                </div>
+                                <div class="form-group">
+                                    <button type="submit" class="btn btn-success btn-lg float-right">Register</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--/row-->
+        </div>
+        <!--/col-->
+   		</div>
 		</div>
-		</section>
+      </div>
+</section>
 
 		<footer class="footer-3">
 			<div class="container-fluid">
