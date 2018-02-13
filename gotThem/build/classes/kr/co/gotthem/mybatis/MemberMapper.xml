@@ -4,10 +4,6 @@
               
 <mapper namespace="kr.co.gotthem.store.mybatis.MemberMapper">
 
-	<select id="list" resultType="kr.co.gotthem.member.bean.MemberBean">
-		select * from member
-	</select>
-	
 	<insert id="join" parameterType ="kr.co.gotthem.member.bean.MemberBean" >
 		insert into member(mem_id, mem_pw, mem_name, mem_email, mem_phone, mem_post, mem_address1, mem_address2, mem_regdate, mem_point)
 		 values (#{mem_id},	#{mem_pw}, #{mem_name}, #{mem_email}, #{mem_phone}, #{mem_post}, #{mem_address1},
