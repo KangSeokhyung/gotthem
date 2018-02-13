@@ -26,7 +26,7 @@ public class MemberController {
 
 	@RequestMapping(value = "/login.gt", method = RequestMethod.GET)
 	public String login() {
-	
+		System.out.println("오냐");
 		return "member/mlogin";
 	}
 	
