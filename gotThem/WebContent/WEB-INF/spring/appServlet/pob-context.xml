@@ -4,9 +4,17 @@
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 	
 	<!-- Controller -->
+	<bean id="basketController" class="kr.co.gotthem.basket.controller.BasketController">
+		<property name="basketService" ref="basketService" />
+	</bean>
 	
 	<!-- Service -->
+	<bean id="basketService" class="kr.co.gotthem.basket.service.BasketServiceImpl">
+		<property name="basketDao" ref="basketDao" />
+	</bean>
 	
 	<!-- DAO -->
-	
+	<bean id="basketDao" class="kr.co.gotthem.basket.dao.BasketDaoImpl">
+		<property name="sqlSessionTemplate" ref="sqlSessionTemplate" />
+	</bean>
 </beans>
