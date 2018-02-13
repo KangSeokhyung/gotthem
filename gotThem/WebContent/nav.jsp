@@ -26,7 +26,7 @@
 				<div class="navbar-text">
 					<!-- Button trigger modal-->
 					  <%if(id==null) {%> 
-					<a href="join.gt" class="btn btn-primary navbar-btn btn-shadow btn-gradient">Sign Up</a> 				
+					<a href="#" class="btn btn-primary navbar-btn btn-shadow btn-gradient">Sign Up</a> 				
 					<a href="login.gt" class="btn btn-primary navbar-btn btn-shadow btn-gradient">Login</a>
 					 <% } else { %>
 					<a href="#" class="btn btn-primary navbar-btn btn-shadow btn-gradient">Modify</a> 				

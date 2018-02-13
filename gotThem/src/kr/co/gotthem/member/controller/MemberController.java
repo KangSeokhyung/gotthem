@@ -3,7 +3,6 @@ package kr.co.gotthem.member.controller;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
@@ -12,47 +11,23 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.servlet.ModelAndView;
-
+import javax.servlet.http.HttpServletRequest;
 import kr.co.gotthem.member.bean.MemberBean;
 import kr.co.gotthem.member.service.MemberService;
-import kr.co.gotthem.store.bean.StoreBean;
 
 @Controller
 public class MemberController {
-	 
-	private static final Logger logger = LoggerFactory.getLogger(MemberController.class);
 	
 	private MemberService memberService;
 
 	public void setMemberService(MemberService memberService) {
 		this.memberService = memberService;
 	}
-	
+
 	@RequestMapping(value = "/login.gt", method = RequestMethod.GET)
-	public ModelAndView login(
-
-		@RequestParam(value = "error", required = false) String error,
-
-		@RequestParam(value = "logout", required = false) String logout) {
-
-		ModelAndView model = new ModelAndView();
-
-		if (error != null) {
-
-			model.addObject("error", "사용자 이름 및 비밀번호가 올바르지 않습니다.");
-
-		}
-		
-		if (logout != null) {
-
-			model.addObject("msg", "로그아웃 되었습니다.");
-
-		}
-
-		model.setViewName("member/mlogin");
-
-		return model;
+	public String login() {
+	
+		return "member/mlogin";
 	}
 	
 	@RequestMapping(value = "/login.gt", method = RequestMethod.POST)
@@ -78,7 +53,6 @@ public class MemberController {
 		session.invalidate();		
 		return "redirect:index.jsp";
 	}
-	
 	
 	@RequestMapping(value = "/join.gt", method = RequestMethod.GET)
 	public String memberJoin() {	
@@ -108,6 +82,5 @@ public class MemberController {
 		
 		return "store/storeIndex";
 	}
-	
 	
 }

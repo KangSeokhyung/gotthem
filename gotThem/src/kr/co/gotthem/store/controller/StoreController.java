@@ -2,6 +2,7 @@ package kr.co.gotthem.store.controller;
 
 import java.util.ArrayList;
 import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -10,6 +11,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.ModelAndView;
 
 import kr.co.gotthem.store.bean.StoreBean;
 import kr.co.gotthem.store.service.StroreService;
@@ -27,20 +29,7 @@ public class StoreController {
 
 	@RequestMapping(value = "/storeIndex.st", method = RequestMethod.GET)
 	public String storeIndex() {
-
-
-			System.out.println("테스트");
-			List<StoreBean> list = new ArrayList<StoreBean>();
-			list = storeService.list();
-			System.out.println(list);
-		
-		
 		return "store/storeIndex";
-	}
-	
-	@RequestMapping(value = "/loginForm.st", method = RequestMethod.GET)
-	public String loginForm() {
-		return "store/storeLogin";
 	}
 	
 	@RequestMapping(value = "/login.st", method = RequestMethod.POST)
@@ -64,5 +53,30 @@ public class StoreController {
 			return "fail";
 		}
 		return "store/storeIndex";
+	}
+	
+	@RequestMapping(value = "/stock.st", method = RequestMethod.POST)
+	public String stock(HttpServletRequest request, HttpSession session) throws Exception{
+		
+		/*session.getAttribute("sto_id", sto_id);
+		if(dto==null) {
+			return "store/fail2";
+		}
+		
+		String pw = dto.getSto_pw();
+		
+		if(sto_pw.equals(pw)) {
+			session.setAttribute("sto_id", sto_id);
+		}else {
+			return "fail";
+		}*/
+		return "store/stock";
+	}
+	
+	@RequestMapping(value = "/cvs.st", method = RequestMethod.POST)
+	public String cvs(HttpServletRequest request, HttpSession session) throws Exception{
+		
+		
+		return "store/cvs";
 	}
 }

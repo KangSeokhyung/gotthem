@@ -7,8 +7,5 @@
 	<select id="listtest" resultType="kr.co.gotthem.store.bean.StoreBean">
 		select * from member
 	</select>
-	
-	
-	
 
 </mapper>
