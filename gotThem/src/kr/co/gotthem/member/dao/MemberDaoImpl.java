@@ -13,6 +13,16 @@ public class MemberDaoImpl implements MemberDao {
 	}
 
 	@Override
+	public List<MemberBean> mlist() {
+		return sqlSessionTemplate.selectList("mlist");
+	}
+	
+	@Override
+	public void insert(MemberBean memberBean) {
+		sqlSessionTemplate.insert("join", memberBean);
+	}
+
+	@Override
 	public MemberBean login(String id) {
 		return sqlSessionTemplate.selectOne("login", id);
 	}

@@ -11,4 +11,5 @@
 	<select id="FindById" resultType="kr.co.gotthem.store.bean.StoreBean">
 		select * from store where sto_id = #{sto_id}
 	</select>
+	
 </mapper>

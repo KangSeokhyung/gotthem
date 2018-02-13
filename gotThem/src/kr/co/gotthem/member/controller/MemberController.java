@@ -54,4 +54,33 @@ public class MemberController {
 		return "redirect:index.jsp";
 	}
 	
+	@RequestMapping(value = "/join.gt", method = RequestMethod.GET)
+	public String memberJoin() {	
+		return "member/join";
+	}
+	
+	@RequestMapping(value = "/joinSccess.gt", method = RequestMethod.POST)
+	public String joinSccess(MemberBean memberBean) {
+		System.out.println(memberBean);
+		memberService.insert(memberBean);
+		return "redirect:index.gt";
+	}
+	
+	@RequestMapping(value = "/index.gt", method = RequestMethod.GET)
+	public String index() {	
+		return "redirect:index.jsp";
+	}
+
+	@RequestMapping(value = "/myPage.gt", method = RequestMethod.GET)
+	public String memberIndex() {
+		
+		
+			List<MemberBean> list = new ArrayList<MemberBean>();
+			list = memberService.mlist();
+			System.out.println(list);
+		
+		
+		return "store/storeIndex";
+	}
+	
 }

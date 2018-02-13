@@ -7,9 +7,19 @@ import kr.co.gotthem.member.dao.MemberDao;
 public class MemberServiceImpl implements MemberService {
 	
 	private MemberDao memberDao;
-
+	
+	@Override
+	public List<MemberBean> mlist() {
+		return memberDao.mlist();
+	}
+	
 	public void setMemberDao(MemberDao memberDao) {
 		this.memberDao = memberDao;
+	}
+
+	@Override
+	public void insert(MemberBean memberBean) {
+		memberDao.insert(memberBean);
 	}
 
 	@Override
