@@ -101,8 +101,8 @@ public class MemberController {
 	public String memberIndex() {
 		
 		
-			List<StoreBean> list = new ArrayList<StoreBean>();
-			list = memberService.list();
+			List<MemberBean> list = new ArrayList<MemberBean>();
+			list = memberService.mlist();
 			System.out.println(list);
 		
 		

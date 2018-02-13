@@ -5,5 +5,4 @@ import java.util.List;
 import kr.co.gotthem.store.bean.StoreBean;
 
 public interface ProductService {
-	public List<StoreBean> list();
 }

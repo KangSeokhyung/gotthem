@@ -13,9 +13,4 @@ public class ProductServiceImpl implements ProductService {
 		this.storeDao = storeDao;
 	}
 
-	@Override
-	public List<StoreBean> list() {
-		return storeDao.list();
-	}
-
 }

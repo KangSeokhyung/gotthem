@@ -14,9 +14,5 @@ public class ProductDaoImpl implements ProductDao {
 		this.sqlSessionTemplate = sqlSessionTemplate;
 	}
 
-	@Override
-	public List<StoreBean> list() {
-		return sqlSessionTemplate.selectList("list");
-	}
 
 }

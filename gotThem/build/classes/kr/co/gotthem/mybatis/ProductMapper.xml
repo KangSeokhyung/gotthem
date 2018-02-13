@@ -4,8 +4,8 @@
               
 <mapper namespace="kr.co.gotthem.mybatis.ProductMapper">
 
-	<select id="list" resultType="kr.co.gotthem.product.bean.ProductBean">
-		select * from member
-	</select>
+	<!-- <select id="list" resultType="kr.co.gotthem.product.bean.ProductBean">
+		select * from product
+	</select> -->
 
 </mapper>

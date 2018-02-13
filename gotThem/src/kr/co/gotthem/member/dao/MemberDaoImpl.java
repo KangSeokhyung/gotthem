@@ -17,8 +17,8 @@ public class MemberDaoImpl implements MemberDao{
 	}
 
 	@Override
-	public List<StoreBean> list() {
-		return sqlSessionTemplate.selectList("list");
+	public List<MemberBean> mlist() {
+		return sqlSessionTemplate.selectList("mlist");
 	}
 	
 	@Override
