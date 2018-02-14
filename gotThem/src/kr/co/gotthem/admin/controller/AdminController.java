@@ -10,16 +10,16 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import kr.co.gotthem.store.bean.StoreBean;
-import kr.co.gotthem.store.service.StroreService;
+import kr.co.gotthem.store.service.StoreService;
 
 @Controller
 public class AdminController {
 	
 	private static final Logger logger = LoggerFactory.getLogger(AdminController.class);
 	
-	private StroreService storeService;
+	private StoreService storeService;
 
-	public void setStoreService(StroreService storeService) {
+	public void setStoreService(StoreService storeService) {
 		this.storeService = storeService;
 	}
 

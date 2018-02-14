@@ -29,7 +29,7 @@ public class ProductController {
 			HttpServletResponse res) throws Exception {
 		
 		List result = productService.plist();
-		
+		System.out.println(productService.plist());
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("store/stock");
 		mav.addObject("plist",result);

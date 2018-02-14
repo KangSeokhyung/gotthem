@@ -1,7 +1,5 @@
 package kr.co.gotthem.store.controller;
 
-import java.util.ArrayList;
-import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -12,34 +10,23 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import kr.co.gotthem.store.bean.StoreBean;
-import kr.co.gotthem.store.service.StroreService;
+import kr.co.gotthem.store.service.StoreService;
 
 @Controller
 public class StoreController {
 	
 	private static final Logger logger = LoggerFactory.getLogger(StoreController.class);
 	
-	private StroreService storeService;
+	private StoreService storeService;
 
-	public void setStoreService(StroreService storeService) {
+	public void setStoreService(StoreService storeService) {
 		this.storeService = storeService;
 	}
 
 	@RequestMapping(value = "/storeIndex.st", method = RequestMethod.GET)
 	public String storeIndex() {
-
-
-			List<StoreBean> list = new ArrayList<StoreBean>();
-			list = storeService.list();
-			System.out.println(list);
-		
-		
+		System.out.println(storeService.list());
 		return "store/storeIndex";
-	}
-	
-	@RequestMapping(value = "/loginForm.st", method = RequestMethod.GET)
-	public String loginForm() {
-		return "store/storeLogin";
 	}
 	
 	@RequestMapping(value = "/login.st", method = RequestMethod.POST)
@@ -65,8 +52,28 @@ public class StoreController {
 		return "store/storeIndex";
 	}
 	
-	@RequestMapping(value = "/test.st", method = RequestMethod.GET)
-	public String testStock() {
+	@RequestMapping(value = "/stock.st", method = RequestMethod.POST)
+	public String stock(HttpServletRequest request, HttpSession session) throws Exception{
+		
+		/*session.getAttribute("sto_id", sto_id);
+		if(dto==null) {
+			return "store/fail2";
+		}
+		
+		String pw = dto.getSto_pw();
+		
+		if(sto_pw.equals(pw)) {
+			session.setAttribute("sto_id", sto_id);
+		}else {
+			return "fail";
+		}*/
 		return "store/stock";
+	}
+	
+	@RequestMapping(value = "/cvs.st", method = RequestMethod.POST)
+	public String cvs(HttpServletRequest request, HttpSession session) throws Exception{
+		
+		
+		return "store/cvs";
 	}
 }
