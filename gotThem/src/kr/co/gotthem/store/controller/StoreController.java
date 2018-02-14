@@ -38,6 +38,7 @@ public class StoreController {
 		return "store/stLogin";
 	}
 	
+	
 	@RequestMapping(value = "/stock.st", method = RequestMethod.GET)
 	public String stock(HttpServletRequest request, HttpSession session) throws Exception{
 		return "store/stock";

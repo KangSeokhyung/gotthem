@@ -30,7 +30,7 @@
 	</header>
 	<section class="container login-form">
 		<section>
-			<form method="post" action="<c:url value="/login.st" />" role="login">
+			<form method="post" action="<c:url value="/login" />" role="login">
 				<img src="resources/stlogin/images/logo.png" alt="" class="img-responsive" />
 
 				<div class="form-group">
@@ -49,6 +49,7 @@
 					Now</button>
 
 				<a href="#">Reset password</a> or <a href="#">create account</a>
+				 <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/> 
 			</form>
 		</section>
 	</section>

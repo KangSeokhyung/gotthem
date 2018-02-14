@@ -21,7 +21,7 @@
 	<!-- DB (Mybatis, MariaDB 연결) -->
 	<beans:bean id="dataSource" class="org.springframework.jdbc.datasource.SimpleDriverDataSource">
 		<beans:property name="driverClass" value="org.mariadb.jdbc.Driver" />
-		<beans:property name="url" value="jdbc:mariadb://localhost:3306/gotthem" />
+		<beans:property name="url" value="jdbc:mariadb://localhost:3306/test" />
 		<beans:property name="username" value="root" />
 		<beans:property name="password" value="1234" />
 	</beans:bean>	

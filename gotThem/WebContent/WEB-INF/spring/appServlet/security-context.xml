@@ -1,42 +1,34 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans:beans xmlns="http://www.springframework.org/schema/security"
-    xmlns:beans="http://www.springframework.org/schema/beans"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:beans="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security.xsd
 		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.2.xsd">
-    
-    <!-- 검사 URL -->
-    <http use-expressions="true">
-        <intercept-url pattern="/**" access="permitAll" />
-        <intercept-url pattern="/storeIndex.st" access="permitAll" />
-        <intercept-url pattern="/login.st" access="permitAll" />
-        
-        <form-login login-page="/login.st"
+
+	<!-- 검사 URL -->
+	<http use-expressions="true">
+		<intercept-url pattern="/**" access="permitAll" />
+		<form-login login-page="/login.st"
                     default-target-url="/storeIndex.st"
                     authentication-failure-url="/login/loginForm.do?error"
                     username-parameter="sto_id"
                     password-parameter="sto_pw" />
-        <logout logout-url="/logout"
+       			 <logout logout-url="/logout"
                 logout-success-url="/storeIndex.st" />
-                
-        <access-denied-handler error-page="/login/accessDenied.do" />
-    </http>
-    
-    <beans:bean id="userDetailsService" class="org.springframework.security.core.userdetails.jdbc.JdbcDaoImpl">
-        <beans:property name="dataSource" ref="dataSource"/>
-    </beans:bean>
-    
-    <!--  provider  -->
+	</http>
+
+	<beans:bean id="userDetailsService" class="org.springframework.security.core.userdetails.jdbc.JdbcDaoImpl"> 
+		<beans:property name="dataSource" ref="dataSource" /> 
+	</beans:bean> 
+
+	<!-- provider -->
     <authentication-manager>
         <authentication-provider>
         <jdbc-user-service 
             data-source-ref="dataSource"
             role-prefix=""
-            users-by-username-query="select STO_ID, STO_PW from store where STO_ID = ?"
-            authorities-by-username-query="select STO_ID, STO_STATUS from authorities where STO_ID = ?"
-            group-authorities-by-username-query="select g.id, g.group_name, ga.authority from groups g, group_members gm, group_authorities ga where gm.username = ? and g.id = ga.group_id and g.id = gm.group_id"
+            users-by-username-query="select * from store where sto_id = ?"        
         />
         </authentication-provider>
     </authentication-manager>
-   
+
 </beans:beans>
