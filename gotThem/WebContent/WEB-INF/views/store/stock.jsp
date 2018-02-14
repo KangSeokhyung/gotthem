@@ -47,20 +47,33 @@
 					<table border="1">
 						<tr>
 							<th>번호</th>
-							<th>상품명</th>
-							<th>재고</th>
+							<th style="text-align: center;">상품명</th>
 							<th>가격</th>
+							<th>입고</th>
+							<th>출고</th>
+							<th>현재고</th>
+							<th>매출</th>
 						</tr>
 						<c:forEach var="dto" items="${plist }">
 						
 						<tr>
 							<td>${dto.pro_code }</td>
-							<td>${dto.pro_name }</td>
+							<td><a href="detail.st?code=${dto.pro_code }">${vo.title }</a>${dto.pro_name }</td>
+							<td>${dto.pro_price }</td>
+							<td>${dto.pro_income }</td>
+							<td>${dto.pro_release }</td>
 							<td>${dto.pro_stock }</td>
-							<td>${dto.pro_price }</td>		
+							<td>${dto.pro_price*dto.pro_release}</td>
 						</tr>
 						
 						</c:forEach>
+						<th></th>
+						<th></th>
+						<th></th>
+						<th></th>
+						<th></th>
+						<th style="text-align: center;">총매출</th>
+						<th style="text-align: center;">${dto.pro_price*dto.pro_release}</th>
 					</table>
 				</div>
       		</div>
