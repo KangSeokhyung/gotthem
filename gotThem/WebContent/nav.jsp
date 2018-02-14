@@ -25,11 +25,14 @@
 				</ul>
 				<div class="navbar-text">
 					<!-- Button trigger modal-->
-					  <%if(id==null) {%> 
+					
+					
+					
+					  <%if(id==null) {%>
 					<a href="#" class="btn btn-primary navbar-btn btn-shadow btn-gradient">Sign Up</a> 				
 					<a href="login.gt" class="btn btn-primary navbar-btn btn-shadow btn-gradient">Login</a>
 					 <% } else { %>
-					<a href="#" class="btn btn-primary navbar-btn btn-shadow btn-gradient">Modify</a> 				
+					<a href="#" class="btn btn-primary navbar-btn btn-shadow btn-gradient">Mypage</a> 				
 					<a href="logout.gt" class="btn btn-primary navbar-btn btn-shadow btn-gradient">Logout</a>
 					 <% } %>
 				</div>

@@ -48,7 +48,7 @@
 	<section id="cvssearch" class="newsletter bg-gray">
 		<div class="container text-center">
 			<h2>지금 맛있고 간단한 식사를 위해 검색해보세요</h2>
-			<p class="lead">검색버튼으로 근처 편의점의 재고 조회가 가능합니다.</p>
+			<p class="lead">${sessionScope.SPRING_SECURITY_CONTEXT }</p>
 			<div class="form-holder">
 				<form id="newsletterForm" action="#">
 					<div class="form-group">

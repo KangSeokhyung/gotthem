@@ -26,27 +26,9 @@ public class MemberController {
 
 	@RequestMapping(value = "/login.gt", method = RequestMethod.GET)
 	public String login() {
-	
 		return "member/mlogin";
 	}
-	
-	@RequestMapping(value = "/login.gt", method = RequestMethod.POST)
-	public String getlogin(HttpSession  session, HttpServletRequest request, 
-			@RequestParam("m_id") String id, @RequestParam("m_pass") String pw) {
-		
-		System.out.println(id); System.out.println(pw);
-		MemberBean result = (MemberBean)memberService.login(id);
-		
-		System.out.println(result);
-		
-		if (result != null) {
-		session.setAttribute("id", id);
-		System.out.println("로그인 됨");
-		return "redirect:index.jsp";
-		}
-		System.out.println("로그인 안됨");
-		return "member/mlogin";
-	}
+
 	
 	@RequestMapping(value = "/logout.gt", method = RequestMethod.GET)
 	public String logout(HttpSession  session, HttpServletRequest request) {		
