@@ -61,7 +61,7 @@
  
                         </div>
                         <div class="card-body">
-                            <form class="form" role="form" autocomplete="off">
+                            <form class="form" action="login.st" method="post" role="form" autocomplete="off">
                                 <div class="form-group">
                                     <label for="inputName">Name</label>
                                     <input type="text" class="form-control" id="inputName" placeholder="full name">
@@ -79,6 +79,7 @@
                                     <input type="password" class="form-control" id="inputVerify3" placeholder="password (again)" required="">
                                 </div>
                                 <div class="form-group">
+                                	<a href="test.st">test</a>
                                     <button type="submit" class="btn btn-success btn-lg float-right">Register</button>
                                 </div>
                             </form>

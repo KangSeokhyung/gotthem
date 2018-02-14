@@ -29,7 +29,6 @@ public class StoreController {
 	public String storeIndex() {
 
 
-			System.out.println("테스트");
 			List<StoreBean> list = new ArrayList<StoreBean>();
 			list = storeService.list();
 			System.out.println(list);
@@ -64,5 +63,10 @@ public class StoreController {
 			return "fail";
 		}
 		return "store/storeIndex";
+	}
+	
+	@RequestMapping(value = "/test.st", method = RequestMethod.GET)
+	public String testStock() {
+		return "store/stock";
 	}
 }
