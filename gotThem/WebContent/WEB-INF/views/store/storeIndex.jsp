@@ -20,7 +20,7 @@
 		<section class="cover-1 text-center">
 			<nav class="navbar navbar-expand-lg navbar-dark navbar-custom">
 				<div class="container">
-					<a class="navbar-brand" href="#">Got them</a>
+					<a class="navbar-brand" href="storeIndex.st">Got them</a>
 					<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
 						<span class="navbar-toggler-icon"></span>
 					</button>
@@ -79,7 +79,7 @@
                                     <input type="password" class="form-control" id="inputVerify3" placeholder="password (again)" required="">
                                 </div>
                                 <div class="form-group">
-                                	<a href="test.st">test</a>
+                                	<a href="stock.st">재고리스트</a>
                                     <button type="submit" class="btn btn-success btn-lg float-right">Register</button>
                                 </div>
                             </form>

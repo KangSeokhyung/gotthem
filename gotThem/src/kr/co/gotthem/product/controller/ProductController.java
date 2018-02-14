@@ -8,6 +8,8 @@ import javax.servlet.http.HttpServletResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import kr.co.gotthem.product.bean.ProductBean;
@@ -25,11 +27,11 @@ public class ProductController {
 		this.productService = productService;
 	}
 	
+	@RequestMapping(value = "/stock.st", method = RequestMethod.GET)
 	public ModelAndView handleRequest(HttpServletRequest req,
 			HttpServletResponse res) throws Exception {
 		
-		List result = productService.plist();
-		System.out.println(productService.plist());
+		List<ProductBean> result = productService.plist();
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("store/stock");
 		mav.addObject("plist",result);

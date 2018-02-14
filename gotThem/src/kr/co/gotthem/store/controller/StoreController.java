@@ -69,11 +69,4 @@ public class StoreController {
 		}*/
 		return "store/stock";
 	}
-	
-	@RequestMapping(value = "/cvs.st", method = RequestMethod.POST)
-	public String cvs(HttpServletRequest request, HttpSession session) throws Exception{
-		
-		
-		return "store/cvs";
-	}
 }

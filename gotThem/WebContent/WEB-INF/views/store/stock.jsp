@@ -19,7 +19,7 @@
 <section class="cover-1 text-center">
 			<nav class="navbar navbar-expand-lg navbar-dark navbar-custom">
 				<div class="container">
-					<a class="navbar-brand" href="#">Got them</a>
+					<a class="navbar-brand" href="storeIndex.st">Got them</a>
 					<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
 						<span class="navbar-toggler-icon"></span>
 					</button>
@@ -53,13 +53,13 @@
 							<th>재고</th>
 							<th>가격</th>
 						</tr>
-						<c:forEach var="vo" items="${plist }">
+						<c:forEach var="dto" items="${plist }">
 						
 						<tr>
-							<td>${vo.pro_code }</td>
-							<td>${vo.pro_name }</td>
-							<td>${vo.pro_stock }</td>
-							<td>${vo.pro_price }</td>		
+							<td>${dto.pro_code }</td>
+							<td>${dto.pro_name }</td>
+							<td>${dto.pro_stock }</td>
+							<td>${dto.pro_price }</td>		
 						</tr>
 						
 						</c:forEach>
