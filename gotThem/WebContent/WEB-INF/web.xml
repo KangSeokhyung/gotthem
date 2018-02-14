@@ -7,7 +7,7 @@
 	<context-param>
 		<param-name>contextConfigLocation</param-name>
 		<param-value>
-			/WEB-INF/spring/root-context.xml
+			/WEB-INF/spring/appServlet/servlet-context.xml
 			<!-- /WEB-INF/spring/security-context.xml -->
 		</param-value>
 	</context-param>
@@ -17,7 +17,7 @@
 
 	<!-- DispatcherServlet / URL Mapping -->
 	<servlet>
-		<servlet-name>defaultServlet</servlet-name>
+		<servlet-name>appServlet</servlet-name>
 		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
 		<init-param>
 			<param-name>contextConfigLocation</param-name>
@@ -25,46 +25,16 @@
 				/WEB-INF/spring/appServlet/servlet-context.xml
 				/WEB-INF/spring/appServlet/member-context.xml
 				/WEB-INF/spring/appServlet/pob-context.xml
-			</param-value>
-		</init-param>
-		<load-on-startup>1</load-on-startup>
-	</servlet>
-	<servlet-mapping>
-		<servlet-name>defaultServlet</servlet-name>
-		<url-pattern>*.gt</url-pattern>
-	</servlet-mapping>
-	
-	<servlet>
-		<servlet-name>storeServlet</servlet-name>
-		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
-		<init-param>
-			<param-name>contextConfigLocation</param-name>
-			<param-value>
-				/WEB-INF/spring/appServlet/servlet-context.xml
 				/WEB-INF/spring/appServlet/store-context.xml
-			</param-value>
-		</init-param>
-		<load-on-startup>1</load-on-startup>
-	</servlet>
-	<servlet-mapping>
-		<servlet-name>storeServlet</servlet-name>
-		<url-pattern>*.st</url-pattern>
-	</servlet-mapping>
-	
-	<servlet>
-		<servlet-name>adminServlet</servlet-name>
-		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
-		<init-param>
-			<param-name>contextConfigLocation</param-name>
-			<param-value>
-				/WEB-INF/spring/appServlet/servlet-context.xml
 				/WEB-INF/spring/appServlet/admin-context.xml
 			</param-value>
 		</init-param>
 		<load-on-startup>1</load-on-startup>
 	</servlet>
 	<servlet-mapping>
-		<servlet-name>adminServlet</servlet-name>
+		<servlet-name>appServlet</servlet-name>
+		<url-pattern>*.gt</url-pattern>
+		<url-pattern>*.st</url-pattern>
 		<url-pattern>*.ad</url-pattern>
 	</servlet-mapping>
 
@@ -83,8 +53,13 @@
 	</filter-mapping>
 
 	<!-- Spring-Security Filter -->
-	<!-- <filter> <filter-name>springSecurityFilterChain</filter-name> <filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class> 
-		</filter> <filter-mapping> <filter-name>springSecurityFilterChain</filter-name> 
-		<url-pattern>/*</url-pattern> </filter-mapping> -->
+	<!-- <filter> 
+		<filter-name>springSecurityFilterChain</filter-name> 
+		<filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class> 
+	</filter> 
+	<filter-mapping> 
+		<filter-name>springSecurityFilterChain</filter-name> 
+		<url-pattern>/*</url-pattern> 
+	</filter-mapping> -->
 
 </web-app>

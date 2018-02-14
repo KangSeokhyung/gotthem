@@ -5,7 +5,7 @@ import java.util.List;
 import kr.co.gotthem.store.bean.StoreBean;
 import kr.co.gotthem.store.dao.StoreDao;
 
-public class StoreServiceImpl implements StroreService {
+public class StoreServiceImpl implements StoreService {
 	
 	private StoreDao storeDao;
 

@@ -5,7 +5,7 @@
 	
 	<!-- Controller -->
 	<bean id="memberController" class="kr.co.gotthem.member.controller.MemberController">
-		<property name="memberService" ref="memberService" />
+		<property name="storeService" ref="storeService" />
 	</bean>
 	
 	<!-- Service -->

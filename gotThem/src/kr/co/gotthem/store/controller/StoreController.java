@@ -1,7 +1,5 @@
 package kr.co.gotthem.store.controller;
 
-import java.util.ArrayList;
-import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -11,24 +9,24 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.servlet.ModelAndView;
 
 import kr.co.gotthem.store.bean.StoreBean;
-import kr.co.gotthem.store.service.StroreService;
+import kr.co.gotthem.store.service.StoreService;
 
 @Controller
 public class StoreController {
 	
 	private static final Logger logger = LoggerFactory.getLogger(StoreController.class);
 	
-	private StroreService storeService;
+	private StoreService storeService;
 
-	public void setStoreService(StroreService storeService) {
+	public void setStoreService(StoreService storeService) {
 		this.storeService = storeService;
 	}
 
 	@RequestMapping(value = "/storeIndex.st", method = RequestMethod.GET)
 	public String storeIndex() {
+		System.out.println(storeService.list());
 		return "store/storeIndex";
 	}
 	
