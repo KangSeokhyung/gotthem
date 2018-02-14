@@ -43,7 +43,31 @@ public class BasketServiceImpl implements BasketService {
 	@Override
 	public void delete(int bas_no) {
 	}
-	
+
+	  // 2. 장바구니 목록
+    @Override
+    public List<BasketBean> listCart(int bas_memno) {
+        return basketDao.listCart(bas_memno);
+    }
+    // 5. 장바구니 금액 합계
+    @Override
+    public int sumMoney(int bas_memno) {
+        return basketDao.sumMoney(bas_memno);
+    }
+		
+    // 6. 장바구니 상품 확인
+    @Override
+    public int countBasket(int bas_procode, int bas_memno) {
+        return basketDao.countBasket(bas_procode, bas_memno);
+    }
+  
+    // 7. 장바구니 상품 수량 변경
+    @Override
+    public void updateCart(BasketBean basketBean) {
+    	basketDao.updateCart(basketBean);
+    }
+  
+     
 	/*@Override
 	public MemberBean login(String id) {
 		return basketDao.login(id);

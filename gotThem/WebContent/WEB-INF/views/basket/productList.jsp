@@ -18,20 +18,24 @@
                 <table border="1" style="height: 300px; width: 400px;">
                     <tr align="center">
                         <td>상품명</td>
-                        <td>${vo.productName}</td>
+                        <td>상품명 test</td>
+                        <%-- <td>${vo.productName}</td> --%>
                     </tr>
                     <tr align="center">
                         <td>가격</td>
-                        <td><fmt:formatNumber value="${vo.productPrice}" pattern="###,###,###"/></td>
+                       <%--  <td><fmt:formatNumber value="${vo.productPrice}" pattern="###,###,###"/></td> --%>
+                        <td>10000</td>
                     </tr>
                     <tr align="center">
                         <td>상품소개</td>
-                        <td>${vo.productDesc}</td>
+                       <%--  <td>${vo.productDesc}</td> --%>
+                       <td>상품소개test</td>
                     </tr>
                     <tr align="center">
-                        <td colspan="2">
-                            <form name="form1" method="post" action="${path}/shop/cart/insert.do">
-                                <input type="hidden" name="productId" value="${vo.productId}">
+                        <td colspan="2">                               
+                            <form name="form1" method="post" action="./insert.gt">
+                                <%-- <input type="hidden" name="productId" value="${vo.productId}"> --%>
+                                <input type="hidden" name="productId" value="${basketBean.pro_code}">
                                 <select name="amount">
                                     <c:forEach begin="1" end="10" var="i">
                                         <option value="${i}">${i}</option>
