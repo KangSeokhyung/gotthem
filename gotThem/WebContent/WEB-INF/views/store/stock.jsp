@@ -3,11 +3,9 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
-<meta charset="UTF-8">
-<title>Insert title here</title>
+<meta charset="utf-8">
+<title>Startup UI Kit - Free Sample</title>
 <head>
-		<meta charset="utf-8">
-		<title>Startup UI Kit - Free Sample</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
 		<link rel="shortcut icon" href="resources/ownerindex/images/favicon.ico">
 		<link rel="stylesheet" href="resources/ownerindex/bootstrap/css/bootstrap.css">
