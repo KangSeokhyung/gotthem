@@ -6,7 +6,8 @@
 
 	<!-- 검사 URL -->
 	<http use-expressions="true">
-		<intercept-url pattern="/**" access="permitAll" />
+		<intercept-url pattern="/storeIndex.st" access="permitAll" />
+		<intercept-url pattern="/stock.st" access="hasAnyRole('USER, ADMIN')" />
 		<form-login login-page="/login.st"
                     default-target-url="/storeIndex.st"
                     authentication-failure-url="/login/loginForm.do?error"
@@ -26,7 +27,8 @@
         <jdbc-user-service 
             data-source-ref="dataSource"
             role-prefix=""
-            users-by-username-query="select * from store where sto_id = ?"        
+            users-by-username-query="select sto_id as USERNAME, sto_pw , ENABLED from store where sto_id = ?"
+            authorities-by-username-query="select sto_id as username, sto_status as authority from store where sto_id = ?"      
         />
         </authentication-provider>
     </authentication-manager>

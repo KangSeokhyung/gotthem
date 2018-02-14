@@ -20,7 +20,7 @@
 		 <div class="row marketing">
         <div class="col-lg-6">
           <h1 class="jumbotron-heading">지금 <strong>Got them에</strong> 점포를	<strong>등록하세요</strong></h1>
-			<p class="lead">A collection of coded HTML and CSS elements to help your build your startup website. Clean design, fully responsive and based on Bootstrap 4.</p>
+			<p class="lead">${sessionScope.SPRING_SECURITY_CONTEXT }</p>
         </div>
 
         <div class="col-lg-6">
