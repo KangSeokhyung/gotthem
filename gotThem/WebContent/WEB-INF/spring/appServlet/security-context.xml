@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans:beans xmlns="http://www.springframework.org/schema/security"
+	xmlns:beans="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.2.xsd">
+
+	<!-- 검사 URL -->
+	<http use-expressions="true">
+		<intercept-url pattern="/storeIndex.st" access="permitAll" />
+		<intercept-url pattern="/stock.st" access="hasAnyRole('USER, ADMIN')" />
+		<form-login login-page="/login.st"
+                    default-target-url="/storeIndex.st"
+                    authentication-failure-url="/login/loginForm.do?error"
+                    username-parameter="sto_id"
+                    password-parameter="sto_pw" />
+       			 <logout logout-url="/logout"	invalidate-session="true"
+                logout-success-url="/storeIndex.st" />
+		<csrf disabled="true" />
+	</http>
+	<beans:bean id="userDetailsService" class="org.springframework.security.core.userdetails.jdbc.JdbcDaoImpl"> 
+		<beans:property name="dataSource" ref="dataSource" /> 
+	</beans:bean> 
+
+	<!-- provider -->
+    <authentication-manager>
+        <authentication-provider>
+        <jdbc-user-service 
+            data-source-ref="dataSource"
+            role-prefix=""
+            users-by-username-query="select sto_id as USERNAME, sto_pw , ENABLED from store where sto_id = ?"
+            authorities-by-username-query="select sto_id as username, sto_status as authority from store where sto_id = ?"      
+        />
+        </authentication-provider>
+    </authentication-manager>
+
+</beans:beans>

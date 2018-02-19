@@ -22,51 +22,45 @@ public class StoreController {
 	public void setStoreService(StoreService storeService) {
 		this.storeService = storeService;
 	}
-
+	
 	@RequestMapping(value = "/storeIndex.st", method = RequestMethod.GET)
 	public String storeIndex() {
-		System.out.println(storeService.list());
 		return "store/storeIndex";
 	}
 	
-	@RequestMapping(value = "/login.st", method = RequestMethod.POST)
-	public String login(HttpServletRequest request, HttpSession session) throws Exception{
+	@RequestMapping(value = "/join.st", method = RequestMethod.POST)
+	public String join(HttpServletRequest request, HttpSession session) throws Exception{
 		
-		String sto_id = request.getParameter("sto_id");
-		String sto_pw = request.getParameter("sto_pw");
+		StoreBean bean = new StoreBean();
 		
-		StoreBean dto = storeService.FindById(sto_id);
+		bean.setSto_id(request.getParameter("sto_id"));
+		bean.setSto_pw(request.getParameter("sto_pw"));
+		bean.setSto_owner(request.getParameter("sto_owner"));
+		bean.setSto_name(request.getParameter("sto_name"));
+		bean.setSto_address(request.getParameter("sto_addr1") + "/" +
+				request.getParameter("sto_addr2") + "/" + request.getParameter("sto_addr3"));
+		bean.setSto_registno(request.getParameter("sto_registno"));
+		bean.setSto_phone(request.getParameter("sto_phone"));
+		bean.setSto_email(request.getParameter("sto_email"));
 		
-		session.setAttribute("sto_id", sto_id);
-		if(dto==null) {
-			return "store/fail2";
-		}
+		 /*String dbpw = encoder.saltEncoding(passwd, email);
+		 Map<String, String> paramMap = new HashMap<String, String>();
+		 paramMap.put("email", email);
+		 paramMap.put("passwd", dbpw);
+		 int result = dao.insertUser(paramMap);
+		 logger.info("result ===> {}", result);*/		
 		
-		String pw = dto.getSto_pw();
-		
-		if(sto_pw.equals(pw)) {
-			session.setAttribute("sto_id", sto_id);
-		}else {
-			return "fail";
-		}
+		int result = storeService.joinStore(bean);
+		System.out.println(result);
+	
 		return "store/storeIndex";
 	}
 	
-	@RequestMapping(value = "/stock.st", method = RequestMethod.POST)
-	public String stock(HttpServletRequest request, HttpSession session) throws Exception{
+	@RequestMapping(value = "/login.st", method = RequestMethod.GET)
+	public String stlogin(HttpServletRequest request, HttpSession session) throws Exception{
+		System.out.println("로그인 페이지 진입했다.");
 		
-		/*session.getAttribute("sto_id", sto_id);
-		if(dto==null) {
-			return "store/fail2";
-		}
-		
-		String pw = dto.getSto_pw();
-		
-		if(sto_pw.equals(pw)) {
-			session.setAttribute("sto_id", sto_id);
-		}else {
-			return "fail";
-		}*/
-		return "store/stock";
+		return "store/stLogin";
 	}
+	
 }

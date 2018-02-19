@@ -15,39 +15,14 @@
 	</head>
 <body>
 <section class="cover-1 text-center">
-			<nav class="navbar navbar-expand-lg navbar-dark navbar-custom">
-				<div class="container">
-					<a class="navbar-brand" href="storeIndex.st">Got them</a>
-					<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-						<span class="navbar-toggler-icon"></span>
-					</button>
-					<div class="collapse navbar-collapse pull-xs-right justify-content-end" id="navbarSupportedContent">
-						<ul class="navbar-nav mt-2 mt-md-0">
-							<li class="nav-item">
-								<a class="nav-link" href="#">알림사항</a>
-							</li>					
-							<li class="nav-item">
-								<a class="nav-link" href="#">점포관리</a>
-							</li>
-							<li class="nav-item">
-								<a class="nav-link" href="#">재고관리</a>
-							</li>
-							<li class="nav-item">
-								<a class="nav-link" href="#">회사소개</a>
-							</li>
-							<li class="nav-item">
-								<a class="btn btn-outline-white btn-outline" href="#">사장님 로그인</a>
-							</li>
-						</ul>
-					</div>
-				</div>
-			</nav>
+		<%@include file ="storeNav.jsp"%>
 			<div class="cover-container pb-5">
 				<div class="cover-inner container">
 					<table border="1">
 						<tr>
 							<th>번호</th>
 							<th style="text-align: center;">상품명</th>
+							<th>분류</th>
 							<th>가격</th>
 							<th>입고</th>
 							<th>출고</th>
@@ -58,23 +33,19 @@
 						
 						<tr>
 							<td>${dto.pro_code }</td>
-							<td><a href="detail.st?code=${dto.pro_code }">${vo.title }</a>${dto.pro_name }</td>
+							<td><a href="detail.st?code=${dto.pro_code }">${dto.pro_name }</a></td>
+							<td>${dto.pro_category }</td>
 							<td>${dto.pro_price }</td>
 							<td>${dto.pro_income }</td>
 							<td>${dto.pro_release }</td>
 							<td>${dto.pro_stock }</td>
 							<td>${dto.pro_price*dto.pro_release}</td>
 						</tr>
-						
 						</c:forEach>
-						<th></th>
-						<th></th>
-						<th></th>
-						<th></th>
-						<th></th>
-						<th style="text-align: center;">총매출</th>
-						<th style="text-align: center;">${dto.pro_price*dto.pro_release}</th>
 					</table>
+					<%-- <div>
+					${sessionScope.SPRING_SECURITY_CONTEXT}					
+					</div> --%>
 				</div>
       		</div>
 </section>
@@ -97,6 +68,7 @@
 							<div class="clear"></div>
 						</ul>
 					</div>
+					
 				</div>
 			</div>
 		</footer>

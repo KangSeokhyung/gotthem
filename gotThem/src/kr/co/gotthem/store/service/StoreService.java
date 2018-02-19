@@ -8,4 +8,7 @@ public interface StoreService {
 	public List<StoreBean> list();
 	
 	public StoreBean FindById(String sto_id);
+	
+	public int joinStore(StoreBean bean);
+	
 }

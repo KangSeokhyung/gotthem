@@ -40,10 +40,10 @@
         <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
 </head>
 <body>
-<input type="hidden"  name="uri" value="<%request.getRequestURI();%>">
-<header>
-<%@include file="nav.jsp" %>
-</header> 
+	<!-- navbar-->
+	<header class="header">
+		<%@include file ="nav.jsp" %>
+	</header>
 
 	<section id="cvssearch" class="newsletter bg-gray">
 		<div class="container text-center">

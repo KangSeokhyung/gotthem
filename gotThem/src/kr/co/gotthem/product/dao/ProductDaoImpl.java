@@ -15,8 +15,8 @@ public class ProductDaoImpl implements ProductDao {
 	}
 	
 	@Override
-	public List<ProductBean> plist() {
-		return sqlSessionTemplate.selectList("plist");
+	public List<ProductBean> plist(int pro_stono) {
+		return sqlSessionTemplate.selectList("plist", pro_stono);
 	}
 
 

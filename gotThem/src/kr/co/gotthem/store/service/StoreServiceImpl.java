@@ -20,8 +20,14 @@ public class StoreServiceImpl implements StoreService {
 
 	@Override
 	public StoreBean FindById(String sto_id) {
-		
 		return storeDao.FindById(sto_id);
 	}
+	
+	@Override
+	public int joinStore(StoreBean bean) {
+		System.out.println("넘어옴");
+		return storeDao.joinStore(bean);
+	}
+	
 
 }
