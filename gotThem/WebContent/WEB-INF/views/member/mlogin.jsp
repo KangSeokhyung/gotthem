@@ -63,7 +63,7 @@
 						<span class="txt2 p-b-10">아이디나 패스워드를 잊으셨나요?</span>
 						<a href="#" class="txt3 bo1 hov1">여기를 눌러 찾아보세요</a><br>
 						<span class="txt2 p-b-10">아직 아이디가 없으신가요?</span>
-						<a href="#" class="txt3 bo1 hov1">여기를 눌러 가입해보세요</a>
+						<a href="join.gt" class="txt3 bo1 hov1">여기를 눌러 가입해보세요</a>
 					</div>				
 					
 				</form>

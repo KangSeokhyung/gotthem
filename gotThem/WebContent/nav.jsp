@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%String id=(String)session.getAttribute("id");%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 	<!-- navbar-->
 	<header class="header">
 		<nav class="navbar navbar-expand-lg fixed-top">
@@ -28,13 +28,17 @@
 					
 					
 					
-					  <%if(id==null) {%>
+					<c:set var="sessionCheck" value="${sessionScope.SPRING_SECURITY_CONTEXT}"/>
+					 <c:choose>
+					 	<c:when test="${sessionCheck eq null}">
 					<a href="join.gt" class="btn btn-primary navbar-btn btn-shadow btn-gradient">Sign Up</a> 				
 					<a href="login.gt" class="btn btn-primary navbar-btn btn-shadow btn-gradient">Login</a>
-					 <% } else { %>
+						</c:when>
+						<c:otherwise>
 					<a href="#" class="btn btn-primary navbar-btn btn-shadow btn-gradient">Mypage</a> 				
 					<a href="logout.gt" class="btn btn-primary navbar-btn btn-shadow btn-gradient">Logout</a>
-					 <% } %>
+					 	 </c:otherwise>
+					 </c:choose>
 				</div>
 			</div>
 		</nav>
