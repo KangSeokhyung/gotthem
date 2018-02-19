@@ -21,7 +21,7 @@
 						class="nav-link link-scroll">Notice</a></li>
 					<li class="nav-item"><a href="#testimonials"
 						class="nav-link link-scroll">Event</a></li>
-					<li class="nav-item"><a href="text.html" class="nav-link">Question</a></li>
+					<li class="nav-item"><a href="test.gt" class="nav-link">Question</a></li>
 				</ul>
 				<div class="navbar-text">
 					<!-- Button trigger modal-->

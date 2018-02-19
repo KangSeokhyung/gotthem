@@ -18,13 +18,19 @@ public class MemberDaoImpl implements MemberDao {
 	}
 	
 	@Override
-	public void insert(MemberBean memberBean) {
-		sqlSessionTemplate.insert("join", memberBean);
+	public int join(MemberBean memberBean) {
+		int result = sqlSessionTemplate.insert("join", memberBean);
+		return result;
 	}
 
 	@Override
 	public MemberBean login(String id) {
 		return sqlSessionTemplate.selectOne("login", id);
+	}
+	
+	@Override
+	public int duplCheck(String mem_id) {
+		return sqlSessionTemplate.selectOne("duplCheck", mem_id);
 	}
 
 }

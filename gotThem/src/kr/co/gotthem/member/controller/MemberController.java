@@ -1,17 +1,17 @@
 package kr.co.gotthem.member.controller;
 
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import javax.servlet.http.HttpServletRequest;
+
 import kr.co.gotthem.member.bean.MemberBean;
 import kr.co.gotthem.member.service.MemberService;
 
@@ -42,10 +42,26 @@ public class MemberController {
 	}
 	
 	@RequestMapping(value = "/joinSccess.gt", method = RequestMethod.POST)
-	public String joinSccess(MemberBean memberBean) {
+	public String joinSccess(MemberBean memberBean, HttpServletResponse response) throws Exception {
 		System.out.println(memberBean);
-		memberService.insert(memberBean);
+		memberService.join(memberBean);
 		return "redirect:index.gt";
+	}
+	
+	@RequestMapping(value = "/duplCheck.gt", method = RequestMethod.POST)
+	public String duplCheck(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		String mem_id = request.getParameter("mem_id");
+		int result = 0;
+		
+		result = memberService.duplCheck(mem_id);
+		if (result > 0) {
+			System.out.println("아이디 존재");
+		} else {
+			System.out.println("아이디 없음");
+		}
+		response.getWriter().write(result + "");
+		
+		return null;
 	}
 	
 	@RequestMapping(value = "/index.gt", method = RequestMethod.GET)
@@ -53,16 +69,10 @@ public class MemberController {
 		return "redirect:index.jsp";
 	}
 
-	@RequestMapping(value = "/myPage.gt", method = RequestMethod.GET)
-	public String memberIndex() {
-		
-		
-			List<MemberBean> list = new ArrayList<MemberBean>();
-			list = memberService.mlist();
-			System.out.println(list);
-		
-		
-		return "store/storeIndex";
+	@RequestMapping(value = "test.gt", method = RequestMethod.GET)
+	public String test() {
+		return "member/test";
 	}
+	
 	
 }

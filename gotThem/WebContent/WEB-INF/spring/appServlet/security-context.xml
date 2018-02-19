@@ -8,6 +8,7 @@
 	<http use-expressions="true">
 		<intercept-url pattern="/" access="permitAll" />
 		<intercept-url pattern="/mypage.gt" access="hasAnyRole('USER, ADMIN')" />
+		<intercept-url pattern="/test.gt" access="hasAnyRole('USER, ADMIN')" />
 		<form-login login-page="/login.gt"
                     default-target-url="/"
                     
