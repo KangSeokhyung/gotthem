@@ -15,8 +15,8 @@
                     password-parameter="sto_pw" />
        			 <logout logout-url="/logout"	invalidate-session="true"
                 logout-success-url="/storeIndex.st" />
+		<csrf disabled="true" />
 	</http>
-
 	<beans:bean id="userDetailsService" class="org.springframework.security.core.userdetails.jdbc.JdbcDaoImpl"> 
 		<beans:property name="dataSource" ref="dataSource" /> 
 	</beans:bean> 
