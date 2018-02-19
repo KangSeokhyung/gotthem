@@ -8,10 +8,6 @@
 		<property name="storeService" ref="storeService" />
 	</bean>
 	
-	<bean id="adminController" class="kr.co.gotthem.admin.controller.AdminController">
-		<property name="storeService" ref="storeService" />
-	</bean>
-	
 	<!-- Service -->
 	<bean id="storeService" class="kr.co.gotthem.store.service.StoreServiceImpl">
 		<property name="storeDao" ref="storeDao" />

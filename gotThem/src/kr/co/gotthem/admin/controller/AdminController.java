@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import kr.co.gotthem.admin.service.AdminService;
 import kr.co.gotthem.store.bean.StoreBean;
 import kr.co.gotthem.store.service.StroreService;
 
@@ -17,33 +18,26 @@ public class AdminController {
 	
 	private static final Logger logger = LoggerFactory.getLogger(AdminController.class);
 	
-	private StroreService storeService;
+	private AdminService adminService;
 
-	public void setStoreService(StroreService storeService) {
-		this.storeService = storeService;
+	public void setAdminService(AdminService adminService) {
+		this.adminService = adminService;
 	}
 
-	@RequestMapping(value = "/storeIndex.ad", method = RequestMethod.GET)
+	@RequestMapping(value = "/superAdmin.ad", method = RequestMethod.GET)
 	public String storeIndex() {
 		
-		System.out.println("aaaaaa");
-		System.out.println("두번쨰테스트dddd");
-		List<StoreBean> list = new ArrayList<StoreBean>();
-		list = storeService.list();
-		System.out.println(list+"잘된다");
+		System.out.println("꺅 시발!!!");
 		
-		return "store/storeIndex";
+		return "admin/adminLogin";
 	}
 	
-	@RequestMapping(value = "/storeIndex.gt", method = RequestMethod.GET)
-	public String storeIndex2() {
+	@RequestMapping(value = "/control.ad", method = RequestMethod.POST)
+	public String control() {
 		
-		System.out.println("aaaaaa");
-		System.out.println("두번쨰테스트dddd");
-		List<StoreBean> list = new ArrayList<StoreBean>();
-		list = storeService.list();
-		System.out.println(list+"잘된다");
+		System.out.println("쀼엑!!");
 		
-		return "store/storeIndex";
+		return "admin/controlPage";
 	}
+
 }

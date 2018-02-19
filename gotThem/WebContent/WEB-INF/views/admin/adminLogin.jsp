@@ -5,8 +5,67 @@
 <head>
 <meta charset="UTF-8">
 <title>Got Them?</title>
+<!-- Bootstrap CSS-->
+<link rel="stylesheet" href="resources/landy/vendor/bootstrap/css/bootstrap.min.css">
 </head>
-<body>
-	
+<body class="bg-dark">
+	<div class="container py-5">
+    <div class="row">
+        <div class="col-md-12">
+            <h2 class="text-center text-white mb-4">Bootstrap 4 Login Form</h2>
+            <div class="row">
+                <div class="col-md-6 mx-auto">
+
+                    <!-- form card login -->
+                    <div class="card rounded-0">
+                        <div class="card-header">
+                            <h3 class="mb-0">Login</h3>
+                        </div>
+                        <div class="card-body">
+                            <form class="form" role="form" action="control.ad"
+                            autocomplete="off" id="formLogin"  novalidate="" method="POST">
+                                <div class="form-group">
+                                    <label for="uname1">Username</label>
+                                    <input type="text" class="form-control form-control-lg rounded-0" name="admin_id" id="uname1" required="">
+                                    <div class="invalid-feedback">Oops, you missed this one.</div>
+                                </div>
+                                <div class="form-group">
+                                    <label>Password</label>
+                                    <input type="password" class="form-control form-control-lg rounded-0" id="pwd1" 
+                                    name="admin_pw" required="" autocomplete="new-password">
+                                    <div class="invalid-feedback">Enter your password too!</div>
+                                </div>
+                                <div>
+                                    <label class="custom-control custom-checkbox">
+                                      <input type="checkbox" class="custom-control-input">
+                                      <span class="custom-control-indicator"></span>
+                                      <span class="custom-control-description small text-dark">Remember me on this computer</span>
+                                    </label>
+                                </div>
+                                <button type="submit" class="btn btn-success btn-lg float-right" id="btnLogin">Login</button>
+                            </form>
+                        </div>
+                        <!--/card-block-->
+                    </div>
+                    <!-- /form card login -->
+                </div>
+            </div></div>
+            </div></div>
+            <!--/row-->
+            <script>
+            $("#btnLogin").click(function(event) {
+
+                //Fetch form to apply custom Bootstrap validation
+                var form = $("#formLogin")
+
+                if (form[0].checkValidity() === false) {
+                  event.preventDefault()
+                  event.stopPropagation()
+                }
+                
+                form.addClass('was-validated');
+              });
+
+            </script>
 </body>
 </html>

@@ -5,21 +5,35 @@
 		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.2.xsd">
 
 	<!-- 검사 URL -->
-	<http use-expressions="true">
+	<http pattern="/*.st" auto-config="true" use-expressions="true">
 		<intercept-url pattern="/storeIndex.st" access="permitAll" />
 		<intercept-url pattern="/stock.st" access="hasAnyRole('USER, ADMIN')" />
 		<form-login login-page="/login.st"
                     default-target-url="/storeIndex.st"
-                    authentication-failure-url="/login/loginForm.do?error"
+                    authentication-failure-url="/store/fail2.jsp"
                     username-parameter="sto_id"
                     password-parameter="sto_pw" />
        			 <logout logout-url="/logout"	invalidate-session="true"
                 logout-success-url="/storeIndex.st" />
 		<csrf disabled="true" />
 	</http>
+	
+		<http pattern="/*.ad" auto-config="true" use-expressions="true">
+		<intercept-url pattern="/superAdmin.ad" access="permitAll" />
+		<intercept-url pattern="/control.ad" access="hasRole('ADMIN')" />
+		<form-login login-page="/superAdmin.ad"
+                    default-target-url="/storeIndex.st"
+                    authentication-failure-url="/store/fail2.jsp"
+                    username-parameter="admin_id"
+                    password-parameter="admin_pw" />
+       			 <logout logout-url="/logout"	invalidate-session="true"
+                logout-success-url="/storeIndex.st" />
+		<csrf disabled="true" />
+	</http>
+	
 	<beans:bean id="userDetailsService" class="org.springframework.security.core.userdetails.jdbc.JdbcDaoImpl"> 
 		<beans:property name="dataSource" ref="dataSource" /> 
-	</beans:bean> 
+	</beans:bean>
 
 	<!-- provider -->
     <authentication-manager>

@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags"%>
 <!DOCTYPE html>
 <html lang="ko">
 	<head>
@@ -22,7 +22,6 @@
           <h1 class="jumbotron-heading">지금 <strong>Got them에</strong> 점포를	<strong>등록하세요</strong></h1>
 			<p class="lead">got them에 대해 궁금하신가요?</p>
         </div>
-
         <div class="col-lg-6">
          <div class="container">
                 <div class="col-xs-12 mx-auto">
