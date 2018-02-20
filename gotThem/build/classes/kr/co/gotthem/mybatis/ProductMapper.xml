@@ -8,4 +8,20 @@
 		select * from product where pro_stono = #{pro_stono}
 	</select>
 	
+	<select id="findCode" resultType="kr.co.gotthem.product.bean.ProductBean">
+		select * from product where pro_code = #{pro_code}
+	</select>
+	
+	<update id="updatePro" parameterType="kr.co.gotthem.product.bean.ProductBean">
+		update product set
+		pro_name = #{pro_name},
+		pro_category = #{pro_category},
+		pro_income = #{pro_income},
+		pro_release = #{pro_release},
+		pro_stock = #{pro_stock},
+		pro_price = #{pro_price}
+		where
+		pro_code = #{pro_code}
+	</update>
+	
 </mapper>

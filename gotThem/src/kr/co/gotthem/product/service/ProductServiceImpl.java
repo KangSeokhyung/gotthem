@@ -18,4 +18,14 @@ public class ProductServiceImpl implements ProductService {
 		return productDao.plist(pro_stono);
 	}
 
+	@Override
+	public ProductBean findCode(int pro_code) {
+		return productDao.findCode(pro_code);
+	}
+
+	@Override
+	public void updatePro(ProductBean bean) {
+		productDao.updatePro(bean);
+	}
+
 }

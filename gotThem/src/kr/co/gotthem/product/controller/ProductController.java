@@ -11,6 +11,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.ServletRequestUtils;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
@@ -45,22 +47,54 @@ public class ProductController {
 		//StoreBean storeInfo =  storeService.FindById(sto_id);
 		//int pro_stono = storeInfo.getSto_no();
 		
-		//int pro_stono = 1;
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 		String sto_id = authentication.getName();
+		
 		StoreBean storeInfo =  storeService.FindById(sto_id);
 		int pro_stono = storeInfo.getSto_no();
 		// 가지고 온 stono를 productSevice의 매개변수로 보낸다.
 		// xml 알아서 리스트를 가져오면 받아와서 뿌리면 끝..
-		System.out.println(pro_stono);
+		System.out.println("stono = " + pro_stono);
 		List<ProductBean> result = productService.plist(pro_stono);
 		ModelAndView mav = new ModelAndView();
-		mav.setViewName("store/stock");
+		mav.setViewName("product/stock");
 		mav.addObject("plist",result);
 		
 		return mav;
 	}
 	
+	@RequestMapping(value = "/detail.st", method = RequestMethod.GET)
+	protected ModelAndView handleRequestInternal(HttpServletRequest req,
+			HttpServletResponse res, HttpSession session) throws Exception {
+		
+		ModelAndView mav = new ModelAndView();
+		int code = ServletRequestUtils.getIntParameter(req, "code");
+		System.out.println("code = " + code);
+		ProductBean bean = productService.findCode(code);		
+		mav.setViewName("product/detail");
+		mav.addObject("pro",bean);
+		
+		return mav;
+	}
 	
+	@RequestMapping(value="/update.st", method=RequestMethod.GET)
+	protected ModelAndView movieUpdateForm(HttpServletRequest req, ModelAndView view){
+		ProductBean bean = productService.findCode(Integer.parseInt(req.getParameter("code")));
+		System.out.println("update.st의 컨트롤"+ bean);
+		view.setViewName("product/update");
+		view.addObject("pro",bean);
+		
+		return view;
+	}
+	@RequestMapping(value="/update.st", method=RequestMethod.POST)
+	protected ModelAndView updateProcess(@ModelAttribute ProductBean bean, HttpServletRequest req){
+		
+		System.out.println("컨트롤의 빈 : " + bean);
+		productService.updatePro(bean);
+		String code = req.getParameter("pro_code");
+		//String code = "4";
+		System.out.println(code);
+		return new ModelAndView("redirect:/detail.st?code="+code);
+	}
 
 }
