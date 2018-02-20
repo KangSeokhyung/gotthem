@@ -35,7 +35,7 @@
 					<a href="login.gt" class="btn btn-primary navbar-btn btn-shadow btn-gradient">Login</a>
 						</c:when>
 						<c:otherwise>
-					<a href="#" class="btn btn-primary navbar-btn btn-shadow btn-gradient">Mypage</a> 				
+					<a href="mypage.gt" class="btn btn-primary navbar-btn btn-shadow btn-gradient">Mypage</a> 				
 					<a href="logout.gt" class="btn btn-primary navbar-btn btn-shadow btn-gradient">Logout</a>
 					 	 </c:otherwise>
 					 </c:choose>

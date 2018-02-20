@@ -4,7 +4,7 @@ import java.util.List;
 import kr.co.gotthem.member.bean.MemberBean;
 
 public interface MemberService {
-	public List<MemberBean> mlist();
+	public MemberBean memberInfo(String mem_id);
 	
 	public int join(MemberBean memberBean);
 

@@ -13,8 +13,8 @@ public class MemberDaoImpl implements MemberDao {
 	}
 
 	@Override
-	public List<MemberBean> mlist() {
-		return sqlSessionTemplate.selectList("mlist");
+	public MemberBean memberInfo(String mem_id) {
+		return sqlSessionTemplate.selectOne("memberInfo", mem_id);
 	}
 	
 	@Override

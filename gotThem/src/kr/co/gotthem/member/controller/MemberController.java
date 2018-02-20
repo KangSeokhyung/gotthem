@@ -1,16 +1,15 @@
 package kr.co.gotthem.member.controller;
 
-import java.io.PrintWriter;
-import java.util.ArrayList;
-import java.util.List;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.ModelAndView;
 
 import kr.co.gotthem.member.bean.MemberBean;
 import kr.co.gotthem.member.service.MemberService;
@@ -69,10 +68,30 @@ public class MemberController {
 		return "redirect:index.jsp";
 	}
 
-	@RequestMapping(value = "test.gt", method = RequestMethod.GET)
-	public String test() {
-		return "member/test";
+	@RequestMapping(value = "/mypage.gt", method = RequestMethod.GET)
+	public ModelAndView mypage(ModelAndView mav) {
+		mav.setViewName("member/mypage");
+		return mav;
 	}
 	
+	@RequestMapping(value = "/mypageMemberInfo.gt", method = RequestMethod.GET)
+	public ModelAndView memberInfo(ModelAndView mav) {
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+		String mem_id = authentication.getName();
+		MemberBean memberInfo = memberService.memberInfo(mem_id);
+		mav.addObject("memberInfo", memberInfo);
+		mav.setViewName("member/mypageMemberInfo");
+		return mav;
+	}
+	
+	@RequestMapping(value = "/mypageMemberMode.gt", method = RequestMethod.GET)
+	public ModelAndView memberMode(ModelAndView mav) {
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+		String mem_id = authentication.getName();
+		MemberBean memberInfo = memberService.memberInfo(mem_id);
+		mav.addObject("memberInfo", memberInfo);
+		mav.setViewName("member/mypageMemberMode");
+		return mav;
+	}
 	
 }

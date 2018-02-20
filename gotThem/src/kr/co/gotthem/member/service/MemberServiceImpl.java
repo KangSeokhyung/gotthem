@@ -9,8 +9,8 @@ public class MemberServiceImpl implements MemberService {
 	private MemberDao memberDao;
 	
 	@Override
-	public List<MemberBean> mlist() {
-		return memberDao.mlist();
+	public MemberBean memberInfo(String mem_id) {
+		return memberDao.memberInfo(mem_id);
 	}
 	
 	public void setMemberDao(MemberDao memberDao) {
