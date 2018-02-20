@@ -14,16 +14,16 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import kr.co.gotthem.store.bean.StoreBean;
-import kr.co.gotthem.store.service.StroreService;
+import kr.co.gotthem.store.service.StoreService;
 
 @Controller
 public class StoreController {
 	
 	private static final Logger logger = LoggerFactory.getLogger(StoreController.class);
 	
-	private StroreService storeService;
+	private StoreService storeService;
 
-	public void setStoreService(StroreService storeService) {
+	public void setStoreService(StoreService storeService) {
 		this.storeService = storeService;
 	}
 

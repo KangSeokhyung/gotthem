@@ -48,7 +48,7 @@
 	<section id="cvssearch" class="newsletter bg-gray">
 		<div class="container text-center">
 			<h2>지금 맛있고 간단한 식사를 위해 검색해보세요</h2>
-			<p class="lead">검색버튼으로 근처 편의점의 재고 조회가 가능합니다.</p>
+			<p class="lead">${sessionScope.SPRING_SECURITY_CONTEXT }</p>
 			<div class="form-holder">
 				<form id="newsletterForm" action="#">
 					<div class="form-group">
@@ -150,10 +150,7 @@
 	</footer>
 	<!-- Javascript files-->
 	<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-	<script
-		src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js">
-		
-	</script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"></script>
 	<script src="resources/landy/vendor/bootstrap/js/bootstrap.min.js"></script>
 	<script src="resources/landy/vendor/jquery.cookie/jquery.cookie.js">
 	<script src="resources/landy/vendor/owl.carousel/owl.carousel.min.js"></script>

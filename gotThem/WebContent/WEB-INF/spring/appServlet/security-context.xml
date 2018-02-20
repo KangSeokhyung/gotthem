@@ -5,46 +5,66 @@
 		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.2.xsd">
 
 	<!-- 검사 URL -->
-	<http pattern="/*.st" auto-config="true" use-expressions="true">
+	<http use-expressions="true">
 		<intercept-url pattern="/storeIndex.st" access="permitAll" />
 		<intercept-url pattern="/stock.st" access="hasAnyRole('USER, ADMIN')" />
-		<form-login login-page="/login.st"
-                    default-target-url="/storeIndex.st"
-                    authentication-failure-url="/store/fail2.jsp"
-                    username-parameter="sto_id"
-                    password-parameter="sto_pw" />
-       			 <logout logout-url="/logout"	invalidate-session="true"
-                logout-success-url="/storeIndex.st" />
+		<form-login login-page="/login.st" default-target-url="/storeIndex.st"
+			authentication-failure-url="/store/fail2.jsp" username-parameter="sto_id"
+			password-parameter="sto_pw" />
+		<logout logout-url="/logout" invalidate-session="true"
+			logout-success-url="/storeIndex.st" />
 		<csrf disabled="true" />
 	</http>
-	
-		<http pattern="/*.ad" auto-config="true" use-expressions="true">
+
+<!-- 	<http pattern="/*.gt" use-expressions="true">
+		<intercept-url pattern="/" access="permitAll" />
+		<intercept-url pattern="/mypage.gt" access="hasAnyRole('USER, ADMIN')" />
+		<intercept-url pattern="/test.gt" access="hasAnyRole('USER, ADMIN')" />
+		<form-login login-page="/login.gt" default-target-url="/"
+			authentication-success-handler-ref="loginSuccessHandler"
+			authentication-failure-handler-ref="loginFailureHandler"
+			username-parameter="mem_id" password-parameter="mem_pw" />
+		<logout logout-url="/logout" logout-success-url="/" />
+		<csrf disabled="true" />
+	</http>
+
+	<http pattern="/*.ad" use-expressions="true">
 		<intercept-url pattern="/superAdmin.ad" access="permitAll" />
-		<intercept-url pattern="/control.ad" access="hasRole('ADMIN')" />
-		<form-login login-page="/superAdmin.ad"
-                    default-target-url="/storeIndex.st"
-                    authentication-failure-url="/store/fail2.jsp"
-                    username-parameter="admin_id"
-                    password-parameter="admin_pw" />
-       			 <logout logout-url="/logout"	invalidate-session="true"
-                logout-success-url="/storeIndex.st" />
+		<intercept-url pattern="/control.ad" access="hasRole('ROLE_ADMIN')" />
+		<form-login login-page="/login.st" default-target-url="/storeIndex.st"
+			authentication-failure-url="/store/fail2.jsp" username-parameter="admin_id"
+			password-parameter="admin_pw" />
+		<logout logout-url="/logout" invalidate-session="true"
+			logout-success-url="/superAdmin.ad" />
 		<csrf disabled="true" />
-	</http>
-	
-	<beans:bean id="userDetailsService" class="org.springframework.security.core.userdetails.jdbc.JdbcDaoImpl"> 
-		<beans:property name="dataSource" ref="dataSource" /> 
+	</http> -->
+
+	<!-- 성공 실패 핸들러 -->
+	<beans:bean id="loginSuccessHandler"
+		class="kr.co.gotthem.member.security.LoginSuccessHandler"></beans:bean>
+	<beans:bean id="loginFailureHandler"
+		class="kr.co.gotthem.member.security.LoginFailureHandler"></beans:bean>
+
+
+	<beans:bean id="userDetailsService"
+		class="org.springframework.security.core.userdetails.jdbc.JdbcDaoImpl">
+		<beans:property name="dataSource" ref="dataSource" />
 	</beans:bean>
 
+	<!-- <beans:bean id="storeService" class="kr.co.gotthem.store.service.StoreServiceImpl"> 
+		<beans:property name="storeDao" ref="storeDao" /> </beans:bean> <beans:bean 
+		id="memberService" class="kr.co.gotthem.member.service.MemberServiceImpl"> 
+		<beans:property name="memberDao" ref="memberDao" /> </beans:bean> -->
+
+
 	<!-- provider -->
-    <authentication-manager>
-        <authentication-provider>
-        <jdbc-user-service 
-            data-source-ref="dataSource"
-            role-prefix=""
-            users-by-username-query="select sto_id as USERNAME, sto_pw , ENABLED from store where sto_id = ?"
-            authorities-by-username-query="select sto_id as username, sto_status as authority from store where sto_id = ?"      
-        />
-        </authentication-provider>
-    </authentication-manager>
+	<authentication-manager>
+		<authentication-provider>
+			<jdbc-user-service data-source-ref="dataSource"
+				role-prefix=""
+				users-by-username-query="select sto_id as USERNAME, sto_pw , ENABLED from store where sto_id = ?"
+				authorities-by-username-query="select sto_id as username, sto_status as authority from store where sto_id = ?" />
+		</authentication-provider>
+	</authentication-manager>
 
 </beans:beans>

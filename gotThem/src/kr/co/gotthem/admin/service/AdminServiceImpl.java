@@ -16,5 +16,5 @@ public class AdminServiceImpl implements AdminService {
 	public List<StoreBean> list() {
 		return null;
 	}
-
+	
 }

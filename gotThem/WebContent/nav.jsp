@@ -21,15 +21,18 @@
 						class="nav-link link-scroll">Notice</a></li>
 					<li class="nav-item"><a href="#testimonials"
 						class="nav-link link-scroll">Event</a></li>
-					<li class="nav-item"><a href="text.html" class="nav-link">Question</a></li>
+					<li class="nav-item"><a href="test.gt" class="nav-link">Question</a></li>
 				</ul>
 				<div class="navbar-text">
 					<!-- Button trigger modal-->
-					  <%if(id==null) {%> 
-					<a href="#" class="btn btn-primary navbar-btn btn-shadow btn-gradient">Sign Up</a> 				
+					
+					
+					
+					  <%if(id==null) {%>
+					<a href="join.gt" class="btn btn-primary navbar-btn btn-shadow btn-gradient">Sign Up</a> 				
 					<a href="login.gt" class="btn btn-primary navbar-btn btn-shadow btn-gradient">Login</a>
 					 <% } else { %>
-					<a href="#" class="btn btn-primary navbar-btn btn-shadow btn-gradient">Modify</a> 				
+					<a href="#" class="btn btn-primary navbar-btn btn-shadow btn-gradient">Mypage</a> 				
 					<a href="logout.gt" class="btn btn-primary navbar-btn btn-shadow btn-gradient">Logout</a>
 					 <% } %>
 				</div>

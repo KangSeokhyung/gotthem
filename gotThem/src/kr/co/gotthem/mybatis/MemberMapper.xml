@@ -10,5 +10,14 @@
 	<select id="login" resultType="kr.co.gotthem.member.bean.MemberBean">
 		select mem_id, mem_pw from member where mem_id = #{id}
 	</select>
+	
+	<select id="duplCheck" resultType="int">
+		select count(*) from member where mem_id=#{mem_id}
+	</select>
+	
+	<insert id="join" parameterType="kr.co.gotthem.member.bean.MemberBean">
+		insert into member(mem_id, mem_pw, mem_name, mem_email, mem_phone, mem_post, mem_address1, mem_address2)
+		values(#{mem_id}, #{mem_pw}, #{mem_name}, #{mem_email}, #{mem_phone}, #{mem_post}, #{mem_address1}, #{mem_address2})
+	</insert>
 
 </mapper>
