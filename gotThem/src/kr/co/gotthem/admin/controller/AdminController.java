@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 import kr.co.gotthem.store.service.StoreService;
+import kr.co.gotthem.member.bean.MemberBean;
+import kr.co.gotthem.member.service.MemberService;
 import kr.co.gotthem.store.bean.StoreBean;
 
 @Controller
@@ -15,10 +17,11 @@ public class AdminController {
 	
 	private static final Logger logger = LoggerFactory.getLogger(AdminController.class);
 	
-	private StoreService storeService;
+	private MemberService memberService;
+	
 
-	public void setStoreService(StoreService storeService) {
-		this.storeService = storeService;
+	public void setMemberService(MemberService memberService) {
+		this.memberService = memberService;
 	}
 
 	@RequestMapping(value = "/superAdmin.ad", method = RequestMethod.GET)
@@ -27,11 +30,6 @@ public class AdminController {
 		return "admin/adminLogin";
 	}
 	
-	@RequestMapping(value = "/superAdmin.ad", method = RequestMethod.POST)
-	public String control() {
-		System.out.println("최종 관리자 로그인 진입");
-		return "admin/controlPage";
-	}
 	
 	@RequestMapping(value = "/control.ad", method = RequestMethod.GET)
 	public String ccc() {
@@ -42,11 +40,11 @@ public class AdminController {
 	@RequestMapping(value = "/memcontrol.ad", method = RequestMethod.GET)
 	public ModelAndView member(ModelAndView mav) {
 		
-		List<StoreBean> stlist = storeService.list();		
+		List<MemberBean> mlist = memberService.mlist();		
 		System.out.println("멤버 컨트롤 진입");
-		System.out.println(stlist);
+		System.out.println(mlist);
 		
-		mav.addObject("stlist", stlist);
+		mav.addObject("stlist", mlist);
 		mav.setViewName("admin/memberControl");
 		
 		return mav;

@@ -12,7 +12,6 @@
 	href="resources/landy/vendor/bootstrap/css/bootstrap.min.css">
 </head>
 <body>
-	<h2>Section title</h2>
 	<div class="table-responsive">
 		<table class="table">
 			<thead>
@@ -27,7 +26,9 @@
 					<th>가입일</th>
 					<th>사업자번호</th>
 					<th>승인상태</th>
-					<th>승인여부</th>				
+					<th>승인여부</th>	
+					<th>수정하기</th>
+					<th>삭제하기</th>			
 				</tr>
 			</thead>
 			<tbody>
@@ -47,6 +48,8 @@
 						<option value="volvo">0</option>
 						<option value="saab">1</option>
 						</select></td>
+						<td><button type="button" class="btn btn-primary">수정</button></td>
+						<td><button type="button" class="btn btn-danger">삭제</button></td>
 					</tr>
 				</c:forEach>
 			</tbody>

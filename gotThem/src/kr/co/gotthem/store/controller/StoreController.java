@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import kr.co.gotthem.member.service.MemberService;
 import kr.co.gotthem.store.bean.StoreBean;
 import kr.co.gotthem.store.service.StoreService;
 
@@ -21,10 +22,10 @@ public class StoreController {
 	
 	private static final Logger logger = LoggerFactory.getLogger(StoreController.class);
 	
-	private StoreService storeService;
-
-	public void setStoreService(StoreService storeService) {
-		this.storeService = storeService;
+	private MemberService memberService;
+	
+	public void setMemberService(MemberService memberService) {
+		this.memberService = memberService;
 	}
 
 	@RequestMapping(value = "/storeIndex.st", method = RequestMethod.GET)
@@ -55,10 +56,9 @@ public class StoreController {
 		 logger.info("result ===> {}", result);*/
 		
 		
-		int result = storeService.joinStore(stBean);
-		System.out.println(result);
+		/*int result = memberService.joinStore(stBean);*/
+		/*System.out.println(result);*/
 	
-		
 		return "store/storeIndex";
 	}
 	
@@ -66,6 +66,13 @@ public class StoreController {
 	public String stlogin(HttpServletRequest request, HttpSession session) throws Exception{
 		System.out.println("로그인 페이지 진입했다.");
 		return "store/stLogin";
+	}
+	
+	@RequestMapping(value = "/logout.st", method = RequestMethod.POST)
+	public String stlogout(HttpServletRequest request, HttpSession session) throws Exception{
+		session.invalidate();	
+		System.out.println("로그아웃 했다.");
+		return "store/storeIndex";
 	}
 	
 	@RequestMapping(value = "/stock.st", method = RequestMethod.GET)

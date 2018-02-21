@@ -9,6 +9,8 @@
 <title>Insert title here</title>
 </head>
 <body>
+	<h2>관리자 페이지</h2>
+	<hr>
 	<div class="container-fluid">
 		<div class="row">
 			<nav class="col-sm-3 col-md-2 hidden-xs-down bg-faded sidebar">

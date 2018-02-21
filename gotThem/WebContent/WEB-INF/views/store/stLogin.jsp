@@ -18,7 +18,7 @@
 		<%@include file ="storeNav.jsp"%>
 				<section class="container login-form">
 		<section>
-			<form method="post" action="<c:url value="/login"/>" role="login">			
+			<form method="post" action="<c:url value="/login.st"/>" role="login">			
 
 				<div class="form-group">
 					<input type="text" name="sto_id" required class="form-control"

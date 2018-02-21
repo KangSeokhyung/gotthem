@@ -25,7 +25,7 @@
 							로그인</a></li>
 				</sec:authorize>
 				<sec:authorize access="isAuthenticated()">
-					<form:form action="${pageContext.request.contextPath}/logout" method="POST">
+					<form:form action="${pageContext.request.contextPath}/logout.st" method="POST">
 						<li class="nav-item"><button type="submit"
 							class="btn btn-outline-white btn-outline">로그아웃</button></li>
 					</form:form>
