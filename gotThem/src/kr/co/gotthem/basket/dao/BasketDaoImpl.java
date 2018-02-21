@@ -41,15 +41,39 @@ public class BasketDaoImpl implements BasketDao {
 		return (int)sqlSessionTemplate.update("update", bas_no);
 	}
 	
-	@Override
+	/*@Override
 	public void delete(int bas_no) {
 		sqlSessionTemplate.delete("delete", bas_no);
-	}
+	}*/
 	
-	 // 2. 장바구니 목록
+	// 1. 장바구니 추가
     @Override
-    public List<BasketBean> listCart(int bas_memno) {
-        return sqlSessionTemplate.selectList("listCart", bas_memno);
+    public void insertBasket(BasketBean basketBean) {
+    	sqlSessionTemplate.insert("insertBasket", basketBean);
+    }
+	
+/*	// 1. 장바구니 추가
+    @Override
+    public void insertBasket(int code, int userNo,int stock) {
+    	sqlSessionTemplate.insert("insertBasket");
+    }*/
+	
+	// 2. 장바구니 목록
+    @Override
+    public List<BasketBean> listBasket(int bas_memno) {
+        return sqlSessionTemplate.selectList("listBasket", bas_memno);
+    }
+    
+   // 3. 장바구니 삭제
+    @Override
+    public void deleteBasket(int bas_no) {
+    	sqlSessionTemplate.delete("deleteBasket", bas_no);
+    }
+    
+    // 4. 장바구니 수정
+    @Override
+    public void modifyBasket(BasketBean basketBean) {
+    	sqlSessionTemplate.update("modifyBasket", basketBean);
     }
     
     // 5. 장바구니 금액 합계
@@ -70,8 +94,8 @@ public class BasketDaoImpl implements BasketDao {
 	
 	// 7. 장바구니 상품수량 변경
     @Override
-    public void updateCart(BasketBean basketBean) {
-    	sqlSessionTemplate.update("updateCart", basketBean);
+    public void updateBasket(BasketBean basketBean) {
+    	sqlSessionTemplate.update("updateBasket", basketBean);
     }
 	/*@Override
 	public MemberBean login(String id) {

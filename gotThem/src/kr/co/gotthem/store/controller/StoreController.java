@@ -29,10 +29,10 @@ public class StoreController {
 	public String storeIndex() {
 
 
-			System.out.println("테스트");
+			System.out.println("스토어테스트");
 			List<StoreBean> list = new ArrayList<StoreBean>();
 			list = storeService.list();
-			System.out.println(list);
+			System.out.println("스토어 리스트" +list);
 		
 		
 		return "store/storeIndex";

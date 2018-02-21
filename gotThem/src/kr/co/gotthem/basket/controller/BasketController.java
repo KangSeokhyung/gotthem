@@ -11,12 +11,16 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import kr.co.gotthem.basket.bean.BasketBean;
 import kr.co.gotthem.basket.service.BasketService;
+import kr.co.gotthem.product.bean.ProductBean;
+import kr.co.gotthem.product.service.ProductService;
 
 @Controller
 public class BasketController {
@@ -24,69 +28,118 @@ public class BasketController {
 	private static final Logger logger = LoggerFactory.getLogger(BasketController.class);
 	
 	private BasketService basketService;
-
+	private ProductService productService;
+	
 	public void setBasketService(BasketService basketService) {
 		this.basketService = basketService;
 	}
-
-	@RequestMapping(value = "/basketIndex.gt", method = RequestMethod.GET)
-	public String basketIndex() {
-			System.out.println("테스트");
-			List<BasketBean> list = new ArrayList<BasketBean>();
-			list = basketService.list();
-			System.out.println(list);	
-		return "basket/productList";
-	}
-	 
 	
-	// 1. 장바구니 추가
-    @RequestMapping("/insert.gt")
+	public void setProductService(ProductService productService) {
+		this.productService = productService;
+	}
+	
+    // product 1. 상품 전체 목록
+    @RequestMapping("/productlist.gt")
+    public ModelAndView list(ModelAndView mav) {
+        mav.setViewName("/basket/productList");
+        mav.addObject("list", productService.listProduct());
+        System.out.println("상품리스트왔다");
+        return mav;
+    }
+	// product 2. 상품 상세보기
+    @RequestMapping("/detail/{pro_code}.gt")
+    public ModelAndView detail(@PathVariable("pro_code") int pro_code, ModelAndView mav){
+    	System.out.println("디테일왔다");
+    	mav.setViewName("basket/productDetail");
+        mav.addObject("m", productService.detailProduct(pro_code));
+        return mav;
+    }
+ 
+   // 1. 장바구니 추가
+    @RequestMapping("insert.gt")
     public String insert(@ModelAttribute BasketBean basketBean, HttpSession session){
-    	/* int userNo = (int) session.getAttribute("mem_no");*/
+    	/*int userNo = (int) session.getAttribute("mem_no");     
+    	*/
     	int userNo = 1;
     	basketBean.setBas_memno(userNo);
     
         // 장바구니에 기존 상품이 있는지 검사
         int count = basketService.countBasket(basketBean.getBas_procode(),basketBean.getBas_memno());
-        
         System.out.println("count  " + count);
-        /*count == 0 ? basketService.updateCart(basketBean) : basketService.insert(basketBean);*/
+        
+        /*count == 0 ? basketService.updateBasket(basketBean) : basketService.insertBasket(basketBean);*/
         if(count == 0){
             // 없으면 insert
-        	basketService.insert(basketBean);
+        	 System.out.println("basketBean insert하는 빈  " + basketBean);
+        	 basketBean.setBas_proname(basketBean.getBas_proname());
+        	 basketBean.setBas_proprice(basketBean.getBas_proprice());
+        	 basketBean.setBas_stono(basketBean.getBas_stono());
+        	 basketService.insertBasket(basketBean);
+        	System.out.println("0==insert 실행" );
         } else {
             // 있으면 update
-        	basketService.updateCart(basketBean);
+        	basketService.updateBasket(basketBean);
+        	System.out.println("0아닐때 insert 실행" );
         }
-    	System.out.println("insert 끝");
-       
-        return "redirect:/list.gt";
+       return "redirect:/list.gt";
     }
- // 2. 장바구니 목록
+    
+    // 2. 장바구니 목록
     @RequestMapping("list.gt")
-    public ModelAndView list(HttpSession session, ModelAndView mav){
+    public ModelAndView listBasket(HttpSession session, ModelAndView mav){
     	
    /* 	int userNo = (int) session.getAttribute("mem_no"); // session에 저장된 userId
 */    	int userNo = 1;
     	Map<String, Object> map = new HashMap<String, Object>();
-        List<BasketBean> list = basketService.listCart(userNo); // 장바구니 정보 
-        System.out.println("list " + list);
+        List<BasketBean> listBasket = basketService.listBasket(userNo); // 장바구니 정보 
+        System.out.println("list타고,listBasket " + listBasket);
         int sumMoney = basketService.sumMoney(userNo);// 장바구니 전체 금액 호출
         System.out.println("userNo  "+userNo );
         System.out.println("sumMoney  "+sumMoney );
-        // 장바구니 전체 긍액에 따라 배송비 구분
-        // 배송료(10만원이상 => 무료, 미만 => 2500원)
-       /* int fee = sumMoney >= 100000 ? 0 : 2500;*/
-        map.put("list", list);                // 장바구니 정보를 map에 저장
-        map.put("count", list.size());        // 장바구니 상품의 유무
+        // 장바구니 전체 긍액에 따라 배송비 구분 , 배송료(10만원이상 => 무료, 미만 => 2500원)
+        /* int fee = sumMoney >= 100000 ? 0 : 2500;*/
+        map.put("list", listBasket);                // 장바구니 정보를 map에 저장
+        map.put("count", listBasket.size());        // 장바구니 상품의 유무
+        System.out.println("listBasket.size()"+ listBasket.size());
         map.put("sumMoney", sumMoney);        // 장바구니 전체 금액
         /* map.put("fee", fee);                 // 배송금액
         map.put("allSum", sumMoney+fee);    // 주문 상품 전체 금액*/
         mav.setViewName("basket/cartList");    // view(jsp)의 이름 저장
         mav.addObject("map", map);            // map 변수 저장
+        System.out.println("mav  "+mav );
         return mav;
     }
     
+    // 3. 장바구니 삭제
+    @RequestMapping("delete.gt")
+    public String delete(@RequestParam int bas_no){
+    	basketService.deleteBasket(bas_no);
+    	System.out.println("삭제 실행");
+        /*return "redirect:/shop/cart/list.gt";*/
+        return "redirect:/list.gt";
+    }
+    
+   // 4. 장바구니 수정
+    @RequestMapping("update.gt")
+    public String update(@RequestParam String[] bas_prostock, @RequestParam String[] bas_procode, HttpSession session) {
+    
+      /*  String userId = (String) session.getAttribute("userId");// session의 id
+        int userNo = (int) session.getAttribute("mem_no"); // session에 저장된 userId  
+*/     	int userNo = 1;
+     	System.out.println("update왔다");     	
+     	// 레코드의 갯수 만큼 반복문 실행
+        for(int i=0; i< bas_procode.length; i++){
+        	BasketBean basketBean = new BasketBean();
+        	basketBean.setBas_memno(userNo); 
+        	basketBean.setBas_prostock(Integer.parseInt((bas_prostock[i])));
+        	basketBean.setBas_procode(Integer.parseInt((bas_procode[i])));
+            basketService.modifyBasket(basketBean);
+            System.out.println("update 완료");
+        }
+        return "redirect:/list.gt";
+    }
+    
+
    /* @RequestMapping(value = "/loginForm.st", method = RequestMethod.GET)
 	public String loginForm() {
 		return "store/storeLogin";

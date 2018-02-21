@@ -9,31 +9,32 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import kr.co.gotthem.product.bean.ProductBean;
+import kr.co.gotthem.product.service.ProductService;
 import kr.co.gotthem.store.bean.StoreBean;
-import kr.co.gotthem.store.bean.StoreBean;
-import kr.co.gotthem.store.service.StroreService;
+
 
 @Controller
 public class ProductController {
 	
 	private static final Logger logger = LoggerFactory.getLogger(ProductController.class);
 	
-	private StroreService storeService;
+	private ProductService productService;
 
-	public void setStoreService(StroreService storeService) {
-		this.storeService = storeService;
+	public void setProductService(ProductService productService) {
+		this.productService = productService;
 	}
 
-	@RequestMapping(value = "/storeIndex.st", method = RequestMethod.GET)
+	@RequestMapping(value = "/procudtIndex.st", method = RequestMethod.GET)
 	public String storeIndex() {
 		
-		System.out.println("aaaaaa");
-		System.out.println("두번쨰테스트dddd");
-		List<StoreBean> list = new ArrayList<StoreBean>();
-		list = storeService.list();
-		System.out.println(list+"잘된다");
+		System.out.println("procudtIndex왔다");
+		List<ProductBean> list = new ArrayList<ProductBean>();
 		
-		return "store/storeIndex";
+		list = productService.listProduct();
+		System.out.println("procudtlist" + list);
+		
+		return "basket/productList";
 	}
 	
 }

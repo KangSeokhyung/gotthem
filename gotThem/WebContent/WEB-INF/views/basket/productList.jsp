@@ -1,4 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -8,47 +10,32 @@
 </head>
 <body>
 <%-- <%@ include file="../include/menu.jsp" %> --%>
-    <h2>상품 상세정보</h2>
+    <h2>상품목록</h2>
     <table border="1">
         <tr>
+            <th>상품ID번호</th>
+            <th>상품이미지</th>
+            <th>상품명</th>
+            <th>가격</th>
+        </tr>
+        <c:forEach var="row" items="${list}">
+        <tr>
             <td>
-                <img src="${path}/images/${vo.productUrl}" width="340" height="300">
+                ${row.pro_code}
             </td>
             <td>
-                <table border="1" style="height: 300px; width: 400px;">
-                    <tr align="center">
-                        <td>상품명</td>
-                        <td>상품명 test</td>
-                        <%-- <td>${vo.productName}</td> --%>
-                    </tr>
-                    <tr align="center">
-                        <td>가격</td>
-                       <%--  <td><fmt:formatNumber value="${vo.productPrice}" pattern="###,###,###"/></td> --%>
-                        <td>10000</td>
-                    </tr>
-                    <tr align="center">
-                        <td>상품소개</td>
-                       <%--  <td>${vo.productDesc}</td> --%>
-                       <td>상품소개test</td>
-                    </tr>
-                    <tr align="center">
-                        <td colspan="2">                               
-                            <form name="form1" method="post" action="./insert.gt">
-                                <%-- <input type="hidden" name="productId" value="${vo.productId}"> --%>
-                                <input type="hidden" name="productId" value="${basketBean.pro_code}">
-                                <select name="amount">
-                                    <c:forEach begin="1" end="10" var="i">
-                                        <option value="${i}">${i}</option>
-                                    </c:forEach>
-                                </select>&nbsp;개
-                                <input type="submit" value="장바구니에 담기">
-                            </form>
-                            <a href="${path}/shop/product/list.do">상품목록</a>
-                        </td>
-                    </tr>
-                </table>
+                <a href="${path}/shop/product/detail/${row.pro_code}">
+                   <%--  <img src="${path}/images/${row.productUrl}" width="120ox" height="110px"> --%>
+                </a>
+            </td>
+            <td>
+                <a href="./detail/${row.pro_code}.gt">${row.pro_name}</a>
+            </td>
+            <td>
+                <fmt:formatNumber value="${row.pro_price}" pattern="###,###,###"/>
             </td>
         </tr>
+        </c:forEach>
     </table>
 </body>
 </html>

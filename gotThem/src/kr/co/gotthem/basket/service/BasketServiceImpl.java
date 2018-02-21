@@ -4,8 +4,7 @@ import java.util.List;
 
 import kr.co.gotthem.basket.bean.BasketBean;
 import kr.co.gotthem.basket.dao.BasketDao;
-import kr.co.gotthem.member.bean.MemberBean;
-import kr.co.gotthem.member.dao.MemberDao;
+
 
 public class BasketServiceImpl implements BasketService {
 	
@@ -40,21 +39,44 @@ public class BasketServiceImpl implements BasketService {
 		return basketDao.update(bas_no);
 	}
 	
-	@Override
+	/*@Override
 	public void delete(int bas_no) {
-	}
+	}*/
 
-	  // 2. 장바구니 목록
+	// 1. 장바구니 추가
     @Override
-    public List<BasketBean> listCart(int bas_memno) {
-        return basketDao.listCart(bas_memno);
+    public void insertBasket(BasketBean basketBean) {
+    	basketDao.insertBasket(basketBean);
     }
+	
+  /*  @Override
+    public void insertBasket(int code, int userNo,int stock) {
+    	basketDao.insertBasket(code,  userNo, stock);
+    }*/
+	// 2. 장바구니 목록
+    @Override
+    public List<BasketBean> listBasket(int bas_memno) {
+        return basketDao.listBasket(bas_memno);
+    }
+    
+    // 3. 장바구니 삭제
+    @Override
+    public void deleteBasket(int bas_no) {
+    	basketDao.deleteBasket(bas_no);
+    }
+    
+    // 4. 장바구니 수정
+    @Override
+    public void modifyBasket(BasketBean basketBean) {
+    	basketDao.modifyBasket(basketBean);
+    }
+    
     // 5. 장바구니 금액 합계
     @Override
     public int sumMoney(int bas_memno) {
         return basketDao.sumMoney(bas_memno);
     }
-		
+    
     // 6. 장바구니 상품 확인
     @Override
     public int countBasket(int bas_procode, int bas_memno) {
@@ -63,8 +85,8 @@ public class BasketServiceImpl implements BasketService {
   
     // 7. 장바구니 상품 수량 변경
     @Override
-    public void updateCart(BasketBean basketBean) {
-    	basketDao.updateCart(basketBean);
+    public void updateBasket(BasketBean basketBean) {
+    	basketDao.updateBasket(basketBean);
     }
   
      

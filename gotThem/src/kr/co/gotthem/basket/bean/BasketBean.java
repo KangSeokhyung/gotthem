@@ -12,6 +12,7 @@ public class BasketBean {
   private int bas_proprice;
   private String bas_procategory;
   private Date bas_proexdate;
+  private int money;
 public int getBas_no() {
 	return bas_no;
 }
@@ -66,12 +67,18 @@ public Date getBas_proexdate() {
 public void setBas_proexdate(Date bas_proexdate) {
 	this.bas_proexdate = bas_proexdate;
 }
+public int getMoney() {
+	return money;
+}
+public void setMoney(int money) {
+	this.money = money;
+}
 @Override
 public String toString() {
 	return "BasketBean [bas_no=" + bas_no + ", bas_memno=" + bas_memno + ", bas_procode=" + bas_procode
 			+ ", bas_proname=" + bas_proname + ", bas_stono=" + bas_stono + ", bas_prostock=" + bas_prostock
 			+ ", bas_proprice=" + bas_proprice + ", bas_procategory=" + bas_procategory + ", bas_proexdate="
-			+ bas_proexdate + "]";
+			+ bas_proexdate + ", money=" + money + "]";
 }
-  
+
 }

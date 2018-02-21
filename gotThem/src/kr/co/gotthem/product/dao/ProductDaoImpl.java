@@ -4,7 +4,7 @@ import java.util.List;
 
 import org.mybatis.spring.SqlSessionTemplate;
 
-import kr.co.gotthem.store.bean.StoreBean;
+import kr.co.gotthem.product.bean.ProductBean;
 
 public class ProductDaoImpl implements ProductDao {
 
@@ -15,8 +15,22 @@ public class ProductDaoImpl implements ProductDao {
 	}
 
 	@Override
-	public List<StoreBean> list() {
+	public List<ProductBean> productList() {
+		System.out.println("dddd");
 		return sqlSessionTemplate.selectList("list");
+		
 	}
-
+	 // 01. 상품목록
+    @Override
+    public List<ProductBean> listProduct() {
+        return sqlSessionTemplate.selectList("listProduct");
+    }
+    // 02. 상품상세
+    @Override
+    public ProductBean detailProduct(int pro_code) {
+        return sqlSessionTemplate.selectOne("detailProduct", pro_code);
+    }
+	
+	
+	
 }
