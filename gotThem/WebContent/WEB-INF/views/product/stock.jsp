@@ -26,6 +26,7 @@
 							<th>가격</th>
 							<th>입고</th>
 							<th>출고</th>
+							<th>전일재고</th>
 							<th>현재고</th>
 							<th>매출</th>
 						</tr>
@@ -39,6 +40,7 @@
 							<td>${dto.pro_income }</td>
 							<td>${dto.pro_release }</td>
 							<td>${dto.pro_stock }</td>
+							<td>${dto.pro_stock+dto.pro_income-dto.pro_release }</td>
 							<td>${dto.pro_price*dto.pro_release}</td>
 						</tr>
 						</c:forEach>

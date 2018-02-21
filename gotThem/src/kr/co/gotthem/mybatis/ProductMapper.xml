@@ -24,4 +24,8 @@
 		pro_code = #{pro_code}
 	</update>
 	
+	<delete id="deletePro" parameterType="int">
+		delete from product where pro_code = #{pro_code}
+	</delete>
+	
 </mapper>

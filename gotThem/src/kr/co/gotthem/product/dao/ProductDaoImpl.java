@@ -30,6 +30,9 @@ public class ProductDaoImpl implements ProductDao {
 		System.out.println("dao임플안의 bean = " + bean);
 		sqlSessionTemplate.update("updatePro", bean);
 	}
-
-
+	
+	@Override
+	public void deletePro(int pro_code) {
+		sqlSessionTemplate.delete("deletePro", pro_code);
+	}
 }

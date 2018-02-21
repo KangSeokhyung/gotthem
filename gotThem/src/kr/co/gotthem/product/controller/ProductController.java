@@ -15,6 +15,7 @@ import org.springframework.web.bind.ServletRequestUtils;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import kr.co.gotthem.product.bean.ProductBean;
@@ -89,12 +90,21 @@ public class ProductController {
 	@RequestMapping(value="/update.st", method=RequestMethod.POST)
 	protected ModelAndView updateProcess(@ModelAttribute ProductBean bean, HttpServletRequest req){
 		
-		System.out.println("컨트롤의 빈 : " + bean);
 		productService.updatePro(bean);
+		
 		String code = req.getParameter("pro_code");
-		//String code = "4";
 		System.out.println(code);
 		return new ModelAndView("redirect:/detail.st?code="+code);
 	}
-
+	
+	@RequestMapping(value="/delete.st", method=RequestMethod.POST)
+	protected ModelAndView deleteProcess(HttpServletRequest req){
+		
+		int code = Integer.parseInt(req.getParameter("pro_code"));
+		System.out.println(code);
+		productService.deletePro(code);
+		
+		return new ModelAndView("redirect:/stock.st");
+	}
+	
 }

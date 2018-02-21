@@ -11,7 +11,8 @@
 		<link rel="stylesheet" href="resources/ownerindex/css/font-awesome.min.css">
 		<link rel="stylesheet" href="resources/ownerindex/css/style.css">
 		<link href="https://fonts.googleapis.com/css?family=Droid+Serif:400,400i,700,700i|Montserrat:200,200i,300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
-
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+		
 <script type="text/javascript">
 	function fnList(){
 		location.href="stock.st";
@@ -19,9 +20,29 @@
 	function fnUpdate(){
 		location.href="update.st?code="+${pro.pro_code};
 	}
-	function fnDelete(){
-		location.href="delete.st?code="+${pro.pro_code};
-	}
+	
+	function fnDelete(pro_code){
+		var pro_code = pro_code;
+		if(confirm("상품을 삭제하시겠습니까?")==true){
+			$.ajax({
+					type:"POST",
+					url:"delete.st",
+					data:"pro_code="+pro_code,
+
+					success:function(data){
+						if(data!=1){
+							alert("삭제되었습니다");
+							location.replace("stock.st");
+						}else{
+							alert("실패했습니다");
+							
+						}
+					}
+				});
+			} else{
+				location.history.go(0);
+			}
+	    }
 </script>
 
 </head>
@@ -50,7 +71,10 @@
 							<td>출고</td><td>${pro.pro_release }</td>
 						</tr>
 						<tr>
-							<td>현재고</td><td>${pro.pro_stock }</td>
+							<td>전일재고</td><td>${pro.pro_stock }</td>
+						</tr>
+						<tr>
+							<td>현재고</td><td>${pro.pro_stock+pro.pro_income-pro.pro_release }</td>
 						</tr>
 						<tr>
 							<td>매출</td><td>${pro.pro_price*pro.pro_release }</td>
@@ -58,7 +82,7 @@
 						<tr>
 							<td colspan="2" align="center">
 								<input type="button" value="수정하기" onclick="fnUpdate()"/>
-								<input type="button" value="삭제하기" onclick="fnDelete()"/>
+								<input type="button" value="삭제하기" onclick="fnDelete(${pro.pro_code})" />
 								<input type="button" value="목록보기" onclick="fnList()"/>
 							</td>
 						</tr>

@@ -10,4 +10,6 @@ public interface ProductService {
 	public ProductBean findCode(int pro_code);
 
 	public void updatePro(ProductBean bean);
+
+	public void deletePro(int pro_code);
 }

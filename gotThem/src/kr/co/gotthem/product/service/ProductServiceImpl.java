@@ -27,5 +27,9 @@ public class ProductServiceImpl implements ProductService {
 	public void updatePro(ProductBean bean) {
 		productDao.updatePro(bean);
 	}
-
+	
+	@Override
+	public void deletePro(int pro_code) {
+		productDao.deletePro(pro_code);
+	}
 }
