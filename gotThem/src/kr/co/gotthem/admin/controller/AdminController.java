@@ -24,7 +24,7 @@ public class AdminController {
 		this.memberService = memberService;
 	}
 
-	@RequestMapping(value = "/superAdmin.ad", method = RequestMethod.GET)
+	@RequestMapping(value = "/admin.ad", method = RequestMethod.GET)
 	public String storeIndex() {
 		System.out.println("아에이오우!");
 		return "admin/adminLogin";
@@ -40,11 +40,11 @@ public class AdminController {
 	@RequestMapping(value = "/memcontrol.ad", method = RequestMethod.GET)
 	public ModelAndView member(ModelAndView mav) {
 		
-		List<MemberBean> mlist = memberService.mlist();		
+		/*List<MemberBean> mlist = memberService.mlist();		
 		System.out.println("멤버 컨트롤 진입");
 		System.out.println(mlist);
 		
-		mav.addObject("stlist", mlist);
+		mav.addObject("stlist", mlist);*/
 		mav.setViewName("admin/memberControl");
 		
 		return mav;

@@ -25,20 +25,20 @@
 		<form-login login-page="/login.st" 
 			default-target-url="/storeIndex.st"
 			login-processing-url="/login.st"
-			authentication-failure-url="/store/fail2.jsp" 
+			authentication-failure-url="/loginfail.gt" 
 			username-parameter="sto_id"
 			password-parameter="sto_pw" />
-		<logout logout-url="/logout" logout-success-url="/storeIndex.st" />
+		<logout logout-url="/logout.st" logout-success-url="/storeIndex.st" />
 		<csrf disabled="true" />
 	</http> 
 
 	<http pattern="/*.ad" use-expressions="true">
-		<intercept-url pattern="/superAdmin.ad" access="permitAll" />
+		<intercept-url pattern="/admin.ad" access="permitAll" />
 		<intercept-url pattern="/control.ad" access="hasRole('ROLE_ADMIN')" />
-		<form-login login-page="/login.st" 
-			default-target-url="/superAdmin.ad"
-			authentication-failure-url="/store/fail2.jsp" 
-			login-processing-url="/superAdmin.ad"
+		<form-login login-page="/admin.ad" 
+			default-target-url="/control.ad"
+			authentication-failure-url="/loginfail.gt" 
+			login-processing-url="/admin.ad"
 			username-parameter="admin_id"
 			password-parameter="admin_pw" />
 		<logout logout-url="/superAdmin.ad" logout-success-url="/superAdmin.ad" />

@@ -64,6 +64,11 @@ public class MemberController {
 		return null;
 	}
 	
+	@RequestMapping(value = "loginfail.gt", method= RequestMethod.GET)
+	public String lgfail() {
+		return "store/fail2";
+	}
+	
 	@RequestMapping(value = "/index.gt", method = RequestMethod.GET)
 	public String index() {	
 		return "redirect:index.jsp";

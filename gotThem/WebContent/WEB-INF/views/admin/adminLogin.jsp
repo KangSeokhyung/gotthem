@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -22,16 +23,16 @@
                         </div>
                         <div class="card-body">
                             <form class="form" role="form" 
-                            autocomplete="off" id="formLogin" action="control.ad" novalidate="" method="POST">
+                            autocomplete="off" id="formLogin" action="<c:url value='/admin.ad' />" novalidate="" method="POST">
                                 <div class="form-group">
                                     <label for="uname1">Username</label>
-                                    <input type="text" class="form-control form-control-lg rounded-0" name="sto_id" id="uname1" required="">
+                                    <input type="text" class="form-control form-control-lg rounded-0" name="admin_id" id="uname1" required="">
                                     <div class="invalid-feedback">Oops, you missed this one.</div>
                                 </div>
                                 <div class="form-group">
                                     <label>Password</label>
                                     <input type="password" class="form-control form-control-lg rounded-0" id="pwd1" 
-                                    name="sto_pw" required="" autocomplete="new-password">
+                                    name="admin_pw" required="" autocomplete="new-password">
                                     <div class="invalid-feedback">Enter your password too!</div>
                                 </div>
                                 <div>

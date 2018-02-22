@@ -33,10 +33,10 @@ public class StoreController {
 		return "store/storeIndex";
 	}
 	
-	@RequestMapping(value = "/storeIndex.st", method = RequestMethod.POST)
+	@RequestMapping(value = "/join.st", method = RequestMethod.GET)
 	public String join(HttpServletRequest request, HttpSession session) throws Exception{
 		
-		StoreBean stBean = new StoreBean();
+		/*StoreBean stBean = new StoreBean();
 		
 		stBean.setSto_id(request.getParameter("sto_id"));
 		stBean.setSto_pw(request.getParameter("sto_pw"));
@@ -46,7 +46,7 @@ public class StoreController {
 				request.getParameter("sto_addr2") + "/" + request.getParameter("sto_addr3"));
 		stBean.setSto_registno(request.getParameter("sto_registno"));
 		stBean.setSto_phone(request.getParameter("sto_phone"));
-		stBean.setSto_email(request.getParameter("sto_email"));
+		stBean.setSto_email(request.getParameter("sto_email"));*/
 		
 		 /*String dbpw = encoder.saltEncoding(passwd, email);
 		 Map<String, String> paramMap = new HashMap<String, String>();
@@ -59,7 +59,7 @@ public class StoreController {
 		/*int result = memberService.joinStore(stBean);*/
 		/*System.out.println(result);*/
 	
-		return "store/storeIndex";
+		return "store/join";
 	}
 	
 	@RequestMapping(value = "/login.st", method = RequestMethod.GET)
@@ -68,7 +68,7 @@ public class StoreController {
 		return "store/stLogin";
 	}
 	
-	@RequestMapping(value = "/logout.st", method = RequestMethod.POST)
+	@RequestMapping(value = "/logout.st", method = RequestMethod.GET)
 	public String stlogout(HttpServletRequest request, HttpSession session) throws Exception{
 		session.invalidate();	
 		System.out.println("로그아웃 했다.");
@@ -82,8 +82,8 @@ public class StoreController {
 	
 	@RequestMapping(value = "/cvs.st", method = RequestMethod.POST)
 	public String cvs(HttpServletRequest request, HttpSession session) throws Exception{
-		
-		
+
 		return "store/cvs";
 	}
+
 }

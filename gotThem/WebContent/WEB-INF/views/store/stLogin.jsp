@@ -58,7 +58,7 @@
 							<li><a href="#" title="Google+" class="fa fa-google"></a></li>
 							<li><a href="#" title="Dribbble" class="fa fa-dribbble"></a></li>
 							<li><a href="#" title="Instagram" class="fa fa-instagram"></a></li>
-							<div class="clear"></div>
+						
 						</ul>
 					</div>
 				</div>

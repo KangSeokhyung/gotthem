@@ -87,21 +87,11 @@
 		<div class="container">
 			<div class="row">
 				<div class="col-lg-3 col-md-6">
-					<a href="#" class="brand">Landy</a>
+					<a href="#" class="brand">Gotthem</a>
 					<ul class="contact-info list-unstyled">
-						<li><a href="mailto:sales@landy.com">Sales@Landy.com</a></li>
-						<li><a href="tel:123456789">+00 123 456 789</a></li>
-					</ul>
-					<ul class="social-icons list-inline">
-						<li class="list-inline-item"><a href="#" target="_blank"
-							title="Facebook"><i class="fa fa-facebook"></i></a></li>
-						<li class="list-inline-item"><a href="#" target="_blank"
-							title="Twitter"><i class="fa fa-twitter"></i></a></li>
-						<li class="list-inline-item"><a href="#" target="_blank"
-							title="Instagram"><i class="fa fa-instagram"></i></a></li>
-						<li class="list-inline-item"><a href="#" target="_blank"
-							title="Pinterest"><i class="fa fa-pinterest"></i></a></li>
-					</ul>
+						<li><a href="mailto:sales@landy.com">admin@gotthem.co.kr</a></li>
+						<li><a href="tel:123456789">02-1234-5768</a></li>
+					</ul>					
 				</div>
 				<div class="col-lg-3 col-md-6">
 					<h5>Selected Cases</h5>
@@ -136,7 +126,7 @@
 			<div class="container">
 				<div class="row">
 					<div class="col-md-7">
-						<p>&copy; 2017 Landy.com. All rights reserved.</p>
+						<p>&copy; 2018 스탑없으팀 프로젝트 Gotthem  All rights reserved.</p>
 					</div>
 					<div class="col-md-5 text-right">
 						<p>
@@ -153,7 +143,6 @@
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"></script>
 	<script src="resources/landy/vendor/bootstrap/js/bootstrap.min.js"></script>
 	<script src="resources/landy/vendor/jquery.cookie/jquery.cookie.js">
-	<script src="resources/landy/vendor/owl.carousel/owl.carousel.min.js"></script>
 	<script src="resources/landy/js/front.js"></script>
 </body>
 </html>
