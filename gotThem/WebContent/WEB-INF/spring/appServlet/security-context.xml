@@ -5,41 +5,67 @@
 		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.2.xsd">
 
 	<!-- 검사 URL -->
-	<http use-expressions="true">
+ 	<http pattern="/*.gt" auto-config="true" disable-url-rewriting="true" use-expressions="true">
 		<intercept-url pattern="/" access="permitAll" />
 		<intercept-url pattern="/mypage.gt" access="hasAnyRole('USER, ADMIN')" />
-		<intercept-url pattern="/test.gt" access="hasAnyRole('USER, ADMIN')" />
-		<form-login login-page="/login.gt"
-                    default-target-url="/"
-                    
-                    authentication-success-handler-ref="loginSuccessHandler"
-                    authentication-failure-handler-ref="loginFailureHandler"
-                    username-parameter="mem_id"
-                    password-parameter="mem_pw" />
-       			 <logout logout-url="/logout"
-                logout-success-url="/" />
-                <csrf disabled="true"/>
+		<intercept-url pattern="/test.gt" 	access="hasAnyRole('USER, ADMIN')" />
+		<form-login login-page="/login.gt" 
+			default-target-url="/"
+			login-processing-url="/login.gt"
+			authentication-success-handler-ref="loginSuccessHandler"
+			authentication-failure-handler-ref="loginFailureHandler"
+			username-parameter="mem_id" password-parameter="mem_pw" />
+		<logout logout-url="/logout" logout-success-url="/" />
+		<csrf disabled="true" />
 	</http>
+	
+ 	<http pattern="/*.st" use-expressions="true" auto-config="true" disable-url-rewriting="true">
+		<intercept-url pattern="/storeIndex.st" access="permitAll" />
+		<intercept-url pattern="/stock.st" access="hasAnyRole('ROLE_ADMIN', 'ROLE_SADMIN')" />
+		<form-login login-page="/login.st" 
+			default-target-url="/storeIndex.st"
+			login-processing-url="/login.st"
+			authentication-failure-url="/loginfail.gt" 
+			username-parameter="sto_id"
+			password-parameter="sto_pw" />
+		<logout logout-url="/logout.st" logout-success-url="/storeIndex.st" />
+		<csrf disabled="true" />
+	</http> 
+
+	<http pattern="/*.ad" use-expressions="true">
+		<intercept-url pattern="/admin.ad" access="permitAll" />
+		<intercept-url pattern="/control.ad" access="hasRole('ROLE_ADMIN')" />
+		<form-login login-page="/admin.ad" 
+			default-target-url="/control.ad"
+			authentication-failure-url="/loginfail.gt" 
+			login-processing-url="/admin.ad"
+			username-parameter="admin_id"
+			password-parameter="admin_pw" />
+		<logout logout-url="/superAdmin.ad" logout-success-url="/superAdmin.ad" />
+		<csrf disabled="true" />
+	</http> 
 
 	<!-- 성공 실패 핸들러 -->
-    <beans:bean id="loginSuccessHandler" class="kr.co.gotthem.member.security.LoginSuccessHandler"></beans:bean>
-	<beans:bean id="loginFailureHandler" class="kr.co.gotthem.member.security.LoginFailureHandler"></beans:bean>
-	
-	<beans:bean id="userDetailsService" class="org.springframework.security.core.userdetails.jdbc.JdbcDaoImpl"> 
-		<beans:property name="dataSource" ref="dataSource" /> 
-	</beans:bean> 
+	<beans:bean id="loginSuccessHandler"
+		class="kr.co.gotthem.member.security.LoginSuccessHandler"></beans:bean>
+	<beans:bean id="loginFailureHandler"
+		class="kr.co.gotthem.member.security.LoginFailureHandler"></beans:bean>
 
+
+	<beans:bean id="userDetailsService"
+		class="org.springframework.security.core.userdetails.jdbc.JdbcDaoImpl">
+		<beans:property name="dataSource" ref="dataSource" />
+	</beans:bean>
 
 	<!-- provider -->
-    <authentication-manager>
-        <authentication-provider>
-        <jdbc-user-service 
-            data-source-ref="dataSource"
-            role-prefix=""
-            users-by-username-query="select mem_id, mem_pw, mem_status from member where mem_id = ?"
-            authorities-by-username-query="select mem_id, mem_status from member where mem_id = ?"      
-        />
-        </authentication-provider>
-    </authentication-manager>
+
+	<authentication-manager>
+		<authentication-provider>
+			<jdbc-user-service data-source-ref="dataSource"
+				role-prefix=""
+				users-by-username-query="select mem_id as USERNAME, mem_pw , ENABLED from member where mem_id = ?"
+				authorities-by-username-query="select mem_id as username, mem_status as authority from member where mem_id = ?" />
+		</authentication-provider>
+	</authentication-manager>
 
 </beans:beans>

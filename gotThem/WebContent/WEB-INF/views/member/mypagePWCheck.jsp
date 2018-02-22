@@ -9,49 +9,23 @@
 </head>
 <body>
 <div style="border-top: 5px solid gray; border-bottom: 5px solid gray;">
-	<!-- <form action="passCheck.gt" method="post"> -->
+	<form action="passCheck.gt" method="post">
 	<br><br><br>
 		<div id="tab-a">
 			<table class="table table-user-information">
 				<tr>
 					<td><span>현재 비밀번호 :</span></td>
 					<td><input name="mem_pw" type="text" ></td>
-					<td><a class="btn-success" onclick="click()" >확인</a></td>
+					<td><button  type="submit" class="btn-success" value="">확인</button></td>
 				</tr>
 			</table>
 			<br>
 		</div>
-		<!-- </form> -->
-		<form action="passCheck.gt" method="post">
-		<c:set var="passCheck1" value="${passCheck}"/>
-			<c:if test="${passCheck1 ne null}">
-				<div>
-					<table class="table table-user-information">
-						<tr>
-							<td>새 비밀번호 :</td>
-							<td><input name="mem_pw" type="text"
-								placeholder="새 비밀번호를 입력하세요"></td>
-						</tr>
-						<tr>
-							<td>비밀번호 확인 :</td>
-							<td><input name="mem_pw2" type="text" placeholder="비밀번호 확인"></td>
-						</tr>
-						<tr>
-							<td><button class="btn-success">변경</button></td>
-							<td><button class="btn-success" onclick="history.back()">취소</button></td>
-						</tr>
-					</table>
-				</div>
-			</c:if>
-	</form>
+		</form>
 		
-</div>
+	</div>
 </body>
 <script>
-	function click(){
-		$.post("passCheck.gt", function(data) {
-			$('#tab-a').html(data);
-		});
-	}
-	</script>
+
+</script>
 </html>

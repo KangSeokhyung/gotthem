@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags"%>
 <!DOCTYPE html>
 <html lang="ko">
 	<head>
@@ -18,50 +18,15 @@
 			<div class="cover-container pb-5">
 				<div class="cover-inner container">
 		 <div class="row marketing">
-        <div class="col-lg-6">
+        <div class="col-xs-12">
           <h1 class="jumbotron-heading">지금 <strong>Got them에</strong> 점포를	<strong>등록하세요</strong></h1>
-			<p class="lead">${sessionScope.SPRING_SECURITY_CONTEXT }</p>
+			<p class="lead">got them에 대해 궁금하신가요?</p>
         </div>
-
-        <div class="col-lg-6">
-         <div class="container">
-                <div class="col-xs-12 mx-auto">
-                    <div class="card border-secondary">
-                        <div class="card-header">
- 
-                        </div>
-                        <div class="card-body">
-                            <form class="form" role="form" autocomplete="off">
-                                <div class="form-group">
-                                    <label for="inputName">Name</label>
-                                    <input type="text" class="form-control" id="inputName" placeholder="full name">
-                                </div>
-                                <div class="form-group">
-                                    <label for="inputEmail3">Email</label>
-                                    <input type="email" class="form-control" id="inputEmail3" placeholder="email@gmail.com" required="">
-                                </div>
-                                <div class="form-group">
-                                    <label for="inputPassword3">Password</label>
-                                    <input type="password" class="form-control" id="inputPassword3" placeholder="password" title="At least 6 characters with letters and numbers" required="">
-                                </div>
-                                <div class="form-group">
-                                    <label for="inputVerify3">Verify</label>
-                                    <input type="password" class="form-control" id="inputVerify3" placeholder="password (again)" required="">
-                                </div>
-                                <div class="form-group">
-                                    <button type="submit" class="btn btn-success btn-lg float-right">Register</button>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            </div>
             <!--/row-->
         </div>
         <!--/col-->
    		</div>
 		</div>
-      </div>
 </section>
 
 		<footer class="footer-3">
@@ -92,6 +57,5 @@
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
 		<script src="resources/ownerindex/bootstrap/js/bootstrap.min.js"></script>
-
 	</body>
 </html>

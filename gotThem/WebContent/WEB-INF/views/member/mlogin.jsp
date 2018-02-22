@@ -32,8 +32,7 @@
 	<div class="limiter">
 		<div class="container-login100">
 			<div class="wrap-login100 p-t-0 p-b-30">
-				<form class="login100-form validate-form" action="<c:url value='/login' />"method="post">
-
+				<form class="login100-form validate-form" action="<c:url value='/login.gt' />"method="post">
 					<div class="text-center p-t-55 p-b-30">
 						<span class="txt1">
 							Login

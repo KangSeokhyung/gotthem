@@ -32,35 +32,7 @@
 </head>
 <body>
 	<header class="header">
-		<nav class="navbar navbar-expand-lg fixed-top">
-			<a href="index.html" class="navbar-brand">Got Them!</a>
-			<button type="button" data-toggle="collapse"
-				data-target="#navbarSupportedContent"
-				aria-controls="navbarSupportedContent" aria-expanded="false"
-				aria-label="Toggle navigation"
-				class="navbar-toggler navbar-toggler-right">
-				<span></span><span></span><span></span>
-			</button>
-			<div id="navbarSupportedContent" class="collapse navbar-collapse">
-				<ul
-					class="navbar-nav ml-auto align-items-start align-items-lg-center">
-					<li class="nav-item"><a href="#about-us"
-						class="nav-link link-scroll">Got them?</a></li>
-					<li class="nav-item"><a href="#features"
-						class="nav-link link-scroll">Notice</a></li>
-					<li class="nav-item"><a href="#testimonials"
-						class="nav-link link-scroll">Event</a></li>
-					<li class="nav-item"><a href="text.html" class="nav-link">Question</a></li>
-				</ul>
-				<div class="navbar-text">
-					<!-- Button trigger modal-->
-					<a href="#" data-toggle="modal" data-target="#exampleModal"
-						class="btn btn-primary navbar-btn btn-shadow btn-gradient">Sign
-						Up</a> <a href="#" data-toggle="modal" data-target="#exampleModal"
-						class="btn btn-primary navbar-btn btn-shadow btn-gradient">Login</a>
-				</div>
-			</div>
-		</nav>
+		<%@include file="../../../nav.jsp" %>
 	</header>
 
 		<div class="container-login100 " >
@@ -119,6 +91,7 @@
 						<input type="text" class="input100" name="mem_address1" id="mem_address1" placeholder="주소"> 
 						<input type="text" class="input100" name="mem_address2" id="mem_address2" placeholder="상세주소">
 					</div>
+					<input type="hidden" name="mem_address" value="">
 					<div class="container-login100-form-btn">
 						<button class="login100-form-btn" type="submit">가입하기</button>
 						<button class="login100-form-btn" onclick="history.back()">뒤로가기</button>
@@ -229,9 +202,11 @@
                 // 우편번호와 주소 정보를 해당 필드에 넣는다.
                 document.getElementById('mem_post').value = data.zonecode; //5자리 새우편번호 사용
                 document.getElementById('mem_address1').value = fullAddr;
-
+				
                 // 커서를 상세주소 필드로 이동한다.
                 document.getElementById('mem_address2').focus();
+                
+               
             }
         }).open();
     }

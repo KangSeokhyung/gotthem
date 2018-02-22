@@ -46,7 +46,8 @@ public class MemberDaoImpl implements MemberDao {
 	
 	@Override
 	public void memberDelete(MemberBean memberBean) {
-		int result = sqlSessionTemplate.delete("memberDelete",memberBean);
+		System.out.println(memberBean);
+		int result = sqlSessionTemplate.update("memberDelete",memberBean);
 		System.out.println("회원탈퇴 결과는 " + result);
 	}
 

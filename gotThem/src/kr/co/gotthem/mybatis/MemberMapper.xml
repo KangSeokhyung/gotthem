@@ -16,8 +16,8 @@
 	</select>
 	
 	<insert id="join" parameterType="kr.co.gotthem.member.bean.MemberBean">
-		insert into member(mem_id, mem_pw, mem_name, mem_email, mem_phone, mem_post, mem_address1, mem_address2)
-		values(#{mem_id}, #{mem_pw}, #{mem_name}, #{mem_email}, #{mem_phone}, #{mem_post}, #{mem_address1}, #{mem_address2})
+		insert into member(mem_id, mem_pw, mem_name, mem_email, mem_phone, mem_address)
+		values(#{mem_id}, #{mem_pw}, #{mem_name}, #{mem_email}, #{mem_phone}, #{mem_address})
 	</insert>
 	
 	<update id="memberModi" parameterType="kr.co.gotthem.member.bean.MemberBean">
@@ -29,8 +29,8 @@
 		select count(*) from member where mem_id=#{mem_id} and mem_pw=#{mem_pw}
 	</select>
 	
-	<delete id="memberDelete" parameterType="kr.co.gotthem.member.bean.MemberBean">
-		update member set enabled = 1 where mem_id=#{mem_id} and mem_pw=#{mem_pw}
-	</delete>
+	<update id="memberDelete" parameterType="kr.co.gotthem.member.bean.MemberBean">
+		update member set enabled = 0 where mem_id=#{mem_id} and mem_pw=#{mem_pw}
+	</update>
 
 </mapper>

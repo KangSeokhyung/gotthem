@@ -1,5 +1,8 @@
 package kr.co.gotthem.member.controller;
 
+import java.io.PrintWriter;
+import java.util.StringTokenizer;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -27,7 +30,6 @@ public class MemberController {
 	public String login() {
 		return "member/mlogin";
 	}
-
 	
 	@RequestMapping(value = "/logout.gt", method = RequestMethod.GET)
 	public String logout(HttpSession  session, HttpServletRequest request) {		
@@ -41,7 +43,11 @@ public class MemberController {
 	}
 	
 	@RequestMapping(value = "/joinSccess.gt", method = RequestMethod.POST)
-	public String joinSccess(MemberBean memberBean, HttpServletResponse response) throws Exception {
+	public String joinSccess(HttpServletRequest request, MemberBean memberBean, HttpServletResponse response) throws Exception {
+		
+		memberBean.setMem_address(request.getParameter("mem_post")+"/"+
+		request.getParameter("mem_address1")+"/"+request.getParameter("mem_address2"));
+		
 		System.out.println(memberBean);
 		memberService.join(memberBean);
 		return "redirect:index.gt";
@@ -63,6 +69,11 @@ public class MemberController {
 		return null;
 	}
 	
+	@RequestMapping(value = "loginfail.gt", method= RequestMethod.GET)
+	public String lgfail() {
+		return "store/fail2";
+	}
+	
 	@RequestMapping(value = "/index.gt", method = RequestMethod.GET)
 	public String index() {	
 		return "redirect:index.jsp";
@@ -79,6 +90,14 @@ public class MemberController {
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 		String mem_id = authentication.getName();
 		MemberBean memberInfo = memberService.memberInfo(mem_id);
+		String mem_address = memberInfo.getMem_address();
+		StringTokenizer  st = new StringTokenizer(mem_address,"/");
+		String post = st.nextToken();       
+		String address1 = st.nextToken();      
+		String address2 = st.nextToken();      
+		mav.addObject("mem_post", post);
+		mav.addObject("mem_address1", address1);
+		mav.addObject("mem_address2", address2);
 		mav.addObject("memberInfo", memberInfo);
 		mav.setViewName("member/mypageMemberInfo");
 		return mav;
@@ -89,6 +108,14 @@ public class MemberController {
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 		String mem_id = authentication.getName();
 		MemberBean memberInfo = memberService.memberInfo(mem_id);
+		String mem_address = memberInfo.getMem_address();
+		StringTokenizer  st = new StringTokenizer(mem_address,"/");
+		String post = st.nextToken();       
+		String address1 = st.nextToken();      
+		String address2 = st.nextToken();      
+		mav.addObject("mem_post", post);
+		mav.addObject("mem_address1", address1);
+		mav.addObject("mem_address2", address2);
 		mav.addObject("memberInfo", memberInfo);
 		mav.setViewName("member/mypageMemberModi");
 		return mav;
@@ -107,17 +134,28 @@ public class MemberController {
 	}
 	
 	@RequestMapping(value = "/passCheck.gt", method = RequestMethod.POST)
-	public ModelAndView passCheckPost(MemberBean bean, ModelAndView mav) {
+	public ModelAndView passCheckPost(MemberBean bean, ModelAndView mav, PrintWriter out, HttpServletResponse response)
+			throws Exception {
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 		String mem_id = authentication.getName();
 		bean.setMem_id(mem_id);
 		String mem_pw = bean.getMem_pw();
 		System.out.println(mem_pw);
 		int result = memberService.passCheck(bean);
-		
+		response.setContentType("text/html; charset=UTF-8");
+
+		if(result == 0) {
+			response.setContentType("text/html; charset=UTF-8");
+			out = response.getWriter();
+			out.println("<Script>");
+			out.println("alert('Checked Password');");
+			out.println("history.go(-1);");
+			out.println("</Script>");
+			return null;
+		}
 		System.out.println(result);
 		mav.addObject("passCheck", result);
-		mav.setViewName("member/mypagePWCheck");
+		mav.setViewName("member/changePW");
 		return mav;
 	}
 	

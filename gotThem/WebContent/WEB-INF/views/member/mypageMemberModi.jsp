@@ -48,14 +48,14 @@
 										<tr>
 											<td><span>우편번호:</span></td>
 											<td><input style="width: 100%" type="text"
-												name="mem_post" value="${memberInfo.mem_post}"></td>
+												name="mem_post" value="${mem_post}"></td>
 										</tr>
 										<tr>
 											<td><span>주소:</span></td>
 											<td><input style="width: 100%" type="text"
-												name="mem_address1" value="${memberInfo.mem_address1}"><br>
+												name="mem_address1" value="${mem_address1}"><br>
 												<input style="width: 100%" type="text" name="mem_address2"
-												value="${memberInfo.mem_address2}"></td>
+												value="${mem_address2}"></td>
 										</tr>
 
 									</tbody>

@@ -1,21 +1,20 @@
 package kr.co.gotthem.admin.service;
 
 import java.util.List;
-
+import kr.co.gotthem.admin.dao.AdminDao;
 import kr.co.gotthem.store.bean.StoreBean;
-import kr.co.gotthem.store.dao.StoreDao;
 
 public class AdminServiceImpl implements AdminService {
 	
-	private StoreDao storeDao;
+	private AdminDao adminDao;
 
-	public void setStoreDao(StoreDao storeDao) {
-		this.storeDao = storeDao;
+	public void setAdminDao(AdminDao adminDao) {
+		this.adminDao = adminDao;
 	}
 
 	@Override
 	public List<StoreBean> list() {
 		return null;
 	}
-
+	
 }

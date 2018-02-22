@@ -55,11 +55,11 @@
 									</tr>
 									<tr>
 										<td>우편번호</td>
-										<td>${memberInfo.mem_post}</td>
+										<td>${mem_post}</td>
 									</tr>
 									<tr>
 										<td>주소</td>
-										<td>${memberInfo.mem_address1}&nbsp;&nbsp;${memberInfo.mem_address2}
+										<td>${mem_address1}&nbsp;&nbsp;${mem_address2}
 										</td>
 
 									</tr>
