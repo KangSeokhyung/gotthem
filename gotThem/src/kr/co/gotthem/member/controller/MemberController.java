@@ -120,4 +120,21 @@ public class MemberController {
 		mav.setViewName("member/mypagePWCheck");
 		return mav;
 	}
+	
+	@RequestMapping(value = "/mypageMemberDel.gt", method = RequestMethod.GET)
+	public ModelAndView memberDel(ModelAndView mav) {
+		mav.setViewName("member/mypageMemberDel");
+		return mav;
+	}
+	
+	@RequestMapping(value = "/mypageMemberDel.gt", method = RequestMethod.POST)
+	public ModelAndView memberDelete(ModelAndView mav, MemberBean bean, HttpSession  session) {
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+		String mem_id = authentication.getName();
+		bean.setMem_id(mem_id);
+		memberService.memberDelete(bean);
+		session.invalidate();
+		mav.setViewName("redirect:index.jsp");
+		return mav;
+	}
 }

@@ -9,20 +9,20 @@
 </head>
 <body>
 <div style="border-top: 5px solid gray; border-bottom: 5px solid gray;">
-	<form action="passCheck.gt" method="post">
+	<!-- <form action="passCheck.gt" method="post"> -->
 	<br><br><br>
-		
-		<table class="table table-user-information">
-			<tr>
-				<td><span>현재 비밀번호 :</span></td>
-				<td><input name="mem_pw" type="text" ></td>
-				<td><button type="submit" class="btn-success" >확인</button></td>
-			</tr>
-		</table>
-		<br>
-		</form>
+		<div id="tab-a">
+			<table class="table table-user-information">
+				<tr>
+					<td><span>현재 비밀번호 :</span></td>
+					<td><input name="mem_pw" type="text" ></td>
+					<td><a class="btn-success" onclick="click()" >확인</a></td>
+				</tr>
+			</table>
+			<br>
+		</div>
+		<!-- </form> -->
 		<form action="passCheck.gt" method="post">
-		${passCheck }
 		<c:set var="passCheck1" value="${passCheck}"/>
 			<c:if test="${passCheck1 ne null}">
 				<div>
@@ -47,4 +47,11 @@
 		
 </div>
 </body>
+<script>
+	function click(){
+		$.post("passCheck.gt", function(data) {
+			$('#tab-a').html(data);
+		});
+	}
+	</script>
 </html>

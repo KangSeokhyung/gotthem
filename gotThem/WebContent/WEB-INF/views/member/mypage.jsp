@@ -86,22 +86,22 @@
 	<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 	<script src="resources/landy/vendor/bootstrap/js/bootstrap.min.js"></script>
 	<script>
-		$.get("./mypageMemberInfo.gt", function(data) {
+		$.get("mypageMemberInfo.gt", function(data) {
 			$('#tab-1').html(data);
 		});
 	</script>
 	<script>
-		$.get("./mypageMemberModi.gt", function(data) {
+		$.get("mypageMemberModi.gt", function(data) {
 			$('#tab-2').html(data);
 		});
 	</script>
 	<script>
-		$.get("./passCheck.gt", function(data) {
+		$.get("passCheck.gt", function(data) {
 			$('#tab-3').html(data);
 		});
 	</script>
 	<script>
-		$.get("./mypageMemberModi.gt", function(data) {
+		$.get("mypageMemberDel.gt", function(data) {
 			$('#tab-4').html(data);
 		});
 	</script>

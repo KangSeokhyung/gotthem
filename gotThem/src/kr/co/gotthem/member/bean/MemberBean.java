@@ -13,7 +13,7 @@ public class MemberBean {
 	private String mem_address1;
 	private String mem_address2;
 	private Date mem_regdate;
-	private String mem_grade;
+	private String mem_status;
 	
 	
 	public MemberBean() {
@@ -111,13 +111,13 @@ public class MemberBean {
 	}
 
 
-	public String getMem_grade() {
-		return mem_grade;
+	public String getMem_status() {
+		return mem_status;
 	}
 
 
-	public void setMem_grade(String mem_grade) {
-		this.mem_grade = mem_grade;
+	public void setMem_status(String mem_status) {
+		this.mem_status = mem_status;
 	}
 
 
@@ -125,12 +125,12 @@ public class MemberBean {
 	public String toString() {
 		return "MemberBean [mem_id=" + mem_id + ", mem_pw=" + mem_pw + ", mem_name=" + mem_name + ", mem_email="
 				+ mem_email + ", mem_phone=" + mem_phone + ", mem_post=" + mem_post + ", mem_address1=" + mem_address1
-				+ ", mem_address2=" + mem_address2 + ", mem_regdate=" + mem_regdate + ", mem_grade=" + mem_grade + "]";
+				+ ", mem_address2=" + mem_address2 + ", mem_regdate=" + mem_regdate + ", mem_grade=" + mem_status + "]";
 	}
 
 
 	public MemberBean(String mem_id, String mem_pw, String mem_name, String mem_email, String mem_phone,
-			String mem_post, String mem_address1, String mem_address2, Date mem_regdate, String mem_grade) {
+			String mem_post, String mem_address1, String mem_address2, Date mem_regdate, String mem_status) {
 		super();
 		this.mem_id = mem_id;
 		this.mem_pw = mem_pw;
@@ -141,7 +141,7 @@ public class MemberBean {
 		this.mem_address1 = mem_address1;
 		this.mem_address2 = mem_address2;
 		this.mem_regdate = mem_regdate;
-		this.mem_grade = mem_grade;
+		this.mem_status = mem_status;
 	}
 	
 }

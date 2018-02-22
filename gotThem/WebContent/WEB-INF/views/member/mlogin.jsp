@@ -41,7 +41,7 @@
 					</div>
 
 					<div class="wrap-input100 validate-input m-b-16" >
-						<input class="input100" type="text" name="mem_id" placeholder="ID">
+						<input class="input100" type="text" name="mem_id" placeholder="ID" autofocus="autofocus">
 						<span class="focus-input100"></span>
 					</div>
 

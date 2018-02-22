@@ -43,4 +43,8 @@ public class MemberServiceImpl implements MemberService {
 		return memberDao.passCheck(memberBean);
 	}
 
+	@Override
+	public void memberDelete(MemberBean memberBean) {
+		memberDao.memberDelete(memberBean);
+	}
 }

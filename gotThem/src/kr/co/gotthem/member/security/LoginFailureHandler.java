@@ -16,6 +16,6 @@ public class LoginFailureHandler implements AuthenticationFailureHandler{
 			throws IOException, ServletException {
 		System.out.println("인증실패");
 		 req.setAttribute("errMsg",auth.getMessage());
-		 req.getRequestDispatcher("/WEB-INF/views/memer/mlogin.jsp").forward(req, res);
+		 req.getRequestDispatcher("/WEB-INF/views/member/mlogin.jsp").forward(req, res);
 	}
 }

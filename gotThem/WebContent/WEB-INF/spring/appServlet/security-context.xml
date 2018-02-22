@@ -36,8 +36,8 @@
         <jdbc-user-service 
             data-source-ref="dataSource"
             role-prefix=""
-            users-by-username-query="select mem_id, mem_pw, mem_grade from member where mem_id = ?"
-            authorities-by-username-query="select mem_id, mem_grade from member where mem_id = ?"      
+            users-by-username-query="select mem_id, mem_pw, mem_status from member where mem_id = ?"
+            authorities-by-username-query="select mem_id, mem_status from member where mem_id = ?"      
         />
         </authentication-provider>
     </authentication-manager>

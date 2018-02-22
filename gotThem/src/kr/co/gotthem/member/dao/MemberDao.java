@@ -15,4 +15,6 @@ public interface MemberDao {
 	public void memberModifi(MemberBean memberBean);
 	
 	public int passCheck(MemberBean memberBean);
+	
+	public void memberDelete(MemberBean memberBean);
 }

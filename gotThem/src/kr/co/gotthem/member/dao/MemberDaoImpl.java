@@ -43,5 +43,11 @@ public class MemberDaoImpl implements MemberDao {
 	public int passCheck(MemberBean memberBean) {
 		return sqlSessionTemplate.selectOne("passCheck", memberBean);
 	}
+	
+	@Override
+	public void memberDelete(MemberBean memberBean) {
+		int result = sqlSessionTemplate.delete("memberDelete",memberBean);
+		System.out.println("회원탈퇴 결과는 " + result);
+	}
 
 }
