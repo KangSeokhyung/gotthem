@@ -20,9 +20,10 @@ public interface BasketService {
 	
 	// 1. 장바구니 추가
    public void insertBasket(BasketBean basketBean);
-   /* public void insertBasket(int code, int userNo,int stock);*/
-	
-    // 2. 장바구니 목록
+   // 1.1 상품 삭제
+   public void deleteproduct(int bas_no);
+    
+   // 2. 장바구니 목록
     public List<BasketBean> listBasket(int bas_memno);
     
     // 3. 장바구니 삭제

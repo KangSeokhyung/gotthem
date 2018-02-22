@@ -48,7 +48,13 @@ public class BasketServiceImpl implements BasketService {
     public void insertBasket(BasketBean basketBean) {
     	basketDao.insertBasket(basketBean);
     }
-	
+    // 1.1 상품 삭제
+    @Override
+    public void deleteproduct(int bas_no) {
+    	basketDao.deleteproduct(bas_no);
+    }
+    
+    
   /*  @Override
     public void insertBasket(int code, int userNo,int stock) {
     	basketDao.insertBasket(code,  userNo, stock);

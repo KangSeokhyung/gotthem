@@ -130,6 +130,13 @@
 			<version>${org.springframework-version}</version>
 		</dependency>
 		
+	   <!-- 데이터베이스(DBCP, Oracle Driver, MyBatis) -->
+	 <dependency>
+            <groupId>commons-dbcp</groupId>
+            <artifactId>commons-dbcp</artifactId>
+            <version>1.4</version>
+        </dependency>
+		
 		<!-- mariadb-java-client 1.5.8 -->
 		<dependency>
 		    <groupId>org.mariadb.jdbc</groupId>
@@ -179,6 +186,20 @@
 			<groupId>org.codehaus.jackson</groupId>
 			<artifactId>jackson-mapper-asl</artifactId>
 			<version>1.9.13</version>
+		</dependency>
+		
+		<!-- mongoDB -->
+		<dependency>
+		    <groupId>org.mongodb</groupId>
+		    <artifactId>mongo-java-driver</artifactId>
+		    <version>3.4.2</version>
+		</dependency>
+		
+		<!-- Spring-mongoDB -->
+		<dependency>
+		    <groupId>org.springframework.data</groupId>
+		    <artifactId>spring-data-mongodb</artifactId>
+		    <version>1.10.7.RELEASE</version>
 		</dependency>
 	
 		<!-- Test -->

@@ -16,7 +16,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import kr.co.gotthem.member.bean.MemberBean;
 import kr.co.gotthem.member.service.MemberService;
-import kr.co.gotthem.store.bean.StoreBean;
+import kr.co.gotthem.store.service.StoreService;
 
 @Controller
 public class MemberController {
@@ -24,11 +24,17 @@ public class MemberController {
 	private static final Logger logger = LoggerFactory.getLogger(MemberController.class);
 	
 	private MemberService memberService;
-
+	private StoreService storeService;
+	
 	public void setMemberService(MemberService memberService) {
 		this.memberService = memberService;
 	}
 	
+	
+	public void setStoreService(StoreService storeService) {
+		this.storeService = storeService;
+	}
+
 	@RequestMapping(value = "/login.gt", method = RequestMethod.GET)
 	public ModelAndView login(
 
@@ -55,10 +61,11 @@ public class MemberController {
 		return model;
 	}
 	
+	
 	@RequestMapping(value = "/login.gt", method = RequestMethod.POST)
 	public String getlogin(HttpSession  session, HttpServletRequest request, 
 			@RequestParam("m_id") String id, @RequestParam("m_pass") String pw) {
-		
+		/*
 		System.out.println(id); System.out.println(pw);
 		MemberBean result = (MemberBean)memberService.login(id);
 		
@@ -69,7 +76,7 @@ public class MemberController {
 		System.out.println("로그인 됨");
 		return "redirect:index.jsp";
 		}
-		System.out.println("로그인 안됨");
+		System.out.println("로그인 안됨");*/
 		return "member/mlogin";
 	}
 	
@@ -101,13 +108,11 @@ public class MemberController {
 	public String memberIndex() {
 		
 		
-			List<StoreBean> list = new ArrayList<StoreBean>();
-			list = memberService.list();
+			List<MemberBean> list = new ArrayList<MemberBean>();
+			list = memberService.mlist();
 			System.out.println(list);
 		
 		
 		return "store/storeIndex";
 	}
-	
-	
 }

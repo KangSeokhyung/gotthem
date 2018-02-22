@@ -40,10 +40,10 @@
         <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
 </head>
 <body>
-<input type="hidden"  name="uri" value="<%request.getRequestURI();%>">
-<header>
-<%@include file="nav.jsp" %>
-</header> 
+	<!-- navbar-->
+	<header class="header">
+		<%@include file ="nav.jsp" %>
+	</header>
 
 	<section id="cvssearch" class="newsletter bg-gray">
 		<div class="container text-center">
@@ -73,7 +73,7 @@
 					hidden in the middle of text. or randomised words which don't look
 					even slightly believable.</p>
 			</div>
-			<a href="storeIndex.ow" class="btn btn-primary btn-shadow btn-gradient">Discover
+			<a href="storeIndex.st" class="btn btn-primary btn-shadow btn-gradient">Discover
 				More</a>
 		</div>
 	</section>

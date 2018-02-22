@@ -1,7 +1,5 @@
 package kr.co.gotthem.store.bean;
 
-import java.sql.Date;
-
 public class StoreBean {
 	private int sto_no;
 	private String sto_id;
@@ -13,12 +11,10 @@ public class StoreBean {
 	private String sto_img;
 	private String sto_phone;
 	private String sto_email;
-	private Date sto_regdate;
+	private String sto_regdate;
 	private String sto_comment;
 	private String sto_status;
-	
-	public StoreBean() {
-	}
+	private int enabled;
 	
 	public int getSto_no() {
 		return sto_no;
@@ -80,10 +76,10 @@ public class StoreBean {
 	public void setSto_email(String sto_email) {
 		this.sto_email = sto_email;
 	}
-	public Date getSto_regdate() {
+	public String getSto_regdate() {
 		return sto_regdate;
 	}
-	public void setSto_regdate(Date sto_regdate) {
+	public void setSto_regdate(String sto_regdate) {
 		this.sto_regdate = sto_regdate;
 	}
 	public String getSto_comment() {
@@ -98,13 +94,24 @@ public class StoreBean {
 	public void setSto_status(String sto_status) {
 		this.sto_status = sto_status;
 	}
+	public int getEnabled() {
+		return enabled;
+	}
+	public void setEnabled(int enabled) {
+		this.enabled = enabled;
+	}
+	
+	public StoreBean() {
+		super();
+	}
 	
 	@Override
 	public String toString() {
 		return "StoreBean [sto_no=" + sto_no + ", sto_id=" + sto_id + ", sto_pw=" + sto_pw + ", sto_owner=" + sto_owner
 				+ ", sto_name=" + sto_name + ", sto_address=" + sto_address + ", sto_registno=" + sto_registno
 				+ ", sto_img=" + sto_img + ", sto_phone=" + sto_phone + ", sto_email=" + sto_email + ", sto_regdate="
-				+ sto_regdate + ", sto_comment=" + sto_comment + ", sto_status=" + sto_status + "]";
-	}
+				+ sto_regdate + ", sto_comment=" + sto_comment + ", sto_status=" + sto_status + ", enabled=" + enabled
+				+ "]";
+	}	
 	
 }

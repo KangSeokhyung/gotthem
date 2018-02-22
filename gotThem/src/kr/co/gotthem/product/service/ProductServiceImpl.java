@@ -13,13 +13,8 @@ public class ProductServiceImpl implements ProductService {
 	public void setProductDao(ProductDao productDao) {
 		this.productDao = productDao;
 	}
-
-/*	@Override
-	public List<ProductBean> productList() {
-		System.out.println( "productDao는"+ productDao);
-		return productDao.productList();
-	}*/
-	 // 01. 상품목록
+	
+	// 01. 상품목록
     @Override
     public List<ProductBean> listProduct() {
         return productDao.listProduct();
@@ -29,4 +24,25 @@ public class ProductServiceImpl implements ProductService {
     public ProductBean detailProduct(int pro_code) {
         return productDao.detailProduct(pro_code);
     }
+	
+    @Override
+	public List<ProductBean> plist(int pro_stono) {
+		return productDao.plist(pro_stono);
+	}
+
+	@Override
+	public ProductBean findCode(int pro_code) {
+		return productDao.findCode(pro_code);
+	}
+
+	@Override
+	public void updatePro(ProductBean bean) {
+		productDao.updatePro(bean);
+	}
+	
+	@Override
+	public void deletePro(int pro_code) {
+		productDao.deletePro(pro_code);
+	}
+
 }

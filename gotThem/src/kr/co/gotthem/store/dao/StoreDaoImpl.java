@@ -23,5 +23,11 @@ public class StoreDaoImpl implements StoreDao {
 	public StoreBean FindById(String sto_id) {
 		return (StoreBean)sqlSessionTemplate.selectOne("FindById", sto_id);
 	}
+	
+	public int joinStore(StoreBean bean) {
+		System.out.println("넘어옴");
+		return sqlSessionTemplate.insert("join" ,bean);
+	}
+	
 
 }
