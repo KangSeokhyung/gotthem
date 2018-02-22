@@ -11,4 +11,8 @@ public interface MemberService {
 	public MemberBean login(String id);
 	
 	public int duplCheck(String mem_id);
+	
+	public void memberModifi(MemberBean memberBean);
+	
+	public int passCheck(MemberBean memberBean);
 }

@@ -32,5 +32,16 @@ public class MemberDaoImpl implements MemberDao {
 	public int duplCheck(String mem_id) {
 		return sqlSessionTemplate.selectOne("duplCheck", mem_id);
 	}
+	
+	@Override
+	public void memberModifi(MemberBean memberBean) {
+		int result = sqlSessionTemplate.update("memberModi", memberBean);
+		System.out.println("회원정보 수정 업데이트 후 결과는 : " + result);
+	}
+	
+	@Override
+	public int passCheck(MemberBean memberBean) {
+		return sqlSessionTemplate.selectOne("passCheck", memberBean);
+	}
 
 }

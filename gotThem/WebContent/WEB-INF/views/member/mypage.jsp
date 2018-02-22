@@ -16,112 +16,10 @@
 <!-- theme stylesheet-->
 <link rel="stylesheet" href="resources/landy/css/style.default.css"
 	id="theme-stylesheet">
-
-<style type="text/css">
-.sidebar1 {
-	background: #F17153;
-	/* For browsers that do not support gradients */
-	background: -webkit-linear-gradient(#F17153, #F58D63, #f1ab53);
-	/* For Safari 5.1 to 6.0 */
-	background: -o-linear-gradient(#F17153, #F58D63, #f1ab53);
-	/* For Opera 11.1 to 12.0 */
-	background: -moz-linear-gradient(#F17153, #F58D63, #f1ab53);
-	/* For Firefox 3.6 to 15 */
-	background: linear-gradient(#F17153, #F58D63, #f1ab53);
-	/* Standard syntax */
-	padding: 0px;
-	min-height: 100%;
-}
-
-.logo {
-	max-height: 130px;
-}
-
-.logo>img {
-	margin-top: 30px;
-	padding: 3px;
-	border: 3px solid white;
-	border-radius: 100%;
-}
-
-.list {
-	color: #fff;
-	list-style: none;
-	padding-left: 0px;
-}
-
-.list>li>a {
-	color: black;
-	list-style: none;
-	padding-left: 0px;
-}
-
-.list::first-line {
-	color: rgba(255, 255, 255, 0.5);
-}
-
-.list>li, .list>h5 {
-	padding: 5px 0px 5px 40px;
-}
-
-.list>li:hover {
-	background-color: rgba(255, 255, 255, 0.2);
-	border-left: 5px solid white;
-	color: white;
-	font-weight: bolder;
-	padding-left: 35px;
-}
-
-.list>li>a:hover {
-	color: white;
-	font-weight: bolder;
-}
-
-.main-content {
-	text-align: center;
-}
-
-.user-row {
-    margin-bottom: 14px;
-}
-
-.user-row:last-child {
-    margin-bottom: 0;
-}
-
-.dropdown-user {
-    margin: 13px 0;
-    padding: 5px;
-    height: 100%;
-}
-
-.dropdown-user:hover {
-    cursor: pointer;
-}
-
-.table-user-information > tbody > tr {
-    border-top: 1px solid rgb(221, 221, 221);
-}
-
-.table-user-information > tbody > tr:first-child {
-    border-top: 0;
-}
-
-
-.table-user-information > tbody > tr > td {
-    border-top: 0;
-}
-.toppad
-{margin-top:20px;
-}
-
-.mypa{
-	padding-top: 30px;
-	padding-left: 15px;
-}
-
-
-</style>
+	
+<!-- custom stylesheet CSS -->	
+<link rel="stylesheet"
+	href="resources/mypages/css/mypage.css">
 
 </head>
 
@@ -131,10 +29,12 @@
 		<%@include file="../../../nav.jsp"%>
 	</header>
 
-	<!-- Page Content -->
+	
 	<div class="container-fluid">
 		<div class="row">
-			<div class="col-md-2 col-sm-4 col-xs-0 sidebar1">
+		
+			<!-- Page Content -->
+			<div class="col-md-2 col-sm-4 sidebar1">
 				<h4 class="mypa">
 					<strong>마이페이지</strong>
 				</h4>
@@ -143,27 +43,24 @@
 					<ul class="list">
 						<li><a href="#tab-1" data-toggle="tab"><h5><strong>회원 정보</strong></h5></a></li>
 						<li><a href="#tab-2" data-toggle="tab">회원정보 수정</a></li>
-						<li><a href="#">회원 탈퇴</a></li>
+						<li><a href="#tab-3" data-toggle="tab">비밀번호 변경</a></li>
+						<li><a href="#tab-4" data-toggle="tab">회원 탈퇴</a></li>
 					</ul>
 					<ul class="list">
-						<li><a href="#"><h5>
-									<strong>구매 정보</strong>
-								</h5></a></li>
+						<li><a href="#"><h5><strong>구매 정보</strong></h5></a></li>
 						<li><a href="#">찾아갈 상품</a></li>
 						<li><a href="#">구매한 상품</a></li>
 					</ul>
 				</div>
 			</div>
+			
+			<!-- Main Content -->
 			<div class="col-md-10 col-sm-8 main-content">
 				<div class="tab-content">
 				<div class="tab-pane fade show active" id="tab-1"></div>
 				<div class="tab-pane fade" id="tab-2"></div>
-				<div class="tab-pane fade" id="tabC">
-					<p>and C</p>
-				</div>
-				<div class="tab-pane fade" id="tabD">
-					<p>...D</p>
-				</div>
+				<div class="tab-pane fade" id="tab-3"></div>
+				<div class="tab-pane fade" id="tab-4"></div>
 				<div class="tab-pane fade" id="tabE">
 					<p>Okay, last one E</p>
 				</div>
@@ -194,8 +91,18 @@
 		});
 	</script>
 	<script>
-		$.get("./mypageMemberMode.gt", function(data) {
+		$.get("./mypageMemberModi.gt", function(data) {
 			$('#tab-2').html(data);
+		});
+	</script>
+	<script>
+		$.get("./passCheck.gt", function(data) {
+			$('#tab-3').html(data);
+		});
+	</script>
+	<script>
+		$.get("./mypageMemberModi.gt", function(data) {
+			$('#tab-4').html(data);
 		});
 	</script>
 

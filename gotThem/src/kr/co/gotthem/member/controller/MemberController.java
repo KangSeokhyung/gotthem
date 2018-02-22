@@ -84,14 +84,40 @@ public class MemberController {
 		return mav;
 	}
 	
-	@RequestMapping(value = "/mypageMemberMode.gt", method = RequestMethod.GET)
-	public ModelAndView memberMode(ModelAndView mav) {
+	@RequestMapping(value = "/mypageMemberModi.gt", method = RequestMethod.GET)
+	public ModelAndView memberModi(ModelAndView mav) {
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 		String mem_id = authentication.getName();
 		MemberBean memberInfo = memberService.memberInfo(mem_id);
 		mav.addObject("memberInfo", memberInfo);
-		mav.setViewName("member/mypageMemberMode");
+		mav.setViewName("member/mypageMemberModi");
 		return mav;
 	}
 	
+	@RequestMapping(value = "/memberModi.gt", method = RequestMethod.POST)
+	public String memberUpdate(MemberBean bean) {
+		memberService.memberModifi(bean);
+		return "member/mypage";
+	}
+	
+	@RequestMapping(value = "/passCheck.gt", method = RequestMethod.GET)
+	public ModelAndView passCheck(MemberBean bean, ModelAndView mav) {
+		mav.setViewName("member/mypagePWCheck");
+		return mav;
+	}
+	
+	@RequestMapping(value = "/passCheck.gt", method = RequestMethod.POST)
+	public ModelAndView passCheckPost(MemberBean bean, ModelAndView mav) {
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+		String mem_id = authentication.getName();
+		bean.setMem_id(mem_id);
+		String mem_pw = bean.getMem_pw();
+		System.out.println(mem_pw);
+		int result = memberService.passCheck(bean);
+		
+		System.out.println(result);
+		mav.addObject("passCheck", result);
+		mav.setViewName("member/mypagePWCheck");
+		return mav;
+	}
 }

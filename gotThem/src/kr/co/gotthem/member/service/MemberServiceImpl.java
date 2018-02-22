@@ -32,5 +32,15 @@ public class MemberServiceImpl implements MemberService {
 	public int duplCheck(String mem_id) {
 		return memberDao.duplCheck(mem_id);
 	}
+	
+	@Override
+	public void memberModifi(MemberBean memberBean) {
+		memberDao.memberModifi(memberBean);
+	}
+	
+	@Override
+	public int passCheck(MemberBean memberBean) {
+		return memberDao.passCheck(memberBean);
+	}
 
 }
