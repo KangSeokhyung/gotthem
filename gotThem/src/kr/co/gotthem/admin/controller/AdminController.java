@@ -7,10 +7,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
-import kr.co.gotthem.store.service.StoreService;
 import kr.co.gotthem.member.bean.MemberBean;
 import kr.co.gotthem.member.service.MemberService;
-import kr.co.gotthem.store.bean.StoreBean;
 
 @Controller
 public class AdminController {

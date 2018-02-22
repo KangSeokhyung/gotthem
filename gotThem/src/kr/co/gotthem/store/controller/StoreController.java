@@ -2,20 +2,15 @@ package kr.co.gotthem.store.controller;
 
 import java.util.ArrayList;
 import java.util.List;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
-
 import kr.co.gotthem.member.service.MemberService;
-import kr.co.gotthem.store.bean.StoreBean;
-import kr.co.gotthem.store.service.StoreService;
 
 @Controller
 public class StoreController {
