@@ -32,4 +32,9 @@ public class ProductServiceImpl implements ProductService {
 	public void deletePro(int pro_code) {
 		productDao.deletePro(pro_code);
 	}
+
+	@Override
+	public void insertPro(ProductBean bean) {
+		productDao.insertPro(bean);
+	}
 }

@@ -35,4 +35,10 @@ public class ProductDaoImpl implements ProductDao {
 	public void deletePro(int pro_code) {
 		sqlSessionTemplate.delete("deletePro", pro_code);
 	}
+	
+	@Override
+	public void insertPro(ProductBean bean) {
+		sqlSessionTemplate.insert("insertPro", bean);
+	}
+	
 }

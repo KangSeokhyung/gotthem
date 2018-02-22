@@ -13,4 +13,6 @@ public interface ProductDao {
 	public void updatePro(ProductBean bean);
 
 	public void deletePro(int pro_code);
+
+	public void insertPro(ProductBean bean);
 }

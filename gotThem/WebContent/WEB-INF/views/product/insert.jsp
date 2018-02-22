@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <meta charset="utf-8">
@@ -12,40 +11,50 @@
 		<link rel="stylesheet" href="resources/ownerindex/css/font-awesome.min.css">
 		<link rel="stylesheet" href="resources/ownerindex/css/style.css">
 		<link href="https://fonts.googleapis.com/css?family=Droid+Serif:400,400i,700,700i|Montserrat:200,200i,300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
-	</head>
+	
+	<script type="text/javascript">
+	function fnList(){
+		location.href="stock.st";
+	}
+	</script>
+</head>
 <body>
 <section class="cover-1 text-center">
 		<%@include file ="../store/storeNav.jsp"%>
 			<div class="cover-container pb-5">
 				<div class="cover-inner container">
-					<table border="1">
+					<form action="insert.st" method="post">
+					<input type="hidden" name="sto_no" value="${pro.sto_no }"/>
+					<table border ="1">
 						<tr>
-							<th>번호</th>
-							<th style="text-align: center;">상품명</th>
-							<th>분류</th>
-							<th>가격</th>
-							<th>입고</th>
-							<th>출고</th>
-							<th>전일재고</th>
-							<th>현재고</th>
-							<th>매출</th>
+							<td>매장번호</td><td>${pro.sto_no }</td>
 						</tr>
-						<c:forEach var="dto" items="${plist }">
-						
 						<tr>
-							<td>${dto.pro_code }</td>
-							<td><a href="detail.st?code=${dto.pro_code }">${dto.pro_name }</a></td>
-							<td>${dto.pro_category }</td>
-							<td>${dto.pro_price }</td>
-							<td>${dto.pro_income }</td>
-							<td>${dto.pro_release }</td>
-							<td>${dto.pro_stock }</td>
-							<td>${dto.pro_stock+dto.pro_income-dto.pro_release }</td>
-							<td>${dto.pro_price*dto.pro_release}</td>
+							<td>제품명</td><td><input type="text" name="pro_name"/></td>
 						</tr>
-						</c:forEach>
+						<tr>
+							<td>분류</td><td><input type="text" name="pro_category"/></td>
+						</tr>
+						<tr>
+							<td>가격</td><td><input type="text" name="pro_price"/></td>
+						</tr>
+						<tr>
+							<td>입고</td><td><input type="text" name="pro_income"/></td>
+						</tr>
+						<tr>
+							<td>출고</td><td><input type="text" name="pro_release"/></td>
+						</tr>
+						<tr>
+							<td>재고</td><td><input type="text" name="pro_stock"/></td>
+						</tr>
+						<tr>
+							<td colspan="2" align="center">
+								<input type="submit" value="입력"/>
+								<input type="button" value="목록보기" onclick="fnList()"/>
+							</td>
+						</tr>
 					</table>
-					<input type="button" value="상품추가" onclick="location='insert.st'"/>
+					</form>
 					<%-- <div>
 					${sessionScope.SPRING_SECURITY_CONTEXT}					
 					</div> --%>

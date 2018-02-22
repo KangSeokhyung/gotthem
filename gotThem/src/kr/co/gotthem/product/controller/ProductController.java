@@ -65,8 +65,7 @@ public class ProductController {
 	}
 	
 	@RequestMapping(value = "/detail.st", method = RequestMethod.GET)
-	protected ModelAndView handleRequestInternal(HttpServletRequest req,
-			HttpServletResponse res, HttpSession session) throws Exception {
+	protected ModelAndView handleRequestInternal(HttpServletRequest req) throws Exception {
 		
 		ModelAndView mav = new ModelAndView();
 		int code = ServletRequestUtils.getIntParameter(req, "code");
@@ -103,6 +102,31 @@ public class ProductController {
 		int code = Integer.parseInt(req.getParameter("pro_code"));
 		System.out.println(code);
 		productService.deletePro(code);
+		
+		return new ModelAndView("redirect:/stock.st");
+	}
+	
+	@RequestMapping(value="/insert.st", method=RequestMethod.GET)
+	protected ModelAndView handleRequestInternal(HttpServletRequest req, ModelAndView mav,
+			HttpSession session) throws Exception {
+		
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+		String sto_id = authentication.getName();
+		
+		StoreBean bean = storeService.FindById(sto_id);		
+		mav.setViewName("product/insert");
+		mav.addObject("pro",bean);
+		
+		return mav;
+	}
+	
+	@RequestMapping(value="/insert.st", method=RequestMethod.POST)
+	protected ModelAndView handleRequestInternal2(HttpServletRequest req, ProductBean bean) throws Exception {
+		
+		int pro_stono = (Integer.parseInt(req.getParameter("sto_no")));
+		
+		bean.setPro_stono(pro_stono);
+		productService.insertPro(bean);
 		
 		return new ModelAndView("redirect:/stock.st");
 	}

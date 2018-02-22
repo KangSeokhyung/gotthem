@@ -71,7 +71,7 @@
 							<td>출고</td><td>${pro.pro_release }</td>
 						</tr>
 						<tr>
-							<td>전일재고</td><td>${pro.pro_stock }</td>
+							<td>이전재고</td><td>${pro.pro_stock }</td>
 						</tr>
 						<tr>
 							<td>현재고</td><td>${pro.pro_stock+pro.pro_income-pro.pro_release }</td>
