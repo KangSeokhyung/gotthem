@@ -4,19 +4,26 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import kr.co.gotthem.basket.bean.BasketBean;
 import kr.co.gotthem.basket.service.BasketService;
+import kr.co.gotthem.member.bean.MemberBean;
+import kr.co.gotthem.member.service.MemberService;
 import kr.co.gotthem.order.service.OrderService;
 import kr.co.gotthem.product.service.ProductService;
 
@@ -28,11 +35,11 @@ public class BasketController {
 	private BasketService basketService;
 	private ProductService productService;
 	private OrderService orderService;
+	private MemberService memberService;
 	
 	public void setBasketService(BasketService basketService) {
 		this.basketService = basketService;
 	}
-	
 	public void setProductService(ProductService productService) {
 		this.productService = productService;
 	}
@@ -40,8 +47,11 @@ public class BasketController {
 	public void setOrderService(OrderService orderService) {
 		this.orderService = orderService;
 	}
+	public void setMemberService(MemberService memberService) {
+		this.memberService = memberService;
+	}
 	
-    // product 1. 상품 전체 목록
+	// product 1. 상품 전체 목록
     @RequestMapping("/productlist.gt")
     public ModelAndView list(ModelAndView mav) {
         mav.setViewName("/basket/productList");
@@ -58,14 +68,20 @@ public class BasketController {
         return mav;
     }
  
-   // 1. 장바구니 추가
-    @RequestMapping("insert.gt")
-    public String insert(@ModelAttribute BasketBean basketBean, HttpSession session){
-    	/*int userNo = (int) session.getAttribute("mem_no");     
-    	*/
-    	int userNo = 1;
-    	basketBean.setBas_memno(userNo);
     
+    // 1. 장바구니 추가
+    @RequestMapping(value ="insert.gt")
+    public String insert(@ModelAttribute BasketBean basketBean,
+    		HttpServletRequest req,HttpServletResponse res,HttpSession session) throws Exception {
+    	System.out.println("장바구니 추가왔다");
+    	Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+    	String mem_id = authentication.getName();
+    
+    	MemberBean memberInfo = memberService.memberInfo(mem_id);
+   
+        int userNo = memberInfo.getMem_no();
+    	
+    	basketBean.setBas_memno(userNo);   
         // 장바구니에 기존 상품이 있는지 검사
         int count = basketService.countBasket(basketBean.getBas_procode(),basketBean.getBas_memno());
         System.out.println("count  " + count);
@@ -80,54 +96,58 @@ public class BasketController {
         	 basketService.insertBasket(basketBean);
         	System.out.println("0==insert 실행" );
         } else {
-            // 있으면 update
+            // 있으면 update 동일 상품 존재시 기존 수량에 새로운 수량 더하기
         	basketService.updateBasket(basketBean);
         	System.out.println("0아닐때 insert 실행" );
         }
        return "redirect:/list.gt";
     }
-    
+ 
     // 2. 장바구니 목록
-    @RequestMapping("list.gt")
-    public ModelAndView listBasket(HttpSession session, ModelAndView mav){
-    	
-   /* 	int userNo = (int) session.getAttribute("mem_no"); // session에 저장된 userId
-*/    	int userNo = 1;
-    	Map<String, Object> map = new HashMap<String, Object>();
+    @RequestMapping(value = "list.gt", method = RequestMethod.GET)
+	public ModelAndView listBasket(HttpServletRequest req,HttpServletResponse res, 
+			HttpSession session,ModelAndView mav) throws Exception {
+     	
+	Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+	String mem_id = authentication.getName();
+	MemberBean memberInfo = memberService.memberInfo(mem_id);
+
+    int userNo = memberInfo.getMem_no();
+		Map<String, Object> map = new HashMap<String, Object>();
         List<BasketBean> listBasket = basketService.listBasket(userNo); // 장바구니 정보 
         System.out.println("list타고,listBasket " + listBasket);
         int sumMoney = basketService.sumMoney(userNo);// 장바구니 전체 금액 호출
         System.out.println("userNo  "+userNo );
         System.out.println("sumMoney  "+sumMoney );
-        // 장바구니 전체 긍액에 따라 배송비 구분 , 배송료(10만원이상 => 무료, 미만 => 2500원)
-        /* int fee = sumMoney >= 100000 ? 0 : 2500;*/
-        map.put("list", listBasket);                // 장바구니 정보를 map에 저장
-        map.put("count", listBasket.size());        // 장바구니 상품의 유무
-        System.out.println("listBasket.size()"+ listBasket.size());
-        map.put("sumMoney", sumMoney);        // 장바구니 전체 금액
-        /* map.put("fee", fee);                 // 배송금액
-        map.put("allSum", sumMoney+fee);    // 주문 상품 전체 금액*/
-        mav.setViewName("basket/cartList");    // view(jsp)의 이름 저장
-        mav.addObject("map", map);            // map 변수 저장
-        System.out.println("mav  "+mav );
-        return mav;
-    }
-    
+		    map.put("list", listBasket);                // 장바구니 정보를 map에 저장
+	        map.put("count", listBasket.size());        // 장바구니 상품의 유무
+	        System.out.println("listBasket.size()"+ listBasket.size());
+	        map.put("sumMoney", sumMoney);        // 장바구니 전체 금액
+	        /* map.put("fee", fee);                 // 배송금액
+	        map.put("allSum", sumMoney+fee);    // 주문 상품 전체 금액*/
+	        mav.setViewName("basket/cartList");    // view(jsp)의 이름 저장
+	        mav.addObject("map", map);            // map 변수 저장
+	        System.out.println("mav  "+mav );
+	        return mav;
+	    }
+	
     // 3. 장바구니 삭제
     @RequestMapping("delete.gt")
     public String delete(@RequestParam int bas_no){
     	basketService.deleteBasket(bas_no);
     	System.out.println("삭제 실행");
-        /*return "redirect:/shop/cart/list.gt";*/
         return "redirect:/list.gt";
     }
     
-   // 4. 장바구니 수정
+   // 4. 장바구니 수정( 수량만 수정)
     @RequestMapping("update.gt")
-    public String update(@RequestParam String[] bas_prostock, @RequestParam String[] bas_procode, HttpSession session) {
-      /*  String userId = (String) session.getAttribute("userId");// session의 id
-        int userNo = (int) session.getAttribute("mem_no"); // session에 저장된 userId  
-*/     	int userNo = 1;
+    public String update(@RequestParam String[] bas_prostock, @RequestParam String[] bas_procode, HttpSession session) throws Exception {
+    	  	
+    	Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+    	String mem_id = authentication.getName();
+    	MemberBean memberInfo = memberService.memberInfo(mem_id);
+    	
+        int userNo = memberInfo.getMem_no();
      	System.out.println("update왔다");  
      	// 레코드의 갯수 만큼 반복문 실행
         for(int i=0; i< bas_procode.length; i++){
@@ -140,115 +160,5 @@ public class BasketController {
         }
         return "redirect:/list.gt";
     }
-    
-
-   /* @RequestMapping(value = "/loginForm.st", method = RequestMethod.GET)
-	public String loginForm() {
-		return "store/storeLogin";
-	}*/
-	
-	/*@RequestMapping(value = "/login.st", method = RequestMethod.POST)
-	public String login(HttpServletRequest request, HttpSession session) throws Exception{
-		
-		String sto_id = request.getParameter("sto_id");
-		String sto_pw = request.getParameter("sto_pw");
-		
-		StoreBean dto = storeService.FindById(sto_id);
-		
-		session.setAttribute("sto_id", sto_id);
-		if(dto==null) {
-			return "store/fail2";
-		}
-		
-		String pw = dto.getSto_pw();
-		
-		if(sto_pw.equals(pw)) {
-			session.setAttribute("sto_id", sto_id);
-		}else {
-			return "fail";
-		}
-		return "store/storeIndex";
-	}
-	
-	@RequestMapping(value = "/login.gt", method = RequestMethod.GET)
-	public ModelAndView login(
-
-		@RequestParam(value = "error", required = false) String error,
-
-		@RequestParam(value = "logout", required = false) String logout) {
-
-		ModelAndView model = new ModelAndView();
-
-		if (error != null) {
-
-			model.addObject("error", "사용자 이름 및 비밀번호가 올바르지 않습니다.");
-
-		}
-		
-		if (logout != null) {
-
-			model.addObject("msg", "로그아웃 되었습니다.");
-
-		}
-
-		model.setViewName("member/mlogin");
-
-		return model;
-	}
-	
-	
-	@RequestMapping(value = "/login.gt", method = RequestMethod.POST)
-	public String getlogin(HttpSession  session, HttpServletRequest request, 
-			@RequestParam("m_id") String id, @RequestParam("m_pass") String pw) {
-		
-		System.out.println(id); System.out.println(pw);
-		MemberBean result = (MemberBean)memberService.login(id);
-		
-		System.out.println(result);
-		
-		if (result != null) {
-		session.setAttribute("id", id);
-		System.out.println("로그인 됨");
-		return "redirect:index.jsp";
-		}
-		System.out.println("로그인 안됨");
-		return "member/mlogin";
-	}
-	
-	@RequestMapping(value = "/logout.gt", method = RequestMethod.GET)
-	public String logout(HttpSession  session, HttpServletRequest request) {		
-		session.invalidate();		
-		return "redirect:index.jsp";
-	}
-	
-	
-	@RequestMapping(value = "/join.gt", method = RequestMethod.GET)
-	public String memberJoin() {	
-		return "member/join";
-	}
-	
-	@RequestMapping(value = "/joinSccess.gt", method = RequestMethod.POST)
-	public String joinSccess(MemberBean memberBean) {
-		System.out.println(memberBean);
-		memberService.insert(memberBean);
-		return "redirect:index.gt";
-	}
-	
-	@RequestMapping(value = "/index.gt", method = RequestMethod.GET)
-	public String index() {	
-		return "redirect:index.jsp";
-	}
-
-	@RequestMapping(value = "/myPage.gt", method = RequestMethod.GET)
-	public String memberIndex() {
-		
-		
-			List<StoreBean> list = new ArrayList<StoreBean>();
-			list = memberService.list();
-			System.out.println(list);
-		
-		
-		return "store/storeIndex";
-	}*/
-	
+   	
 }

@@ -52,7 +52,7 @@
                        <input type="hidden" name="money" value="${row.money}">
                        <input type="hidden" name="bas_proname" value="${row.bas_proname}">
                        <!-- <input type="submit" value="하나결제"> -->
-                       <input type="button" value="하나결제" onclick="button_order(${row.bas_no});">
+                       <input type="button" value="하나결제" onclick="button_order('${row.bas_no}','${row.bas_proname}','${row.bas_procode}','${row.money}','${row.bas_prostock}');">
   
                   </td>
                  </tr>
@@ -99,10 +99,11 @@
       }
    }
    
-    function button_order(bas_no){
+    function button_order(bas_no,bas_proname,bas_procode,money,bas_prostock){
    	alert(bas_no);
   if (confirm("결제 하시겠습니까??")){    //확인
-    location.href="insertOrder.gt?bas_no="+bas_no"& bas_proname="+bas_proname;
+    location.href="insertOrder.gt?bas_no="+bas_no+"&bas_proname="+bas_proname+
+    		"&bas_procode="+bas_procode+"&money="+money+"&bas_prostock="+bas_prostock;
   }else{   //취소
       return;
      }

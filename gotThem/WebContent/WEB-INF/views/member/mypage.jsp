@@ -49,7 +49,7 @@
 					</ul>
 					<ul class="list">
 						<li><a href="#"><h5><strong>구매 정보</strong></h5></a></li>
-						<li><a href="#">찾아갈 상품</a></li>
+						<li><a href="delete.gt?bas_no="+bas_no;>찾아갈 상품</a></li>
 						<li><a href="#">구매한 상품</a></li>
 					</ul>
 				</div>

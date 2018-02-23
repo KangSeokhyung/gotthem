@@ -5,20 +5,27 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import kr.co.gotthem.basket.bean.BasketBean;
 import kr.co.gotthem.basket.service.BasketService;
-import kr.co.gotthem.order.bean.OrderBean;
+import kr.co.gotthem.member.bean.MemberBean;
+import kr.co.gotthem.member.service.MemberService;
+import kr.co.gotthem.order.bean.OrderpayBean;
 import kr.co.gotthem.order.service.OrderService;
 import kr.co.gotthem.product.service.ProductService;
 
@@ -30,17 +37,19 @@ public class OrderController {
 	private OrderService orderService;
 	private BasketService basketService;
 	private ProductService productService;
+	private MemberService memberService;
 	
 	public void setOrderService(OrderService orderService) {
 		this.orderService = orderService;
 	}
-	
 	public void setBasketService(BasketService basketService) {
 		this.basketService = basketService;
 	}
-	
 	public void setProductService(ProductService productService) {
 		this.productService = productService;
+	}
+	public void setMemberService(MemberService memberService) {
+		this.memberService = memberService;
 	}
 	
 /*    // product 1. 상품 전체 목록
@@ -61,7 +70,7 @@ public class OrderController {
     }
     */
    
-    // order 1. 결제 전체 목록
+  // order 1. 결제 전체 목록
     @RequestMapping("/orderList.gt")
     public String order ( Model model) {
     	List<String> orderList = new ArrayList<String> ();
@@ -71,50 +80,32 @@ public class OrderController {
     	model.addAttribute("ordelList", orderList);
     	return "basket/orderList";
     }
-
-     
+ 
    // 1. 결제 추가
-    @RequestMapping("insertOrder.gt")
-    public String insert(@RequestParam String bas_prostock, @RequestParam String bas_procode,
+    @RequestMapping(value ="insertOrder.gt",method = RequestMethod.GET)
+    public String insert(@RequestParam String bas_no, @RequestParam String bas_prostock, @RequestParam String bas_procode,
     		            @RequestParam String bas_proname,@RequestParam String money,
-    		HttpSession session){
-    	/*int userNo = (int) session.getAttribute("mem_no"); */       	
-    	int userNo = 1;
-    	/*orderBean.setOrd_memno(userNo);
-          // 없으면 insert
-        	 System.out.println("orderBean insert하기 전   " + orderBean);
-      	     orderBean.setOrd_proname(basketBean.getBas_proname());
-      	   System.out.println("orderBean insert하기 전   " + orderBean);
-        	 orderBean.setOrd_price(orderBean.getOrd_price());
-        	 orderBean.setOrd_stock(orderBean.getOrd_stock());
-        	 orderBean.setOrd_procode(orderBean.getOrd_procode());
-        	 orderService.insertOrder(orderBean);*/       	 
-        	 System.out.println("bas_prostock" + bas_prostock );
-        	 System.out.println("bas_procode" + bas_procode );
-        	 System.out.println("bas_proname" + bas_proname );
-        	 System.out.println("money" + money );
-        	 System.out.println("0==insert 실행" );
-        	 OrderBean orderBean = new OrderBean();
-        	 orderBean.setOrd_memno(userNo); 
+    		HttpSession session,HttpServletRequest req,HttpServletResponse res,@ModelAttribute OrderpayBean orderBean)throws Exception {
+    	
+    	Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+    	String mem_id = authentication.getName();
+    	
+    	MemberBean memberInfo = memberService.memberInfo(mem_id);
+    	int userNo = memberInfo.getMem_no();     	
+     	     orderBean.setOrd_memno(userNo);      	 
         	 orderBean.setOrd_stock(Integer.parseInt(bas_prostock));
         	 orderBean.setOrd_procode(Integer.parseInt(bas_procode));
         	 orderBean.setOrd_proname(bas_proname);
-        	 orderBean.setOrd_price(Integer.parseInt(money));
+        	 orderBean.setOrd_price(Integer.parseInt(money));   	
         	 orderService.insertOrder(orderBean);
-            System.out.println("새로 셋팅된 orderBean" + orderBean);
-        	
-        	
-        	
-         /*else {
-            // 있으면 update
-        	orderService.updateBasket(basketBean);
-        	System.out.println("0아닐때 insert 실행" );*/
+             System.out.println("새로 셋팅된 orderBean" + orderBean);
+        	 System.out.println("결제 완료" );
         
        return "redirect:/list.gt";
     }
 
-    // 2. 장바구니 목록
-    @RequestMapping("listO.gt")
+    // 2. 결제 목록
+    @RequestMapping("listOrder.gt")
     public ModelAndView listBasket(HttpSession session, ModelAndView mav){
     	
     	/*int userNo = (int) session.getAttribute("mem_no"); // session에 저장된 userId

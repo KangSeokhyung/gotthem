@@ -7,7 +7,7 @@ import java.util.Map;
 import org.mybatis.spring.SqlSessionTemplate;
 
 import kr.co.gotthem.basket.bean.BasketBean;
-import kr.co.gotthem.order.bean.OrderBean;
+import kr.co.gotthem.order.bean.OrderpayBean;
 
 public class OrderDaoImpl implements OrderDao {
 
@@ -17,39 +17,11 @@ public class OrderDaoImpl implements OrderDao {
 		this.sqlSessionTemplate = sqlSessionTemplate;
 	}
 
-	@Override
-	public List<BasketBean> list() {
-		return sqlSessionTemplate.selectList("list");
-	}
 
-	@Override
-	public BasketBean FindByNo(int bas_no) {
-		return (BasketBean)sqlSessionTemplate.selectOne("FindByNo", bas_no);
-	}
-
-	@Override
-	public void insert(BasketBean basketBean) {
-		sqlSessionTemplate.insert("insert", basketBean);
-	}
 	
-	@Override
-	public int totalCount() {
-		return (int)sqlSessionTemplate.selectOne("totalCount");
-	}
-
-	@Override
-	public int update(int bas_no) {
-		return (int)sqlSessionTemplate.update("update", bas_no);
-	}
-	
-	/*@Override
-	public void delete(int bas_no) {
-		sqlSessionTemplate.delete("delete", bas_no);
-	}*/
-	
-	// 1. 장바구니 추가
+	// 1.결제 추가
     @Override
-    public void insertOrder(OrderBean orderBean) {
+    public void insertOrder(OrderpayBean orderBean) {
     	sqlSessionTemplate.insert("insertOrder", orderBean);
     }    
    // 1.1 상품 삭제

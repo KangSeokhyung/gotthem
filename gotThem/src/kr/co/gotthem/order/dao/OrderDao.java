@@ -3,24 +3,13 @@ package kr.co.gotthem.order.dao;
 import java.util.List;
 
 import kr.co.gotthem.basket.bean.BasketBean;
-import kr.co.gotthem.order.bean.OrderBean;
+import kr.co.gotthem.order.bean.OrderpayBean;
 
 
 public interface OrderDao {
-	public List<BasketBean> list();
 	
-	public BasketBean FindByNo(int bas_no);
-	
-	public void insert(BasketBean basketBean);
-	
-	public int totalCount();
-	
-	public int update(int bas_no);
-	
-	/*public void delete(int bas_no);*/
-	
-	// 1. 장바구니 추가
-    public void insertOrder(OrderBean orderBean);
+	// 1. 결제 추가
+    public void insertOrder(OrderpayBean orderBean);
     /*public void insertBasket(int code, int userNo,int stock);*/
     // 1.1 상품 삭제
     public void deleteproduct(int bas_no);

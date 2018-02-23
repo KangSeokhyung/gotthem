@@ -2,7 +2,7 @@ package kr.co.gotthem.order.bean;
 
 import java.sql.Date;
 
-public class OrderBean {
+public class OrderpayBean {
   private int ord_no; 
   private int ord_procode;
   private String ord_proname;
@@ -12,6 +12,7 @@ public class OrderBean {
   private Date ord_findtime;
   private String ord_status;
   private int money;
+  
 public int getOrd_no() {
 	return ord_no;
 }

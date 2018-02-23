@@ -3,7 +3,7 @@ package kr.co.gotthem.order.service;
 import java.util.List;
 
 import kr.co.gotthem.basket.bean.BasketBean;
-import kr.co.gotthem.order.bean.OrderBean;
+import kr.co.gotthem.order.bean.OrderpayBean;
 import kr.co.gotthem.order.dao.OrderDao;
 
 
@@ -15,38 +15,9 @@ public class OrderServiceImpl implements OrderService {
 		this.orderDao = orderDao;
 	}
 
-	@Override
-	public List<BasketBean> list() {
-		return orderDao.list();
-	}
-
-	@Override
-	public BasketBean FindByNo(int bas_no) {
-		
-		return orderDao.FindByNo(bas_no);
-	}
-	
-	@Override
-	public void insert(BasketBean basketBean) {		
-	}
-	
-	@Override
-	public int totalCount() {
-		return orderDao.totalCount();
-	}
-	
-	@Override
-	public int update(int bas_no) {
-		return orderDao.update(bas_no);
-	}
-	
-	/*@Override
-	public void delete(int bas_no) {
-	}*/
-
-	// 1. 장바구니 추가
+	// 1. 결제 추가
     @Override
-    public void insertOrder(OrderBean orderBean) {
+    public void insertOrder(OrderpayBean orderBean) {
     	orderDao.insertOrder(orderBean);
     }
     // 1.1 상품 삭제
