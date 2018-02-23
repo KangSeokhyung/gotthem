@@ -5,19 +5,29 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>상품장바구니 목록</title>
+<title>결제 목록</title>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 <%-- <%@ include file="../include/header.jsp" %> --%>
 </head>
 <body>
-<%-- <%@ include file="../include/menu.jsp" %> --%>
-    <h2>장바구니 확인</h2>
-    <c:choose>
-        <c:when test="${map.count == 0}">
-            장바구니가 비어있습니다.
-        </c:when>
-        <c:otherwise>
-        <form name="form1" id="form1" method="post" action="./update.gt">
+<%-- <%@ include file="../include/menu.jsp" %> --%> 
+<div class="container">	
+ <h2>결제 확인</h2>
+  <h4>결제 확인 목록</h4>   
+  	<div class="reserve-methods" style="text-align:center;">
+		<input id="ressearch-admin" onkeyup="searchName()" type="text" placeholder="공연 검색" autofocus="autofocus">
+		<form action="AdminReserve.ad" method="post">
+			<input id="resdate-admin" name="deleteDate" type="date">
+			<button type="submit" id="resdeletedate" type="button" class="btn btn-warning">해당날짜 이전데이터 삭제</button>
+		</form>
+		<form action="AdminReserve.ad" method="post">
+			<input id="resid-admin" name="deleteId" type="text" placeholder="아이디 검색" onkeyup="searchId()">
+			<button id="resdeleteid" type="submit" class="btn btn-danger">아이디 예약 삭제</button>
+		</form>
+		<button type="button" class="btn btn-default" onclick="location.reload()"><span class="glyphicon glyphicon-refresh"></span></button>
+	</div>
+
+  	<form name="form1" id="form1" method="post" action="./update.gt">
            <table border="1">
                <tr>
                    <th>상품명</th>
@@ -39,21 +49,19 @@
                   <td>
                      <input type="number" style="width: 40px" name="bas_prostock" value="${row.bas_prostock}" min="1">
                      <input type="hidden" name="bas_procode" value="${row.bas_procode}">
-                     <!-- <button type="button" id="btnUpdate" onclick="modify();" >수정</button> -->
-                     <button type="submit" id="btnUpdate" >수정</button>
+                     <button type="submit" id="btnUpdate">수정</button>
                   </td>
                   <td style="width: 100px" align="right">
                        <fmt:formatNumber pattern="###,###,###" value="${row.money}"/>                   
                   </td>
-                  <td>                    
+                  <td>
+                       <%-- <a href="./delete.gt?bas_no=${row.bas_no}">삭제</a> --%>
                        <input type="button" value="삭제" onclick="button_event(${row.bas_no});">
                   </td>
                   <td>
-                       <input type="hidden" name="money" value="${row.money}">
-                       <input type="hidden" name="bas_proname" value="${row.bas_proname}">
-                       <!-- <input type="submit" value="하나결제"> -->
-                       <input type="button" value="하나결제" onclick="button_order(${row.bas_no});">
-  
+                       <input type="number" style="width: 40px" name="bas_prostock" value="${row.bas_prostock}" min="1">
+                       <input type="hidden" name="bas_procode" value="${row.bas_procode}">
+                       <button type="submit" id="btnOrd">하나결제</button>
                   </td>
                  </tr>
                </c:forEach>
@@ -68,28 +76,16 @@
             </table>
             <input type="hidden" name="count" value="${map.count}">
         </form>
-        </c:otherwise>
-    </c:choose>
     <button type="button" value="상품목록2" id="btnList">상품목록</button>
 </body>
 <script type="text/javascript">
     $(document).ready(function(){
         // 리스트 페이지로 이동
         $("#btnList").click(function(){
-            location.href="./productlist.gt";     
+            location.href="./productlist.gt";
         });
-        /* $("#btnOrd").click(function(){
-            location.href="ord.gt?bas_no="+bas_no;
-        }); */
     });
-    
-/*    function modify() {
-	   var submitTest = document.form1;
-	   submitTest.action="./update.gt";
-	   submitTest.method="post";
-	   submitTest.submit();
-   } */
-   
+
    function button_event(bas_no){
     	alert(bas_no);
    if (confirm("정말 삭제하시겠습니까??")){    //확인
@@ -98,14 +94,5 @@
        return;
       }
    }
-   
-    function button_order(bas_no){
-   	alert(bas_no);
-  if (confirm("결제 하시겠습니까??")){    //확인
-    location.href="insertOrder.gt?bas_no="+bas_no"& bas_proname="+bas_proname;
-  }else{   //취소
-      return;
-     }
-  } 
 </script>
 </html>

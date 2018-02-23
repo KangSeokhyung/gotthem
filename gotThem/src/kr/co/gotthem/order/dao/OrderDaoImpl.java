@@ -1,4 +1,4 @@
-package kr.co.gotthem.basket.dao;
+package kr.co.gotthem.order.dao;
 
 import java.util.HashMap;
 import java.util.List;
@@ -7,8 +7,9 @@ import java.util.Map;
 import org.mybatis.spring.SqlSessionTemplate;
 
 import kr.co.gotthem.basket.bean.BasketBean;
+import kr.co.gotthem.order.bean.OrderBean;
 
-public class BasketDaoImpl implements BasketDao {
+public class OrderDaoImpl implements OrderDao {
 
 	private SqlSessionTemplate sqlSessionTemplate;
 
@@ -48,8 +49,8 @@ public class BasketDaoImpl implements BasketDao {
 	
 	// 1. 장바구니 추가
     @Override
-    public void insertBasket(BasketBean basketBean) {
-    	sqlSessionTemplate.insert("insertBasket", basketBean);
+    public void insertOrder(OrderBean orderBean) {
+    	sqlSessionTemplate.insert("insertOrder", orderBean);
     }    
    // 1.1 상품 삭제
     @Override
@@ -79,8 +80,7 @@ public class BasketDaoImpl implements BasketDao {
     // 4. 장바구니 수정
     @Override
     public void modifyBasket(BasketBean basketBean) {
-    	System.out.println("테스트 결과값"+basketBean);
-    	int a = sqlSessionTemplate.update("modifyBasket", basketBean);
+    	sqlSessionTemplate.update("modifyBasket", basketBean);
     }
     
     // 5. 장바구니 금액 합계
