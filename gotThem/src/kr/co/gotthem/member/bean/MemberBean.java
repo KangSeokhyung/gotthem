@@ -12,8 +12,8 @@ public class MemberBean {
 	private String mem_address;
 	private String mem_img;
 	private Date mem_regdate;
-	private String mem_comment;
 	private String mem_status;
+	private String mem_comment;
 	private int enabled;
 	public int getMem_no() {
 		return mem_no;

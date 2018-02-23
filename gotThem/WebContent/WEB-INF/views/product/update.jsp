@@ -46,7 +46,8 @@
 						<tr>
 							<td colspan="2" align="center">
 								<input type="submit" value="확인"/>
-								<input type="button" value="취소" onclick="reset()"/>
+								<input type="button" value="리셋" onclick="reset()"/>
+								<input type="button" value="취소" onclick="history.back()"/>
 								<input type="button" value="목록" onclick="fnList()"/>
 							</td>
 						</tr>

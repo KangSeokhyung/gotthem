@@ -4,7 +4,7 @@ import java.util.List;
 import kr.co.gotthem.member.bean.MemberBean;
 
 public interface MemberDao {
-	public List<MemberBean> mlist();
+	public MemberBean memberInfo(String mem_id);
 	
 	public int join(MemberBean memberBean);
 	
@@ -12,5 +12,9 @@ public interface MemberDao {
 	
 	public int duplCheck(String mem_id);
 	
-	public MemberBean memberInfo(String mem_id);
+	public void memberModifi(MemberBean memberBean);
+	
+	public int passCheck(MemberBean memberBean);
+	
+	public void memberDelete(MemberBean memberBean);
 }

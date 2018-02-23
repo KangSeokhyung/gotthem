@@ -13,8 +13,8 @@ public class MemberDaoImpl implements MemberDao {
 	}
 
 	@Override
-	public List<MemberBean> mlist() {
-		return sqlSessionTemplate.selectList("mlist");
+	public MemberBean memberInfo(String mem_id) {
+		return sqlSessionTemplate.selectOne("memberInfo", mem_id);
 	}
 	
 	@Override
@@ -32,10 +32,23 @@ public class MemberDaoImpl implements MemberDao {
 	public int duplCheck(String mem_id) {
 		return sqlSessionTemplate.selectOne("duplCheck", mem_id);
 	}
-
+	
 	@Override
-	public MemberBean memberInfo(String mem_id) {
-		return (MemberBean)sqlSessionTemplate.selectOne("memberInfo", mem_id);
+	public void memberModifi(MemberBean memberBean) {
+		int result = sqlSessionTemplate.update("memberModi", memberBean);
+		System.out.println("회원정보 수정 업데이트 후 결과는 : " + result);
+	}
+	
+	@Override
+	public int passCheck(MemberBean memberBean) {
+		return sqlSessionTemplate.selectOne("passCheck", memberBean);
+	}
+	
+	@Override
+	public void memberDelete(MemberBean memberBean) {
+		System.out.println(memberBean);
+		int result = sqlSessionTemplate.update("memberDelete",memberBean);
+		System.out.println("회원탈퇴 결과는 " + result);
 	}
 
 }
