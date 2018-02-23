@@ -142,13 +142,12 @@ public class MemberController {
 		String mem_pw = bean.getMem_pw();
 		System.out.println(mem_pw);
 		int result = memberService.passCheck(bean);
-		response.setContentType("text/html; charset=UTF-8");
 
 		if(result == 0) {
 			response.setContentType("text/html; charset=UTF-8");
 			out = response.getWriter();
 			out.println("<Script>");
-			out.println("alert('Checked Password');");
+			out.println("alert('비밀번호를 확인해 주세요');");
 			out.println("history.go(-1);");
 			out.println("</Script>");
 			return null;
@@ -173,6 +172,12 @@ public class MemberController {
 		memberService.memberDelete(bean);
 		session.invalidate();
 		mav.setViewName("redirect:index.jsp");
+		return mav;
+	}
+	
+	@RequestMapping(value = "/findIDAndPW.gt", method = RequestMethod.GET)
+	public ModelAndView findID(ModelAndView mav) {
+		mav.setViewName("member/findIDAndPW");
 		return mav;
 	}
 }

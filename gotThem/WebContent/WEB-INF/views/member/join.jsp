@@ -51,7 +51,7 @@
 
 					<div class="wrap-input100 validate-input m-b-16">
 						<input class="input100" type="text" id="mem_id" name="mem_id"
-							placeholder="아이디 입력"> <span class="focus-input100"></span>
+							placeholder="아이디 입력" autofocus="autofocus" required="required"> <span class="focus-input100"></span>
 						<input type="button" id="btn1" class="btn btn-sm btn-success" value="중복확인" onclick="duplCheck()">
 					</div>
 					<div id="idcheck"></div>
@@ -59,27 +59,27 @@
 						<span class="btn-show-pass">
 							<i class="fa fa fa-eye"></i>
 						</span>
-						<input class="input100" type="password" id="mem_pw" name="mem_pw" placeholder="패스워드 입력" onkeyup="pwdCheck()">
+						<input required="required" class="input100" type="password" id="mem_pw" name="mem_pw" placeholder="패스워드 입력" onkeyup="pwdCheck()">
 						<span class="focus-input100"></span>
 					</div>
 					<div class="wrap-input100 validate-input m-b-20" data-validate = "Please enter password">
 						<span class="btn-show-pass">
 							<i class="fa fa fa-eye"></i>
 						</span>
-						<input class="input100" type="password" id="mem_pw2" name="mem_pw2" placeholder="한번 더 입력하세요" onkeyup="pwdCheck()">
+						<input required="required" class="input100" type="password" id="mem_pw2" name="mem_pw2" placeholder="한번 더 입력하세요" onkeyup="pwdCheck()">
 						<span class="focus-input100"></span>
 					</div>
 					<p id="pwdCheckMsg"></p>
 					<div class="wrap-input100 validate-input m-b-16">
-						<input class="input100" type="text" name="mem_name"
+						<input required="required" class="input100" type="text" name="mem_name"
 							placeholder="회원 이름을 입력하세요"> <span class="focus-input100"></span>
 					</div>
 					<div class="wrap-input100 validate-input m-b-16">
-						<input class="input100" type="email" name="mem_email"
+						<input required="required" class="input100" type="email" name="mem_email"
 							placeholder="이메일을 입력하세요"> <span class="focus-input100"></span>
 					</div>
 					<div class="wrap-input100 validate-input m-b-16">
-						<input class="input100" type="text" name="mem_phone"
+						<input required="required" class="input100" type="text" name="mem_phone"
 							placeholder="전화번호를 입력하세요"> <span class="focus-input100"></span>
 					</div>
 					<div class="container-login100-form-btn">

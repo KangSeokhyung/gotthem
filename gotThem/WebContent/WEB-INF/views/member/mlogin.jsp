@@ -51,6 +51,13 @@
 						<input class="input100" type="password" name="mem_pw" placeholder="PASSWORD">
 						<span class="focus-input100"></span>
 					</div>
+					
+					<c:set var="errMsg" value="${errMsg}"/>
+					<c:if test="${errMsg ne null}">
+					<div>
+						<span class="text-center txt1" style="color:red; ">${errMsg}</span>
+					</div>
+					</c:if>
 
 					<div class="container-login100-form-btn">
 						<button type="submit" class="login100-form-btn">
@@ -60,7 +67,7 @@
 					
 					<div class="flex-col-c p-t-120">
 						<span class="txt2 p-b-10">아이디나 패스워드를 잊으셨나요?</span>
-						<a href="#" class="txt3 bo1 hov1">여기를 눌러 찾아보세요</a><br>
+						<a href="findIDAndPW.gt" class="txt3 bo1 hov1">여기를 눌러 찾아보세요</a><br>
 						<span class="txt2 p-b-10">아직 아이디가 없으신가요?</span>
 						<a href="join.gt" class="txt3 bo1 hov1">여기를 눌러 가입해보세요</a>
 					</div>				
