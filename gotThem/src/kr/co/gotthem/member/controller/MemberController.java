@@ -1,9 +1,5 @@
 package kr.co.gotthem.member.controller;
 
-import java.io.PrintWriter;
-import java.util.ArrayList;
-import java.util.List;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -16,7 +12,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import kr.co.gotthem.member.bean.MemberBean;
 import kr.co.gotthem.member.service.MemberService;
-import kr.co.gotthem.store.service.StoreService;
 
 @Controller
 public class MemberController {

@@ -21,7 +21,6 @@ import kr.co.gotthem.member.bean.MemberBean;
 import kr.co.gotthem.member.service.MemberService;
 import kr.co.gotthem.product.bean.ProductBean;
 import kr.co.gotthem.product.service.ProductService;
-import kr.co.gotthem.store.bean.StoreBean;
 import kr.co.gotthem.store.controller.StoreController;
 
 @Controller
@@ -43,18 +42,13 @@ public class ProductController {
 	@RequestMapping(value = "/stock.st", method = RequestMethod.GET)
 	public ModelAndView handleRequest(HttpServletRequest req,
 			HttpServletResponse res, HttpSession session) throws Exception {
-		// session 나의 회원정보를 가지고 stono 가지고 온다
-		//String sto_id = (String) session.getAttribute("sto_id");
-		//StoreBean storeInfo =  storeService.FindById(sto_id);
-		//int pro_stono = storeInfo.getSto_no();
 		
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 		String sto_id = authentication.getName();
 		
-		MemberBean storeInfo =  memberService.memberInfo(sto_id);
-		int pro_stono = storeInfo.getMem_no();
-		// 가지고 온 stono를 productSevice의 매개변수로 보낸다.
-		// xml 알아서 리스트를 가져오면 받아와서 뿌리면 끝..
+		MemberBean memberInfo =  memberService.memberInfo(sto_id);
+		int pro_stono = memberInfo.getMem_no();
+		
 		System.out.println("stono = " + pro_stono);
 		List<ProductBean> result = productService.plist(pro_stono);
 		ModelAndView mav = new ModelAndView();
@@ -123,7 +117,7 @@ public class ProductController {
 	@RequestMapping(value="/insert.st", method=RequestMethod.POST)
 	protected ModelAndView handleRequestInternal2(HttpServletRequest req, ProductBean bean) throws Exception {
 		
-		int pro_stono = (Integer.parseInt(req.getParameter("sto_no")));
+		int pro_stono = (Integer.parseInt(req.getParameter("mem_no")));
 		
 		bean.setPro_stono(pro_stono);
 		productService.insertPro(bean);

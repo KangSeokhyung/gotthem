@@ -65,19 +65,7 @@
 							<td>가격</td><td>${pro.pro_price }</td>
 						</tr>
 						<tr>
-							<td>입고</td><td>${pro.pro_income }</td>
-						</tr>
-						<tr>
-							<td>출고</td><td>${pro.pro_release }</td>
-						</tr>
-						<tr>
-							<td>이전재고</td><td>${pro.pro_stock }</td>
-						</tr>
-						<tr>
-							<td>현재고</td><td>${pro.pro_stock+pro.pro_income-pro.pro_release }</td>
-						</tr>
-						<tr>
-							<td>매출</td><td>${pro.pro_price*pro.pro_release }</td>
+							<td>재고</td><td>${pro.pro_stock }</td>
 						</tr>
 						<tr>
 							<td colspan="2" align="center">

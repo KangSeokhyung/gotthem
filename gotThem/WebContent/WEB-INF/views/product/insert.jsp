@@ -24,10 +24,10 @@
 			<div class="cover-container pb-5">
 				<div class="cover-inner container">
 					<form action="insert.st" method="post">
-					<input type="hidden" name="sto_no" value="${pro.sto_no }"/>
+					<input type="hidden" name="mem_no" value="${pro.mem_no }"/>
 					<table border ="1">
 						<tr>
-							<td>매장번호</td><td>${pro.sto_no }</td>
+							<td>매장번호</td><td>${pro.mem_no }</td>
 						</tr>
 						<tr>
 							<td>제품명</td><td><input type="text" name="pro_name"/></td>
@@ -37,12 +37,6 @@
 						</tr>
 						<tr>
 							<td>가격</td><td><input type="text" name="pro_price"/></td>
-						</tr>
-						<tr>
-							<td>입고</td><td><input type="text" name="pro_income"/></td>
-						</tr>
-						<tr>
-							<td>출고</td><td><input type="text" name="pro_release"/></td>
 						</tr>
 						<tr>
 							<td>재고</td><td><input type="text" name="pro_stock"/></td>

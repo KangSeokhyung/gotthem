@@ -5,7 +5,6 @@ import java.util.List;
 import org.mybatis.spring.SqlSessionTemplate;
 
 import kr.co.gotthem.product.bean.ProductBean;
-import kr.co.gotthem.store.bean.StoreBean;
 
 public class ProductDaoImpl implements ProductDao {
 

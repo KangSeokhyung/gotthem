@@ -1,19 +1,14 @@
 package kr.co.gotthem.store.controller;
 
-import java.util.ArrayList;
-import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import kr.co.gotthem.product.service.ProductService;
-import kr.co.gotthem.store.bean.StoreBean;
-import kr.co.gotthem.store.service.StoreService;
-import org.springframework.web.servlet.ModelAndView;
 import kr.co.gotthem.member.service.MemberService;
 
 @Controller
@@ -76,15 +71,6 @@ public class StoreController {
 		return "store/storeIndex";
 	}
 	
-	@RequestMapping(value = "/stock.st", method = RequestMethod.GET)
-	public String stock(HttpServletRequest request, HttpSession session) throws Exception{
-		return "store/stock";
-	}
 	
-	@RequestMapping(value = "/cvs.st", method = RequestMethod.POST)
-	public String cvs(HttpServletRequest request, HttpSession session) throws Exception{
-
-		return "store/cvs";
-	}
 
 }
