@@ -24,7 +24,13 @@ public class OrderDaoImpl implements OrderDao {
     public void insertOrder(OrderpayBean orderBean) {
     	sqlSessionTemplate.insert("insertOrder", orderBean);
     }    
-   // 1.1 상품 삭제
+  //1.1. 결제 되면, 결제된 수량만큼 장바구니 수량
+    @Override
+    public void updateBasketOrder(OrderpayBean orderBean) {
+    	sqlSessionTemplate.update("updateBasketOrder", orderBean);
+    }
+    
+    // 1.1 상품 삭제
     @Override
     public void deleteproduct(int bas_no) {
     	sqlSessionTemplate.insert("deleteproduct", bas_no);

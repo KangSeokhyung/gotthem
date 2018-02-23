@@ -9,7 +9,7 @@
 		<property name="productService" ref="productService" />
 		<property name="memberService" ref="memberService" />
 	</bean>
-		<bean id="orderController" class="kr.co.gotthem.order.controller.OrderController">
+	<bean id="orderController" class="kr.co.gotthem.order.controller.OrderController">
 		<property name="orderService" ref="orderService" />
 		<property name="basketService" ref="basketService" />
 		<property name="productService" ref="productService" />	

@@ -85,21 +85,28 @@ public class OrderController {
     @RequestMapping(value ="insertOrder.gt",method = RequestMethod.GET)
     public String insert(@RequestParam String bas_no, @RequestParam String bas_prostock, @RequestParam String bas_procode,
     		            @RequestParam String bas_proname,@RequestParam String money,
-    		HttpSession session,HttpServletRequest req,HttpServletResponse res,@ModelAttribute OrderpayBean orderBean)throws Exception {
+    		HttpSession session,HttpServletRequest req,HttpServletResponse res,
+    		@ModelAttribute OrderpayBean orderBean )throws Exception {
     	
     	Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
     	String mem_id = authentication.getName();
     	
     	MemberBean memberInfo = memberService.memberInfo(mem_id);
     	int userNo = memberInfo.getMem_no();     	
-     	     orderBean.setOrd_memno(userNo);      	 
+     	     
+    	
+    	     orderBean.setOrd_memno(userNo);      	 
         	 orderBean.setOrd_stock(Integer.parseInt(bas_prostock));
         	 orderBean.setOrd_procode(Integer.parseInt(bas_procode));
         	 orderBean.setOrd_proname(bas_proname);
         	 orderBean.setOrd_price(Integer.parseInt(money));   	
         	 orderService.insertOrder(orderBean);
+        	 orderService.updateBasketOrder(orderBean);
              System.out.println("새로 셋팅된 orderBean" + orderBean);
         	 System.out.println("결제 완료" );
+        	 
+        	 
+        	 
         
        return "redirect:/list.gt";
     }

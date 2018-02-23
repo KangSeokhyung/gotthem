@@ -11,5 +11,5 @@
 		<mapper resource="kr/co/gotthem/mybatis/BasketMapper.xml" />
 		<mapper resource="kr/co/gotthem/mybatis/ProductMapper.xml" />
 	</mappers>
-<!-- 1. 단건 결제 추가 -->
+	
 </configuration>

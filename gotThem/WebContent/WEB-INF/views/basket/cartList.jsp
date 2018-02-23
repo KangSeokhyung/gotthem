@@ -94,7 +94,7 @@
     	alert(bas_no);
    if (confirm("정말 삭제하시겠습니까??")){    //확인
      location.href="delete.gt?bas_no="+bas_no;
-   }else{   //취소
+   }else{   //취소.
        return;
       }
    }
@@ -104,7 +104,7 @@
   if (confirm("결제 하시겠습니까??")){    //확인
     location.href="insertOrder.gt?bas_no="+bas_no+"&bas_proname="+bas_proname+
     		"&bas_procode="+bas_procode+"&money="+money+"&bas_prostock="+bas_prostock;
-  }else{   //취소
+  }else{   //취소.
       return;
      }
   } 

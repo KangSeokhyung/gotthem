@@ -91,14 +91,23 @@
 
 
 <!-- 결제 관련 부분 -->
-	<!-- 1. 단건 결제 추가 -->
+  <!-- 1. 단건 결제 추가 -->
     <insert id="insertOrder" >
        INSERT INTO orderpay (
           ord_procode, ord_proname, ord_memno,ord_stock, ord_price)VALUES(
          #{ord_procode}, #{ord_proname},#{ord_memno}, #{ord_stock}, #{ord_price})
     </insert> 
-    
-    
+   <!-- 1.1. 결제 되면, 결제된 수량만큼 장바구니 수량 -(insert시,동일한 상품 존재시 기존 수량에 새로운 수량 더하기 -->
+    <update id="updateBasketOrder">
+        UPDATE basket 
+        SET bas_prostock = bas_prostock - #{ord_stock} 
+        WHERE bas_memno= #{ord_memno} AND bas_procode = #{ord_procode}
+    </update> 
+<!--      1.2. 결제  취소 삭제
+    <delete id="deleteBasketOrder">
+        DELETE FROM basket
+        WHERE bas_no = #{bas_no}
+    </delete> -->
     
    <!-- 2. 결제  취소 삭제 -->
     <delete id="deleteOrder">
@@ -108,7 +117,7 @@
 
 
     <!-- 2. 장바구니 목록 -->
-    <select id="listOrder" resultType="kr.co.gotthem.order.bean.OrderBean">
+    <select id="listOrder" resultType="kr.co.gotthem.order.bean.OrderpayBean">
          SELECT
             b.bas_no AS bas_no, 
             b.bas_memno AS bas_memno,

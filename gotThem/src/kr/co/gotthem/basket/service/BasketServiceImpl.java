@@ -39,7 +39,7 @@ public class BasketServiceImpl implements BasketService {
 		return basketDao.update(bas_no);
 	}
 	
-	//*@Override
+	/*@Override
 	public void delete(int bas_no) {
 	}*/
 

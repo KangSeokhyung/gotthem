@@ -41,7 +41,7 @@ public class BasketDaoImpl implements BasketDao {
 		return (int)sqlSessionTemplate.update("update", bas_no);
 	}
 	
-	//*@Override
+	/*@Override
 	public void delete(int bas_no) {
 		sqlSessionTemplate.delete("delete", bas_no);
 	}*/
