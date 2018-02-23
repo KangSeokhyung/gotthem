@@ -4,6 +4,17 @@
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 	
 	<!-- Controller -->
+	<bean id="basketController" class="kr.co.gotthem.basket.controller.BasketController">
+		<property name="basketService" ref="basketService" />
+		<property name="productService" ref="productService" />
+		<property name="memberService" ref="memberService" />
+	</bean>
+		<bean id="orderController" class="kr.co.gotthem.order.controller.OrderController">
+		<property name="orderService" ref="orderService" />
+		<property name="basketService" ref="basketService" />
+		<property name="productService" ref="productService" />	
+		<property name="memberService" ref="memberService" />
+	</bean>
 	<bean id="productController" class="kr.co.gotthem.product.controller.ProductController">
 		<property name="productService" ref="productService" />
 		<property name="memberService" ref="memberService" />
