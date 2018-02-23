@@ -1,53 +1,88 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-	<link rel="stylesheet" type="text/css" href="resources/Login_v7/css/util.css">
-	<link rel="stylesheet" type="text/css" href="resources/Login_v7/css/main.css">
-<!-- Bootstrap CSS-->
+<title>Aside - Free HTML5 Bootstrap 4 Template by uicookies.com</title>
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta charset="utf-8">
+<link rel="stylesheet" type="text/css" href="resources/Login_v7/css/util.css">
+<link rel="stylesheet" type="text/css" href="resources/Login_v7/css/main.css">
+<link href="https://fonts.googleapis.com/css?family=Work+Sans"
+	rel="stylesheet">
 <link rel="stylesheet"
-	href="resources/landy/vendor/bootstrap/css/bootstrap.min.css">
-<!-- Font Awesome CSS-->
-<link rel="stylesheet" href="resources/landy/vendor/font-awesome/css/font-awesome.min.css">
-<!-- Custom Font Icons CSS-->
+	href="resources/indexTemplate/css/bootstrap.min.css">
 <link rel="stylesheet"
-	href="resources/landy/css/landy-iconfont.css">
-<!-- Google fonts - Open Sans-->
+	href="resources/indexTemplate/css/open-iconic-bootstrap.min.css">
 <link rel="stylesheet"
-	href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700,800">
-<!-- owl carousel-->
+	href="resources/indexTemplate/css/owl.carousel.min.css">
 <link rel="stylesheet"
-	href="resources/landy/vendor/owl.carousel/assets/owl.carousel.css">
-<link rel="stylesheet"
-	href="resources/landy/vendor/owl.carousel/assets/owl.theme.default.css">
-<!-- theme stylesheet-->
-<link rel="stylesheet"
-	href="resources/landy/css/style.default.css"
-	id="theme-stylesheet">
-<!-- Custom stylesheet - for your changes-->
-<link rel="stylesheet" href="resources/landy/css/custom.css">
+	href="resources/indexTemplate/css/owl.theme.default.min.css">
+<link rel="stylesheet" href="resources/indexTemplate/css/icomoon.css">
+<link rel="stylesheet" href="resources/indexTemplate/css/animate.css">
+<link rel="stylesheet" href="resources/indexTemplate/css/style.css">
+
 </head>
 <body>
-	<header class="header">
-		<%@include file="../../../nav.jsp" %>
-	</header>
 
-		<div class="container-login100 " >
-			<div class="wrap-login100 p-t-0 p-b-30 col-xs-4">
-				
- 		
-			</div>
-			
+<aside class="probootstrap-aside js-probootstrap-aside">
+		<a href="#"
+			class="probootstrap-close-menu js-probootstrap-close-menu d-md-none"><span
+			class="oi oi-arrow-left"></span> Close</a>
+		<div class="probootstrap-site-logo probootstrap-animate"
+			data-animate-effect="fadeInLeft">
+
+			<a href="/gotThem" class="mb-2 d-block probootstrap-logo">GOTTHEM</a>
+			<p class="mb-0">
+				편의점 재고 검색 사이트 
+			</p>
+		</div>
+		<div class="probootstrap-overflow">
+			<nav class="probootstrap-nav">
+				<ul>
+					<li class="probootstrap-animate"
+						data-animate-effect="fadeInLeft"><a href="/gotThem">검색하기</a></li>
+					<li class="probootstrap-animate" data-animate-effect="fadeInLeft"><a
+						href="#">Got Them?</a></li>
+					<li class="probootstrap-animate" data-animate-effect="fadeInLeft"><a
+						href="#">공지사항</a></li>
+					<li class="probootstrap-animate" data-animate-effect="fadeInLeft"><a
+						href="#">이벤트</a></li>
+					<li class="probootstrap-animate" data-animate-effect="fadeInLeft"><a
+						href="login.gt">로그인</a></li>
+					<li class="probootstrap-animate active" data-animate-effect="fadeInLeft"><a
+						href="join.gt">가입하기</a></li>
+					<li class="probootstrap-animate" data-animate-effect="fadeInLeft"><a
+						href="storeIndex.st">제휴페이지</a></li>
+				</ul>
+			</nav>
+			<footer class="probootstrap-aside-footer probootstrap-animate"
+				data-animate-effect="fadeInLeft">
+				<p>
+					&copy; 2018 <a href="/gotThem" target="_blank">스탑없으 X Got Them</a>.
+					<br> All Rights Reserved.
+				</p>
+			</footer>
+		</div>
+	</aside>
+
+
+	<main role="main" class="probootstrap-main js-probootstrap-main">
+	<div class="probootstrap-bar">
+		<a href="#" class="probootstrap-toggle js-probootstrap-toggle"><span
+			class="oi oi-menu"></span></a>
+		<div class="probootstrap-main-site-logo">
+			<a href="index.html">Aside</a></a>
+		</div>
+	</div>
+
+		<div class="container-login100 " >				
 			<div class="wrap-login100 p-t-0 p-b-30 col-xs-8">
 				<form class="login100-form validate-form" action="joinSccess.gt" method="post">
 					<input type="hidden" id="duplicate" value="N">
 					<input type="hidden" id="pwdConfirm" value="N">
-					<div class="text-center p-t-55 p-b-30">
-						<span class="txt1"> 회원가입 </span>
-					</div>
 
 					<div class="wrap-input100 validate-input m-b-16">
 						<input class="input100" type="text" id="mem_id" name="mem_id"
@@ -98,104 +133,35 @@
 				</form>
 			</div>
 		</div>
-<script src="http://code.jquery.com/jquery-3.2.1.min.js"></script>
-<script src="resources/Login_v7/js/main.js"></script>
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
-<script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
-		<script>
-		function duplCheck(){ 
-		    var id = $('#mem_id').val();
-		 		$.ajax({
-		              url : "duplCheck.gt",
-		              type: "POST",
-		              data : {"mem_id": id},	              
-		              success : function(data){
-		                   if(data=="0"){
-		                	   $("#idcheck").html('<p style="color:blue"> 사용가능한 아이디입니다.</p>');
-		                   }else if(data!="0"){
-		                	   $("#idcheck").html('<p style="color:red"> 다른 사람이 사용중입니다.</p>');
-		                   }
-		              },    error: function(jqXHR, textStatus, errorThrown) {
-		            	  console.log(jqXHR);
-		            	  console.log(textStatus);
-		            	  console.log(errorThrown);
-		              }
-		          });
-			  }
-		 	 
-			function pwdCheck() {
-				var m_pwd = $('#mem_pw').val();
-				var m_pwdCheck = $('#mem_pw2').val();
-				$('#pwdCheckMsg').html('비밀번호는 영문, 숫자 혼합 8자이상  20자 이하로 작성해주세요.').css('color', 'red');
-				if (m_pwd.length >= 8 && m_pwdCheck.length >= 8){
-					if (m_pwd != m_pwdCheck) {
-						$('#pwdCheckMsg').html('비밀번호가 일치하지 않습니다.').css('color', 'red');
-						$('#pwdConfirm').val('N');
-					} else {
-						$('#pwdCheckMsg').html('비밀번호가 일치합니다.').css('color', 'blue');
-						$('#pwdConfirm').val('Y');
-					}
-				}
-			}
-		
-   		 function sample6_execDaumPostcode() {
-       		 new daum.Postcode({
-          	  oncomplete: function(data) {
-                // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
 
-                // 각 주소의 노출 규칙에 따라 주소를 조합한다.
-                // 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
-                var fullAddr = ''; // 최종 주소 변수
-                var extraAddr = ''; // 조합형 주소 변수
+	<div class="container-fluid d-md-none">
+		<div class="row">
+			<div class="col-md-12">
+				<ul class="list-unstyled d-flex probootstrap-aside-social">
+					<li><a href="#" class="p-2"><span class="icon-twitter"></span></a></li>
+					<li><a href="#" class="p-2"><span class="icon-instagram"></span></a></li>
+					<li><a href="#" class="p-2"><span class="icon-dribbble"></span></a></li>
+				</ul>
+				<p>
+					&copy; 2017 <a href="https://uicookies.com/" target="_blank">uiCookies:Aside</a>.
+					<br> All Rights Reserved. Designed by <a
+						href="https://uicookies.com/" target="_blank">uicookies.com</a>
+				</p>
+			</div>
+		</div>
+	</div>
 
-                // 사용자가 선택한 주소 타입에 따라 해당 주소 값을 가져온다.
-                if (data.userSelectedType === 'R') { // 사용자가 도로명 주소를 선택했을 경우
-                    fullAddr = data.roadAddress;
+	</main>
 
-                } else { // 사용자가 지번 주소를 선택했을 경우(J)
-                    fullAddr = data.jibunAddress;
-                }
 
-                // 사용자가 선택한 주소가 도로명 타입일때 조합한다.
-                if(data.userSelectedType === 'R'){
-                    //법정동명이 있을 경우 추가한다.
-                    if(data.bname !== ''){
-                        extraAddr += data.bname;
-                    }
-                    // 건물명이 있을 경우 추가한다.
-                    if(data.buildingName !== ''){
-                        extraAddr += (extraAddr !== '' ? ', ' + data.buildingName : data.buildingName);
-                    }
-                    // 조합형주소의 유무에 따라 양쪽에 괄호를 추가하여 최종 주소를 만든다.
-                    fullAddr += (extraAddr !== '' ? ' ('+ extraAddr +')' : '');
-                }
 
-                // 우편번호와 주소 정보를 해당 필드에 넣는다.
-                document.getElementById('mem_post').value = data.zonecode; //5자리 새우편번호 사용
-                document.getElementById('mem_address1').value = fullAddr;
+	<script src="resources/indexTemplate/js/jquery-3.2.1.slim.min.js"></script>
+	<script src="resources/indexTemplate/js/popper.min.js"></script>
+	<script src="resources/indexTemplate/js/bootstrap.min.js"></script>
+	<script src="resources/indexTemplate/js/owl.carousel.min.js"></script>
+	<script src="resources/indexTemplate/js/jquery.waypoints.min.js"></script>
+	<script src="resources/indexTemplate/js/imagesloaded.pkgd.min.js"></script>
+	<script src="resources/indexTemplate/js/main.js"></script>
 
-                // 커서를 상세주소 필드로 이동한다.
-                document.getElementById('mem_address2').focus();
-            }
-        }).open();
-    }
-   		 
-   		
-	 	
-	 	/*
-	 	function pwCheck(){
-    	 var pw1 = document.getElementById("m_pass1").value;
-    	 var pw2 = document.getElementById("m_pass2").value;
-    		 if(pw1 != pw2){
-    			 	document.getElementById('pwCheck').style.color = "red";
-    			    document.getElementById('pwCheck').innerHTML = "동일한 암호를 입력하세요."; 
-    		 		}else {
-    		 		document.getElementById('pwCheck').style.color = "blue";
-    		 		document.getElementById('pwCheck').innerHTML = "암호가 확인 되었습니다."; 
-    		 		} 			 
-    		 } 	  
-	 	*/
-</script>
 </body>
 </html>

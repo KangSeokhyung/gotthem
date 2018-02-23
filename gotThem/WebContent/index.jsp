@@ -1,148 +1,167 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
-<html>
+<html lang="ko">
 <head>
+<title>편의점 재고 검색 포털 Got them</title>
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<title>Landy: Bootstrap 4 landing page template by
-	Bootstrapious.com</title>
-<meta name="description" content="">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="robots" content="all,follow">
-<!-- Bootstrap CSS-->
-<link rel="stylesheet"
-	href="resources/landy/vendor/bootstrap/css/bootstrap.min.css">
-<!-- Font Awesome CSS-->
-<link rel="stylesheet"
-	href="resources/landy/vendor/font-awesome/css/font-awesome.min.css">
-<!-- Custom Font Icons CSS-->
-<link rel="stylesheet" href="resources/landy/css/landy-iconfont.css">
-<!-- Google fonts - Open Sans-->
-<link rel="stylesheet"
-	href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700,800">
-<!-- owl carousel-->
-<link rel="stylesheet"
-	href="resources/landy/vendor/owl.carousel/assets/owl.carousel.css">
-<link rel="stylesheet"
-	href="resources/landy/vendor/owl.carousel/assets/owl.theme.default.css">
-<!-- theme stylesheet-->
-<link rel="stylesheet" href="resources/landy/css/style.default.css"
-	id="theme-stylesheet">
-<!-- Custom stylesheet - for your changes-->
+<link rel="stylesheet" type="text/css" href="resources/Login_v7/css/util.css">
+<link rel="stylesheet" type="text/css" href="resources/Login_v7/css/main.css">
+<link href="https://fonts.googleapis.com/css?family=Work+Sans"
+	rel="stylesheet">
+<link rel="stylesheet" href="resources/indexTemplate/css/bootstrap.min.css">
+<link rel="stylesheet" href="resources/indexTemplate/css/open-iconic-bootstrap.min.css">
+<link rel="stylesheet" href="resources/indexTemplate/css/owl.carousel.min.css">
+<link rel="stylesheet" href="resources/indexTemplate/css/owl.theme.default.min.css">
+<link rel="stylesheet" href="resources/indexTemplate/css/icomoon.css">
+<link rel="stylesheet" href="resources/indexTemplate/css/animate.css">
+<link rel="stylesheet" href="resources/indexTemplate/css/style.css">
+<link rel="stylesheet" href="resources/landy/css/style.default.css" id="theme-stylesheet">
 <link rel="stylesheet" href="resources/landy/css/custom.css">
-<!-- Favicon-->
-<link rel="shortcut icon" href="favicon.png">
-<!-- Tweaks for older IEs-->
-<!--[if lt IE 9]>
-        <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-        <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
 </head>
 <body>
-	<!-- navbar-->
-	<header class="header">
-		<%@include file ="nav.jsp" %>
-	</header>
 
-	<section id="cvssearch" class="newsletter bg-gray">
-		<div class="container text-center">
-			<h2>지금 맛있고 간단한 식사를 위해 검색해보세요</h2>
-			<p class="lead">${sessionScope.SPRING_SECURITY_CONTEXT }</p>
-			<div class="form-holder">
-				<form id="newsletterForm" action="#">
-					<div class="form-group">
-						<input type="text" name="email" id="email"
-							placeholder="원하는 단어를 검색해보세요 (ex. 강남역 삼각김밥)">
-						<button type="submit" class="btn btn-primary btn-gradient submit">검색</button>
-					</div>
-				</form>
-			</div>
+	<aside class="probootstrap-aside js-probootstrap-aside">
+		<a href="#"
+			class="probootstrap-close-menu js-probootstrap-close-menu d-md-none"><span
+			class="oi oi-arrow-left"></span> Close</a>
+		<div class="probootstrap-site-logo probootstrap-animate"
+			data-animate-effect="fadeInLeft">
+
+			<a href="/gotThem" class="mb-2 d-block probootstrap-logo">GOTTHEM</a>
+			<p class="mb-0">
+				편의점 재고 검색 사이트 
+			</p>
 		</div>
-	</section>
-
-	<section id="about-us">
-		<div class="container">
-			<h2>저희와 제휴 하고 싶으신가요?</h2>
-			<div class="row">
-				<p class="lead col-lg-10">There are many variations of passages
-					of Lorem Ipsum available, but the majority have suffered alteration
-					in some form, by injected humour, or randomised words which don't
-					look even slightly believable. If you are going to use a passage of
-					Lorem Ipsum, you need to be sure there isn't anything embarrassing
-					hidden in the middle of text. or randomised words which don't look
-					even slightly believable.</p>
-			</div>
-			<a href="storeIndex.st" class="btn btn-primary btn-shadow btn-gradient">Discover
-				More</a>
+		<div class="probootstrap-overflow">
+			<nav class="probootstrap-nav">
+				<ul>
+					<li class="probootstrap-animate active"
+						data-animate-effect="fadeInLeft"><a href="/gotThem">검색하기</a></li>
+					<li class="probootstrap-animate" data-animate-effect="fadeInLeft"><a
+						href="#">Got Them?</a></li>
+					<li class="probootstrap-animate" data-animate-effect="fadeInLeft"><a
+						href="#">공지사항</a></li>
+					<li class="probootstrap-animate" data-animate-effect="fadeInLeft"><a
+						href="#">이벤트</a></li>
+				<c:set var="sessionCheck"
+					value="${sessionScope.SPRING_SECURITY_CONTEXT}" />
+				<c:choose>
+					<c:when test="${sessionCheck eq null}">
+					<li class="probootstrap-animate" data-animate-effect="fadeInLeft"><a
+						href="login.gt">로그인</a></li>
+					<li class="probootstrap-animate" data-animate-effect="fadeInLeft"><a
+						href="join.gt">가입하기</a></li>
+					</c:when>
+					<c:otherwise>
+						<li class="probootstrap-animate" data-animate-effect="fadeInLeft"><a href="logout.gt" class="nav-link">로그아웃</a></li>
+					<li class="probootstrap-animate" data-animate-effect="fadeInLeft"><a href="#" class="nav-link">내정보 수정</a></li>
+					</c:otherwise>
+				</c:choose>
+				<li class="probootstrap-animate" data-animate-effect="fadeInLeft"><a
+						href="storeIndex.st">제휴페이지</a></li>
+			</ul>
+				</ul>
+			</nav>
+			<footer class="probootstrap-aside-footer probootstrap-animate"
+				data-animate-effect="fadeInLeft">
+				<p>
+					&copy; 2018 <a href="/gotThem" target="_blank">스탑없으 X Got Them</a>.
+					<br> All Rights Reserved.
+				</p>
+			</footer>
 		</div>
-	</section>
+	</aside>
 
-	<div id="scrollTop">
-		<div class="d-flex align-items-center justify-content-end">
-			<i class="fa fa-long-arrow-up"></i>To Top
+
+	<main role="main" class="probootstrap-main js-probootstrap-main">
+		<div class="probootstrap-bar">
+		<a href="#" class="probootstrap-toggle js-probootstrap-toggle"><span
+			class="oi oi-menu"></span></a>
+		<div class="probootstrap-main-site-logo">
+			<a href="index.html">Aside</a></a>
 		</div>
 	</div>
-	<footer class="main-footer">
-		<div class="container">
-			<div class="row">
-				<div class="col-lg-3 col-md-6">
-					<a href="#" class="brand">Gotthem</a>
-					<ul class="contact-info list-unstyled">
-						<li><a href="mailto:sales@landy.com">admin@gotthem.co.kr</a></li>
-						<li><a href="tel:123456789">02-1234-5768</a></li>
-					</ul>					
-				</div>
-				<div class="col-lg-3 col-md-6">
-					<h5>Selected Cases</h5>
-					<ul class="links list-unstyled">
-						<li><a href="#">Guess Conntect</a></li>
-						<li><a href="#">Postly</a></li>
-						<li><a href="#">Iris Vor Arnim</a></li>
-						<li><a href="#">Yapital</a></li>
-					</ul>
-				</div>
-				<div class="col-lg-3 col-md-6">
-					<h5>Selected Cases</h5>
-					<ul class="links list-unstyled">
-						<li><a href="#">Guess Conntect</a></li>
-						<li><a href="#">Postly</a></li>
-						<li><a href="#">Iris Vor Arnim</a></li>
-						<li><a href="#">Yapital</a></li>
-					</ul>
-				</div>
-				<div class="col-lg-3 col-md-6">
-					<h5>Selected Cases</h5>
-					<ul class="links list-unstyled">
-						<li><a href="#">Guess Conntect</a></li>
-						<li><a href="#">Postly</a></li>
-						<li><a href="#">Iris Vor Arnim</a></li>
-						<li><a href="#">Yapital</a></li>
-					</ul>
-				</div>
+	
+	   <section id="cvssearch" class="newsletter bg-gray">
+      <div class="container text-center">
+        <h2>편의점 신선식품 재고 검색</h2>
+        <div class="form-holder">
+          <form id="newsletterForm" action="#">
+            <div class="form-group">
+              <input type="text" name="search" id="email" placeholder="원하는 지역명 혹은 상품명을 검색해보세요 (ex. 강남역 김밥)">
+              <button type="submit" class="btn btn-primary btn-gradient submit">Subscribe</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </section>
+
+	 <section id="browser" class="browser">
+      <div class="container">
+        <div class="row d-flex justify-content-center"> 
+          <div class="col-lg-8 text-center">
+            <h2 class="h3 mb-5">어떻게 이용하면 될까요?</h2>
+            <div class="browser-mockup">
+              <div id="nav-tabContent" class="tab-content">
+                <div id="nav-first" role="tabpanel" aria-labelledby="nav-first-tab" class="tab-pane fade show active"><img src="img/preview-3.png" alt="..." class="img-fluid"></div>
+                <div id="nav-second" role="tabpanel" aria-labelledby="nav-second-tab" class="tab-pane fade"><img src="img/preview-2.png" alt="..." class="img-fluid"></div>
+                <div id="nav-third" role="tabpanel" aria-labelledby="nav-third-tab" class="tab-pane fade"><img src="img/preview-1.png" alt="..." class="img-fluid"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div id="myTab" role="tablist" class="nav nav-tabs">
+          <div class="row">
+            <div class="col-md-4"><a id="nav-first-tab" data-toggle="tab" href="#nav-first" role="tab" aria-controls="nav-first" aria-expanded="true" class="nav-item nav-link active"> <span class="number">1</span>메인에서 먼저 검색을 해봅니다.</a></div>
+            <div class="col-md-4"><a id="nav-second-tab" data-toggle="tab" href="#nav-second" role="tab" aria-controls="nav-second" class="nav-item nav-link"> <span class="number">2</span>원하는 상품을 선택하고 결제버튼을<br> 클릭합니다!</a></div>
+            <div class="col-md-4"><a id="nav-third-tab" data-toggle="tab" href="#nav-third" role="tab" aria-controls="nav-third" class="nav-item nav-link"> <span class="number">3</span>마지막으로 결제 버튼을 누르고 상품을 찾으러 가면 끝!</a></div>
+          </div>
+        </div>
+      </div>
+    </section>
+    
+        <section id="features" class="features">
+      <div class="container">
+        <div class="row d-flex align-items-center">
+          <div class="text col-lg-6 order-2 order-lg-1">
+            <h4>당신과 함께 제휴를 해보고 싶습니다!</h4>
+            <p>많은 점주들이 Got Them과 제휴 한 뒤 매출이 <strong>150% 이상 상승</strong>하였습니다. 당신도 원한다면 아래의 제휴 사이트에서 제휴신청을 해보세요!</p><a href="storeIndex.st" class="btn btn-primary btn-shadow btn-gradient">이동하기</a>
+          </div>
+          <div class="image col-lg-6 order-1 order-lg-2"><img src="img/feature-1.png" alt="..." class="img-fluid"></div>
+        </div>
+      </div>
+    </section>	
+
+	<div class="container-fluid d-md-none">
+		<div class="row">
+			<div class="col-md-12">
+				<ul class="list-unstyled d-flex probootstrap-aside-social">
+					<li><a href="#" class="p-2"><span class="icon-twitter"></span></a></li>
+					<li><a href="#" class="p-2"><span class="icon-instagram"></span></a></li>
+					<li><a href="#" class="p-2"><span class="icon-dribbble"></span></a></li>
+				</ul>
+				<p>
+					&copy; 2017 <a href="https://uicookies.com/" target="_blank">uiCookies:Aside</a>.
+					<br> All Rights Reserved. Designed by <a
+						href="https://uicookies.com/" target="_blank">uicookies.com</a>
+				</p>
 			</div>
 		</div>
-		<div class="copyrights">
-			<div class="container">
-				<div class="row">
-					<div class="col-md-7">
-						<p>&copy; 2018 스탑없으팀 프로젝트 Gotthem  All rights reserved.</p>
-					</div>
-					<div class="col-md-5 text-right">
-						<p>
-							Template By <a href="https://bootstrapious.com/" class="external">Bootstrapious</a>
-						</p>
-						<!-- Please do not remove the backlink to Bootstrapious unless you support us at http://bootstrapious.com/donate. It is part of the license conditions. Thanks for understanding :) -->
-					</div>
-				</div>
-			</div>
-		</div>
-	</footer>
-	<!-- Javascript files-->
-	<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"></script>
-	<script src="resources/landy/vendor/bootstrap/js/bootstrap.min.js"></script>
-	<script src="resources/landy/vendor/jquery.cookie/jquery.cookie.js">
-	<script src="resources/landy/js/front.js"></script>
+	</div>
+
+	</main>
+
+	<script src="resources/indexTemplate/js/jquery-3.2.1.slim.min.js"></script>
+	<script src="resources/indexTemplate/js/popper.min.js"></script>
+	<script src="resources/indexTemplate/js/bootstrap.min.js"></script>
+	<script src="resources/indexTemplate/js/owl.carousel.min.js"></script>
+	<script src="resources/indexTemplate/js/jquery.waypoints.min.js"></script>
+	<script src="resources/indexTemplate/js/imagesloaded.pkgd.min.js"></script>
+	<script src="resources/indexTemplate/js/main.js"></script>
+
 </body>
 </html>

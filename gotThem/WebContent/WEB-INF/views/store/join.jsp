@@ -4,27 +4,20 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
 <title>Insert title here</title>
 </head>
-<meta name="viewport"
-	content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-<link rel="stylesheet"
-	href="resources/ownerindex/bootstrap/css/bootstrap.css">
+<link rel="stylesheet" href="resources/ownerindex/bootstrap/css/bootstrap.css">
 <link rel="stylesheet" href="resources/ownerindex/css/style.css">
-<link rel="stylesheet" type="text/css"
-	href="resource/join/vendor/bootstrap/css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="resource/join/vendor/bootstrap/css/bootstrap.min.css">
 <!--===============================================================================================-->
-<link rel="stylesheet" type="text/css"
-	href="resources/join/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" type="text/css" href="resources/join/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
 <!--===============================================================================================-->
-<link rel="stylesheet" type="text/css"
-	href="resources/join/vendor/animate/animate.css">
+<link rel="stylesheet" type="text/css" href="resources/join/vendor/animate/animate.css">
 <!--===============================================================================================-->
-<link rel="stylesheet" type="text/css"
-	href="resources/join/vendor/css-hamburgers/hamburgers.min.css">
+<link rel="stylesheet" type="text/css" href="resources/join/vendor/css-hamburgers/hamburgers.min.css">
 <!--===============================================================================================-->
-<link rel="stylesheet" type="text/css"
-	href="resources/join/vendor/select2/select2.min.css">
+<link rel="stylesheet" type="text/css" href="resources/join/vendor/select2/select2.min.css">
 <!--===============================================================================================-->
 <link rel="stylesheet" type="text/css"
 	href="resources/join/css/util.css">
