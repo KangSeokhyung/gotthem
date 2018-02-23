@@ -44,9 +44,9 @@ public class ProductController {
 			HttpServletResponse res, HttpSession session) throws Exception {
 		
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-		String sto_id = authentication.getName();
+		String mem_id = authentication.getName();
 		
-		MemberBean memberInfo =  memberService.memberInfo(sto_id);
+		MemberBean memberInfo =  memberService.memberInfo(mem_id);
 		int pro_stono = memberInfo.getMem_no();
 		
 		System.out.println("stono = " + pro_stono);
@@ -115,8 +115,9 @@ public class ProductController {
 	}
 	
 	@RequestMapping(value="/insert.st", method=RequestMethod.POST)
-	protected ModelAndView handleRequestInternal2(HttpServletRequest req, ProductBean bean) throws Exception {
+	protected ModelAndView handleRequestInternal(HttpServletRequest req, ProductBean bean) throws Exception {
 		
+		System.out.println(req.getParameter("mem_no"));
 		int pro_stono = (Integer.parseInt(req.getParameter("mem_no")));
 		
 		bean.setPro_stono(pro_stono);

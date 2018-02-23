@@ -16,8 +16,6 @@
 		update product set
 		pro_name = #{pro_name},
 		pro_category = #{pro_category},
-		pro_income = #{pro_income},
-		pro_release = #{pro_release},
 		pro_stock = #{pro_stock},
 		pro_price = #{pro_price}
 		where
@@ -30,8 +28,8 @@
 	
 	<insert id="insertPro" parameterType="kr.co.gotthem.product.bean.ProductBean">
 		insert into product(
-		pro_name, pro_stono, pro_category, pro_income, pro_release, pro_stock, pro_price)
+		pro_name, pro_stono, pro_category, pro_stock, pro_price)
 		values(
-		#{pro_name}, #{pro_stono}, #{pro_category}, #{pro_income}, #{pro_release}, #{pro_stock}, #{pro_price})
+		#{pro_name}, #{pro_stono}, #{pro_category}, #{pro_stock}, #{pro_price})
 	</insert>
 </mapper>
