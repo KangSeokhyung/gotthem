@@ -10,7 +10,7 @@ public interface OrderDao {
 	
 	// 1. 결제 추가
     public void insertOrder(OrderpayBean orderBean);
-    /*public void insertBasket(int code, int userNo,int stock);*/
+    /*public void insertBasket(int code, int userNo,int stock).;*/
     // 1.1 상품 삭제
     public void deleteproduct(int bas_no);
     

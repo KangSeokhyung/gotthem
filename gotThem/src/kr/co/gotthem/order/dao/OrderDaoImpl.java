@@ -19,7 +19,7 @@ public class OrderDaoImpl implements OrderDao {
 
 
 	
-	// 1.결제 추가
+	// 1.결제 추가.
     @Override
     public void insertOrder(OrderpayBean orderBean) {
     	sqlSessionTemplate.insert("insertOrder", orderBean);

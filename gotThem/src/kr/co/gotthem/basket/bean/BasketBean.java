@@ -1,7 +1,7 @@
 package kr.co.gotthem.basket.bean;
 
 import java.sql.Date;
-
+//
 public class BasketBean {
   private int bas_no;
   private int bas_memno;

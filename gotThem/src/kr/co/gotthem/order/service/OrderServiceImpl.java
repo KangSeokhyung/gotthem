@@ -15,7 +15,7 @@ public class OrderServiceImpl implements OrderService {
 		this.orderDao = orderDao;
 	}
 
-	// 1. 결제 추가
+	// 1. 결제 추가.
     @Override
     public void insertOrder(OrderpayBean orderBean) {
     	orderDao.insertOrder(orderBean);

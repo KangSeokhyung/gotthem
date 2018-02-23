@@ -103,7 +103,7 @@ public class BasketController {
        return "redirect:/list.gt";
     }
  
-    // 2. 장바구니 목록
+    /// 2. 장바구니 목록
     @RequestMapping(value = "list.gt", method = RequestMethod.GET)
 	public ModelAndView listBasket(HttpServletRequest req,HttpServletResponse res, 
 			HttpSession session,ModelAndView mav) throws Exception {

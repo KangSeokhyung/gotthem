@@ -7,7 +7,7 @@ import kr.co.gotthem.order.bean.OrderpayBean;
 
 public interface OrderService {
 	
-	// 1. 결제 추가
+	// 1. 결제 추가.
    public void insertOrder(OrderpayBean orderBean);
    // 1.1 상품 삭제
    public void deleteproduct(int bas_no);

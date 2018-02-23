@@ -16,7 +16,7 @@ public interface BasketService {
 	
 	public int update(int bas_no);
 	
-	/*public void delete(int bas_no);*/
+	//*public void delete(int bas_no);*/
 	
 	// 1. 장바구니 추가
    public void insertBasket(BasketBean basketBean);

@@ -12,7 +12,7 @@ public class OrderpayBean {
   private Date ord_findtime;
   private String ord_status;
   private int money;
-  
+  //
 public int getOrd_no() {
 	return ord_no;
 }

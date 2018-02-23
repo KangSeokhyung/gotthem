@@ -108,7 +108,7 @@ public class OrderController {
     @RequestMapping("listOrder.gt")
     public ModelAndView listBasket(HttpSession session, ModelAndView mav){
     	
-    	/*int userNo = (int) session.getAttribute("mem_no"); // session에 저장된 userId
+    	/*.int userNo = (int) session.getAttribute("mem_no"); // session에 저장된 userId
 */    	int userNo = 1;
     	Map<String, Object> map = new HashMap<String, Object>();
         List<BasketBean> listBasket = basketService.listBasket(userNo); // 장바구니 정보 

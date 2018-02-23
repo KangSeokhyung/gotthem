@@ -62,7 +62,7 @@
         WHERE b.bas_procode = p.pro_code AND b.bas_memno = #{mem_no}
     </select>
      
-    <!-- 4. 장바구니 수정(수량만 수정) -->
+    <!-- 4. 장바구니 수정(수량만 수정). -->
     <update id="modifyBasket">
         UPDATE basket   
         SET bas_prostock = #{bas_prostock} 

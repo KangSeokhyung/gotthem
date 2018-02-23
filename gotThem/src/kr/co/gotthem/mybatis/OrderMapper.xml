@@ -5,7 +5,7 @@
 <mapper namespace="kr.co.gotthem.mybatis.orderMapper">
 
 
-    <!-- 1. 단건 결제 추가 -->
+    <!-- 1. 단건 결제 추가. -->
     <insert id="insertOrder">
         INSERT INTO order (
            ord_memno, ord_procode, ord_proname, ord_prostock, ord_price
