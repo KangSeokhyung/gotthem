@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.mybatis.spring.SqlSessionTemplate;
 
+import kr.co.gotthem.member.bean.MemberBean;
 import kr.co.gotthem.store.bean.StoreBean;
 
 public class AdminDaoImpl implements AdminDao {
@@ -18,5 +19,5 @@ public class AdminDaoImpl implements AdminDao {
 	public List<StoreBean> list() {
 		return sqlSessionTemplate.selectList("list");
 	}
-
+	
 }

@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags"%>
 <!DOCTYPE html>
 <html lang="ko">
 	<head>
@@ -18,10 +18,11 @@
 			<div class="cover-container pb-5">
 				<div class="cover-inner container">
 		 <div class="row marketing">
-        <div class="col-lg-6">
+        <div class="col-xs-12">
           <h1 class="jumbotron-heading">지금 <strong>Got them에</strong> 점포를	<strong>등록하세요</strong></h1>
 			<p class="lead">got them에 대해 궁금하신가요?</p>
         </div>
+<<<<<<< HEAD
 
         <div class="col-lg-6">
          <div class="container">
@@ -58,6 +59,8 @@
                     </div>
                 </div>
             </div>
+=======
+>>>>>>> branch 'Kangsh' of https://github.com/KangSeokhyung/gotthem.git
             <!--/row-->
         </div>
         <!--/col-->
@@ -93,6 +96,7 @@
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
 		<script src="resources/ownerindex/bootstrap/js/bootstrap.min.js"></script>
+<<<<<<< HEAD
 		<script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
 		<script>
    		 function sample6_execDaumPostcode() {
@@ -167,5 +171,7 @@
     		 		} 			 
     		 } 	  */
 </script>
+=======
+>>>>>>> branch 'Kangsh' of https://github.com/KangSeokhyung/gotthem.git
 	</body>
 </html>

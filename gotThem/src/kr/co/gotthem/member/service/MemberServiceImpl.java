@@ -9,8 +9,8 @@ public class MemberServiceImpl implements MemberService {
 	private MemberDao memberDao;
 	
 	@Override
-	public List<MemberBean> mlist() {
-		return memberDao.mlist();
+	public MemberBean memberInfo(String mem_id) {
+		return memberDao.memberInfo(mem_id);
 	}
 	
 	public void setMemberDao(MemberDao memberDao) {
@@ -18,13 +18,33 @@ public class MemberServiceImpl implements MemberService {
 	}
 
 	@Override
-	public void insert(MemberBean memberBean) {
-		memberDao.insert(memberBean);
+	public int join(MemberBean memberBean) {
+		int result = memberDao.join(memberBean);
+		return result;
 	}
 
 	@Override
 	public MemberBean login(String id) {
 		return memberDao.login(id);
 	}
+	
+	@Override
+	public int duplCheck(String mem_id) {
+		return memberDao.duplCheck(mem_id);
+	}
+	
+	@Override
+	public void memberModifi(MemberBean memberBean) {
+		memberDao.memberModifi(memberBean);
+	}
+	
+	@Override
+	public int passCheck(MemberBean memberBean) {
+		return memberDao.passCheck(memberBean);
+	}
 
+	@Override
+	public void memberDelete(MemberBean memberBean) {
+		memberDao.memberDelete(memberBean);
+	}
 }

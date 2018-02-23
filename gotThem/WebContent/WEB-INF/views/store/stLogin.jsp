@@ -18,7 +18,7 @@
 		<%@include file ="storeNav.jsp"%>
 				<section class="container login-form">
 		<section>
-			<form method="post" action="<c:url value="/login"/>" role="login">			
+			<form method="post" action="<c:url value="/login.st"/>" role="login">			
 
 				<div class="form-group">
 					<input type="text" name="sto_id" required class="form-control"
@@ -58,7 +58,7 @@
 							<li><a href="#" title="Google+" class="fa fa-google"></a></li>
 							<li><a href="#" title="Dribbble" class="fa fa-dribbble"></a></li>
 							<li><a href="#" title="Instagram" class="fa fa-instagram"></a></li>
-							<div class="clear"></div>
+						
 						</ul>
 					</div>
 				</div>

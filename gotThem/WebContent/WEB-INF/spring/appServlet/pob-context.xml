@@ -15,7 +15,7 @@
 	</bean>
 	<bean id="productController" class="kr.co.gotthem.product.controller.ProductController">
 		<property name="productService" ref="productService" />
-		<property name="storeService" ref="storeService" />
+		<property name="memberService" ref="memberService" />
 	</bean>
 	
 	<!-- Service -->

@@ -1,6 +1,5 @@
 package kr.co.gotthem.member.bean;
 
-
 import java.sql.Date;
 
 public class MemberBean {
@@ -10,16 +9,24 @@ public class MemberBean {
 	private String mem_name;
 	private String mem_email;
 	private String mem_phone;
-	private String mem_post;
-	private String mem_address1;
-	private String mem_address2;
+	private String mem_address;
+	private String mem_img;
 	private Date mem_regdate;
-	private int mem_point;
+	private String mem_status;
+	private String mem_comment;
+	private int enabled;
+
 	public int getMem_no() {
 		return mem_no;
 	}
 	public void setMem_no(int mem_no) {
 		this.mem_no = mem_no;
+	}
+	public String getMem_address() {
+		return mem_address;
+	}
+	public void setMem_address(String mem_address) {
+		this.mem_address = mem_address;
 	}
 	public String getMem_id() {
 		return mem_id;
@@ -51,23 +58,13 @@ public class MemberBean {
 	public void setMem_phone(String mem_phone) {
 		this.mem_phone = mem_phone;
 	}
-	public String getMem_post() {
-		return mem_post;
+
+	public String getMem_img() {
+		return mem_img;
 	}
-	public void setMem_post(String mem_post) {
-		this.mem_post = mem_post;
-	}
-	public String getMem_address1() {
-		return mem_address1;
-	}
-	public void setMem_address1(String mem_address1) {
-		this.mem_address1 = mem_address1;
-	}
-	public String getMem_address2() {
-		return mem_address2;
-	}
-	public void setMem_address2(String mem_address2) {
-		this.mem_address2 = mem_address2;
+	public void setMem_img(String mem_img) {
+		this.mem_img = mem_img;
+
 	}
 	public Date getMem_regdate() {
 		return mem_regdate;
@@ -75,24 +72,36 @@ public class MemberBean {
 	public void setMem_regdate(Date mem_regdate) {
 		this.mem_regdate = mem_regdate;
 	}
-	public int getMem_point() {
-		return mem_point;
+	public String getMem_comment() {
+		return mem_comment;
 	}
-	public void setMem_point(int mem_point) {
-		this.mem_point = mem_point;
+	public void setMem_comment(String mem_comment) {
+		this.mem_comment = mem_comment;
 	}
+	public String getMem_status() {
+		return mem_status;
+	}
+	public void setMem_status(String mem_status) {
+		this.mem_status = mem_status;
+	}
+	public int getEnabled() {
+		return enabled;
+	}
+	public void setEnabled(int enabled) {
+		this.enabled = enabled;
+	}
+	
+
 	@Override
 	public String toString() {
 		return "MemberBean [mem_no=" + mem_no + ", mem_id=" + mem_id + ", mem_pw=" + mem_pw + ", mem_name=" + mem_name
-				+ ", mem_email=" + mem_email + ", mem_phone=" + mem_phone + ", mem_post=" + mem_post + ", mem_address1="
-				+ mem_address1 + ", mem_address2=" + mem_address2 + ", mem_regdate=" + mem_regdate + ", mem_point="
-				+ mem_point + "]";
+				+ ", mem_email=" + mem_email + ", mem_phone=" + mem_phone + ", mem_address=" + mem_address
+				+ ", mem_img=" + mem_img + ", mem_regdate=" + mem_regdate + ", mem_status=" + mem_status
+				+ ", mem_comment=" + mem_comment + ", enabled=" + enabled + "]";
 	}
-	
-	
-
-	
 	public MemberBean() {
 		super();
+
 	}
+	
 }

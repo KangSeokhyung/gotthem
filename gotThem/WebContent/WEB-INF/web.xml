@@ -13,9 +13,9 @@
 	<context-param>
 		<param-name>contextConfigLocation</param-name>
 		<param-value>
-		  /WEB-INF/spring/appServlet/servlet-context.xml
-		  /WEB-INF/spring/appServlet/security-context.xml
-		</param-value>
+		/WEB-INF/spring/appServlet/servlet-context.xml
+		/WEB-INF/spring/appServlet/security-context.xml
+		</param-value>	
 	</context-param>
 	<filter>
 		<filter-name>springSecurityFilterChain</filter-name>
@@ -52,8 +52,8 @@
 			<param-name>contextConfigLocation</param-name>
 			<param-value>
 				 /WEB-INF/spring/appServlet/servlet-context.xml
-				/WEB-INF/spring/appServlet/store-context.xml
 				/WEB-INF/spring/appServlet/pob-context.xml
+				/WEB-INF/spring/appServlet/member-context.xml
 			</param-value>
 		</init-param>
 		<load-on-startup>1</load-on-startup>
@@ -70,7 +70,7 @@
 			<param-name>contextConfigLocation</param-name>
 			<param-value>
 			 	/WEB-INF/spring/appServlet/servlet-context.xml
-				/WEB-INF/spring/appServlet/admin-context.xml
+				/WEB-INF/spring/appServlet/member-context.xml
 			</param-value>
 		</init-param>
 		<load-on-startup>1</load-on-startup>
