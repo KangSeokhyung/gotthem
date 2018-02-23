@@ -104,7 +104,7 @@ public class OrderController {
        return "redirect:/list.gt";
     }
 
-    // 2. 결제 목록
+    // 2. 결제 목록ㅍㅍ
     @RequestMapping("listOrder.gt")
     public ModelAndView listBasket(HttpSession session, ModelAndView mav){
     	
