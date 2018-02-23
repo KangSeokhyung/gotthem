@@ -18,13 +18,24 @@ public class MemberServiceImpl implements MemberService {
 	}
 
 	@Override
-	public void insert(MemberBean memberBean) {
-		memberDao.insert(memberBean);
+	public int join(MemberBean memberBean) {
+		int result = memberDao.join(memberBean);
+		return result;
 	}
 
 	@Override
 	public MemberBean login(String id) {
 		return memberDao.login(id);
+	}
+	
+	@Override
+	public int duplCheck(String mem_id) {
+		return memberDao.duplCheck(mem_id);
+	}
+
+	@Override
+	public MemberBean memberInfo(String mem_id) {
+		return memberDao.memberInfo(mem_id);
 	}
 
 }

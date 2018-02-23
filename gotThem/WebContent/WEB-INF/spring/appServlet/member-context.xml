@@ -5,9 +5,17 @@
 	
 	<!-- Controller -->
 	<bean id="memberController" class="kr.co.gotthem.member.controller.MemberController">
-		<property name="storeService" ref="storeService" />
+		<property name="memberService" ref="memberService" />
 	</bean>
 	
+	<bean id="storeController" class="kr.co.gotthem.store.controller.StoreController">
+		<property name="memberService" ref="memberService" />
+	</bean>
+	
+	<bean id="adminController" class="kr.co.gotthem.admin.controller.AdminController">
+		<property name="memberService" ref="memberService" />
+	</bean>
+
 	<!-- Service -->
 	<bean id="memberService" class="kr.co.gotthem.member.service.MemberServiceImpl">
 		<property name="memberDao" ref="memberDao" />

@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -31,8 +32,7 @@
 	<div class="limiter">
 		<div class="container-login100">
 			<div class="wrap-login100 p-t-0 p-b-30">
-				<form class="login100-form validate-form" method="post">
-
+				<form class="login100-form validate-form" action="<c:url value='/login.gt' />"method="post">
 					<div class="text-center p-t-55 p-b-30">
 						<span class="txt1">
 							Login
@@ -40,7 +40,7 @@
 					</div>
 
 					<div class="wrap-input100 validate-input m-b-16" >
-						<input class="input100" type="text" name="m_id" placeholder="ID">
+						<input class="input100" type="text" name="mem_id" placeholder="ID">
 						<span class="focus-input100"></span>
 					</div>
 
@@ -48,7 +48,7 @@
 						<span class="btn-show-pass">
 							<i class="fa fa fa-eye"></i>
 						</span>
-						<input class="input100" type="password" name="m_pass" placeholder="PASSWORD">
+						<input class="input100" type="password" name="mem_pw" placeholder="PASSWORD">
 						<span class="focus-input100"></span>
 					</div>
 
