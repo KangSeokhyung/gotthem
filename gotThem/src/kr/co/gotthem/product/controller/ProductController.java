@@ -72,13 +72,13 @@ public class ProductController {
 	}
 	
 	@RequestMapping(value="/update.st", method=RequestMethod.GET)
-	protected ModelAndView movieUpdateForm(HttpServletRequest req, ModelAndView view){
+	protected ModelAndView movieUpdateForm(HttpServletRequest req, ModelAndView mav){
 		ProductBean bean = productService.findCode(Integer.parseInt(req.getParameter("code")));
 		System.out.println("update.st의 컨트롤"+ bean);
-		view.setViewName("product/update");
-		view.addObject("pro",bean);
+		mav.setViewName("product/update");
+		mav.addObject("pro",bean);
 		
-		return view;
+		return mav;
 	}
 	@RequestMapping(value="/update.st", method=RequestMethod.POST)
 	protected ModelAndView updateProcess(@ModelAttribute ProductBean bean, HttpServletRequest req){

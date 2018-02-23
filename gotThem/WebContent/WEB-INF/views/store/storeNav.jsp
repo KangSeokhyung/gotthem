@@ -15,7 +15,7 @@
 			id="navbarSupportedContent">
 			<ul class="navbar-nav mt-2 mt-md-0">
 				<li class="nav-item"><a class="nav-link" href="#">알림사항</a></li>
-				<li class="nav-item"><a class="nav-link" href="#">점포관리</a></li>
+				<li class="nav-item"><a class="nav-link" href="mystore.st">점포관리</a></li>
 				<li class="nav-item"><a class="nav-link" href="stock.st">재고관리</a></li>
 				<li class="nav-item"><a class="nav-link" href="#">회사소개</a></li>
 				<c:set var="sessionCheck"
