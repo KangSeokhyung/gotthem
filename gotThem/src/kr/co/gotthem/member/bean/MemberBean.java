@@ -3,7 +3,7 @@ package kr.co.gotthem.member.bean;
 import java.sql.Date;
 
 public class MemberBean {
-
+	private int mem_no;
 	private String mem_id;
 	private String mem_pw;
 	private String mem_name;
@@ -12,9 +12,15 @@ public class MemberBean {
 	private String mem_address;
 	private String mem_img;
 	private Date mem_regdate;
-	private String mem_comment;
 	private String mem_status;
+	private String mem_comment;
 	private int enabled;
+	public int getMem_no() {
+		return mem_no;
+	}
+	public void setMem_no(int mem_no) {
+		this.mem_no = mem_no;
+	}
 	public String getMem_id() {
 		return mem_id;
 	}
@@ -83,14 +89,13 @@ public class MemberBean {
 	}
 	@Override
 	public String toString() {
-		return "MemberBean [mem_id=" + mem_id + ", mem_pw=" + mem_pw + ", mem_name=" + mem_name + ", mem_email="
-				+ mem_email + ", mem_phone=" + mem_phone + ", mem_address=" + mem_address + ", mem_img=" + mem_img
-				+ ", mem_regdate=" + mem_regdate + ", mem_comment=" + mem_comment + ", mem_status=" + mem_status
-				+ ", enabled=" + enabled + "]";
+		return "MemberBean [mem_no=" + mem_no + ", mem_id=" + mem_id + ", mem_pw=" + mem_pw + ", mem_name=" + mem_name
+				+ ", mem_email=" + mem_email + ", mem_phone=" + mem_phone + ", mem_address=" + mem_address
+				+ ", mem_img=" + mem_img + ", mem_regdate=" + mem_regdate + ", mem_comment=" + mem_comment
+				+ ", mem_status=" + mem_status + ", enabled=" + enabled + "]";
 	}
-	public MemberBean() {
-		super();
-	}
+	
+	
 	
 	
 }

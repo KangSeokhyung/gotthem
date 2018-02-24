@@ -4,8 +4,8 @@
               
 <mapper namespace="kr.co.gotthem.mybatis.MemberMapper">
 
-	<select id="mlist" resultType="kr.co.gotthem.member.bean.MemberBean">
-		select * from member
+	<select id="memberInfo" parameterType="String" resultType="kr.co.gotthem.member.bean.MemberBean">
+		select * from member where mem_id = #{mem_id}
 	</select>
 	<select id="login" resultType="kr.co.gotthem.member.bean.MemberBean">
 		select mem_id, mem_pw from member where mem_id = #{id}
@@ -16,8 +16,21 @@
 	</select>
 	
 	<insert id="join" parameterType="kr.co.gotthem.member.bean.MemberBean">
-		insert into member(mem_id, mem_pw, mem_name, mem_email, mem_phone, mem_post, mem_address1, mem_address2)
-		values(#{mem_id}, #{mem_pw}, #{mem_name}, #{mem_email}, #{mem_phone}, #{mem_post}, #{mem_address1}, #{mem_address2})
+		insert into member(mem_id, mem_pw, mem_name, mem_email, mem_phone, mem_address)
+		values(#{mem_id}, #{mem_pw}, #{mem_name}, #{mem_email}, #{mem_phone}, #{mem_address})
 	</insert>
+	
+	<update id="memberModi" parameterType="kr.co.gotthem.member.bean.MemberBean">
+		update member set mem_name = #{mem_name}, mem_email = #{mem_email}, mem_phone = #{mem_phone}, 
+		mem_address = #{mem_address}, where mem_id = #{mem_id}
+	</update>
+	
+	<select id="passCheck" parameterType="kr.co.gotthem.member.bean.MemberBean" resultType="int">
+		select count(*) from member where mem_id=#{mem_id} and mem_pw=#{mem_pw}
+	</select>
+	
+	<update id="memberDelete" parameterType="kr.co.gotthem.member.bean.MemberBean">
+		update member set enabled = 0 where mem_id=#{mem_id} and mem_pw=#{mem_pw}
+	</update>
 
 </mapper>

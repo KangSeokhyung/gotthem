@@ -10,74 +10,15 @@
 <meta charset="utf-8">
 <link rel="stylesheet" type="text/css" href="resources/Login_v7/css/util.css">
 <link rel="stylesheet" type="text/css" href="resources/Login_v7/css/main.css">
-<link href="https://fonts.googleapis.com/css?family=Work+Sans"
-	rel="stylesheet">
-<link rel="stylesheet"
-	href="resources/indexTemplate/css/bootstrap.min.css">
-<link rel="stylesheet"
-	href="resources/indexTemplate/css/open-iconic-bootstrap.min.css">
-<link rel="stylesheet"
-	href="resources/indexTemplate/css/owl.carousel.min.css">
-<link rel="stylesheet"
-	href="resources/indexTemplate/css/owl.theme.default.min.css">
-<link rel="stylesheet" href="resources/indexTemplate/css/icomoon.css">
-<link rel="stylesheet" href="resources/indexTemplate/css/animate.css">
-<link rel="stylesheet" href="resources/indexTemplate/css/style.css">
-
+<link rel="stylesheet" href="resources/mainTemplate/ionicons/css/ionicons.min.css">
+<link rel="stylesheet" href="resources/mainTemplate/bootstrap/css/bootstrap.min.css">
+<link rel="stylesheet" href="resources/mainTemplate/sweetalert/dist/sweetalert.css">
+<link rel="stylesheet" href="resources/mainTemplate/css/stisla.css">
 </head>
 <body>
-
-<aside class="probootstrap-aside js-probootstrap-aside">
-		<a href="#"
-			class="probootstrap-close-menu js-probootstrap-close-menu d-md-none"><span
-			class="oi oi-arrow-left"></span> Close</a>
-		<div class="probootstrap-site-logo probootstrap-animate"
-			data-animate-effect="fadeInLeft">
-
-			<a href="/gotThem" class="mb-2 d-block probootstrap-logo">GOTTHEM</a>
-			<p class="mb-0">
-				편의점 재고 검색 사이트 
-			</p>
-		</div>
-		<div class="probootstrap-overflow">
-			<nav class="probootstrap-nav">
-				<ul>
-					<li class="probootstrap-animate"
-						data-animate-effect="fadeInLeft"><a href="/gotThem">검색하기</a></li>
-					<li class="probootstrap-animate" data-animate-effect="fadeInLeft"><a
-						href="#">Got Them?</a></li>
-					<li class="probootstrap-animate" data-animate-effect="fadeInLeft"><a
-						href="#">공지사항</a></li>
-					<li class="probootstrap-animate" data-animate-effect="fadeInLeft"><a
-						href="#">이벤트</a></li>
-					<li class="probootstrap-animate active" data-animate-effect="fadeInLeft"><a
-						href="login.gt">로그인</a></li>
-					<li class="probootstrap-animate" data-animate-effect="fadeInLeft"><a
-						href="join.gt">가입하기</a></li>
-					<li class="probootstrap-animate" data-animate-effect="fadeInLeft"><a
-						href="storeIndex.st">제휴페이지</a></li>
-				</ul>
-			</nav>
-			<footer class="probootstrap-aside-footer probootstrap-animate"
-				data-animate-effect="fadeInLeft">
-				<p>
-					&copy; 2018 <a href="/gotThem" target="_blank">스탑없으 X Got Them</a>.
-					<br> All Rights Reserved.
-				</p>
-			</footer>
-		</div>
-	</aside>
-
-
-	<main role="main" class="probootstrap-main js-probootstrap-main">
-	<div class="probootstrap-bar">
-		<a href="#" class="probootstrap-toggle js-probootstrap-toggle"><span
-			class="oi oi-menu"></span></a>
-		<div class="probootstrap-main-site-logo">
-			<a href="index.html">Aside</a></a>
-		</div>
-	</div>
-
+	<header class="header">
+		<%@include file="../../../nav.jsp" %>
+	</header>
 	<div class="limiter">
 		<div class="container-login100">
 			<div class="wrap-login100 p-t-0 p-b-30">
@@ -86,7 +27,6 @@
 					<div class="text-center p-t-55 p-b-30">
 						<span class="txt1"> Login </span>
 					</div>
-
 					<div class="wrap-input100 validate-input m-b-16">
 						<input class="input100" type="text" name="mem_id" placeholder="ID">
 						<span class="focus-input100"></span>
@@ -98,6 +38,13 @@
 						</span> <input class="input100" type="password" name="mem_pw"
 							placeholder="PASSWORD"> <span class="focus-input100"></span>
 					</div>
+					
+					<c:set var="errMsg" value="${errMsg}"/>
+					<c:if test="${errMsg ne null}">
+					<div>
+						<span class="text-center txt1" style="color:red; ">${errMsg}</span>
+					</div>
+					</c:if>
 
 					<div class="container-login100-form-btn">
 						<button type="submit" class="login100-form-btn">Login</button>
@@ -114,35 +61,10 @@
 			</div>
 		</div>
 	</div>
-
-	<div class="container-fluid d-md-none">
-		<div class="row">
-			<div class="col-md-12">
-				<ul class="list-unstyled d-flex probootstrap-aside-social">
-					<li><a href="#" class="p-2"><span class="icon-twitter"></span></a></li>
-					<li><a href="#" class="p-2"><span class="icon-instagram"></span></a></li>
-					<li><a href="#" class="p-2"><span class="icon-dribbble"></span></a></li>
-				</ul>
-				<p>
-					&copy; 2017 <a href="https://uicookies.com/" target="_blank">uiCookies:Aside</a>.
-					<br> All Rights Reserved. Designed by <a
-						href="https://uicookies.com/" target="_blank">uicookies.com</a>
-				</p>
-			</div>
-		</div>
-	</div>
-
-	</main>
-
-
-
-	<script src="resources/indexTemplate/js/jquery-3.2.1.slim.min.js"></script>
-	<script src="resources/indexTemplate/js/popper.min.js"></script>
-	<script src="resources/indexTemplate/js/bootstrap.min.js"></script>
-	<script src="resources/indexTemplate/js/owl.carousel.min.js"></script>
-	<script src="resources/indexTemplate/js/jquery.waypoints.min.js"></script>
-	<script src="resources/indexTemplate/js/imagesloaded.pkgd.min.js"></script>
-	<script src="resources/indexTemplate/js/main.js"></script>
-
+	<script src="resources/mainTemplate/js/jquery.min.js"></script>
+	<script src="resources/mainTemplate/bootstrap/js/bootstrap.min.js"></script>
+	<script src="resources/mainTemplate/js/jquery.easeScroll.js"></script>
+	<script src="resources/mainTemplate/sweetalert/dist/sweetalert.min.js"></script>
+	<script src="resources/mainTemplate/js/stisla.js"></script>
 </body>
 </html>
