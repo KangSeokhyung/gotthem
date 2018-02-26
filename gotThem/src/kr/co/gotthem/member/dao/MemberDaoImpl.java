@@ -50,5 +50,17 @@ public class MemberDaoImpl implements MemberDao {
 		int result = sqlSessionTemplate.update("memberDelete",memberBean);
 		System.out.println("회원탈퇴 결과는 " + result);
 	}
+	
+	@Override
+	public MemberBean findAccount(String email) {
+		return sqlSessionTemplate.selectOne("findAccount",email);
+	}
+	
+	@Override
+	public void changePassword(MemberBean memberBean){
+		System.out.println(memberBean);
+		int result = sqlSessionTemplate.update("changePassword",memberBean);
+		System.out.println("비밀번호 변경 결과는 " + result);
+	}
 
 }

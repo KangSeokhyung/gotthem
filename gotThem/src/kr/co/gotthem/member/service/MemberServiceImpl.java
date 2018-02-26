@@ -47,4 +47,14 @@ public class MemberServiceImpl implements MemberService {
 	public void memberDelete(MemberBean memberBean) {
 		memberDao.memberDelete(memberBean);
 	}
+	
+	@Override
+	public MemberBean findAccount(String email) {
+		return memberDao.findAccount(email);
+	}
+	
+	@Override
+	public void changePassword(MemberBean memberBean) {
+		memberDao.changePassword(memberBean);
+	}
 }

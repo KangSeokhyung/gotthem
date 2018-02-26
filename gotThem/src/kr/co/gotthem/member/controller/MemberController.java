@@ -1,30 +1,42 @@
 package kr.co.gotthem.member.controller;
 
 import java.io.PrintWriter;
+import java.util.Random;
 import java.util.StringTokenizer;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import kr.co.gotthem.member.bean.MemberBean;
+import kr.co.gotthem.member.mail.MailService;
 import kr.co.gotthem.member.service.MemberService;
 
 @Controller
 public class MemberController {
 	
 	private MemberService memberService;
+	private MailService mailService;
+
 
 	public void setMemberService(MemberService memberService) {
 		this.memberService = memberService;
 	}
+	
+	@Autowired
+	public void setMailService(MailService mailService) {
+        this.mailService = mailService;
+    }
 
 	@RequestMapping(value = "/login.gt", method = RequestMethod.GET)
 	public String login() {
@@ -180,4 +192,64 @@ public class MemberController {
 		mav.setViewName("member/findIDAndPW");
 		return mav;
 	}
+	
+ 
+    // 아이디 찾기
+    @RequestMapping(value = "/findID.gt", method = RequestMethod.POST)
+    public String sendMailId(HttpSession session, @RequestParam("mem_email") String email, RedirectAttributes ra, MemberBean bean) {
+       
+        bean =  memberService.findAccount(email);
+        System.out.println(bean);
+        System.out.println(email);
+        if (bean != null) {
+            String subject = "Goththem 아이디 찾기 안내 입니다.";
+            StringBuilder sb = new StringBuilder();
+            sb.append("귀하의 아이디는 " + bean.getMem_id() + " 입니다.");
+            if(mailService != null) {
+            	System.out.println(mailService);
+            } else {
+            	System.out.println(" 빈거" + mailService);
+            }
+            boolean mailResult = mailService.send(subject, sb.toString(), "gotthembit@gmail.com", email, null);
+          
+            
+            System.out.println("이메일 보내기 성공?"+ mailResult);
+            
+            ra.addFlashAttribute("resultMsg", "귀하의 이메일 주소로 해당 이메일로 가입된 아이디를 발송 하였습니다.");
+        } else {
+            ra.addFlashAttribute("resultMsg", "귀하의 이메일로 가입된 아이디가 존재하지 않습니다.");
+        }
+        return "redirect:/findIDAndPW.gt";
+    }
+ 
+    
+    // 비밀번호 찾기
+    @RequestMapping(value = "/findPW.gt", method = RequestMethod.POST)
+    public String sendMailPassword(HttpSession session, MemberBean bean, @RequestParam("mem_email") String email, RedirectAttributes ra) {
+        String mem_id = bean.getMem_id();
+        bean= memberService.login(mem_id);
+        if (bean != null) {
+            if (!bean.getMem_id().equals(mem_id)) {
+                ra.addFlashAttribute("resultMsg", "입력하신 이메일의 회원정보와 가입된 아이디가 일치하지 않습니다.");
+                return "redirect:/findIDAndPW.gt";
+            }
+            int ran = new Random().nextInt(100000) + 10000; // 10000 ~ 99999
+            String password = String.valueOf(ran);
+            bean.setMem_pw(password);
+            bean.setMem_email(email);
+            memberService.changePassword(bean); // 해당 유저의 DB정보 변경
+ 
+            String subject = "임시 비밀번호 발급 안내 입니다.";
+            StringBuilder sb = new StringBuilder();
+            sb.append("귀하의 임시 비밀번호는 " + password + " 입니다.");
+            boolean mailResult = mailService.send(subject, sb.toString(), "gotthembit@gmail.com", email, null);
+            System.out.println("이메일 보내기 성공?"+ mailResult);
+            ra.addFlashAttribute("resultMsg", "귀하의 이메일 주소로 새로운 임시 비밀번호를 발송 하였습니다.");
+        } else {
+            ra.addFlashAttribute("resultMsg", "귀하의 이메일로 가입된 아이디가 존재하지 않습니다.");
+        }
+        return "redirect:/findIDAndPW.gt";
+    }
+
+
 }
