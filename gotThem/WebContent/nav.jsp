@@ -1,50 +1,56 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<!-- navbar-->
-<header class="header">
-	<nav class="navbar navbar-expand-lg fixed-top">
-		<a href="index.jsp" class="navbar-brand">Got Them!</a>
-		<button type="button" data-toggle="collapse"
-			data-target="#navbarSupportedContent"
-			aria-controls="navbarSupportedContent" aria-expanded="false"
-			aria-label="Toggle navigation"
-			class="navbar-toggler navbar-toggler-right">
-			<span></span><span></span><span></span>
-		</button>
-		<div id="navbarSupportedContent" class="collapse navbar-collapse">
-			<ul
-				class="navbar-nav ml-auto align-items-start align-items-lg-center">
-				<li class="nav-item"><a href="#about-us"
-					class="nav-link link-scroll">Got them?</a></li>
-				<li class="nav-item"><a href="#features"
-					class="nav-link link-scroll">Notice</a></li>
-				<li class="nav-item"><a href="#testimonials"
-					class="nav-link link-scroll">Event</a></li>
-				<li class="nav-item"><a href="test.gt" class="nav-link">Question</a></li>
-			</ul>
-			<div class="navbar-text">
-				<!-- Button trigger modal-->
-
-
-				<c:set var="sessionCheck"
+<!DOCTYPE htm>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<nav class="navbar navbar-expand-lg main-navbar">
+			<div class="container-fluid">			
+			  <a class="navbar-brand" href="/gotThem">
+			  	<img src="resources/mainTemplate/img/logo-light.png" alt="Logo">
+			  </a>
+			  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+			    <span class="navbar-toggler-icon">
+			    	<i class="ion-navicon"></i>
+			    </span>
+			  </button>
+			  <div class="collapse navbar-collapse" id="navbarNav">
+				  <div class="mr-auto"></div>
+			    <ul class="navbar-nav">
+			      <li class="nav-item">
+			        <a class="nav-link smooth-link" href="#hero">COMPANY</a>
+			      </li>
+			      <li class="nav-item">
+			        <a class="nav-link smooth-link" href="#features">NOTICE</a>
+			      </li>
+			      <li class="nav-item">
+			        <a class="nav-link smooth-link" href="#blog">EVENT</a>
+			      </li>
+			    <c:set var="sessionCheck"
 					value="${sessionScope.SPRING_SECURITY_CONTEXT}" />
 				<c:choose>
 					<c:when test="${sessionCheck eq null}">
-						<a href="join.gt"
-							class="btn btn-primary navbar-btn btn-shadow btn-gradient">Sign
-							Up</a>
-						<a href="login.gt"
-							class="btn btn-primary navbar-btn btn-shadow btn-gradient">Login</a>
-						</c:when>
-						<c:otherwise>
-							<a href="mypage.gt"
-								class="btn btn-primary navbar-btn btn-shadow btn-gradient">Mypage</a>
-						<a href="logout.gt"
-							class="btn btn-primary navbar-btn btn-shadow btn-gradient">Logout</a>
+					<li class="nav-item">
+			        <a class="nav-link smooth-link" href="join.gt">SIGN UP</a>
+			      </li>
+			      <li class="nav-item">
+			        <a class="nav-link smooth-link" href="login.gt">LOGIN</a>
+			      </li>
+					</c:when>
+					<c:otherwise>
+					<li class="nav-item"><a href="mypage.gt"
+								class="nav-link">MY INFO</a></li>
+						<li class="nav-item"><a href="logout.gt"
+								class="nav-link">LOGOUT</a></li>
 					</c:otherwise>
 				</c:choose>
-			</div>
-		</div>
-	</nav>
-</header>
+			    </ul>
+			  </div>
+		  </div>
+		</nav>
+</body>
+</html>
