@@ -6,6 +6,8 @@ import org.mybatis.spring.SqlSessionTemplate;
 
 import kr.co.gotthem.member.bean.MemberBean;
 
+
+
 public class AdminDaoImpl implements AdminDao {
 
 	private SqlSessionTemplate sqlSessionTemplate;

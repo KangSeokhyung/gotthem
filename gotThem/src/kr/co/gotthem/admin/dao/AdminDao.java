@@ -6,4 +6,5 @@ import kr.co.gotthem.member.bean.MemberBean;
 
 public interface AdminDao {
 	public List<MemberBean> list();
+
 }

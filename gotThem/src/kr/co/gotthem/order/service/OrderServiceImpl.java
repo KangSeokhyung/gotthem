@@ -20,6 +20,13 @@ public class OrderServiceImpl implements OrderService {
     public void insertOrder(OrderpayBean orderBean) {
     	orderDao.insertOrder(orderBean);
     }
+    
+    //1.1. 결제 되면, 결제된 수량만큼 장바구니 수량
+    @Override
+    public void updateBasketOrder(OrderpayBean orderBean) {
+    	orderDao.updateBasketOrder(orderBean);
+    }
+    
     // 1.1 상품 삭제
     @Override
     public void deleteproduct(int bas_no) {
