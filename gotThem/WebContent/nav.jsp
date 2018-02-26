@@ -11,7 +11,7 @@
 	<nav class="navbar navbar-expand-lg main-navbar">
 			<div class="container-fluid">			
 			  <a class="navbar-brand" href="/gotThem">
-			  	<img src="resources/mainTemplate/img/logo-light.png" alt="Logo">
+			  	<img src="resources/mainTemplate/img/logo.png" alt="Logo">
 			  </a>
 			  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
 			    <span class="navbar-toggler-icon">

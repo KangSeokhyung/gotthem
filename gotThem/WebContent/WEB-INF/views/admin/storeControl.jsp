@@ -16,33 +16,37 @@
 		<table class="table">
 			<thead>
 				<tr>
-					<th>NO</th>
-					<th>아이디</th>
-					<th>이름</th>
+					<th>점포번호</th>
+					<th>점주아이디</th>
+					<th>점주명</th>
+					<th>점포명</th>
+					<th>점포주소</th>
 					<th>전화번호</th>
-					<th>주소</th>
-					<th>가입일</th>
 					<th>이메일</th>
-					<th>탈퇴여부</th>
-					<th>회원등급</th>	
-					<th>수정</th>
-					<th>비활성화</th>
+					<th>가입일</th>
+					<th>사업자번호</th>
+					<th>승인상태</th>
+					<th>승인여부</th>	
+					<th>수정하기</th>
+					<th>비활성화</th>			
 				</tr>
 			</thead>
 			<tbody>
-			<c:forEach var="mlist" items="${requestScope.mlist}">
+			<c:forEach var="stlist" items="${requestScope.stlist}">
 					<tr>
-						<td>${mlist.mem_no}</td>
-						<td>${mlist.mem_id}</td>
-						<td>${mlist.mem_name}</td>
-						<td>${mlist.mem_phone}</td>
-						<td>${mlist.mem_address}</td>
-						<td>${mlist.mem_regdate}</td>
-						<td>${mlist.mem_status}</td>
-						<td>${mlist.enabled}</td>
+						<td>${stlist.mem_no}</td>
+						<td>${stlist.mem_id}</td>
+						<td>${stlist.mem_name }</td>
+						<td>${stlist.sto_name }</td>
+						<td>${stlist.mem_email}</td>
+						<td>${stlist.mem_phone}</td>
+						<td>${stlist.mem_address}</td>
+						<td>${stlist.mem_regdate}</td>
+						<td>${stlist.mem_status}</td>
+						<td>${stlist.enabled}</td>
 						<td><select>
-						<option value="volvo">ROLE_USER</option>
-						<option value="saab">ROLE_ADMIN</option>
+						<option value="volvo">0</option>
+						<option value="saab">1</option>
 						</select></td>
 						<td><button type="button" class="btn btn-primary">수정</button></td>
 						<td><button type="button" class="btn btn-danger">삭제</button></td>
