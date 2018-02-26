@@ -31,20 +31,20 @@
 		<div class="probootstrap-site-logo probootstrap-animate"
 			data-animate-effect="fadeInLeft">
 
-			<a href="/gotThem" class="mb-2 d-block probootstrap-logo">GOTTHEM</a>
+			<a href="storeIndex.st" class="mb-2 d-block probootstrap-logo">GOTTHEM</a>
 			<p class="mb-0">
-				편의점 재고 검색 사이트 
+				제휴 사이트 
 			</p>
 		</div>
 		<div class="probootstrap-overflow">
 			<nav class="probootstrap-nav">
 				<ul>
 					<li class="probootstrap-animate active"
-						data-animate-effect="fadeInLeft"><a href="/gotThem">Got them?</a></li>
+						data-animate-effect="fadeInLeft"><a href="/storeIndex">Got them?</a></li>
 					<li class="probootstrap-animate" data-animate-effect="fadeInLeft"><a
 						href="store.st">점포관리</a></li>
 					<li class="probootstrap-animate" data-animate-effect="fadeInLeft"><a
-						href="#">재고관리</a></li>
+						href="stock.st">재고관리</a></li>
 				<c:set var="sessionCheck"
 					value="${sessionScope.SPRING_SECURITY_CONTEXT}" />
 				<c:choose>
@@ -58,10 +58,7 @@
 						<li class="probootstrap-animate" data-animate-effect="fadeInLeft"><a href="logout.gt" class="nav-link">로그아웃</a></li>
 					</c:otherwise>
 				</c:choose>
-				<li class="probootstrap-animate" data-animate-effect="fadeInLeft"><a
-						href="storeIndex.st">제휴페이지</a></li>
 			</ul>
-				</ul>
 			</nav>
 			<footer class="probootstrap-aside-footer probootstrap-animate"
 				data-animate-effect="fadeInLeft">
@@ -83,7 +80,7 @@
 		</div>
 	</div>
 	
- 	   <section id="cvssearch" class="newsletter bg-gray">
+ 	 <!--   <section id="cvssearch" class="newsletter bg-gray">
       <div class="container text-center">
         <h2>편의점 신선식품 재고 검색</h2>
         <div class="form-holder">
@@ -95,7 +92,7 @@
           </form>
         </div>
       </div>
-    </section> 
+    </section>  -->
 
 	 <section id="browser" class="browser">
       <div class="container">
