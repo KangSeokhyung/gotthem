@@ -1,14 +1,20 @@
 package kr.co.gotthem.store.controller;
 
+import java.util.StringTokenizer;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.ModelAndView;
 
+import kr.co.gotthem.member.bean.MemberBean;
 import kr.co.gotthem.member.service.MemberService;
 
 @Controller
@@ -72,9 +78,22 @@ public class StoreController {
 	}
 	
 	@RequestMapping(value = "/mystore.st", method = RequestMethod.GET)
-	public String mystore(HttpServletRequest request, HttpSession session) throws Exception{
+	public ModelAndView mystore(ModelAndView mav) throws Exception{
 		System.out.println("마이스토어 진입");
-		return "store/mystore";
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+		String mem_id = authentication.getName();
+		MemberBean memberInfo = memberService.memberInfo(mem_id);
+		String mem_address = memberInfo.getMem_address();
+		StringTokenizer  st = new StringTokenizer(mem_address,"/");
+		String post = st.nextToken();
+		String address1 = st.nextToken();
+		String address2 = st.nextToken();
+		mav.addObject("mem_post", post);
+		mav.addObject("mem_address1", address1);
+		mav.addObject("mem_address2", address2);
+		mav.addObject("info", memberInfo);
+		mav.setViewName("store/mystore");
+		return mav;
 	}
 
 }

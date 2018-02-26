@@ -15,7 +15,7 @@
 			authentication-success-handler-ref="loginSuccessHandler"
 			authentication-failure-handler-ref="loginFailureHandler"
 			username-parameter="mem_id" password-parameter="mem_pw" />
-		<logout logout-url="/logout" logout-success-url="/" />
+		<logout logout-url="/logout" logout-success-url="/storeIndex.st" />
 		<csrf disabled="true" />
 	</http>
 	
