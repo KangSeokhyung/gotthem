@@ -21,7 +21,7 @@
 			  <div class="collapse navbar-collapse" id="navbarNav">
 				  <div class="mr-auto"></div>
 			    <ul class="navbar-nav">
-			      <li class="nav-item active">
+			      <li class="nav-item">
 			        <a class="nav-link smooth-link" href="#hero">COMPANY</a>
 			      </li>
 			      <li class="nav-item">

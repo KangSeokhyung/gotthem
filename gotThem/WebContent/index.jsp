@@ -25,7 +25,7 @@ background-size : cover;
 		<%@include file="nav.jsp"%>
 	</header>
 	<section class="hero bg-overlay" id="hero"
-		data-bg="resources/mainTemplate/img/hero.jpeg">
+		data-bg="resources/mainTemplate/img/hero.jpg">
 		<div class="text">
 			<h2>편의점 재고 검색 시스템 GOT THEM</h2>
 			<h1>
@@ -202,7 +202,7 @@ background-size : cover;
 					<h3>저희와 제휴맺는 것에 관심이 있으신가요?</h3>
 				</div>
 				<div class="col-12 col-md-4 cta">
-					<a href="#" class="btn btn-outline-primary"> 제휴페이지로 이동 </a>
+					<a href="storeIndex.st" class="btn btn-outline-primary"> 제휴페이지로 이동 </a>
 				</div>
 			</div>
 		</div>
@@ -211,7 +211,7 @@ background-size : cover;
 	<footer>
 		<div class="container">
 			<figure>
-				<img src="resources/mainTemplate/img/logo-light.png" alt="Logo">
+				<img src="resources/mainTemplate/img/logo.png" alt="Logo">
 			</figure>
 			<p>Copyright &copy; 2018 스탑없으</p>
 			<p>
@@ -221,6 +221,7 @@ background-size : cover;
 	</footer>
 
 	<script src="resources/mainTemplate/js/jquery.min.js"></script>
+	<script src="resources/indexTemplate/js/popper.min.js"></script>
 	<script src="resources/mainTemplate/bootstrap/js/bootstrap.min.js"></script>
 	<script src="resources/mainTemplate/js/jquery.easeScroll.js"></script>
 	<script src="resources/mainTemplate/sweetalert/dist/sweetalert.min.js"></script>
