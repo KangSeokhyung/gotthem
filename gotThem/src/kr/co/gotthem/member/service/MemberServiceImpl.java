@@ -55,6 +55,15 @@ public class MemberServiceImpl implements MemberService {
 	}
 	
 	@Override
+	public MemberBean findAccount(String email) {
+		return memberDao.findAccount(email);
+	}
+	
+	@Override
+	public void changePassword(MemberBean memberBean) {
+		memberDao.changePassword(memberBean);
+	}
+	
 	public List<MemberBean> mlist(){
 		return memberDao.mlist();
 	}

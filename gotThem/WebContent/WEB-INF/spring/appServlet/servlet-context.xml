@@ -10,6 +10,7 @@
 	
 	<annotation-driven />
 	<context:annotation-config/>
+	<context:component-scan base-package="kr.co.gotthem.member"/>
 	
 	<resources mapping="/resources/**" location="/resources/" />
 
@@ -41,5 +42,23 @@
 	
 	<!-- Multipart 파일업로드 빈 객체 생성 -->
 	<beans:bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver" />
+	
+	<!-- 이메일 관련 -->
+	<beans:bean id="javaMailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
+	    <beans:property name="host" value="smtp.gmail.com" />
+	    <beans:property name="port" value="587" />
+	    <beans:property name="username" value="gotthembit@gmail.com" />
+	    <beans:property name="password" value="gotthem1234" />
+	    <beans:property name="javaMailProperties">
+	        <beans:props>
+	            <beans:prop key="mail.smtp.ssl.trust">smtp.gmail.com</beans:prop>
+	            <beans:prop key="mail.smtp.starttls.enable">true</beans:prop>
+	            <beans:prop key="mail.smtp.auth">true</beans:prop>
+	        </beans:props>
+	    </beans:property>
+	</beans:bean>
+	<beans:bean id="mailService" class="kr.co.gotthem.member.mail.MailServiceImpl">
+	    <beans:property name="javaMailSender" ref="javaMailSender" />
+	</beans:bean>
 	
 </beans:beans>
