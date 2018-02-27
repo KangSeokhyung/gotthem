@@ -39,5 +39,13 @@ public class ProductDaoImpl implements ProductDao {
 	public void insertPro(ProductBean bean) {
 		sqlSessionTemplate.insert("insertPro", bean);
 	}
+/*	@Override
+	public void detailProduct(int pro_code) {
+		sqlSessionTemplate.insert("insertPro", bean);
+	}*/
+	@Override
+	public List<ProductBean> listProduct() {
+		return sqlSessionTemplate.selectList("listProduct");
+	}
 	
 }

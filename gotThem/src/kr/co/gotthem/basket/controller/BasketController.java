@@ -18,7 +18,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import kr.co.gotthem.basket.bean.BasketBean;
@@ -52,24 +51,29 @@ public class BasketController {
 		this.memberService = memberService;
 	}
 	
-	/*// product 1. 상품 전체 목록
+// product 1. 상품 전체 목록
 
     @RequestMapping("/productlist.gt")
-    public ModelAndView list(ModelAndView mav) {
-        mav.setViewName("/basket/productList");
-        mav.addObject("list", productService.listProduct());
+    public ModelAndView list(ModelAndView mav) {    
+    	Map<String, Object> map = new HashMap<String, Object>();
+    	map.put("listProduct", productService.listProduct());
+    	mav.addObject("listProduct", productService.listProduct());
+    	mav.setViewName("basket/productList");    
+    	mav.addObject("map", map);
+    	System.out.println("상품list타고 " + productService.listProduct());
         System.out.println("상품리스트왔다");
         return mav;
     }
-    
+
 	// product 2. 상품 상세보기
     @RequestMapping("/detail/{pro_code}.gt")
     public ModelAndView detail(@PathVariable("pro_code") int pro_code, ModelAndView mav){
     	System.out.println("디테일왔다");
     	mav.setViewName("basket/productDetail");
-        mav.addObject("m", productService.detailProduct(pro_code));
+        mav.addObject("m", productService.findCode(pro_code));
+        
         return mav;
-    }*/
+    }
 
     // 1. 장바구니 추가
     @RequestMapping(value ="insert.gt")

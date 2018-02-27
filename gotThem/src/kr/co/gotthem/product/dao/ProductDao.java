@@ -14,4 +14,6 @@ public interface ProductDao {
 	public void deletePro(int pro_code);
 
 	public void insertPro(ProductBean bean);
+	
+	public List<ProductBean> listProduct ();
 }

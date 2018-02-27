@@ -37,4 +37,14 @@ public class ProductServiceImpl implements ProductService {
 	public void insertPro(ProductBean bean) {
 		productDao.insertPro(bean);
 	}
+	
+/*	@Override
+	public void detailProduct(int pro_code) {
+		productDao.detailProduct(pro_code);
+	}
+*/
+	@Override
+	public List<ProductBean> listProduct() {
+		return productDao.listProduct();
+	}
 }

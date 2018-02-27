@@ -14,4 +14,9 @@ public interface ProductService {
 	public void deletePro(int pro_code);
 	
 	public void insertPro(ProductBean bean);
+	
+
+/*	public void detailProduct(int pro_code);*/
+	public List<ProductBean> listProduct();
+	
 }

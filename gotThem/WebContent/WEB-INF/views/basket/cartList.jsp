@@ -48,8 +48,7 @@ background-size : cover;
                </tr>
              <c:forEach var="row" items="${map.list}" varStatus="i">
                <tr>                
-                  <!-- <td><input type="checkbox" name="chk" /></td> -->
-                  <td><input type="checkbox" name="chk[]" value="${row.bas_no}"/> 
+                  <td><input type="checkbox" name="pidx1" id="pidx1" value="${row.bas_no}" />
                   </td>
                   <td> ${row.bas_proname}</td>
                   <td style="width: 80px" align="right">
@@ -78,6 +77,7 @@ background-size : cover;
              <input type="hidden" name="count" value="${map.count}">
              <button type="button" value="상품목록2" id="btnList">상품목록</button>
              <input type="button" name="sedelete" id="button" value="선택삭제" />
+             <img src="images/btn/list_del_btn.gif" width="114" height="49" onclick="delete01()"/>
         </form>
       </c:otherwise>
     </c:choose>
@@ -101,7 +101,33 @@ background-size : cover;
 	<script src="resources/mainTemplate/sweetalert/dist/sweetalert.min.js"></script>
 	<script src="resources/mainTemplate/js/stisla.js"></script>
 <script type="text/javascript">
-    $(document).ready(function(){
+function delete01(){
+	var chk = document.getElementsByName("pidx1");  //name="pidx1" 값을 모두 가져옴. 
+	var data = "";
+	var chk_check = false;
+	 console.log(chk); 
+	 for (i=0;i<chk.length ;i++ ){                   //for 문으로 돌리고..
+	 if (chk[i].checked == true ){               //checked 된 것만	 
+		 alert("넘어왔음");
+		 data = data + ", " +chk[i].value;            // 값을 가져와서 data 넣는다.
+	  
+	  if(chk[i].checked) chk_check = true;    // 하나라도 체크 됐다면 chk_check = true 값 반환
+	 }
+	}
+	 if (chk_check){              // chk_check 값이 true 라면
+	    if(confirm("삭제하시겠습니까?")){
+//		  alert("넘어가는 값은="+data);
+	   document.formName.action = "delete_ok2.asp?idx1="+data
+	   document.formName.submit();
+	    }
+	 }else{                         // chk_check 값이 false 라면
+	  alert('하나이상을 체크하여 주십시오');
+	  return;
+	 }
+	}
+
+
+$(document).ready(function(){
         // 리스트 페이지로 이동
         $("#btnList").click(function(){
             location.href="./productlist.gt";     

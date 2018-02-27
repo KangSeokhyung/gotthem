@@ -16,6 +16,12 @@
 		update basket set bas_prostock=#{bas_prostock} where bas_no = #{bas_no}
 	</update>
 
+    <select id="listProduct" resultType="kr.co.gotthem.product.bean.ProductBean">
+         SELECT * FROM product           
+    </select>
+
+
+
     <!-- 1. 장바구니 추가 -->
     <insert id="insertBasket">
         INSERT INTO basket (
