@@ -82,6 +82,10 @@ public class StoreController {
 		return "store/storeIndex";
 	}
 	
-	
+	@RequestMapping(value = "/mystore.st", method = RequestMethod.GET)
+	public String mystore(HttpServletRequest request, HttpSession session) throws Exception{
+		System.out.println("마이스토어 진입");
+		return "store/mystore";
+	}
 
 }
