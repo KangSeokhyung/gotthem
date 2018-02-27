@@ -219,7 +219,6 @@ background-size : cover;
 			</p>
 		</div>
 	</footer>
-
 	<script src="resources/mainTemplate/js/jquery.min.js"></script>
 	<script src="resources/indexTemplate/js/popper.min.js"></script>
 	<script src="resources/mainTemplate/bootstrap/js/bootstrap.min.js"></script>

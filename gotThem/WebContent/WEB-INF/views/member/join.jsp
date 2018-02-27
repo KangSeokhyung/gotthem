@@ -5,84 +5,159 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-	<link rel="stylesheet" type="text/css" href="resources/Login_v7/css/util.css">
-	<link rel="stylesheet" type="text/css" href="resources/Login_v7/css/main.css">
+	<!-- Animate.css -->
+	<link rel="stylesheet" href="resources/newjoin/css/animate.css">
+	<!-- Flexslider -->
+	<link rel="stylesheet" href="resources/newjoin/css/flexslider.css">
+	<!-- Icomoon Icon Fonts-->
+	<link rel="stylesheet" href="resources/newjoin/css/icomoon.css">
+	<!-- Magnific Popup -->
+	<link rel="stylesheet" href="resources/newjoin/css/magnific-popup.css">
+	
 	<link rel="stylesheet" href="resources/mainTemplate/ionicons/css/ionicons.min.css">
 	<link rel="stylesheet" href="resources/mainTemplate/bootstrap/css/bootstrap.min.css">
 	<link rel="stylesheet" href="resources/mainTemplate/sweetalert/dist/sweetalert.css">
 	<link rel="stylesheet" href="resources/mainTemplate/css/stisla.css">
+	
+<style>
+.container-login100 {
+  width: 100%;  
+  min-height: 100vh;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  padding-top:100px;
+  position: relative;
+  background-color: #E6E6E6;
+}
+.half50{
+	width:49%;
+}
+</style>
 </head>
 <body>
 	<header class="header">
 		<%@include file="../../../nav.jsp" %>
 	</header>
 
-		<div class="container-login100 " >
-			<div class="wrap-login100 p-t-0 p-b-30 col-xs-4">
-				
- 		
-			</div>
-			
-			<div class="wrap-login100 p-t-0 p-b-30 col-xs-8">
-				<form class="login100-form validate-form" action="joinSccess.gt" method="post" onsubmit="return join()">
-					<input type="hidden" id="duplicate" value="N">
-					<input type="hidden" id="pwdConfirm" value="N">
-					<div class="text-center p-t-55 p-b-30">
-						<span class="txt1"> 회원가입 </span>
-					</div>
+	<div class="container-login100">
+			<div class="row">
+				<form action="joinSccess.gt" method="post" onsubmit="return join();">
+					<input type="hidden" id="duplicate" value="N"> <input
+						type="hidden" id="pwdConfirm" value="N">
+					<div class="col-sm-12" >
+						<div class="row">
+							<div class="col-sm-8 form-group">
+								<label for="m_id">아이디 <strong>*</strong></label> <input
+									class="form-control" type="text" id="mem_id" name="mem_id"
+									placeholder="아이디 입력" autofocus="autofocus" required="required"
+									maxlength="30">
+							</div>
+							<div id="empty" style="font-size:24px;">&nbsp;</div>
+							<div class="col-sm-4 form-group">
+								<input type="button" id="btn1" class="form-control btn btn-sm btn-success"
+									title="중복확인" value="중복확인" onclick="duplCheck()">
+							</div>
+						</div>
+						<div id="idcheck"></div>
 
-					<div class="wrap-input100 validate-input m-b-16">
-						<input class="input100" type="text" id="mem_id" name="mem_id"
-							placeholder="아이디 입력" autofocus="autofocus" required="required"> <span class="focus-input100"></span>
-						<input type="button" id="btn1" class="btn btn-sm btn-success" value="중복확인" onclick="duplCheck()">
-					</div>
-					<div id="idcheck"></div>
-					<div class="wrap-input100 validate-input m-b-20" data-validate = "Please enter password">
-						<span class="btn-show-pass">
-							<i class="fa fa fa-eye"></i>
-						</span>
-						<input required="required" class="input100" type="password" id="mem_pw" name="mem_pw" placeholder="패스워드 입력" onkeyup="pwdCheck()">
-						<span class="focus-input100"></span>
-					</div>
-					<div class="wrap-input100 validate-input m-b-20" data-validate = "Please enter password">
-						<span class="btn-show-pass">
-							<i class="fa fa fa-eye"></i>
-						</span>
-						<input required="required" class="input100" type="password" id="mem_pw2" name="mem_pw2" placeholder="한번 더 입력하세요" onkeyup="pwdCheck()">
-						<span class="focus-input100"></span>
-					</div>
-					<p id="pwdCheckMsg"></p>
-					<div class="wrap-input100 validate-input m-b-16">
-						<input required="required" class="input100" type="text" name="mem_name"
-							placeholder="회원 이름을 입력하세요"> <span class="focus-input100"></span>
-					</div>
-					<div class="wrap-input100 validate-input m-b-16">
-						<input required="required" class="input100" type="email" name="mem_email"
-							placeholder="이메일을 입력하세요"> <span class="focus-input100"></span>
-					</div>
-					<div class="wrap-input100 validate-input m-b-16">
-						<input required="required" class="input100" type="text" name="mem_phone"
-							placeholder="전화번호를 입력하세요"> <span class="focus-input100"></span>
-					</div>
-					<div class="container-login100-form-btn">
-					<button  onclick="sample6_execDaumPostcode()">
-					우편번호 찾기</button></div>
-						<br>
-					<div class="wrap-input100 validate-input m-b-20" >
-						<input type="text" class="input100" name="mem_post" id="mem_post" placeholder="우편번호"> 
-						<input type="text" class="input100" name="mem_address1" id="mem_address1" placeholder="주소"> 
-						<input type="text" class="input100" name="mem_address2" id="mem_address2" placeholder="상세주소">
-					</div>
-					<input type="hidden" name="mem_address" value="">
-					<div class="container-login100-form-btn">
-						<button class="login100-form-btn" type="submit">가입하기</button>
-						<button class="login100-form-btn" onclick="history.back()">뒤로가기</button>
+						<div class="row">
+							<div class="col-sm-6 form-group">
+								<label for="mem_pw">비밀번호 <strong>*</strong></label> <input
+									type="password" class="form-control"
+									pattern="^.*(?=.{8,20})(?=.*[0-9])(?=.*[a-zA-Z]).*$"
+									id="mem_pw" name="mem_pw" maxlength="20" required="required"
+									onkeyup="pwdCheck()"
+									title="비밀번호는 영문, 숫자 혼합 8자이상  20자 이하로 작성해주세요.">
+							</div>
+							<div class="col-sm-6 form-group">
+								<label for="mem_pw2">비밀번호 확인 <strong>*</strong></label> <input
+									type="password" class="form-control"
+									pattern="^.*(?=.{8,20})(?=.*[0-9])(?=.*[a-zA-Z]).*$"
+									id="mem_pw2" name="mem_pw2" maxlength="20" required="required"
+									onkeyup="pwdCheck()"
+									title="비밀번호는 영문, 숫자 혼합 8자이상  20자 이하로 작성해주세요.">
+							</div>
+						</div>
+						<div id="pwdCheckMsg"></div>
+
+						<div class="form-group">
+							<label for="mem_name">이름 <strong>*</strong></label> <input
+								type="text" class="form-control" id="mem_name" name="mem_name"
+								maxlength="15" placeholder="이름을 입력해주세요." required="required">
+						</div>
+
+
+
+						<div class="form-group">
+							<label for="mem_email">이메일 <strong>*</strong></label> <input
+								type="email" class="form-control" id="mem_email"
+								name="mem_email" maxlength="17" placeholder="이메일을 입력해주세요."
+								required="required">
+						</div>
+
+
+						<div class="form-group">
+							<label for="mem_phone">전화번호<strong>*</strong></label> <input
+								type="tel" class="form-control"
+								onkeydown='return onlyNumber(event)' onkeyup='removeChar(event)'
+								id="mem_phone" name="mem_phone" maxlength="15"
+								placeholder="'-' 제외한 번호만 입력해주세요." required="required">
+						</div>
+
+						<div class="row">
+							<div class="col-sm-8 form-group">
+								<label for="mem_post">우편번호 <strong>*</strong></label> <input
+									type="text" class="form-control" id="mem_post" name="mem_post"
+									placeholder="우편번호 (우편번호 찾기 버튼 클릭해주세요.)" required="required"
+									readonly="readonly">
+							</div>
+							<div class="col-sm-4 form-group">
+								<div id="empty" style="font-size:24px;">&nbsp;</div>
+								<input type="button" class="form-control btn btn-sm btn-success"
+									onclick="sample6_execDaumPostcode()" value="우편번호 찾기">
+							</div>
+						</div>
+
+						<div class="form-group">
+							<label for="mem_address1">주소 <strong>*</strong></label> <input
+								type="text" class="form-control" id="mem_address1"
+								name="mem_address1" placeholder="주소 (우편번호 찾기 버튼을 클릭해주세요.)"
+								required="required" readonly="readonly">
+						</div>
+
+						<div class="form-group">
+							<label for="mem_address2">상세주소 <strong>*</strong></label> <input
+								type="text" class="form-control" id="mem_address2"
+								name="mem_address2" placeholder="상세주소를 입력해주세요."
+								required="required">
+						</div>
+
+						<input type="button" class="btn btn-lg btn-danger pull-right half50"
+							onclick="indexFoward();" value="돌아가기">
+						<button type="submit" class="btn btn-lg btn-success pull-right half50">회원가입</button>
 					</div>
 				</form>
 			</div>
-		</div>
+	</div>
+
+
+
+
+	<!-- Waypoints -->
+	<script src="resources/newjoin/js/jquery.waypoints.min.js"></script>
+	<!-- Flexslider -->
+	<script src="resources/newjoin/js/jquery.flexslider-min.js"></script>
+	<!-- Magnific Popup -->
+	<script src="resources/newjoin/js/jquery.magnific-popup.min.js"></script>
+	<script src="resources/newjoin/js/magnific-popup-options.js"></script>
+	
 <script src="http://code.jquery.com/jquery-3.2.1.min.js"></script>
-<script src="resources/Login_v7/js/main.js"></script>
 <script src="resources/mainTemplate/bootstrap/js/bootstrap.min.js"></script>
 <script src="resources/mainTemplate/js/jquery.easeScroll.js"></script>
 <script src="resources/mainTemplate/sweetalert/dist/sweetalert.min.js"></script>
@@ -189,6 +264,30 @@
             }
         }).open();
     }
+   		 
+   		function indexFoward() {
+			if (confirm('메인페이지로 이동하시겠습니까?')) {
+				location.href = "index.jsp";
+			}
+		}
+   		
+   		function onlyNumber(event){
+			event = event || window.event;
+			var keyID = (event.which) ? event.which : event.keyCode;
+			if ( (keyID >= 48 && keyID <= 57) || (keyID >= 96 && keyID <= 105) || keyID == 8 || keyID == 46 || keyID == 37 || keyID == 39 ) 
+				return;
+			else
+				return false;
+		}
+		
+		function removeChar(event) {
+			event = event || window.event;
+			var keyID = (event.which) ? event.which : event.keyCode;
+			if ( keyID == 8 || keyID == 46 || keyID == 37 || keyID == 39 ) 
+				return;
+			else
+				event.target.value = event.target.value.replace(/[^0-9]/g, "");
+		}
    		 
    		
 	 	

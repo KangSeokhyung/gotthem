@@ -19,6 +19,10 @@ public interface MemberService {
 	public int passCheck(MemberBean memberBean);
 	
 	public void memberDelete(MemberBean memberBean);
+	
+	public MemberBean findAccount(String email);
+	
+	public void changePassword(MemberBean memberBean);
 
 	public List<MemberBean> mlist();
 	

@@ -19,14 +19,14 @@
 <link rel="stylesheet" type="text/css" href="resources/simpleAccordion/styles/style.css">
 </head>
 
-<body>
+<body style="padding-top:0px;">
 
  	<header>
 		<%@include file="../../../nav.jsp"%>
 	</header> 
 
 	
-	<div class="container-fluid">
+	<div class="container-fluid" style="padding-top:80px;">
 		<div class="row">
 		
 			<!-- Page Content -->

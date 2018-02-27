@@ -1,0 +1,48 @@
+.container{
+        
+    }
+	.row{
+		
+		margin-top: 50px;
+	}
+
+	.thumbnail,textarea{
+		border-radius: 0;
+		overflow: hidden;
+	}
+.caption {
+    position:absolute;
+    bottom:0;
+	  right:0;
+    background: rgba(0, 0, 0, 0.57);
+    width:100%;
+    height:45%;
+    padding:2%;
+    display: none;
+    text-align:center;
+    color:#fff !important;
+    z-index:2;
+}
+
+	textarea{
+		resize:none;
+	}
+    .thumbnail{
+    	position: relative;
+    	border: 1px solid #BDC3C7;
+	    
+	    padding: 10px;
+	    margin: 5px;
+
+    }
+    .frow{
+    	position: relative;
+    	
+    }
+	.frow,.secrow,.thirdrow{
+		margin: 5px 0;
+	}
+
+	.secrow{
+		position: relative;
+	}
