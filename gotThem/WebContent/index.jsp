@@ -19,6 +19,32 @@ section{
 background-size : cover;
 }
 </style>
+<script type="text/javascript">
+	function relatedSearch() {
+		$("#releatedField").html("");
+		var search = $("#search").val();
+		if(search != ""){
+			$.ajax({
+				url : "relatedSearch.gt",
+				data : { "search" : search },
+				type : "post",
+				success : function(relatedData) {
+					var ob = JSON.parse(relatedData);
+					var innerHtml = "";
+					for (var i = 0; i < 5; i++) {
+						if (typeof(ob["search" + i]) != "undefined") {
+							innerHtml += "<a href='searchList.gt?search=" + ob["search" + i] + "'>" + ob["search" + i] + "</a> <br>";
+						}
+					}
+					$("#releatedField").append(innerHtml);
+				},
+				error : function(xmlHttpReq, status, error) {
+					alert(xmlHttpReq + "리퀘스트\n" + status + "상태\n" + error + "에러\n");
+				}
+			});
+		}
+	}
+</script>
 </head>
 <body>
 	<header>
@@ -34,10 +60,13 @@ background-size : cover;
 			<section id="cvssearch" class="newsletter bg-gray">
 				<div class="container text-center">
 					<div class="form-holder">
-						<form id="newsletterForm" action="#">
+						<form id="newsletterForm" action="searchList.gt" method="get">
 							<div class="form-group">
-								<input type="text" name="search" id="email"
+								<input type="text" name="search" id="search"
+									onkeyup="relatedSearch()"
 									placeholder="원하는 지역명 혹은 상품명을 검색해보세요 (ex. 강남역 김밥)">
+								<div id="releatedField" style="border: 1px solid #ddd">
+								</div>
 								<button type="submit"
 									class="btn btn-primary btn-gradient submit">검색</button>
 							</div>

@@ -27,4 +27,6 @@ public interface MemberService {
 	public List<MemberBean> mlist();
 	
 	public List<MemberBean> stlist();
+	
+	public MemberBean storeInfo(int mem_no);
 }

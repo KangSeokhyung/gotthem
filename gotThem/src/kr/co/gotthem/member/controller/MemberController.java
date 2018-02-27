@@ -1,6 +1,7 @@
 package kr.co.gotthem.member.controller;
 
 import java.io.PrintWriter;
+import java.util.List;
 import java.util.Random;
 import java.util.StringTokenizer;
 
@@ -14,6 +15,7 @@ import org.mariadb.jdbc.internal.logging.LoggerFactory;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -23,6 +25,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import kr.co.gotthem.member.bean.MemberBean;
 import kr.co.gotthem.member.mail.MailService;
 import kr.co.gotthem.member.service.MemberService;
+import kr.co.gotthem.product.service.ProductService;
 
 @Controller
 public class MemberController {
@@ -31,8 +34,13 @@ public class MemberController {
 	
 	private MemberService memberService;
 	private MailService mailService;
-
-
+	private ProductService productService;
+	
+	
+	public void setProductService(ProductService productService) {
+		this.productService = productService;
+	}
+	
 	public void setMemberService(MemberService memberService) {
 		this.memberService = memberService;
 	}
@@ -42,6 +50,7 @@ public class MemberController {
         this.mailService = mailService;
     }
 
+	
 	@RequestMapping(value = "/login.gt", method = RequestMethod.GET)
 	public String login() {
 		return "member/mlogin";
@@ -262,6 +271,17 @@ public class MemberController {
         }
         return "redirect:/findIDAndPW.gt";
     }
-
-
+    
+    @RequestMapping(value = "/storeDetail.gt")
+	public String storeDetail(Model model, int mem_no) {
+		MemberBean storeInfo = memberService.storeInfo(mem_no);
+		List productInfo = productService.productInfo(mem_no);
+		
+		model.addAttribute("mem_no", mem_no);
+		model.addAttribute("storeInfo", storeInfo);
+		model.addAttribute("productInfo", productInfo);
+		
+		return "store/storeDetail";
+	}
+    
 }

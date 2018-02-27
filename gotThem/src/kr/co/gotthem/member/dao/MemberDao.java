@@ -27,4 +27,6 @@ public interface MemberDao {
 	public List<MemberBean> mlist();
 
 	public List<MemberBean> stlist();
+	
+	public MemberBean storeInfo(int mem_no);
 }
