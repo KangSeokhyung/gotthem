@@ -45,14 +45,30 @@
 </style>
 <script src="//code.jquery.com/jquery-3.2.1.min.js"></script>
 <script type="text/javascript">
-	var rowAddDel = $(function(){
+	$(document).on('click', '#upCount', function(){
+		var pro_stock = $(this).prev().val() * 1 + 1;
+		$(this).prev().val(pro_stock);
+		
+		var pro_price_fin = 
+		pro_price = $(this).parents("td").next("td").text() * 1  + ;
+		$(this).parents("td").next("td").text("");
+		$(this).parents("td").next("td").text(pro_price);
+	});
+	
+	$(document).on('click', '#downCount', function(){
+		var pro_stock = $(this).prev().prev().val() - 1;
+		$(this).prev().prev().val(pro_stock);
+		var pro_price = $(this).parents("td").next("td").text() * 1
+						- $(this).parents("td").next("td").text() * 1;
+		alert(pro_price);
+		$(this).parents("td").next("td").text("");
+		$(this).parents("td").next("td").text(pro_price);
+	});
+	
+	$(function(){
 		var idCount = 1;
-		
-		$("#pro_stock1").bind("mouseup", function(){
-			alert(1);
-		});
-		
-		$("#searchTemplate tr").click(function(){
+		var rowAddDel = $("#searchTemplate tr").click(function(){
+			
 			var tr = $(this);
 			var td = tr.children('td');
 			
@@ -61,7 +77,6 @@
 			var pro_price = td.eq(3).text();
 				
 			var exist = "no";
-			
 			
 			$("#mySelectField tr").each(function() {
 				var myPro_name = $(this).find("#myPro_name").html();
@@ -74,32 +89,26 @@
 			if (exist == "yes") {
 				alert("이미 존재하는 옵션입니다.");
 			} else {
-				$("#up1").click(function(){
-					alert(1);
-					var pro_stock1 = $("#pro_stock1").val();
-					$("#pro_stock1").val(pro_stock1*1+1);
-				});
-				$("#up2").click(function(){
-					var pro_stock2 = $("#pro_stock2").val();
-					$("#pro_stock2").val(pro_stock2*1+1);
-				});
-				$("#up3").click(function(){
-					var pro_stock3 = $("#pro_stock3").val();
-					$("#pro_stock3").val(pro_stock3*1+1);
-				});
+				/* $("#upCount"+idCount).unbind("click");
+				$("#upCount"+idCount).bind("click", function(){
+					alert("테스트");
+					var pro_stock = $(this).prev().val();
+					$(this).prev().val(pro_stock * 1 + 1);
+				}); */
 				
 				$("#mySelectField").append(
 					"<tr><input type='hidden' name='pro_name' value='" + pro_name + "'>" +
 					"<input type='hidden' name='pro_price' value='" + pro_price + "'>" +
-					"<td id='myPro_name'>" + pro_name + "</td><td><input type='number' class='pro_stock' id='pro_stock" + idCount + "' value='1'>" +
-					"</td><td>" + pro_price + "</td><td><input type='button' id='deleteRow' value='x' onclick='deleteMySelect()'></td></tr>"
+					"<td id='myPro_name'>" + pro_name + "</td><td><input type='text' id='pro_stock' value='1'>" +
+					"<input type='button' id='upCount' value='증가'> <input type='button' id='downCount' value='감소'>" + 
+					"</td><td id='myPro_price'>" + pro_price + "</td>" +
+					"<td><input type='button' id='deleteRow' value='x' onclick='deleteMySelect()'></td></tr>"
 				);
 				
 				idCount = idCount + 1;
 			}
-			
 		});
-	});
+	}); 
 	
 	function deleteMySelect() {
 		var tr = $("#deleteRow").parents("td").parents("tr");
@@ -118,10 +127,10 @@
 				$("#searchTemplate").html("");
 				var ob = JSON.parse(searchData);
 				$.each(ob, function(index, column){
-					$("#searchTemplate").html(
+					$("#searchTemplate").append(
 						"<input type='hidden' name='pro_code' id='pro_code' value='"+ column.pro_code +"'>"
 					);
-					$("#searchTemplate").html(
+					$("#searchTemplate").append(
 						"<tr><td>" + column.pro_name +"</td><td>" + column.pro_category + "</td>" +
 						"<td>" + column.pro_stock + "</td><td>" + column.pro_price + "</td></tr>"
 					);
@@ -220,7 +229,7 @@
 		           	<tfoot>
 		           		<tr>
 		           			<td colspan="4">
-		           				<input type="number" id="pro_stock1">
+		           				<input type="number" id="">
 		           				<input type="hidden" name="totalPay" id="totalPay">
 		           				총 금액 : 
 		           			</td>
