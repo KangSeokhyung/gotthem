@@ -12,11 +12,11 @@ import kr.co.gotthem.member.service.MemberService;
 
 @Controller
 public class AdminController {
-	
+
 	private static final Logger logger = LoggerFactory.getLogger(AdminController.class);
-	
+
 	private MemberService memberService;
-	
+
 	public void setMemberService(MemberService memberService) {
 		this.memberService = memberService;
 	}
@@ -26,26 +26,35 @@ public class AdminController {
 		System.out.println("아에이오우!");
 		return "admin/adminLogin";
 	}
-	
-	
+
 	@RequestMapping(value = "/control.ad", method = RequestMethod.GET)
 	public String ccc() {
 		System.out.println("최종 관리자 로그인 진입");
 		return "admin/controlPage";
 	}
-	
+
 	@RequestMapping(value = "/memcontrol.ad", method = RequestMethod.GET)
 	public ModelAndView member(ModelAndView mav) {
-		
-		/*List<MemberBean> mlist = memberService.mlist();		
-		System.out.println("멤버 컨트롤 진입");
-		System.out.println(mlist);
-		
-		mav.addObject("stlist", mlist);*/
+
+		List<MemberBean> mlist = memberService.mlist();
+		System.out.println("멤버 컨트롤 진입"); System.out.println(mlist);
+		 
+		mav.addObject("mlist", mlist);
 		mav.setViewName("admin/memberControl");
-		
+
 		return mav;
-		
+
 	}
 
+	@RequestMapping(value = "/storecontrol.ad", method = RequestMethod.GET)
+	public ModelAndView store(ModelAndView mav) {
+
+	     List<MemberBean> stlist = memberService.stlist();
+		System.out.println("스토어 컨트롤 진입"); 
+		System.out.println(stlist);	  
+		mav.addObject("stlist", stlist);		
+		mav.setViewName("admin/storeControl");
+
+		return mav;
+	}
 }

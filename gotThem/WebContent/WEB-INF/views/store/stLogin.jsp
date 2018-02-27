@@ -19,8 +19,8 @@
 <link rel="stylesheet" href="resources/indexTemplate/css/icomoon.css">
 <link rel="stylesheet" href="resources/indexTemplate/css/animate.css">
 <link rel="stylesheet" href="resources/indexTemplate/css/style.css">
-<link rel="stylesheet" href="resources/landy/css/style.default.css" id="theme-stylesheet">
-<link rel="stylesheet" href="resources/landy/css/custom.css">
+<link rel="stylesheet" type="text/css" href="resources/stlogin/bootstrap/css/bootstrap.min.css" />
+<link rel="stylesheet" type="text/css" href="resources/stlogin/css/styles.css" />
 </head>
 <body>
 
@@ -76,34 +76,35 @@
 		<a href="#" class="probootstrap-toggle js-probootstrap-toggle"><span
 			class="oi oi-menu"></span></a>
 		<div class="probootstrap-main-site-logo">
-			<a href="index.html">Aside</a></a>
+			<a href="storeIndex.st">Aside</a></a>
 		</div>
 	</div>
 	
-		<section class="container login-form">
-		<section>
-			<form method="post" action="<c:url value="/login.st"/>" role="login">			
-
-				<div class="form-group">
-					<input type="text" name="sto_id" required class="form-control"
-						placeholder="Enter email or nickname" /> <span
-						class="glyphicon glyphicon-user"></span>
+			<div class="container">
+			<div class="container col-sm-6 center-block">
+			<img src="resources/mainTemplate/img/logo.png" alt="" width=300px; />
+			</div>
+			<div class="container col-sm-6 center-block">
+			<form method="post" action="" role="login">
+				<div>
+					<label>Username</label>
+					<input type="text" name="sto_id" required class="form-control" />
 				</div>
-
-				<div class="form-group">
-					<input type="password" name="sto_pw" required
-						class="form-control" placeholder="Enter password" /> <span
-						class="glyphicon glyphicon-lock"></span>
+				
+				<div>
+					<label>Password</label>
+					<input type="password" name="sto_pw" required class="form-control" />
 				</div>
-
-				<button type="submit" name="go" class="btn btn-primary btn-block">Login
-					Now</button>
-
-				<a href="#">Reset password</a> or <a href="#">create account</a>
-				 <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/> 
+			
+				<section>
+					<button type="submit" name="go" class="btn btn-block">Sign In</button>
+					<p><a href="#">Forgot your password ?</a></p>
+					<p><a href="#">Create account</a></p>
+				</section>
 			</form>
-		</section>
-	</section>
+			</div>
+		</div>
+
 	
 		<div class="container-fluid d-md-none">
 		<div class="row">

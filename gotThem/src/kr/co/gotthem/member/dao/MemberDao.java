@@ -8,6 +8,8 @@ public interface MemberDao {
 	
 	public int join(MemberBean memberBean);
 	
+	public int stjoin(MemberBean memberBean);
+	
 	public MemberBean login(String id);
 	
 	public int duplCheck(String mem_id);
@@ -17,4 +19,8 @@ public interface MemberDao {
 	public int passCheck(MemberBean memberBean);
 	
 	public void memberDelete(MemberBean memberBean);
+
+	public List<MemberBean> mlist();
+
+	public List<MemberBean> stlist();
 }

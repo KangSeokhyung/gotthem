@@ -54,7 +54,7 @@
 		});
 	</script>
 	<script>
-		$.get("./memcontrol.ad", function(data) {
+		$.get("./storecontrol.ad", function(data) {
 			$('#tab-2').html(data);
 		});
 	</script>

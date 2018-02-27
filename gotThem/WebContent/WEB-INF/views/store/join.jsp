@@ -19,8 +19,13 @@
 <link rel="stylesheet" href="resources/indexTemplate/css/icomoon.css">
 <link rel="stylesheet" href="resources/indexTemplate/css/animate.css">
 <link rel="stylesheet" href="resources/indexTemplate/css/style.css">
-<link rel="stylesheet" href="resources/landy/css/style.default.css" id="theme-stylesheet">
-<link rel="stylesheet" href="resources/landy/css/custom.css">
+  <link rel="stylesheet" href="resources/stlogin/tether/tether.min.css">
+  <link rel="stylesheet" href="resources/stlogin/bootstrap/css/bootstrap.min.css">
+  <link rel="stylesheet" href="resources/stlogin/bootstrap/css/bootstrap-grid.min.css">
+  <link rel="stylesheet" href="resources/stlogin/bootstrap/css/bootstrap-reboot.min.css">
+  <link rel="stylesheet" href="resources/stlogin/theme/css/style.css">
+  <link rel="stylesheet" href="resources/stlogin/mobirise/css/mbr-additional.css" type="text/css">
+
 </head>
 <body>
 
@@ -79,102 +84,103 @@
 			<a href="index.html">Aside</a></a>
 		</div>
 	</div>
-		<div class="contact1">
-			<div class="container-contact1">
-				<div class="col-xs-6">
-					<form class="contact1-form validate-form">
-						<div class="wrap-input1 validate-input"
-							data-validate="Name is required">
-							<input class="input1" type="text" name="name"
-								placeholder="아이디를 입력하세요"> <span class="shadow-input1"></span>
-						</div>
-
-						<div class="wrap-input1 validate-input"
-							data-validate="Password is required">
-							<input class="input1" type="password" name="pass1"
-								placeholder="패스워드를 입력하세요"> <span class="shadow-input1"></span>
-						</div>
-
-						<div class="wrap-input1 validate-input"
-							data-validate="Password is required">
-							<input class="input1" type="password" name="pass2"
-								placeholder="한번 더 입력하세요"> <span class="shadow-input1"></span>
-						</div>
-
-						<div class="wrap-input1 validate-input"
-							data-validate="Password is required">
-							<input class="input1" type="text" name="name"
-								placeholder="점포명을 입력하세요"> <span class="shadow-input1"></span>
-						</div>
-
-						<div class="wrap-input1 validate-input"
-							data-validate="Valid email is required: ex@abc.xyz">
-							<input class="input1" type="email" name="email"
-								placeholder="이메일을 입력하세요"> <span class="shadow-input1"></span>
-						</div>
-
-						<div class="wrap-input1 validate-input"
-							data-validate="Valid email is required: ex@abc.xyz">
-							<input class="input1" type="email" name="email"
-								placeholder="핸드폰 번호를 입력하세요"> <span class="shadow-input1"></span>
-						</div>
-
-						<div class="wrap-input1 validate-input"
-							data-validate="Message is required">
-							<textarea class="input1" name="message" placeholder="Message"></textarea>
-							<span class="shadow-input1"></span>
-						</div>
-					</form>
-				</div>
-
-				<div class="col-xs-6">
-					<form class="contact1-form validate-form">
-						<div class="wrap-input1 validate-input"
-							data-validate="Name is required">
-							<input class="input1" type="text" name="name" placeholder="우편번호">
-							<span class="shadow-input1"></span>
-						</div>
-
-						<div class="container-contact1-form-btn">
-							<button class="contact1-form-btn" onclick="sample6_execDaumPostcode()">
-								<span> 우편번호찾기</span>
-							</button>
-						</div>
-
-						<div class="wrap-input1 validate-input"
-							data-validate="Name is required">
-							<input class="input1" type="text" name="name"
-								placeholder="상세 주소1"> <span class="shadow-input1"></span>
-						</div>
-
-						<div class="container-contact1-form-btn">
-							<button class="contact1-form-btn">
-								<span> apply <i class="fa fa-long-arrow-right"
-									aria-hidden="true"></i>
-								</span>
-							</button>
-						</div>
-					</form>
-				</div>
-			</div>
-		</div>
-
-	<div class="container-fluid d-md-none">
-		<div class="row">
-			<div class="col-md-12">
-				<ul class="list-unstyled d-flex probootstrap-aside-social">
-					<li><a href="#" class="p-2"><span class="icon-twitter"></span></a></li>
-					<li><a href="#" class="p-2"><span class="icon-instagram"></span></a></li>
-					<li><a href="#" class="p-2"><span class="icon-dribbble"></span></a></li>
-				</ul>
-				<p>
-					&copy; 2017 <a href="https://uicookies.com/" target="_blank">uiCookies:Aside</a>.
-					<br> All Rights Reserved. Designed by <a
-						href="https://uicookies.com/" target="_blank">uicookies.com</a>
-				</p>
-			</div>
-		</div>
-	</div>
+		<section class="mbr-section form1 cid-qIWKYtQnJh" id="form1-r">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="title col-12 col-lg-8">
+                <h2 class="mbr-section-title align-center pb-3 mbr-fonts-style display-2">
+                    GOT THEM과 제휴맺기
+                </h2>
+                <h3 class="mbr-section-subtitle align-center mbr-light pb-3 mbr-fonts-style display-5">
+                    이 양식을 작성하면 GOT THEM에 제휴 신청이 가능합니다.
+                </h3>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="media-container-column col-lg-8" data-form-type="formoid">
+                    <div data-form-alert="" hidden="">
+                        Thanks for filling out the form!
+                    </div>
+            
+                    <form class="mbr-form" action="join.st" method="post" data-form-title="Mobirise Form">
+                    <input type="hidden" name="email" data-form-email="true" value="v71UZV7rSGKmNdtMTJcCzvbgvRKs8I889PXLsAjbR6NuKJtPYoKYEe+DT90N7gqVmrsYQhYLqTnSDAVjImF7Eb8KP/1hIcQUbq5w77EmgcHnu38hK1G/QmJo9v9/aFIP" data-form-field="Email">
+                        <div class="row row-sm-offset">
+                            <div class="col-sm-8 multi-horizontal" data-for="name">
+                                <div class="form-group">
+                                    <label class="form-control-label mbr-fonts-style display-7" for="name-form1-r">아이디</label>
+                                    <input type="text" class="form-control" name="mem_id" data-form-field="Name" required="" id="name-form1-r">
+                                </div>
+                            </div>
+                            <div class="col-sm-6 multi-horizontal" data-for="email">
+                                <div class="form-group">
+                                    <label class="form-control-label mbr-fonts-style display-7" for="pass-form1-r">패스워드</label>
+                                    <input type="password" class="form-control" name="mem_pw" data-form-field="Email" required="" id="email-form1-r">
+                                </div>
+                            </div>
+                            <div class="col-sm-6 multi-horizontal" data-for="phone">
+                                <div class="form-group">
+                                    <label class="form-control-label mbr-fonts-style display-7" for="pass-form1-r">패스워드 재입력</label>
+                                    <input type="password" class="form-control" name="mem_pass2" data-form-field="Phone" id="phone-form1-r">
+                                </div>
+                            </div>
+                            <div class="col-sm-8 multi-horizontal" data-for="name">
+                                <div class="form-group">
+                                    <label class="form-control-label mbr-fonts-style display-7" for="owner-form1-r">점주명</label>
+                                    <input type="text" class="form-control" name="mem_name" data-form-field="owner" required="" id="name-form1-r">
+                                </div>
+                         </div>
+                         <div class="col-sm-8 multi-horizontal" data-for="name">
+                                <div class="form-group">
+                                    <label class="form-control-label mbr-fonts-style display-7" for="stoname-form1-r">점포명</label>
+                                    <input type="text" class="form-control" name="sto_name" data-form-field="owner" required="" id="name-form1-r">
+                                </div>
+                         </div>
+                          <div class="col-sm-8 multi-horizontal" data-for="name">
+                          <div class="form-group">
+                                    <label class="form-control-label mbr-fonts-style display-7" for="email-form1-r">이메일</label>
+                                    <input type="email" class="form-control" name="mem_email" data-form-field="Name" required="" id="name-form1-r">
+                                </div>
+                            </div>
+                          <div class="col-sm-8 multi-horizontal" data-for="name">
+                           <div class="form-group">
+                                    <label class="form-control-label mbr-fonts-style display-7" for="phone-form1-r">전화번호</label>
+                                    <input type="text" class="form-control" name="mem_phone" data-form-field="Name" required="" id="name-form1-r">
+                                </div>
+                            </div>
+                         <div class="col-sm-6 multi-horizontal" data-for="name">
+                            <div class="form-group">
+                                    <label class="form-control-label mbr-fonts-style display-7" for="addr1-form1-r">우편번호</label>
+                                    <input type="text" class="form-control" name="mem_addr1" data-form-field="Name" required="" id="sample6_postcode">
+                                </div>
+                            </div>
+                         <div class="col-sm-6 multi-horizontal" data-for="name">
+                            <div class="form-group" style="text-align:center; vertical-align:middle;">
+                            <button onclick="sample6_execDaumPostcode()" class="btn btn-primary btn-form display-4">우편번호찾기</button>
+                           </div>
+                         </div>
+                        <div class="col-sm-12 multi-horizontal" data-for="name">
+                            <div class="form-group">
+                                    <label class="form-control-label mbr-fonts-style display-7" for="addr1-form1-r">매장 상세주소1</label>
+                                    <input type="text" class="form-control" name="mem_addr2" data-form-field="Name" required="" id="sample6_address">
+                                </div>
+                            </div>
+                         <div class="col-sm-12 multi-horizontal" data-for="name">
+                            <div class="form-group">
+                                    <label class="form-control-label mbr-fonts-style display-7" for="addr2-form1-r">매장 상세주소2</label>
+                                    <input type="text" class="form-control" name="mem_addr3" data-form-field="Name" required="" id="sample6_address2">
+                                </div>
+                            </div>
+                        </div>
+                        <span class="input-group-btn">
+                            <button type="submit" class="btn btn-primary btn-form display-4">제휴신청</button>
+                        </span>
+                    </form>
+            </div>
+        </div>
+    </div>
+</section>
 
 	</main>
 
@@ -185,6 +191,10 @@
 	<script src="resources/indexTemplate/js/jquery.waypoints.min.js"></script>
 	<script src="resources/indexTemplate/js/imagesloaded.pkgd.min.js"></script>
 	<script src="resources/indexTemplate/js/main.js"></script>
+	<script src="resources/stlogin/popper/popper.min.js"></script>
+  	<script src="resources/stlogin/tether/tether.min.js"></script>
+  	<script src="resources/stlogin/smoothscroll/smooth-scroll.js"></script>
+  	<script src="resources/stlogin/theme/js/script.js"></script>
 	<script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
 	<script>
 		function sample6_execDaumPostcode() {
