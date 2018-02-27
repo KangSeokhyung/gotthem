@@ -58,7 +58,7 @@
         <form name="form1" id="form1" method="post" action="./update.gt">
          <table class="table">
                <tr>
-                   <th></th>  
+                   <th><!-- <input type="checkbox" id="checkall" /> --></th>  
                    <th>상품명</th>
                    <th>단가</th>
                    <th>수량</th>
@@ -68,7 +68,9 @@
                </tr>
              <c:forEach var="row" items="${map.list}" varStatus="i">
                <tr>                
-                  <td><input type="checkbox" name="checkall" onclick="javascript:CheckAll()"></td>
+                  <!-- <td><input type="checkbox" name="chk" /></td> -->
+                  <td><input type="checkbox" name="chk[]" value="${row.bas_no}"/> 
+                  </td>
                   <td> ${row.bas_proname}</td>
                   <td style="width: 80px" align="right">
                        <fmt:formatNumber pattern="###,###,###" value="${row.bas_proprice}"/></td>
@@ -95,6 +97,7 @@
             </table>
              <input type="hidden" name="count" value="${map.count}">
              <button type="button" value="상품목록2" id="btnList">상품목록</button>
+             <input type="button" name="sedelete" id="button" value="선택삭제" />
         </form>
       </c:otherwise>
     </c:choose>
@@ -174,13 +177,41 @@
         }); */
     });
     
+/*     $(document).ready(function(){
+      $("#checkall").click(function(){  //최상단 체크박스 클릭
+         if($("#checkall").prop("checked")){  //클릭되었으면
+                //input태그의 name이 chk인 태그들을 찾아서 checked옵션을 true로 정의
+                $("input[name=chk]").prop("checked",true);
+            }else{     //클릭이 안되있으면
+                //input태그의 name이 chk인 태그들을 찾아서 checked옵션을 false로 정의
+                $("input[name=chk]").prop("checked",false);
+            }
+        })
+    }) */
 /*    function modify() {
 	   var submitTest = document.form1;
 	   submitTest.action="./update.gt";
 	   submitTest.method="post";
 	   submitTest.submit();
    } */
-   
+
+   function _sedelete(f) {
+	   alert("선택삭제"); //같이 보낼 값 정리
+       if (typeof(f.elements['chk[]'].length) == 'undefined') { //단일
+           if (f.elements['chk[]'].checked==false) {
+               f.elements['field_a[]'].disabled=true;
+               f.elements['field_b[]'].disabled=true;
+           }
+       } else { //다중
+           for (i=0; i<f.elements['chk[]'].length; i++) {
+               if (f.elements['chk[]'][i].checked==false){
+                   f.elements['field_a[]'][i].disabled=true;
+                   f.elements['field_b[]'][i].disabled=true;
+               }
+           }
+       }
+       return true;
+   }
    function button_event(bas_no){
     	alert(bas_no);
    if (confirm("정말 삭제하시겠습니까??")){    //확인

@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import kr.co.gotthem.basket.bean.BasketBean;
@@ -51,11 +52,27 @@ public class BasketController {
 		this.memberService = memberService;
 	}
 	
-	 @RequestMapping("/test.gt")
+/*	 @RequestMapping("/testa.gt")
 	    public String test() {
-		 return "basket/NewFile2";
-	 }
-		 
+		 return "basket/NewFile";
+	 }       
+	 @RequestMapping(value="/updateChkBox")
+	   public @ResponseBody String updateChkBox (
+	       HttpServletRequest request,
+	       HttpServletResponse response,
+	       @RequestParam(value="name",required=true) List<String> name,
+	       @RequestParam(value="age",required=true) List<Integer> age) throws Exception {    
+	     log.debug( ">>> param size : " + name.size() );
+	      
+	     int i = 0;
+	     for( String value : name ){
+	       log.debug( ">>> name's value : " + value + "\tage : " + age.get(i) );
+	       i++;
+	     }
+	      
+	     return "success";
+	   }*/
+	
 	// product 1. 상품 전체 목록
     @RequestMapping("/productlist.gt")
     public ModelAndView list(ModelAndView mav) {
