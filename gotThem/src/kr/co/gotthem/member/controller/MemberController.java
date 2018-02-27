@@ -14,6 +14,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import kr.co.gotthem.member.bean.MemberBean;
@@ -124,10 +125,14 @@ public class MemberController {
 	}
 	
 	@RequestMapping(value = "/memberModi.gt", method = RequestMethod.POST)
-	public String memberUpdate(MemberBean bean) {
+	public String memberUpdate(MemberBean bean, @RequestParam("mem_address1") String address1,
+			@RequestParam("mem_address2") String address2,@RequestParam("mem_post") String post) {
+		String mem_address = post + "/" + address1 + "/" + address2;
+		bean.setMem_address(mem_address);
 		memberService.memberModifi(bean);
 		return "member/mypage";
 	}
+
 	
 	@RequestMapping(value = "/passCheck.gt", method = RequestMethod.GET)
 	public ModelAndView passCheck(MemberBean bean, ModelAndView mav) {
