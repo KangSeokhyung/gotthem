@@ -58,7 +58,6 @@
 	</beans:bean>
 
 	<!-- provider -->
-
 	<authentication-manager>
 		<authentication-provider>
 			<jdbc-user-service data-source-ref="dataSource"

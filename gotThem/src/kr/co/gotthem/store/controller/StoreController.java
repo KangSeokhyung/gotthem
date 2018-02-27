@@ -1,15 +1,15 @@
 package kr.co.gotthem.store.controller;
 
-import java.util.ArrayList;
-import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.servlet.ModelAndView;
+
+import kr.co.gotthem.member.bean.MemberBean;
 import kr.co.gotthem.member.service.MemberService;
 
 @Controller
@@ -22,7 +22,8 @@ public class StoreController {
 	public void setMemberService(MemberService memberService) {
 		this.memberService = memberService;
 	}
-
+	
+	
 	@RequestMapping(value = "/storeIndex.st", method = RequestMethod.GET)
 	public String storeIndex() {
 		return "store/storeIndex";
@@ -31,24 +32,12 @@ public class StoreController {
 	@RequestMapping(value = "/join.st", method = RequestMethod.GET)
 	public String join(HttpServletRequest request, HttpSession session) throws Exception{
 		
-		/*StoreBean stBean = new StoreBean();
-		
-		stBean.setSto_id(request.getParameter("sto_id"));
-		stBean.setSto_pw(request.getParameter("sto_pw"));
-		stBean.setSto_owner(request.getParameter("sto_owner"));
-		stBean.setSto_name(request.getParameter("sto_name"));
-		stBean.setSto_address(request.getParameter("sto_addr1") + "/" +
-				request.getParameter("sto_addr2") + "/" + request.getParameter("sto_addr3"));
-		stBean.setSto_registno(request.getParameter("sto_registno"));
-		stBean.setSto_phone(request.getParameter("sto_phone"));
-		stBean.setSto_email(request.getParameter("sto_email"));*/
-		
 		 /*String dbpw = encoder.saltEncoding(passwd, email);
 		 Map<String, String> paramMap = new HashMap<String, String>();
 		 paramMap.put("email", email);
 		 paramMap.put("passwd", dbpw);
 		 int result = dao.insertUser(paramMap);
-		 logger.info("result ===> {}", result);*/
+		 logger.info("result ===> {}", result);		
 		
 		
 		/*int result = memberService.joinStore(stBean);*/
@@ -57,9 +46,32 @@ public class StoreController {
 		return "store/join";
 	}
 	
+	@RequestMapping(value = "/join.st", method = RequestMethod.POST)
+	public String stjoin(HttpServletRequest request, HttpSession session) throws Exception{
+		
+		MemberBean stBean = new MemberBean();
+		
+		stBean.setMem_id(request.getParameter("mem_id"));
+		stBean.setMem_pw(request.getParameter("mem_pw"));
+		stBean.setMem_name(request.getParameter("mem_name"));
+		stBean.setSto_name(request.getParameter("sto_name"));
+		stBean.setMem_phone(request.getParameter("mem_phone"));
+		stBean.setMem_address(request.getParameter("mem_addr1") + "/" +
+				request.getParameter("mem_addr2") + "/" + request.getParameter("mem_addr3"));
+		stBean.setMem_email(request.getParameter("mem_email"));
+		
+		System.out.println(stBean);	
+		
+		int result = memberService.stjoin(stBean);
+		System.out.println(result);
+	
+		return "store/storeIndex";
+	}
+	
 	@RequestMapping(value = "/login.st", method = RequestMethod.GET)
 	public String stlogin(HttpServletRequest request, HttpSession session) throws Exception{
 		System.out.println("로그인 페이지 진입했다.");
+		
 		return "store/stLogin";
 	}
 	
@@ -70,15 +82,6 @@ public class StoreController {
 		return "store/storeIndex";
 	}
 	
-	@RequestMapping(value = "/stock.st", method = RequestMethod.GET)
-	public String stock(HttpServletRequest request, HttpSession session) throws Exception{
-		return "store/stock";
-	}
 	
-	@RequestMapping(value = "/cvs.st", method = RequestMethod.POST)
-	public String cvs(HttpServletRequest request, HttpSession session) throws Exception{
-
-		return "store/cvs";
-	}
 
 }

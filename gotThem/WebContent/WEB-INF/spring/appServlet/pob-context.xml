@@ -4,9 +4,19 @@
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 	
 	<!-- Controller -->
+	<bean id="productController" class="kr.co.gotthem.product.controller.ProductController">
+		<property name="productService" ref="productService" />
+		<property name="memberService" ref="memberService" />
+	</bean>
 	
 	<!-- Service -->
+	<bean id="productService" class="kr.co.gotthem.product.service.ProductServiceImpl">
+		<property name="productDao" ref="productDao" />
+	</bean>
 	
 	<!-- DAO -->
+	<bean id="productDao" class="kr.co.gotthem.product.dao.ProductDaoImpl">
+		<property name="sqlSessionTemplate" ref="sqlSessionTemplate" />
+	</bean>
 	
 </beans>

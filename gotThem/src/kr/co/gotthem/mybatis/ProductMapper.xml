@@ -4,8 +4,32 @@
               
 <mapper namespace="kr.co.gotthem.mybatis.ProductMapper">
 
-	<!-- <select id="list" resultType="kr.co.gotthem.product.bean.ProductBean">
-		select * from product
-	</select> -->
-
+	<select id="plist" resultType="kr.co.gotthem.product.bean.ProductBean">
+		select * from product where pro_stono = #{pro_stono}
+	</select>
+	
+	<select id="findCode" resultType="kr.co.gotthem.product.bean.ProductBean">
+		select * from product where pro_code = #{pro_code}
+	</select>
+	
+	<update id="updatePro" parameterType="kr.co.gotthem.product.bean.ProductBean">
+		update product set
+		pro_name = #{pro_name},
+		pro_category = #{pro_category},
+		pro_stock = #{pro_stock},
+		pro_price = #{pro_price}
+		where
+		pro_code = #{pro_code}
+	</update>
+	
+	<delete id="deletePro" parameterType="int">
+		delete from product where pro_code = #{pro_code}
+	</delete>
+	
+	<insert id="insertPro" parameterType="kr.co.gotthem.product.bean.ProductBean">
+		insert into product(
+		pro_name, pro_stono, pro_category, pro_stock, pro_price)
+		values(
+		#{pro_name}, #{pro_stono}, #{pro_category}, #{pro_stock}, #{pro_price})
+	</insert>
 </mapper>

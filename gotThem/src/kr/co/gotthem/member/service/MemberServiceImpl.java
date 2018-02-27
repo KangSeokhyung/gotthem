@@ -22,6 +22,12 @@ public class MemberServiceImpl implements MemberService {
 		int result = memberDao.join(memberBean);
 		return result;
 	}
+	
+	@Override
+	public int stjoin(MemberBean memberBean) {
+		int reuslt = memberDao.join(memberBean);
+		return reuslt;
+	}
 
 	@Override
 	public MemberBean login(String id) {
@@ -56,5 +62,14 @@ public class MemberServiceImpl implements MemberService {
 	@Override
 	public void changePassword(MemberBean memberBean) {
 		memberDao.changePassword(memberBean);
+	}
+	
+	public List<MemberBean> mlist(){
+		return memberDao.mlist();
+	}
+	
+	@Override
+	public List<MemberBean> stlist(){
+		return memberDao.stlist();
 	}
 }

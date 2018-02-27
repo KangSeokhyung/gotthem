@@ -1,148 +1,230 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
-<html>
+<html lang="ko">
 <head>
 <meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<title>Landy: Bootstrap 4 landing page template by
-	Bootstrapious.com</title>
-<meta name="description" content="">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="robots" content="all,follow">
-<!-- Bootstrap CSS-->
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>I'm Stisla</title>
 <link rel="stylesheet"
-	href="resources/landy/vendor/bootstrap/css/bootstrap.min.css">
-<!-- Font Awesome CSS-->
+	href="resources/mainTemplate/ionicons/css/ionicons.min.css">
 <link rel="stylesheet"
-	href="resources/landy/vendor/font-awesome/css/font-awesome.min.css">
-<!-- Custom Font Icons CSS-->
-<link rel="stylesheet" href="resources/landy/css/landy-iconfont.css">
-<!-- Google fonts - Open Sans-->
+	href="resources/mainTemplate/bootstrap/css/bootstrap.min.css">
 <link rel="stylesheet"
-	href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700,800">
-<!-- owl carousel-->
-<link rel="stylesheet"
-	href="resources/landy/vendor/owl.carousel/assets/owl.carousel.css">
-<link rel="stylesheet"
-	href="resources/landy/vendor/owl.carousel/assets/owl.theme.default.css">
-<!-- theme stylesheet-->
-<link rel="stylesheet" href="resources/landy/css/style.default.css"
-	id="theme-stylesheet">
-<!-- Custom stylesheet - for your changes-->
-<link rel="stylesheet" href="resources/landy/css/custom.css">
-<!-- Favicon-->
-<link rel="shortcut icon" href="favicon.png">
-<!-- Tweaks for older IEs-->
-<!--[if lt IE 9]>
-        <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-        <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
+	href="resources/mainTemplate/sweetalert/dist/sweetalert.css">
+<link rel="stylesheet" href="resources/mainTemplate/css/stisla.css">
+<style>
+section{
+background-size : cover;
+}
+</style>
 </head>
 <body>
-	<!-- navbar-->
-	<header class="header">
-		<%@include file ="nav.jsp" %>
+	<header>
+		<%@include file="nav.jsp"%>
 	</header>
-
-	<section id="cvssearch" class="newsletter bg-gray">
-		<div class="container text-center">
-			<h2>지금 맛있고 간단한 식사를 위해 검색해보세요</h2>
-			<p class="lead"></p>
-			<div class="form-holder">
-				<form id="newsletterForm" action="#">
-					<div class="form-group">
-						<input type="text" name="email" id="email"
-							placeholder="원하는 단어를 검색해보세요 (ex. 강남역 삼각김밥)">
-						<button type="submit" class="btn btn-primary btn-gradient submit">검색</button>
+	<section class="hero bg-overlay" id="hero"
+		data-bg="resources/mainTemplate/img/hero.jpg">
+		<div class="text">
+			<h2>편의점 재고 검색 시스템 GOT THEM</h2>
+			<h1>
+				여기에서 간편하게 <span class="bold"></span>음식을 검색 해보세요.
+			</h1>
+			<section id="cvssearch" class="newsletter bg-gray">
+				<div class="container text-center">
+					<div class="form-holder">
+						<form id="newsletterForm" action="#">
+							<div class="form-group">
+								<input type="text" name="search" id="email"
+									placeholder="원하는 지역명 혹은 상품명을 검색해보세요 (ex. 강남역 김밥)">
+								<button type="submit"
+									class="btn btn-primary btn-gradient submit">검색</button>
+							</div>
+						</form>
 					</div>
-				</form>
+				</div>
+			</section>
+		</div>
+	</section>
+
+	<section class="padding bg-grey" id="blog">
+		<div class="container">
+			<h2 class="section-title">RECENTLY UPDATED STORE LIST</h2>
+			<div class="section-body">
+				<div class="row col-spacing">
+					<div class="col-12 col-md-6 col-lg-4">
+						<article class="card">
+							<img class="card-img-top" src="img/news/img01.jpg"
+								alt="Article Image">
+							<div class="card-body">
+								<div class="card-subtitle mb-2 text-muted">
+									CU <a href="#">강남점</a> on August 10, 2017
+								</div>
+								<h4 class="card-title">
+									<a href="#" data-toggle="read" data-id="1">강남역 10번 출구에서 도보
+										3분 </a>
+								</h4>
+								<p class="card-text">항상 신선한 제품을 고객님들에게 제공하겠습니다 ^^*</p>
+								<div class="text-right">
+									<a href="#" class="card-more" data-toggle="read" data-id="1">상세
+										정보 <i class="ion-ios-arrow-right"></i>
+									</a>
+								</div>
+							</div>
+						</article>
+					</div>
+					<div class="col-12 col-md-6 col-lg-4">
+						<article class="card">
+							<img class="card-img-top" src="img/news/img04.jpg"
+								alt="Article Image">
+							<div class="card-body">
+								<div class="card-subtitle mb-2 text-muted">
+									by <a href="#">John Doe</a> on August 10, 2017
+								</div>
+								<h4 class="card-title">
+									<a href="#" data-toggle="read" data-id="1">Velit esse
+										cillum dolore eu blos siur dropsida wedor</a>
+								</h4>
+								<p class="card-text">Mauris eu eros in metus elementum porta
+									eget sed ligula. Praesent consequat, ipsum molestie
+									pellentesque venenatis.</p>
+								<div class="text-right">
+									<a href="#" class="card-more" data-toggle="read" data-id="1">상세
+										정보 <i class="ion-ios-arrow-right"></i>
+									</a>
+								</div>
+							</div>
+						</article>
+					</div>
+					<div class="col-12 col-md-6 col-lg-4">
+						<article class="card">
+							<img class="card-img-top" src="img/news/img02.jpg"
+								alt="Article Image">
+							<div class="card-body">
+								<div class="card-subtitle mb-2 text-muted">
+									by <a href="#">John Doe</a> on August 10, 2017
+								</div>
+								<h4 class="card-title">
+									<a href="#" data-toggle="read" data-id="1">Excepteur sint
+										as occaecat dros cupidatat non proident los</a>
+								</h4>
+								<p class="card-text">Mauris eu eros in metus elementum porta
+									eget sed ligula. Praesent consequat, ipsum molestie
+									pellentesque venenatis.</p>
+								<div class="text-right">
+									<a href="#" class="card-more" data-toggle="read" data-id="1">Read
+										More <i class="ion-ios-arrow-right"></i>
+									</a>
+								</div>
+							</div>
+						</article>
+					</div>
+					<div class="col-12 col-md-6 col-lg-4">
+						<article class="card">
+							<img class="card-img-top" src="img/news/img05.jpg"
+								alt="Article Image">
+							<div class="card-body">
+								<div class="card-subtitle mb-2 text-muted">
+									by <a href="#">John Doe</a> on August 10, 2017
+								</div>
+								<h4 class="card-title">
+									<a href="#" data-toggle="read" data-id="1">Sunt in ado
+										culpa qui officia deserunt mollit anim id</a>
+								</h4>
+								<p class="card-text">Mauris eu eros in metus elementum porta
+									eget sed ligula. Praesent consequat, ipsum molestie
+									pellentesque venenatis.</p>
+								<div class="text-right">
+									<a href="#" class="card-more" data-toggle="read" data-id="1">Read
+										More <i class="ion-ios-arrow-right"></i>
+									</a>
+								</div>
+							</div>
+						</article>
+					</div>
+					<div class="col-12 col-md-6 col-lg-4">
+						<article class="card">
+							<img class="card-img-top" src="img/news/img03.jpg"
+								alt="Article Image">
+							<div class="card-body">
+								<div class="card-subtitle mb-2 text-muted">
+									by <a href="#">John Doe</a> on August 10, 2017
+								</div>
+								<h4 class="card-title">
+									<a href="#" data-toggle="read" data-id="1">Incididunt ut
+										labore et labore dolore magna aliqua lorem</a>
+								</h4>
+								<p class="card-text">Mauris eu eros in metus elementum porta
+									eget sed ligula. Praesent consequat, ipsum molestie
+									pellentesque venenatis.</p>
+								<div class="text-right">
+									<a href="#" class="card-more" data-toggle="read" data-id="1">Read
+										More <i class="ion-ios-arrow-right"></i>
+									</a>
+								</div>
+							</div>
+						</article>
+					</div>
+					<div class="col-12 col-md-6 col-lg-4">
+						<article class="card">
+							<img class="card-img-top" src="img/news/img06.jpg"
+								alt="Article Image">
+							<div class="card-body">
+								<div class="card-subtitle mb-2 text-muted">
+									by <a href="#">John Doe</a> on August 10, 2017
+								</div>
+								<h4 class="card-title">
+									<a href="#" data-toggle="read" data-id="1">Ut enim ad minim
+										veniam quis nostrud enim ad kruv</a>
+								</h4>
+								<p class="card-text">Mauris eu eros in metus elementum porta
+									eget sed ligula. Praesent consequat, ipsum molestie
+									pellentesque venenatis.</p>
+								<div class="text-right">
+									<a href="#" class="card-more" data-toggle="read" data-id="1">Read
+										More <i class="ion-ios-arrow-right"></i>
+									</a>
+								</div>
+							</div>
+						</article>
+					</div>
+				</div>
 			</div>
 		</div>
 	</section>
 
-	<section id="about-us">
+
+	<section class="callout">
 		<div class="container">
-			<h2>저희와 제휴 하고 싶으신가요?</h2>
-			<div class="row">
-				<p class="lead col-lg-10">There are many variations of passages
-					of Lorem Ipsum available, but the majority have suffered alteration
-					in some form, by injected humour, or randomised words which don't
-					look even slightly believable. If you are going to use a passage of
-					Lorem Ipsum, you need to be sure there isn't anything embarrassing
-					hidden in the middle of text. or randomised words which don't look
-					even slightly believable.</p>
+			<div class="row align-items-center">
+				<div class="col-12 col-md-8 text">
+					<h3>저희와 제휴맺는 것에 관심이 있으신가요?</h3>
+				</div>
+				<div class="col-12 col-md-4 cta">
+					<a href="storeIndex.st" class="btn btn-outline-primary"> 제휴페이지로 이동 </a>
+				</div>
 			</div>
-			<a href="storeIndex.st" class="btn btn-primary btn-shadow btn-gradient">Discover
-				More</a>
 		</div>
 	</section>
 
-	<div id="scrollTop">
-		<div class="d-flex align-items-center justify-content-end">
-			<i class="fa fa-long-arrow-up"></i>To Top
-		</div>
-	</div>
-	<footer class="main-footer">
+	<footer>
 		<div class="container">
-			<div class="row">
-				<div class="col-lg-3 col-md-6">
-					<a href="#" class="brand">Gotthem</a>
-					<ul class="contact-info list-unstyled">
-						<li><a href="mailto:sales@landy.com">admin@gotthem.co.kr</a></li>
-						<li><a href="tel:123456789">02-1234-5768</a></li>
-					</ul>					
-				</div>
-				<div class="col-lg-3 col-md-6">
-					<h5>Selected Cases</h5>
-					<ul class="links list-unstyled">
-						<li><a href="#">Guess Conntect</a></li>
-						<li><a href="#">Postly</a></li>
-						<li><a href="#">Iris Vor Arnim</a></li>
-						<li><a href="#">Yapital</a></li>
-					</ul>
-				</div>
-				<div class="col-lg-3 col-md-6">
-					<h5>Selected Cases</h5>
-					<ul class="links list-unstyled">
-						<li><a href="#">Guess Conntect</a></li>
-						<li><a href="#">Postly</a></li>
-						<li><a href="#">Iris Vor Arnim</a></li>
-						<li><a href="#">Yapital</a></li>
-					</ul>
-				</div>
-				<div class="col-lg-3 col-md-6">
-					<h5>Selected Cases</h5>
-					<ul class="links list-unstyled">
-						<li><a href="#">Guess Conntect</a></li>
-						<li><a href="#">Postly</a></li>
-						<li><a href="#">Iris Vor Arnim</a></li>
-						<li><a href="#">Yapital</a></li>
-					</ul>
-				</div>
-			</div>
-		</div>
-		<div class="copyrights">
-			<div class="container">
-				<div class="row">
-					<div class="col-md-7">
-						<p>&copy; 2018 스탑없으팀 프로젝트 Gotthem  All rights reserved.</p>
-					</div>
-					<div class="col-md-5 text-right">
-						<p>
-							Template By <a href="https://bootstrapious.com/" class="external">Bootstrapious</a>
-						</p>
-						<!-- Please do not remove the backlink to Bootstrapious unless you support us at http://bootstrapious.com/donate. It is part of the license conditions. Thanks for understanding :) -->
-					</div>
-				</div>
-			</div>
+			<figure>
+				<img src="resources/mainTemplate/img/logo.png" alt="Logo">
+			</figure>
+			<p>Copyright &copy; 2018 스탑없으</p>
+			<p>
+				Made with <i class="ion-heart"></i> By Kodinger
+			</p>
 		</div>
 	</footer>
-	<!-- Javascript files-->
-	<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"></script>
-	<script src="resources/landy/vendor/bootstrap/js/bootstrap.min.js"></script>
-	<script src="resources/landy/vendor/jquery.cookie/jquery.cookie.js">
-	<script src="resources/landy/js/front.js"></script>
+
+	<script src="resources/mainTemplate/js/jquery.min.js"></script>
+	<script src="resources/indexTemplate/js/popper.min.js"></script>
+	<script src="resources/mainTemplate/bootstrap/js/bootstrap.min.js"></script>
+	<script src="resources/mainTemplate/js/jquery.easeScroll.js"></script>
+	<script src="resources/mainTemplate/sweetalert/dist/sweetalert.min.js"></script>
+	<script src="resources/mainTemplate/js/stisla.js"></script>
 </body>
 </html>

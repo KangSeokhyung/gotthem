@@ -4,34 +4,29 @@
 <html lang="ko">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-
-<meta name="viewport"
-	content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <title>Mypage</title>
-
-<!-- Bootstrap core CSS -->
-<link rel="stylesheet"
-	href="resources/mypages/vendor/bootstrap/css/bootstrap.min.css">
-
+<link rel="stylesheet" href="resources/mainTemplate/ionicons/css/ionicons.min.css">
+<link rel="stylesheet" href="resources/mainTemplate/bootstrap/css/bootstrap.min.css">
+<link rel="stylesheet" href="resources/mainTemplate/sweetalert/dist/sweetalert.css">
+<link rel="stylesheet" href="resources/mainTemplate/css/stisla.css">
+<link rel="stylesheet" href="resources/landy/vendor/owl.carousel/assets/owl.carousel.css">
+<link rel="stylesheet" href="resources/landy/vendor/owl.carousel/assets/owl.theme.default.css">
 <!-- theme stylesheet-->
-<link rel="stylesheet" href="resources/landy/css/style.default.css"
-	id="theme-stylesheet">
-	
-<!-- custom stylesheet CSS -->	
-<link rel="stylesheet"
-	href="resources/mypages/css/mypage.css">
-
+<link rel="stylesheet" href="resources/landy/css/style.default.css" id="theme-stylesheet">
+<!-- Custom stylesheet - for your changes-->
+<link rel="stylesheet" href="resources/landy/css/custom.css">
+<link rel="stylesheet" type="text/css" href="resources/simpleAccordion/styles/style.css">
 </head>
 
-<body>
+<body style="padding-top:0px;">
 
-	<header>
+ 	<header>
 		<%@include file="../../../nav.jsp"%>
-	</header>
+	</header> 
 
 	
-	<div class="container-fluid">
+	<div class="container-fluid" style="padding-top:80px;">
 		<div class="row">
 		
 			<!-- Page Content -->
@@ -82,10 +77,12 @@
 	</footer>
 
 	<!-- Bootstrap core JavaScript -->
-	<script
-		src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"></script>
-	<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-	<script src="resources/landy/vendor/bootstrap/js/bootstrap.min.js"></script>
+	<script src="resources/mainTemplate/js/jquery.min.js"></script>
+	<script src="resources/indexTemplate/js/popper.min.js"></script>
+	<script src="resources/mainTemplate/bootstrap/js/bootstrap.min.js"></script>
+	<script src="resources/mainTemplate/js/jquery.easeScroll.js"></script>
+	<script src="resources/mainTemplate/sweetalert/dist/sweetalert.min.js"></script>
+	<script src="resources/mainTemplate/js/stisla.js"></script>
 	<script>
 		$.get("mypageMemberInfo.gt", function(data) {
 			$('#tab-1').html(data);

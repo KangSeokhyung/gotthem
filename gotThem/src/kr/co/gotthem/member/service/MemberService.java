@@ -7,6 +7,8 @@ public interface MemberService {
 	public MemberBean memberInfo(String mem_id);
 	
 	public int join(MemberBean memberBean);
+	
+	public int stjoin(MemberBean memberBean);
 
 	public MemberBean login(String id);
 	
@@ -21,4 +23,8 @@ public interface MemberService {
 	public MemberBean findAccount(String email);
 	
 	public void changePassword(MemberBean memberBean);
+
+	public List<MemberBean> mlist();
+	
+	public List<MemberBean> stlist();
 }

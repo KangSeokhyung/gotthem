@@ -9,6 +9,8 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.mariadb.jdbc.internal.logging.Logger;
+import org.mariadb.jdbc.internal.logging.LoggerFactory;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
@@ -24,6 +26,8 @@ import kr.co.gotthem.member.service.MemberService;
 
 @Controller
 public class MemberController {
+	 
+	private static final Logger logger = LoggerFactory.getLogger(MemberController.class);
 	
 	private MemberService memberService;
 	private MailService mailService;
@@ -42,7 +46,6 @@ public class MemberController {
 	public String login() {
 		return "member/mlogin";
 	}
-	
 	@RequestMapping(value = "/logout.gt", method = RequestMethod.GET)
 	public String logout(HttpSession  session, HttpServletRequest request) {		
 		session.invalidate();		
@@ -154,19 +157,24 @@ public class MemberController {
 		String mem_pw = bean.getMem_pw();
 		System.out.println(mem_pw);
 		int result = memberService.passCheck(bean);
-
 		if(result == 0) {
-			response.setContentType("text/html; charset=UTF-8");
-			out = response.getWriter();
-			out.println("<Script>");
-			out.println("alert('비밀번호를 확인해 주세요');");
-			out.println("history.go(-1);");
-			out.println("</Script>");
-			return null;
+			mav.setViewName("redirect:/passCheck.gt");
+			return mav;
 		}
-		System.out.println(result);
-		mav.addObject("passCheck", result);
 		mav.setViewName("member/changePW");
+		return mav;
+	}
+	
+	@RequestMapping(value = "/callChangePW.gt", method = RequestMethod.POST)
+	public ModelAndView passChange(MemberBean bean, ModelAndView mav, PrintWriter out, HttpServletResponse response)
+			throws Exception {
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+		String mem_id = authentication.getName();
+		bean.setMem_id(mem_id);
+		String mem_pw = bean.getMem_pw();
+		System.out.println(mem_pw);
+		int result = memberService.passCheck(bean);
+		mav.setViewName("member/callChangePW");
 		return mav;
 	}
 	
