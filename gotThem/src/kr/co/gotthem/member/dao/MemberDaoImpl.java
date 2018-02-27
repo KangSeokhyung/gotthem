@@ -19,8 +19,7 @@ public class MemberDaoImpl implements MemberDao {
 	
 	@Override
 	public int join(MemberBean memberBean) {
-		int result = sqlSessionTemplate.insert("stjoin", memberBean);
-		System.out.println("집어넣음ㅋ");
+		int result = sqlSessionTemplate.insert("join", memberBean);
 		return result;
 	}
 	
