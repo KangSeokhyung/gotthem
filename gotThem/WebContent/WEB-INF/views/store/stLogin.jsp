@@ -1,75 +1,137 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html lang="ko">
-	<head>
-		<meta charset="utf-8">
-		<title>Startup UI Kit - Free Sample</title>
-		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-		<link rel="shortcut icon" href="resources/ownerindex/images/favicon.ico">
-		<link rel="stylesheet" href="resources/ownerindex/bootstrap/css/bootstrap.css">
-		<link rel="stylesheet" href="resources/ownerindex/css/font-awesome.min.css">
-		<link rel="stylesheet" href="resources/ownerindex/css/style.css">
-		<link href="https://fonts.googleapis.com/css?family=Droid+Serif:400,400i,700,700i|Montserrat:200,200i,300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
-	</head>
-	<body>
-		<section class="cover-1 text-center">
-		<%@include file ="storeNav.jsp"%>
-				<section class="container login-form">
-		<section>
-			<form method="post" action="<c:url value="/login.st"/>" role="login">			
+<head>
+<title>편의점 재고 검색 포털 Got them</title>
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta charset="utf-8">
+<link rel="stylesheet" type="text/css" href="resources/Login_v7/css/util.css">
+<link rel="stylesheet" type="text/css" href="resources/Login_v7/css/main.css">
+<link href="https://fonts.googleapis.com/css?family=Work+Sans"
+	rel="stylesheet">
+<link rel="stylesheet" href="resources/indexTemplate/css/bootstrap.min.css">
+<link rel="stylesheet" href="resources/indexTemplate/css/open-iconic-bootstrap.min.css">
+<link rel="stylesheet" href="resources/indexTemplate/css/owl.carousel.min.css">
+<link rel="stylesheet" href="resources/indexTemplate/css/owl.theme.default.min.css">
+<link rel="stylesheet" href="resources/indexTemplate/css/icomoon.css">
+<link rel="stylesheet" href="resources/indexTemplate/css/animate.css">
+<link rel="stylesheet" href="resources/indexTemplate/css/style.css">
+<link rel="stylesheet" type="text/css" href="resources/stlogin/bootstrap/css/bootstrap.min.css" />
+<link rel="stylesheet" type="text/css" href="resources/stlogin/css/styles.css" />
+</head>
+<body>
 
-				<div class="form-group">
-					<input type="text" name="sto_id" required class="form-control"
-						placeholder="Enter email or nickname" /> <span
-						class="glyphicon glyphicon-user"></span>
-				</div>
+	<aside class="probootstrap-aside js-probootstrap-aside">
+		<a href="#"
+			class="probootstrap-close-menu js-probootstrap-close-menu d-md-none"><span
+			class="oi oi-arrow-left"></span> Close</a>
+		<div class="probootstrap-site-logo probootstrap-animate"
+			data-animate-effect="fadeInLeft">
 
-				<div class="form-group">
-					<input type="password" name="sto_pw" required
-						class="form-control" placeholder="Enter password" /> <span
-						class="glyphicon glyphicon-lock"></span>
-				</div>
+			<a href="storeIndex.st" class="mb-2 d-block probootstrap-logo">GOTTHEM</a>
+			<p class="mb-0">
+				제휴 사이트 
+			</p>
+		</div>
+		<div class="probootstrap-overflow">
+			<nav class="probootstrap-nav">
+				<ul>
+					<li class="probootstrap-animate"
+						data-animate-effect="fadeInLeft"><a href="/storeIndex">Got them?</a></li>
+					<li class="probootstrap-animate" data-animate-effect="fadeInLeft"><a
+						href="store.st">점포관리</a></li>
+					<li class="probootstrap-animate" data-animate-effect="fadeInLeft"><a
+						href="stock.st">재고관리</a></li>
+				<c:set var="sessionCheck"
+					value="${sessionScope.SPRING_SECURITY_CONTEXT}" />
+				<c:choose>
+					<c:when test="${sessionCheck eq null}">
+					<li class="probootstrap-animate active" data-animate-effect="fadeInLeft"><a
+						href="login.st">로그인</a></li>
+					<li class="probootstrap-animate" data-animate-effect="fadeInLeft"><a
+						href="join.st">제휴맺기</a></li>
+					</c:when>
+					<c:otherwise>
+						<li class="probootstrap-animate" data-animate-effect="fadeInLeft"><a href="logout.gt" class="nav-link">로그아웃</a></li>
+					</c:otherwise>
+				</c:choose>
+			</ul>
+			</nav>
+			<footer class="probootstrap-aside-footer probootstrap-animate"
+				data-animate-effect="fadeInLeft">
+				<p>
+					&copy; 2018 <a href="/gotThem" target="_blank">스탑없으 X Got Them</a>.
+					<br> All Rights Reserved.
+				</p>
+			</footer>
+		</div>
+	</aside>
 
-				<button type="submit" name="go" class="btn btn-primary btn-block">Login
-					Now</button>
 
-				<a href="#">Reset password</a> or <a href="#">create account</a>
-				 <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/> 
-			</form>
-		</section>
-	</section>
-</section>
-
-		<footer class="footer-3">
-			<div class="container-fluid">
-				<div class="divider"></div>
-			</div>
+	<main role="main" class="probootstrap-main js-probootstrap-main">
+		<div class="probootstrap-bar">
+		<a href="#" class="probootstrap-toggle js-probootstrap-toggle"><span
+			class="oi oi-menu"></span></a>
+		<div class="probootstrap-main-site-logo">
+			<a href="storeIndex.st">Aside</a></a>
+		</div>
+	</div>
+	
 			<div class="container">
-				<div class="row">
-					<div class="col-md-6 text-center text-md-left mt-2 mb-3 pt-1">
-						<p>Copyright &copy; YourStartup. All rights reserved.</p>
-					</div>
-					<div class="col-md-6 text-center text-md-right mb-4">
-						<ul class="social">
-							<li><a href="#" title="Facebook" class="fa fa-facebook"></a></li>
-							<li><a href="#" title="Twitter" class="fa fa-twitter"></a></li>
-							<li><a href="#" title="Google+" class="fa fa-google"></a></li>
-							<li><a href="#" title="Dribbble" class="fa fa-dribbble"></a></li>
-							<li><a href="#" title="Instagram" class="fa fa-instagram"></a></li>
-						
-						</ul>
-					</div>
-				</div>
+			<div class="container col-sm-6 center-block">
+			<img src="resources/mainTemplate/img/logo.png" alt="" width=300px; />
 			</div>
-		</footer>
-		
-		<!-- Placed at the end of the document so the pages load faster -->
-		<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
-		<script src="resources/ownerindex/bootstrap/js/bootstrap.min.js"></script>
+			<div class="container col-sm-6 center-block">
+			<form method="post" action="" role="login">
+				<div>
+					<label>Username</label>
+					<input type="text" name="sto_id" required class="form-control" />
+				</div>
+				
+				<div>
+					<label>Password</label>
+					<input type="password" name="sto_pw" required class="form-control" />
+				</div>
+			
+				<section>
+					<button type="submit" name="go" class="btn btn-block">Sign In</button>
+					<p><a href="#">Forgot your password ?</a></p>
+					<p><a href="#">Create account</a></p>
+				</section>
+			</form>
+			</div>
+		</div>
 
-	</body>
+	
+		<div class="container-fluid d-md-none">
+		<div class="row">
+			<div class="col-md-12">
+				<ul class="list-unstyled d-flex probootstrap-aside-social">
+					<li><a href="#" class="p-2"><span class="icon-twitter"></span></a></li>
+					<li><a href="#" class="p-2"><span class="icon-instagram"></span></a></li>
+					<li><a href="#" class="p-2"><span class="icon-dribbble"></span></a></li>
+				</ul>
+				<p>
+					&copy; 2017 <a href="https://uicookies.com/" target="_blank">uiCookies:Aside</a>.
+					<br> All Rights Reserved. Designed by <a
+						href="https://uicookies.com/" target="_blank">uicookies.com</a>
+				</p>
+			</div>
+		</div>
+	</div>
+
+	</main>
+
+	<script src="resources/indexTemplate/js/jquery-3.2.1.slim.min.js"></script>
+	<script src="resources/indexTemplate/js/popper.min.js"></script>
+	<script src="resources/indexTemplate/js/bootstrap.min.js"></script>
+	<script src="resources/indexTemplate/js/owl.carousel.min.js"></script>
+	<script src="resources/indexTemplate/js/jquery.waypoints.min.js"></script>
+	<script src="resources/indexTemplate/js/imagesloaded.pkgd.min.js"></script>
+	<script src="resources/indexTemplate/js/main.js"></script>
+
+</body>
 </html>

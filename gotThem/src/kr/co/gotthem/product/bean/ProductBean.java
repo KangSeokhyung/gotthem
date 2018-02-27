@@ -7,11 +7,8 @@ public class ProductBean {
 	private String pro_name;
 	private int pro_stono;
 	private String pro_category;
-	private int pro_income;
-	private int pro_release;
 	private int pro_stock;
 	private int pro_price;
-	private Date pro_exdate;
 	public int getPro_code() {
 		return pro_code;
 	}
@@ -36,18 +33,6 @@ public class ProductBean {
 	public void setPro_category(String pro_category) {
 		this.pro_category = pro_category;
 	}
-	public int getPro_income() {
-		return pro_income;
-	}
-	public void setPro_income(int pro_income) {
-		this.pro_income = pro_income;
-	}
-	public int getPro_release() {
-		return pro_release;
-	}
-	public void setPro_release(int pro_release) {
-		this.pro_release = pro_release;
-	}
 	public int getPro_stock() {
 		return pro_stock;
 	}
@@ -60,17 +45,10 @@ public class ProductBean {
 	public void setPro_price(int pro_price) {
 		this.pro_price = pro_price;
 	}
-	public Date getPro_exdate() {
-		return pro_exdate;
-	}
-	public void setPro_exdate(Date pro_exdate) {
-		this.pro_exdate = pro_exdate;
-	}
 	@Override
 	public String toString() {
 		return "ProductBean [pro_code=" + pro_code + ", pro_name=" + pro_name + ", pro_stono=" + pro_stono
-				+ ", pro_category=" + pro_category + ", pro_income=" + pro_income + ", pro_release=" + pro_release
-				+ ", pro_stock=" + pro_stock + ", pro_price=" + pro_price + ", pro_exdate=" + pro_exdate + "]";
+				+ ", pro_category=" + pro_category + ", pro_stock=" + pro_stock + ", pro_price=" + pro_price + "]";
 	}
-	
+
 }

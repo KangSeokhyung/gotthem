@@ -1,177 +1,163 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html lang="ko">
-	<head>
-		<meta charset="utf-8">
-		<title>Startup UI Kit - Free Sample</title>
-		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-		<link rel="shortcut icon" href="resources/ownerindex/images/favicon.ico">
-		<link rel="stylesheet" href="resources/ownerindex/bootstrap/css/bootstrap.css">
-		<link rel="stylesheet" href="resources/ownerindex/css/font-awesome.min.css">
-		<link rel="stylesheet" href="resources/ownerindex/css/style.css">
-		<link href="https://fonts.googleapis.com/css?family=Droid+Serif:400,400i,700,700i|Montserrat:200,200i,300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
-	</head>
-	<body>
-		<section class="cover-1 text-center">
-		<%@include file ="storeNav.jsp"%>
-			<div class="cover-container pb-5">
-				<div class="cover-inner container">
-		 <div class="row marketing">
-        <div class="col-xs-12">
-          <h1 class="jumbotron-heading">지금 <strong>Got them에</strong> 점포를	<strong>등록하세요</strong></h1>
-			<p class="lead">got them에 대해 궁금하신가요?</p>
-        </div>
-<<<<<<< HEAD
+<head>
+<title>편의점 재고 검색 포털 Got them</title>
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta charset="utf-8">
+<link rel="stylesheet" type="text/css" href="resources/Login_v7/css/util.css">
+<link rel="stylesheet" type="text/css" href="resources/Login_v7/css/main.css">
+<link href="https://fonts.googleapis.com/css?family=Work+Sans"
+	rel="stylesheet">
+<link rel="stylesheet" href="resources/indexTemplate/css/bootstrap.min.css">
+<link rel="stylesheet" href="resources/indexTemplate/css/open-iconic-bootstrap.min.css">
+<link rel="stylesheet" href="resources/indexTemplate/css/owl.carousel.min.css">
+<link rel="stylesheet" href="resources/indexTemplate/css/owl.theme.default.min.css">
+<link rel="stylesheet" href="resources/indexTemplate/css/icomoon.css">
+<link rel="stylesheet" href="resources/indexTemplate/css/animate.css">
+<link rel="stylesheet" href="resources/indexTemplate/css/style.css">
+<link rel="stylesheet" href="resources/landy/css/style.default.css" id="theme-stylesheet">
+<link rel="stylesheet" href="resources/landy/css/custom.css">
+</head>
+<body>
 
-        <div class="col-lg-6">
-         <div class="container">
-                <div class="col-xs-12 mx-auto">
-                    <div class="card border-secondary">
-                        <div class="card-body">
-                            <form class="form" action="join.st" role="form" autocomplete="off" method="post">
-                                    <label for="inputName">아이디</label>
-                                    <input type="text" class="form-control" id="sto_id" name="sto_id" placeholder="아이디를 입력해주세요">                           
-                                    <label for="inputPassword3">Password</label>
-                                    <input type="password" class="form-control" id="inputPassword3" name="sto_pw" placeholder="비밀번호를 입력하세요" title="At least 6 characters with letters and numbers" required="">
-                                    <label for="inputVerify3">Verify</label>
-                                    <input type="password" class="form-control" id="inputVerify3" placeholder="한번 더 입력해주세요" required="">
-                                    <label for="inputEmail3">점주명</label>
-                                    <input type="text" class="form-control" id="sto_owner" name="sto_owner" placeholder="점주명을 입력해주세요" required="">
-                                    <label for="inputEmail3">점포명</label>
-                                    <input type="text" class="form-control" id="sto_name" name="sto_name" placeholder="점포명을 입력해주세요" required="">
-                                    <label for="inputEmail3">점포주소</label>
-                                  	<span><input type="text" style="width:40%;"class="form-control" id="sample6_postcode" name="sto_addr1" placeholder="우편번호" required="">
-                                    <button  onclick="sample6_execDaumPostcode()">우편번호 찾기</button></span> 
-                                    <input type="text" class="form-control" id="sample6_address" name="sto_addr2" placeholder="점포 도로명주소" required="">
-                                    <input type="text" class="form-control" id="sample6_address2" name="sto_addr3"placeholder="점포 상세주소" required="">
-                                    <label for="inputEmail3">사업자 번호</label>
-                                    <input type="text" class="form-control" id="inputEmail3"name="sto_registno"  placeholder="사업자 번호를 입력해주세요" required="">
-                                     <label for="inputEmail3">점주 이메일</label>
-                                    <input type="text" class="form-control" id="sto_email" name="sto_email" placeholder="이메일을 입력해주세요" required="">
-                                    <label for="inputEmail3">점주 폰번호</label>
-                                    <input type="text" class="form-control" id="sto_phone" name="sto_phone" placeholder="전화번호 입력해주세요" required="">
-                                     <br>
-                                     <button type="submit" class="btn btn-success btn-lg float-right">등록하기</button>
-                                     </form>
-                                    </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-=======
->>>>>>> branch 'Kangsh' of https://github.com/KangSeokhyung/gotthem.git
-            <!--/row-->
-        </div>
-        <!--/col-->
-   		</div>
+	<aside class="probootstrap-aside js-probootstrap-aside">
+		<a href="#"
+			class="probootstrap-close-menu js-probootstrap-close-menu d-md-none"><span
+			class="oi oi-arrow-left"></span> Close</a>
+		<div class="probootstrap-site-logo probootstrap-animate"
+			data-animate-effect="fadeInLeft">
+
+			<a href="storeIndex.st" class="mb-2 d-block probootstrap-logo">GOTTHEM</a>
+			<p class="mb-0">
+				제휴 사이트 
+			</p>
 		</div>
-</section>
+		<div class="probootstrap-overflow">
+			<nav class="probootstrap-nav">
+				<ul>
+					<li class="probootstrap-animate active"
+						data-animate-effect="fadeInLeft"><a href="/storeIndex">Got them?</a></li>
+					<li class="probootstrap-animate" data-animate-effect="fadeInLeft"><a
+						href="mystore.st">점포관리</a></li>
+					<li class="probootstrap-animate" data-animate-effect="fadeInLeft"><a
+						href="stock.st">재고관리</a></li>
+				<c:set var="sessionCheck"
+					value="${sessionScope.SPRING_SECURITY_CONTEXT}" />
+				<c:choose>
+					<c:when test="${sessionCheck eq null}">
+					<li class="probootstrap-animate" data-animate-effect="fadeInLeft"><a
+						href="login.st">로그인</a></li>
+					<li class="probootstrap-animate" data-animate-effect="fadeInLeft"><a
+						href="join.st">제휴맺기</a></li>
+					</c:when>
+					<c:otherwise>
+						<li class="probootstrap-animate" data-animate-effect="fadeInLeft"><a href="logout.gt" class="nav-link">로그아웃</a></li>
+					</c:otherwise>
+				</c:choose>
+				<li class="probootstrap-animate" data-animate-effect="fadeInLeft"><a
+						href="index.gt">고객 사이트</a></li>
+			</ul>
+			</nav>
+			<footer class="probootstrap-aside-footer probootstrap-animate"
+				data-animate-effect="fadeInLeft">
+				<p>
+					&copy; 2018 <a href="/gotThem" target="_blank">스탑없으 X Got Them</a>.
+					<br> All Rights Reserved.
+				</p>
+			</footer>
+		</div>
+	</aside>
 
-		<footer class="footer-3">
-			<div class="container-fluid">
-				<div class="divider"></div>
+
+	<main role="main" class="probootstrap-main js-probootstrap-main">
+		<div class="probootstrap-bar">
+		<a href="#" class="probootstrap-toggle js-probootstrap-toggle"><span
+			class="oi oi-menu"></span></a>
+		<div class="probootstrap-main-site-logo">
+			<a href="index.html">Aside</a></a>
+		</div>
+	</div>
+	
+ 	 <!--   <section id="cvssearch" class="newsletter bg-gray">
+      <div class="container text-center">
+        <h2>편의점 신선식품 재고 검색</h2>
+        <div class="form-holder">
+          <form id="newsletterForm" action="#">
+            <div class="form-group">
+              <input type="text" name="search" id="email" placeholder="원하는 지역명 혹은 상품명을 검색해보세요 (ex. 강남역 김밥)">
+              <button type="submit" class="btn btn-primary btn-gradient submit">Subscribe</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </section>  -->
+
+	 <section id="browser" class="browser">
+      <div class="container">
+        <div class="row d-flex justify-content-center"> 
+          <div class="col-lg-8 text-center">
+            <h2 class="h3 mb-5">제휴 신청은 어떻게 하는 것이죠?</h2>
+            <div class="browser-mockup">
+              <div id="nav-tabContent" class="tab-content">
+                <div id="nav-first" role="tabpanel" aria-labelledby="nav-first-tab" class="tab-pane fade show active"><img src="img/preview-3.png" alt="..." class="img-fluid"></div>
+                <div id="nav-second" role="tabpanel" aria-labelledby="nav-second-tab" class="tab-pane fade"><img src="img/preview-2.png" alt="..." class="img-fluid"></div>
+                <div id="nav-third" role="tabpanel" aria-labelledby="nav-third-tab" class="tab-pane fade"><img src="img/preview-1.png" alt="..." class="img-fluid"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div id="myTab" role="tablist" class="nav nav-tabs">
+          <div class="row">
+            <div class="col-md-4"><a id="nav-first-tab" data-toggle="tab" href="#nav-first" role="tab" aria-controls="nav-first" aria-expanded="true" class="nav-item nav-link active"> <span class="number">1</span>메인에서 먼저 검색을 해봅니다.</a></div>
+            <div class="col-md-4"><a id="nav-second-tab" data-toggle="tab" href="#nav-second" role="tab" aria-controls="nav-second" class="nav-item nav-link"> <span class="number">2</span>원하는 상품을 선택하고 결제버튼을<br> 클릭합니다!</a></div>
+            <div class="col-md-4"><a id="nav-third-tab" data-toggle="tab" href="#nav-third" role="tab" aria-controls="nav-third" class="nav-item nav-link"> <span class="number">3</span>마지막으로 결제 버튼을 누르고 상품을 찾으러 가면 끝!</a></div>
+          </div>
+        </div>
+      </div>
+    </section>
+    
+        <section id="features" class="features">
+      <div class="container">
+        <div class="row d-flex align-items-center">
+          <div class="text col-lg-6 order-2 order-lg-1">
+            <h4>당신과 함께 제휴를 해보고 싶습니다!</h4>
+            <p>많은 점주들이 Got Them과 제휴 한 뒤 매출이 <strong>150% 이상 상승</strong>하였습니다. 당신도 원한다면 아래의 제휴 사이트에서 제휴신청을 해보세요!</p><a href="storeIndex.st" class="btn btn-primary btn-shadow btn-gradient">이동하기</a>
+          </div>
+          <div class="image col-lg-6 order-1 order-lg-2"><img src="img/feature-1.png" alt="..." class="img-fluid"></div>
+        </div>
+      </div>
+    </section>	
+
+	<div class="container-fluid d-md-none">
+		<div class="row">
+			<div class="col-md-12">
+				<ul class="list-unstyled d-flex probootstrap-aside-social">
+					<li><a href="#" class="p-2"><span class="icon-twitter"></span></a></li>
+					<li><a href="#" class="p-2"><span class="icon-instagram"></span></a></li>
+					<li><a href="#" class="p-2"><span class="icon-dribbble"></span></a></li>
+				</ul>
+				<p>
+					&copy; 2017 <a href="https://uicookies.com/" target="_blank">uiCookies:Aside</a>.
+					<br> All Rights Reserved. Designed by <a
+						href="https://uicookies.com/" target="_blank">uicookies.com</a>
+				</p>
 			</div>
-			<div class="container">
-				<div class="row">
-					<div class="col-md-6 text-center text-md-left mt-2 mb-3 pt-1">
-						<p>Copyright &copy; YourStartup. All rights reserved.</p>
-					</div>
-					<div class="col-md-6 text-center text-md-right mb-4">
-						<ul class="social">
-							<li><a href="#" title="Facebook" class="fa fa-facebook"></a></li>
-							<li><a href="#" title="Twitter" class="fa fa-twitter"></a></li>
-							<li><a href="#" title="Google+" class="fa fa-google"></a></li>
-							<li><a href="#" title="Dribbble" class="fa fa-dribbble"></a></li>
-							<li><a href="#" title="Instagram" class="fa fa-instagram"></a></li>
-							<div class="clear"></div>
-						</ul>
-					</div>
-				</div>
-			</div>
-		</footer>
-		
-		<!-- Placed at the end of the document so the pages load faster -->
-		<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
-		<script src="resources/ownerindex/bootstrap/js/bootstrap.min.js"></script>
-<<<<<<< HEAD
-		<script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
-		<script>
-   		 function sample6_execDaumPostcode() {
-       		 new daum.Postcode({
-          	  oncomplete: function(data) {
-                // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
+		</div>
+	</div>
 
-                // 각 주소의 노출 규칙에 따라 주소를 조합한다.
-                // 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
-                var fullAddr = ''; // 최종 주소 변수
-                var extraAddr = ''; // 조합형 주소 변수
+	</main>
 
-                // 사용자가 선택한 주소 타입에 따라 해당 주소 값을 가져온다.
-                if (data.userSelectedType === 'R') { // 사용자가 도로명 주소를 선택했을 경우
-                    fullAddr = data.roadAddress;
+	<script src="resources/indexTemplate/js/jquery-3.2.1.slim.min.js"></script>
+	<script src="resources/indexTemplate/js/popper.min.js"></script>
+	<script src="resources/indexTemplate/js/bootstrap.min.js"></script>
+	<script src="resources/indexTemplate/js/owl.carousel.min.js"></script>
+	<script src="resources/indexTemplate/js/jquery.waypoints.min.js"></script>
+	<script src="resources/indexTemplate/js/imagesloaded.pkgd.min.js"></script>
+	<script src="resources/indexTemplate/js/main.js"></script>
 
-                } else { // 사용자가 지번 주소를 선택했을 경우(J)
-                    fullAddr = data.jibunAddress;
-                }
-
-                // 사용자가 선택한 주소가 도로명 타입일때 조합한다.
-                if(data.userSelectedType === 'R'){
-                    //법정동명이 있을 경우 추가한다.
-                    if(data.bname !== ''){
-                        extraAddr += data.bname;
-                    }
-                    // 건물명이 있을 경우 추가한다.
-                    if(data.buildingName !== ''){
-                        extraAddr += (extraAddr !== '' ? ', ' + data.buildingName : data.buildingName);
-                    }
-                    // 조합형주소의 유무에 따라 양쪽에 괄호를 추가하여 최종 주소를 만든다.
-                    fullAddr += (extraAddr !== '' ? ' ('+ extraAddr +')' : '');
-                }
-
-                // 우편번호와 주소 정보를 해당 필드에 넣는다.
-                document.getElementById('sample6_postcode').value = data.zonecode; //5자리 새우편번호 사용
-                document.getElementById('sample6_address').value = fullAddr;
-
-                // 커서를 상세주소 필드로 이동한다.
-                document.getElementById('sample6_address2').focus();
-            }
-        }).open();
-    }
-	 	/* function checkId(){ 
-	          $.ajax({
-	              url : "./MemberIdCheckAction.aq",
-	              type: "POST",
-	              data : {"id":$('#m_id').val()},	              
-	              success : function(data){
-	                   if(data=="0"){test.store
-	                	   $("#idcheck").html('<p style="color:blue"> 사용가능한 아이디입니다.</p>');
-	                   }else if(data=="1"){
-	                	   $("#idcheck").html('<p style="color:red"> 다른 사람이 사용중입니다.</p>');
-	                   }
-	              },    error: function(jqXHR, textStatus, errorThrown) {
-	            	  console.log(jqXHR);
-	            	  console.log(textStatus);
-	            	  console.log(errorThrown);
-	              }
-	          });
-		  }
-   
-      function pwCheck(){
-    	 var pw1 = document.getElementById("m_pass1").value;
-    	 var pw2 = document.getElementById("m_pass2").value;
-    		 if(pw1 != pw2){
-    			 	document.getElementById('pwCheck').style.color = "red";
-    			    document.getElementById('pwCheck').innerHTML = "동일한 암호를 입력하세요."; 
-    		 		}else {
-    		 		document.getElementById('pwCheck').style.color = "blue";
-    		 		document.getElementById('pwCheck').innerHTML = "암호가 확인 되었습니다."; 
-    		 		} 			 
-    		 } 	  */
-</script>
-=======
->>>>>>> branch 'Kangsh' of https://github.com/KangSeokhyung/gotthem.git
-	</body>
+</body>
 </html>

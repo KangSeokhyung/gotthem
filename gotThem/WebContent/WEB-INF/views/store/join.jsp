@@ -1,136 +1,200 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
-<html>
+<html lang="ko">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
-</head>
+<title>편의점 재고 검색 포털 Got them</title>
 <meta name="viewport"
-	content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-<link rel="stylesheet"
-	href="resources/ownerindex/bootstrap/css/bootstrap.css">
-<link rel="stylesheet" href="resources/ownerindex/css/style.css">
-<link rel="stylesheet" type="text/css"
-	href="resource/join/vendor/bootstrap/css/bootstrap.min.css">
-<!--===============================================================================================-->
-<link rel="stylesheet" type="text/css"
-	href="resources/join/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
-<!--===============================================================================================-->
-<link rel="stylesheet" type="text/css"
-	href="resources/join/vendor/animate/animate.css">
-<!--===============================================================================================-->
-<link rel="stylesheet" type="text/css"
-	href="resources/join/vendor/css-hamburgers/hamburgers.min.css">
-<!--===============================================================================================-->
-<link rel="stylesheet" type="text/css"
-	href="resources/join/vendor/select2/select2.min.css">
-<!--===============================================================================================-->
-<link rel="stylesheet" type="text/css"
-	href="resources/join/css/util.css">
-<link rel="stylesheet" type="text/css"
-	href="resources/join/css/main.css">
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta charset="utf-8">
+<link rel="stylesheet" type="text/css" href="resources/Login_v7/css/util.css">
+<link rel="stylesheet" type="text/css" href="resources/Login_v7/css/main.css">
+<link href="https://fonts.googleapis.com/css?family=Work+Sans"
+	rel="stylesheet">
+<link rel="stylesheet" href="resources/indexTemplate/css/bootstrap.min.css">
+<link rel="stylesheet" href="resources/indexTemplate/css/open-iconic-bootstrap.min.css">
+<link rel="stylesheet" href="resources/indexTemplate/css/owl.carousel.min.css">
+<link rel="stylesheet" href="resources/indexTemplate/css/owl.theme.default.min.css">
+<link rel="stylesheet" href="resources/indexTemplate/css/icomoon.css">
+<link rel="stylesheet" href="resources/indexTemplate/css/animate.css">
+<link rel="stylesheet" href="resources/indexTemplate/css/style.css">
+  <link rel="stylesheet" href="resources/stlogin/tether/tether.min.css">
+  <link rel="stylesheet" href="resources/stlogin/bootstrap/css/bootstrap.min.css">
+  <link rel="stylesheet" href="resources/stlogin/bootstrap/css/bootstrap-grid.min.css">
+  <link rel="stylesheet" href="resources/stlogin/bootstrap/css/bootstrap-reboot.min.css">
+  <link rel="stylesheet" href="resources/stlogin/theme/css/style.css">
+  <link rel="stylesheet" href="resources/stlogin/mobirise/css/mbr-additional.css" type="text/css">
 
+</head>
 <body>
-	<section class="cover-1 text-center">
-		<%@include file="storeNav.jsp"%>
-		<div class="contact1">
-			<div class="container-contact1">
-				<div class="col-xs-6">
-					<form class="contact1-form validate-form">
-						<div class="wrap-input1 validate-input"
-							data-validate="Name is required">
-							<input class="input1" type="text" name="name"
-								placeholder="아이디를 입력하세요"> <span class="shadow-input1"></span>
-						</div>
 
-						<div class="wrap-input1 validate-input"
-							data-validate="Password is required">
-							<input class="input1" type="password" name="pass1"
-								placeholder="패스워드를 입력하세요"> <span class="shadow-input1"></span>
-						</div>
+	<aside class="probootstrap-aside js-probootstrap-aside">
+		<a href="#"
+			class="probootstrap-close-menu js-probootstrap-close-menu d-md-none"><span
+			class="oi oi-arrow-left"></span> Close</a>
+		<div class="probootstrap-site-logo probootstrap-animate"
+			data-animate-effect="fadeInLeft">
 
-						<div class="wrap-input1 validate-input"
-							data-validate="Password is required">
-							<input class="input1" type="password" name="pass2"
-								placeholder="한번 더 입력하세요"> <span class="shadow-input1"></span>
-						</div>
-
-						<div class="wrap-input1 validate-input"
-							data-validate="Password is required">
-							<input class="input1" type="text" name="name"
-								placeholder="점포명을 입력하세요"> <span class="shadow-input1"></span>
-						</div>
-
-						<div class="wrap-input1 validate-input"
-							data-validate="Valid email is required: ex@abc.xyz">
-							<input class="input1" type="email" name="email"
-								placeholder="이메일을 입력하세요"> <span class="shadow-input1"></span>
-						</div>
-
-						<div class="wrap-input1 validate-input"
-							data-validate="Valid email is required: ex@abc.xyz">
-							<input class="input1" type="email" name="email"
-								placeholder="핸드폰 번호를 입력하세요"> <span class="shadow-input1"></span>
-						</div>
-
-						<div class="wrap-input1 validate-input"
-							data-validate="Message is required">
-							<textarea class="input1" name="message" placeholder="Message"></textarea>
-							<span class="shadow-input1"></span>
-						</div>
-					</form>
-				</div>
-
-				<div class="col-xs-6">
-					<form class="contact1-form validate-form">
-						<div class="wrap-input1 validate-input"
-							data-validate="Name is required">
-							<input class="input1" type="text" name="name" placeholder="우편번호">
-							<span class="shadow-input1"></span>
-						</div>
-
-						<div class="container-contact1-form-btn">
-							<button class="contact1-form-btn" onclick="sample6_execDaumPostcode()">
-								<span> 우편번호찾기</span>
-							</button>
-						</div>
-
-						<div class="wrap-input1 validate-input"
-							data-validate="Name is required">
-							<input class="input1" type="text" name="name"
-								placeholder="상세 주소1"> <span class="shadow-input1"></span>
-						</div>
-
-						<div class="container-contact1-form-btn">
-							<button class="contact1-form-btn">
-								<span> apply <i class="fa fa-long-arrow-right"
-									aria-hidden="true"></i>
-								</span>
-							</button>
-						</div>
-					</form>
-				</div>
-			</div>
+			<a href="storeIndex.st" class="mb-2 d-block probootstrap-logo">GOTTHEM</a>
+			<p class="mb-0">
+				제휴 사이트 
+			</p>
 		</div>
+		<div class="probootstrap-overflow">
+			<nav class="probootstrap-nav">
+				<ul>
+					<li class="probootstrap-animate"
+						data-animate-effect="fadeInLeft"><a href="/storeIndex">Got them?</a></li>
+					<li class="probootstrap-animate" data-animate-effect="fadeInLeft"><a
+						href="store.st">점포관리</a></li>
+					<li class="probootstrap-animate" data-animate-effect="fadeInLeft"><a
+						href="stock.st">재고관리</a></li>
+				<c:set var="sessionCheck"
+					value="${sessionScope.SPRING_SECURITY_CONTEXT}" />
+				<c:choose>
+					<c:when test="${sessionCheck eq null}">
+					<li class="probootstrap-animate" data-animate-effect="fadeInLeft"><a
+						href="login.st">로그인</a></li>
+					<li class="probootstrap-animate active" data-animate-effect="fadeInLeft"><a
+						href="join.st">제휴맺기</a></li>
+					</c:when>
+					<c:otherwise>
+						<li class="probootstrap-animate" data-animate-effect="fadeInLeft"><a href="logout.gt" class="nav-link">로그아웃</a></li>
+					</c:otherwise>
+				</c:choose>
+			</ul>
+			</nav>
+			<footer class="probootstrap-aside-footer probootstrap-animate"
+				data-animate-effect="fadeInLeft">
+				<p>
+					&copy; 2018 <a href="/gotThem" target="_blank">스탑없으 X Got Them</a>.
+					<br> All Rights Reserved.
+				</p>
+			</footer>
+		</div>
+	</aside>
 
-	</section>
-	<!--===============================================================================================-->
-	<script src="resources/join/vendor/jquery/jquery-3.2.1.min.js"></script>
-	<!--===============================================================================================-->
-	<script src="resources/join/vendor/bootstrap/js/popper.js"></script>
-	<script src="resources/join/vendor/bootstrap/js/bootstrap.min.js"></script>
-	<!--===============================================================================================-->
-	<script src="resources/join/vendor/select2/select2.min.js"></script>
-	<!--===============================================================================================-->
-	<script src="resources/join/vendor/tilt/tilt.jquery.min.js"></script>
-	<script>
-		$('.js-tilt').tilt({
-			scale : 1.1
-		})
-	</script>
-	<script src="resources/join/js/main.js"></script>
 
+	<main role="main" class="probootstrap-main js-probootstrap-main">
+		<div class="probootstrap-bar">
+		<a href="#" class="probootstrap-toggle js-probootstrap-toggle"><span
+			class="oi oi-menu"></span></a>
+		<div class="probootstrap-main-site-logo">
+			<a href="index.html">Aside</a></a>
+		</div>
+	</div>
+		<section class="mbr-section form1 cid-qIWKYtQnJh" id="form1-r">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="title col-12 col-lg-8">
+                <h2 class="mbr-section-title align-center pb-3 mbr-fonts-style display-2">
+                    GOT THEM과 제휴맺기
+                </h2>
+                <h3 class="mbr-section-subtitle align-center mbr-light pb-3 mbr-fonts-style display-5">
+                    이 양식을 작성하면 GOT THEM에 제휴 신청이 가능합니다.
+                </h3>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="media-container-column col-lg-8" data-form-type="formoid">
+                    <div data-form-alert="" hidden="">
+                        Thanks for filling out the form!
+                    </div>
+            
+                    <form class="mbr-form" action="join.st" method="post" data-form-title="Mobirise Form">
+                    <input type="hidden" name="email" data-form-email="true" value="v71UZV7rSGKmNdtMTJcCzvbgvRKs8I889PXLsAjbR6NuKJtPYoKYEe+DT90N7gqVmrsYQhYLqTnSDAVjImF7Eb8KP/1hIcQUbq5w77EmgcHnu38hK1G/QmJo9v9/aFIP" data-form-field="Email">
+                        <div class="row row-sm-offset">
+                            <div class="col-sm-8 multi-horizontal" data-for="name">
+                                <div class="form-group">
+                                    <label class="form-control-label mbr-fonts-style display-7" for="name-form1-r">아이디</label>
+                                    <input type="text" class="form-control" name="mem_id" data-form-field="Name" required="" id="name-form1-r">
+                                </div>
+                            </div>
+                            <div class="col-sm-6 multi-horizontal" data-for="email">
+                                <div class="form-group">
+                                    <label class="form-control-label mbr-fonts-style display-7" for="pass-form1-r">패스워드</label>
+                                    <input type="password" class="form-control" name="mem_pw" data-form-field="Email" required="" id="email-form1-r">
+                                </div>
+                            </div>
+                            <div class="col-sm-6 multi-horizontal" data-for="phone">
+                                <div class="form-group">
+                                    <label class="form-control-label mbr-fonts-style display-7" for="pass-form1-r">패스워드 재입력</label>
+                                    <input type="password" class="form-control" name="mem_pass2" data-form-field="Phone" id="phone-form1-r">
+                                </div>
+                            </div>
+                            <div class="col-sm-8 multi-horizontal" data-for="name">
+                                <div class="form-group">
+                                    <label class="form-control-label mbr-fonts-style display-7" for="owner-form1-r">점주명</label>
+                                    <input type="text" class="form-control" name="mem_name" data-form-field="owner" required="" id="name-form1-r">
+                                </div>
+                         </div>
+                         <div class="col-sm-8 multi-horizontal" data-for="name">
+                                <div class="form-group">
+                                    <label class="form-control-label mbr-fonts-style display-7" for="stoname-form1-r">점포명</label>
+                                    <input type="text" class="form-control" name="sto_name" data-form-field="owner" required="" id="name-form1-r">
+                                </div>
+                         </div>
+                          <div class="col-sm-8 multi-horizontal" data-for="name">
+                          <div class="form-group">
+                                    <label class="form-control-label mbr-fonts-style display-7" for="email-form1-r">이메일</label>
+                                    <input type="email" class="form-control" name="mem_email" data-form-field="Name" required="" id="name-form1-r">
+                                </div>
+                            </div>
+                          <div class="col-sm-8 multi-horizontal" data-for="name">
+                           <div class="form-group">
+                                    <label class="form-control-label mbr-fonts-style display-7" for="phone-form1-r">전화번호</label>
+                                    <input type="text" class="form-control" name="mem_phone" data-form-field="Name" required="" id="name-form1-r">
+                                </div>
+                            </div>
+                         <div class="col-sm-6 multi-horizontal" data-for="name">
+                            <div class="form-group">
+                                    <label class="form-control-label mbr-fonts-style display-7" for="addr1-form1-r">우편번호</label>
+                                    <input type="text" class="form-control" name="mem_addr1" data-form-field="Name" required="" id="sample6_postcode">
+                                </div>
+                            </div>
+                         <div class="col-sm-6 multi-horizontal" data-for="name">
+                            <div class="form-group" style="text-align:center; vertical-align:middle;">
+                            <button onclick="sample6_execDaumPostcode()" class="btn btn-primary btn-form display-4">우편번호찾기</button>
+                           </div>
+                         </div>
+                        <div class="col-sm-12 multi-horizontal" data-for="name">
+                            <div class="form-group">
+                                    <label class="form-control-label mbr-fonts-style display-7" for="addr1-form1-r">매장 상세주소1</label>
+                                    <input type="text" class="form-control" name="mem_addr2" data-form-field="Name" required="" id="sample6_address">
+                                </div>
+                            </div>
+                         <div class="col-sm-12 multi-horizontal" data-for="name">
+                            <div class="form-group">
+                                    <label class="form-control-label mbr-fonts-style display-7" for="addr2-form1-r">매장 상세주소2</label>
+                                    <input type="text" class="form-control" name="mem_addr3" data-form-field="Name" required="" id="sample6_address2">
+                                </div>
+                            </div>
+                        </div>
+                        <span class="input-group-btn">
+                            <button type="submit" class="btn btn-primary btn-form display-4">제휴신청</button>
+                        </span>
+                    </form>
+            </div>
+        </div>
+    </div>
+</section>
+
+	</main>
+
+	<script src="resources/indexTemplate/js/jquery-3.2.1.slim.min.js"></script>
+	<script src="resources/indexTemplate/js/popper.min.js"></script>
+	<script src="resources/indexTemplate/js/bootstrap.min.js"></script>
+	<script src="resources/indexTemplate/js/owl.carousel.min.js"></script>
+	<script src="resources/indexTemplate/js/jquery.waypoints.min.js"></script>
+	<script src="resources/indexTemplate/js/imagesloaded.pkgd.min.js"></script>
+	<script src="resources/indexTemplate/js/main.js"></script>
+	<script src="resources/stlogin/popper/popper.min.js"></script>
+  	<script src="resources/stlogin/tether/tether.min.js"></script>
+  	<script src="resources/stlogin/smoothscroll/smooth-scroll.js"></script>
+  	<script src="resources/stlogin/theme/js/script.js"></script>
 	<script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
 	<script>
 		function sample6_execDaumPostcode() {

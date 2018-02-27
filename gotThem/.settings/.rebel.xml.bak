@@ -7,15 +7,6 @@
 <application generated-by="eclipse" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.zeroturnaround.com" xsi:schemaLocation="http://www.zeroturnaround.com http://update.zeroturnaround.com/jrebel/rebel-2_1.xsd">
 
 	<classpath>
-<<<<<<< HEAD
-		<dir name="C:/Users/bit-user/git1/gotthem/gotThem/build/classes">
-		</dir>
-	</classpath>
-
-	<web>
-		<link target="/">
-			<dir name="C:/Users/bit-user/git1/gotthem/gotThem/WebContent">
-=======
 		<dir name="C:/Users/Bit/git/gotthem/gotThem/build/classes">
 		</dir>
 	</classpath>
@@ -23,7 +14,6 @@
 	<web>
 		<link target="/">
 			<dir name="C:/Users/Bit/git/gotthem/gotThem/WebContent">
->>>>>>> branch 'Kangsh' of https://github.com/KangSeokhyung/gotthem.git
 			</dir>
 		</link>
 	</web>

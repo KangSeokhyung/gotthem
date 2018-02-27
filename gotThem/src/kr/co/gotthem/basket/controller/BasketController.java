@@ -52,28 +52,8 @@ public class BasketController {
 		this.memberService = memberService;
 	}
 	
-/*	 @RequestMapping("/testa.gt")
-	    public String test() {
-		 return "basket/NewFile";
-	 }       
-	 @RequestMapping(value="/updateChkBox")
-	   public @ResponseBody String updateChkBox (
-	       HttpServletRequest request,
-	       HttpServletResponse response,
-	       @RequestParam(value="name",required=true) List<String> name,
-	       @RequestParam(value="age",required=true) List<Integer> age) throws Exception {    
-	     log.debug( ">>> param size : " + name.size() );
-	      
-	     int i = 0;
-	     for( String value : name ){
-	       log.debug( ">>> name's value : " + value + "\tage : " + age.get(i) );
-	       i++;
-	     }
-	      
-	     return "success";
-	   }*/
-	
-	// product 1. 상품 전체 목록
+	/*// product 1. 상품 전체 목록
+
     @RequestMapping("/productlist.gt")
     public ModelAndView list(ModelAndView mav) {
         mav.setViewName("/basket/productList");
@@ -89,8 +69,8 @@ public class BasketController {
     	mav.setViewName("basket/productDetail");
         mav.addObject("m", productService.detailProduct(pro_code));
         return mav;
-    }
-   
+    }*/
+
     // 1. 장바구니 추가
     @RequestMapping(value ="insert.gt")
     public String insertBasket(@ModelAttribute BasketBean basketBean,
@@ -113,7 +93,6 @@ public class BasketController {
         	 basketBean.setBas_proname(basketBean.getBas_proname());
         	 basketBean.setBas_proprice(basketBean.getBas_proprice());
         	 basketBean.setBas_procategory(basketBean.getBas_procategory());
-        	 basketBean.setBas_proexdate(basketBean.getBas_proexdate());
         	 basketService.insertBasket(basketBean);
         	System.out.println("0==insert 실행" );
         } else {

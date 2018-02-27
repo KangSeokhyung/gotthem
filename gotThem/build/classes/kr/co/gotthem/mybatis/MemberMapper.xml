@@ -12,18 +12,31 @@
 		select mem_id, mem_pw from member where mem_id = #{id}
 	</select>
 	
+	<select id="mlist" resultType="kr.co.gotthem.member.bean.MemberBean">
+		select * from member where mem_status='ROLE_USER'
+	</select>
+	
+	<select id="stlist" resultType="kr.co.gotthem.member.bean.MemberBean">
+		select * from member where mem_status='ROLE_STORE'
+	</select>
+	
 	<select id="duplCheck" resultType="int">
 		select count(*) from member where mem_id=#{mem_id}
 	</select>
 	
 	<insert id="join" parameterType="kr.co.gotthem.member.bean.MemberBean">
-		insert into member(mem_id, mem_pw, mem_name, mem_email, mem_phone, mem_address)
-		values(#{mem_id}, #{mem_pw}, #{mem_name}, #{mem_email}, #{mem_phone}, #{mem_address})
+		insert into member(mem_id, mem_pw, mem_name, mem_email, mem_phone, mem_address, mem_status, enabled)
+		values(#{mem_id}, #{mem_pw}, #{mem_name}, #{mem_email}, #{mem_phone}, #{mem_address}, 'ROLE_USER', 1)
+	</insert>
+	
+	<insert id="stjoin" parameterType="kr.co.gotthem.member.bean.MemberBean">
+		insert into member(mem_id, mem_pw, mem_name, sto_name, mem_email, mem_phone, mem_address, mem_regdate, mem_status, enabled)
+		values(#{mem_id}, #{mem_pw}, #{mem_name}, #{sto_name}, #{mem_email}, #{mem_phone}, #{mem_address}, curdate(), 'ROLE_STORE' , 0)
 	</insert>
 	
 	<update id="memberModi" parameterType="kr.co.gotthem.member.bean.MemberBean">
-		update member set mem_name = #{mem_name}, mem_email = #{mem_email}, mem_phone = #{mem_phone}, mem_post = #{mem_post},
-		mem_address1 = #{mem_address1}, mem_address2 = #{mem_address2} where mem_id = #{mem_id}
+		update member set mem_name = #{mem_name}, mem_email = #{mem_email}, mem_phone = #{mem_phone}, 
+		mem_address = #{mem_address} where mem_id = #{mem_id}
 	</update>
 	
 	<select id="passCheck" parameterType="kr.co.gotthem.member.bean.MemberBean" resultType="int">
@@ -35,4 +48,3 @@
 	</update>
 
 </mapper>
-

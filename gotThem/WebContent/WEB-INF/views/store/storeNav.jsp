@@ -3,7 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <nav class="navbar navbar-expand-lg navbar-dark navbar-custom">
 	<div class="container">
-		<a class="navbar-brand" href="storeIndex.st">Got them</a>
+		<a class="navbar-brand" href="storeIndex.st">점포관리시스템</a>
 		<button class="navbar-toggler" type="button" data-toggle="collapse"
 			data-target="#navbarSupportedContent"
 			aria-controls="navbarSupportedContent" aria-expanded="false"
@@ -15,7 +15,7 @@
 			id="navbarSupportedContent">
 			<ul class="navbar-nav mt-2 mt-md-0">
 				<li class="nav-item"><a class="nav-link" href="#">알림사항</a></li>
-				<li class="nav-item"><a class="nav-link" href="#">점포관리</a></li>
+				<li class="nav-item"><a class="nav-link" href="mystore.st">점포관리</a></li>
 				<li class="nav-item"><a class="nav-link" href="stock.st">재고관리</a></li>
 				<li class="nav-item"><a class="nav-link" href="#">회사소개</a></li>
 				<c:set var="sessionCheck"

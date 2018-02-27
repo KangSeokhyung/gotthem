@@ -36,11 +36,9 @@
 	href="../../../resources/simpleAccordion/styles/style.css">
 </head>
 <body>
-<header>
+ <header>
 <%@include file="../../../nav.jsp" %>
-</header>   
-	</header>
-
+</header>
 	<div class="container-login100 ">
 		<div class="wrap-login100 p-t-0 p-b-30 col-xs-4"></div>
 

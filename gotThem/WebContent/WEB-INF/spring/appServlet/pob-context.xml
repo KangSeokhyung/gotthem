@@ -3,7 +3,7 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 	
-	<!-- Controller. -->
+	<!-- Controller -->
 	<bean id="basketController" class="kr.co.gotthem.basket.controller.BasketController">
 		<property name="basketService" ref="basketService" />
 		<property name="productService" ref="productService" />
@@ -21,25 +21,29 @@
 	</bean>
 	
 	<!-- Service -->
-	<bean id="basketService" class="kr.co.gotthem.basket.service.BasketServiceImpl">
-		<property name="basketDao" ref="basketDao" />
-	</bean>
 	<bean id="productService" class="kr.co.gotthem.product.service.ProductServiceImpl">
 		<property name="productDao" ref="productDao" />
 	</bean>
+	
+	<bean id="basketService" class="kr.co.gotthem.basket.service.BasketServiceImpl">
+		<property name="basketDao" ref="basketDao" />
+	</bean>
+	
 	<bean id="orderService" class="kr.co.gotthem.order.service.OrderServiceImpl">
 		<property name="orderDao" ref="orderDao" />
 	</bean>
-
+	
 	<!-- DAO -->
-	<bean id="basketDao" class="kr.co.gotthem.basket.dao.BasketDaoImpl">
-		<property name="sqlSessionTemplate" ref="sqlSessionTemplate" />
-	</bean>
 	<bean id="productDao" class="kr.co.gotthem.product.dao.ProductDaoImpl">
 		<property name="sqlSessionTemplate" ref="sqlSessionTemplate" />
 	</bean>
+	
+	<bean id="basketDao" class="kr.co.gotthem.basket.dao.BasketDaoImpl">
+		<property name="sqlSessionTemplate" ref="sqlSessionTemplate" />
+	</bean>
+	
 	<bean id="orderDao" class="kr.co.gotthem.order.dao.OrderDaoImpl">
 		<property name="sqlSessionTemplate" ref="sqlSessionTemplate" />
 	</bean>
-
+	
 </beans>

@@ -22,6 +22,12 @@ public class MemberDaoImpl implements MemberDao {
 		int result = sqlSessionTemplate.insert("join", memberBean);
 		return result;
 	}
+	
+	@Override
+	public int stjoin(MemberBean memberBean) {
+		int result = sqlSessionTemplate.insert("stjoin", memberBean);
+		return result;
+	}
 
 	@Override
 	public MemberBean login(String id) {
@@ -49,6 +55,18 @@ public class MemberDaoImpl implements MemberDao {
 		System.out.println(memberBean);
 		int result = sqlSessionTemplate.update("memberDelete",memberBean);
 		System.out.println("회원탈퇴 결과는 " + result);
+	}
+	
+	@Override
+	public List<MemberBean> mlist() {
+		System.out.println("회원 리스트 뽑아옴");
+		return sqlSessionTemplate.selectList("mlist");
+	}
+	
+	@Override
+	public List<MemberBean> stlist(){
+		System.out.println("점포 리스트 뽑아옴");
+		return sqlSessionTemplate.selectList("stlist");
 	}
 
 }

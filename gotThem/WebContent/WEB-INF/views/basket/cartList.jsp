@@ -4,49 +4,29 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
 <title>상품장바구니 목록</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="description" content="">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="all,follow">
-<!-- Bootstrap CSS-->
 <link rel="stylesheet"
-	href="resources/landy/vendor/bootstrap/css/bootstrap.min.css">
-<!-- Font Awesome CSS-->
+	href="resources/mainTemplate/ionicons/css/ionicons.min.css">
 <link rel="stylesheet"
-	href="resources/landy/vendor/font-awesome/css/font-awesome.min.css">
-<!-- Custom Font Icons CSS-->
-<link rel="stylesheet" href="resources/landy/css/landy-iconfont.css">
-<!-- Google fonts - Open Sans-->
+	href="resources/mainTemplate/bootstrap/css/bootstrap.min.css">
 <link rel="stylesheet"
-	href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700,800">
-<!-- owl carousel-->
-<link rel="stylesheet"
-	href="resources/landy/vendor/owl.carousel/assets/owl.carousel.css">
-<link rel="stylesheet"
-	href="resources/landy/vendor/owl.carousel/assets/owl.theme.default.css">
-<!-- theme stylesheet-->
-<link rel="stylesheet" href="resources/landy/css/style.default.css"
-	id="theme-stylesheet">
-<!-- Custom stylesheet - for your changes-->
-<link rel="stylesheet" href="resources/landy/css/custom.css">
-<!-- Favicon-->
-<link rel="shortcut icon" href="favicon.png">
-<!-- Tweaks for older IEs-->
-<!--[if lt IE 9]>
-        <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-        <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-<%-- <%@ include file="../include/header.jsp" %> --%>
+	href="resources/mainTemplate/sweetalert/dist/sweetalert.css">
+<link rel="stylesheet" href="resources/mainTemplate/css/stisla.css">
+<style>
+section{
+background-size : cover;
+}
+</style>
 </head>
 <body>
-	<!-- navbar-->
-	<header class="header">
-		<%@include file ="/nav.jsp" %>
+	<header>
+		<%@include file="/nav.jsp"%>
 	</header>
 <div class="container">
     <h2>장바구니 확인</h2>
@@ -102,70 +82,24 @@
       </c:otherwise>
     </c:choose>
 </div>    
-	<footer class="main-footer">
+	<footer>
 		<div class="container">
-			<div class="row">
-				<div class="col-lg-3 col-md-6">
-					<a href="#" class="brand">Gotthem</a>
-					<ul class="contact-info list-unstyled">
-						<li><a href="mailto:sales@landy.com">admin@gotthem.co.kr</a></li>
-						<li><a href="tel:123456789">02-1234-5768</a></li>
-					</ul>					
-				</div>
-				<div class="col-lg-3 col-md-6">
-					<h5>Selected Cases</h5>
-					<ul class="links list-unstyled">
-						<li><a href="#">Guess Conntect</a></li>
-						<li><a href="#">Postly</a></li>
-						<li><a href="#">Iris Vor Arnim</a></li>
-						<li><a href="#">Yapital</a></li>
-					</ul>
-				</div>
-				<div class="col-lg-3 col-md-6">
-					<h5>Selected Cases</h5>
-					<ul class="links list-unstyled">
-						<li><a href="#">Guess Conntect</a></li>
-						<li><a href="#">Postly</a></li>
-						<li><a href="#">Iris Vor Arnim</a></li>
-						<li><a href="#">Yapital</a></li>
-					</ul>
-				</div>
-				<div class="col-lg-3 col-md-6">
-					<h5>Selected Cases</h5>
-					<ul class="links list-unstyled">
-						<li><a href="#">Guess Conntect</a></li>
-						<li><a href="#">Postly</a></li>
-						<li><a href="#">Iris Vor Arnim</a></li>
-						<li><a href="#">Yapital</a></li>
-					</ul>
-				</div>
-			</div>
-		</div>
-		
-		<div class="copyrights">
-			<div class="container">
-				<div class="row">
-					<div class="col-md-7">
-						<p>&copy; 2018 스탑없으팀 프로젝트 Gotthem  All rights reserved.</p>
-					</div>
-					<div class="col-md-5 text-right">
-						<p>
-							Template By <a href="https://bootstrapious.com/" class="external">Bootstrapious</a>
-						</p>
-						<!-- Please do not remove the backlink to Bootstrapious unless you support us at http://bootstrapious.com/donate. It is part of the license conditions. Thanks for understanding :) -->
-					</div>
-				</div>
-			</div>
+			<figure>
+				<img src="resources/mainTemplate/img/logo.png" alt="Logo">
+			</figure>
+			<p>Copyright &copy; 2018 스탑없으</p>
+			<p>
+				Made with <i class="ion-heart"></i> By Kodinger
+			</p>
 		</div>
 	</footer>
 </body>
-	<!-- Javascript files-->
-	<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"></script>
-	<script src="resources/landy/vendor/bootstrap/js/bootstrap.min.js"></script>
-	<script src="resources/landy/vendor/jquery.cookie/jquery.cookie.js"></script>
-	<script src="resources/landy/vendor/owl.carousel/owl.carousel.min.js"></script>
-	<script src="resources/landy/js/front.js"></script>
+	<script src="resources/mainTemplate/js/jquery.min.js"></script>
+	<script src="resources/indexTemplate/js/popper.min.js"></script>
+	<script src="resources/mainTemplate/bootstrap/js/bootstrap.min.js"></script>
+	<script src="resources/mainTemplate/js/jquery.easeScroll.js"></script>
+	<script src="resources/mainTemplate/sweetalert/dist/sweetalert.min.js"></script>
+	<script src="resources/mainTemplate/js/stisla.js"></script>
 <script type="text/javascript">
     $(document).ready(function(){
         // 리스트 페이지로 이동
@@ -195,7 +129,7 @@
 	   submitTest.submit();
    } */
 
-   function _sedelete(f) {
+/*    function _sedelete(f) {
 	   alert("선택삭제"); //같이 보낼 값 정리
        if (typeof(f.elements['chk[]'].length) == 'undefined') { //단일
            if (f.elements['chk[]'].checked==false) {
@@ -211,7 +145,7 @@
            }
        }
        return true;
-   }
+   } */
    function button_event(bas_no){
     	alert(bas_no);
    if (confirm("정말 삭제하시겠습니까??")){    //확인

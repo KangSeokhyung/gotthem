@@ -6,10 +6,9 @@
 <configuration>
 
 	<mappers>
-		<mapper resource="kr/co/gotthem/mybatis/AdminMapper.xml" />
+		<mapper resource="kr/co/gotthem/mybatis/ProductMapper.xml" />
 		<mapper resource="kr/co/gotthem/mybatis/MemberMapper.xml" />
 		<mapper resource="kr/co/gotthem/mybatis/BasketMapper.xml" />
-		<mapper resource="kr/co/gotthem/mybatis/ProductMapper.xml" />
 	</mappers>
 	
 </configuration>

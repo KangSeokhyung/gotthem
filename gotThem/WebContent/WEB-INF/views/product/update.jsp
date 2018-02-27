@@ -41,25 +41,14 @@
 							<td>가격</td><td><input type="text" name="pro_price" value="${pro.pro_price }"/></td>
 						</tr>
 						<tr>
-							<td>입고</td><td><input type="text" name="pro_income" value="${pro.pro_income }"/></td>
-						</tr>
-						<tr>
-							<td>출고</td><td><input type="text" name="pro_release" value="${pro.pro_release }"/></td>
-						</tr>
-						<tr>
-							<td>전일재고</td><td><input type="text" name="pro_stock" value="${pro.pro_stock }"/></td>
-						</tr>
-						<tr>
-							<td>현재고</td><td>${pro.pro_stock+pro.pro_income-pro.pro_release }</td>
-						</tr>
-						<tr>
-							<td>매출</td><td>${pro.pro_price*pro.pro_release }</td>
+							<td>재고</td><td><input type="text" name="pro_stock" value="${pro.pro_stock }"/></td>
 						</tr>
 						<tr>
 							<td colspan="2" align="center">
 								<input type="submit" value="확인"/>
-								<input type="button" value="취소" onclick="reset()"/>
-								<input type="button" value="목록" onclick="fnList()"/>
+								<input type="button" value="리셋" onclick="reset()"/>
+								<input type="button" value="취소" onclick="history.back()"/>
+								<input type="button" value="목록으로" onclick="fnList()"/>
 							</td>
 						</tr>
 					</table>

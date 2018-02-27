@@ -1,5 +1,6 @@
 package kr.co.gotthem.member.service;
 
+import java.util.List;
 import kr.co.gotthem.member.bean.MemberBean;
 import kr.co.gotthem.member.dao.MemberDao;
 
@@ -20,6 +21,12 @@ public class MemberServiceImpl implements MemberService {
 	public int join(MemberBean memberBean) {
 		int result = memberDao.join(memberBean);
 		return result;
+	}
+	
+	@Override
+	public int stjoin(MemberBean memberBean) {
+		int reuslt = memberDao.join(memberBean);
+		return reuslt;
 	}
 
 	@Override
@@ -45,5 +52,15 @@ public class MemberServiceImpl implements MemberService {
 	@Override
 	public void memberDelete(MemberBean memberBean) {
 		memberDao.memberDelete(memberBean);
+	}
+	
+	@Override
+	public List<MemberBean> mlist(){
+		return memberDao.mlist();
+	}
+	
+	@Override
+	public List<MemberBean> stlist(){
+		return memberDao.stlist();
 	}
 }

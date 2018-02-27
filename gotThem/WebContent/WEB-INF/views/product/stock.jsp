@@ -24,11 +24,7 @@
 							<th style="text-align: center;">상품명</th>
 							<th>분류</th>
 							<th>가격</th>
-							<th>입고</th>
-							<th>출고</th>
-							<th>전일재고</th>
-							<th>현재고</th>
-							<th>매출</th>
+							<th>재고</th>
 						</tr>
 						<c:forEach var="dto" items="${plist }">
 						
@@ -37,14 +33,11 @@
 							<td><a href="detail.st?code=${dto.pro_code }">${dto.pro_name }</a></td>
 							<td>${dto.pro_category }</td>
 							<td>${dto.pro_price }</td>
-							<td>${dto.pro_income }</td>
-							<td>${dto.pro_release }</td>
 							<td>${dto.pro_stock }</td>
-							<td>${dto.pro_stock+dto.pro_income-dto.pro_release }</td>
-							<td>${dto.pro_price*dto.pro_release}</td>
 						</tr>
 						</c:forEach>
 					</table>
+					<input type="button" value="상품추가" onclick="location='insert.st'"/>
 					<%-- <div>
 					${sessionScope.SPRING_SECURITY_CONTEXT}					
 					</div> --%>

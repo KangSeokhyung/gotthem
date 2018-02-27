@@ -5,7 +5,6 @@ import java.util.List;
 import kr.co.gotthem.product.bean.ProductBean;
 import kr.co.gotthem.product.dao.ProductDao;
 
-
 public class ProductServiceImpl implements ProductService {
 	
 	private ProductDao productDao;
@@ -14,18 +13,7 @@ public class ProductServiceImpl implements ProductService {
 		this.productDao = productDao;
 	}
 	
-	// 01. 상품목록
-    @Override
-    public List<ProductBean> listProduct() {
-        return productDao.listProduct();
-    }
-    // 02. 상품상세
-    @Override
-    public ProductBean detailProduct(int pro_code) {
-        return productDao.detailProduct(pro_code);
-    }
-	
-    @Override
+	@Override
 	public List<ProductBean> plist(int pro_stono) {
 		return productDao.plist(pro_stono);
 	}
@@ -45,4 +33,8 @@ public class ProductServiceImpl implements ProductService {
 		productDao.deletePro(pro_code);
 	}
 
+	@Override
+	public void insertPro(ProductBean bean) {
+		productDao.insertPro(bean);
+	}
 }

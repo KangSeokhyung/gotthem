@@ -1,14 +1,14 @@
 package kr.co.gotthem.member.controller;
 
 import java.io.PrintWriter;
-
 import java.util.StringTokenizer;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+
+import org.mariadb.jdbc.internal.logging.Logger;
+import org.mariadb.jdbc.internal.logging.LoggerFactory;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
@@ -25,22 +25,20 @@ public class MemberController {
 	private static final Logger logger = LoggerFactory.getLogger(MemberController.class);
 	
 	private MemberService memberService;
-	
 	public void setMemberService(MemberService memberService) {
 		this.memberService = memberService;
 	}
 	
-
 	@RequestMapping(value = "/login.gt", method = RequestMethod.GET)
 	public String login() {
 		return "member/mlogin";
 	}
-	
 	@RequestMapping(value = "/logout.gt", method = RequestMethod.GET)
 	public String logout(HttpSession  session, HttpServletRequest request) {		
 		session.invalidate();		
 		return "redirect:index.jsp";
 	}
+	
 	@RequestMapping(value = "/join.gt", method = RequestMethod.GET)
 	public String memberJoin() {	
 		return "member/join";

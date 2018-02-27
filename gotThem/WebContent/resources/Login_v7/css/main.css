@@ -159,12 +159,11 @@ iframe {
   align-items: center;
   padding: 15px;
   position: relative;
-  background-color: #e6e6e6;
+  background-color: #E6E6E6;
 }
 
 .wrap-login100 {
   width: 320px;
-  background: transparent;
   border-radius: 0px;
 }
 
@@ -174,6 +173,7 @@ iframe {
 
 .login100-form {
   width: 100%;
+  margin-top:30px;
   position: relative;
 }
 

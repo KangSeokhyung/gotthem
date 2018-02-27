@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -8,28 +7,10 @@
 <title>Insert title here</title>
 	<link rel="stylesheet" type="text/css" href="resources/Login_v7/css/util.css">
 	<link rel="stylesheet" type="text/css" href="resources/Login_v7/css/main.css">
-<!-- Bootstrap CSS-->
-<link rel="stylesheet"
-	href="resources/landy/vendor/bootstrap/css/bootstrap.min.css">
-<!-- Font Awesome CSS-->
-<link rel="stylesheet" href="resources/landy/vendor/font-awesome/css/font-awesome.min.css">
-<!-- Custom Font Icons CSS-->
-<link rel="stylesheet"
-	href="resources/landy/css/landy-iconfont.css">
-<!-- Google fonts - Open Sans-->
-<link rel="stylesheet"
-	href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700,800">
-<!-- owl carousel-->
-<link rel="stylesheet"
-	href="resources/landy/vendor/owl.carousel/assets/owl.carousel.css">
-<link rel="stylesheet"
-	href="resources/landy/vendor/owl.carousel/assets/owl.theme.default.css">
-<!-- theme stylesheet-->
-<link rel="stylesheet"
-	href="resources/landy/css/style.default.css"
-	id="theme-stylesheet">
-<!-- Custom stylesheet - for your changes-->
-<link rel="stylesheet" href="resources/landy/css/custom.css">
+	<link rel="stylesheet" href="resources/mainTemplate/ionicons/css/ionicons.min.css">
+	<link rel="stylesheet" href="resources/mainTemplate/bootstrap/css/bootstrap.min.css">
+	<link rel="stylesheet" href="resources/mainTemplate/sweetalert/dist/sweetalert.css">
+	<link rel="stylesheet" href="resources/mainTemplate/css/stisla.css">
 </head>
 <body>
 	<header class="header">
@@ -102,8 +83,10 @@
 		</div>
 <script src="http://code.jquery.com/jquery-3.2.1.min.js"></script>
 <script src="resources/Login_v7/js/main.js"></script>
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+<script src="resources/mainTemplate/bootstrap/js/bootstrap.min.js"></script>
+<script src="resources/mainTemplate/js/jquery.easeScroll.js"></script>
+<script src="resources/mainTemplate/sweetalert/dist/sweetalert.min.js"></script>
+<script src="resources/mainTemplate/js/stisla.js"></script>
 <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
 		<script>
 		function duplCheck(){ 
@@ -172,20 +155,16 @@
        		 new daum.Postcode({
           	  oncomplete: function(data) {
                 // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
-
                 // 각 주소의 노출 규칙에 따라 주소를 조합한다.
                 // 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
                 var fullAddr = ''; // 최종 주소 변수
                 var extraAddr = ''; // 조합형 주소 변수
-
                 // 사용자가 선택한 주소 타입에 따라 해당 주소 값을 가져온다.
                 if (data.userSelectedType === 'R') { // 사용자가 도로명 주소를 선택했을 경우
                     fullAddr = data.roadAddress;
-
                 } else { // 사용자가 지번 주소를 선택했을 경우(J)
                     fullAddr = data.jibunAddress;
                 }
-
                 // 사용자가 선택한 주소가 도로명 타입일때 조합한다.
                 if(data.userSelectedType === 'R'){
                     //법정동명이 있을 경우 추가한다.
@@ -199,7 +178,6 @@
                     // 조합형주소의 유무에 따라 양쪽에 괄호를 추가하여 최종 주소를 만든다.
                     fullAddr += (extraAddr !== '' ? ' ('+ extraAddr +')' : '');
                 }
-
                 // 우편번호와 주소 정보를 해당 필드에 넣는다.
                 document.getElementById('mem_post').value = data.zonecode; //5자리 새우편번호 사용
                 document.getElementById('mem_address1').value = fullAddr;
