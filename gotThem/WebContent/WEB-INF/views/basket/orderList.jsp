@@ -5,12 +5,19 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <title>결제 목록</title>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 <%-- <%@ include file="../include/header.jsp" %> --%>
 </head>
-<body>
-<%-- <%@ include file="../include/menu.jsp" %> --%> 
+<body>	
+	<!-- navbar-->
+	<header class="header">
+		<%@include file ="/nav.jsp" %>
+	</header>
 <div class="container">	
  <h2>결제 확인</h2>
   <h4>결제 확인 목록</h4>   
@@ -28,7 +35,7 @@
 	</div>
 
   	<form name="form1" id="form1" method="post" action="./update.gt">
-           <table border="1">
+           <table class="table">
                <tr>
                    <th>결제 번호</th>
                    <th>상품코드</th>
@@ -71,6 +78,7 @@
           <%--   <input type="hidden" name="count" value="${map.count}"> --%>
         </form>
     <button type="button" value="상품목록2" id="btnList">상품목록</button>
+</div>
 </body>
 <script type="text/javascript">
     $(document).ready(function(){
