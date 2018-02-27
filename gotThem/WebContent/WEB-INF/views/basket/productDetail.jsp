@@ -6,9 +6,10 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>상품 상세정보</title>
-<%-- <%@ include file="../include/header.jsp" %> --%>
+ <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script> 
 </head>
 <body>
+<%--  <%@include file="/nav.jsp" %> --%>
 <%-- <%@ include file="../include/menu.jsp" %> --%>
     <h2>상품 상세정보</h2>
     <table border="1">
@@ -35,8 +36,10 @@
                             <form name="form1" method="post" action="../insert.gt">
                                <input type="hidden" name="bas_procode" value="${m.pro_code}">
                                <input type="hidden" name="bas_proname" value="${m.pro_name}"> 
-                               <input type="hidden" name="bas_stono" value="${m.pro_stono}"> 
+                             
                                <input type="hidden" name="bas_proprice" value="${m.pro_price}">
+                               <input type="hidden" name="bas_procategory" value="${m.pro_category}">
+                               <input type="hidden" name="bas_proexdate" value="${m.pro_exdate}">
                                 <select name="bas_prostock" >
                                     <c:forEach begin="1" end="10" var="i">
                                         <option value="${i}">${i}</option>
@@ -44,7 +47,7 @@
                                 </select>&nbsp;개
                                 <input type="submit" value="장바구니에 담기">
                             </form>
-                            <a href="./basket/productList.jsp">상품목록</a>
+                            <button type="button" value="상품목록" id="btnList">상품목록</button>
                         </td>
                     </tr>
                 </table>
@@ -52,4 +55,15 @@
         </tr>
     </table>
 </body>
+<script type="text/javascript">
+    $(document).ready(function(){
+        // 리스트 페이지로 이동
+        $("#btnList").click(function(){
+            location.href="./productlist.gt";     
+        });
+        /* $("#btnOrd").click(function(){
+            location.href="ord.gt?bas_no="+bas_no;
+        }); */
+    });
+</script>
 </html>

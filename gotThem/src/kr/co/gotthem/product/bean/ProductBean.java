@@ -1,5 +1,7 @@
 package kr.co.gotthem.product.bean;
 
+import java.sql.Date;
+
 public class ProductBean {
 	private int pro_code;
 	private String pro_name;
@@ -9,6 +11,7 @@ public class ProductBean {
 	private int pro_release;
 	private int pro_stock;
 	private int pro_price;
+	private Date pro_exdate;
 	public int getPro_code() {
 		return pro_code;
 	}
@@ -57,12 +60,17 @@ public class ProductBean {
 	public void setPro_price(int pro_price) {
 		this.pro_price = pro_price;
 	}
+	public Date getPro_exdate() {
+		return pro_exdate;
+	}
+	public void setPro_exdate(Date pro_exdate) {
+		this.pro_exdate = pro_exdate;
+	}
 	@Override
 	public String toString() {
 		return "ProductBean [pro_code=" + pro_code + ", pro_name=" + pro_name + ", pro_stono=" + pro_stono
 				+ ", pro_category=" + pro_category + ", pro_income=" + pro_income + ", pro_release=" + pro_release
-				+ ", pro_stock=" + pro_stock + ", pro_price=" + pro_price + "]";
+				+ ", pro_stock=" + pro_stock + ", pro_price=" + pro_price + ", pro_exdate=" + pro_exdate + "]";
 	}
-	
 	
 }

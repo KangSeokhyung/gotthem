@@ -20,6 +20,7 @@
         <form name="form1" id="form1" method="post" action="./update.gt">
            <table border="1">
                <tr>
+                   <th></th>  
                    <th>상품명</th>
                    <th>단가</th>
                    <th>수량</th>
@@ -29,6 +30,8 @@
                </tr>
              <c:forEach var="row" items="${map.list}" varStatus="i">
                <tr>
+                  
+                  <td><input type="checkbox" name="checkall" onclick="javascript:CheckAll()"></td>
                   <td>
                         ${row.bas_proname}
                   </td>

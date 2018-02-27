@@ -30,51 +30,45 @@
   	<form name="form1" id="form1" method="post" action="./update.gt">
            <table border="1">
                <tr>
+                   <th>결제 번호</th>
+                   <th>상품코드</th>
                    <th>상품명</th>
-                   <th>단가</th>
-                   <th>수량</th>
-                   <th>금액</th>
-                   <th>취소</th>
-                   <th>결제</th>
+                   <th>상품수량</th>
+                   <th>상품가격</th>
+                   <th>결제 가격</th>
+                   <th>상태</th>
+                   <th>결제취소</th>
                </tr>
              <c:forEach var="row" items="${map.list}" varStatus="i">
                <tr>
                   <td>
-                        ${row.bas_proname}
-                  </td>
-                  <td style="width: 80px" align="right">
-                       <fmt:formatNumber pattern="###,###,###" value="${row.bas_proprice}"/>
-                  </td>
-                    
-                  <td>
-                     <input type="number" style="width: 40px" name="bas_prostock" value="${row.bas_prostock}" min="1">
-                     <input type="hidden" name="bas_procode" value="${row.bas_procode}">
-                     <button type="submit" id="btnUpdate">수정</button>
-                  </td>
-                  <td style="width: 100px" align="right">
-                       <fmt:formatNumber pattern="###,###,###" value="${row.money}"/>                   
+                        ${row.ord_no}
                   </td>
                   <td>
-                       <%-- <a href="./delete.gt?bas_no=${row.bas_no}">삭제</a> --%>
-                       <input type="button" value="삭제" onclick="button_event(${row.bas_no});">
+                        ${row.ord_procode}
                   </td>
                   <td>
-                       <input type="number" style="width: 40px" name="bas_prostock" value="${row.bas_prostock}" min="1">
-                       <input type="hidden" name="bas_procode" value="${row.bas_procode}">
-                       <button type="submit" id="btnOrd">하나결제</button>
+                        ${row.ord_proname}
+                  </td>
+                  <td>
+                        ${row.ord_stock}
+                  </td>
+                  <td>
+                       <fmt:formatNumber pattern="###,###,###" value="${row.ord_price}"/>
+                  </td>
+                  <td>
+                       <fmt:formatNumber pattern="###,###,###" value="${row.ord_price}"/>
+                  </td>
+                  <td>
+                        ${row.ord_status}
+                  </td>
+                   <td>
+                       <input type="button" value="삭제" onclick="button_delete('${row.ord_no}','${row.ord_stock}','${row.ord_procode}');">
                   </td>
                  </tr>
                </c:forEach>
-                <tr>
-                    <td colspan="5" align="right">
-                    
-                   장바구니 금액 합계 : <fmt:formatNumber pattern="###,###,###" value="${map.sumMoney}"/><br>
-                        <%-- 배송료 : ${map.fee}<br>
-                        전체 주문금액  :<fmt:formatNumber pattern="###,###,###" value="${map.allSum}"/> --%>
-                    </td>
-                </tr>
             </table>
-            <input type="hidden" name="count" value="${map.count}">
+          <%--   <input type="hidden" name="count" value="${map.count}"> --%>
         </form>
     <button type="button" value="상품목록2" id="btnList">상품목록</button>
 </body>
@@ -86,13 +80,14 @@
         });
     });
 
-   function button_event(bas_no){
-    	alert(bas_no);
-   if (confirm("정말 삭제하시겠습니까??")){    //확인
-     location.href="delete.gt?bas_no="+bas_no;
+   function button_delete(ord_no,ord_stock,ord_procode){
+    	alert(ord_no);
+   if (confirm("정말 결제 취소하시겠습니까??")){    //확인
+     location.href="deleteOrder.gt?ord_no="+ord_no+"&ord_stock="+ord_stock+ "&ord_procode=" +ord_procode;
    }else{   //취소
        return;
       }
    }
+
 </script>
 </html>
