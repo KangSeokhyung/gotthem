@@ -44,11 +44,13 @@
                                         <option value="${i}">${i}</option>
                                     </c:forEach>
                                 </select>&nbsp;개
-                                <input type="submit" value="장바구니에 담기">
-                            </form>
-                            <button type="button" value="상품목록" id="btnList">상품목록</button>
+                                <input type="submit" value="장바구니에 담기">                           
+                            </form>  
                         </td>
                     </tr>
+                   
+                   <!--   <button type="button" value="상품목록2" id="btnList">상품목록</button> -->
+                   
                 </table>
             </td>
         </tr>
@@ -58,7 +60,7 @@
     $(document).ready(function(){
         // 리스트 페이지로 이동
         $("#btnList").click(function(){
-            location.href="./productlist.gt";     
+            location.href="/productlist.gt";     
         });
         /* $("#btnOrd").click(function(){
             location.href="ord.gt?bas_no="+bas_no;

@@ -28,6 +28,8 @@ background-size : cover;
 	<header>
 		<%@include file="/nav.jsp"%>
 	</header>
+	<h1>장바구니 목록</h1>
+	<h2>장바구니 목록</h2>
 <div class="container">
     <h2>장바구니 확인</h2>
     <c:choose>
@@ -38,7 +40,7 @@ background-size : cover;
         <form name="form1" id="form1" method="post" action="./update.gt">
          <table class="table">
                <tr>
-                   <th><!-- <input type="checkbox" id="checkall" /> --></th>  
+                   <th><input type="checkbox" id="checkall" /></th>  
                    <th>상품명</th>
                    <th>단가</th>
                    <th>수량</th>
@@ -76,8 +78,8 @@ background-size : cover;
             </table>
              <input type="hidden" name="count" value="${map.count}">
              <button type="button" value="상품목록2" id="btnList">상품목록</button>
-             <input type="button" name="sedelete" id="button" value="선택삭제" />
-             <img src="images/btn/list_del_btn.gif" width="114" height="49" onclick="delete01()"/>
+             <input type="button" name="sedelete" id="button" onclick="delete01()" value="선택삭제" />
+             <!-- <img src="images/btn/list_del_btn.gif" width="114" height="49" onclick="delete01()"/> -->
         </form>
       </c:otherwise>
     </c:choose>

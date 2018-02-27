@@ -26,11 +26,9 @@ background-size : cover;
 	</header>
 <div class="container">	
  <h2>상품목록</h2>
-  <h2>상품목록</h2>
-   <h2>상품목록</h2>
-    <h2>상품목록</h2>
-     <h2>상품목록</h2>
-  <h4>상품 목록</h4>   
+ <h1>상품목록</h1>
+ <h1>상품목록</h1>
+ 
   	<form name="form1" id="form1" method="post" action="./update.gt">
            <table class="table">
                <tr>
@@ -48,7 +46,7 @@ background-size : cover;
             </table>
           <%--   <input type="hidden" name="count" value="${map.count}"> --%>
         </form>
-    <button type="button" value="상품목록2" id="btnList">상품목록</button>
+<!--     <button type="button" value="상품목록2" id="btnList">상품목록</button> -->
 </div>
 	<footer>
 		<div class="container">
@@ -69,11 +67,14 @@ background-size : cover;
 	<script src="resources/mainTemplate/sweetalert/dist/sweetalert.min.js"></script>
 	<script src="resources/mainTemplate/js/stisla.js"></script>
 <script type="text/javascript">
-    $(document).ready(function(){
-        // 리스트 페이지로 이동
-        $("#btnList").click(function(){
-            location.href="./productlist.gt";
-        });
+$(document).ready(function(){
+    // 리스트 페이지로 이동
+    $("#btnList").click(function(){
+        location.href="./productlist.gt";     
     });
+    /* $("#btnOrd").click(function(){
+        location.href="ord.gt?bas_no="+bas_no;
+    }); */
+});
 </script>
 </html>

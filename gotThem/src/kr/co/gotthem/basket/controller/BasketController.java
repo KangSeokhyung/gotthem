@@ -61,7 +61,7 @@ public class BasketController {
     	mav.setViewName("basket/productList");    
     	mav.addObject("map", map);
     	System.out.println("상품list타고 " + productService.listProduct());
-        System.out.println("상품리스트왔다");
+        System.out.println("상품리스트왔다!!!!!!!!");
         return mav;
     }
     
