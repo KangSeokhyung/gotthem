@@ -1,8 +1,10 @@
 package kr.co.gotthem.store.controller;
 
+import java.io.PrintWriter;
 import java.util.StringTokenizer;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
@@ -89,7 +91,7 @@ public class StoreController {
 	
 	@RequestMapping(value = "/mystore.st", method = RequestMethod.GET)
 	public ModelAndView mystore(ModelAndView mav) throws Exception{
-		System.out.println("마이스토어 진입");
+
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 		String mem_id = authentication.getName();
 		MemberBean memberInfo = memberService.memberInfo(mem_id);
@@ -103,6 +105,84 @@ public class StoreController {
 		mav.addObject("mem_address2", address2);
 		mav.addObject("info", memberInfo);
 		mav.setViewName("store/mystore");
+		return mav;
+	}
+	
+	@RequestMapping(value = "/mystoreModi.st", method = RequestMethod.GET)
+	public ModelAndView memberModi(ModelAndView mav) {
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+		String mem_id = authentication.getName();
+		MemberBean memberInfo = memberService.memberInfo(mem_id);
+		String mem_address = memberInfo.getMem_address();
+		StringTokenizer  st = new StringTokenizer(mem_address,"/");
+		String post = st.nextToken();       
+		String address1 = st.nextToken();      
+		String address2 = st.nextToken();      
+		mav.addObject("mem_post", post);
+		mav.addObject("mem_address1", address1);
+		mav.addObject("mem_address2", address2);
+		mav.addObject("memberInfo", memberInfo);
+		mav.setViewName("store/mystoreModi");
+		return mav;
+	}
+	
+	@RequestMapping(value = "/storeModi.st", method = RequestMethod.POST)
+	public String memberUpdate(MemberBean bean) {
+		memberService.memberModifi(bean);
+		return "store/mystore";
+	}
+	
+	@RequestMapping(value = "/passCheck.st", method = RequestMethod.GET)
+	public ModelAndView passCheck(MemberBean bean, ModelAndView mav) {
+		mav.setViewName("store/mystorePWCheck");
+		return mav;
+	}
+	
+	@RequestMapping(value = "/passCheck.st", method = RequestMethod.POST)
+	public ModelAndView passCheckPost(MemberBean bean, ModelAndView mav, PrintWriter out, HttpServletResponse response)
+			throws Exception {
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+		String mem_id = authentication.getName();
+		bean.setMem_id(mem_id);
+		String mem_pw = bean.getMem_pw();
+		System.out.println(mem_pw);
+		int result = memberService.passCheck(bean);
+
+		if(result == 0) {
+			response.setContentType("text/html; charset=UTF-8");
+			out = response.getWriter();
+			out.println("<Script>");
+			out.println("alert('비밀번호를 확인해 주세요');");
+			out.println("history.go(-1);");
+			out.println("</Script>");
+			return null;
+		}
+		System.out.println(result);
+		mav.addObject("passCheck", result);
+		mav.setViewName("store/changePW");
+		return mav;
+	}
+	
+	@RequestMapping(value = "/mystoreDel.st", method = RequestMethod.GET)
+	public ModelAndView memberDel(ModelAndView mav) {
+		mav.setViewName("store/mystoreDel");
+		return mav;
+	}
+	
+	@RequestMapping(value = "/mystoreDel.st", method = RequestMethod.POST)
+	public ModelAndView memberDelete(ModelAndView mav, MemberBean bean, HttpSession  session) {
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+		String mem_id = authentication.getName();
+		bean.setMem_id(mem_id);
+		memberService.memberDelete(bean);
+		session.invalidate();
+		mav.setViewName("redirect:/store/storeindex");
+		return mav;
+	}
+	
+	@RequestMapping(value = "/findIDAndPW.st", method = RequestMethod.GET)
+	public ModelAndView findID(ModelAndView mav) {
+		mav.setViewName("store/findIDAndPW");
 		return mav;
 	}
 

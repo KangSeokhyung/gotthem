@@ -19,8 +19,9 @@
 <link rel="stylesheet" href="resources/indexTemplate/css/icomoon.css">
 <link rel="stylesheet" href="resources/indexTemplate/css/animate.css">
 <link rel="stylesheet" href="resources/indexTemplate/css/style.css">
-<link rel="stylesheet" type="text/css" href="resources/stlogin/bootstrap/css/bootstrap.min.css" />
-<link rel="stylesheet" type="text/css" href="resources/stlogin/css/styles.css" />
+<link rel="stylesheet" href="resources/landy/css/style.default.css" id="theme-stylesheet">
+<link rel="stylesheet" href="resources/landy/css/custom.css">
+</head>
 </head>
 <body>
 
@@ -41,15 +42,15 @@
 				<ul>
 					<li class="probootstrap-animate"
 						data-animate-effect="fadeInLeft"><a href="/storeIndex">Got them?</a></li>
-					<li class="probootstrap-animate" data-animate-effect="fadeInLeft"><a
-						href="store.st">점포관리</a></li>
+					<li class="probootstrap-animate active" data-animate-effect="fadeInLeft"><a
+						href="mystore.st">점포관리</a></li>
 					<li class="probootstrap-animate" data-animate-effect="fadeInLeft"><a
 						href="stock.st">재고관리</a></li>
 				<c:set var="sessionCheck"
 					value="${sessionScope.SPRING_SECURITY_CONTEXT}" />
 				<c:choose>
 					<c:when test="${sessionCheck eq null}">
-					<li class="probootstrap-animate active" data-animate-effect="fadeInLeft"><a
+					<li class="probootstrap-animate" data-animate-effect="fadeInLeft"><a
 						href="login.st">로그인</a></li>
 					<li class="probootstrap-animate" data-animate-effect="fadeInLeft"><a
 						href="join.st">제휴맺기</a></li>
@@ -62,6 +63,7 @@
 						href="index.gt">고객 사이트</a></li>
 			</ul>
 			</nav>
+			
 			<footer class="probootstrap-aside-footer probootstrap-animate"
 				data-animate-effect="fadeInLeft">
 				<p>
@@ -78,37 +80,83 @@
 		<a href="#" class="probootstrap-toggle js-probootstrap-toggle"><span
 			class="oi oi-menu"></span></a>
 		<div class="probootstrap-main-site-logo">
-			<a href="storeIndex.st">Aside</a></a>
+			<a href="index.html">Aside</a></a>
 		</div>
 	</div>
 	
-			<div class="container">
-			<div class="container col-sm-6 center-block">
-			<img src="resources/mainTemplate/img/logo.png" alt="" width=300px; />
-			</div>
-			<div class="container col-sm-6 center-block">
-			<form method="post" action="" role="login">
-				<div>
-					<label>Username</label>
-					<input type="text" name="sto_id" required class="form-control" />
+	
+	
+	
+	
+	<!--Main content code to be written here -->
+	<br>
+	<div style="border-top: 5px solid gray; border-bottom: 5px solid gray;">
+			<form action="memberModi.gt" method="POST">
+				<div class="panel panel-info">
+					<div class="panel-heading">
+						<h3>회원 정보 수정</h3>
+					</div>
+					<div class="panel-body">
+						<div class="row">
+							<div class=" col-md-12 col-lg-12 " align="center">
+							<input type="hidden" name="mem_id" value="${memberInfo.mem_id}"/>
+								<table class="table table-user-information">
+									<tbody>
+										<tr>
+											<td><span>회원 아이디:</span></td>
+											<td>${memberInfo.mem_id}</td>
+										</tr>
+										<tr>
+											<td><span>이름:</span></td>
+											<td><input style="width: 100%" type="text"
+												name="mem_name" value="${memberInfo.mem_name}"></td>
+										</tr>
+										<tr>
+											<td><span>이메일:</span></td>
+											<td><input style="width: 100%" type="text"
+												name="mem_email" value="${memberInfo.mem_email}"></td>
+
+										</tr>
+										<tr>
+											<td><span>전화번호:</span></td>
+											<td><input style="width: 100%" type="text"
+												name="mem_phone" value="${memberInfo.mem_phone}"></td>
+										</tr>
+										<tr>
+											<td><span>가입일:</span></td>
+											<td>${memberInfo.mem_regdate}</td>
+										</tr>
+										<tr>
+											<td><span>우편번호:</span></td>
+											<td><input style="width: 100%" type="text"
+												name="mem_post" value="${mem_post}"></td>
+										</tr>
+										<tr>
+											<td><span>주소:</span></td>
+											<td><input style="width: 100%" type="text"
+												name="mem_address1" value="${mem_address1}"><br>
+												<input style="width: 100%" type="text" name="mem_address2"
+												value="${mem_address2}"></td>
+										</tr>
+
+									</tbody>
+								</table>
+							</div>
+						</div>
+					</div>
+					<div class="panel-footer"></div>
+						<button class="btn-success" type="submit">완료</button>
+						<button class="btn-danger" onclick="reset()">취소</button>
+						<button class="btn-blue" onclick="history.go(-1)">뒤로가기</button>
 				</div>
-				
-				<div>
-					<label>Password</label>
-					<input type="password" name="sto_pw" required class="form-control" />
-				</div>
-			
-				<section>
-					<button type="submit" name="go" class="btn btn-block">Sign In</button>
-					<p><a href="#">Forgot your password ?</a></p>
-					<p><a href="#">Create account</a></p>
-				</section>
 			</form>
-			</div>
+
 		</div>
 
-	
-		<div class="container-fluid d-md-none">
+
+
+
+	<div class="container-fluid d-md-none">
 		<div class="row">
 			<div class="col-md-12">
 				<ul class="list-unstyled d-flex probootstrap-aside-social">
@@ -134,6 +182,6 @@
 	<script src="resources/indexTemplate/js/jquery.waypoints.min.js"></script>
 	<script src="resources/indexTemplate/js/imagesloaded.pkgd.min.js"></script>
 	<script src="resources/indexTemplate/js/main.js"></script>
-
+	
 </body>
 </html>

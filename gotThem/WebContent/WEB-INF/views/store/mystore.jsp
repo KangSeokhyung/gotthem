@@ -21,6 +21,7 @@
 <link rel="stylesheet" href="resources/indexTemplate/css/style.css">
 <link rel="stylesheet" href="resources/landy/css/style.default.css" id="theme-stylesheet">
 <link rel="stylesheet" href="resources/landy/css/custom.css">
+
 </head>
 <body>
 
@@ -92,7 +93,10 @@
 							<td>아이디</td><td>${info.mem_id }</td>
 						</tr>
 						<tr>
-							<td>매장명</td><td>${info.mem_name }</td>
+							<td>이름</td><td>${info.mem_name }</td>
+						</tr>
+						<tr>
+							<td>매장명</td><td>${info.sto_name }</td>
 						</tr>
 						<tr>
 							<td>이메일</td><td>${info.mem_email }</td>
@@ -110,16 +114,15 @@
 							<td>상세주소</td><td>${mem_address2 }</td>
 						</tr>
 						<tr>
-							<td>사진</td><td><img src="<%=request.getContextPath() %>/upload/${info.mem_img }" name="p_img"></td>
+							<td>사진</td><td><img src="<%=request.getContextPath() %>/upload/${info.sto_img }" name="p_img"></td>
 						</tr>
 						<tr>
-							<td>매장소개</td><td>${info.mem_comment }</td>
+							<td>매장소개</td><td>${info.sto_comment }</td>
 						</tr>
 						<tr>
 							<td colspan="2" align="center">
-								<input type="button" value="수정하기" onclick="fnUpdate()"/>
+								<input type="button" value="정보수정" onclick="location='mystoreModi.st'"/>
 								<input type="button" value="제휴해지" onclick="fnDelete(${info.mem_no})" />
-								<input type="button" value="" onclick="fnList()"/>
 							</td>
 						</tr>
 					</table>
