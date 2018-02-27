@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans:beans xmlns="http://www.springframework.org/schema/mvc"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:beans="http://www.springframework.org/schema/beans"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:mongo="http://www.springframework.org/schema/data/mongo"
+	xsi:schemaLocation="http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+		http://www.springframework.org/schema/data/mongo http://www.springframework.org/schema/data/mongo/spring-mongo-1.8.xsd">
+
+	<context:annotation-config/>
+	<annotation-driven />
+
+	<resources mapping="/resources/**" location="/resources/" />
+
+	<!-- ViewResolver -->
+	<beans:bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<beans:property name="prefix" value="/WEB-INF/views/" />
+		<beans:property name="suffix" value=".jsp" />
+	</beans:bean>
+	
+	<!-- Multipart 파일업로드 빈 객체 생성 -->
+	<beans:bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver" />
+
+	<!-- DB (Mybatis, MariaDB 연결) -->
+	<beans:bean id="dataSource" class="org.springframework.jdbc.datasource.SimpleDriverDataSource">
+		<beans:property name="driverClass" value="org.mariadb.jdbc.Driver" />
+		<beans:property name="url" value="jdbc:mariadb://localhost:3306/gotthem" />
+		<beans:property name="username" value="root" />
+		<beans:property name="password" value="1234" />
+	</beans:bean>	
+
+	<beans:bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<beans:property name="configLocation" value="classpath:kr/co/gotthem/mybatis/mybatis-config.xml" />
+		<beans:property name="dataSource" ref="dataSource" />
+	</beans:bean>
+	
+	<beans:bean id="sqlSessionTemplate" class="org.mybatis.spring.SqlSessionTemplate">
+		<beans:constructor-arg index="0" ref="sqlSessionFactory" />
+	</beans:bean>
+	
+	<!-- Mongo DB 연결 -->
+	<mongo:mongo-client>
+		<mongo:client-options
+			connections-per-host="8"
+			threads-allowed-to-block-for-connection-multiplier="4"
+			connect-timeout="1000"
+			max-wait-time="1500"
+			socket-keep-alive="true"
+			socket-timeout="1500"
+		/>
+	</mongo:mongo-client>
+	
+	<beans:bean id="mongoTemplate" class="org.springframework.data.mongodb.core.MongoTemplate">
+		<beans:constructor-arg ref="mongo" />
+		<beans:constructor-arg name="databaseName" value="gotthem" />	
+	</beans:bean>
+	
+</beans:beans>

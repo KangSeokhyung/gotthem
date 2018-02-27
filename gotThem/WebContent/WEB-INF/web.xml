@@ -43,41 +43,7 @@
 	<servlet-mapping>
 		<servlet-name>defaultServlet</servlet-name>
 		<url-pattern>*.gt</url-pattern>
-	</servlet-mapping>
-
-	<servlet>
-		<servlet-name>storeServlet</servlet-name>
-		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
-		<init-param>
-			<param-name>contextConfigLocation</param-name>
-			<param-value>
-				 /WEB-INF/spring/appServlet/servlet-context.xml
-				/WEB-INF/spring/appServlet/member-context.xml
-				/WEB-INF/spring/appServlet/pob-context.xml
-				
-			</param-value>
-		</init-param>
-		<load-on-startup>1</load-on-startup>
-	</servlet>
-	<servlet-mapping>
-		<servlet-name>storeServlet</servlet-name>
 		<url-pattern>*.st</url-pattern>
-	</servlet-mapping>
-
-	<servlet>
-		<servlet-name>adminServlet</servlet-name>
-		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
-		<init-param>
-			<param-name>contextConfigLocation</param-name>
-			<param-value>
-			 	/WEB-INF/spring/appServlet/servlet-context.xml
-				/WEB-INF/spring/appServlet/member-context.xml
-			</param-value>
-		</init-param>
-		<load-on-startup>1</load-on-startup>
-	</servlet>
-	<servlet-mapping>
-		<servlet-name>adminServlet</servlet-name>
 		<url-pattern>*.ad</url-pattern>
 	</servlet-mapping>
 
