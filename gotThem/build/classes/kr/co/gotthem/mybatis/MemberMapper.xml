@@ -55,4 +55,8 @@
 		update member set mem_pw = #{mem_pw} where mem_email = #{mem_email} and mem_id=#{mem_id}
 	</update>
 
+	<select id="storeInfo" parameterType="int" resultType="kr.co.gotthem.member.bean.MemberBean">
+		select * from member where mem_no = #{mem_no}
+	</select>
+	
 </mapper>

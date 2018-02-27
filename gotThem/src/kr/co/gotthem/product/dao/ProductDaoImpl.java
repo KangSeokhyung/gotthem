@@ -1,6 +1,7 @@
 package kr.co.gotthem.product.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 
@@ -39,13 +40,29 @@ public class ProductDaoImpl implements ProductDao {
 	public void insertPro(ProductBean bean) {
 		sqlSessionTemplate.insert("insertPro", bean);
 	}
-/*	@Override
-	public void detailProduct(int pro_code) {
-		sqlSessionTemplate.insert("insertPro", bean);
-	}*/
+
 	@Override
-	public List<ProductBean> listProduct() {
-		return sqlSessionTemplate.selectList("listProduct");
+	public List searchList(String search) {
+		return sqlSessionTemplate.selectList("searchList", search);
 	}
 	
+	@Override
+	public List productInfo(int mem_no) {
+		return sqlSessionTemplate.selectList("productInfo", mem_no);
+	}
+
+	@Override
+	public List productSearchList(Map<String, Object> map) {
+		return sqlSessionTemplate.selectList("productSearchList", map);
+	}
+	
+	@Override
+		public ProductBean detailProduct(int pro_code) {
+		return	(ProductBean) sqlSessionTemplate.selectOne("detailProduct1", pro_code);
+			}
+	
+	@Override
+		public List<ProductBean> listProduct() {
+			return sqlSessionTemplate.selectList("listProduct");
+}
 }

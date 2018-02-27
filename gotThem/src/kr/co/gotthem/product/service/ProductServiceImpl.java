@@ -1,6 +1,7 @@
 package kr.co.gotthem.product.service;
 
 import java.util.List;
+import java.util.Map;
 
 import kr.co.gotthem.product.bean.ProductBean;
 import kr.co.gotthem.product.dao.ProductDao;
@@ -38,13 +39,29 @@ public class ProductServiceImpl implements ProductService {
 		productDao.insertPro(bean);
 	}
 	
-/*	@Override
-	public void detailProduct(int pro_code) {
-		productDao.detailProduct(pro_code);
+	@Override
+	public List searchList(String search) {
+		return productDao.searchList(search);
 	}
-*/
+
+	@Override
+	public List productInfo(int mem_no) {
+		return productDao.productInfo(mem_no);
+	}
+
+	@Override
+	public List productSearchList(Map<String, Object> map) {
+		return productDao.productSearchList(map);
+	}
+	
+	@Override
+		public ProductBean detailProduct(int pro_code) {
+		return productDao.detailProduct(pro_code);
+		}
+
 	@Override
 	public List<ProductBean> listProduct() {
-		return productDao.listProduct();
+			return productDao.listProduct();
 	}
+	
 }

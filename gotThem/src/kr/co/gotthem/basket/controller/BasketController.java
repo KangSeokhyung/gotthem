@@ -24,7 +24,9 @@ import kr.co.gotthem.basket.bean.BasketBean;
 import kr.co.gotthem.basket.service.BasketService;
 import kr.co.gotthem.member.bean.MemberBean;
 import kr.co.gotthem.member.service.MemberService;
+import kr.co.gotthem.order.bean.OrderpayBean;
 import kr.co.gotthem.order.service.OrderService;
+import kr.co.gotthem.product.bean.ProductBean;
 import kr.co.gotthem.product.service.ProductService;
 
 @Controller
@@ -50,31 +52,34 @@ public class BasketController {
 	public void setMemberService(MemberService memberService) {
 		this.memberService = memberService;
 	}
-	
-// product 1. 상품 전체 목록
-
+	// product 1. 상품 전체 목록
+	 
     @RequestMapping("/productlist.gt")
-    public ModelAndView list(ModelAndView mav) {    
+    public ModelAndView list(ModelAndView mav) {     
     	Map<String, Object> map = new HashMap<String, Object>();
-    	map.put("listProduct", productService.listProduct());
-    	mav.addObject("listProduct", productService.listProduct());
+        map.put("list", productService.listProduct());
     	mav.setViewName("basket/productList");    
     	mav.addObject("map", map);
     	System.out.println("상품list타고 " + productService.listProduct());
         System.out.println("상품리스트왔다");
         return mav;
     }
-
-	// product 2. 상품 상세보기
+    
+    
+    
+// product 2. 상품 상세보기
     @RequestMapping("/detail/{pro_code}.gt")
     public ModelAndView detail(@PathVariable("pro_code") int pro_code, ModelAndView mav){
-    	System.out.println("디테일왔다");
-    	mav.setViewName("basket/productDetail");
-        mav.addObject("m", productService.findCode(pro_code));
-        
-        return mav;
-    }
+	System.out.println("디테일왔다");
+	    mav.setViewName("basket/productDetail");
+	    ProductBean bean = productService.detailProduct(pro_code);
+      mav.addObject("m", bean);
+      System.out.println("bean" + bean);
 
+     /*  mav.addObject("m", productService.findCode(Integer.parseInt(pro_code)));*/
+        
+    return mav;
+    }
     // 1. 장바구니 추가
     @RequestMapping(value ="insert.gt")
     public String insertBasket(@ModelAttribute BasketBean basketBean,
@@ -97,7 +102,10 @@ public class BasketController {
         	 basketBean.setBas_proname(basketBean.getBas_proname());
         	 basketBean.setBas_proprice(basketBean.getBas_proprice());
         	 basketBean.setBas_procategory(basketBean.getBas_procategory());
+        	 basketBean.setBas_proexdate(basketBean.getBas_proexdate());
+        	 System.out.println("basketBean는"+ basketBean );
         	 basketService.insertBasket(basketBean);
+        	 
         	System.out.println("0==insert 실행" );
         } else {
             // 있으면 update 동일 상품 존재시 기존 수량에 새로운 수량 더하기

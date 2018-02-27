@@ -80,4 +80,10 @@ public class MemberDaoImpl implements MemberDao {
 		return sqlSessionTemplate.selectList("stlist");
 	}
 
+	@Override
+	public MemberBean storeInfo(int mem_no) {
+		System.out.println(mem_no);
+		return sqlSessionTemplate.selectOne("storeInfo", mem_no);
+	}
+	
 }

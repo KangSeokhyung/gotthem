@@ -19,15 +19,18 @@
     <select id="listProduct" resultType="kr.co.gotthem.product.bean.ProductBean">
          SELECT * FROM product           
     </select>
-
+    
+    <select id="detailProduct1" resultType="kr.co.gotthem.product.bean.ProductBean">
+		select * from product where pro_code = #{pro_code}
+	</select>
 
 
     <!-- 1. 장바구니 추가 -->
     <insert id="insertBasket">
         INSERT INTO basket (
-           bas_memno, bas_procode, bas_proname, bas_prostock,bas_proprice,bas_procategory
+           bas_memno, bas_procode, bas_proname, bas_prostock,bas_proprice, bas_procategory, bas_proexdate
       )VALUES(
-       #{bas_memno}, #{bas_procode}, #{bas_proname},#{bas_prostock}, #{bas_proprice},#{bas_procategory})
+       #{bas_memno}, #{bas_procode}, #{bas_proname},#{bas_prostock}, #{bas_proprice}, #{bas_procategory}, #{bas_proexdate})
     </insert> 
    <!-- 1.1. 상품 삭제 -->
     <delete id="deleteproduct">

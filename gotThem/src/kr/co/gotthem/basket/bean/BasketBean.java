@@ -71,9 +71,9 @@ public void setMoney(int money) {
 @Override
 public String toString() {
 	return "BasketBean [bas_no=" + bas_no + ", bas_memno=" + bas_memno + ", bas_procode=" + bas_procode
-			+ ", bas_proname=" + bas_proname + ", bas_prostock=" + bas_prostock
-			+ ", bas_proprice=" + bas_proprice + ", bas_procategory=" + bas_procategory + ", bas_proexdate="
-			+ bas_proexdate + ", money=" + money + "]";
+			+ ", bas_proname=" + bas_proname + ", bas_prostock=" + bas_prostock + ", bas_proprice=" + bas_proprice
+			+ ", bas_procategory=" + bas_procategory + ", bas_proexdate=" + bas_proexdate + ", money=" + money + "]";
 }
+
 
 }

@@ -72,4 +72,9 @@ public class MemberServiceImpl implements MemberService {
 	public List<MemberBean> stlist(){
 		return memberDao.stlist();
 	}
+	
+	@Override
+	public MemberBean storeInfo(int mem_no) {
+		return memberDao.storeInfo(mem_no);
+	}
 }

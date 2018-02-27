@@ -8,7 +8,7 @@
 		select * from product where pro_stono = #{pro_stono}
 	</select>
 	
-	<select id="findCode" resultType="kr.co.gotthem.product.bean.ProductBean">
+	<select id="detailProduct" resultType="kr.co.gotthem.product.bean.ProductBean">
 		select * from product where pro_code = #{pro_code}
 	</select>
 	
@@ -32,4 +32,20 @@
 		values(
 		#{pro_name}, #{pro_stono}, #{pro_category}, #{pro_stock}, #{pro_price})
 	</insert>
+	
+	<select id="searchList" parameterType="String" resultType="java.util.HashMap">
+		select m.mem_no as mem_no, m.sto_name as sto_name, m.mem_address as mem_address,
+			p.pro_name as pro_name, p.pro_stock as pro_stock, m.sto_img as sto_img 
+		from member m, product p
+		where m.mem_no=p.pro_memno and p.pro_name like concat('%', #{search}, '%')
+	</select>
+	
+	<select id="productInfo" resultType="kr.co.gotthem.product.bean.ProductBean">
+		select * from product where pro_memno = #{mem_no} order by pro_name
+	</select>
+	
+	<select id="productSearchList" resultType="kr.co.gotthem.product.bean.ProductBean">
+		select * from product where pro_memno = #{mem_no} and pro_name like concat('%', #{productSearch}, '%')
+		order by pro_name
+	</select>
 </mapper>

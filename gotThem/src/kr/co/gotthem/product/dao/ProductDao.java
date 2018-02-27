@@ -1,6 +1,7 @@
 package kr.co.gotthem.product.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import kr.co.gotthem.product.bean.ProductBean;
 
@@ -15,5 +16,13 @@ public interface ProductDao {
 
 	public void insertPro(ProductBean bean);
 	
-	public List<ProductBean> listProduct ();
+	public List searchList(String search);
+	
+	public List productInfo(int mem_no);
+
+	public List productSearchList(Map<String, Object> productSearch);
+	
+	public ProductBean detailProduct(int pro_code);
+
+	public List<ProductBean> listProduct();
 }

@@ -38,11 +38,11 @@ background-size : cover;
                    <th>상품명</th>
                    <th>상품가격</th>
                </tr>
-             <c:forEach var="row" items="${map.listProduct}" varStatus="i">
+             <c:forEach var="row" items="${map.list}" varStatus="i">
                <tr>
-                 <td>${m.pro_code}</td>
-                 <td>${m.pro_name}</td>
-                 <td><fmt:formatNumber value="${m.pro_price}" pattern="###,###,###"/></td>
+                 <td>${row.pro_code}</td>
+                 <td><a href="detail/${row.pro_code}.gt">${row.pro_name}</a></td>
+                 <td><fmt:formatNumber value="${row.pro_price}" pattern="###,###,###"/></td>
                 </tr>
                </c:forEach>
             </table>
