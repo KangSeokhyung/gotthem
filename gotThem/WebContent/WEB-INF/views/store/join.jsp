@@ -47,7 +47,7 @@
 					<li class="probootstrap-animate"
 						data-animate-effect="fadeInLeft"><a href="/storeIndex">Got them?</a></li>
 					<li class="probootstrap-animate" data-animate-effect="fadeInLeft"><a
-						href="store.st">점포관리</a></li>
+						href="mystore.st">점포관리</a></li>
 					<li class="probootstrap-animate" data-animate-effect="fadeInLeft"><a
 						href="stock.st">재고관리</a></li>
 				<c:set var="sessionCheck"
@@ -63,6 +63,8 @@
 						<li class="probootstrap-animate" data-animate-effect="fadeInLeft"><a href="logout.gt" class="nav-link">로그아웃</a></li>
 					</c:otherwise>
 				</c:choose>
+				<li class="probootstrap-animate" data-animate-effect="fadeInLeft"><a
+						href="index.gt">고객 사이트</a></li>
 			</ul>
 			</nav>
 			<footer class="probootstrap-aside-footer probootstrap-animate"

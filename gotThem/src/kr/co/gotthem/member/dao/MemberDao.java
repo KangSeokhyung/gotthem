@@ -23,4 +23,8 @@ public interface MemberDao {
 	public List<MemberBean> mlist();
 
 	public List<MemberBean> stlist();
+
+	public void storeModi(MemberBean memberBean);
+	
+	public void memModi(MemberBean memberBean);
 }

@@ -48,7 +48,7 @@ background-size : cover;
 		</div>
 	</section>
 
-	<section class="padding bg-grey" id="blog">
+	<section class="padding bg-grey">
 		<div class="container">
 			<h2 class="section-title">RECENTLY UPDATED STORE LIST</h2>
 			<div class="section-body">

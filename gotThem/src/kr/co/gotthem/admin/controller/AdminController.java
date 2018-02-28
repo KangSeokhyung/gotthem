@@ -1,6 +1,9 @@
 package kr.co.gotthem.admin.controller;
 
 import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
@@ -54,6 +57,43 @@ public class AdminController {
 		System.out.println(stlist);	  
 		mav.addObject("stlist", stlist);		
 		mav.setViewName("admin/storeControl");
+
+		return mav;
+	}
+	
+	@RequestMapping(value = "/storemodify.ad", method = RequestMethod.POST)
+	public ModelAndView storemodi(ModelAndView mav, MemberBean stbean, HttpServletRequest request) {
+		
+		stbean.setMem_id(request.getParameter("mem_id"));
+		stbean.setMem_name(request.getParameter("mem_name"));
+		stbean.setSto_name(request.getParameter("sto_name"));
+		stbean.setMem_email(request.getParameter("mem_email"));
+		stbean.setMem_address(request.getParameter("mem_addr1")+"/"+
+		request.getParameter("mem_addr2")+"/"+request.getParameter("mem_addr3"));
+		stbean.setEnabled(Integer.parseInt(request.getParameter("enabled")));
+		System.out.println(Integer.parseInt(request.getParameter("enabled")));
+		
+		memberService.storeModi(stbean);
+		
+		mav.setViewName("admin/controlPage");
+
+		return mav;
+	}
+	
+	@RequestMapping(value = "/memmodify.ad", method = RequestMethod.POST)
+	public ModelAndView memmodi(ModelAndView mav, MemberBean membean, HttpServletRequest request) {
+		membean.setMem_id(request.getParameter("mem_id"));
+		membean.setMem_name(request.getParameter("mem_name"));
+		membean.setMem_email(request.getParameter("mem_email"));
+		membean.setMem_email(request.getParameter("mem_phone"));
+		membean.setMem_address(request.getParameter("mem_addr1")+"/"+
+		request.getParameter("mem_addr2")+"/"+request.getParameter("mem_addr3"));
+		membean.setEnabled(Integer.parseInt(request.getParameter("enabled")));
+		System.out.println(Integer.parseInt(request.getParameter("enabled")));
+		
+		memberService.memModi(membean);
+		
+		mav.setViewName("admin/controlPage");
 
 		return mav;
 	}

@@ -22,13 +22,13 @@
 				  <div class="mr-auto"></div>
 			    <ul class="navbar-nav">
 			      <li class="nav-item">
-			        <a class="nav-link smooth-link" href="#hero">COMPANY</a>
+			        <a class="nav-link smooth-link" href="#">COMPANY</a>
 			      </li>
 			      <li class="nav-item">
-			        <a class="nav-link smooth-link" href="#features">NOTICE</a>
+			        <a class="nav-link smooth-link" href="#">NOTICE</a>
 			      </li>
 			      <li class="nav-item">
-			        <a class="nav-link smooth-link" href="#blog">EVENT</a>
+			        <a class="nav-link smooth-link" href="#">EVENT</a>
 			      </li>
 			    <c:set var="sessionCheck"
 					value="${sessionScope.SPRING_SECURITY_CONTEXT}" />
