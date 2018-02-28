@@ -55,13 +55,14 @@ public class MemberServiceImpl implements MemberService {
 	}
 	
 	@Override
-	public MemberBean findAccount(String email) {
-		return memberDao.findAccount(email);
+	public MemberBean findAccount(MemberBean memberBean) {
+		return memberDao.findAccount(memberBean);
 	}
 	
 	@Override
-	public void changePassword(MemberBean memberBean) {
-		memberDao.changePassword(memberBean);
+	public int changePassword(MemberBean memberBean) {
+		int result = memberDao.changePassword(memberBean);
+		return result;
 	}
 	
 	public List<MemberBean> mlist(){
@@ -71,5 +72,11 @@ public class MemberServiceImpl implements MemberService {
 	@Override
 	public List<MemberBean> stlist(){
 		return memberDao.stlist();
+	}
+	
+	@Override
+	public int changePasswordReal(MemberBean memberBean) {
+		int result = memberDao.changePasswordReal(memberBean);
+		return result;
 	}
 }

@@ -58,15 +58,22 @@ public class MemberDaoImpl implements MemberDao {
 	}
 	
 	@Override
-	public MemberBean findAccount(String email) {
-		return sqlSessionTemplate.selectOne("findAccount",email);
+	public MemberBean findAccount(MemberBean memberBean) {
+		return sqlSessionTemplate.selectOne("findAccount",memberBean);
 	}
 	
 	@Override
-	public void changePassword(MemberBean memberBean){
+	public int changePassword(MemberBean memberBean){
 		System.out.println(memberBean);
 		int result = sqlSessionTemplate.update("changePassword",memberBean);
 		System.out.println("비밀번호 변경 결과는 " + result);
+		return result;
+	}
+	
+	@Override
+	public int changePasswordReal(MemberBean memberBean) {
+		int result = sqlSessionTemplate.update("changePasswordReal",memberBean);
+		return result;
 	}
 	
 	public List<MemberBean> mlist() {

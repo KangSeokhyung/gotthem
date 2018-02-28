@@ -9,6 +9,8 @@ import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Service;
 
+import kr.co.gotthem.member.service.MemberService;
+
 
 @Service
 public class MailServiceImpl implements MailService {

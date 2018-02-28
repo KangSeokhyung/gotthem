@@ -16,7 +16,6 @@
 <link rel="stylesheet" href="resources/landy/css/style.default.css" id="theme-stylesheet">
 <!-- Custom stylesheet - for your changes-->
 <link rel="stylesheet" href="resources/landy/css/custom.css">
-<link rel="stylesheet" type="text/css" href="resources/simpleAccordion/styles/style.css">
 </head>
 
 <body style="padding-top:0px;">
@@ -65,7 +64,7 @@
 			
 		</div>
 	</div>
-
+	
 	<!-- Footer -->
 	<footer class="py-5 bg-dark"
 		style="position: absolute; width: 100%; left: 0px; bottom: -200px;">

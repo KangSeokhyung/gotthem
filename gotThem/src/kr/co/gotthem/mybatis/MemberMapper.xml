@@ -47,12 +47,16 @@
 		update member set enabled = 0 where mem_id=#{mem_id} and mem_pw=#{mem_pw}
 	</update>
 	
-	<select id="findAccount" parameterType="String" resultType="kr.co.gotthem.member.bean.MemberBean">
-		select * from member where mem_email=#{mem_email}
+	<select id="findAccount" parameterType="kr.co.gotthem.member.bean.MemberBean" resultType="kr.co.gotthem.member.bean.MemberBean">
+		select * from member where mem_email=#{mem_email} and mem_name = #{mem_name}
 	</select>
 	
 	<update id="changePassword" parameterType="kr.co.gotthem.member.bean.MemberBean">
 		update member set mem_pw = #{mem_pw} where mem_email = #{mem_email} and mem_id=#{mem_id}
+	</update>
+	
+	<update id="changePasswordReal" parameterType="kr.co.gotthem.member.bean.MemberBean">
+		update member set mem_pw = #{mem_pw} where mem_id=#{mem_id}
 	</update>
 
 </mapper>
