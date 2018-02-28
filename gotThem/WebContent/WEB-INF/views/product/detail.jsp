@@ -21,6 +21,7 @@
 <link rel="stylesheet" href="resources/indexTemplate/css/style.css">
 <link rel="stylesheet" href="resources/landy/css/style.default.css" id="theme-stylesheet">
 <link rel="stylesheet" href="resources/landy/css/custom.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 		
 <script type="text/javascript">
 	function fnList(){
@@ -47,10 +48,10 @@
 							
 						}
 					}
-				});
-			} else{
-				location.history.go(0);
-			}
+			});
+		} else{
+			location.history.go(0);
+		}
 	    }
 </script>
 
@@ -87,7 +88,7 @@
 						href="join.st">제휴맺기</a></li>
 					</c:when>
 					<c:otherwise>
-						<li class="probootstrap-animate" data-animate-effect="fadeInLeft"><a href="logout.gt" class="nav-link">로그아웃</a></li>
+						<li class="probootstrap-animate" data-animate-effect="fadeInLeft"><a href="logout.st" class="nav-link">로그아웃</a></li>
 					</c:otherwise>
 				</c:choose>
 				<li class="probootstrap-animate" data-animate-effect="fadeInLeft"><a
@@ -116,7 +117,7 @@
 	</div>
 					<div class="cover-container pb-5">
 				<div class="cover-inner container">
-					<table border ="1">
+					<table class="table table-user-information">
 						<tr>
 							<td>제품번호</td><td>${pro.pro_code }</td>
 						</tr>
@@ -164,7 +165,6 @@
 
 	</main>
 
-	<script src="resources/indexTemplate/js/jquery-3.2.1.slim.min.js"></script>
 	<script src="resources/indexTemplate/js/popper.min.js"></script>
 	<script src="resources/indexTemplate/js/bootstrap.min.js"></script>
 	<script src="resources/indexTemplate/js/owl.carousel.min.js"></script>

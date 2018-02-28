@@ -22,6 +22,7 @@
  	<http pattern="/*.st" use-expressions="true" auto-config="true" disable-url-rewriting="true">
 		<intercept-url pattern="/storeIndex.st" access="permitAll" />
 		<intercept-url pattern="/stock.st" access="hasAnyRole('ROLE_ADMIN', 'ROLE_STORE')" />
+		<intercept-url pattern="/mystore.st" access="hasAnyRole('ROLE_ADMIN', 'ROLE_STORE')" />
 		<form-login login-page="/login.st" 
 			default-target-url="/storeIndex.st"
 			login-processing-url="/login.st"

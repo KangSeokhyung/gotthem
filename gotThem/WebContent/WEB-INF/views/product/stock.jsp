@@ -55,7 +55,7 @@
 						href="join.st">제휴맺기</a></li>
 					</c:when>
 					<c:otherwise>
-						<li class="probootstrap-animate" data-animate-effect="fadeInLeft"><a href="logout.gt" class="nav-link">로그아웃</a></li>
+						<li class="probootstrap-animate" data-animate-effect="fadeInLeft"><a href="logout.st" class="nav-link">로그아웃</a></li>
 					</c:otherwise>
 				</c:choose>
 				<li class="probootstrap-animate" data-animate-effect="fadeInLeft"><a
@@ -90,7 +90,7 @@
 	
 			<div class="cover-container pb-5">
 				<div class="cover-inner container">
-					<table border="1">
+					<table class="table table-user-information">
 						<tr>
 							<th>번호</th>
 							<th style="text-align: center;">상품명</th>
@@ -108,8 +108,13 @@
 							<td>${dto.pro_stock }</td>
 						</tr>
 						</c:forEach>
+						<tr>
+							<td colspan="12" align="right">
+							<input type="button" value="상품추가" onclick="location='insert.st'"/>
+							</td>
+						</tr>
 					</table>
-					<input type="button" value="상품추가" onclick="location='insert.st'"/>
+					
 					<%-- <div>
 					${sessionScope.SPRING_SECURITY_CONTEXT}					
 					</div> --%>

@@ -56,7 +56,7 @@
 						href="join.st">제휴맺기</a></li>
 					</c:when>
 					<c:otherwise>
-						<li class="probootstrap-animate" data-animate-effect="fadeInLeft"><a href="logout.gt" class="nav-link">로그아웃</a></li>
+						<li class="probootstrap-animate" data-animate-effect="fadeInLeft"><a href="logout.st" class="nav-link">로그아웃</a></li>
 					</c:otherwise>
 				</c:choose>
 				<li class="probootstrap-animate" data-animate-effect="fadeInLeft"><a
@@ -91,7 +91,7 @@
 	<!--Main content code to be written here -->
 	<br>
 	<div style="border-top: 5px solid gray; border-bottom: 5px solid gray;">
-			<form action="memberModi.gt" method="POST">
+			<form action="storeModi.st" method="POST">
 				<div class="panel panel-info">
 					<div class="panel-heading">
 						<h3>회원 정보 수정</h3>
@@ -110,6 +110,11 @@
 											<td><span>이름:</span></td>
 											<td><input style="width: 100%" type="text"
 												name="mem_name" value="${memberInfo.mem_name}"></td>
+										</tr>
+										<tr>
+											<td><span>매장명:</span></td>
+											<td><input style="width: 100%" type="text"
+												name="mem_name" value="${memberInfo.sto_name}"></td>
 										</tr>
 										<tr>
 											<td><span>이메일:</span></td>
@@ -137,6 +142,16 @@
 												name="mem_address1" value="${mem_address1}"><br>
 												<input style="width: 100%" type="text" name="mem_address2"
 												value="${mem_address2}"></td>
+										</tr>
+										<tr>
+											<td><span>매장사진:</span></td>
+											<td><img src="<%=request.getContextPath() %>/upload/${info.sto_img }" 
+											name="p_img"></td>
+										</tr>
+										<tr>
+											<td><span>코멘트:</span></td>
+											<td><input style="width: 100%" type="text"
+												name="mem_name" value="${memberInfo.sto_comment}"></td>
 										</tr>
 
 									</tbody>

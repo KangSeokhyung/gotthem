@@ -62,7 +62,7 @@
 						href="join.st">제휴맺기</a></li>
 					</c:when>
 					<c:otherwise>
-						<li class="probootstrap-animate" data-animate-effect="fadeInLeft"><a href="logout.gt" class="nav-link">로그아웃</a></li>
+						<li class="probootstrap-animate" data-animate-effect="fadeInLeft"><a href="logout.st" class="nav-link">로그아웃</a></li>
 					</c:otherwise>
 				</c:choose>
 				<li class="probootstrap-animate" data-animate-effect="fadeInLeft"><a
@@ -96,21 +96,21 @@
 				<div class="cover-inner container">
 					<form method="post" action="update.st">
 					<input type="hidden" name="pro_code" value="${pro.pro_code }"/>
-					<table border ="1">
+					<table class="table table-user-information">
 						<tr>
-							<td>제품번호</td><td>${pro.pro_code }</td>
+							<td><span>제품번호</span></td><td>${pro.pro_code }</td>
 						</tr>
 						<tr>
-							<td>제품명</td><td><input type="text" name="pro_name" value="${pro.pro_name }"/></td>
+							<td><span>제품명</span></td><td><input type="text" name="pro_name" value="${pro.pro_name }"/></td>
 						</tr>
 						<tr>
-							<td>분류</td><td><input type="text" name="pro_category" value="${pro.pro_category }"/></td>
+							<td><span>분류</span></td><td><input type="text" name="pro_category" value="${pro.pro_category }"/></td>
 						</tr>
 						<tr>
-							<td>가격</td><td><input type="text" name="pro_price" value="${pro.pro_price }"/></td>
+							<td><span>가격</span></td><td><input type="text" name="pro_price" value="${pro.pro_price }"/></td>
 						</tr>
 						<tr>
-							<td>재고</td><td><input type="text" name="pro_stock" value="${pro.pro_stock }"/></td>
+							<td><span>재고</span></td><td><input type="text" name="pro_stock" value="${pro.pro_stock }"/></td>
 						</tr>
 						<tr>
 							<td colspan="2" align="center">
