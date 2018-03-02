@@ -12,6 +12,7 @@
     <link href="resources/mainTemplate/assets/css/demo.css" rel="stylesheet" />
     <link href="resources/mainTemplate/assets/css/examples.css" rel="stylesheet" />
     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+    
 </head>
 <body>
 	<header class="header">
@@ -21,6 +22,82 @@
   				<br><br><br><br><br><br><br>
   				<h2>GOT THEM 회원가입</h2>
         </div>
+<body>
+    <div class="section landing-section">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-8 col-md-offset-2">
+                            <form class="contact-form">
+                                <div class="row">
+                                    <div class="col-sm-5">
+                                        <label>아이디</label>
+                                       
+            <div id="imaginary_container"> 
+                <div class="input-group stylish-input-group">
+                    <input type="text" class="form-control"  placeholder="아이디" >
+                    <span class="input-group-addon">
+                        <button >
+                            <span>중복확인</span>
+                        </button>  
+                    </span>
+                </div>
+            </div>
+ 
+                                       
+                                       
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <label>패스워드</label>
+                                        <input type="password" class="form-control" placeholder="Name">
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <label>패스워드</label>
+                                        <input type="password" class="form-control" placeholder="Name">
+                                    </div>
+                                </div>
+                                 <div class="row">
+                                    <div class="col-sm-6">
+                                        <label>이름</label>
+                                       <input type="text" class="form-control" placeholder="Name">
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <label>이메일</label>
+                                       <input type="email" class="form-control" placeholder="Name">
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <label>우편번호</label>
+                                       <input type="email" class="form-control" placeholder="Name">
+                                    </div>
+                                </div>
+                                <button href="#fakelink" class="btn btn-danger">우편번호찾기</button>
+                               <div class="row">
+                                    <div class="col-sm-8">
+                                        <label>상세주소1</label>
+                                       <input type="email" class="form-control" placeholder="Name">
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-8">
+                                        <label>상세주소2</label>
+                                       <input type="email" class="form-control" placeholder="Name">
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+
+
+</body>
 <script src="http://code.jquery.com/jquery-3.2.1.min.js"></script>
 <script src="resources/Login_v7/js/main.js"></script>
 <script src="resources/mainTemplate/bootstrap/js/bootstrap.min.js"></script>
