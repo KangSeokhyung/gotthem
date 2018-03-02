@@ -20,6 +20,33 @@ background-size : cover;
 table { border: 1px solid #ddd; width: 100%; }
 }
 </style>
+<script type="text/javascript">
+	function relatedSearch() {
+		$("#releatedField").html("");
+		var search = $("#search").val();
+		if(search != ""){
+			$.ajax({
+				url : "relatedSearch.gt",
+				data : { "search" : search, "pageNo" : 1 },
+				type : "post",
+				success : function(relatedData) {
+					var ob = JSON.parse(relatedData);
+					var innerHtml = "";
+					for (var i = 0; i < 5; i++) {
+						if (typeof(ob["search" + i]) != "undefined") {
+							innerHtml += "<a href='searchList.gt?search=" + ob["search" + i] + "&pageNo=1'>" + ob["search" + i] + "</a> <br>";
+						}
+					}
+					$("#releatedField").append(innerHtml);
+				},
+				error : function(xmlHttpReq, status, error) {
+					alert(xmlHttpReq + "리퀘스트\n" + status + "상태\n" + error + "에러\n");
+				}
+			});
+		}
+	}
+	
+</script>
 </head>
 <body>
 	<header>
@@ -28,43 +55,92 @@ table { border: 1px solid #ddd; width: 100%; }
 	<section class="hero bg-overlay" id="hero"
 		data-bg="resources/mainTemplate/img/hero.jpg">
 		<div class="text">
-			<h1>지도 API</h1>
-			
+			<h1>지도 API 자리</h1>
 		</div>
 	</section>
-
+	
+	<section class="padding bg-grey">
+		<div class="form-holder">
+			<form id="newsletterForm" action="searchList.gt" method="get">
+				<div class="form-group">
+					<input type="text" name="search" id="search"
+						onkeyup="relatedSearch()"
+						placeholder="원하는 지역명 혹은 상품명을 검색해보세요 (ex. 강남역 김밥)">
+					<button type="submit"
+					class="btn btn-primary btn-gradient submit">검색</button>
+					<div id="releatedField" style="border: 1px solid #ddd">
+					</div>
+					
+				</div>
+			</form>
+		</div>
+	</section>
+	
 	<section class="padding bg-grey" id="blog">
 		<div class="container">
-			<h2 class="section-title">RECENTLY UPDATED STORE LIST</h2>
+			<h6><strong>${search }</strong> 검색결과</h6>
 			<div class="section-body">
-				<div class="row col-spacing">
-					<h2>편의점 리스트</h2>
-					<table>
-						<colgroup>
-							<col width="25%" />
-							<col width="25%" />
-							<col width="20%" />
-							<col width="30%" />
-						</colgroup>
-						<thead>
-							<tr>
-								<th scope="col">매장이미지</th>
-								<th scope="col">매장이름</th>
-								<th scope="col">상품명</th>
-								<th scope="col">매장주소</th>
-							</tr>
-						</thead>
-						<tbody>
-							<c:forEach var="list" items="${searchList }">
-							<tr>
-								<th><a href="storeDetail.gt?mem_no=${list.mem_no }"><img src="${list.pro_img}"></a></th>
-								<td><a href="storeDetail.gt?mem_no=${list.mem_no }">${list.sto_name }</a></td>
-								<td>${list.pro_name }</td>
-								<td>${list.mem_address }</td>
-							</tr>
+				<table class="table table-bordered table-hover">
+					<colgroup>
+						<col width="25%" />
+						<col width="25%" />
+						<col width="20%" />
+						<col width="30%" />
+					</colgroup>
+					<thead>
+						<tr>
+							<th scope="col">매장이미지</th>
+							<th scope="col">매장이름</th>
+							<th scope="col">상품명</th>
+							<th scope="col">매장주소</th>
+						</tr>
+					</thead>
+					<tbody>
+						<c:forEach var="list" items="${searchList }">
+						<tr>
+							<th><a href="storeDetail.gt?mem_no=${list.mem_no }"><img src="${list.pro_img}" title="매장이미지" alt="매장이미지"></a></th>
+							<td><a href="storeDetail.gt?mem_no=${list.mem_no }">${list.sto_name }</a></td>
+							<td>${list.pro_name }</td>
+							<td>${list.mem_address }</td>
+						</tr>
+						</c:forEach>
+					</tbody>
+				</table>
+				<div id="paging">
+					<c:if test="${totalPages ne 0}">
+					<ul class="pagination">
+						<c:choose>
+							<c:when test="${prevPage ne 0}">
+								<li class="page-item"><a class="page-link" 
+									href="searchList.gt?search=${search }&pageNo=${prevPage }">Prev</a></li>
+							</c:when>
+							<c:otherwise>
+								<li class="page-item"><a class="page-link">Prev</a></li>
+							</c:otherwise>
+						</c:choose>
+							<c:forEach begin="${beginPage }" end="${endPage }" step="1" varStatus="status">
+								<c:choose>
+									<c:when test="${nowPage eq status.index }">
+										<li class="page-item active"><a class="page-link" 
+											href="searchList.gt?search=${search }&pageNo=${status.index }">${status.index }</a></li>
+									</c:when>
+									<c:otherwise>
+										<li class="page-item"><a class="page-link" 
+											href="searchList.gt?search=${search }&pageNo=${status.index }">${status.index }</a></li>
+									</c:otherwise>
+								</c:choose>
 							</c:forEach>
-						</tbody>
-					</table>
+						<c:choose>
+							<c:when test="${nextPage ne 0 }">
+								<li class="page-item"><a class="page-link" 
+									href="searchList.gt?search=${search }&pageNo=${nextPage }">Next</a></li>
+							</c:when>
+							<c:otherwise>
+								<li class="page-item"><a class="page-link">Next</a></li>
+							</c:otherwise>
+						</c:choose>
+					</ul>
+					</c:if>
 				</div>
 			</div>
 		</div>

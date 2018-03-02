@@ -56,7 +56,7 @@ public class MemberController {
 		return "member/mlogin";
 	}
 	@RequestMapping(value = "/logout.gt", method = RequestMethod.GET)
-	public String logout(HttpSession  session, HttpServletRequest request) {		
+	public String logout(HttpSession session, HttpServletRequest request) {		
 		session.invalidate();		
 		return "redirect:index.jsp";
 	}

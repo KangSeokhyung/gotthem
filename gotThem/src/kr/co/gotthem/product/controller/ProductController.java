@@ -82,7 +82,7 @@ public class ProductController {
 		ModelAndView mav = new ModelAndView();
 		int code = ServletRequestUtils.getIntParameter(req, "code");
 		System.out.println("code = " + code);
-		ProductBean bean = productService.findCode(code);		
+		ProductBean bean = productService.findCode(code);
 		mav.setViewName("product/detail");
 		mav.addObject("pro",bean);
 		
@@ -163,11 +163,9 @@ public class ProductController {
 	}
 	
 	@RequestMapping(value = "/searchList.gt", method = RequestMethod.GET)
-	public String searchList(Model model, @RequestParam String search) {
+	public String searchList(Model model, @RequestParam String search, @RequestParam int pageNo) {
 		
-		List searchList = productService.searchList(search);
-		
-		model.addAttribute("searchList", searchList);
+		productService.searchList(model, search, pageNo);
 		
 		return "product/searchList";
 	}

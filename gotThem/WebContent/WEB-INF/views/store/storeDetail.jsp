@@ -18,7 +18,9 @@
 section{
 background-size : cover;
 }
-#productSearch {
+#contentbody {
+width: 90%;
+margin: auto;
 }
 </style>
 </head>
@@ -27,19 +29,31 @@ background-size : cover;
 	$(document).on('click', '#upCount', function(){
 		var pro_stock = $(this).prev().val() * 1 + 1;
 		$(this).prev().val(pro_stock);
-		pro_price = $(this).parents("td").next("td").text() * 1 + $(this).parents("td").next("td").text() * 1;
+		
+		var pro_price = $(this).parents("td").next("td").text();
+		var pro_price_fin = $(this).parents().siblings("#pro_stock_fin").val();
+		
 		$(this).parents("td").next("td").text("");
-		$(this).parents("td").next("td").text(pro_price);
+		$(this).parents("td").next("td").text(pro_price * 1 + pro_price_fin * 1);
+		$("#pro_price").val(pro_price);
+		
+		var totalPay = $("#totalPay").val();
+		$("#totalPay").val(totalPay*1 + pro_price_fin*1);
 	});
 	
 	$(document).on('click', '#downCount', function(){
 		var pro_stock = $(this).prev().prev().val() - 1;
 		$(this).prev().prev().val(pro_stock);
-		var pro_price = $(this).parents("td").next("td").text() * 1
-						- $(this).parents("td").next("td").text() * 1;
-		alert(pro_price);
+		
+		var pro_price = $(this).parents("td").next("td").text();
+		var pro_price_fin = $(this).parents().siblings("#pro_stock_fin").val();
+		
 		$(this).parents("td").next("td").text("");
-		$(this).parents("td").next("td").text(pro_price);
+		$(this).parents("td").next("td").text(pro_price * 1 - pro_price_fin * 1);
+		$("#pro_price").val(pro_price);
+		
+		var totalPay = $("#totalPay").val();
+		$("#totalPay").val(totalPay*1 - pro_price_fin*1);
 	});
 	
 	$(function(){
@@ -66,31 +80,53 @@ background-size : cover;
 			if (exist == "yes") {
 				alert("이미 존재하는 옵션입니다.");
 			} else {
-				/* $("#upCount"+idCount).unbind("click");
-				$("#upCount"+idCount).bind("click", function(){
-					alert("테스트");
-					var pro_stock = $(this).prev().val();
-					$(this).prev().val(pro_stock * 1 + 1);
-				}); */
+				/*---------------------------------------------------
+				*	document on과는 다르게 가능한 소스
+				*	$("#upCount"+idCount).unbind("click");
+				*	$("#upCount"+idCount).bind("click", function(){
+				*		alert("테스트");
+				*		var pro_stock = $(this).prev().val();
+				*		$(this).prev().val(pro_stock * 1 + 1);
+				*	}); 
+				-----------------------------------------------------*/
 				
 				$("#mySelectField").append(
 					"<tr><input type='hidden' name='pro_name' value='" + pro_name + "'>" +
-					"<input type='hidden' name='pro_price' value='" + pro_price + "'>" +
+					"<input type='hidden' id='pro_price' name='pro_price' value='" + pro_price + "'>" +
+					"<input type='hidden' id='pro_stock_fin' value='" + pro_price + "'>" +
 					"<td id='myPro_name'>" + pro_name + "</td><td><input type='text' id='pro_stock' value='1'>" +
 					"<input type='button' id='upCount' value='증가'> <input type='button' id='downCount' value='감소'>" + 
-					"</td><td id='myPro_price'>" + pro_price + "</td>" +
-					"<td><input type='button' id='deleteRow' value='x' onclick='deleteMySelect()'></td></tr>"
+					"</td><td id='myPro_price' class='myPro_price'>" + pro_price + "</td>" +
+					"<td><input type='button' id='deleteRow' value='x'></td></tr>"
 				);
 				
-				idCount = idCount + 1;
+				var totalPay = $("#totalPay").val();
+				$("#totalPay").val(totalPay*1 + pro_price*1);
 			}
 		});
 	}); 
 	
-	function deleteMySelect() {
+	$(document).on('click', '#deleteRow', function(){
+		var tr = $(this).parents();
+		
+		var pro_price = $(this).parents().siblings("#myPro_price").text();
+		alert(pro_price);
+		
+		var totalPay = $("#totalPay").val();
+		$("#totalPay").val(totalPay*1 - pro_price*1);
+		
+	});
+	
+	/* onclick='deleteMySelect()' function deleteMySelect() {
 		var tr = $("#deleteRow").parents("td").parents("tr");
+		
+		alert($("#deleteRow").parents("#myPro_price").text());
+		
+		var totalPay = $("#totalPay").val();
+		$("#totalPay").val(totalPay*1 - selectPro_price*1);
+		
 		$(tr).remove();
-	}
+	} */
 	
 	function productSearch() {
 		rowAddDel();
@@ -125,120 +161,100 @@ background-size : cover;
 	</header>
 	
 	<input type="hidden" id="mem_no" name="mem_no" value="${mem_no}">
-	
-	<section class="hero bg-overlay" id="hero"
-		data-bg="resources/mainTemplate/img/hero.jpg">
-		<div class="container">
-			<div class="row">
-				<h1>${storeInfo.sto_name }</h1>
-				<hr>
-				<h3>소개글</h3> 
-				<p>${storeInfo.sto_comment }</p>
-				<br>
-				<h3>이미지 테스트</h3>
-				<p>${storeInfo.sto_img }</p>
-			</div>
-		</div>
-	</section>
 
 	<section class="padding bg-grey" id="blog">
-		<div class="container">
-			<div class="section-body">
-			<div class="row col-spacing">
-				<h1>제품 리스트 출력</h1>
-				<h5> * 줄 단위로 클릭 시 나의 상품리스트로 들어가게 됩니다.</h5>
-				<div class="row">
-					<div class="col-sm-5">
-						<input type="text" id="productSearch" class="form-control" placeholder="원하는 상품을 검색해주세요." 
-								style="color:white !important;" onkeypress="productSearch()">
-					</div>
-					<div class="col-sm-1">
-						<input type="button" class="btn btn-default" onclick="productSearch()" value="검색">
-					</div>
-				</div>
-				<form>
-					<div class="row">
-					<div class="col-sm-8">
-						<table class="table table-bordered table-hover">
-							<colgroup>
-								<col width="25%" />
-								<col width="25%" />
-								<col width="25%" />
-								<col width="25%" />
-							</colgroup>
-							<thead>
-								<tr>
-									<th class="text-center" scope="col">상품명</th>
-									<th class="text-center" scope="col">분류</th>
-									<th class="text-center" scope="col">수량</th>
-									<th class="text-center" scope="col">금액</th>
-								</tr>
-							</thead>
-							<tbody id="searchTemplate">
-								<c:forEach var="list" items="${productInfo }">
-									<input type="hidden" name="pro_code" id="pro_code" value="${list.pro_code }">
-								<tr>
-									<td>${list.pro_name }</td>
-									<td>${list.pro_category }</td>
-									<td>${list.pro_stock }</td>
-									<td>${list.pro_price }</td>
-								</tr>
-								</c:forEach>
-							</tbody>
-						</table>
-					</div>
-					<div class="col-sm-4">	
-						<table class="table custab">
-							<colgroup>
-								<col width="40%" />
-								<col width="15%" />
-								<col width="25%" />
-								<col width="15%" />
-							</colgroup>
-						    <thead>
-						        <tr>
-						            <th>상품명</th>
-						            <th>수량</th>
-						            <th>금액</th>
-						            <th></th>
-						        </tr>
-						    </thead>
-						    <tbody id="mySelectField">
-				           	</tbody>
-				           	<tfoot>
-				           		<tr>
-				           			<td colspan="4">
-				           				<input type="number" id="">
-				           				<input type="hidden" name="totalPay" id="totalPay">
-				           				총 금액 : 
-				           			</td>
-				           		</tr>
-				           	</tfoot>
-					    </table>
-					</div>
-					</div>
-					<div class="row">
-						<input type="button" class="btn btn-success" value="바로구매" onclick="">&nbsp;
-						<input type="button" class="btn btn-primary" value="장바구니" onclick="">&nbsp;
-						<input type="reset" class="btn btn-default" value="취소">
-					</div>
-				</form>
-			</div>
+		<div id="contentbody" class="row">
+			<div class="col-sm-12">
+				<h1>${storeInfo.sto_name }</h1>
+				<hr>
+				<h2><b>소개글</b></h2> 
+				<p>소개글 값 테스트 : ${storeInfo.sto_comment }</p>
+				<br>
+				<h2><b>아래쪽에 이미지가 출력된다.</b></h2>
+				<p>이미지 값 테스트 : ${storeInfo.sto_img }</p>
 			</div>
 		</div>
-	</section>
-
-
-	<section class="callout">
-		<div class="container">
-			<div class="row align-items-center">
-				<div class="col-12 col-md-8 text">
-					<h3>저희와 제휴맺는 것에 관심이 있으신가요?</h3>
+		<br><br>
+		<div id="contentbody" class="section-body">
+			<h1>제품 리스트 출력</h1>
+			<h5> * 줄 단위로 클릭 시 나의 상품리스트로 들어가게 됩니다.</h5>
+			<hr>
+			<div class="row">
+				<div class="col-sm-5">
+					<input type="text" id="productSearch" class="form-control" placeholder="원하는 상품을 검색해주세요." 
+							onkeypress="productSearch()">
 				</div>
-				<div class="col-12 col-md-4 cta">
-					<a href="storeIndex.st" class="btn btn-outline-primary"> 제휴페이지로 이동 </a>
+				<div class="col-sm-1">
+					<input type="button" class="btn btn-default" onclick="productSearch()" value="검색">
 				</div>
 			</div>
+			<form>
+				<div class="row">
+				<div class="col-sm-8">
+					<table class="table table-bordered table-hover">
+						<colgroup>
+							<col width="25%" />
+							<col width="25%" />
+							<col width="25%" />
+							<col width="25%" />
+						</colgroup>
+						<thead>
+							<tr>
+								<th class="text-center" scope="col">상품명</th>
+								<th class="text-center" scope="col">분류</th>
+								<th class="text-center" scope="col">수량</th>
+								<th class="text-center" scope="col">금액</th>
+							</tr>
+						</thead>
+						<tbody id="searchTemplate">
+							<c:forEach var="list" items="${productInfo }">
+								<input type="hidden" name="pro_code" id="pro_code" value="${list.pro_code }">
+							<tr>
+								<td>${list.pro_name }</td>
+								<td>${list.pro_category }</td>
+								<td>${list.pro_stock }</td>
+								<td>${list.pro_price }</td>
+							</tr>
+							</c:forEach>
+						</tbody>
+					</table>
+				</div>
+				<div class="col-sm-4">	
+					<table class="table custab">
+					<caption></caption>
+						<colgroup>
+							<col width="30%" />
+							<col width="25%" />
+							<col width="25%" />
+							<col width="15%" />
+						</colgroup>
+					    <thead>
+					        <tr>
+					            <th>상품명</th>
+					            <th>수량</th>
+					            <th>금액</th>
+					            <th></th>
+					        </tr>
+					    </thead>
+					    <tbody id="mySelectField">
+			           	</tbody>
+			           	<tfoot>
+			           		<tr>
+			           			<td colspan="4">
+			           				<input type="hidden" name="totalPay"  value="0">
+			           				총 금액 : <input type="text" id="totalPay" class="totalPay" value="0" readonly="readonly">
+			           			</td>
+			           		</tr>
+			           	</tfoot>
+				    </table>
+				</div>
+				</div>
+				<div class="row">
+					<input type="button" class="btn btn-success" value="바로구매" onclick="">&nbsp;
+					<input type="button" class="btn btn-primary" value="장바구니" onclick="">&nbsp;
+					<input type="reset" class="btn btn-default" value="취소">
+				</div>
+			</form>
 		</div>
 	</section>
 

@@ -1,5 +1,6 @@
 package kr.co.gotthem.product.dao;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -42,8 +43,8 @@ public class ProductDaoImpl implements ProductDao {
 	}
 	
 	@Override
-	public List searchList(String search) {
-		return sqlSessionTemplate.selectList("searchList", search);
+	public List searchList(HashMap<String, Object> map) {
+		return sqlSessionTemplate.selectList("searchList", map);
 	}
 	
 	@Override
@@ -54,5 +55,10 @@ public class ProductDaoImpl implements ProductDao {
 	@Override
 	public List productSearchList(Map<String, Object> map) {
 		return sqlSessionTemplate.selectList("productSearchList", map);
+	}
+
+	@Override
+	public int searchListCount(String search) {
+		return sqlSessionTemplate.selectOne("searchListCount", search);
 	}
 }

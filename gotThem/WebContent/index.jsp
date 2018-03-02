@@ -18,6 +18,12 @@
 section{
 background-size : cover;
 }
+#search {
+color: white;
+}
+#releatedField {
+text-align: left;	
+}
 </style>
 <script type="text/javascript">
 	function relatedSearch() {
@@ -33,7 +39,7 @@ background-size : cover;
 					var innerHtml = "";
 					for (var i = 0; i < 5; i++) {
 						if (typeof(ob["search" + i]) != "undefined") {
-							innerHtml += "<a href='searchList.gt?search=" + ob["search" + i] + "'>" + ob["search" + i] + "</a> <br>";
+							innerHtml += "<a href='searchList.gt?search=" + ob["search" + i] + "&pageNo=1'>" + ob["search" + i] + "</a> <br>";
 						}
 					}
 					$("#releatedField").append(innerHtml);
@@ -61,6 +67,7 @@ background-size : cover;
 				<div class="container text-center">
 					<div class="form-holder">
 						<form id="newsletterForm" action="searchList.gt" method="get">
+						<input type="hidden" name="pageNo" value="1">
 							<div class="form-group">
 								<input type="text" name="search" id="search"
 									onkeyup="relatedSearch()"
