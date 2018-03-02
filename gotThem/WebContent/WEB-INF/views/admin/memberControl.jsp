@@ -40,7 +40,7 @@
 						<td>${mlist.mem_regdate}</td>
 						<td>${mlist.mem_status}</td>
 						<td>${mlist.enabled }</td>
-						<td><button type="button" class="btn btn-primary edit" data-toggle="modal"  ,
+						<td><button type="button" class="btn btn-primary edit" data-toggle="modal"
         				data-target="#myModal">수정</button></td>
 					</tr>
 				</c:forEach>

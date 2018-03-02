@@ -8,49 +8,40 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<nav class="navbar navbar-expand-lg main-navbar">
-			<div class="container-fluid">			
-			  <a class="navbar-brand" href="/gotThem">
-			  	<img src="resources/mainTemplate/img/logo.png" alt="Logo">
-			  </a>
-			  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-			    <span class="navbar-toggler-icon">
-			    	<i class="ion-navicon"></i>
-			    </span>
-			  </button>
-			  <div class="collapse navbar-collapse" id="navbarNav">
-				  <div class="mr-auto"></div>
-			    <ul class="navbar-nav">
-			      <li class="nav-item">
-			        <a class="nav-link smooth-link" href="#">COMPANY</a>
-			      </li>
-			      <li class="nav-item">
-			        <a class="nav-link smooth-link" href="#">NOTICE</a>
-			      </li>
-			      <li class="nav-item">
-			        <a class="nav-link smooth-link" href="#">EVENT</a>
-			      </li>
-			    <c:set var="sessionCheck"
-					value="${sessionScope.SPRING_SECURITY_CONTEXT}" />
-				<c:choose>
-					<c:when test="${sessionCheck eq null}">
-					<li class="nav-item">
-			        <a class="nav-link smooth-link" href="join.gt">SIGN UP</a>
-			      </li>
-			      <li class="nav-item">
-			        <a class="nav-link smooth-link" href="login.gt">LOGIN</a>
-			      </li>
-					</c:when>
-					<c:otherwise>
-					<li class="nav-item"><a href="mypage.gt"
-								class="nav-link">MY INFO</a></li>
-						<li class="nav-item"><a href="logout.gt"
-								class="nav-link">LOGOUT</a></li>
-					</c:otherwise>
-				</c:choose>
-			    </ul>
-			  </div>
-		  </div>
-		</nav>
+	  <nav class="navbar navbar-default" role="navigation-demo" id="demo-navbar">
+      <div class="container">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navigation-example-2">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="/gotThem">GOT THEM</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="navigation-example-2">
+          <ul class="nav navbar-nav navbar-right">
+            <li>
+                <a href="/gotThem" class="btn btn-simple">GOT THEM</a>
+            </li>
+            <li>
+                <a href="#" class="btn btn-simple">NOTICE</a>
+            </li>
+						<li>
+								<a href="#" class="btn btn-simple">EVENT</a>
+						</li>
+						<li>
+								<a href="join.gt" class="btn btn-simple">SIGN UP</a>
+						</li>
+						<li>
+								<a href="login.gt" class="btn btn-simple">LOGIN</a>
+						</li>
+           </ul>
+        </div><!-- /.navbar-collapse -->
+      </div><!-- /.container-->
+    </nav>
 </body>
 </html>

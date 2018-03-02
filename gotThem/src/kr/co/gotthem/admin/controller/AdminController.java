@@ -3,13 +3,17 @@ package kr.co.gotthem.admin.controller;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
+
 import kr.co.gotthem.member.bean.MemberBean;
 import kr.co.gotthem.member.service.MemberService;
 
@@ -50,19 +54,36 @@ public class AdminController {
 	}
 
 	@RequestMapping(value = "/storecontrol.ad", method = RequestMethod.GET)
-	public ModelAndView store(ModelAndView mav) {
+	public ModelAndView store(ModelAndView mav, MemberBean bean) {
 
-	     List<MemberBean> stlist = memberService.stlist();
+		List<MemberBean> stlist = memberService.stlist();
 		System.out.println("스토어 컨트롤 진입"); 
 		System.out.println(stlist);	  
+		
+		int enabled = bean.getEnabled();
+		System.out.println(enabled);
+		
 		mav.addObject("stlist", stlist);		
 		mav.setViewName("admin/storeControl");
+		
+		
 
 		return mav;
 	}
 	
 	@RequestMapping(value = "/storemodify.ad", method = RequestMethod.POST)
-	public ModelAndView storemodi(ModelAndView mav, MemberBean stbean, HttpServletRequest request) {
+	public ModelAndView storemodi(ModelAndView mav, 
+		@RequestParam(required=false) String enable, 
+		MemberBean stbean, HttpServletRequest request, HttpSession session) {		
+		
+		int approve = 0;
+		String enabled;
+		
+		if(enable.equals("승인완료")) {
+			approve = 1;
+		} else {
+			approve = 0;
+		}
 		
 		stbean.setMem_id(request.getParameter("mem_id"));
 		stbean.setMem_name(request.getParameter("mem_name"));
@@ -70,11 +91,12 @@ public class AdminController {
 		stbean.setMem_email(request.getParameter("mem_email"));
 		stbean.setMem_address(request.getParameter("mem_addr1")+"/"+
 		request.getParameter("mem_addr2")+"/"+request.getParameter("mem_addr3"));
-		stbean.setEnabled(Integer.parseInt(request.getParameter("enabled")));
-		System.out.println(Integer.parseInt(request.getParameter("enabled")));
+		stbean.setEnabled(approve);
+		System.out.println(stbean);
+		System.out.println(approve);
 		
 		memberService.storeModi(stbean);
-		
+	
 		mav.setViewName("admin/controlPage");
 
 		return mav;

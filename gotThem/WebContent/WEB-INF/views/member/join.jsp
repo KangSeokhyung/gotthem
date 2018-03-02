@@ -4,83 +4,23 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>편의점 재고 검색 - Got Them</title>
 	<link rel="stylesheet" type="text/css" href="resources/Login_v7/css/util.css">
 	<link rel="stylesheet" type="text/css" href="resources/Login_v7/css/main.css">
-	<link rel="stylesheet" href="resources/mainTemplate/ionicons/css/ionicons.min.css">
-	<link rel="stylesheet" href="resources/mainTemplate/bootstrap/css/bootstrap.min.css">
-	<link rel="stylesheet" href="resources/mainTemplate/sweetalert/dist/sweetalert.css">
-	<link rel="stylesheet" href="resources/mainTemplate/css/stisla.css">
+	 <link href="resources/mainTemplate/bootstrap3/css/bootstrap.css" rel="stylesheet" />
+    <link href="resources/mainTemplate/assets/css/ct-paper.css" rel="stylesheet"/>
+    <link href="resources/mainTemplate/assets/css/demo.css" rel="stylesheet" />
+    <link href="resources/mainTemplate/assets/css/examples.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
 </head>
 <body>
 	<header class="header">
 		<%@include file="../../../nav.jsp" %>
 	</header>
-
-		<div class="container-login100 " >
-			<div class="wrap-login100 p-t-0 p-b-30 col-xs-4">
-				
- 		
-			</div>
-			
-			<div class="wrap-login100 p-t-0 p-b-30 col-xs-8">
-				<form class="login100-form validate-form" action="joinSccess.gt" method="post" onsubmit="return join()">
-					<input type="hidden" id="duplicate" value="N">
-					<input type="hidden" id="pwdConfirm" value="N">
-					<div class="text-center p-t-55 p-b-30">
-						<span class="txt1"> 회원가입 </span>
-					</div>
-
-					<div class="wrap-input100 validate-input m-b-16">
-						<input class="input100" type="text" id="mem_id" name="mem_id"
-							placeholder="아이디 입력" autofocus="autofocus" required="required"> <span class="focus-input100"></span>
-						<input type="button" id="btn1" class="btn btn-sm btn-success" value="중복확인" onclick="duplCheck()">
-					</div>
-					<div id="idcheck"></div>
-					<div class="wrap-input100 validate-input m-b-20" data-validate = "Please enter password">
-						<span class="btn-show-pass">
-							<i class="fa fa fa-eye"></i>
-						</span>
-						<input required="required" class="input100" type="password" id="mem_pw" name="mem_pw" placeholder="패스워드 입력" onkeyup="pwdCheck()">
-						<span class="focus-input100"></span>
-					</div>
-					<div class="wrap-input100 validate-input m-b-20" data-validate = "Please enter password">
-						<span class="btn-show-pass">
-							<i class="fa fa fa-eye"></i>
-						</span>
-						<input required="required" class="input100" type="password" id="mem_pw2" name="mem_pw2" placeholder="한번 더 입력하세요" onkeyup="pwdCheck()">
-						<span class="focus-input100"></span>
-					</div>
-					<p id="pwdCheckMsg"></p>
-					<div class="wrap-input100 validate-input m-b-16">
-						<input required="required" class="input100" type="text" name="mem_name"
-							placeholder="회원 이름을 입력하세요"> <span class="focus-input100"></span>
-					</div>
-					<div class="wrap-input100 validate-input m-b-16">
-						<input required="required" class="input100" type="email" name="mem_email"
-							placeholder="이메일을 입력하세요"> <span class="focus-input100"></span>
-					</div>
-					<div class="wrap-input100 validate-input m-b-16">
-						<input required="required" class="input100" type="text" name="mem_phone"
-							placeholder="전화번호를 입력하세요"> <span class="focus-input100"></span>
-					</div>
-					<div class="container-login100-form-btn">
-					<button  onclick="sample6_execDaumPostcode()">
-					우편번호 찾기</button></div>
-						<br>
-					<div class="wrap-input100 validate-input m-b-20" >
-						<input type="text" class="input100" name="mem_post" id="mem_post" placeholder="우편번호"> 
-						<input type="text" class="input100" name="mem_address1" id="mem_address1" placeholder="주소"> 
-						<input type="text" class="input100" name="mem_address2" id="mem_address2" placeholder="상세주소">
-					</div>
-					<input type="hidden" name="mem_address" value="">
-					<div class="container-login100-form-btn">
-						<button class="login100-form-btn" type="submit">가입하기</button>
-						<button class="login100-form-btn" onclick="history.back()">뒤로가기</button>
-					</div>
-				</form>
-			</div>
-		</div>
+  <div class="profile-background text-center"> 
+  				<br><br><br><br><br><br><br>
+  				<h2>GOT THEM 회원가입</h2>
+        </div>
 <script src="http://code.jquery.com/jquery-3.2.1.min.js"></script>
 <script src="resources/Login_v7/js/main.js"></script>
 <script src="resources/mainTemplate/bootstrap/js/bootstrap.min.js"></script>
