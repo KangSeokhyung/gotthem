@@ -4,6 +4,7 @@ import java.util.List;
 import kr.co.gotthem.member.bean.MemberBean;
 
 public interface MemberService {
+	
 	public MemberBean memberInfo(String mem_id);
 	
 	public int join(MemberBean memberBean);
@@ -16,6 +17,8 @@ public interface MemberService {
 	
 	public void memberModifi(MemberBean memberBean);
 	
+	public void storeModi(MemberBean memberBean);
+	
 	public int passCheck(MemberBean memberBean);
 	
 	public void memberDelete(MemberBean memberBean);
@@ -23,4 +26,6 @@ public interface MemberService {
 	public List<MemberBean> mlist();
 	
 	public List<MemberBean> stlist();
+
+	public void memModi(MemberBean memberBean);
 }

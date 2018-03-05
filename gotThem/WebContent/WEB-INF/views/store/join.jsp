@@ -47,7 +47,7 @@
 					<li class="probootstrap-animate"
 						data-animate-effect="fadeInLeft"><a href="/storeIndex">Got them?</a></li>
 					<li class="probootstrap-animate" data-animate-effect="fadeInLeft"><a
-						href="store.st">점포관리</a></li>
+						href="mystore.st">점포관리</a></li>
 					<li class="probootstrap-animate" data-animate-effect="fadeInLeft"><a
 						href="stock.st">재고관리</a></li>
 				<c:set var="sessionCheck"
@@ -60,7 +60,7 @@
 						href="join.st">제휴맺기</a></li>
 					</c:when>
 					<c:otherwise>
-						<li class="probootstrap-animate" data-animate-effect="fadeInLeft"><a href="logout.gt" class="nav-link">로그아웃</a></li>
+						<li class="probootstrap-animate" data-animate-effect="fadeInLeft"><a href="logout.st" class="nav-link">로그아웃</a></li>
 					</c:otherwise>
 				</c:choose>
 				<li class="probootstrap-animate" data-animate-effect="fadeInLeft"><a
@@ -126,6 +126,7 @@
                                     <label class="form-control-label mbr-fonts-style display-7" for="pass-form1-r">패스워드 재입력</label>
                                     <input type="password" class="form-control" name="mem_pass2" data-form-field="Phone" id="phone-form1-r">
                                 </div>
+                                  <p class="text-mute">비밀번호를 입력해주세요</p>
                             </div>
                             <div class="col-sm-8 multi-horizontal" data-for="name">
                                 <div class="form-group">
