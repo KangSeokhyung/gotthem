@@ -8,40 +8,22 @@
 <title>Insert title here</title>
 </head>
 <body>
-	  <nav class="navbar navbar-default" role="navigation-demo" id="demo-navbar">
-      <div class="container">
-        <!-- Brand and toggle get grouped for better mobile display -->
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navigation-example-2">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <a class="navbar-brand" href="/gotThem">GOT THEM</a>
+	     <header class="header">
+      <nav class="navbar navbar-expand-lg fixed-top"><a href="/gotThem" class="navbar-brand">GOT THEM</a>
+        <button type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler navbar-toggler-right"><span></span><span></span><span></span></button>
+        <div id="navbarSupportedContent" class="collapse navbar-collapse">
+          <ul class="navbar-nav ml-auto align-items-start align-items-lg-center">
+            <li class="nav-item"><a href="#about-us" class="nav-link link-scroll">About Us</a></li>
+            <li class="nav-item"><a href="#features" class="nav-link link-scroll">Features</a></li>
+            <li class="nav-item"><a href="#testimonials" class="nav-link link-scroll">Testimonials</a></li>
+            <li class="nav-item"><a href="text.html" class="nav-link">Text Page</a></li>
+          </ul>
+          <div class="navbar-text">   
+            <!-- Button trigger modal--><a href="join.gt" class="btn btn-primary navbar-btn btn-shadow btn-gradient">Sign Up</a>
+            <a href="login.gt" class="btn btn-primary navbar-btn btn-shadow btn-gradient">LOGIN</a>
+          </div>
         </div>
-
-        <!-- Collect the nav links, forms, and other content for toggling -->
-        <div class="collapse navbar-collapse" id="navigation-example-2">
-          <ul class="nav navbar-nav navbar-right">
-            <li>
-                <a href="/gotThem" class="btn btn-simple">GOT THEM</a>
-            </li>
-            <li>
-                <a href="#" class="btn btn-simple">NOTICE</a>
-            </li>
-						<li>
-								<a href="#" class="btn btn-simple">EVENT</a>
-						</li>
-						<li>
-								<a href="join.gt" class="btn btn-simple">SIGN UP</a>
-						</li>
-						<li>
-								<a href="login.gt" class="btn btn-simple">LOGIN</a>
-						</li>
-           </ul>
-        </div><!-- /.navbar-collapse -->
-      </div><!-- /.container-->
-    </nav>
+      </nav>
+    </header>
 </body>
 </html>
