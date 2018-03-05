@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%  %>
 <!DOCTYPE html >
 <html>
 <head>
@@ -39,7 +40,12 @@
 						<td>${stlist.mem_phone}</td>
 						<td>${stlist.mem_address}</td>
 						<td>${stlist.mem_regdate}</td>
-						<td>${enabled}</td>
+						<td><c:choose>
+						<c:when test="${stlist.enabled eq 0 }">
+						승인대기</c:when>
+						<c:when test="${stlist.enabled eq 1 }">
+						승인완료</c:when>
+						</c:choose></td>
 						<td><button type="button" class="btn btn-primary edit" data-toggle="modal"
         				data-target="#myModal1">수정</button></td>
 					</tr>

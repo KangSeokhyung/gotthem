@@ -126,6 +126,7 @@
                                     <label class="form-control-label mbr-fonts-style display-7" for="pass-form1-r">패스워드 재입력</label>
                                     <input type="password" class="form-control" name="mem_pass2" data-form-field="Phone" id="phone-form1-r">
                                 </div>
+                                  <p class="text-mute">비밀번호를 입력해주세요</p>
                             </div>
                             <div class="col-sm-8 multi-horizontal" data-for="name">
                                 <div class="form-group">

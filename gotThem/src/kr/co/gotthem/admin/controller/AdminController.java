@@ -57,11 +57,14 @@ public class AdminController {
 	public ModelAndView store(ModelAndView mav, MemberBean bean) {
 
 		List<MemberBean> stlist = memberService.stlist();
-		System.out.println("스토어 컨트롤 진입"); 
-		System.out.println(stlist);	  
+		System.out.println("스토어 컨트롤 진입");
 		
-		int enabled = bean.getEnabled();
-		System.out.println(enabled);
+		System.out.println();	  
+		
+		for(MemberBean abc : stlist) {
+			System.out.println(abc);
+			int abb = abc.getEnabled();
+		}
 		
 		mav.addObject("stlist", stlist);		
 		mav.setViewName("admin/storeControl");
@@ -74,10 +77,9 @@ public class AdminController {
 	@RequestMapping(value = "/storemodify.ad", method = RequestMethod.POST)
 	public ModelAndView storemodi(ModelAndView mav, 
 		@RequestParam(required=false) String enable, 
-		MemberBean stbean, HttpServletRequest request, HttpSession session) {		
+		MemberBean mbean, HttpServletRequest request, HttpSession session) {		
 		
 		int approve = 0;
-		String enabled;
 		
 		if(enable.equals("승인완료")) {
 			approve = 1;
@@ -85,17 +87,17 @@ public class AdminController {
 			approve = 0;
 		}
 		
-		stbean.setMem_id(request.getParameter("mem_id"));
-		stbean.setMem_name(request.getParameter("mem_name"));
-		stbean.setSto_name(request.getParameter("sto_name"));
-		stbean.setMem_email(request.getParameter("mem_email"));
-		stbean.setMem_address(request.getParameter("mem_addr1")+"/"+
+		mbean.setMem_id(request.getParameter("mem_id"));
+		mbean.setMem_name(request.getParameter("mem_name"));
+		mbean.setSto_name(request.getParameter("sto_name"));
+		mbean.setMem_email(request.getParameter("mem_email"));
+		mbean.setMem_address(request.getParameter("mem_addr1")+"/"+
 		request.getParameter("mem_addr2")+"/"+request.getParameter("mem_addr3"));
-		stbean.setEnabled(approve);
-		System.out.println(stbean);
+		mbean.setEnabled(approve);
+		System.out.println(mbean);
 		System.out.println(approve);
 		
-		memberService.storeModi(stbean);
+		memberService.memModi(mbean);
 	
 		mav.setViewName("admin/controlPage");
 
@@ -103,15 +105,26 @@ public class AdminController {
 	}
 	
 	@RequestMapping(value = "/memmodify.ad", method = RequestMethod.POST)
-	public ModelAndView memmodi(ModelAndView mav, MemberBean membean, HttpServletRequest request) {
+	public ModelAndView memmodi(ModelAndView mav, 
+			@RequestParam(required=false) String enable,
+			MemberBean membean, HttpServletRequest request) {
+		
+		int approve = 0;
+		
+
+		if(enable.equals("가입")) {
+			approve = 1;
+		} else {
+			approve = 0;
+		}
+
 		membean.setMem_id(request.getParameter("mem_id"));
 		membean.setMem_name(request.getParameter("mem_name"));
 		membean.setMem_email(request.getParameter("mem_email"));
 		membean.setMem_email(request.getParameter("mem_phone"));
 		membean.setMem_address(request.getParameter("mem_addr1")+"/"+
 		request.getParameter("mem_addr2")+"/"+request.getParameter("mem_addr3"));
-		membean.setEnabled(Integer.parseInt(request.getParameter("enabled")));
-		System.out.println(Integer.parseInt(request.getParameter("enabled")));
+		membean.setEnabled(approve);
 		
 		memberService.memModi(membean);
 		

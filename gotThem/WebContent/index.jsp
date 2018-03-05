@@ -61,6 +61,27 @@
                             <p>You can write here details about one of your team members. You can give more details about what they do. Feel free to add some <a href="#">links</a> for people to be able to follow them outside the site.</p>
                         </div>
                     </div>
+                  <div class="col-md-4">
+                        <div class="team-player">
+                            <img src="../assets/paper_img/chet_faker_2.jpg" alt="Thumbnail Image" class="img-circle img-responsive">
+                            <h5>씨유 강남점 <br /><small class="text-muted">서울</small></h5>
+                            <p>You can write here details about one of your team members. You can give more details about what they do. Feel free to add some <a href="#">links</a> for people to be able to follow them outside the site.</p>
+                        </div>
+                    </div>
+                   <div class="col-md-4">
+                        <div class="team-player">
+                            <img src="../assets/paper_img/chet_faker_2.jpg" alt="Thumbnail Image" class="img-circle img-responsive">
+                            <h5>씨유 강남점 <br /><small class="text-muted">서울</small></h5>
+                            <p>You can write here details about one of your team members. You can give more details about what they do. Feel free to add some <a href="#">links</a> for people to be able to follow them outside the site.</p>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="team-player">
+                            <img src="../assets/paper_img/chet_faker_2.jpg" alt="Thumbnail Image" class="img-circle img-responsive">
+                            <h5>씨유 강남점 <br /><small class="text-muted">서울</small></h5>
+                            <p>You can write here details about one of your team members. You can give more details about what they do. Feel free to add some <a href="#">links</a> for people to be able to follow them outside the site.</p>
+                        </div>
+                    </div>
                 </div>
             </div>
 						<div class="main">
