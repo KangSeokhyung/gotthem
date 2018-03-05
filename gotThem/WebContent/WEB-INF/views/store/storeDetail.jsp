@@ -14,6 +14,7 @@
 <link rel="stylesheet"
 	href="resources/mainTemplate/sweetalert/dist/sweetalert.css">
 <link rel="stylesheet" href="resources/mainTemplate/css/stisla.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <style>
 section{
 background-size : cover;
@@ -25,6 +26,7 @@ margin: auto;
 </style>
 </head>
 <script src="//code.jquery.com/jquery-3.2.1.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <script type="text/javascript">
 	$(document).on('click', '#upCount', function(){
 		var pro_stock = $(this).prev().val() * 1 + 1;
@@ -117,17 +119,6 @@ margin: auto;
 		
 	});
 	
-	/* onclick='deleteMySelect()' function deleteMySelect() {
-		var tr = $("#deleteRow").parents("td").parents("tr");
-		
-		alert($("#deleteRow").parents("#myPro_price").text());
-		
-		var totalPay = $("#totalPay").val();
-		$("#totalPay").val(totalPay*1 - selectPro_price*1);
-		
-		$(tr).remove();
-	} */
-	
 	function productSearch() {
 		rowAddDel();
 		var productSearch = $("#productSearch").val();
@@ -154,6 +145,7 @@ margin: auto;
 			}
 		});
 	}
+
 </script>
 <body>
 	<header>
@@ -161,7 +153,30 @@ margin: auto;
 	</header>
 	
 	<input type="hidden" id="mem_no" name="mem_no" value="${mem_no}">
+	
+	<section class="padding bg-grey" id="blog">
+		<div id="contentbody">
+			<h2>제품 리스트를 카테고리별 탭을 나눠서 출력</h2>
+			<ul class="nav nav-tabs">
+				<li class="active"><a data-toggle="tab" href="#lunchbox">도시락</a></li>
+				<li><a data-toggle="tab" href="#kimbob">김밥</a></li>
+				<li><a data-toggle="tab" href="#sandwich">샌드위치</a></li>
+				<li><a data-toggle="tab" href="#etc">기타</a></li>
+			</ul>
 
+			<div class="tab-content">
+				<div id="lunchbox" class="tab-pane fade in active">
+				</div>
+				<div id="kimbob" class="tab-pane fade">
+				</div>
+				<div id="sandwich" class="tab-pane fade">
+				</div>
+				<div id="etc" class="tab-pane fade">
+				</div>
+			</div>
+		</div>
+	</section>
+	
 	<section class="padding bg-grey" id="blog">
 		<div id="contentbody" class="row">
 			<div class="col-sm-12">
@@ -188,38 +203,7 @@ margin: auto;
 					<input type="button" class="btn btn-default" onclick="productSearch()" value="검색">
 				</div>
 			</div>
-			<form>
-				<div class="row">
-				<div class="col-sm-8">
-					<table class="table table-bordered table-hover">
-						<colgroup>
-							<col width="25%" />
-							<col width="25%" />
-							<col width="25%" />
-							<col width="25%" />
-						</colgroup>
-						<thead>
-							<tr>
-								<th class="text-center" scope="col">상품명</th>
-								<th class="text-center" scope="col">분류</th>
-								<th class="text-center" scope="col">수량</th>
-								<th class="text-center" scope="col">금액</th>
-							</tr>
-						</thead>
-						<tbody id="searchTemplate">
-							<c:forEach var="list" items="${productInfo }">
-								<input type="hidden" name="pro_code" id="pro_code" value="${list.pro_code }">
-							<tr>
-								<td>${list.pro_name }</td>
-								<td>${list.pro_category }</td>
-								<td>${list.pro_stock }</td>
-								<td>${list.pro_price }</td>
-							</tr>
-							</c:forEach>
-						</tbody>
-					</table>
-				</div>
-				<div class="col-sm-4">	
+				<%-- <div class="col-sm-4">	
 					<table class="table custab">
 					<caption></caption>
 						<colgroup>
@@ -247,17 +231,33 @@ margin: auto;
 			           		</tr>
 			           	</tfoot>
 				    </table>
-				</div>
+				</div> --%>
 				</div>
 				<div class="row">
 					<input type="button" class="btn btn-success" value="바로구매" onclick="">&nbsp;
 					<input type="button" class="btn btn-primary" value="장바구니" onclick="">&nbsp;
 					<input type="reset" class="btn btn-default" value="취소">
 				</div>
-			</form>
-		</div>
 	</section>
 
+	<script type="text/javascript">
+		$.get("productList.gt", { "category" : "도시락", "mem_no" : "${mem_no}" }, function(data) {
+			$('#lunchbox').html(data);
+		});
+		
+		$.get("productList.gt", { "category" : "김밥", "mem_no" : "${mem_no}" },function(data) {
+			$('#kimbob').html(data);
+		});
+		
+		$.get("productList.gt", { "category" : "샌드위치", "mem_no" : "${mem_no}" },function(data) {
+			$('#sandwich').html(data);
+		});
+		
+		$.get("productList.gt", { "category" : "기타", "mem_no" : "${mem_no}" },function(data) {
+			$('#etc').html(data);
+		});
+	</script>
+	
 	<footer>
 		<div class="container">
 			<figure>

@@ -20,7 +20,7 @@ public interface ProductService {
 
 	public List searchList(Model model, String search, int pageNo);
 	
-	public List productInfo(int mem_no);
+	public List productInfo(int mem_no, String category);
 
 	public List productSearchList(Map<String, Object> map);
 }

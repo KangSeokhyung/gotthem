@@ -39,8 +39,6 @@ import kr.co.gotthem.store.controller.StoreController;
 @Controller
 public class ProductController {
 	
-	private static final Logger logger = LoggerFactory.getLogger(StoreController.class);
-	
 	private ProductService productService;
 	private MemberService memberService;
 	private MongoTemplate mongoTemplate;

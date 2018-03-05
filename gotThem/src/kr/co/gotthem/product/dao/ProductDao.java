@@ -19,7 +19,7 @@ public interface ProductDao {
 	
 	public List searchList(HashMap<String, Object> map);
 	
-	public List productInfo(int mem_no);
+	public List productInfo(int mem_no, String category);
 
 	public List productSearchList(Map<String, Object> productSearch);
 

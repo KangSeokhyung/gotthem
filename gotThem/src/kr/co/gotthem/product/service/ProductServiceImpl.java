@@ -104,8 +104,8 @@ public class ProductServiceImpl implements ProductService {
 	}
 
 	@Override
-	public List productInfo(int mem_no) {
-		return productDao.productInfo(mem_no);
+	public List productInfo(int mem_no, String category) {
+		return productDao.productInfo(mem_no, category);
 	}
 
 	@Override

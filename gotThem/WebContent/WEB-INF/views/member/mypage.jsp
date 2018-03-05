@@ -53,14 +53,14 @@
 			<!-- Main Content -->
 			<div class="col-md-10 col-sm-8 main-content">
 				<div class="tab-content">
-				<div class="tab-pane fade show active" id="tab-1"></div>
-				<div class="tab-pane fade" id="tab-2"></div>
-				<div class="tab-pane fade" id="tab-3"></div>
-				<div class="tab-pane fade" id="tab-4"></div>
-				<div class="tab-pane fade" id="tabE">
-					<p>Okay, last one E</p>
+					<div class="tab-pane fade show active" id="tab-1"></div>
+					<div class="tab-pane fade" id="tab-2"></div>
+					<div class="tab-pane fade" id="tab-3"></div>
+					<div class="tab-pane fade" id="tab-4"></div>
+					<div class="tab-pane fade" id="tabE">
+						<p>Okay, last one E</p>
+					</div>
 				</div>
-			</div>
 			</div>
 			
 		</div>

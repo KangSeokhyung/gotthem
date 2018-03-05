@@ -275,13 +275,18 @@ public class MemberController {
     @RequestMapping(value = "/storeDetail.gt")
 	public String storeDetail(Model model, int mem_no) {
 		MemberBean storeInfo = memberService.storeInfo(mem_no);
-		List productInfo = productService.productInfo(mem_no);
-		
+
 		model.addAttribute("mem_no", mem_no);
 		model.addAttribute("storeInfo", storeInfo);
-		model.addAttribute("productInfo", productInfo);
 		
 		return "store/storeDetail";
 	}
     
+    @RequestMapping(value = "/productList.gt")
+	public String productList(Model model, int mem_no, String category) {
+    	List productInfo = productService.productInfo(mem_no, category);
+		model.addAttribute("productInfo", productInfo);
+		
+		return "product/productTable";
+	}
 }

@@ -48,8 +48,12 @@ public class ProductDaoImpl implements ProductDao {
 	}
 	
 	@Override
-	public List productInfo(int mem_no) {
-		return sqlSessionTemplate.selectList("productInfo", mem_no);
+	public List productInfo(int mem_no, String category) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("mem_no", mem_no);
+		map.put("category", category);
+		
+		return sqlSessionTemplate.selectList("productInfo", map);
 	}
 
 	@Override

@@ -43,8 +43,8 @@
 		limit #{beginList}, 10 
 	</select>
 	
-	<select id="productInfo" resultType="kr.co.gotthem.product.bean.ProductBean">
-		select * from product where pro_memno = #{mem_no} order by pro_name
+	<select id="productInfo" parameterType="java.util.HashMap" resultType="kr.co.gotthem.product.bean.ProductBean">
+		select * from product where pro_memno = #{mem_no} and pro_category = #{category} order by pro_name
 	</select>
 	
 	<select id="productSearchList" resultType="kr.co.gotthem.product.bean.ProductBean">
