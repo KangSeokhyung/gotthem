@@ -4,166 +4,121 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
-	<!-- Animate.css -->
-	<link rel="stylesheet" href="resources/newjoin/css/animate.css">
-	<!-- Flexslider -->
-	<link rel="stylesheet" href="resources/newjoin/css/flexslider.css">
-	<!-- Icomoon Icon Fonts-->
-	<link rel="stylesheet" href="resources/newjoin/css/icomoon.css">
-	<!-- Magnific Popup -->
-	<link rel="stylesheet" href="resources/newjoin/css/magnific-popup.css">
-	
-	<link rel="stylesheet" href="resources/mainTemplate/ionicons/css/ionicons.min.css">
-	<link rel="stylesheet" href="resources/mainTemplate/bootstrap/css/bootstrap.min.css">
-	<link rel="stylesheet" href="resources/mainTemplate/sweetalert/dist/sweetalert.css">
-	<link rel="stylesheet" href="resources/mainTemplate/css/stisla.css">
-	
-<style>
-.container-login100 {
-  width: 100%;  
-  min-height: 100vh;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -moz-box;
-  display: -ms-flexbox;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-items: center;
-  padding-top:100px;
-  position: relative;
-  background-color: #E6E6E6;
-}
-.half50{
-	width:49%;
-}
-</style>
+
+<title>편의점 재고 검색 - Got Them</title>
+<link rel="stylesheet" type="text/css"
+	href="resources/Login_v7/css/util.css">
+<link rel="stylesheet" type="text/css"
+	href="resources/Login_v7/css/main.css">
+<link href="resources/mainTemplate/bootstrap3/css/bootstrap.css"
+	rel="stylesheet" />
+<link href="resources/mainTemplate/assets/css/ct-paper.css"
+	rel="stylesheet" />
+<link href="resources/mainTemplate/assets/css/demo.css" rel="stylesheet" />
+<link href="resources/mainTemplate/assets/css/examples.css"
+	rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css?family=Roboto"
+	rel="stylesheet">
+
 </head>
 <body>
 	<header class="header">
-		<%@include file="../../../nav.jsp" %>
+		<%@include file="../../../nav.jsp"%>
 	</header>
-
-	<div class="container-login100">
+	<div class="profile-background text-center">
+		<br>
+		<br>
+		<br>
+		<br>
+		<br>
+		<br>
+		<br>
+		<h2>GOT THEM 회원가입</h2>
+	</div>
+<body>
+	<div class="section landing-section">
+		<div class="container">
 			<div class="row">
-				<form action="joinSccess.gt" method="post" onsubmit="return join();">
-					<input type="hidden" id="duplicate" value="N"> <input
-						type="hidden" id="pwdConfirm" value="N">
-					<div class="col-sm-12" >
+				<div class="col-md-8 col-md-offset-2">
+					<form class="contact-form">
 						<div class="row">
-							<div class="col-sm-8 form-group">
-								<label for="m_id">아이디 <strong>*</strong></label> <input
-									class="form-control" type="text" id="mem_id" name="mem_id"
-									placeholder="아이디 입력" autofocus="autofocus" required="required"
-									maxlength="30">
-							</div>
-							<div id="empty" style="font-size:24px;">&nbsp;</div>
-							<div class="col-sm-4 form-group">
-								<input type="button" id="btn1" class="form-control btn btn-sm btn-success"
-									title="중복확인" value="중복확인" onclick="duplCheck()">
+							<div class="col-sm-5">
+								<label>아이디</label>
+
+								<div id="imaginary_container">
+									<div class="input-group stylish-input-group">
+										<input type="text" class="form-control" placeholder="아이디">
+										<span class="input-group-addon">
+											<button>
+												<span>중복확인</span>
+											</button>
+										</span>
+									</div>
+								</div>
+
+
+
 							</div>
 						</div>
-						<div id="idcheck"></div>
-
 						<div class="row">
-							<div class="col-sm-6 form-group">
-								<label for="mem_pw">비밀번호 <strong>*</strong></label> <input
-									type="password" class="form-control"
-									pattern="^.*(?=.{8,20})(?=.*[0-9])(?=.*[a-zA-Z]).*$"
-									id="mem_pw" name="mem_pw" maxlength="20" required="required"
-									onkeyup="pwdCheck()"
-									title="비밀번호는 영문, 숫자 혼합 8자이상  20자 이하로 작성해주세요.">
+							<div class="col-sm-6">
+								<label>패스워드</label> <input type="password" class="form-control"
+									placeholder="Name">
 							</div>
-							<div class="col-sm-6 form-group">
-								<label for="mem_pw2">비밀번호 확인 <strong>*</strong></label> <input
-									type="password" class="form-control"
-									pattern="^.*(?=.{8,20})(?=.*[0-9])(?=.*[a-zA-Z]).*$"
-									id="mem_pw2" name="mem_pw2" maxlength="20" required="required"
-									onkeyup="pwdCheck()"
-									title="비밀번호는 영문, 숫자 혼합 8자이상  20자 이하로 작성해주세요.">
+							<div class="col-sm-6">
+								<label>패스워드</label> <input type="password" class="form-control"
+									placeholder="Name">
 							</div>
 						</div>
-						<div id="pwdCheckMsg"></div>
-
-						<div class="form-group">
-							<label for="mem_name">이름 <strong>*</strong></label> <input
-								type="text" class="form-control" id="mem_name" name="mem_name"
-								maxlength="15" placeholder="이름을 입력해주세요." required="required">
-						</div>
-
-
-
-						<div class="form-group">
-							<label for="mem_email">이메일 <strong>*</strong></label> <input
-								type="email" class="form-control" id="mem_email"
-								name="mem_email" maxlength="17" placeholder="이메일을 입력해주세요."
-								required="required">
-						</div>
-
-
-						<div class="form-group">
-							<label for="mem_phone">전화번호<strong>*</strong></label> <input
-								type="tel" class="form-control"
-								onkeydown='return onlyNumber(event)' onkeyup='removeChar(event)'
-								id="mem_phone" name="mem_phone" maxlength="15"
-								placeholder="'-' 제외한 번호만 입력해주세요." required="required">
-						</div>
-
 						<div class="row">
-							<div class="col-sm-8 form-group">
-								<label for="mem_post">우편번호 <strong>*</strong></label> <input
-									type="text" class="form-control" id="mem_post" name="mem_post"
-									placeholder="우편번호 (우편번호 찾기 버튼 클릭해주세요.)" required="required"
-									readonly="readonly">
-							</div>
-							<div class="col-sm-4 form-group">
-								<div id="empty" style="font-size:24px;">&nbsp;</div>
-								<input type="button" class="form-control btn btn-sm btn-success"
-									onclick="sample6_execDaumPostcode()" value="우편번호 찾기">
+							<div class="col-sm-6">
+								<label>이름</label> <input type="text" class="form-control"
+									placeholder="Name">
 							</div>
 						</div>
-
-						<div class="form-group">
-							<label for="mem_address1">주소 <strong>*</strong></label> <input
-								type="text" class="form-control" id="mem_address1"
-								name="mem_address1" placeholder="주소 (우편번호 찾기 버튼을 클릭해주세요.)"
-								required="required" readonly="readonly">
+						<div class="row">
+							<div class="col-sm-6">
+								<label>이메일</label> <input type="email" class="form-control"
+									placeholder="Name">
+							</div>
 						</div>
-
-						<div class="form-group">
-							<label for="mem_address2">상세주소 <strong>*</strong></label> <input
-								type="text" class="form-control" id="mem_address2"
-								name="mem_address2" placeholder="상세주소를 입력해주세요."
-								required="required">
+						<div class="row">
+							<div class="col-sm-6">
+								<label>우편번호</label> <input type="email" class="form-control"
+									placeholder="Name">
+							</div>
 						</div>
-
-						<input type="button" class="btn btn-lg btn-danger pull-right half50"
-							onclick="indexFoward();" value="돌아가기">
-						<button type="submit" class="btn btn-lg btn-success pull-right half50">회원가입</button>
-					</div>
-				</form>
+						<button href="#fakelink" class="btn btn-danger">우편번호찾기</button>
+						<div class="row">
+							<div class="col-sm-8">
+								<label>상세주소1</label> <input type="email" class="form-control"
+									placeholder="Name">
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-sm-8">
+								<label>상세주소2</label> <input type="email" class="form-control"
+									placeholder="Name">
+							</div>
+						</div>
+					</form>
+				</div>
 			</div>
+
+
+		</div>
 	</div>
 
 
 
-
-	<!-- Waypoints -->
-	<script src="resources/newjoin/js/jquery.waypoints.min.js"></script>
-	<!-- Flexslider -->
-	<script src="resources/newjoin/js/jquery.flexslider-min.js"></script>
-	<!-- Magnific Popup -->
-	<script src="resources/newjoin/js/jquery.magnific-popup.min.js"></script>
-	<script src="resources/newjoin/js/magnific-popup-options.js"></script>
-	
+</body>
 <script src="http://code.jquery.com/jquery-3.2.1.min.js"></script>
 <script src="resources/mainTemplate/bootstrap/js/bootstrap.min.js"></script>
 <script src="resources/mainTemplate/js/jquery.easeScroll.js"></script>
 <script src="resources/mainTemplate/sweetalert/dist/sweetalert.min.js"></script>
 <script src="resources/mainTemplate/js/stisla.js"></script>
 <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
-		<script>
+<script>
 		function duplCheck(){ 
 		    var id = $('#mem_id').val();
 		 		$.ajax({

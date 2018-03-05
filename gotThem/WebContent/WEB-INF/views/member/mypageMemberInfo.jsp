@@ -8,14 +8,6 @@
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
 <title>Mypage</title>
-
-<!-- Bootstrap core CSS -->
-<link rel="stylesheet"
-	href="resources/mypages/vendor/bootstrap/css/bootstrap.min.css">
-
-<link rel="stylesheet"
-	href="resources/mypages/css/mypage.css">
-
 </head>
 
 <body>
@@ -24,14 +16,14 @@
 	<br>
 	<div style="border-top: 5px solid gray; border-bottom: 5px solid gray;">
 		
-			<div class="panel panel-info">
-				<div class="panel-heading">
-					<h3 class="panel-title">회원 정보</h3>
+			<div >
+				<div >
+					<h3 >회원 정보</h3>
 				</div>
-				<div class="panel-body">
-					<div class="row">
-						<div class=" col-md-12 col-lg-12 " align="center">
-							<table class="table table-user-information">
+				<div >
+					<div>
+						<div >
+							<table>
 								<tbody>
 									<tr>
 										<td>회원 아이디:</td>
@@ -69,7 +61,7 @@
 						</div>
 					</div>
 				</div>
-				<div class="panel-footer">
+				<div>
 					
 				</div>
 

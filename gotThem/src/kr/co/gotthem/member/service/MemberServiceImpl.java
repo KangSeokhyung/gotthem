@@ -45,6 +45,16 @@ public class MemberServiceImpl implements MemberService {
 	}
 	
 	@Override
+	public void storeModi(MemberBean memberBean) {
+		memberDao.storeModi(memberBean);
+	}
+	
+	@Override
+	public void memModi(MemberBean memberBean) {
+		memberDao.memModi(memberBean);
+	}
+	
+	@Override
 	public int passCheck(MemberBean memberBean) {
 		return memberDao.passCheck(memberBean);
 	}

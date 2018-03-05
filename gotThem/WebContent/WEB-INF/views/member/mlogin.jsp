@@ -4,67 +4,56 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<title>Aside - Free HTML5 Bootstrap 4 Template by uicookies.com</title>
+<title>편의점 재고 검색 - Got Them</title>
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta charset="utf-8">
 <link rel="stylesheet" type="text/css" href="resources/Login_v7/css/util.css">
 <link rel="stylesheet" type="text/css" href="resources/Login_v7/css/main.css">
-<link rel="stylesheet" href="resources/mainTemplate/ionicons/css/ionicons.min.css">
-<link rel="stylesheet" href="resources/mainTemplate/bootstrap/css/bootstrap.min.css">
-<link rel="stylesheet" href="resources/mainTemplate/sweetalert/dist/sweetalert.css">
-<link rel="stylesheet" href="resources/mainTemplate/css/stisla.css">
+<link href="resources/mainTemplate/bootstrap3/css/bootstrap.css" rel="stylesheet" />
+<link href="resources/mainTemplate/assets/css/ct-paper.css" rel="stylesheet"/>
+<link href="resources/mainTemplate/assets/css/demo.css" rel="stylesheet" />
+<link href="resources/mainTemplate/assets/css/examples.css" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
 </head>
 <body>
 	<header class="header">
 		<%@include file="../../../nav.jsp" %>
 	</header>
-	<div class="limiter">
-		<div class="container-login100">
-			<div class="wrap-login100 p-t-0 p-b-30">
-				<form class="login100-form validate-form"
-					action="<c:url value='/login.gt' />" method="post">
-					<div class="text-center p-t-55 p-b-30">
-						<span class="txt1"> Login </span>
-					</div>
-					<div class="wrap-input100 validate-input m-b-16">
-						<input class="input100" type="text" name="mem_id" placeholder="ID">
-						<span class="focus-input100"></span>
-					</div>
+	  <div class="wrapper">
+        <div class="register-background"> 
+            <div class="filter-black"></div>
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-4 col-md-offset-4 col-sm-6 col-sm-offset-3 col-xs-10 col-xs-offset-1 ">
+                            <div class="register-card">
+                                <h3 class="title">GOT THEM?</h3>
+                                <form class="register-form" action="<c:url value='/login.gt' />" method="post">
+                                    <label>아이디</label>
+                                    <input type="text" name="mem_id" class="form-control" placeholder="아이디">
 
-					<div class="wrap-input100 validate-input m-b-20"
-						data-validate="Please enter password">
-						<span class="btn-show-pass"> <i class="fa fa fa-eye"></i>
-						</span> <input class="input100" type="password" name="mem_pw"
-							placeholder="PASSWORD"> <span class="focus-input100"></span>
-					</div>
-					
-					<c:set var="errMsg" value="${errMsg}"/>
-					<c:if test="${errMsg ne null}">
-					<div>
-						<span class="text-center txt1" style="color:red; ">${errMsg}</span>
-					</div>
-					</c:if>
-
-					<div class="container-login100-form-btn">
-						<button type="submit" class="login100-form-btn">Login</button>
-					</div>
-
-					<div class="flex-col-c p-t-120">
-						<span class="txt2 p-b-10">아이디나 패스워드를 잊으셨나요?</span> <a href="findIDAndPW.gt"
-							class="txt3 bo1 hov1">여기를 눌러 찾아보세요</a><br> <span
-							class="txt2 p-b-10">아직 아이디가 없으신가요?</span> <a href="#"
-							class="txt3 bo1 hov1">여기를 눌러 가입해보세요</a>
-					</div>
-
-				</form>
-			</div>
-		</div>
-	</div>
-	<script src="resources/mainTemplate/js/jquery.min.js"></script>
-	<script src="resources/mainTemplate/bootstrap/js/bootstrap.min.js"></script>
-	<script src="resources/mainTemplate/js/jquery.easeScroll.js"></script>
-	<script src="resources/mainTemplate/sweetalert/dist/sweetalert.min.js"></script>
-	<script src="resources/mainTemplate/js/stisla.js"></script>
+                                    <label>비밀번호</label>
+                                    <input type="password" name="mem_pw" class="form-control" placeholder="비밀번호">
+                                    <button type="submit" class="btn btn-danger btn-block">로그인</button>
+                                    
+                                    <c:set var="errMsg" value="${errMsg}"/>
+										<c:if test="${errMsg ne null}">
+										<div>
+											<span class="text-center txt1" style="color:red; ">${errMsg}</span>
+										</div>
+										</c:if>
+                                </form>
+                                <div class="forgot">
+                                    <a href="findIDAndPW.gt" class="btn btn-simple btn-danger">ID나 PASSWORD를 분실하셨나요?</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>     
+            <div class="footer register-footer text-center">
+                    <h6>&copy; 2015, made with <i class="fa fa-heart heart"></i> by Creative Tim</h6>
+            </div>
+        </div>
+    </div>      
 </body>
 </html>

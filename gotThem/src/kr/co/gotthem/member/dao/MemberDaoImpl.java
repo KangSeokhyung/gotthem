@@ -46,6 +46,18 @@ public class MemberDaoImpl implements MemberDao {
 	}
 	
 	@Override
+	public void storeModi(MemberBean memberBean) {
+	   int result = sqlSessionTemplate.update("storeModi", memberBean);
+	   System.out.println("점포 수정 업데이트 후 결과는 : " + result);
+	}
+	
+	@Override
+	public void memModi(MemberBean memberBean) {
+		int result = sqlSessionTemplate.update("memModi", memberBean);
+		System.out.println("회원정보 관리자 수정 후 결과는 : " + result);
+	}
+	
+	@Override
 	public int passCheck(MemberBean memberBean) {
 		return sqlSessionTemplate.selectOne("passCheck", memberBean);
 	}

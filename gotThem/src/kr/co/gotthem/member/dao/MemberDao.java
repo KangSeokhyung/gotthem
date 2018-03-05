@@ -29,4 +29,8 @@ public interface MemberDao {
 	public List<MemberBean> stlist();
 	
 	public int changePasswordReal(MemberBean memberBean);
+
+	public void storeModi(MemberBean memberBean);
+	
+	public void memModi(MemberBean memberBean);
 }
