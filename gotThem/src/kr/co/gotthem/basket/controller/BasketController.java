@@ -159,6 +159,29 @@ public class BasketController {
     	System.out.println("삭제 실행");
         return "redirect:/list.gt";
     }
+ // 3.1 장바구니 삭제
+    @RequestMapping(value = "test_check.gt", method = RequestMethod.POST) 
+    public String testCheck(@RequestParam (value= "arrDel[]") List<String> valueArr,
+    		@ModelAttribute BasketBean basketBean,
+    		HttpServletRequest req,HttpServletResponse res,HttpSession session) throws Exception {
+    	System.out.println("선택삭제 왔다");
+    	Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+    	String mem_id = authentication.getName();
+    
+    	MemberBean memberInfo = memberService.memberInfo(mem_id);  
+        int userNo = memberInfo.getMem_no();
+    	
+        for(int i=0; i<valueArr.size(); i++){
+         int A =	valueArr.get().toString();
+        basketBean.setBas_no(A); 
+        basketBean.setBas_memno(userNo); 	
+    	basketService.deleteBasket(bas_no);
+    	System.out.println("삭제 실행");
+        }
+        return "redirect:/list.gt";
+    }
+    
+    
     
    // 4. 장바구니 수정( 수량만 수정)
     @RequestMapping("update.gt")

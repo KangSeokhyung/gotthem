@@ -40,7 +40,7 @@ background-size : cover;
         <form name="form1" id="form1" method="post" action="./update.gt">
          <table class="table">
                <tr>
-                   <th><input type="checkbox" id="checkall" /></th>  
+                   <th><input type="checkbox" name="checkAll" id="th_checkAll" /></th> 
                    <th>상품명</th>
                    <th>단가</th>
                    <th>수량</th>
@@ -50,9 +50,10 @@ background-size : cover;
                </tr>
              <c:forEach var="row" items="${map.list}" varStatus="i">
                <tr>                
-                  <td><input type="checkbox" name="pidx1" id="pidx1" value="${row.bas_no}" />
+                  <td><input type="checkbox" name="checkRow" class="chk" value="${row.bas_no}"/> 
                   </td>
-                  <td> ${row.bas_proname}</td>
+                  <td> ${row.bas_proname}
+                  </td>
                   <td style="width: 80px" align="right">
                        <fmt:formatNumber pattern="###,###,###" value="${row.bas_proprice}"/></td>
                   <td>
@@ -61,14 +62,16 @@ background-size : cover;
                      <!-- <button type="button" id="btnUpdate" onclick="modify();" >수정</button> -->
                      <button type="submit" id="btnUpdate" >수정</button></td>
                   <td style="width: 80px" align="right">
-                       <fmt:formatNumber pattern="###,###,###" value="${row.money}"/></td>
+                       <fmt:formatNumber pattern="###,###,###" value="${row.money}"/>
+                  </td>
                   <td>                    
-                       <input type="button" value="삭제" onclick="button_event(${row.bas_no});"></td>
+                       <input type="button" value="삭제" onclick="button_basDel(${row.bas_no});"></td>
                   <td>
                        <input type="hidden" name="money" value="${row.money}">
                        <input type="hidden" name="bas_proname" value="${row.bas_proname}">
-                       <!-- <input type="submit" value="하나결제"> -->
-                       <input type="button" value="하나결제" onclick="button_order('${row.bas_no}','${row.bas_proname}','${row.bas_procode}','${row.money}','${row.bas_prostock}');"></td>
+                       <!-- <input type="submit" value="단건결제"> -->
+                       <input type="button" value="단건결제" onclick="button_order('${row.bas_no}','${row.bas_proname}','${row.bas_procode}','${row.money}','${row.bas_prostock}');">
+                   </td>
                 </tr>
                </c:forEach>
                 <tr>
@@ -76,10 +79,12 @@ background-size : cover;
                         <%-- 배송료 : ${map.fee}<br>전체 주문금액  :<fmt:formatNumber pattern="###,###,###" value="${map.allSum}"/> --%>
                     </td></tr>
             </table>
-             <input type="hidden" name="count" value="${map.count}">
-             <button type="button" value="상품목록2" id="btnList">상품목록</button>
-             <input type="button" name="sedelete" id="button" onclick="delete01()" value="선택삭제" />
-             <!-- <img src="images/btn/list_del_btn.gif" width="114" height="49" onclick="delete01()"/> -->
+            <input type="hidden" name="count" value="${map.count}">
+            <button type="button" value="상품목록2" id="btnList">상품목록</button>
+          
+            <input type="button" name="seDel" id="button_seDel" onclick="button_sedel();" value="선택삭제" />
+            <!-- <input type="button" name="sedelete" id="button" onclick="delete01()" value="선택삭제" /> -->
+            <!-- <img src="images/btn/list_del_btn.gif" width="114" height="49" onclick="delete01()"/> -->
         </form>
       </c:otherwise>
     </c:choose>
@@ -102,34 +107,10 @@ background-size : cover;
 	<script src="resources/mainTemplate/js/jquery.easeScroll.js"></script>
 	<script src="resources/mainTemplate/sweetalert/dist/sweetalert.min.js"></script>
 	<script src="resources/mainTemplate/js/stisla.js"></script>
+
 <script type="text/javascript">
-function delete01(){
-	var chk = document.getElementsByName("pidx1");  //name="pidx1" 값을 모두 가져옴. 
-	var data = "";
-	var chk_check = false;
-	 console.log(chk); 
-	 for (i=0;i<chk.length ;i++ ){                   //for 문으로 돌리고..
-	 if (chk[i].checked == true ){               //checked 된 것만	 
-		 alert("넘어왔음");
-		 data = data + ", " +chk[i].value;            // 값을 가져와서 data 넣는다.
-	  
-	  if(chk[i].checked) chk_check = true;    // 하나라도 체크 됐다면 chk_check = true 값 반환
-	 }
-	}
-	 if (chk_check){              // chk_check 값이 true 라면
-	    if(confirm("삭제하시겠습니까?")){
-//		  alert("넘어가는 값은="+data);
-	   document.formName.action = "delete_ok2.asp?idx1="+data
-	   document.formName.submit();
-	    }
-	 }else{                         // chk_check 값이 false 라면
-	  alert('하나이상을 체크하여 주십시오');
-	  return;
-	 }
-	}
 
-
-$(document).ready(function(){
+    $(document).ready(function(){
         // 리스트 페이지로 이동
         $("#btnList").click(function(){
             location.href="./productlist.gt";     
@@ -138,43 +119,7 @@ $(document).ready(function(){
             location.href="ord.gt?bas_no="+bas_no;
         }); */
     });
-    
-/*     $(document).ready(function(){
-      $("#checkall").click(function(){  //최상단 체크박스 클릭
-         if($("#checkall").prop("checked")){  //클릭되었으면
-                //input태그의 name이 chk인 태그들을 찾아서 checked옵션을 true로 정의
-                $("input[name=chk]").prop("checked",true);
-            }else{     //클릭이 안되있으면
-                //input태그의 name이 chk인 태그들을 찾아서 checked옵션을 false로 정의
-                $("input[name=chk]").prop("checked",false);
-            }
-        })
-    }) */
-/*    function modify() {
-	   var submitTest = document.form1;
-	   submitTest.action="./update.gt";
-	   submitTest.method="post";
-	   submitTest.submit();
-   } */
-
-/*    function _sedelete(f) {
-	   alert("선택삭제"); //같이 보낼 값 정리
-       if (typeof(f.elements['chk[]'].length) == 'undefined') { //단일
-           if (f.elements['chk[]'].checked==false) {
-               f.elements['field_a[]'].disabled=true;
-               f.elements['field_b[]'].disabled=true;
-           }
-       } else { //다중
-           for (i=0; i<f.elements['chk[]'].length; i++) {
-               if (f.elements['chk[]'][i].checked==false){
-                   f.elements['field_a[]'][i].disabled=true;
-                   f.elements['field_b[]'][i].disabled=true;
-               }
-           }
-       }
-       return true;
-   } */
-   function button_event(bas_no){
+function button_basDel(bas_no){
     	alert(bas_no);
    if (confirm("정말 삭제하시겠습니까??")){    //확인
      location.href="delete.gt?bas_no="+bas_no;
@@ -183,7 +128,7 @@ $(document).ready(function(){
       }
    }
    
-    function button_order(bas_no,bas_proname,bas_procode,money,bas_prostock){
+function button_order(bas_no,bas_proname,bas_procode,money,bas_prostock){
    	alert(bas_no);
   if (confirm("결제 하시겠습니까??")){    //확인
     location.href="insertOrder.gt?bas_no="+bas_no+"&bas_proname="+bas_proname+
@@ -192,5 +137,100 @@ $(document).ready(function(){
       return;
      }
   } 
+
+<%-- function modify() {
+	   var submitTest = document.form1;
+	   submitTest.action="./update.gt";
+	   submitTest.method="post";
+	   submitTest.submit();
+   }  --%>    
+
+	$("#th_checkAll").click(function(){		
+		var chk= $(this).is(":checked");
+		if(chk){
+			$('input[name*="checkRow"]').prop("checked", true);//체크박스 전체 선택
+		} else{
+	        $('input[name*="checkRow"]').prop("checked", false);//체크박스 전체 해지 
+    	}
+	});
+	
+ function button_sedel(){
+	 var checkArr = [];
+   $("input[name='checkRow']:checked").each(function(i) {
+     checkArr.push($(this).val());
+	   alert("배열" + checkArr);  }); 
+	if (confirm("정말 삭제하시겠습니까??")){
+		alert("배열" + checkArr);
+		$.ajax({				
+			url:"test_check.gt",
+			type:"post",
+			dataType: "text",
+			data:{arrDel:checkArr
+				},
+			success:function(result){
+				location.href="./list.gt";
+			}	
+			});	    	
+		}else{   //취소.
+		       return;
+	      } 	
+ 		
+      }  
+/* 	 setTimeout(function(){
+		  if(confirm("삭제 했습니다.")){
+			  location.href="list.gt";
+		  }else{
+			  location.href="list.gt";
+		  }
+	}, 2000); */ 	
+
+	
+ /* 
+
+//	  alert("넘어가는 값은="+data);
+	$("input[name=seDel]").click(function() {
+		var checkArray = "";
+		var seperator = "";
+		alert("삭제할 대상을 선택하세요.");
+		$("input[name=checkRow]:checked").each(function() {
+			checkArray += seperator + $(this).attr("bas_no");
+			seperator = ",";
+		});
+		alert("checkArray는"+checkArray);
+		console.log(checkArray);
+		$.ajax({
+			url : "./BoardDel.admin",
+			type : "post",
+			data : {"delSeqNo": checkArray},
+			success : function(data) {
+			}
+		});
+		return false;
+	});
+
+function deleteAction(){
+  var checkRow = "";
+  $( "input[name='checkRow']:checked" ).each (function (){
+    checkRow = checkRow + $(this).val()+"," ;
+  });
+  checkRow = checkRow.substring(0,checkRow.lastIndexOf( ",")); //맨끝 콤마 지우기
+ 
+  if(checkRow == ''){
+    alert("삭제할 대상을 선택하세요.");
+    return false;
+  }
+  console.log("### checkRow => {}"+checkRow);
+ 
+  if(confirm("정보를 삭제 하시겠습니까?")){
+      
+      //삭제처리 후 다시 불러올 리스트 url      
+      var url = document.location.href;
+      var page = $("#page").val();
+      var saleType = $("#saleType").val();
+      var schtype = $("#schtype").val();
+      var schval = $("#schval").val();
+      location.href="${rc.contextPath}/test_proc.do?idx="+checkRow+"&goUrl="+url+"&page="+page+"&saleType="+saleType+"schtype="+schtype+"schval="+schval;      
+  } 
+  */
 </script>	
 </html>
