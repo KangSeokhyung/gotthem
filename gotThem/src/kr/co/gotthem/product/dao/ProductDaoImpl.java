@@ -41,7 +41,7 @@ public class ProductDaoImpl implements ProductDao {
 	public void insertPro(ProductBean bean) {
 		sqlSessionTemplate.insert("insertPro", bean);
 	}
-	
+
 	@Override
 	public List searchList(HashMap<String, Object> map) {
 		return sqlSessionTemplate.selectList("searchList", map);
@@ -57,8 +57,21 @@ public class ProductDaoImpl implements ProductDao {
 		return sqlSessionTemplate.selectList("productSearchList", map);
 	}
 
+
 	@Override
 	public int searchListCount(String search) {
 		return sqlSessionTemplate.selectOne("searchListCount", search);
 	}
+
+	
+	@Override
+		public ProductBean detailProduct(int pro_code) {
+		return	(ProductBean) sqlSessionTemplate.selectOne("detailProduct1", pro_code);
+			}
+	
+	@Override
+		public List<ProductBean> listProduct() {
+			return sqlSessionTemplate.selectList("listProduct");
+}
+
 }

@@ -8,7 +8,7 @@
 		select * from product where pro_stono = #{pro_stono}
 	</select>
 	
-	<select id="findCode" resultType="kr.co.gotthem.product.bean.ProductBean">
+	<select id="detailProduct" resultType="kr.co.gotthem.product.bean.ProductBean">
 		select * from product where pro_code = #{pro_code}
 	</select>
 	

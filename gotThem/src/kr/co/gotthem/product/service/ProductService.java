@@ -23,4 +23,7 @@ public interface ProductService {
 	public List productInfo(int mem_no);
 
 	public List productSearchList(Map<String, Object> map);
+
+	public ProductBean detailProduct(int pro_code);
+    public List<ProductBean> listProduct();
 }
