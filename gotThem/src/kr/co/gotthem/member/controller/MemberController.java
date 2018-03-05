@@ -94,6 +94,12 @@ public class MemberController {
 		return "redirect:index.jsp";
 	}
 
+	@RequestMapping(value = "/newMypage.gt", method = RequestMethod.GET)
+	public ModelAndView newMypage(ModelAndView mav) {
+		mav.setViewName("member/newMypage");
+		return mav;
+	}
+	
 	@RequestMapping(value = "/mypage.gt", method = RequestMethod.GET)
 	public ModelAndView mypage(ModelAndView mav) {
 		mav.setViewName("member/mypage");

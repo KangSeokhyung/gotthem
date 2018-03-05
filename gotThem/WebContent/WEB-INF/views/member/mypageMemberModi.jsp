@@ -80,8 +80,7 @@
 
 	
 </body>
-<script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
-<script src="http://code.jquery.com/jquery-3.2.1.min.js"></script>
+
 <script>
 	function sample6_execDaumPostcode() {
        		 new daum.Postcode({

@@ -76,7 +76,8 @@
 	</footer>
 
 	<!-- Bootstrap core JavaScript -->
-	<script src="resources/mainTemplate/js/jquery.min.js"></script>
+	<script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
+	<script src="http://code.jquery.com/jquery-3.2.1.min.js"></script>
 	<script src="resources/indexTemplate/js/popper.min.js"></script>
 	<script src="resources/mainTemplate/bootstrap/js/bootstrap.min.js"></script>
 	<script src="resources/mainTemplate/js/jquery.easeScroll.js"></script>

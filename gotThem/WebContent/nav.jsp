@@ -28,7 +28,7 @@
 			        <a class="nav-link smooth-link" href="#features">NOTICE</a>
 			      </li>
 			      <li class="nav-item">
-			        <a class="nav-link smooth-link" href="#blog">EVENT</a>
+			        <a class="nav-link smooth-link" href="newMypage.gt">EVENT</a>
 			      </li>
 			    <c:set var="sessionCheck"
 					value="${sessionScope.SPRING_SECURITY_CONTEXT}" />
