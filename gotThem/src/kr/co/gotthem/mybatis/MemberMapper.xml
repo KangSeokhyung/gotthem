@@ -39,6 +39,16 @@
 		mem_address = #{mem_address} where mem_id = #{mem_id}
 	</update>
 	
+	<update id="storeModi" parameterType="kr.co.gotthem.member.bean.MemberBean">
+		update member set mem_name = #{mem_name}, sto_name=#{sto_name}, mem_email = #{mem_email}, mem_phone = #{mem_phone}, 
+		mem_address = #{mem_address}, enabled = #{enabled} where mem_id = #{mem_id}
+	</update>
+	
+	<update id="memModi" parameterType="kr.co.gotthem.member.bean.MemberBean">
+		update member set mem_name = #{mem_name}, mem_email = #{mem_email}, mem_phone = #{mem_phone}, 
+		mem_address = #{mem_address}, enabled = #{enabled} where mem_id = #{mem_id}
+	</update>
+	
 	<select id="passCheck" parameterType="kr.co.gotthem.member.bean.MemberBean" resultType="int">
 		select count(*) from member where mem_id=#{mem_id} and mem_pw=#{mem_pw}
 	</select>

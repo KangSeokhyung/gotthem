@@ -55,9 +55,11 @@ public class MemberController {
 	public String login() {
 		return "member/mlogin";
 	}
+	
 	@RequestMapping(value = "/logout.gt", method = RequestMethod.GET)
-	public String logout(HttpSession session, HttpServletRequest request) {		
-		session.invalidate();		
+	public String logout(HttpSession  session, HttpServletRequest request) {		
+		session.invalidate();
+		System.out.println("회원 로그아웃");
 		return "redirect:index.jsp";
 	}
 	

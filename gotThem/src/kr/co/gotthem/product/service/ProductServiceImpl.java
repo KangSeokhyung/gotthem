@@ -56,8 +56,6 @@ public class ProductServiceImpl implements ProductService {
 		map.put("beginList", beginList);
 		map.put("search", search);
 		
-		System.out.println(search +"###"+ beginList);
-		
 		List searchList = productDao.searchList(map);
 		
 		// 전체 게시물 수 

@@ -42,22 +42,24 @@
 					<li class="probootstrap-animate"
 						data-animate-effect="fadeInLeft"><a href="/storeIndex">Got them?</a></li>
 					<li class="probootstrap-animate" data-animate-effect="fadeInLeft"><a
-						href="store.st">점포관리</a></li>
+						href="mystore.st">점포관리</a></li>
 					<li class="probootstrap-animate" data-animate-effect="fadeInLeft"><a
 						href="stock.st">재고관리</a></li>
 				<c:set var="sessionCheck"
 					value="${sessionScope.SPRING_SECURITY_CONTEXT}" />
 				<c:choose>
 					<c:when test="${sessionCheck eq null}">
-					<li class="probootstrap-animate active" data-animate-effect="fadeInLeft"><a
-						href="login.st">로그인</a></li>
 					<li class="probootstrap-animate" data-animate-effect="fadeInLeft"><a
+						href="login.st">로그인</a></li>
+					<li class="probootstrap-animate active" data-animate-effect="fadeInLeft"><a
 						href="join.st">제휴맺기</a></li>
 					</c:when>
 					<c:otherwise>
-						<li class="probootstrap-animate" data-animate-effect="fadeInLeft"><a href="logout.gt" class="nav-link">로그아웃</a></li>
+						<li class="probootstrap-animate" data-animate-effect="fadeInLeft"><a href="logout.st" class="nav-link">로그아웃</a></li>
 					</c:otherwise>
 				</c:choose>
+				<li class="probootstrap-animate" data-animate-effect="fadeInLeft"><a
+						href="index.gt">고객 사이트</a></li>
 			</ul>
 			</nav>
 			<footer class="probootstrap-aside-footer probootstrap-animate"
@@ -69,7 +71,6 @@
 			</footer>
 		</div>
 	</aside>
-
 
 	<main role="main" class="probootstrap-main js-probootstrap-main">
 		<div class="probootstrap-bar">
@@ -104,24 +105,6 @@
 			</form>
 			</div>
 		</div>
-
-	
-		<div class="container-fluid d-md-none">
-		<div class="row">
-			<div class="col-md-12">
-				<ul class="list-unstyled d-flex probootstrap-aside-social">
-					<li><a href="#" class="p-2"><span class="icon-twitter"></span></a></li>
-					<li><a href="#" class="p-2"><span class="icon-instagram"></span></a></li>
-					<li><a href="#" class="p-2"><span class="icon-dribbble"></span></a></li>
-				</ul>
-				<p>
-					&copy; 2017 <a href="https://uicookies.com/" target="_blank">uiCookies:Aside</a>.
-					<br> All Rights Reserved. Designed by <a
-						href="https://uicookies.com/" target="_blank">uicookies.com</a>
-				</p>
-			</div>
-		</div>
-	</div>
 
 	</main>
 

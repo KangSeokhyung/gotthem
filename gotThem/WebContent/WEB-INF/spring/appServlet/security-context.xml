@@ -15,12 +15,14 @@
 			authentication-success-handler-ref="loginSuccessHandler"
 			authentication-failure-handler-ref="loginFailureHandler"
 			username-parameter="mem_id" password-parameter="mem_pw" />
-		<logout logout-url="/logout" logout-success-url="/" />
+		<logout logout-url="/logout.gt" logout-success-url="/" 
+		 invalidate-session="true"/>
 		<csrf disabled="true" />
 	</http>
 	
- 	<http pattern="/*.st" use-expressions="true" auto-config="true" disable-url-rewriting="true">
+ 	<http pattern="/*.st" auto-config="true" disable-url-rewriting="true" use-expressions="true">
 		<intercept-url pattern="/storeIndex.st" access="permitAll" />
+		<intercept-url pattern="/mystore.st" access="hasAnyRole('ROLE_ADMIN', 'ROLE_STORE')" />
 		<intercept-url pattern="/stock.st" access="hasAnyRole('ROLE_ADMIN', 'ROLE_STORE')" />
 		<form-login login-page="/login.st" 
 			default-target-url="/storeIndex.st"
@@ -28,11 +30,12 @@
 			authentication-failure-url="/loginfail.gt" 
 			username-parameter="sto_id"
 			password-parameter="sto_pw" />
-		<logout logout-url="/logout.st" logout-success-url="/storeIndex.st" />
+		<logout logout-url="/logout.st" logout-success-url="/storeIndex.st" 
+		 invalidate-session="true"/>
 		<csrf disabled="true" />
 	</http> 
 
-	<http pattern="/*.ad" use-expressions="true">
+	<http pattern="/*.ad" auto-config="true" disable-url-rewriting="true" use-expressions="true">
 		<intercept-url pattern="/admin.ad" access="permitAll" />
 		<intercept-url pattern="/control.ad" access="hasRole('ROLE_ADMIN')" />
 		<form-login login-page="/admin.ad" 
@@ -41,7 +44,6 @@
 			login-processing-url="/admin.ad"
 			username-parameter="admin_id"
 			password-parameter="admin_pw" />
-		<logout logout-url="/superAdmin.ad" logout-success-url="/superAdmin.ad" />
 		<csrf disabled="true" />
 	</http> 
 
