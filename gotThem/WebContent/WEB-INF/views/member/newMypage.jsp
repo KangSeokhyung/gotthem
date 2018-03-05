@@ -21,10 +21,6 @@
 <link rel="stylesheet" href="resources/indexTemplate/css/style.css">
 <link rel="stylesheet" href="resources/landy/css/style.default.css" id="theme-stylesheet">
 <style>
-a{
-text-decoration: none;
-}
-
 .probootstrap-aside{
 	height: 100vh;
     width: 250px;
@@ -60,40 +56,7 @@ text-decoration: none;
 }
 
 .btn {
-    border-radius: 20px;
-    box-sizing: border-box;
-    border-width: 2px;
-    background-color: transparent;
-    font-size: 16px;
-    font-weight: 500;
-    padding: 7px 18px;
-    border-color: #66615B;
-    color: #66615B;
-    -webkit-transition: all 150ms linear;
-    -moz-transition: all 150ms linear;
-    -o-transition: all 150ms linear;
-    -ms-transition: all 150ms linear;
-    transition: all 150ms linear;
     
-    display: inline-block;
-    padding: 6px 12px;
-    margin-bottom: 0;
-    font-size: 14px;
-    font-weight: normal;
-    line-height: 1.42857143;
-    text-align: center;
-    white-space: nowrap;
-    vertical-align: middle;
-    -ms-touch-action: manipulation;
-    touch-action: manipulation;
-    cursor: pointer;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
-    background-image: none;
-    border: 1px solid transparent;
-    border-radius: 4px;
 }
 
 .btn-simple {
