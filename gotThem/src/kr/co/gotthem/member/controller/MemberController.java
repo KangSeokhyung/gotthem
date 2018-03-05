@@ -288,6 +288,7 @@ public class MemberController {
 	public String productList(Model model, int mem_no, String category) {
     	List productInfo = productService.productInfo(mem_no, category);
 		model.addAttribute("productInfo", productInfo);
+		System.out.println(productInfo);
 		
 		return "product/productTable";
 	}
