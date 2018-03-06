@@ -46,7 +46,6 @@
                     <div data-form-alert="" hidden="">
                         Thanks for filling out the form!
                     </div>
-            
                     <form class="mbr-form" action="join.st" method="post" data-form-title="Mobirise Form">
                     <input type="hidden" name="email" data-form-email="true" value="v71UZV7rSGKmNdtMTJcCzvbgvRKs8I889PXLsAjbR6NuKJtPYoKYEe+DT90N7gqVmrsYQhYLqTnSDAVjImF7Eb8KP/1hIcQUbq5w77EmgcHnu38hK1G/QmJo9v9/aFIP" data-form-field="Email">
                         <div class="row row-sm-offset">
@@ -244,7 +243,47 @@
             }
         }).open();
     }
-  
+<<<<<<< HEAD
+   		 
+   		function indexFoward() {
+			if (confirm('메인페이지로 이동하시겠습니까?')) {
+				location.href = "index.jsp";
+			}
+		}
+   		
+   		function onlyNumber(event){
+			event = event || window.event;
+			var keyID = (event.which) ? event.which : event.keyCode;
+			if ( (keyID >= 48 && keyID <= 57) || (keyID >= 96 && keyID <= 105) || keyID == 8 || keyID == 46 || keyID == 37 || keyID == 39 ) 
+				return;
+			else
+				return false;
+		}
+		
+		function removeChar(event) {
+			event = event || window.event;
+			var keyID = (event.which) ? event.which : event.keyCode;
+			if ( keyID == 8 || keyID == 46 || keyID == 37 || keyID == 39 ) 
+				return;
+			else
+				event.target.value = event.target.value.replace(/[^0-9]/g, "");
+		}
+   		 
+   		
+	 	
+	 	/*
+	 	function pwCheck(){
+    	 var pw1 = document.getElementById("m_pass1").value;
+    	 var pw2 = document.getElementById("m_pass2").value;
+    		 if(pw1 != pw2){
+    			 	document.getElementById('pwCheck').style.color = "red";
+    			    document.getElementById('pwCheck').innerHTML = "동일한 암호를 입력하세요."; 
+    		 		}else {
+    		 		document.getElementById('pwCheck').style.color = "blue";
+    		 		document.getElementById('pwCheck').innerHTML = "암호가 확인 되었습니다."; 
+    		 		} 			 
+    		 } 	  
+	 	*/
 </script>
 </body>
 </html>

@@ -65,6 +65,15 @@ public class MemberServiceImpl implements MemberService {
 	}
 	
 	@Override
+	public MemberBean findAccount(String email) {
+		return memberDao.findAccount(email);
+	}
+	
+	@Override
+	public void changePassword(MemberBean memberBean) {
+		memberDao.changePassword(memberBean);
+	}
+	
 	public List<MemberBean> mlist(){
 		return memberDao.mlist();
 	}
@@ -74,4 +83,8 @@ public class MemberServiceImpl implements MemberService {
 		return memberDao.stlist();
 	}
 	
+	@Override
+	public MemberBean storeInfo(int mem_no) {
+		return memberDao.storeInfo(mem_no);
+	}
 }
