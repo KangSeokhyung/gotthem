@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
+
 <html lang="ko">
   <head>
     <meta charset="utf-8">
@@ -129,10 +130,10 @@
               <input type="submit" class="btn btn-primary" id="submit" name="submit" value="로그인하기">
             </div>
             <div class="form-group">
-             <a href="">아이디를 잊으셨나요?</a>
+             <a href="findIDAndPW.gt">아이디를 잊으셨나요?</a>
             </div>
             <div class="form-group">
-             <a href="">회원 가입이 필요하신가요?</a>
+             <a href="join.gt">회원 가입이 필요하신가요?</a>
             </div>
             
           </form>

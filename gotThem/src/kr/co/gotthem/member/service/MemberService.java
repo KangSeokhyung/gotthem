@@ -22,12 +22,17 @@ public interface MemberService {
 	public int passCheck(MemberBean memberBean);
 	
 	public void memberDelete(MemberBean memberBean);
+	
+	public MemberBean findAccount(MemberBean memberBean);
+	
+	public int changePassword(MemberBean memberBean);
 
 	public List<MemberBean> mlist();
 	
 	public List<MemberBean> stlist();
+	
+	public int changePasswordReal(MemberBean memberBean);
 
 	public void memModi(MemberBean memberBean);
 	
-	public int changePasswordReal(MemberBean memberBean);
 }

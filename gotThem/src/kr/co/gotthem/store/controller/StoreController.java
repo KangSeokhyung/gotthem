@@ -50,7 +50,6 @@ public class StoreController {
 	public String stjoin(HttpServletRequest request, HttpSession session) throws Exception{
 		
 		MemberBean stBean = new MemberBean();
-		
 		stBean.setMem_id(request.getParameter("mem_id"));
 		stBean.setMem_pw(request.getParameter("mem_pw"));
 		stBean.setMem_name(request.getParameter("mem_name"));

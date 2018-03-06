@@ -25,7 +25,7 @@ public class MemberServiceImpl implements MemberService {
 	
 	@Override
 	public int stjoin(MemberBean memberBean) {
-		int reuslt = memberDao.join(memberBean);
+		int reuslt = memberDao.stjoin(memberBean);
 		return reuslt;
 	}
 
@@ -65,6 +65,16 @@ public class MemberServiceImpl implements MemberService {
 	}
 	
 	@Override
+	public MemberBean findAccount(MemberBean memberBean) {
+		return memberDao.findAccount(memberBean);
+	}
+	
+	@Override
+	public int changePassword(MemberBean memberBean) {
+		int result = memberDao.changePassword(memberBean);
+		return result;
+	}
+	
 	public List<MemberBean> mlist(){
 		return memberDao.mlist();
 	}
@@ -75,7 +85,7 @@ public class MemberServiceImpl implements MemberService {
 	}
 	
 	@Override
-	public int changePasswordReal(MemberBean memberBean){
+	public int changePasswordReal(MemberBean memberBean) {
 		int result = memberDao.changePasswordReal(memberBean);
 		return result;
 	}

@@ -105,7 +105,7 @@ margin:auto;
 				<section>
 					<button type="submit" name="go" class="btn btn-block">Sign In</button>
 					<p><a href="findIDAndPW.gt">Forgot your password ?</a></p>
-					<p><a href="#">Create account</a></p>
+					<p><a href="join.st">Create account</a></p>
 				</section>
 			</form>
 			</div>
