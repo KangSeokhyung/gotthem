@@ -23,7 +23,7 @@ public interface BasketService {
     public List<BasketBean> listBasket(int bas_memno);
     
     // 3. 장바구니 삭제
-    public void deleteBasket(int bas_no);
+    public void deleteBasket(BasketBean basketBean);
     
     // 4. 장바구니 수정
     public void modifyBasket(BasketBean basketBean);

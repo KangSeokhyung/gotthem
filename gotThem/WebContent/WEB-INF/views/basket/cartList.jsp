@@ -80,11 +80,8 @@ background-size : cover;
                     </td></tr>
             </table>
             <input type="hidden" name="count" value="${map.count}">
-            <button type="button" value="상품목록2" id="btnList">상품목록</button>
-          
-            <input type="button" name="seDel" id="button_seDel" onclick="button_sedel();" value="선택삭제" />
-            <!-- <input type="button" name="sedelete" id="button" onclick="delete01()" value="선택삭제" /> -->
-            <!-- <img src="images/btn/list_del_btn.gif" width="114" height="49" onclick="delete01()"/> -->
+            <button type="button" value="상품목록2" id="btnList">상품목록</button>         
+            <input type="button" name="seDel" id="button_seDel" onclick="button_selDel();" value="선택삭제" />
         </form>
       </c:otherwise>
     </c:choose>
@@ -145,7 +142,7 @@ function button_order(bas_no,bas_proname,bas_procode,money,bas_prostock){
 	   submitTest.submit();
    }  --%>    
 
-	$("#th_checkAll").click(function(){		
+	$("#th_checkAll").click(function(){		//체크박스 전체 선택
 		var chk= $(this).is(":checked");
 		if(chk){
 			$('input[name*="checkRow"]').prop("checked", true);//체크박스 전체 선택
@@ -154,15 +151,15 @@ function button_order(bas_no,bas_proname,bas_procode,money,bas_prostock){
     	}
 	});
 	
- function button_sedel(){
-	 var checkArr = [];
+function button_selDel(){  //장바구니 선택 삭제
+   var checkArr = [];
    $("input[name='checkRow']:checked").each(function(i) {
      checkArr.push($(this).val());
 	   alert("배열" + checkArr);  }); 
 	if (confirm("정말 삭제하시겠습니까??")){
 		alert("배열" + checkArr);
 		$.ajax({				
-			url:"test_check.gt",
+			url:"selectDelete.gt",
 			type:"post",
 			dataType: "text",
 			data:{arrDel:checkArr
@@ -171,66 +168,9 @@ function button_order(bas_no,bas_proname,bas_procode,money,bas_prostock){
 				location.href="./list.gt";
 			}	
 			});	    	
-		}else{   //취소.
-		       return;
-	      } 	
- 		
-      }  
-/* 	 setTimeout(function(){
-		  if(confirm("삭제 했습니다.")){
-			  location.href="list.gt";
-		  }else{
-			  location.href="list.gt";
-		  }
-	}, 2000); */ 	
-
-	
- /* 
-
-//	  alert("넘어가는 값은="+data);
-	$("input[name=seDel]").click(function() {
-		var checkArray = "";
-		var seperator = "";
-		alert("삭제할 대상을 선택하세요.");
-		$("input[name=checkRow]:checked").each(function() {
-			checkArray += seperator + $(this).attr("bas_no");
-			seperator = ",";
-		});
-		alert("checkArray는"+checkArray);
-		console.log(checkArray);
-		$.ajax({
-			url : "./BoardDel.admin",
-			type : "post",
-			data : {"delSeqNo": checkArray},
-			success : function(data) {
-			}
-		});
-		return false;
-	});
-
-function deleteAction(){
-  var checkRow = "";
-  $( "input[name='checkRow']:checked" ).each (function (){
-    checkRow = checkRow + $(this).val()+"," ;
-  });
-  checkRow = checkRow.substring(0,checkRow.lastIndexOf( ",")); //맨끝 콤마 지우기
- 
-  if(checkRow == ''){
-    alert("삭제할 대상을 선택하세요.");
-    return false;
-  }
-  console.log("### checkRow => {}"+checkRow);
- 
-  if(confirm("정보를 삭제 하시겠습니까?")){
-      
-      //삭제처리 후 다시 불러올 리스트 url      
-      var url = document.location.href;
-      var page = $("#page").val();
-      var saleType = $("#saleType").val();
-      var schtype = $("#schtype").val();
-      var schval = $("#schval").val();
-      location.href="${rc.contextPath}/test_proc.do?idx="+checkRow+"&goUrl="+url+"&page="+page+"&saleType="+saleType+"schtype="+schtype+"schval="+schval;      
-  } 
-  */
+	}else{   //취소.
+	      return;
+	} 			
+ }  
 </script>	
 </html>

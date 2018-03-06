@@ -24,7 +24,6 @@ import kr.co.gotthem.basket.bean.BasketBean;
 import kr.co.gotthem.basket.service.BasketService;
 import kr.co.gotthem.member.bean.MemberBean;
 import kr.co.gotthem.member.service.MemberService;
-import kr.co.gotthem.order.bean.OrderpayBean;
 import kr.co.gotthem.order.service.OrderService;
 import kr.co.gotthem.product.bean.ProductBean;
 import kr.co.gotthem.product.service.ProductService;
@@ -155,29 +154,33 @@ public class BasketController {
         int userNo = memberInfo.getMem_no();
     	
         basketBean.setBas_memno(userNo); 
-    	basketService.deleteBasket(bas_no);
+    	basketService.deleteBasket(basketBean);
     	System.out.println("삭제 실행");
         return "redirect:/list.gt";
     }
- // 3.1 장바구니 삭제
-    @RequestMapping(value = "test_check.gt", method = RequestMethod.POST) 
-    public String testCheck(@RequestParam (value= "arrDel[]") List<String> valueArr,
+    
+    // 3.1 장바구니 선택 삭제
+    @RequestMapping(value = "selectDelete.gt", method = RequestMethod.POST) 
+    public String testCheck(@RequestParam (value= "arrDel[]") List valueArr,
     		@ModelAttribute BasketBean basketBean,
     		HttpServletRequest req,HttpServletResponse res,HttpSession session) throws Exception {
-    	System.out.println("선택삭제 왔다");
+
     	Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
     	String mem_id = authentication.getName();
     
     	MemberBean memberInfo = memberService.memberInfo(mem_id);  
         int userNo = memberInfo.getMem_no();
-    	
+       
+        System.out.println("valueArr은" + valueArr);
+        String A = null;
         for(int i=0; i<valueArr.size(); i++){
-         int A =	valueArr.get().toString();
-        basketBean.setBas_no(A); 
-        basketBean.setBas_memno(userNo); 	
-    	basketService.deleteBasket(bas_no);
-    	System.out.println("삭제 실행");
-        }
+        	A = (String) valueArr.get(i);
+        	System.out.println("여기값"+A.toString());
+        	basketBean.setBas_no(Integer.parseInt(A)); 
+            basketBean.setBas_memno(userNo); 	
+    	    basketService.deleteBasket(basketBean);
+    	    System.out.println("삭제 실행");
+           }
         return "redirect:/list.gt";
     }
     

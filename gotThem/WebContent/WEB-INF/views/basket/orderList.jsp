@@ -83,7 +83,8 @@ background-size : cover;
             </table>
           <%--   <input type="hidden" name="count" value="${map.count}"> --%>
         </form>
-    <button type="button" value="상품목록2" id="btnList">상품목록</button>
+    <button type="button" value="상품목록1" id="btnList">상품목록</button>
+    <button type="button" value="장바구니목록" id="btnBasketList">장바구니목록</button>
 </div>
 	<footer>
 		<div class="container">
@@ -109,6 +110,9 @@ background-size : cover;
         $("#btnList").click(function(){
             location.href="./productlist.gt";
         });
+        $("#btnBasketList").click(function(){
+            location.href="./list.gt";
+        }); 
     });
 
    function button_delete(ord_no,ord_stock,ord_procode){

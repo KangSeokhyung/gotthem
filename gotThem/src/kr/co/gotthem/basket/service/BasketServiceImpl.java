@@ -58,8 +58,8 @@ public class BasketServiceImpl implements BasketService {
     
     // 3. 장바구니 삭제
     @Override
-    public void deleteBasket(int bas_no) {
-    	basketDao.deleteBasket(bas_no);
+    public void deleteBasket(BasketBean basketBean) {
+    	basketDao.deleteBasket(basketBean);
     }
     
     // 4. 장바구니 수정

@@ -79,7 +79,7 @@
     <!-- 5. 장바구니 삭제 -->
     <delete id="deleteBasket">
         DELETE FROM basket
-        WHERE bas_no = #{bas_no}
+        WHERE bas_memno= #{bas_memno} AND bas_no = #{bas_no}
     </delete>
 
 	<!-- 6. 장바구니에 동일한 상품 레코드 확인 -->
