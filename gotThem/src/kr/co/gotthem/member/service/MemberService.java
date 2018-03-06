@@ -34,4 +34,5 @@ public interface MemberService {
 	public int changePasswordReal(MemberBean memberBean);
 
 	public void memModi(MemberBean memberBean);
+	
 }

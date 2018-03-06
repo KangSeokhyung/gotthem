@@ -25,7 +25,7 @@ public class MemberServiceImpl implements MemberService {
 	
 	@Override
 	public int stjoin(MemberBean memberBean) {
-		int reuslt = memberDao.join(memberBean);
+		int reuslt = memberDao.stjoin(memberBean);
 		return reuslt;
 	}
 
@@ -89,4 +89,5 @@ public class MemberServiceImpl implements MemberService {
 		int result = memberDao.changePasswordReal(memberBean);
 		return result;
 	}
+	
 }

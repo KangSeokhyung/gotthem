@@ -33,4 +33,5 @@ public interface MemberDao {
 	public void storeModi(MemberBean memberBean);
 	
 	public void memModi(MemberBean memberBean);
+	
 }

@@ -86,8 +86,9 @@ public class MemberController {
 	}
 	
 	@RequestMapping(value = "loginfail.gt", method= RequestMethod.GET)
-	public String lgfail() {
-		return "store/fail2";
+	public ModelAndView lgfail(ModelAndView mav) {
+		mav.setViewName("store/fail2");
+		return mav;
 	}
 	
 	@RequestMapping(value = "/index.gt", method = RequestMethod.GET)
@@ -113,10 +114,14 @@ public class MemberController {
 		String mem_id = authentication.getName();
 		MemberBean memberInfo = memberService.memberInfo(mem_id);
 		String mem_address = memberInfo.getMem_address();
+		System.out.println(mem_address);
 		StringTokenizer  st = new StringTokenizer(mem_address,"/");
 		String post = st.nextToken();       
 		String address1 = st.nextToken();      
-		String address2 = st.nextToken();      
+		String address2 = st.nextToken();    
+		System.out.println(post);
+		System.out.println(address1);
+		System.out.println(address2);
 		mav.addObject("mem_post", post);
 		mav.addObject("mem_address1", address1);
 		mav.addObject("mem_address2", address2);

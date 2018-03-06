@@ -9,13 +9,10 @@
 	<title>ID / PW 찾기</title>
 	<link rel="stylesheet" type="text/css" href="resources/Login_v7/css/util.css">
 	<link rel="stylesheet" type="text/css" href="resources/Login_v7/css/main.css">
-	<link rel="stylesheet"
-	href="resources/mainTemplate/ionicons/css/ionicons.min.css">
-	<link rel="stylesheet"
-		href="resources/mainTemplate/bootstrap/css/bootstrap.min.css">
-	<link rel="stylesheet"
-		href="resources/mainTemplate/sweetalert/dist/sweetalert.css">
-	<link rel="stylesheet" href="resources/mainTemplate/css/stisla.css">
+	<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400" rel="stylesheet">
+    <link rel="stylesheet" href="resources/mainTemplate/css/styles-merged.css">
+    <link rel="stylesheet" href="resources/mainTemplate/css/style.min.css">
+    <link rel="stylesheet" href="resources/mainTemplate/css/custom.css">
 </head>
 <body>
 <header>
@@ -111,12 +108,7 @@
 			</c:when>
 		</c:choose>	
 	</c:if>
-	
-	<script src="resources/mainTemplate/js/jquery.min.js"></script>
-	<script src="resources/mainTemplate/bootstrap/js/bootstrap.min.js"></script>
-	<script src="resources/mainTemplate/js/jquery.easeScroll.js"></script>
-	<script src="resources/mainTemplate/sweetalert/dist/sweetalert.min.js"></script>
-	<script src="resources/mainTemplate/js/stisla.js"></script>
+
 
 </body>
 </html>

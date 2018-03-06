@@ -8,33 +8,44 @@
 <title>Insert title here</title>
 </head>
 <body>
-	     <header class="header">
-      <nav class="navbar navbar-expand-lg fixed-top"><a href="/gotThem" class="navbar-brand">GOT THEM</a>
-        <button type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler navbar-toggler-right"><span></span><span></span><span></span></button>
-        <div id="navbarSupportedContent" class="collapse navbar-collapse">
-          <ul class="navbar-nav ml-auto align-items-start align-items-lg-center">
-            <li class="nav-item"><a href="#about-us" class="nav-link link-scroll">About Us</a></li>
-            <li class="nav-item"><a href="#features" class="nav-link link-scroll">Features</a></li>
-            <li class="nav-item"><a href="#testimonials" class="nav-link link-scroll">Testimonials</a></li>
-            <li class="nav-item"><a href="text.html" class="nav-link">Text Page</a></li>
-          </ul>
-          <div class="navbar-text">   
-            <!-- Button trigger modal-->
+	     <header role="banner" class="probootstrap-header">
+    <div class="container">
+        <a href="/gotThem" class="probootstrap-logo">GOT THEM<span>.</span></a>
+        
+        <a href="#" class="probootstrap-burger-menu visible-xs" ><i>Menu</i></a>
+        <div class="mobile-menu-overlay"></div>
+
+        <nav role="navigation" class="probootstrap-nav hidden-xs">
+          <ul class="probootstrap-main-nav">
+            <li><a href="#">GOTTHEM</a></li>
+            <li><a href="#">NOTICE</a></li>
+            <li><a href="#">EVENT</a></li>
             <c:set var="sessionCheck"
  					value="${sessionScope.SPRING_SECURITY_CONTEXT}" />
  					<c:choose>
  					<c:when test="${sessionCheck eq null}">
-					<a href="join.gt" class="btn btn-primary navbar-btn btn-shadow btn-gradient">Sign Up</a>
-          			<a href="login.gt" class="btn btn-primary navbar-btn btn-shadow btn-gradient">LOGIN</a>
+					 <li><a href="join.gt">SIGN UP</a></li>
+           			 <li><a href="login.gt">LOGIN</a></li>
 					</c:when>
 					<c:otherwise>
-					<a href="mypage.gt" class="btn btn-primary navbar-btn btn-shadow btn-gradient">MYPAGE</a>
-          			<a href="logout.gt" class="btn btn-primary navbar-btn btn-shadow btn-gradient">LOGOUT</a>
+					<li><a href="mypage.gt">MYPAGE</a></li>
+           			 <li><a href="logout.gt">LOGOUT</a></li>
  					</c:otherwise>
  				</c:choose>
+          </ul>
+          <div class="extra-text visible-xs"> 
+            <a href="#" class="probootstrap-burger-menu"><i>Menu</i></a>
+            <h5>Address</h5>
+            <p>198 West 21th Street, Suite 721 New York NY 10016</p>
+            <h5>Connect</h5>
+            <ul class="social-buttons">
+              <li><a href="#"><i class="icon-twitter"></i></a></li>
+              <li><a href="#"><i class="icon-facebook2"></i></a></li>
+              <li><a href="#"><i class="icon-instagram2"></i></a></li>
+            </ul>
           </div>
-        </div>
-      </nav>
-    </header>
+        </nav>
+    </div>
+  </header>
 </body>
 </html>

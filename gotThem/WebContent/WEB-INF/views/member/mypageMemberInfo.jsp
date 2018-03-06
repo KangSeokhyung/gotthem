@@ -3,18 +3,13 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-<meta charset="utf-8">
-<meta name="viewport"
-	content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-<title>Mypage</title>
 </head>
 
 <body>
 
 	<!--Main content code to be written here -->
 	<br>
-	<div style="border-top: 5px solid gray; border-bottom: 5px solid gray;">
+	<div>
 		
 			<div >
 				<div >

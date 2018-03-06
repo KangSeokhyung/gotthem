@@ -68,5 +68,9 @@
 	<update id="changePasswordReal" parameterType="kr.co.gotthem.member.bean.MemberBean">
 		update member set mem_pw = #{mem_pw} where mem_id=#{mem_id}
 	</update>
+	
+	<select id="selectStatus" parameterType="kr.co.gotthem.member.bean.MemberBean" resultType="int">
+		select enabled from member where mem_id=#{mem_id} and mem_pw = #{mem_pw}
+	</select>
 
 </mapper>
