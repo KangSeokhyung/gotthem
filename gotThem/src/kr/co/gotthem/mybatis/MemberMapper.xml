@@ -57,11 +57,6 @@
 		update member set enabled = 0 where mem_id=#{mem_id} and mem_pw=#{mem_pw}
 	</update>
 	
-<<<<<<< HEAD
-	<update id="changePasswordReal" parameterType="kr.co.gotthem.member.bean.MemberBean">
-		update member set mem_pw = #{mem_pw} where mem_id=#{mem_id} 
-	</update>
-=======
 	<select id="findAccount" parameterType="kr.co.gotthem.member.bean.MemberBean" resultType="kr.co.gotthem.member.bean.MemberBean">
 		select * from member where mem_email=#{mem_email} and mem_name = #{mem_name}
 	</select>
@@ -77,6 +72,5 @@
 	<select id="selectStatus" parameterType="kr.co.gotthem.member.bean.MemberBean" resultType="int">
 		select enabled from member where mem_id=#{mem_id} and mem_pw = #{mem_pw}
 	</select>
->>>>>>> branch 'Kangsh' of https://github.com/KangSeokhyung/gotthem.git
 
 </mapper>

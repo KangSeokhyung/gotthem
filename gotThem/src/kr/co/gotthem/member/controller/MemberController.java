@@ -153,6 +153,7 @@ public class MemberController {
 	public String memberUpdate(MemberBean bean, @RequestParam("mem_address1") String address1,
 			@RequestParam("mem_address2") String address2,@RequestParam("mem_post") String post) {
 		String mem_address = post + "/" + address1 + "/" + address2;
+		System.out.println(bean);
 		bean.setMem_address(mem_address);
 		memberService.memberModifi(bean);
 		return "member/mypage";

@@ -26,7 +26,7 @@
     <div class="container">
       <div class="row">
         <div class="col-md-8">
-          <form action="passCheck.gt" method="post"class="probootstrap-form mb60">
+          <form action="passCheck.gt" method="post" class="probootstrap-form mb60">
             <div class="row">
               <div class="col-sm-6">
                 <div class="form-group">

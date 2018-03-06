@@ -26,12 +26,13 @@
           <a class="panel-close close" data-dismiss="alert">×</a> 
           여기에서 회원정보 수정이 가능합니다..
         </div>
-          <form action="passCheck.gt" method="post"class="probootstrap-form mb60">
+          <form action="memberModi.gt" method="post" class="probootstrap-form mb60">
             <div class="row">
               <div class="col-sm-6">
                 <div class="form-group">
-                  <label for="lname">아이디</label>
-                  <input type="text" class="form-control" id="lname" value="${memberInfo.mem_id }" disabled="disabled">
+                  <label for="mem_id">아이디</label>
+                  <input type="text" class="form-control" id="mem_id" disabled="disabled" value="${memberInfo.mem_id }">
+                  <input type="hidden" name="mem_id" value="${memberInfo.mem_id }">
                 </div>
               </div>
               </div>
@@ -39,7 +40,7 @@
               <div class="col-md-6">
                 <div class="form-group">
                   <label for="lname">이름</label>
-                  <input type="text" class="form-control" id="lname" value="${memberInfo.mem_name }">
+                  <input type="text" class="form-control" name="mem_name" id="mem_name" value="${memberInfo.mem_name }">
                 </div>
               </div>
             </div>
@@ -47,7 +48,7 @@
             <div class="col-md-6">
             <div class="form-group">
               <label for="email">이메일</label>
-              <input type="email" class="form-control" id="email" name="new_pw2" value="${memberInfo.mem_email}">
+              <input type="email" class="form-control" name="mem_email" id="email" value="${memberInfo.mem_email}">
             </div>
             </div>
             </div>
@@ -55,7 +56,7 @@
             <div class="col-md-6">
             <div class="form-group">
               <label for="email">핸드폰번호</label>
-              <input type="text" class="form-control" id="email" name="new_pw2" value="${memberInfo.mem_phone}">
+              <input type="text" class="form-control" name="mem_phone" id="mem_phone" maxlength="11" value="${memberInfo.mem_phone}">
             </div>
             </div>
             </div>
@@ -63,7 +64,7 @@
             <div class="col-md-6">
             <div class="form-group">
               <label for="email">우편번호</label>
-              <input type="text" class="form-control" id="email" name="new_pw2" value="${mem_post}">
+              <input type="text" class="form-control" id="mem_post" name="mem_post" value="${mem_post}">
             </div>
             </div>
             </div>
@@ -71,7 +72,7 @@
             <div class="col-md-9">
             <div class="form-group">
               <label for="email">상세주소1</label>
-              <input type="text" class="form-control" id="email" name="new_pw2" value="${mem_address1}">
+              <input type="text" class="form-control" id="mem_address1" name="mem_address1" value="${mem_address1}">
             </div>
             </div>
             </div>
@@ -79,7 +80,7 @@
             <div class="col-md-9">
             <div class="form-group">
               <label for="email">상세주소2</label>
-              <input type="text" class="form-control" id="email" name="new_pw2" value="${mem_address2}">
+              <input type="text" class="form-control" id="mem_address2" name="mem_address2" value="${mem_address2}">
             </div>
             </div>
             </div>                   

@@ -154,7 +154,7 @@
                           <div class="col-sm-8 multi-horizontal" data-for="phone">
                            <div class="form-group">
                                     <label class="form-control-label mbr-fonts-style display-7" for="phone-form1-r">전화번호</label>
-                                    <input type="text" class="form-control" name="mem_phone" data-form-field="Name" required="" id="mem_phone">
+                                    <input type="text" class="form-control" name="mem_phone" data-form-field="Name" required="" id="mem_phone" maxlength="11">
                                 </div>
                             </div>
                          <div class="col-sm-6 multi-horizontal" data-for="postcode">
