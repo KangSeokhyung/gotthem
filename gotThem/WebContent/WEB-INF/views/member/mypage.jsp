@@ -8,32 +8,29 @@
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <title>Mypage</title>
-<link href="resources/mainTemplate/bootstrap3/css/bootstrap.css"
-	rel="stylesheet" />
-<link href="resources/mainTemplate/assets/css/ct-paper.css"
-	rel="stylesheet" />
-<link href="resources/mainTemplate/assets/css/demo.css" rel="stylesheet" />
-<link href="resources/mainTemplate/assets/css/examples.css"
-	rel="stylesheet" />
-<link href="https://fonts.googleapis.com/css?family=Roboto"
-	rel="stylesheet">
-<link
-	href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css"
-	rel="stylesheet">
-	
-	
-	
-	
-<link href="https://fonts.googleapis.com/css?family=Work+Sans"
-	rel="stylesheet">
-<link rel="stylesheet" href="resources/indexTemplate/css/bootstrap.min.css">
-<link rel="stylesheet" href="resources/indexTemplate/css/open-iconic-bootstrap.min.css">
-<link rel="stylesheet" href="resources/indexTemplate/css/owl.carousel.min.css">
-<link rel="stylesheet" href="resources/indexTemplate/css/owl.theme.default.min.css">
-<link rel="stylesheet" href="resources/indexTemplate/css/icomoon.css">
-<link rel="stylesheet" href="resources/indexTemplate/css/animate.css">
-<link rel="stylesheet" href="resources/indexTemplate/css/style.css">
-<link rel="stylesheet" href="resources/landy/css/style.default.css" id="theme-stylesheet">
+<!-- Bootstrap CSS-->
+<link rel="stylesheet"
+	href="resources/landy/vendor/bootstrap/css/bootstrap.min.css">
+<!-- Font Awesome CSS-->
+<link rel="stylesheet"
+	href="resources/landy/vendor/font-awesome/css/font-awesome.min.css">
+<!-- Custom Font Icons CSS-->
+<link rel="stylesheet" href="resources/landy/css/landy-iconfont.css">
+<!-- Google fonts - Open Sans-->
+<link rel="stylesheet"
+	href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700,800">
+<!-- owl carousel-->
+<link rel="stylesheet"
+	href="resources/landy/vendor/owl.carousel/assets/owl.carousel.css">
+<link rel="stylesheet"
+	href="resources/landy/vendor/owl.carousel/assets/owl.theme.default.css">
+<!-- theme stylesheet-->
+<link rel="stylesheet" href="resources/landy/css/style.default.css"
+	id="theme-stylesheet">
+<!-- Custom stylesheet - for your changes-->
+<link rel="stylesheet" href="resources/landy/css/custom.css">
+<!-- Favicon-->
+<link rel="shortcut icon" href="favicon.png">
 </head>
 <style>
 .middle {
@@ -46,63 +43,45 @@
 a {
 	color: #000;
 }
-ul{
-   list-style:none;
-   }
+
+ul {
+	list-style: none;
+}
+
+.btn-gradient {
+	background-color: #5989e5;
+	background-image: -webkit-gradient(linear, left top, right top, from(#5989e5),
+		to(#37cfdc));
+	background-image: linear-gradient(to right, #5989e5, #37cfdc);
+	border: none !important;
+	text-transform: uppercase;
+	color: #fff;
+	overflow: hidden;
+	position: relative;
+	z-index: 1;
+	-webkit-transition: all 0.3s !important;
+	transition: all 0.3s !important;
+}
 </style>
 <body>
 	<header>
 		<%@include file="../../../nav.jsp"%>
 	</header>
-	<nav class="navbar navbar-expand-lg navbar-dark navbar-custom">
-	<div class="container">
-		<a class="navbar-brand" href="storeIndex.st">점포관리시스템</a>
-		<button class="navbar-toggler" type="button" data-toggle="collapse"
-			data-target="#navbarSupportedContent"
-			aria-controls="navbarSupportedContent" aria-expanded="false"
-			aria-label="Toggle navigation">
-			<span class="navbar-toggler-icon"></span>
-		</button>
-		<div
-			class="collapse navbar-collapse pull-xs-right justify-content-end"
-			id="navbarSupportedContent">
-			<ul class="navbar-nav mt-2 mt-md-0">
-				<li class="nav-item"><a class="nav-link" href="#">알림사항</a></li>
-				<li class="nav-item"><a class="nav-link" href="mystore.st">점포관리</a></li>
-				<li class="nav-item"><a class="nav-link" href="stock.st">재고관리</a></li>
-				<li class="nav-item"><a class="nav-link" href="#">회사소개</a></li>
-				<c:set var="sessionCheck"
-					value="${sessionScope.SPRING_SECURITY_CONTEXT}" />
-				<c:choose>
-					<c:when test="${sessionCheck eq null}">
-						<strong><li class="nav-item"><a
-							class="nav-link" href="login.st">사장님
-								로그인</a></li></strong>
-						<strong><li class="nav-item"><a href="join.st"
-								class="nav-link">제휴하기</a></li></strong>
-					</c:when>
-					<c:otherwise>
-						<li class="nav-item"><a href="logout.st"
-								class="nav-link">로그아웃</a></li>
-					</c:otherwise>
-				</c:choose>
-			</ul>
-		</div>
-	</div>
-</nav>
 
-	<div style="padding-top: 30px; background:#66615;">
-		<div class="middle" >
-			<div class="row col-md-3 col-sm-12">
 
+	<div style="padding-top: 30px;">
+		<div class="middle">
+			<div class="row col-md-3" style="margin-right:0px; width:30%">
 				<!-- Page Content -->
-				<div style="border: solid 3px #EB5E28; width: 200px; height:500px; margin-bottom:30px;">
-					<h4 style="text-align:center;">
-						<strong>마이페이지</strong>
-					</h4>
-					<div class="left-navigation">
+				<div class="btn-gradient"
+					style="margin-top: 80px; border: solid 3px #EB5E28; width: 200px; height: 500px; margin-bottom: 30px;">
+
+					<p><h4 style="text-align: center;">마이페이지</h4>
+					</p>
+
+
 						<ul class="list">
-						
+
 							<li><a href="#tab-1" data-toggle="tab"><h5>
 										<strong>회원 정보</strong>
 									</h5></a></li>
@@ -117,13 +96,13 @@ ul{
 							<li><a href="#">찾아갈 상품</a></li>
 							<li><a href="#">구매한 상품</a></li>
 						</ul>
-					</div>
 				</div>
 			</div>
 
-			<div class="row col-md-9">
+			<div class="col-md-7" style="margin: 0px; padding: 0px;">
 				<!-- Main Content -->
-				<div class="main-content" style="margin-left:30px; border: solid 3px #EB5E28; width: 670px; height:500px; margin-bottom:30px;">
+				<div class="main-content"
+					style="border: solid 3px #EB5E28; width: 600px; height: 500px; margin-bottom: 30px;">
 					<div class="tab-content">
 						<div class="tab-pane fade show active" id="tab-1"></div>
 						<div class="tab-pane fade" id="tab-2"></div>
@@ -138,7 +117,7 @@ ul{
 			</div>
 		</div>
 	</div>
-	
+
 	<!-- Footer -->
 	<footer class="footer-demo section-dark">
 		<div class="container">
