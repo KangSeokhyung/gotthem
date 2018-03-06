@@ -8,40 +8,34 @@
 <title>Insert title here</title>
 </head>
 <body>
-	  <nav class="navbar navbar-default" role="navigation-demo" id="demo-navbar">
-      <div class="container">
-        <!-- Brand and toggle get grouped for better mobile display -->
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navigation-example-2">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <a class="navbar-brand" href="/gotThem">GOT THEM</a>
-        </div>
+	     <header role="banner" class="probootstrap-header">
+    <div class="container">
+        <a href="/gotThem" class="probootstrap-logo">GOT THEM<span>.</span></a>
+        
+        <a href="#" class="probootstrap-burger-menu visible-xs" ><i>Menu</i></a>
+        <div class="mobile-menu-overlay"></div>
 
-        <!-- Collect the nav links, forms, and other content for toggling -->
-        <div class="collapse navbar-collapse" id="navigation-example-2">
-          <ul class="nav navbar-nav navbar-right">
-            <li>
-                <a href="/gotThem" class="btn btn-simple">GOT THEM</a>
-            </li>
-            <li>
-                <a href="#" class="btn btn-simple">NOTICE</a>
-            </li>
-						<li>
-								<a href="#" class="btn btn-simple">EVENT</a>
-						</li>
-						<li>
-								<a href="join.gt" class="btn btn-simple">SIGN UP</a>
-						</li>
-						<li>
-								<a href="login.gt" class="btn btn-simple">LOGIN</a>
-						</li>
-           </ul>
-        </div><!-- /.navbar-collapse -->
-      </div><!-- /.container-->
-    </nav>
+        <nav role="navigation" class="probootstrap-nav hidden-xs">
+          <ul class="probootstrap-main-nav">
+            <li><a href="#">GOTTHEM</a></li>
+            <li><a href="#">NOTICE</a></li>
+            <li><a href="#">EVENT</a></li>
+            <li><a href="join.gt">SIGN UP</a></li>
+            <li><a href="login.gt">LOGIN</a></li>
+          </ul>
+          <div class="extra-text visible-xs"> 
+            <a href="#" class="probootstrap-burger-menu"><i>Menu</i></a>
+            <h5>Address</h5>
+            <p>198 West 21th Street, Suite 721 New York NY 10016</p>
+            <h5>Connect</h5>
+            <ul class="social-buttons">
+              <li><a href="#"><i class="icon-twitter"></i></a></li>
+              <li><a href="#"><i class="icon-facebook2"></i></a></li>
+              <li><a href="#"><i class="icon-instagram2"></i></a></li>
+            </ul>
+          </div>
+        </nav>
+    </div>
+  </header>
 </body>
 </html>

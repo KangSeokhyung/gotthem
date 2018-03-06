@@ -41,22 +41,11 @@ public class BasketDaoImpl implements BasketDao {
 		return (int)sqlSessionTemplate.update("update", bas_no);
 	}
 	
-	/*@Override
-	public void delete(int bas_no) {
-		sqlSessionTemplate.delete("delete", bas_no);
-	}*/
-	
 	// 1. 장바구니 추가
     @Override
     public void insertBasket(BasketBean basketBean) {
     	sqlSessionTemplate.insert("insertBasket", basketBean);
     }    
-   // 1.1 상품 삭제
-    @Override
-    public void deleteproduct(int bas_no) {
-    	sqlSessionTemplate.insert("deleteproduct", bas_no);
-    }
- 
 	
 /*	// 1. 장바구니 추가
     @Override

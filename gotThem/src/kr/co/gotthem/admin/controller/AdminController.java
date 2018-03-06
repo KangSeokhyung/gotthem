@@ -35,11 +35,36 @@ public class AdminController {
 	}
 
 	@RequestMapping(value = "/control.ad", method = RequestMethod.GET)
-	public String ccc() {
+	public ModelAndView ccc(ModelAndView mav) {
 		System.out.println("최종 관리자 로그인 진입");
-		return "admin/controlPage";
+		List<MemberBean> stlist = memberService.stlist();
+		System.out.println("스토어 리스트 가져옴");
+		List<MemberBean> mlist = memberService.mlist();
+		System.out.println("멤버리스트 가져옴");
+		
+		
+		for(MemberBean abc : stlist) {
+			System.out.println(abc);
+			int abb = abc.getEnabled();
+		}
+		
+		mav.addObject("stlist", stlist);
+		mav.addObject("mlist", mlist);
+		mav.setViewName("admin/controlPage");
+		
+		return mav;
 	}
+	
+	@RequestMapping(value = "/modify.ad", method = RequestMethod.GET)
+	public ModelAndView modify(ModelAndView mav) {
 
+		
+		mav.setViewName("admin/modify");
+
+		return mav;
+
+	}
+	
 	@RequestMapping(value = "/memcontrol.ad", method = RequestMethod.GET)
 	public ModelAndView member(ModelAndView mav) {
 
@@ -47,7 +72,7 @@ public class AdminController {
 		System.out.println("멤버 컨트롤 진입"); System.out.println(mlist);
 		 
 		mav.addObject("mlist", mlist);
-		mav.setViewName("admin/memberControl");
+		mav.setViewName("admin/controlPage");
 
 		return mav;
 
@@ -67,10 +92,7 @@ public class AdminController {
 		}
 		
 		mav.addObject("stlist", stlist);		
-		mav.setViewName("admin/storeControl");
-		
-		
-
+		mav.setViewName("admin/controlPage");
 		return mav;
 	}
 	

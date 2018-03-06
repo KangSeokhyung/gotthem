@@ -1,110 +1,145 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>편의점 재고 검색 - Got Them</title>
-	<link rel="stylesheet" type="text/css" href="resources/Login_v7/css/util.css">
-	<link rel="stylesheet" type="text/css" href="resources/Login_v7/css/main.css">
-	 <link href="resources/mainTemplate/bootstrap3/css/bootstrap.css" rel="stylesheet" />
-    <link href="resources/mainTemplate/assets/css/ct-paper.css" rel="stylesheet"/>
-    <link href="resources/mainTemplate/assets/css/demo.css" rel="stylesheet" />
-    <link href="resources/mainTemplate/assets/css/examples.css" rel="stylesheet" />
-    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+<html lang="ko">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>편의점 재고 검색 GOT THEM!</title>
+    <meta name="description" content="Free Bootstrap Theme by uicookies.com">
+    <meta name="keywords" content="free website templates, free bootstrap themes, free template, free bootstrap, free website template">
     
-</head>
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400" rel="stylesheet">
+    <link rel="stylesheet" href="resources/mainTemplate/css/styles-merged.css">
+    <link rel="stylesheet" href="resources/mainTemplate/css/style.min.css">
+    <link rel="stylesheet" href="resources/mainTemplate/css/custom.css">
+
+    <!--[if lt IE 9]>
+      <script src="resources/mainTemplate/js/vendor/html5shiv.min.js"></script>
+      <script src="resources/mainTemplate/js/vendor/respond.min.js"></script>
+    <![endif]-->
+    <style>
+    header{
+    padding-bottom:80px;
+    }
+    </style>
+  </head>
 <body>
 	<header class="header">
 		<%@include file="../../../nav.jsp" %>
 	</header>
-  <div class="profile-background text-center"> 
-  				<br><br><br><br><br><br><br>
-  				<h2>GOT THEM 회원가입</h2>
+  <section class="mbr-section form1 cid-qIWKYtQnJh" id="form1-r">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="title col-12 col-lg-8">
+                <h3 class="mbr-section-title align-center pb-3 mbr-fonts-style">
+                    GOT THEM 회원가입
+                    <hr>
+                </h3>
+            </div>
         </div>
-<body>
-    <div class="section landing-section">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-md-8 col-md-offset-2">
-                            <form class="contact-form">
-                                <div class="row">
-                                    <div class="col-sm-5">
-                                        <label>아이디</label>
-                                       
-            <div id="imaginary_container"> 
-                <div class="input-group stylish-input-group">
-                    <input type="text" class="form-control"  placeholder="아이디" >
-                    <span class="input-group-addon">
-                        <button >
-                            <span>중복확인</span>
-                        </button>  
-                    </span>
-                </div>
-            </div>
- 
-                                       
-                                       
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-sm-6">
-                                        <label>패스워드</label>
-                                        <input type="password" class="form-control" placeholder="Name">
-                                    </div>
-                                    <div class="col-sm-6">
-                                        <label>패스워드</label>
-                                        <input type="password" class="form-control" placeholder="Name">
-                                    </div>
-                                </div>
-                                 <div class="row">
-                                    <div class="col-sm-6">
-                                        <label>이름</label>
-                                       <input type="text" class="form-control" placeholder="Name">
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-sm-6">
-                                        <label>이메일</label>
-                                       <input type="email" class="form-control" placeholder="Name">
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-sm-6">
-                                        <label>우편번호</label>
-                                       <input type="email" class="form-control" placeholder="Name">
-                                    </div>
-                                </div>
-                                <button href="#fakelink" class="btn btn-danger">우편번호찾기</button>
-                               <div class="row">
-                                    <div class="col-sm-8">
-                                        <label>상세주소1</label>
-                                       <input type="email" class="form-control" placeholder="Name">
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-sm-8">
-                                        <label>상세주소2</label>
-                                       <input type="email" class="form-control" placeholder="Name">
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
+    </div>
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="media-container-column col-lg-8" data-form-type="formoid">
+                    <div data-form-alert="" hidden="">
+                        Thanks for filling out the form!
                     </div>
-
-                </div>
+                    <form class="mbr-form" action="join.st" method="post" data-form-title="Mobirise Form">
+                    <input type="hidden" name="email" data-form-email="true" value="v71UZV7rSGKmNdtMTJcCzvbgvRKs8I889PXLsAjbR6NuKJtPYoKYEe+DT90N7gqVmrsYQhYLqTnSDAVjImF7Eb8KP/1hIcQUbq5w77EmgcHnu38hK1G/QmJo9v9/aFIP" data-form-field="Email">
+                        <div class="row row-sm-offset">
+                            <div class="col-sm-8 multi-horizontal" data-for="id">
+                                <div class="form-group">
+                                    <label class="form-control-label mbr-fonts-style display-7" for="name-form1-r">아이디</label>
+                                    <input type="text" class="form-control" name="mem_id" data-form-field="Name" required=""
+                                   id="mem_id" onkeyup="duplCheck()">
+                                </div>
+                            </div>
+                           <div class="col-sm-12 multi-horizontal">
+                          <p id="idcheck" class="text-mute">아이디를 입력해주세요</p>
+                         </div>
+                            <div class="col-sm-6 multi-horizontal" data-for="password">
+                                <div class="form-group">
+                                    <label class="form-control-label mbr-fonts-style display-7" for="pass-form1-r">패스워드</label>
+                                    <input type="password" id="mem_pw" class="form-control" name="mem_pw" data-form-field="Email" required="" >
+                                </div>
+                            </div>
+                            <div class="col-sm-6 multi-horizontal" data-for="password2">
+                                <div class="form-group">
+                                    <label class="form-control-label mbr-fonts-style display-7" for="pass-form1-r">패스워드 재입력</label>
+                                    <input type="password" id="mem_pw2" class="form-control" name="mem_pw2" data-form-field="Phone"
+                                    onkeyup="pwCheck()" > 
+                                </div>
+                            </div>
+                          <div class="col-sm-12 multi-horizontal">
+                          <p class="text-mute" id="pwdCheckMsg" >비밀번호를 입력해주세요</p>
+                         </div>
+                            <div class="col-sm-8 multi-horizontal" data-for="ownername">
+                                <div class="form-group">
+                                    <label class="form-control-label mbr-fonts-style display-7" for="owner-form1-r">점주명</label>
+                                    <input type="text" id="mem_name" class="form-control" name="mem_name" required="" data-form-field="owner" >
+                                </div>
+                         </div>
+                         <div class="col-sm-8 multi-horizontal" data-for="storename">
+                                <div class="form-group">
+                                    <label class="form-control-label mbr-fonts-style display-7" for="stoname-form1-r">점포명</label>
+                                    <input type="text" class="form-control" name="sto_name" data-form-field="owner" required="" id="sto_name">
+                                </div>
+                         </div>
+                          <div class="col-sm-8 multi-horizontal" data-for="email">
+                          <div class="form-group">
+                                    <label class="form-control-label mbr-fonts-style display-7" for="email-form1-r">이메일</label>
+                                    <input type="email" class="form-control" name="mem_email" data-form-field="Name" required="" id="mem_email">
+                                </div>
+                            </div>
+                          <div class="col-sm-8 multi-horizontal" data-for="phone">
+                           <div class="form-group">
+                                    <label class="form-control-label mbr-fonts-style display-7" for="phone-form1-r">전화번호</label>
+                                    <input type="text" class="form-control" name="mem_phone" data-form-field="Name" required="" id="mem_phone">
+                                </div>
+                            </div>
+                         <div class="col-sm-6 multi-horizontal" data-for="postcode">
+                            <div class="form-group">
+                                    <label class="form-control-label mbr-fonts-style display-7" for="addr1-form1-r">우편번호</label>
+                                    <input type="text" class="form-control" name="mem_addr1" data-form-field="Name" required="" id="mem_post">
+                                </div>
+                            </div>
+                         <div class="col-sm-6 multi-horizontal" data-for="findpostcode">
+                            <div class="form-group" style="text-align:center; vertical-align:bottom;">
+                            <button onclick="sample6_execDaumPostcode()" class="btn btn-primary navbar-btn btn-shadow btn-gradient">우편번호찾기</button>
+                           </div>
+                         </div>
+                        <div class="col-sm-12 multi-horizontal" data-for="address1">
+                            <div class="form-group">
+                                    <label class="form-control-label mbr-fonts-style display-7" for="addr1-form1-r">매장 상세주소1</label>
+                                    <input type="text" class="form-control" name="mem_addr2" data-form-field="Name" required="" id="mem_address1">
+                                </div>
+                            </div>
+                         <div class="col-sm-12 multi-horizontal" data-for="address2">
+                            <div class="form-group">
+                                    <label class="form-control-label mbr-fonts-style display-7" for="addr2-form1-r">매장 상세주소2</label>
+                                    <input type="text" class="form-control" name="mem_addr3" data-form-field="Name" required="" id="mem_address2">
+                                </div>
+                            </div>
+                        </div>
+                        <br><br><br>
+                            <button type="submit" class="btn btn-primary navbar-btn btn-shadow btn-gradient">가입하기</button>
+                    </form>
             </div>
-
+        </div>
+    </div>
+</section>
 
 
 </body>
-<script src="http://code.jquery.com/jquery-3.2.1.min.js"></script>
-<script src="resources/Login_v7/js/main.js"></script>
-<script src="resources/mainTemplate/bootstrap/js/bootstrap.min.js"></script>
-<script src="resources/mainTemplate/js/jquery.easeScroll.js"></script>
-<script src="resources/mainTemplate/sweetalert/dist/sweetalert.min.js"></script>
-<script src="resources/mainTemplate/js/stisla.js"></script>
-<script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
+    <!-- Javascript files-->
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"> </script>
+    <script src="resources/landy/vendor/bootstrap/js/bootstrap.min.js"></script>
+    <script src="resources/landy/vendor/jquery.cookie/jquery.cookie.js"> </script>
+    <script src="resources/landy/vendor/owl.carousel/owl.carousel.min.js"></script>
+    <script src="resources/landy/js/front.js"></script>
 		<script>
 		function duplCheck(){ 
 		    var id = $('#mem_id').val();
@@ -128,7 +163,7 @@
 		          });
 			  }
 		 	 
-			function pwdCheck() {
+			function pwCheck() {
 				var mem_pwd = $('#mem_pw').val();
 				var mem_pwdCheck = $('#mem_pw2').val();
 				$('#pwdCheckMsg').html('비밀번호는 영문, 숫자 혼합 8자이상  20자 이하로 작성해주세요.').css('color', 'red');
@@ -167,7 +202,9 @@
 					return false;
 				}
 			}
-		
+			</script>
+<script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
+	<script>
    		 function sample6_execDaumPostcode() {
        		 new daum.Postcode({
           	  oncomplete: function(data) {
@@ -206,6 +243,31 @@
             }
         }).open();
     }
+<<<<<<< HEAD
+   		 
+   		function indexFoward() {
+			if (confirm('메인페이지로 이동하시겠습니까?')) {
+				location.href = "index.jsp";
+			}
+		}
+   		
+   		function onlyNumber(event){
+			event = event || window.event;
+			var keyID = (event.which) ? event.which : event.keyCode;
+			if ( (keyID >= 48 && keyID <= 57) || (keyID >= 96 && keyID <= 105) || keyID == 8 || keyID == 46 || keyID == 37 || keyID == 39 ) 
+				return;
+			else
+				return false;
+		}
+		
+		function removeChar(event) {
+			event = event || window.event;
+			var keyID = (event.which) ? event.which : event.keyCode;
+			if ( keyID == 8 || keyID == 46 || keyID == 37 || keyID == 39 ) 
+				return;
+			else
+				event.target.value = event.target.value.replace(/[^0-9]/g, "");
+		}
    		 
    		
 	 	

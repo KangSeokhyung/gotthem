@@ -10,8 +10,7 @@
 <meta charset="utf-8">
 <link rel="stylesheet" type="text/css" href="resources/Login_v7/css/util.css">
 <link rel="stylesheet" type="text/css" href="resources/Login_v7/css/main.css">
-<link href="https://fonts.googleapis.com/css?family=Work+Sans"
-	rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Work+Sans"rel="stylesheet">
 <link rel="stylesheet" href="resources/indexTemplate/css/bootstrap.min.css">
 <link rel="stylesheet" href="resources/indexTemplate/css/open-iconic-bootstrap.min.css">
 <link rel="stylesheet" href="resources/indexTemplate/css/owl.carousel.min.css">
@@ -28,7 +27,6 @@
 
 </head>
 <body>
-
 	<aside class="probootstrap-aside js-probootstrap-aside">
 		<a href="#"
 			class="probootstrap-close-menu js-probootstrap-close-menu d-md-none"><span
@@ -86,7 +84,7 @@
 			<a href="index.html">Aside</a></a>
 		</div>
 	</div>
-		<section class="mbr-section form1 cid-qIWKYtQnJh" id="form1-r">
+	<section class="mbr-section form1 cid-qIWKYtQnJh" id="form1-r">
     <div class="container">
         <div class="row justify-content-center">
             <div class="title col-12 col-lg-8">
@@ -95,6 +93,9 @@
                 </h2>
                 <h3 class="mbr-section-subtitle align-center mbr-light pb-3 mbr-fonts-style display-5">
                     이 양식을 작성하면 GOT THEM에 제휴 신청이 가능합니다.
+                </h3>
+                <h3 class="mbr-section-subtitle align-center mbr-light pb-3 mbr-fonts-style display-5">
+                   제휴 신청 뒤 승인까지 약 3~5영업일이 소요될 수 있습니다.<br> 문의처 : 02-1234-5678
                 </h3>
             </div>
         </div>
@@ -109,67 +110,74 @@
                     <form class="mbr-form" action="join.st" method="post" data-form-title="Mobirise Form">
                     <input type="hidden" name="email" data-form-email="true" value="v71UZV7rSGKmNdtMTJcCzvbgvRKs8I889PXLsAjbR6NuKJtPYoKYEe+DT90N7gqVmrsYQhYLqTnSDAVjImF7Eb8KP/1hIcQUbq5w77EmgcHnu38hK1G/QmJo9v9/aFIP" data-form-field="Email">
                         <div class="row row-sm-offset">
-                            <div class="col-sm-8 multi-horizontal" data-for="name">
+                            <div class="col-sm-8 multi-horizontal" data-for="id">
                                 <div class="form-group">
                                     <label class="form-control-label mbr-fonts-style display-7" for="name-form1-r">아이디</label>
-                                    <input type="text" class="form-control" name="mem_id" data-form-field="Name" required="" id="name-form1-r">
+                                    <input type="text" class="form-control" name="mem_id" data-form-field="Name" required=""
+                                   id="mem_id" onkeyup="duplCheck()">
                                 </div>
                             </div>
-                            <div class="col-sm-6 multi-horizontal" data-for="email">
+                           <div class="col-sm-12 multi-horizontal">
+                          <p id="idcheck" class="text-mute">아이디를 입력해주세요</p>
+                         </div>
+                            <div class="col-sm-6 multi-horizontal" data-for="password">
                                 <div class="form-group">
                                     <label class="form-control-label mbr-fonts-style display-7" for="pass-form1-r">패스워드</label>
-                                    <input type="password" class="form-control" name="mem_pw" data-form-field="Email" required="" id="email-form1-r">
+                                    <input type="password" id="mem_pw" class="form-control" name="mem_pw" data-form-field="Email" required="" >
                                 </div>
                             </div>
-                            <div class="col-sm-6 multi-horizontal" data-for="phone">
+                            <div class="col-sm-6 multi-horizontal" data-for="password2">
                                 <div class="form-group">
                                     <label class="form-control-label mbr-fonts-style display-7" for="pass-form1-r">패스워드 재입력</label>
-                                    <input type="password" class="form-control" name="mem_pass2" data-form-field="Phone" id="phone-form1-r">
+                                    <input type="password" id="mem_pw2" class="form-control" name="mem_pw2" data-form-field="Phone"
+                                    onkeyup="pwCheck()" > 
                                 </div>
-                                  <p class="text-mute">비밀번호를 입력해주세요</p>
                             </div>
-                            <div class="col-sm-8 multi-horizontal" data-for="name">
+                          <div class="col-sm-12 multi-horizontal">
+                          <p class="text-mute" id="pwCheck" >비밀번호를 입력해주세요</p>
+                         </div>
+                            <div class="col-sm-8 multi-horizontal" data-for="ownername">
                                 <div class="form-group">
                                     <label class="form-control-label mbr-fonts-style display-7" for="owner-form1-r">점주명</label>
-                                    <input type="text" class="form-control" name="mem_name" data-form-field="owner" required="" id="name-form1-r">
+                                    <input type="text" id="mem_name" class="form-control" name="mem_name" required="" data-form-field="owner" >
                                 </div>
                          </div>
-                         <div class="col-sm-8 multi-horizontal" data-for="name">
+                         <div class="col-sm-8 multi-horizontal" data-for="storename">
                                 <div class="form-group">
                                     <label class="form-control-label mbr-fonts-style display-7" for="stoname-form1-r">점포명</label>
-                                    <input type="text" class="form-control" name="sto_name" data-form-field="owner" required="" id="name-form1-r">
+                                    <input type="text" class="form-control" name="sto_name" data-form-field="owner" required="" id="sto_name">
                                 </div>
                          </div>
-                          <div class="col-sm-8 multi-horizontal" data-for="name">
+                          <div class="col-sm-8 multi-horizontal" data-for="email">
                           <div class="form-group">
                                     <label class="form-control-label mbr-fonts-style display-7" for="email-form1-r">이메일</label>
-                                    <input type="email" class="form-control" name="mem_email" data-form-field="Name" required="" id="name-form1-r">
+                                    <input type="email" class="form-control" name="mem_email" data-form-field="Name" required="" id="mem_email">
                                 </div>
                             </div>
-                          <div class="col-sm-8 multi-horizontal" data-for="name">
+                          <div class="col-sm-8 multi-horizontal" data-for="phone">
                            <div class="form-group">
                                     <label class="form-control-label mbr-fonts-style display-7" for="phone-form1-r">전화번호</label>
-                                    <input type="text" class="form-control" name="mem_phone" data-form-field="Name" required="" id="name-form1-r">
+                                    <input type="text" class="form-control" name="mem_phone" data-form-field="Name" required="" id="mem_phone">
                                 </div>
                             </div>
-                         <div class="col-sm-6 multi-horizontal" data-for="name">
+                         <div class="col-sm-6 multi-horizontal" data-for="postcode">
                             <div class="form-group">
                                     <label class="form-control-label mbr-fonts-style display-7" for="addr1-form1-r">우편번호</label>
                                     <input type="text" class="form-control" name="mem_addr1" data-form-field="Name" required="" id="sample6_postcode">
                                 </div>
                             </div>
-                         <div class="col-sm-6 multi-horizontal" data-for="name">
+                         <div class="col-sm-6 multi-horizontal" data-for="findpostcode">
                             <div class="form-group" style="text-align:center; vertical-align:middle;">
                             <button onclick="sample6_execDaumPostcode()" class="btn btn-primary btn-form display-4">우편번호찾기</button>
                            </div>
                          </div>
-                        <div class="col-sm-12 multi-horizontal" data-for="name">
+                        <div class="col-sm-12 multi-horizontal" data-for="address1">
                             <div class="form-group">
                                     <label class="form-control-label mbr-fonts-style display-7" for="addr1-form1-r">매장 상세주소1</label>
                                     <input type="text" class="form-control" name="mem_addr2" data-form-field="Name" required="" id="sample6_address">
                                 </div>
                             </div>
-                         <div class="col-sm-12 multi-horizontal" data-for="name">
+                         <div class="col-sm-12 multi-horizontal" data-for="address2">
                             <div class="form-group">
                                     <label class="form-control-label mbr-fonts-style display-7" for="addr2-form1-r">매장 상세주소2</label>
                                     <input type="text" class="form-control" name="mem_addr3" data-form-field="Name" required="" id="sample6_address2">
@@ -187,17 +195,13 @@
 
 	</main>
 
-	<script src="resources/indexTemplate/js/jquery-3.2.1.slim.min.js"></script>
+	<script src="http://code.jquery.com/jquery-3.2.1.min.js"></script>
 	<script src="resources/indexTemplate/js/popper.min.js"></script>
 	<script src="resources/indexTemplate/js/bootstrap.min.js"></script>
 	<script src="resources/indexTemplate/js/owl.carousel.min.js"></script>
 	<script src="resources/indexTemplate/js/jquery.waypoints.min.js"></script>
 	<script src="resources/indexTemplate/js/imagesloaded.pkgd.min.js"></script>
 	<script src="resources/indexTemplate/js/main.js"></script>
-	<script src="resources/stlogin/popper/popper.min.js"></script>
-  	<script src="resources/stlogin/tether/tether.min.js"></script>
-  	<script src="resources/stlogin/smoothscroll/smooth-scroll.js"></script>
-  	<script src="resources/stlogin/theme/js/script.js"></script>
 	<script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
 	<script>
 		function sample6_execDaumPostcode() {
@@ -245,36 +249,42 @@
 						}
 					}).open();
 		}
-		/* function checkId(){ 
-		     $.ajax({
-		         url : "./MemberIdCheckAction.aq",
-		         type: "POST",
-		         data : {"id":$('#m_id').val()},	              
-		         success : function(data){
-		              if(data=="0"){
-		           	   $("#idcheck").html('<p style="color:blue"> 사용가능한 아이디입니다.</p>');
-		              }else if(data=="1"){
-		           	   $("#idcheck").html('<p style="color:red"> 다른 사람이 사용중입니다.</p>');
-		              }
-		         },    error: function(jqXHR, textStatus, errorThrown) {
-		       	  console.log(jqXHR);
-		       	  console.log(textStatus);
-		       	  console.log(errorThrown);
-		         }
-		     });
-		 }
-		
-		function pwCheck(){
-		var pw1 = document.getElementById("m_pass1").value;
-		var pw2 = document.getElementById("m_pass2").value;
-		 if(pw1 != pw2){
-			 	document.getElementById('pwCheck').style.color = "red";
-			    document.getElementById('pwCheck').innerHTML = "동일한 암호를 입력하세요."; 
-		 		}else {
-		 		document.getElementById('pwCheck').style.color = "blue";
-		 		document.getElementById('pwCheck').innerHTML = "암호가 확인 되었습니다."; 
-		 		} 			 
-		 } 	  */
+	</script>
+	<script>
+	function duplCheck(){ 
+	    var id = $('#mem_id').val();
+	 		$.ajax({
+	              url : "duplCheck.gt",
+	              type: "POST",
+	              data : {"mem_id": id},	              
+	              success : function(data){
+	                   if(data=="0"){
+	                	   $("#idcheck").html('<p style="color:blue"> 사용가능한 아이디입니다.</p>');
+	                	   $('#duplicate').val('Y');
+	                   }else if(data!="0"){
+	                	   $("#idcheck").html('<p style="color:red"> 이미 사용중입니다.</p>');
+	                	   $('#duplicate').val('F');
+	                   }
+	              },    error: function(jqXHR, textStatus, errorThrown) {
+	            	  console.log(jqXHR);
+	            	  console.log(textStatus);
+	            	  console.log(errorThrown);
+	              }
+	          });
+		  }
+	
+        function pwCheck(){
+          	 var pw1 =  document.getElementById("mem_pw").value;
+        	 var pw2 = document.getElementById("mem_pw2").value;
+          		 if(pw1 != pw2){
+          			 	document.getElementById('pwCheck').style.color = "red";
+          			    document.getElementById('pwCheck').innerHTML = "동일한 암호를 입력하세요."; 
+          		 		}else {
+          		 		document.getElementById('pwCheck').style.color = "blue";
+          		 		document.getElementById('pwCheck').innerHTML = "암호가 확인 되었습니다."; 
+          		 		}
+          		 }
+        
 	</script>
 </body>
 </html>
