@@ -2,36 +2,29 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
-<html>
+<html lang="ko">
   <head>
     <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Landy: Bootstrap 4 landing page template by Bootstrapious.com</title>
-    <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="robots" content="all,follow">
-    <!-- Bootstrap CSS-->
-    <link rel="stylesheet" href="resources/landy/vendor/bootstrap/css/bootstrap.min.css">
-    <!-- Font Awesome CSS-->
-    <link rel="stylesheet" href="resources/landy/vendor/font-awesome/css/font-awesome.min.css">
-    <!-- Custom Font Icons CSS-->
-    <link rel="stylesheet" href="resources/landy/css/landy-iconfont.css">
-    <!-- Google fonts - Open Sans-->
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700,800">
-    <!-- owl carousel-->
-    <link rel="stylesheet" href="resources/landy/vendor/owl.carousel/assets/owl.carousel.css">
-    <link rel="stylesheet" href="resources/landy/vendor/owl.carousel/assets/owl.theme.default.css">
-    <!-- theme stylesheet-->
-    <link rel="stylesheet" href="resources/landy/css/style.default.css" id="theme-stylesheet">
-    <!-- Custom stylesheet - for your changes-->
-    <link rel="stylesheet" href="resources/landy/css/custom.css">
-    <!-- Favicon-->
-    <link rel="shortcut icon" href="favicon.png">
-    <!-- Tweaks for older IEs--><!--[if lt IE 9]>
-        <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-        <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
+    <title>편의점 재고 검색 GOT THEM!</title>
+    <meta name="description" content="Free Bootstrap Theme by uicookies.com">
+    <meta name="keywords" content="free website templates, free bootstrap themes, free template, free bootstrap, free website template">
     
-</head>
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400" rel="stylesheet">
+    <link rel="stylesheet" href="resources/mainTemplate/css/styles-merged.css">
+    <link rel="stylesheet" href="resources/mainTemplate/css/style.min.css">
+    <link rel="stylesheet" href="resources/mainTemplate/css/custom.css">
+
+    <!--[if lt IE 9]>
+      <script src="resources/mainTemplate/js/vendor/html5shiv.min.js"></script>
+      <script src="resources/mainTemplate/js/vendor/respond.min.js"></script>
+    <![endif]-->
+    <style>
+    header{
+    padding-bottom:80px;
+    }
+    </style>
+  </head>
 <body>
 	<header class="header">
 		<%@include file="../../../nav.jsp" %>
@@ -80,7 +73,7 @@
                                 </div>
                             </div>
                           <div class="col-sm-12 multi-horizontal">
-                          <p class="text-mute" id="pwCheck" >비밀번호를 입력해주세요</p>
+                          <p class="text-mute" id="pwdCheckMsg" >비밀번호를 입력해주세요</p>
                          </div>
                             <div class="col-sm-8 multi-horizontal" data-for="ownername">
                                 <div class="form-group">
@@ -109,30 +102,29 @@
                          <div class="col-sm-6 multi-horizontal" data-for="postcode">
                             <div class="form-group">
                                     <label class="form-control-label mbr-fonts-style display-7" for="addr1-form1-r">우편번호</label>
-                                    <input type="text" class="form-control" name="mem_addr1" data-form-field="Name" required="" id="sample6_postcode">
+                                    <input type="text" class="form-control" name="mem_addr1" data-form-field="Name" required="" id="mem_post">
                                 </div>
                             </div>
                          <div class="col-sm-6 multi-horizontal" data-for="findpostcode">
-                            <div class="form-group" style="text-align:center; vertical-align:middle;">
-                            <button onclick="sample6_execDaumPostcode()" class="btn btn-primary btn-form display-4">우편번호찾기</button>
+                            <div class="form-group" style="text-align:center; vertical-align:bottom;">
+                            <button onclick="sample6_execDaumPostcode()" class="btn btn-primary navbar-btn btn-shadow btn-gradient">우편번호찾기</button>
                            </div>
                          </div>
                         <div class="col-sm-12 multi-horizontal" data-for="address1">
                             <div class="form-group">
                                     <label class="form-control-label mbr-fonts-style display-7" for="addr1-form1-r">매장 상세주소1</label>
-                                    <input type="text" class="form-control" name="mem_addr2" data-form-field="Name" required="" id="sample6_address">
+                                    <input type="text" class="form-control" name="mem_addr2" data-form-field="Name" required="" id="mem_address1">
                                 </div>
                             </div>
                          <div class="col-sm-12 multi-horizontal" data-for="address2">
                             <div class="form-group">
                                     <label class="form-control-label mbr-fonts-style display-7" for="addr2-form1-r">매장 상세주소2</label>
-                                    <input type="text" class="form-control" name="mem_addr3" data-form-field="Name" required="" id="sample6_address2">
+                                    <input type="text" class="form-control" name="mem_addr3" data-form-field="Name" required="" id="mem_address2">
                                 </div>
                             </div>
                         </div>
-                        <span class="input-group-btn">
-                            <button type="submit" class="btn btn-primary btn-form display-4">제휴신청</button>
-                        </span>
+                        <br><br><br>
+                            <button type="submit" class="btn btn-primary navbar-btn btn-shadow btn-gradient">가입하기</button>
                     </form>
             </div>
         </div>
@@ -210,7 +202,9 @@
 					return false;
 				}
 			}
-		
+			</script>
+<script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
+	<script>
    		 function sample6_execDaumPostcode() {
        		 new daum.Postcode({
           	  oncomplete: function(data) {

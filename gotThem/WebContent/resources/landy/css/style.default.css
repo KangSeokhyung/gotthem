@@ -19,7 +19,7 @@ body {
 }
 
 section {
-  padding: 150px 0;
+  padding: 50px 0 ;
   overflow: hidden;
   background-color: #f5f5f5;
 }
@@ -28,6 +28,10 @@ a {
   -webkit-transition: all 0.3s;
   transition: all 0.3s;
   display: inline-block;
+}
+
+header{
+	padding-bottom: 30px;
 }
 
 p {
@@ -686,7 +690,7 @@ section.newsletter .form-group .submit {
 * ==========================================================
 */
 footer.main-footer {
-  padding: 150px 0 0;
+  padding: 0 0;
   overflow-x: hidden;
 }
 

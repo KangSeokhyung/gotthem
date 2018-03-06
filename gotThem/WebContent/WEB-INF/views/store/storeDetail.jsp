@@ -2,42 +2,28 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
-<html>
+<html lang="ko">
   <head>
     <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Landy: Bootstrap 4 landing page template by Bootstrapious.com</title>
-    <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="robots" content="all,follow">
-    <!-- Bootstrap CSS-->
-    <link rel="stylesheet" href="resources/landy/vendor/bootstrap/css/bootstrap.min.css">
-    <!-- Font Awesome CSS-->
-    <link rel="stylesheet" href="resources/landy/vendor/font-awesome/css/font-awesome.min.css">
-    <!-- Custom Font Icons CSS-->
-    <link rel="stylesheet" href="resources/landy/css/landy-iconfont.css">
-    <!-- Google fonts - Open Sans-->
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700,800">
-    <!-- owl carousel-->
-    <link rel="stylesheet" href="resources/landy/vendor/owl.carousel/assets/owl.carousel.css">
-    <link rel="stylesheet" href="resources/landy/vendor/owl.carousel/assets/owl.theme.default.css">
-    <!-- theme stylesheet-->
-    <link rel="stylesheet" href="resources/landy/css/style.default.css" id="theme-stylesheet">
-    <!-- Custom stylesheet - for your changes-->
-    <link rel="stylesheet" href="resources/landy/css/custom.css">
-    <!-- Favicon-->
-    <link rel="shortcut icon" href="favicon.png">
-    <!-- Tweaks for older IEs--><!--[if lt IE 9]>
-        <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-        <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
+    <title>편의점 재고 검색 GOT THEM!</title>
+    <meta name="description" content="Free Bootstrap Theme by uicookies.com">
+    <meta name="keywords" content="free website templates, free bootstrap themes, free template, free bootstrap, free website template">
+    
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400" rel="stylesheet">
+    <link rel="stylesheet" href="resources/mainTemplate/css/styles-merged.css">
+    <link rel="stylesheet" href="resources/mainTemplate/css/style.min.css">
+    <link rel="stylesheet" href="resources/mainTemplate/css/custom.css">
+
+    <!--[if lt IE 9]>
+      <script src="resources/mainTemplate/js/vendor/html5shiv.min.js"></script>
+      <script src="resources/mainTemplate/js/vendor/respond.min.js"></script>
+    <![endif]-->
 <style type="text/css">
-	section { background-size : cover; }
-	#contentbody { width: 90%; margin: auto; }
-	#tabStyle a { color: #053741; }
-	#tabStyle a:hover { color: #5CC8DD; font-weight: bold; }
-</style>
-<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+#contentbody { width: 90%; margin: auto; }
+#tabStyle a { color: #053741; }
+#tabStyle a:hover { color: #5CC8DD; font-weight: bold; }
+</style>  
 <script type="text/javascript">
 	$(document).on('click', '#upCount', function(){
 		var pro_stock = $(this).prev().val() * 1 + 1;
@@ -158,132 +144,149 @@
 </script>
 </head>
 <body>
-	<header>
-	<%@include file="../../../nav.jsp" %>
-	</header>
-	
+  
+<div class="probootstrap-loader"></div>
+<!-- START: header -->
+<header>
+<%@include file="../../../nav.jsp" %>
+</header>
+<!-- END: header -->
+
 	<!-- 값 보낼때 사용할 Mem_no -->
-    <input type="hidden" id="mem_no" name="mem_no" value="${mem_no}">
-	
-	<section class="section section-light-blue">
-		<div class="container">
-			<div class="row">
-				<div class="col-sm-12">
-					<h1>${storeInfo.sto_name }</h1>
-					<hr>
-					<h2>
-						<b>소개글</b>
-					</h2>
-					<p>소개글 값 테스트 : ${storeInfo.sto_comment }</p>
-					<br>
-					<h2>
-						<b>아래쪽에 이미지가 출력된다.</b>
-					</h2>
-					<p>이미지 값 테스트 : ${storeInfo.sto_img }</p>
-				</div>
-			</div>
+	<input type="hidden" id="mem_no" name="mem_no" value="${mem_no}">
+
+<section class="probootstrap-section probootstrap-section-lighter">
+  <div class="container">
+    <div class="row">
+    	<div class="col-sm-12">
+			<h1>${storeInfo.sto_name }</h1>
+			<hr>
+			<h2>
+				<b>소개글</b>
+			</h2>
+			<p>소개글 값 테스트 : ${storeInfo.sto_comment }</p>
+			<br>
+			<h2>
+				<b>아래쪽에 이미지가 출력된다.</b>
+			</h2>
+			<p>이미지 값 테스트 : ${storeInfo.sto_img }</p>
 		</div>
-		
-		<div class="container">
-		<hr>
-           <ul id="tabStyle" class="nav nav-tabs" data-tabs="tabs">
-                <li class="active"><a href="#lunchbox" class="nav-link" data-toggle="tab">도시락</a></li>
-                <li class="nav-item"><a href="#kimbob" class="nav-link" data-toggle="tab">김밥</a></li>
-                <li class="nav-item"><a href="#sandwich" class="nav-link" data-toggle="tab">샌드위치</a></li>
-                <li class="nav-item"><a href="#etc" class="nav-link" data-toggle="tab">기타</a></li>
-            </ul>
-            <div class="tab-content text-center">
-		        <div class="tab-pane active" id="lunchbox"></div>
-		        <div class="tab-pane" id="kimbob"></div>
-		        <div class="tab-pane" id="sandwich"></div>
-		     	<div class="tab-pane" id="etc"></div>
-            </div>
-	    </div>
-    </section>
-    
-    <script type="text/javascript">
-		$.get("productList.gt", { "category" : "도시락", "mem_no" : "${mem_no}" }, function(data) {
-			$('#lunchbox').html(data);
-		});
-		
-		$.get("productList.gt", { "category" : "김밥", "mem_no" : "${mem_no}" }, function(data) {
-			$('#kimbob').html(data);
-		});
-		
-		$.get("productList.gt", { "category" : "샌드위치", "mem_no" : "${mem_no}" }, function(data) {
-			$('#sandwich').html(data);
-		});
-		
-		$.get("productList.gt", { "category" : "기타", "mem_no" : "${mem_no}" }, function(data) {
-			$('#etc').html(data);
-		});
-	</script>
-    
-	<footer class="main-footer">
-      <div class="container">
-        <div class="row">
-          <div class="col-lg-3 col-md-6"><a href="#" class="brand">Landy</a>
-            <ul class="contact-info list-unstyled">
-              <li><a href="mailto:sales@landy.com">Sales@Landy.com</a></li>
-              <li><a href="tel:123456789">+00 123 456 789</a></li>
-            </ul>
-            <ul class="social-icons list-inline">
-              <li class="list-inline-item"><a href="#" target="_blank" title="Facebook"><i class="fa fa-facebook"></i></a></li>
-              <li class="list-inline-item"><a href="#" target="_blank" title="Twitter"><i class="fa fa-twitter"></i></a></li>
-              <li class="list-inline-item"><a href="#" target="_blank" title="Instagram"><i class="fa fa-instagram"></i></a></li>
-              <li class="list-inline-item"><a href="#" target="_blank" title="Pinterest"><i class="fa fa-pinterest"></i></a></li>
-            </ul>
-          </div>
-          <div class="col-lg-3 col-md-6">
-            <h5>Selected Cases</h5>
-            <ul class="links list-unstyled">
-              <li> <a href="#">Guess Conntect</a></li>
-              <li> <a href="#">Postly</a></li>
-              <li> <a href="#">Iris Vor Arnim</a></li>
-              <li> <a href="#">Yapital</a></li>
-            </ul>
-          </div>
-          <div class="col-lg-3 col-md-6">
-            <h5>Selected Cases</h5>
-            <ul class="links list-unstyled">
-              <li> <a href="#">Guess Conntect</a></li>
-              <li> <a href="#">Postly</a></li>
-              <li> <a href="#">Iris Vor Arnim</a></li>
-              <li> <a href="#">Yapital</a></li>
+    </div>
+  </div>
+</section>
+
+<section class="probootstrap-section">
+  <div class="container">
+    <div class="row probootstrap-gutter10">
+      <div class="col-sm-12">
+		<ul id="tabStyle" class="nav nav-tabs" data-tabs="tabs">
+			<li class="active"><a href="#lunchbox" class="nav-link" data-toggle="tab">도시락</a></li>
+			<li class="nav-item"><a href="#kimbob" class="nav-link" data-toggle="tab">김밥</a></li>
+			<li class="nav-item"><a href="#sandwich" class="nav-link" data-toggle="tab">샌드위치</a></li>
+			<li class="nav-item"><a href="#etc" class="nav-link" data-toggle="tab">기타</a></li>
+        </ul>
+        <div class="tab-content text-center">
+			<div class="tab-pane active" id="lunchbox"></div>
+			<div class="tab-pane" id="kimbob"></div>
+			<div class="tab-pane" id="sandwich"></div>
+			<div class="tab-pane" id="etc"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script type="text/javascript">
+	$.get("productList.gt", { "category" : "도시락", "mem_no" : "${mem_no}" }, function(data) {
+		$('#lunchbox').html(data);
+	});
+	
+	$.get("productList.gt", { "category" : "김밥", "mem_no" : "${mem_no}" }, function(data) {
+		$('#kimbob').html(data);
+	});
+	
+	$.get("productList.gt", { "category" : "샌드위치", "mem_no" : "${mem_no}" }, function(data) {
+		$('#sandwich').html(data);
+	});
+	
+	$.get("productList.gt", { "category" : "기타", "mem_no" : "${mem_no}" }, function(data) {
+		$('#etc').html(data);
+	});
+</script>
+
+  <footer class="probootstrap-footer probootstrap-bg" style="background-image: url(img/slider_3.jpg)">
+    <div class="container">
+      <div class="row mb60">
+        <div class="col-md-3">
+          <div class="probootstrap-footer-widget">
+            <h4 class="heading">About Haus.</h4>
+            <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. </p>
+            <p><a href="#">Read more...</a></p>
+          </div> 
+        </div>
+        <div class="col-md-3">
+          <div class="probootstrap-footer-widget probootstrap-link-wrap">
+            <h4 class="heading">Quick Links</h4>
+            <ul class="stack-link">
+              <li><a href="#">Property Listing</a></li>
+              <li><a href="#">Rent Properties</a></li>
+              <li><a href="#">Sell Properties</a></li>
+              <li><a href="#">Agents</a></li>
+              <li><a href="#">Testimonial</a></li>
             </ul>
           </div>
-          <div class="col-lg-3 col-md-6">
-            <h5>Selected Cases</h5>
-            <ul class="links list-unstyled">
-              <li> <a href="#">Guess Conntect</a></li>
-              <li> <a href="#">Postly</a></li>
-              <li> <a href="#">Iris Vor Arnim</a></li>
-              <li> <a href="#">Yapital</a></li>
+        </div>
+        <div class="col-md-3">
+          <div class="probootstrap-footer-widget">
+            <h4 class="heading">Popular Cities</h4>
+            <ul class="stack-link">
+              <li><a href="#">New York <small>(320 properties)</small></a></li>
+              <li><a href="#">San Francisco <small>(294 properties)</small></a></li>
+              <li><a href="#">Brooklyn <small>(300 properties)</small></a></li>
+              <li><a href="#">Chicago <small>(268 properties)</small></a></li>
+              <li><a href="#">Los Angeles <small>(342 properties)</small></a></li>
+            </ul>
+          </div> 
+        </div>
+        <div class="col-md-3">
+          <div class="probootstrap-footer-widget probootstrap-link-wrap">
+            <h4 class="heading">Subscribe</h4>
+            <p>Far far away behind the word mountains far from.</p>
+            <form action="#">
+              <div class="form-field">
+                <input type="text" class="form-control" placeholder="Enter your email">
+                <button class="btn btn-subscribe">Send</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+      <div class="row copyright">
+        <div class="col-md-6">
+          <div class="probootstrap-footer-widget">
+            <p>&copy; 2017 <a href="https://uicookies.com/">uiCookies:Haus</a>. Designed by <a href="https://uicookies.com/">uicookies.com</a> <br> Demo Photos from <a href="https://pixabay.com/">Pixabay</a> &amp; <a href="https://unsplash.com/">Unsplash</a></p>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="probootstrap-footer-widget right">
+            <ul class="probootstrap-footer-social">
+              <li><a href="#"><i class="icon-twitter"></i></a></li>
+              <li><a href="#"><i class="icon-facebook"></i></a></li>
+              <li><a href="#"><i class="icon-instagram2"></i></a></li>
             </ul>
           </div>
         </div>
       </div>
-      <div class="copyrights">
-        <div class="container">
-          <div class="row">
-            <div class="col-md-7">
-              <p>&copy; 2018 gotThem.co.kr 스탑없으. All rights reserved.                        </p>
-            </div>
-            <div class="col-md-5 text-right">
-              <p>Template By <a href="https://bootstrapious.com/" class="external">Bootstrapious</a>  </p>
-              <!-- Please do not remove the backlink to Bootstrapious unless you support us at http://bootstrapious.com/donate. It is part of the license conditions. Thanks for understanding :) -->
-            </div>
-          </div>
-        </div>
-      </div>
-    </footer>
-    
-    <!-- Javascript files-->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"> </script>
-    <script src="resources/landy/vendor/bootstrap/js/bootstrap.min.js"></script>
-    <script src="resources/landy/vendor/jquery.cookie/jquery.cookie.js"> </script>
-    <script src="resources/landy/vendor/owl.carousel/owl.carousel.min.js"></script>
-    <script src="resources/landy/js/front.js"></script>
-    
+    </div>
+  </footer>
+
+  <div class="gototop js-top">
+    <a href="#" class="js-gotop"><i class="icon-chevron-thin-up"></i></a>
+  </div>
+
+  <script src="resources/mainTemplate/js/scripts.min.js"></script>
+  <script src="resources/mainTemplate/js/main.min.js"></script>
+  <script src="resources/mainTemplate/js/custom.js"></script>
+
   </body>
 </html>
