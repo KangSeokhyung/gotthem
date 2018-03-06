@@ -8,7 +8,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-	     <header role="banner" class="probootstrap-header">
+<header role="banner" class="probootstrap-header">
     <div class="container">
         <a href="/gotThem" class="probootstrap-logo">GOT THEM<span>.</span></a>
         

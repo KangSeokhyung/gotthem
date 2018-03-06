@@ -71,7 +71,6 @@ public class StoreController {
 	@RequestMapping(value = "/login.st", method = RequestMethod.GET)
 	public String stlogin(HttpServletRequest request, HttpSession session) throws Exception{
 		System.out.println("로그인 페이지 진입했다.");
-		
 		return "store/stLogin";
 	}
 	
@@ -86,6 +85,13 @@ public class StoreController {
 	public String mystore(HttpServletRequest request, HttpSession session) throws Exception{
 		System.out.println("마이스토어 진입");
 		return "store/mystore";
+	}
+	
+	@RequestMapping(value = "loginfail.st", method= RequestMethod.GET)
+	public String lgfail(HttpServletRequest request) {
+		String id = (String)request.getParameter("sto_id");
+		System.out.println(id);
+		return "store/fail2";
 	}
 
 }

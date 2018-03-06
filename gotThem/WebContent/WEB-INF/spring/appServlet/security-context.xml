@@ -27,7 +27,7 @@
 		<form-login login-page="/login.st" 
 			default-target-url="/storeIndex.st"
 			login-processing-url="/login.st"
-			authentication-failure-url="/loginfail.gt" 
+			authentication-failure-url="/loginfail.st" 
 			username-parameter="sto_id"
 			password-parameter="sto_pw" />
 		<logout logout-url="/logout.st" logout-success-url="/storeIndex.st" 

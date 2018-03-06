@@ -28,4 +28,6 @@ public interface MemberService {
 	public List<MemberBean> stlist();
 
 	public void memModi(MemberBean memberBean);
+	
+	public int changePasswordReal(MemberBean memberBean);
 }

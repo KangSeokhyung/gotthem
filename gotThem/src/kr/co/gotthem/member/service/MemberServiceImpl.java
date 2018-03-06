@@ -74,4 +74,10 @@ public class MemberServiceImpl implements MemberService {
 		return memberDao.stlist();
 	}
 	
+	@Override
+	public int changePasswordReal(MemberBean memberBean){
+		int result = memberDao.changePasswordReal(memberBean);
+		return result;
+	}
+	
 }

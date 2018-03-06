@@ -80,5 +80,11 @@ public class MemberDaoImpl implements MemberDao {
 		System.out.println("점포 리스트 뽑아옴");
 		return sqlSessionTemplate.selectList("stlist");
 	}
+	
+	@Override
+	public int changePasswordReal(MemberBean memberBean){
+		int result = sqlSessionTemplate.update("changePasswordReal", memberBean);
+		return result;
+	}
 
 }

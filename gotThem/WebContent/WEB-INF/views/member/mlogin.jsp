@@ -19,12 +19,55 @@
       <script src="resources/mainTemplate/js/vendor/html5shiv.min.js"></script>
       <script src="resources/mainTemplate/js/vendor/respond.min.js"></script>
     <![endif]-->
+    <style>
+    header{
+    padding-bottom:80px;
+    }
+    </style>
   </head>
-  <body>
-	<header class="header">
-		<%@include file="../../../nav.jsp" %>
-	</header>
-<section class="probootstrap-slider flexslider2 page-inner">
+<body>
+<!-- START: header -->
+   <header role="banner" class="probootstrap-header">
+    <div class="container">
+        <a href="/gotThem" class="probootstrap-logo">GOT THEM<span>.</span></a>
+        
+        <a href="#" class="probootstrap-burger-menu visible-xs" ><i>Menu</i></a>
+        <div class="mobile-menu-overlay"></div>
+
+        <nav role="navigation" class="probootstrap-nav hidden-xs">
+          <ul class="probootstrap-main-nav">
+            <li><a href="#">GOTTHEM</a></li>
+            <li><a href="#">NOTICE</a></li>
+            <li><a href="#">EVENT</a></li>
+            <c:set var="sessionCheck"
+					value="${sessionScope.SPRING_SECURITY_CONTEXT}" />
+				<c:choose>
+					<c:when test="${sessionCheck eq null}">
+            <li><a href="join.gt">SIGN UP</a></li>
+            <li class="active"><a href="login.gt">LOGIN</a></li>
+            		</c:when>
+					<c:otherwise>
+			<li><a href="mypage.gt">MY PAGE</a></li>
+            <li><a href="logout.gt">LOGOUT</a></li>
+				</c:otherwise>
+				</c:choose>
+          </ul>
+          <div class="extra-text visible-xs"> 
+            <a href="#" class="probootstrap-burger-menu"><i>Menu</i></a>
+            <h5>Address</h5>
+            <p>198 West 21th Street, Suite 721 New York NY 10016</p>
+            <h5>Connect</h5>
+            <ul class="social-buttons">
+              <li><a href="#"><i class="icon-twitter"></i></a></li>
+              <li><a href="#"><i class="icon-facebook2"></i></a></li>
+              <li><a href="#"><i class="icon-instagram2"></i></a></li>
+            </ul>
+          </div>
+        </nav>
+    </div>
+  </header>
+  <!-- END: header -->
+  <section class="probootstrap-slider flexslider2 page-inner">
     <div class="overlay"></div>
     <div class="probootstrap-wrap-banner">
       <div class="container">
@@ -33,9 +76,9 @@
 
             <div class="page-title probootstrap-animate">
               <div class="probootstrap-breadcrumbs">
-                <a href="#">Home</a><span>LOGIN</span>
+                <a href="#">Home</a><span>Login</span>
               </div>
-              <h1>GOT THEM LOGIN</h1>
+              <h1>로그인</h1>
             </div>
 
           </div>
@@ -49,8 +92,7 @@
     </ul>
   </section>
   <!-- END: slider  -->
-  
-  <section class="probootstrap-section">
+	  <section class="probootstrap-section">
     <div class="container">
       <div class="row">
         <div class="col-md-3">
@@ -71,7 +113,7 @@
               <div class="col-sm-6">
                 <div class="form-group">
                   <label for="fname">ID</label>
-                  <input type="text" class="form-control" id="fname" name="m">
+                  <input type="text" class="form-control" id="fname" name="mem_id">
                 </div>
               </div>
               </div>
@@ -79,7 +121,7 @@
               <div class="col-md-6">
                 <div class="form-group">
                   <label for="lname">PASSWORD</label>
-                  <input type="password" class="form-control" id="lname" name="lname">
+                  <input type="password" class="form-control" id="lname" name="mem_pw">
                 </div>
               </div>
             </div>
@@ -98,6 +140,12 @@
       </div>
     </div>
   </section>  
-	
+
+</body>
+    <!-- Javascript files-->
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+     <script src="resources/mainTemplate/js/scripts.min.js"></script>
+  	<script src="resources/mainTemplate/js/main.min.js"></script>
+  	<script src="resources/mainTemplate/js/custom.js"></script>
 </body>
 </html>

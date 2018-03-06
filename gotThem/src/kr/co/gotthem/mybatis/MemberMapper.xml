@@ -56,5 +56,9 @@
 	<update id="memberDelete" parameterType="kr.co.gotthem.member.bean.MemberBean">
 		update member set enabled = 0 where mem_id=#{mem_id} and mem_pw=#{mem_pw}
 	</update>
+	
+	<update id="changePasswordReal" parameterType="kr.co.gotthem.member.bean.MemberBean">
+		update member set mem_pw = #{mem_pw} where mem_id=#{mem_id} 
+	</update>
 
 </mapper>

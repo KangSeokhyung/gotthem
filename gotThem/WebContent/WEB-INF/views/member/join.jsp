@@ -26,9 +26,72 @@
     </style>
   </head>
 <body>
-	<header class="header">
-		<%@include file="../../../nav.jsp" %>
-	</header>
+<!-- START: header -->
+   <header role="banner" class="probootstrap-header">
+    <div class="container">
+        <a href="/gotThem" class="probootstrap-logo">GOT THEM<span>.</span></a>
+        
+        <a href="#" class="probootstrap-burger-menu visible-xs" ><i>Menu</i></a>
+        <div class="mobile-menu-overlay"></div>
+
+        <nav role="navigation" class="probootstrap-nav hidden-xs">
+          <ul class="probootstrap-main-nav">
+            <li><a href="#">GOTTHEM</a></li>
+            <li><a href="#">NOTICE</a></li>
+            <li><a href="#">EVENT</a></li>
+            <c:set var="sessionCheck"
+					value="${sessionScope.SPRING_SECURITY_CONTEXT}" />
+				<c:choose>
+					<c:when test="${sessionCheck eq null}">
+            <li class="active"><a href="join.gt">SIGN UP</a></li>
+            <li><a href="login.gt">LOGIN</a></li>
+            		</c:when>
+					<c:otherwise>
+			<li><a href="mypage.gt">MY PAGE</a></li>
+            <li><a href="logout.gt">LOGOUT</a></li>
+				</c:otherwise>
+				</c:choose>
+          </ul>
+          <div class="extra-text visible-xs"> 
+            <a href="#" class="probootstrap-burger-menu"><i>Menu</i></a>
+            <h5>Address</h5>
+            <p>198 West 21th Street, Suite 721 New York NY 10016</p>
+            <h5>Connect</h5>
+            <ul class="social-buttons">
+              <li><a href="#"><i class="icon-twitter"></i></a></li>
+              <li><a href="#"><i class="icon-facebook2"></i></a></li>
+              <li><a href="#"><i class="icon-instagram2"></i></a></li>
+            </ul>
+          </div>
+        </nav>
+    </div>
+  </header>
+  <!-- END: header -->
+  <section class="probootstrap-slider flexslider2 page-inner">
+    <div class="overlay"></div>
+    <div class="probootstrap-wrap-banner">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-8">
+
+            <div class="page-title probootstrap-animate">
+              <div class="probootstrap-breadcrumbs">
+                <a href="#">Home</a><span>Sign up</span>
+              </div>
+              <h1>회원가입</h1>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+    <ul class="slides">
+      <li style="background-image: url(resources/mainTemplate/img/slider_1.jpg);"></li>
+      <li style="background-image: url(resources/mainTemplate/img/slider_4.jpg);"></li>
+      <li style="background-image: url(resources/mainTemplate/img/slider_2.jpg);"></li>
+    </ul>
+  </section>
+  <!-- END: slider  -->
   <section class="mbr-section form1 cid-qIWKYtQnJh" id="form1-r">
     <div class="container">
         <div class="row justify-content-center">
@@ -132,15 +195,12 @@
     </div>
 </section>
 
-
 </body>
     <!-- Javascript files-->
     <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"> </script>
-    <script src="resources/landy/vendor/bootstrap/js/bootstrap.min.js"></script>
-    <script src="resources/landy/vendor/jquery.cookie/jquery.cookie.js"> </script>
-    <script src="resources/landy/vendor/owl.carousel/owl.carousel.min.js"></script>
-    <script src="resources/landy/js/front.js"></script>
+     <script src="resources/mainTemplate/js/scripts.min.js"></script>
+  	<script src="resources/mainTemplate/js/main.min.js"></script>
+  	<script src="resources/mainTemplate/js/custom.js"></script>
 		<script>
 		function duplCheck(){ 
 		    var id = $('#mem_id').val();

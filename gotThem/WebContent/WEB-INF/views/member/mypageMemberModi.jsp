@@ -1,77 +1,93 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html>
+<html lang="ko">
 <head>
-<meta charset="UTF-8">
-
-</head>
-<body>
-	<!--Main content code to be written here -->
-	<br>
-	<div style="border-top: 5px solid gray; border-bottom: 5px solid gray;">
-			<form action="memberModi.gt" method="POST">
-				<div class="panel panel-info">
-					<div class="panel-heading">
-						<h3>회원 정보 수정</h3>
-					</div>
-					<div class="panel-body">
-						<div class="row">
-							<div class=" col-md-12 col-lg-12 " align="center">
-							<input type="hidden" name="mem_id" value="${memberInfo.mem_id}"/>
-								<table class="table table-user-information">
-									<tbody>
-										<tr>
-											<td><span>회원 아이디:</span></td>
-											<td>${memberInfo.mem_id}</td>
-										</tr>
-										<tr>
-											<td><span>이름:</span></td>
-											<td><input style="width: 100%" type="text"
-												name="mem_name" value="${memberInfo.mem_name}"></td>
-										</tr>
-										<tr>
-											<td><span>이메일:</span></td>
-											<td><input style="width: 100%" type="text"
-												name="mem_email" value="${memberInfo.mem_email}"></td>
-
-										</tr>
-										<tr>
-											<td><span>전화번호:</span></td>
-											<td><input style="width: 100%" type="text"
-												name="mem_phone" value="${memberInfo.mem_phone}"></td>
-										</tr>
-										<tr>
-											<td><span>가입일:</span></td>
-											<td>${memberInfo.mem_regdate}</td>
-										</tr>
-										<tr>
-											<td><span>우편번호:</span></td>
-											<td><input style="width: 100%" type="text"
-												name="mem_post" value="${mem_post}"></td>
-										</tr>
-										<tr>
-											<td><span>주소:</span></td>
-											<td><input style="width: 100%" type="text"
-												name="mem_address1" value="${mem_address1}"><br>
-												<input style="width: 100%" type="text" name="mem_address2"
-												value="${mem_address2}"></td>
-										</tr>
-
-									</tbody>
-								</table>
-							</div>
-						</div>
-					</div>
-					<div class="panel-footer"></div>
-						<button class="btn-success" type="submit">완료</button>
-						<button class="btn-danger" onclick="reset()">취소</button>
-						<button class="btn-blue" onclick="history.go(-1)">뒤로가기</button>
-				</div>
-			</form>
-
-		</div>
-
+	<meta charset="utf-8" />
+	<link rel="icon" type="resources/tableimage/png" href="resources/table/img/favicon.ico">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 	
+	<title>Fresh Bootstrap Table by Creative Tim</title>
+
+	<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport" />
+    
+    <link href="resources/table/css/bootstrap.css" rel="stylesheet" />
+    <link href="resources/table/css/fresh-bootstrap-table.css" rel="stylesheet" />
+     
+    <!--     Fonts and icons     -->
+    <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href='http://fonts.googleapis.com/css?family=Roboto:400,700,300' rel='stylesheet' type='text/css'>
+        
+</head>
+
+<body>
+	<div class="service">
+         <div class="alert alert-info alert-dismissable">
+          <a class="panel-close close" data-dismiss="alert">×</a> 
+          여기에서 회원정보 수정이 가능합니다..
+        </div>
+          <form action="passCheck.gt" method="post"class="probootstrap-form mb60">
+            <div class="row">
+              <div class="col-sm-6">
+                <div class="form-group">
+                  <label for="lname">아이디</label>
+                  <input type="text" class="form-control" id="lname" value="${memberInfo.mem_id }" disabled="disabled">
+                </div>
+              </div>
+              </div>
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label for="lname">이름</label>
+                  <input type="text" class="form-control" id="lname" value="${memberInfo.mem_name }">
+                </div>
+              </div>
+            </div>
+           <div class="row">
+            <div class="col-md-6">
+            <div class="form-group">
+              <label for="email">이메일</label>
+              <input type="email" class="form-control" id="email" name="new_pw2" value="${memberInfo.mem_email}">
+            </div>
+            </div>
+            </div>
+            <div class="row">
+            <div class="col-md-6">
+            <div class="form-group">
+              <label for="email">핸드폰번호</label>
+              <input type="text" class="form-control" id="email" name="new_pw2" value="${memberInfo.mem_phone}">
+            </div>
+            </div>
+            </div>
+             <div class="row">
+            <div class="col-md-6">
+            <div class="form-group">
+              <label for="email">우편번호</label>
+              <input type="text" class="form-control" id="email" name="new_pw2" value="${mem_post}">
+            </div>
+            </div>
+            </div>
+           <div class="row">
+            <div class="col-md-9">
+            <div class="form-group">
+              <label for="email">상세주소1</label>
+              <input type="text" class="form-control" id="email" name="new_pw2" value="${mem_address1}">
+            </div>
+            </div>
+            </div>
+            <div class="row">
+            <div class="col-md-9">
+            <div class="form-group">
+              <label for="email">상세주소2</label>
+              <input type="text" class="form-control" id="email" name="new_pw2" value="${mem_address2}">
+            </div>
+            </div>
+            </div>                   
+            <div class="form-group">
+              <input type="submit" class="btn btn-primary" id="submit" name="submit" value="변경">
+              <input type="reset" class="btn btn-primary" id="submit" value="취소">
+            </div>              
+          </form>
+        </div> 
 </body>
 </html>

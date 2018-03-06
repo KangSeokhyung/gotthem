@@ -1,6 +1,5 @@
 package kr.co.gotthem.member.controller;
 
-import java.io.PrintWriter;
 import java.util.StringTokenizer;
 
 import javax.servlet.http.HttpServletRequest;
@@ -14,7 +13,9 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import kr.co.gotthem.member.bean.MemberBean;
 import kr.co.gotthem.member.service.MemberService;
@@ -95,9 +96,13 @@ public class MemberController {
 		MemberBean memberInfo = memberService.memberInfo(mem_id);
 		String mem_address = memberInfo.getMem_address();
 		StringTokenizer  st = new StringTokenizer(mem_address,"/");
+		System.out.println(mem_address);
 		String post = st.nextToken();       
 		String address1 = st.nextToken();      
 		String address2 = st.nextToken();      
+		System.out.println(post);
+		System.out.println(address1);
+		System.out.println(address2);
 		mav.addObject("mem_post", post);
 		mav.addObject("mem_address1", address1);
 		mav.addObject("mem_address2", address2);
@@ -137,29 +142,39 @@ public class MemberController {
 	}
 	
 	@RequestMapping(value = "/passCheck.gt", method = RequestMethod.POST)
-	public ModelAndView passCheckPost(MemberBean bean, ModelAndView mav, PrintWriter out, HttpServletResponse response)
-			throws Exception {
-		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-		String mem_id = authentication.getName();
-		bean.setMem_id(mem_id);
-		String mem_pw = bean.getMem_pw();
-		System.out.println(mem_pw);
-		int result = memberService.passCheck(bean);
-
-		if(result == 0) {
-			response.setContentType("text/html; charset=UTF-8");
-			out = response.getWriter();
-			out.println("<Script>");
-			out.println("alert('비밀번호를 확인해 주세요');");
-			out.println("history.go(-1);");
-			out.println("</Script>");
-			return null;
+		public ModelAndView passCheckPost(@RequestParam("new_pw") String new_pw, @RequestParam("new_pw2") String new_pw2,
+				MemberBean bean, ModelAndView mav, HttpServletResponse response, RedirectAttributes ra) throws Exception {
+			Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+			String mem_id = authentication.getName();
+			System.out.println("비밀번호 변경하러 왔나~");
+			bean.setMem_id(mem_id);
+			System.out.println("빈 한번 보자 : " + bean);
+			int result = memberService.passCheck(bean);
+			System.out.println("비밀번호 체크 : " + result);
+			if(result != 1) {
+				System.out.println("현재비밀번호가 안 맞을때");
+				ra.addFlashAttribute("resultMsg", "fail1");
+				mav.setViewName("member/mypage");
+			}else if(!new_pw.equals(new_pw2)){
+				System.out.println("새로운 비밀번호와 비밀번호 확인이 안 맞을때");
+				ra.addFlashAttribute("resultMsg", "fail2");
+				mav.setViewName("member/mypage");
+			}else {
+				System.out.println("잘 들어왔네");
+				bean.setMem_pw(new_pw);
+				int changeResult = memberService.changePasswordReal(bean);
+				System.out.println("변경결과"+changeResult);
+				if(changeResult != 0) {
+					System.out.println("비밀번호 변경이 성공했네");
+					ra.addFlashAttribute("resultMsg", "success");
+					mav.setViewName("member/mypage");
+				}else {
+					ra.addFlashAttribute("resultMsg", "fail3");
+					mav.setViewName("member/mypage");
+				}
+			}
+			return mav;
 		}
-		System.out.println(result);
-		mav.addObject("passCheck", result);
-		mav.setViewName("member/changePW");
-		return mav;
-	}
 	
 	@RequestMapping(value = "/mypageMemberDel.gt", method = RequestMethod.GET)
 	public ModelAndView memberDel(ModelAndView mav) {

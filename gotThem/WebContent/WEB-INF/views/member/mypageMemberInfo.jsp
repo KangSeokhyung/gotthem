@@ -3,79 +3,37 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-<meta charset="utf-8">
-<meta name="viewport"
-	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<meta charset="utf-8" />
+	<link rel="icon" type="resources/tableimage/png" href="resources/table/img/favicon.ico">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+	
+	<title> </title>
 
-<title>Mypage</title>
-
-<!-- Bootstrap core CSS -->
-<link rel="stylesheet"
-	href="resources/mypages/vendor/bootstrap/css/bootstrap.min.css">
-
-<link rel="stylesheet"
-	href="resources/mypages/css/mypage.css">
-
+	<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport" />
+     <link rel="stylesheet" href="resources/memberinfo/css/style.css">
+     
+    <!--     Fonts and icons     -->
+    <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href='http://fonts.googleapis.com/css?family=Roboto:400,700,300' rel='stylesheet' type='text/css'>
+        
 </head>
-
 <body>
-
-	<!--Main content code to be written here -->
-	<br>
-	<div style="border-top: 5px solid gray; border-bottom: 5px solid gray;">
-		
-			<div class="panel panel-info">
-				<div class="panel-heading">
-					<h3 class="panel-title">회원 정보</h3>
-				</div>
-				<div class="panel-body">
-					<div class="row">
-						<div class=" col-md-12 col-lg-12 " align="center">
-							<table class="table table-user-information">
-								<tbody>
-									<tr>
-										<td>회원 아이디:</td>
-										<td>${memberInfo.mem_id}</td>
-									</tr>
-									<tr>
-										<td>이름:</td>
-										<td>${memberInfo.mem_name}</td>
-									</tr>
-									<tr>
-										<td>이메일:</td>
-										<td>${memberInfo.mem_email}</td>
-									</tr>
-									<tr>
-										<td>전화번호</td>
-										<td>${memberInfo.mem_phone}</td>
-									</tr>
-									<tr>
-										<td>가입일</td>
-										<td>${memberInfo.mem_regdate}</td>
-									</tr>
-									<tr>
-										<td>우편번호</td>
-										<td>${mem_post}</td>
-									</tr>
-									<tr>
-										<td>주소</td>
-										<td>${mem_address1}&nbsp;&nbsp;${mem_address2}
-										</td>
-
-									</tr>
-
-								</tbody>
-							</table>
-						</div>
-					</div>
-				</div>
-				<div class="panel-footer">
-					
-				</div>
-
-			</div>
-		</div>
-
-
+ 	<div class="service text-center">
+            <div class="icon"><i class="icon-magnifying-glass"></i></div>
+            <h1 class="heading">${memberInfo.mem_id }님의 회원정보</h1>
+             <h2 class="heading">아이디</h2>
+            <p>${memberInfo.mem_id }</p>
+            <h2 class="heading">이름</h2>
+            <p>${memberInfo.mem_name }</p>
+             <h2 class="heading">이메일</h2>
+            <p>${memberInfo.mem_email}</p>
+            <h2 class="heading">핸드폰 번호</h2>
+            <p>${memberInfo.mem_phone}</p>
+             <h2 class="heading">주소</h2>
+            <p>${memberInfo.mem_address}</p>
+             <h2 class="heading">가입일</h2>
+            <p>${memberInfo.mem_regdate}</p>
+          </div>      
+<body>
 </body>
 </html>
