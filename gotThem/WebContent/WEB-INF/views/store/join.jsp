@@ -95,7 +95,7 @@
                     이 양식을 작성하면 GOT THEM에 제휴 신청이 가능합니다.
                 </h3>
                 <h3 class="mbr-section-subtitle align-center mbr-light pb-3 mbr-fonts-style display-5">
-                   제휴 신청 뒤 승인까지 약 3~5영업일이 소요될 수 있습니다. 문의처 : 
+                   제휴 신청 뒤 승인까지 약 3~5영업일이 소요될 수 있습니다.<br> 문의처 : 02-1234-5678
                 </h3>
             </div>
         </div>
