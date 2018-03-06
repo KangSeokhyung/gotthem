@@ -99,8 +99,9 @@
 						<tr>
 							<td><span>분류</span></td><td>
 							<select  name="pro_category">
-							  <option value="김밥">김밥</option>
 							  <option value="도시락">도시락</option>
+							  <option value="김밥">김밥</option>
+							  <option value="삼각김밥">김밥</option>
 							  <option value="샌드위치">샌드위치</option>
 							  <option value="햄버거">햄버거</option>
 							  <option value="주먹밥">주먹밥</option>

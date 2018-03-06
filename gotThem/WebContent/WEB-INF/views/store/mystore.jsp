@@ -10,8 +10,7 @@
 <meta charset="utf-8">
 <link rel="stylesheet" type="text/css" href="resources/Login_v7/css/util.css">
 <link rel="stylesheet" type="text/css" href="resources/Login_v7/css/main.css">
-<link href="https://fonts.googleapis.com/css?family=Work+Sans"
-	rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Work+Sans" rel="stylesheet">
 <link rel="stylesheet" href="resources/indexTemplate/css/bootstrap.min.css">
 <link rel="stylesheet" href="resources/indexTemplate/css/open-iconic-bootstrap.min.css">
 <link rel="stylesheet" href="resources/indexTemplate/css/owl.carousel.min.css">
@@ -19,8 +18,12 @@
 <link rel="stylesheet" href="resources/indexTemplate/css/icomoon.css">
 <link rel="stylesheet" href="resources/indexTemplate/css/animate.css">
 <link rel="stylesheet" href="resources/indexTemplate/css/style.css">
-<link rel="stylesheet" href="resources/landy/css/style.default.css" id="theme-stylesheet">
-<link rel="stylesheet" href="resources/landy/css/custom.css">
+<link rel="stylesheet" href="resources/stlogin/tether/tether.min.css">
+<link rel="stylesheet" href="resources/stlogin/bootstrap/css/bootstrap.min.css">
+<link rel="stylesheet" href="resources/stlogin/bootstrap/css/bootstrap-grid.min.css">
+<link rel="stylesheet" href="resources/stlogin/bootstrap/css/bootstrap-reboot.min.css">
+<link rel="stylesheet" href="resources/stlogin/theme/css/style.css">
+<link rel="stylesheet" href="resources/stlogin/mobirise/css/mbr-additional.css" type="text/css">
 
 </head>
 <body>

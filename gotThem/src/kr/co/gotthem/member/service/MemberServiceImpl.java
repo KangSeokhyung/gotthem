@@ -25,7 +25,7 @@ public class MemberServiceImpl implements MemberService {
 	
 	@Override
 	public int stjoin(MemberBean memberBean) {
-		int reuslt = memberDao.join(memberBean);
+		int reuslt = memberDao.stjoin(memberBean);
 		return reuslt;
 	}
 
@@ -42,6 +42,16 @@ public class MemberServiceImpl implements MemberService {
 	@Override
 	public void memberModifi(MemberBean memberBean) {
 		memberDao.memberModifi(memberBean);
+	}
+	
+	@Override
+	public void storeModi(MemberBean memberBean) {
+		memberDao.storeModi(memberBean);
+	}
+	
+	@Override
+	public void memModi(MemberBean memberBean) {
+		memberDao.memModi(memberBean);
 	}
 	
 	@Override
@@ -63,4 +73,5 @@ public class MemberServiceImpl implements MemberService {
 	public List<MemberBean> stlist(){
 		return memberDao.stlist();
 	}
+	
 }
