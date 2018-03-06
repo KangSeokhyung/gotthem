@@ -24,6 +24,7 @@
 #tabStyle a { color: #053741; }
 #tabStyle a:hover { color: #5CC8DD; font-weight: bold; }
 </style>  
+<script src="https://code.jquery.com/jquery-3.2.1.js"></script>
 <script type="text/javascript">
 	$(document).on('click', '#upCount', function(){
 		var pro_stock = $(this).prev().val() * 1 + 1;

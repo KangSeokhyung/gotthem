@@ -23,6 +23,7 @@
 #releatedField { position: absolute; width: 63%; }
 #releatedField a { color: #66615b; }
 </style>  
+<script src="https://code.jquery.com/jquery-3.2.1.js"></script>
 <script type="text/javascript">
 	function relatedSearch() {
 		$("#releatedField").html("");
