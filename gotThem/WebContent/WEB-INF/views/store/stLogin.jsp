@@ -21,6 +21,11 @@
 <link rel="stylesheet" href="resources/indexTemplate/css/style.css">
 <link rel="stylesheet" type="text/css" href="resources/stlogin/bootstrap/css/bootstrap.min.css" />
 <link rel="stylesheet" type="text/css" href="resources/stlogin/css/styles.css" />
+<style>
+#loginbox{
+margin:auto;
+}
+</style>
 </head>
 <body>
 
@@ -81,7 +86,7 @@
 		</div>
 	</div>
 	
-			<div class="container">
+			<div id="loginbox" class="container">
 			<div class="container col-sm-6 center-block">
 			<img src="resources/mainTemplate/img/logo.png" alt="" width=300px; />
 			</div>

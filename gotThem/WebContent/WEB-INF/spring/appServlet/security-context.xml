@@ -31,8 +31,8 @@
 			authentication-failure-url="/loginfail.gt" 
 			username-parameter="sto_id"
 			password-parameter="sto_pw" />
-			<logout logout-url="/logout.st" logout-success-url="/storeIndex.st"
-			invalidate-session="true" />
+		<logout logout-url="/logout.st" logout-success-url="/storeIndex.st" 
+		 invalidate-session="true"/>
 		<csrf disabled="true" />
 	</http> 
 
