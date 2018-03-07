@@ -35,6 +35,12 @@ background-size : cover;
     <c:choose>
         <c:when test="${map.count == 0}">
             장바구니가 비어있습니다.
+           <div>
+            <input type="hidden" name="count" value="${map.count}">
+            <button type="button" value="상품목록2" id="btnList">상품목록</button> 
+            <input type="button" name="seDel" id="button_seDel" onclick="button_selDel();" value="선택삭제" />
+            <input type="button" value="선택결제" onclick="button_selOrder();">  
+           </div>
         </c:when>
         <c:otherwise>     
         <form name="form1" id="form1" method="post" action="./update.gt">
@@ -64,7 +70,7 @@ background-size : cover;
                      <input type="number" style="width: 40px" name="bas_prostock" value="${row.bas_prostock}" min="1">
                      <input type="hidden" name="bas_procode" value="${row.bas_procode}">
                      <!-- <button type="button" id="button_update" onclick="modify();" >수정</button> -->
-                   <button type="submit" id="btnUpdate" >수정</button></td>
+                   <button type="submit" id="btnUpdate" >수정</button>
                   </td>
                   <td style="width: 80px" align="right">
                        <fmt:formatNumber pattern="###,###,###" value="${row.money}"/>
@@ -84,12 +90,12 @@ background-size : cover;
                         <%-- 배송료 : ${map.fee}<br>전체 주문금액  :<fmt:formatNumber pattern="###,###,###" value="${map.allSum}"/> --%>
                     </td>
                 </tr>
-            </table>
+            </table>                    
+        </form>
             <input type="hidden" name="count" value="${map.count}">
             <button type="button" value="상품목록2" id="btnList">상품목록</button> 
             <input type="button" name="seDel" id="button_seDel" onclick="button_selDel();" value="선택삭제" />
-            <input type="button" value="선택결제" onclick="button_selOrder();">           
-        </form>
+            <input type="button" value="선택결제" onclick="button_selOrder();">  
       </c:otherwise>
     </c:choose>
 </div>    
@@ -149,8 +155,13 @@ function button_order(bas_no,bas_proname,bas_procode,money,bas_prostock){
 	        $('input[name*="checkRow"]').prop("checked", false);//체크박스 전체 해지 
     	}
 	});	
+		
 function button_selDel(){  //장바구니 선택 삭제
-   var checkArr = [];
+	   if( $(":checkbox[name='checkRow']:checked").length==1 ){
+		    alert("삭제할 항목을 2이상 체크해주세요.");
+		    return;
+		  } 
+	var checkArr = [];
    $("input[name='checkRow']:checked").each(function(i) {
      checkArr.push($(this).val());
 	   alert("배열은 " + checkArr);  }); 
@@ -171,7 +182,11 @@ function button_selDel(){  //장바구니 선택 삭제
 	} 			
  }  
 function button_selOrder(){  //장바구니 선택 결제
-	   var checkOrder = [];
+	  if( $(":checkbox[name='checkRow']:checked").length==1 ){
+		    alert("결제할 항목을 2이상 체크해주세요.");
+		    return;
+		  }   
+	var checkOrder = [];
 	   $("input[name='checkRow']:checked").each(function(i) {
 	     checkOrder.push($(this).val());
 	     }); 
@@ -184,7 +199,7 @@ function button_selOrder(){  //장바구니 선택 결제
 				data:{arrOrder:checkOrder
 					},
 				success:function(result){
-					location.href="./list.gt";
+					location.href="./orderList.gt";
 				}	
 				});	    	
 		}else{   //취소.
