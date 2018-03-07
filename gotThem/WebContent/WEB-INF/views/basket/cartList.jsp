@@ -119,7 +119,7 @@
                       ${row.bas_proprice},${row.bas_prostock},${row.bas_procode},${row.money},${row.bas_proimg}, ${row.bas_procomment}" /> 
                   </td>
                   <td>
-                       ${row.bas_proimg}
+                       <img src="/img/${row.bas_proimg}" style="width:50px; height:50px"/>
                   </td>
                   <td>
                        ${row.bas_proname}
