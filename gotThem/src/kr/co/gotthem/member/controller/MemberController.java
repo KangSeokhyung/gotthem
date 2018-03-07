@@ -36,7 +36,6 @@ public class MemberController {
 	private MailService mailService;
 	private ProductService productService;
 	
-	
 	public void setProductService(ProductService productService) {
 		this.productService = productService;
 	}
