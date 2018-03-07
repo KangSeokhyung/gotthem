@@ -103,7 +103,8 @@
 						
 						<tr>
 							<td>${dto.pro_code }</td>
-							<td><img src="/img/${dto.pro_img }" style="width:50px; height:50px"/></td>
+							<td><img src="/img/${dto.pro_img }" style="width:50px; height:50px"
+							onclick="location='detail.st?code=${dto.pro_code }'"/></td>
 							<td><a href="detail.st?code=${dto.pro_code }">${dto.pro_name }</a></td>
 							<td>${dto.pro_category }</td>
 							<td>${dto.pro_price }</td>

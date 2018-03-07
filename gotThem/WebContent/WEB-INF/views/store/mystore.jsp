@@ -117,7 +117,7 @@
 							<td>상세주소</td><td>${mem_address2 }</td>
 						</tr>
 						<tr>
-							<td>사진</td><td><img src="<%=request.getContextPath() %>/upload/${info.sto_img }" name="p_img"></td>
+							<td>사진</td><td><img src="/img/${info.sto_img }" style="width:250px; height:250px"/></td>
 						</tr>
 						<tr>
 							<td>매장소개</td><td>${info.sto_comment }</td>
