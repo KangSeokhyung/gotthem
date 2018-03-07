@@ -50,38 +50,45 @@ background-size : cover;
                </tr>
              <c:forEach var="row" items="${map.list}" varStatus="i">
                <tr>                
-                  <td><input type="checkbox" name="checkRow" class="chk" value="${row.bas_no}"/> 
+                  <td>
+                      <input type="checkbox" name="checkRow" class="chk"  value="${row.bas_no},${row.bas_proname},
+                      ${row.bas_proprice},${row.bas_prostock},${row.bas_procode},${row.money}" /> 
                   </td>
-                  <td> ${row.bas_proname}
+                  <td>
+                       ${row.bas_proname}
                   </td>
                   <td style="width: 80px" align="right">
-                       <fmt:formatNumber pattern="###,###,###" value="${row.bas_proprice}"/></td>
+                       <fmt:formatNumber pattern="###,###,###" value="${row.bas_proprice}"/>
+                  </td>
                   <td>
                      <input type="number" style="width: 40px" name="bas_prostock" value="${row.bas_prostock}" min="1">
                      <input type="hidden" name="bas_procode" value="${row.bas_procode}">
-                     <!-- <button type="button" id="btnUpdate" onclick="modify();" >수정</button> -->
-                     <button type="submit" id="btnUpdate" >수정</button></td>
+                     <!-- <button type="button" id="button_update" onclick="modify();" >수정</button> -->
+                   <button type="submit" id="btnUpdate" >수정</button></td>
+                  </td>
                   <td style="width: 80px" align="right">
                        <fmt:formatNumber pattern="###,###,###" value="${row.money}"/>
                   </td>
                   <td>                    
-                       <input type="button" value="삭제" onclick="button_basDel(${row.bas_no});"></td>
+                       <input type="button" value="삭제" onclick="button_basDel(${row.bas_no});">
+                  </td>
                   <td>
                        <input type="hidden" name="money" value="${row.money}">
-                       <input type="hidden" name="bas_proname" value="${row.bas_proname}">
-                       <!-- <input type="submit" value="단건결제"> -->
-                       <input type="button" value="단건결제" onclick="button_order('${row.bas_no}','${row.bas_proname}','${row.bas_procode}','${row.money}','${row.bas_prostock}');">
-                   </td>
+                       <input type="hidden" name="bas_no" value="${row.bas_no}">
+                       <input type="button" value="단건결제" onclick="button_order('${row.bas_no}','${row.bas_proname}','${row.bas_procode}','${row.money}','${row.bas_prostock}');">  
+                  </td>
                 </tr>
                </c:forEach>
                 <tr>
                     <td colspan="5" align="right"> 장바구니 금액 합계 : <fmt:formatNumber pattern="###,###,###" value="${map.sumMoney}"/><br>
                         <%-- 배송료 : ${map.fee}<br>전체 주문금액  :<fmt:formatNumber pattern="###,###,###" value="${map.allSum}"/> --%>
-                    </td></tr>
+                    </td>
+                </tr>
             </table>
             <input type="hidden" name="count" value="${map.count}">
-            <button type="button" value="상품목록2" id="btnList">상품목록</button>         
+            <button type="button" value="상품목록2" id="btnList">상품목록</button> 
             <input type="button" name="seDel" id="button_seDel" onclick="button_selDel();" value="선택삭제" />
+            <input type="button" value="선택결제" onclick="button_selOrder();">           
         </form>
       </c:otherwise>
     </c:choose>
@@ -116,32 +123,24 @@ background-size : cover;
             location.href="ord.gt?bas_no="+bas_no;
         }); */
     });
-function button_basDel(bas_no){
+function button_basDel(bas_no){  //직접 삭제
     	alert(bas_no);
-   if (confirm("정말 삭제하시겠습니까??")){    //확인
+   if (confirm("정말 삭제하시겠습니까??")){    
      location.href="delete.gt?bas_no="+bas_no;
    }else{   //취소.
        return;
       }
    }
-   
 function button_order(bas_no,bas_proname,bas_procode,money,bas_prostock){
    	alert(bas_no);
-  if (confirm("결제 하시겠습니까??")){    //확인
+  if (confirm("결제 하시겠습니까??")){   // 단건 결제
     location.href="insertOrder.gt?bas_no="+bas_no+"&bas_proname="+bas_proname+
     		"&bas_procode="+bas_procode+"&money="+money+"&bas_prostock="+bas_prostock;
   }else{   //취소.
       return;
      }
-  } 
-
-<%-- function modify() {
-	   var submitTest = document.form1;
-	   submitTest.action="./update.gt";
-	   submitTest.method="post";
-	   submitTest.submit();
-   }  --%>    
-
+  }  
+  
 	$("#th_checkAll").click(function(){		//체크박스 전체 선택
 		var chk= $(this).is(":checked");
 		if(chk){
@@ -149,13 +148,12 @@ function button_order(bas_no,bas_proname,bas_procode,money,bas_prostock){
 		} else{
 	        $('input[name*="checkRow"]').prop("checked", false);//체크박스 전체 해지 
     	}
-	});
-	
+	});	
 function button_selDel(){  //장바구니 선택 삭제
    var checkArr = [];
    $("input[name='checkRow']:checked").each(function(i) {
      checkArr.push($(this).val());
-	   alert("배열" + checkArr);  }); 
+	   alert("배열은 " + checkArr);  }); 
 	if (confirm("정말 삭제하시겠습니까??")){
 		alert("배열" + checkArr);
 		$.ajax({				
@@ -172,5 +170,32 @@ function button_selDel(){  //장바구니 선택 삭제
 	      return;
 	} 			
  }  
+function button_selOrder(){  //장바구니 선택 결제
+	   var checkOrder = [];
+	   $("input[name='checkRow']:checked").each(function(i) {
+	     checkOrder.push($(this).val());
+	     }); 
+		if (confirm("모두 결제 하시겠습니까??")){
+			alert("배열" + checkOrder);
+			$.ajax({				
+				url:"selectOrder.gt",
+				type:"post",
+				dataType: "text",
+				data:{arrOrder:checkOrder
+					},
+				success:function(result){
+					location.href="./list.gt";
+				}	
+				});	    	
+		}else{   //취소.
+		      return;
+		} 			
+	 }
+/* function modify() {   // 수량 수정
+	   var submitTest = document.form1;
+	   submitTest.action="./update.gt";
+	   submitTest.method="post";
+	   submitTest.submit();
+   }  */ 	 
 </script>	
 </html>

@@ -24,9 +24,11 @@ import kr.co.gotthem.basket.bean.BasketBean;
 import kr.co.gotthem.basket.service.BasketService;
 import kr.co.gotthem.member.bean.MemberBean;
 import kr.co.gotthem.member.service.MemberService;
+import kr.co.gotthem.order.bean.OrderpayBean;
 import kr.co.gotthem.order.service.OrderService;
 import kr.co.gotthem.product.bean.ProductBean;
 import kr.co.gotthem.product.service.ProductService;
+import oracle.net.aso.b;
 
 @Controller
 public class BasketController {
@@ -51,8 +53,8 @@ public class BasketController {
 	public void setMemberService(MemberService memberService) {
 		this.memberService = memberService;
 	}
-	// product 1. 상품 전체 목록
-	 
+	
+	// product 1. 상품 전체 목록	 
     @RequestMapping("/productlist.gt")
     public ModelAndView list(ModelAndView mav) {     
     	Map<String, Object> map = new HashMap<String, Object>();
@@ -97,7 +99,7 @@ public class BasketController {
         
         /*count == 0 ? basketService.updateBasket(basketBean) : basketService.insertBasket(basketBean);*/
         if(count == 0){
-            // 없으면 insert
+         // 없으면 insert
         	 basketBean.setBas_proname(basketBean.getBas_proname());
         	 basketBean.setBas_proprice(basketBean.getBas_proprice());
         	 basketBean.setBas_procategory(basketBean.getBas_procategory());
@@ -107,7 +109,7 @@ public class BasketController {
         	 
         	System.out.println("0==insert 실행" );
         } else {
-            // 있으면 update 동일 상품 존재시 기존 수량에 새로운 수량 더하기
+         // 있으면 update 동일 상품 존재시 기존 수량에 새로운 수량 더하기
         	basketService.updateBasket(basketBean);
         	System.out.println("0아닐때 insert 실행" );
         }
@@ -164,7 +166,6 @@ public class BasketController {
     public String testCheck(@RequestParam (value= "arrDel[]") List valueArr,
     		@ModelAttribute BasketBean basketBean,
     		HttpServletRequest req,HttpServletResponse res,HttpSession session) throws Exception {
-
     	Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
     	String mem_id = authentication.getName();
     
@@ -173,39 +174,58 @@ public class BasketController {
        
         System.out.println("valueArr은" + valueArr);
         String A = null;
-        for(int i=0; i<valueArr.size(); i++){
-        	A = (String) valueArr.get(i);
-        	System.out.println("여기값"+A.toString());
-        	basketBean.setBas_no(Integer.parseInt(A)); 
-            basketBean.setBas_memno(userNo); 	
-    	    basketService.deleteBasket(basketBean);
+
+        for(int i=0; i<valueArr.size(); i++){      
+        	A = (String) valueArr.get(i);          
+        	System.out.println("여기값"+A.toString());       	
+        java.util.StringTokenizer  st = new java.util.StringTokenizer(A,",");
+           	String bas_no = st.nextToken();
+           	String bas_proname = st.nextToken();
+           	String bas_proprice = st.nextToken(); 
+           	String bas_prostock = st.nextToken();
+           	String bas_procode = st.nextToken();
+        	String money = st.nextToken();  
+        	 
+        	basketBean.setBas_memno(userNo);  
+        	basketBean.setBas_no(Integer.parseInt(bas_no)); 
+        	basketService.deleteBasket(basketBean);
     	    System.out.println("삭제 실행");
            }
         return "redirect:/list.gt";
-    }
-    
-    
-    
+    }   
+       
    // 4. 장바구니 수정( 수량만 수정)
     @RequestMapping("update.gt")
-    public String update(@RequestParam String[] bas_prostock, @RequestParam String[] bas_procode, HttpSession session) throws Exception {
-    	  	
+  public String update(@RequestParam String[] bas_prostock, @RequestParam String[] bas_procode,
+		  HttpSession session) throws Exception {
+  	
     	Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
     	String mem_id = authentication.getName();
     	
     	MemberBean memberInfo = memberService.memberInfo(mem_id);  	
         int userNo = memberInfo.getMem_no();
      	System.out.println("update왔다");  
-     	// 레코드의 갯수 만큼 반복문 실행
+    	
+   	// 레코드의 갯수 만큼 반복문 실행
         for(int i=0; i< bas_procode.length; i++){
         	BasketBean basketBean = new BasketBean();
         	basketBean.setBas_memno(userNo); 
         	basketBean.setBas_prostock(Integer.parseInt((bas_prostock[i])));
         	basketBean.setBas_procode(Integer.parseInt((bas_procode[i])));
             basketService.modifyBasket(basketBean);
-            System.out.println("새로 셋팅된 basketBean" + basketBean);
+            System.out.println("for새로 셋팅된 basketBean" + basketBean);
         }
         return "redirect:/list.gt";
     }
    	
 }
+/*        	BasketBean basketBean = new BasketBean();
+basketBean.setBas_memno(userNo); 
+basketBean.setBas_no(Integer.parseInt((bas_no)));
+basketBean.setBas_prostock(Integer.parseInt((bas_prostock)));
+basketBean.setBas_procode(Integer.parseInt((bas_procode)));
+basketService.modifyBasket(basketBean);
+System.out.println("새로 셋팅된 basketBean" + basketBean);
+
+return "redirect:/list.gt";
+*/
