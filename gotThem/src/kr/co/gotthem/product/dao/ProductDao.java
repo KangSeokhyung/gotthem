@@ -7,7 +7,7 @@ import java.util.Map;
 import kr.co.gotthem.product.bean.ProductBean;
 
 public interface ProductDao {
-	public List<ProductBean> plist(int pro_stono);
+	public List<ProductBean> plist(int pro_memno);
 	
 	public ProductBean findCode(int pro_code);
 	

@@ -8,7 +8,7 @@ import org.springframework.ui.Model;
 import kr.co.gotthem.product.bean.ProductBean;
 
 public interface ProductService {
-	public List<ProductBean> plist(int pro_stono);
+	public List<ProductBean> plist(int pro_memno);
 	
 	public ProductBean findCode(int pro_code);
 

@@ -8,6 +8,8 @@
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta charset="utf-8">
+<link rel="stylesheet" type="text/css" href="resources/Login_v7/css/util.css">
+<link rel="stylesheet" type="text/css" href="resources/Login_v7/css/main.css">
 <link href="https://fonts.googleapis.com/css?family=Work+Sans"
 	rel="stylesheet">
 <link rel="stylesheet" href="resources/indexTemplate/css/bootstrap.min.css">
@@ -19,17 +21,11 @@
 <link rel="stylesheet" href="resources/indexTemplate/css/style.css">
 <link rel="stylesheet" href="resources/landy/css/style.default.css" id="theme-stylesheet">
 <link rel="stylesheet" href="resources/landy/css/custom.css">
-
-<script type="text/javascript">
-	function fnList(){
-		location.href="stock.st";
-	}
-	
-</script>
-
+</head>
 </head>
 <body>
-<aside class="probootstrap-aside js-probootstrap-aside">
+
+	<aside class="probootstrap-aside js-probootstrap-aside">
 		<a href="#"
 			class="probootstrap-close-menu js-probootstrap-close-menu d-md-none"><span
 			class="oi oi-arrow-left"></span> Close</a>
@@ -46,9 +42,9 @@
 				<ul>
 					<li class="probootstrap-animate"
 						data-animate-effect="fadeInLeft"><a href="/storeIndex">Got them?</a></li>
-					<li class="probootstrap-animate" data-animate-effect="fadeInLeft"><a
-						href="mystore.st">점포관리</a></li>
 					<li class="probootstrap-animate active" data-animate-effect="fadeInLeft"><a
+						href="mystore.st">점포관리</a></li>
+					<li class="probootstrap-animate" data-animate-effect="fadeInLeft"><a
 						href="stock.st">재고관리</a></li>
 				<c:set var="sessionCheck"
 					value="${sessionScope.SPRING_SECURITY_CONTEXT}" />
@@ -87,51 +83,95 @@
 			<a href="index.html">Aside</a></a>
 		</div>
 	</div>
-
-
-
-			<div class="cover-container pb-5">
-				<div class="cover-inner container">
-					<form method="post" action="update.st">
-					<div class="row">
-				<div class="col-sm-3">
-				<img src="/img/${pro.pro_img }" style="width:250px; height:250px"/></div>
-					<div class="col-sm-9">
-					<input type="hidden" name="pro_code" value="${pro.pro_code }"/>
-					<table class="table table-user-information">
-						<tr>
-							<td><span>제품번호</span></td><td>${pro.pro_code }</td>
-						</tr>
-						<tr>
-							<td><span>제품명</span></td><td><input type="text" name="pro_name" value="${pro.pro_name }"/></td>
-						</tr>
-						<tr>
-							<td><span>분류</span></td><td><input type="text" name="pro_category" value="${pro.pro_category }"/></td>
-						</tr>
-						<tr>
-							<td><span>가격</span></td><td><input type="text" name="pro_price" value="${pro.pro_price }"/></td>
-						</tr>
-						<tr>
-							<td><span>재고</span></td><td><input type="text" name="pro_stock" value="${pro.pro_stock }"/></td>
-						</tr>
-						<tr>
-							<td colspan="2" align="center">
-								<input type="submit" value="확인"/>
-								<input type="button" value="리셋" onclick="reset()"/>
-								<input type="button" value="취소" onclick="history.back()"/>
-								<input type="button" value="목록으로" onclick="fnList()"/>
-							</td>
-						</tr>
-					</table>
+	
+	
+	
+	
+	
+	<!--Main content code to be written here -->
+	<br>
+	<div style="border-top: 5px solid gray; border-bottom: 5px solid gray;">
+			<form action="storeModi.st" method="POST">
+				<div class="panel panel-info">
+					<div class="panel-heading">
+						<h3>회원 정보 수정</h3>
 					</div>
+					<div class="panel-body">
+						<div class="row">
+							<div class=" col-md-12 col-lg-12 " align="center">
+							<input type="hidden" name="mem_id" value="${memberInfo.mem_id}"/>
+								<table class="table table-user-information">
+									<tbody>
+										<tr>
+											<td><span>회원 아이디:</span></td>
+											<td>${memberInfo.mem_id}</td>
+										</tr>
+										<tr>
+											<td><span>이름:</span></td>
+											<td><input style="width: 100%" type="text"
+												name="mem_name" value="${memberInfo.mem_name}"></td>
+										</tr>
+										<tr>
+											<td><span>매장명:</span></td>
+											<td><input style="width: 100%" type="text"
+												name="mem_name" value="${memberInfo.sto_name}"></td>
+										</tr>
+										<tr>
+											<td><span>이메일:</span></td>
+											<td><input style="width: 100%" type="text"
+												name="mem_email" value="${memberInfo.mem_email}"></td>
+
+										</tr>
+										<tr>
+											<td><span>전화번호:</span></td>
+											<td><input style="width: 100%" type="text"
+												name="mem_phone" value="${memberInfo.mem_phone}"></td>
+										</tr>
+										<tr>
+											<td><span>가입일:</span></td>
+											<td>${memberInfo.mem_regdate}</td>
+										</tr>
+										<tr>
+											<td><span>우편번호:</span></td>
+											<td><input style="width: 100%" type="text"
+												name="mem_post" value="${mem_post}"></td>
+										</tr>
+										<tr>
+											<td><span>주소:</span></td>
+											<td><input style="width: 100%" type="text"
+												name="mem_address1" value="${mem_address1}"><br>
+												<input style="width: 100%" type="text" name="mem_address2"
+												value="${mem_address2}"></td>
+										</tr>
+										<tr>
+											<td><span>매장사진:</span></td>
+											<td><img src="<%=request.getContextPath() %>/upload/${info.sto_img }" 
+											name="p_img"></td>
+										</tr>
+										<tr>
+											<td><span>코멘트:</span></td>
+											<td><input style="width: 100%" type="text"
+												name="mem_name" value="${memberInfo.sto_comment}"></td>
+										</tr>
+
+									</tbody>
+								</table>
+							</div>
+						</div>
 					</div>
-					</form>
-					<%-- <div>
-					${sessionScope.SPRING_SECURITY_CONTEXT}					
-					</div> --%>
+					<div class="panel-footer"></div>
+						<button class="btn-success" type="submit">완료</button>
+						<button class="btn-danger" onclick="reset()">취소</button>
+						<button class="btn-blue" onclick="history.go(-1)">뒤로가기</button>
 				</div>
-      		</div>
-<div class="container-fluid d-md-none">
+			</form>
+
+		</div>
+
+
+
+
+	<div class="container-fluid d-md-none">
 		<div class="row">
 			<div class="col-md-12">
 				<ul class="list-unstyled d-flex probootstrap-aside-social">
@@ -157,5 +197,6 @@
 	<script src="resources/indexTemplate/js/jquery.waypoints.min.js"></script>
 	<script src="resources/indexTemplate/js/imagesloaded.pkgd.min.js"></script>
 	<script src="resources/indexTemplate/js/main.js"></script>
+	
 </body>
 </html>

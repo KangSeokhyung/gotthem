@@ -18,8 +18,8 @@ public class ProductServiceImpl implements ProductService {
 	}
 	
 	@Override
-	public List<ProductBean> plist(int pro_stono) {
-		return productDao.plist(pro_stono);
+	public List<ProductBean> plist(int pro_memno) {
+		return productDao.plist(pro_memno);
 	}
 
 	@Override
