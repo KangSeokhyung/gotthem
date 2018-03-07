@@ -117,6 +117,10 @@
 	</div>
 					<div class="cover-container pb-5">
 				<div class="cover-inner container">
+				<div class="row">
+				<div class="col-sm-3">
+				<img src="/img/${pro.pro_img }" style="width:250px; height:250px"/></div>
+					<div class="col-sm-9">
 					<table class="table table-user-information">
 						<tr>
 							<td>제품번호</td><td>${pro.pro_code }</td>
@@ -141,9 +145,11 @@
 							</td>
 						</tr>
 					</table>
+					</div>
 					<%-- <div>
 					${sessionScope.SPRING_SECURITY_CONTEXT}					
 					</div> --%>
+					</div>
 					</div>
 					</div>
 		<div class="container-fluid d-md-none">

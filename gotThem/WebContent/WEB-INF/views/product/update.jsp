@@ -8,8 +8,6 @@
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta charset="utf-8">
-<link rel="stylesheet" type="text/css" href="resources/Login_v7/css/util.css">
-<link rel="stylesheet" type="text/css" href="resources/Login_v7/css/main.css">
 <link href="https://fonts.googleapis.com/css?family=Work+Sans"
 	rel="stylesheet">
 <link rel="stylesheet" href="resources/indexTemplate/css/bootstrap.min.css">
@@ -95,6 +93,10 @@
 			<div class="cover-container pb-5">
 				<div class="cover-inner container">
 					<form method="post" action="update.st">
+					<div class="row">
+				<div class="col-sm-3">
+				<img src="/img/${pro.pro_img }" style="width:250px; height:250px"/></div>
+					<div class="col-sm-9">
 					<input type="hidden" name="pro_code" value="${pro.pro_code }"/>
 					<table class="table table-user-information">
 						<tr>
@@ -121,6 +123,8 @@
 							</td>
 						</tr>
 					</table>
+					</div>
+					</div>
 					</form>
 					<%-- <div>
 					${sessionScope.SPRING_SECURITY_CONTEXT}					
