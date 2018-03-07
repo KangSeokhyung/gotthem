@@ -103,14 +103,18 @@ public class OrderController {
        	String bas_proprice = st.nextToken(); 
        	String bas_prostock = st.nextToken();
        	String bas_procode = st.nextToken();
-    	String money = st.nextToken();  
+    	String money = st.nextToken();
+    	String bas_proimg = st.nextToken();
+       	String bas_procomment = st.nextToken();
+ 
     	
         orderBean.setOrd_memno(userNo);       
         orderBean.setOrd_basno(Integer.parseInt(bas_no));        
         orderBean.setOrd_proname(bas_proname);
         orderBean.setOrd_stock(Integer.parseInt(bas_prostock));
         orderBean.setOrd_procode(Integer.parseInt(bas_procode));
-        orderBean.setOrd_price(Integer.parseInt(money)); 
+        orderBean.setOrd_price(Integer.parseInt(money));
+
  	    orderService.orderInsert(orderBean);
  	    orderService.orderUpdateBasket(orderBean);
    	    orderService.orderDeleteBasket(orderBean); 	 

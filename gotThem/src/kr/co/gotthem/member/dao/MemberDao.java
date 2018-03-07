@@ -20,13 +20,18 @@ public interface MemberDao {
 	
 	public void memberDelete(MemberBean memberBean);
 	
-	public MemberBean findAccount(String email);
+	public MemberBean findAccount(MemberBean memberBean);
 	
-	public void changePassword(MemberBean memberBean);
+	public int changePassword(MemberBean memberBean);
 
 	public List<MemberBean> mlist();
 
 	public List<MemberBean> stlist();
+
+	public int changePasswordReal(MemberBean memberBean);
+
+	public void storeModi(MemberBean memberBean);
 	
-	public MemberBean storeInfo(int mem_no);
+	public void memModi(MemberBean memberBean);
+	
 }

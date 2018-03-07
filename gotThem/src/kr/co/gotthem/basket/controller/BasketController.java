@@ -103,7 +103,9 @@ public class BasketController {
         	 basketBean.setBas_proname(basketBean.getBas_proname());
         	 basketBean.setBas_proprice(basketBean.getBas_proprice());
         	 basketBean.setBas_procategory(basketBean.getBas_procategory());
-        	 basketBean.setBas_proexdate(basketBean.getBas_proexdate());
+        	 basketBean.setBas_proimg(basketBean.getBas_proimg());
+        	 
+        	 basketBean.setBas_procomment(basketBean.getBas_procomment());
         	 System.out.println("basketBean는"+ basketBean );
         	 basketService.insertBasket(basketBean);
         	 
@@ -184,8 +186,10 @@ public class BasketController {
            	String bas_proprice = st.nextToken(); 
            	String bas_prostock = st.nextToken();
            	String bas_procode = st.nextToken();
-        	String money = st.nextToken();  
-        	 
+           	String money = st.nextToken(); 
+           	String bas_proimg = st.nextToken();
+           	String bas_procomment = st.nextToken();
+ 
         	basketBean.setBas_memno(userNo);  
         	basketBean.setBas_no(Integer.parseInt(bas_no)); 
         	basketService.deleteBasket(basketBean);

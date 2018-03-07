@@ -7,40 +7,67 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>결제 목록</title>
-<link rel="stylesheet"
-	href="resources/mainTemplate/ionicons/css/ionicons.min.css">
-<link rel="stylesheet"
-	href="resources/mainTemplate/bootstrap/css/bootstrap.min.css">
-<link rel="stylesheet"
-	href="resources/mainTemplate/sweetalert/dist/sweetalert.css">
-<link rel="stylesheet" href="resources/mainTemplate/css/stisla.css">
-<style>
-section{
-background-size : cover;
-}
-</style>
+<meta name="description" content="Free Bootstrap Theme by uicookies.com">
+    <meta name="keywords" content="free website templates, free bootstrap themes, free template, free bootstrap, free website template">
+    
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400" rel="stylesheet">
+    <link rel="stylesheet" href="resources/mainTemplate/css/styles-merged.css">
+    <link rel="stylesheet" href="resources/mainTemplate/css/style.min.css">
+    <link rel="stylesheet" href="resources/mainTemplate/css/custom.css">
+    <!--[if lt IE 9]>
+      <script src="resources/mainTemplate/js/vendor/html5shiv.min.js"></script>
+      <script src="resources/mainTemplate/js/vendor/respond.min.js"></script>
+    <![endif]-->
 </head>
 <body>
-	<header>
-		<%@include file="/nav.jsp"%>
-	</header>
-<div class="container">	
- <h2>결제 확인</h2>
-  <h4>결제 확인 목록</h4>   
-<!--   	<div class="reserve-methods" style="text-align:center;">
-		<input id="ressearch-admin" onkeyup="searchName()" type="text" placeholder="공연 검색" autofocus="autofocus">
-		<form action="AdminReserve.ad" method="post">
-			<input id="resdate-admin" name="deleteDate" type="date">
-			<button type="submit" id="resdeletedate" type="button" class="btn btn-warning">해당날짜 이전데이터 삭제</button>
-		</form>
-		<form action="AdminReserve.ad" method="post">
-			<input id="resid-admin" name="deleteId" type="text" placeholder="아이디 검색" onkeyup="searchId()">
-			<button id="resdeleteid" type="submit" class="btn btn-danger">아이디 예약 삭제</button>
-		</form>
-		<button type="button" class="btn btn-default" onclick="location.reload()"><span class="glyphicon glyphicon-refresh"></span></button>
-	</div> -->
 
-  	<form name="form1" id="form1" method="post" action="./update.gt">
+  <!-- START: header -->
+   <header role="banner" class="probootstrap-header">
+    <div class="container">
+        <a href="/gotThem" class="probootstrap-logo">GOT THEM<span>.</span></a>
+        
+        <a href="#" class="probootstrap-burger-menu visible-xs" ><i>Menu</i></a>
+        <div class="mobile-menu-overlay"></div>
+
+        <nav role="navigation" class="probootstrap-nav hidden-xs">
+          <ul class="probootstrap-main-nav">
+            <li><a href="#">GOTTHEM</a></li>
+            <li><a href="#">NOTICE</a></li>
+            <li><a href="#">EVENT</a></li>
+            <c:set var="sessionCheck"
+					value="${sessionScope.SPRING_SECURITY_CONTEXT}" />
+				<c:choose>
+					<c:when test="${sessionCheck eq null}">
+            <li><a href="join.gt">SIGN UP</a></li>
+            <li><a href="login.gt">LOGIN</a></li>
+            		</c:when>
+					<c:otherwise>
+			<li><a href="mypage.gt">MY PAGE</a></li>
+            <li><a href="logout.gt">LOGOUT</a></li>
+				</c:otherwise>
+				</c:choose>
+          </ul>
+          <div class="extra-text visible-xs"> 
+            <a href="#" class="probootstrap-burger-menu"><i>Menu</i></a>
+            <h5>Address</h5>
+            <p>198 West 21th Street, Suite 721 New York NY 10016</p>
+            <h5>Connect</h5>
+            <ul class="social-buttons">
+              <li><a href="#"><i class="icon-twitter"></i></a></li>
+              <li><a href="#"><i class="icon-facebook2"></i></a></li>
+              <li><a href="#"><i class="icon-instagram2"></i></a></li>
+            </ul>
+          </div>
+        </nav>
+    </div>
+  </header>
+  <div class="probootstrap-loader"></div>
+  <!-- END: header -->
+  	<h1>결제 확인</h1>
+	<h2>결제 확인</h2>
+<div class="container">	
+  <h2>결제 확인 목록</h2>   
+ 	<form name="form1" id="form1" method="post" action="./update.gt">
            <table class="table">
                <tr>
                    <th>결제 번호</th>
@@ -81,36 +108,38 @@ background-size : cover;
                  </tr>
                </c:forEach>
             </table>
-          <%--   <input type="hidden" name="count" value="${map.count}"> --%>
         </form>
-    <button type="button" value="상품목록1" id="btnList">상품목록</button>
+    <button type="button" value="상품목록" id="btnList">상품목록</button>
     <button type="button" value="장바구니목록" id="btnBasketList">장바구니목록</button>
 </div>
-	<footer>
-		<div class="container">
-			<figure>
-				<img src="resources/mainTemplate/img/logo.png" alt="Logo">
-			</figure>
-			<p>Copyright &copy; 2018 스탑없으</p>
-			<p>
-				Made with <i class="ion-heart"></i> By Kodinger
-			</p>
-		</div>
-	</footer>
+ <footer class="probootstrap-footer probootstrap-bg" style="background-image: url(img/slider_3.jpg)">
+    <div class="container">
+        <div class="col-md-6">
+          <div class="probootstrap-footer-widget">
+            <p>&copy; 2017 <a href="https://uicookies.com/">uiCookies:Haus</a>. Designed by <a href="https://uicookies.com/">uicookies.com</a> <br> Demo Photos from <a href="https://pixabay.com/">Pixabay</a> &amp; <a href="https://unsplash.com/">Unsplash</a></p>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="probootstrap-footer-widget right">
+            <ul class="probootstrap-footer-social">
+              <li><a href="#"><i class="icon-twitter"></i></a></li>
+              <li><a href="#"><i class="icon-facebook"></i></a></li>
+              <li><a href="#"><i class="icon-instagram2"></i></a></li>
+            </ul>
+          </div>
+        </div>
+    </div>
+  </footer>
 </body>
-	<script src="resources/mainTemplate/js/jquery.min.js"></script>
-	<script src="resources/indexTemplate/js/popper.min.js"></script>
-	<script src="resources/mainTemplate/bootstrap/js/bootstrap.min.js"></script>
-	<script src="resources/mainTemplate/js/jquery.easeScroll.js"></script>
-	<script src="resources/mainTemplate/sweetalert/dist/sweetalert.min.js"></script>
-	<script src="resources/mainTemplate/js/stisla.js"></script>
+	 <script src="resources/mainTemplate/js/scripts.min.js"></script>
+  <script src="resources/mainTemplate/js/main.min.js"></script>
+  <script src="resources/mainTemplate/js/custom.js"></script>
 <script type="text/javascript">
     $(document).ready(function(){
-        // 리스트 페이지로 이동
-        $("#btnList").click(function(){
+      $("#btnList").click(function(){  // 제품리스트 페이지로 이동
             location.href="./productlist.gt";
         });
-        $("#btnBasketList").click(function(){
+        $("#btnBasketList").click(function(){  //장바구니 리스트
             location.href="./list.gt";
         }); 
     });
@@ -123,6 +152,5 @@ background-size : cover;
        return;
       }
    }
-
 </script>
 </html>

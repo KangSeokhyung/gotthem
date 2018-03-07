@@ -39,6 +39,16 @@
 		mem_address = #{mem_address} where mem_id = #{mem_id}
 	</update>
 	
+	<update id="storeModi" parameterType="kr.co.gotthem.member.bean.MemberBean">
+		update member set mem_name = #{mem_name}, sto_name=#{sto_name}, mem_email = #{mem_email}, mem_phone = #{mem_phone}, 
+		mem_address = #{mem_address}, enabled = #{enabled} where mem_id = #{mem_id}
+	</update>
+	
+	<update id="memModi" parameterType="kr.co.gotthem.member.bean.MemberBean">
+		update member set mem_name = #{mem_name}, mem_email = #{mem_email}, mem_phone = #{mem_phone}, 
+		mem_address = #{mem_address}, enabled = #{enabled} where mem_id = #{mem_id}
+	</update>
+	
 	<select id="passCheck" parameterType="kr.co.gotthem.member.bean.MemberBean" resultType="int">
 		select count(*) from member where mem_id=#{mem_id} and mem_pw=#{mem_pw}
 	</select>
@@ -47,13 +57,21 @@
 		update member set enabled = 0 where mem_id=#{mem_id} and mem_pw=#{mem_pw}
 	</update>
 	
-	<select id="findAccount" parameterType="String" resultType="kr.co.gotthem.member.bean.MemberBean">
-		select * from member where mem_email=#{mem_email}
+	<select id="findAccount" parameterType="kr.co.gotthem.member.bean.MemberBean" resultType="kr.co.gotthem.member.bean.MemberBean">
+		select * from member where mem_email=#{mem_email} and mem_name = #{mem_name}
 	</select>
 	
 	<update id="changePassword" parameterType="kr.co.gotthem.member.bean.MemberBean">
 		update member set mem_pw = #{mem_pw} where mem_email = #{mem_email} and mem_id=#{mem_id}
 	</update>
+	
+	<update id="changePasswordReal" parameterType="kr.co.gotthem.member.bean.MemberBean">
+		update member set mem_pw = #{mem_pw} where mem_id=#{mem_id}
+	</update>
+	
+	<select id="selectStatus" parameterType="kr.co.gotthem.member.bean.MemberBean" resultType="int">
+		select enabled from member where mem_id=#{mem_id} and mem_pw = #{mem_pw}
+	</select>
 
 	<select id="storeInfo" parameterType="int" resultType="kr.co.gotthem.member.bean.MemberBean">
 		select * from member where mem_no = #{mem_no}

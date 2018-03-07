@@ -7,27 +7,62 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>상품장바구니 목록</title>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="robots" content="all,follow">
-<link rel="stylesheet"
-	href="resources/mainTemplate/ionicons/css/ionicons.min.css">
-<link rel="stylesheet"
-	href="resources/mainTemplate/bootstrap/css/bootstrap.min.css">
-<link rel="stylesheet"
-	href="resources/mainTemplate/sweetalert/dist/sweetalert.css">
-<link rel="stylesheet" href="resources/mainTemplate/css/stisla.css">
-<style>
-section{
-background-size : cover;
-}
-</style>
+<meta name="description" content="Free Bootstrap Theme by uicookies.com">
+    <meta name="keywords" content="free website templates, free bootstrap themes, free template, free bootstrap, free website template">
+    
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400" rel="stylesheet">
+    <link rel="stylesheet" href="resources/mainTemplate/css/styles-merged.css">
+    <link rel="stylesheet" href="resources/mainTemplate/css/style.min.css">
+    <link rel="stylesheet" href="resources/mainTemplate/css/custom.css">
+    <!--[if lt IE 9]>
+      <script src="resources/mainTemplate/js/vendor/html5shiv.min.js"></script>
+      <script src="resources/mainTemplate/js/vendor/respond.min.js"></script>
+    <![endif]-->
 </head>
 <body>
-	<header>
-		<%@include file="/nav.jsp"%>
-	</header>
+
+  <!-- START: header -->
+   <header role="banner" class="probootstrap-header">
+    <div class="container">
+        <a href="/gotThem" class="probootstrap-logo">GOT THEM<span>.</span></a>
+        
+        <a href="#" class="probootstrap-burger-menu visible-xs" ><i>Menu</i></a>
+        <div class="mobile-menu-overlay"></div>
+
+        <nav role="navigation" class="probootstrap-nav hidden-xs">
+          <ul class="probootstrap-main-nav">
+            <li><a href="#">GOTTHEM</a></li>
+            <li><a href="#">NOTICE</a></li>
+            <li><a href="#">EVENT</a></li>
+            <c:set var="sessionCheck"
+					value="${sessionScope.SPRING_SECURITY_CONTEXT}" />
+				<c:choose>
+					<c:when test="${sessionCheck eq null}">
+            <li><a href="join.gt">SIGN UP</a></li>
+            <li><a href="login.gt">LOGIN</a></li>
+            		</c:when>
+					<c:otherwise>
+			<li><a href="mypage.gt">MY PAGE</a></li>
+            <li><a href="logout.gt">LOGOUT</a></li>
+				</c:otherwise>
+				</c:choose>
+          </ul>
+          <div class="extra-text visible-xs"> 
+            <a href="#" class="probootstrap-burger-menu"><i>Menu</i></a>
+            <h5>Address</h5>
+            <p>198 West 21th Street, Suite 721 New York NY 10016</p>
+            <h5>Connect</h5>
+            <ul class="social-buttons">
+              <li><a href="#"><i class="icon-twitter"></i></a></li>
+              <li><a href="#"><i class="icon-facebook2"></i></a></li>
+              <li><a href="#"><i class="icon-instagram2"></i></a></li>
+            </ul>
+          </div>
+        </nav>
+    </div>
+  </header>
+  <div class="probootstrap-loader"></div>
+  <!-- END: header -->
 	<h1>장바구니 목록</h1>
 	<h2>장바구니 목록</h2>
 <div class="container">
@@ -47,6 +82,7 @@ background-size : cover;
          <table class="table">
                <tr>
                    <th><input type="checkbox" name="checkAll" id="th_checkAll" /></th> 
+                   <th>상품사진</th>
                    <th>상품명</th>
                    <th>단가</th>
                    <th>수량</th>
@@ -58,10 +94,16 @@ background-size : cover;
                <tr>                
                   <td>
                       <input type="checkbox" name="checkRow" class="chk"  value="${row.bas_no},${row.bas_proname},
-                      ${row.bas_proprice},${row.bas_prostock},${row.bas_procode},${row.money}" /> 
+                      ${row.bas_proprice},${row.bas_prostock},${row.bas_procode},${row.money},${row.bas_proimg}, ${row.bas_procomment}" /> 
+                  </td>
+                  <td>
+                       ${row.bas_proimg}
                   </td>
                   <td>
                        ${row.bas_proname}
+                  </td>
+                  <td>
+                       ${row.bas_procomment}
                   </td>
                   <td style="width: 80px" align="right">
                        <fmt:formatNumber pattern="###,###,###" value="${row.bas_proprice}"/>
@@ -69,8 +111,8 @@ background-size : cover;
                   <td>
                      <input type="number" style="width: 40px" name="bas_prostock" value="${row.bas_prostock}" min="1">
                      <input type="hidden" name="bas_procode" value="${row.bas_procode}">
-                     <!-- <button type="button" id="button_update" onclick="modify();" >수정</button> -->
-                   <button type="submit" id="btnUpdate" >수정</button>
+                      <button type="button" id="button_update" onclick="modify();" >수정</button>
+                   <!-- <button type="submit" id="btnUpdate" >수정</button> -->
                   </td>
                   <td style="width: 80px" align="right">
                        <fmt:formatNumber pattern="###,###,###" value="${row.money}"/>
@@ -99,24 +141,28 @@ background-size : cover;
       </c:otherwise>
     </c:choose>
 </div>    
-	<footer>
-		<div class="container">
-			<figure>
-				<img src="resources/mainTemplate/img/logo.png" alt="Logo">
-			</figure>
-			<p>Copyright &copy; 2018 스탑없으</p>
-			<p>
-				Made with <i class="ion-heart"></i> By Kodinger
-			</p>
-		</div>
-	</footer>
+ <footer class="probootstrap-footer probootstrap-bg" style="background-image: url(img/slider_3.jpg)">
+    <div class="container">
+        <div class="col-md-6">
+          <div class="probootstrap-footer-widget">
+            <p>&copy; 2017 <a href="https://uicookies.com/">uiCookies:Haus</a>. Designed by <a href="https://uicookies.com/">uicookies.com</a> <br> Demo Photos from <a href="https://pixabay.com/">Pixabay</a> &amp; <a href="https://unsplash.com/">Unsplash</a></p>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="probootstrap-footer-widget right">
+            <ul class="probootstrap-footer-social">
+              <li><a href="#"><i class="icon-twitter"></i></a></li>
+              <li><a href="#"><i class="icon-facebook"></i></a></li>
+              <li><a href="#"><i class="icon-instagram2"></i></a></li>
+            </ul>
+          </div>
+        </div>
+    </div>
+  </footer>
 </body>
-	<script src="resources/mainTemplate/js/jquery.min.js"></script>
-	<script src="resources/indexTemplate/js/popper.min.js"></script>
-	<script src="resources/mainTemplate/bootstrap/js/bootstrap.min.js"></script>
-	<script src="resources/mainTemplate/js/jquery.easeScroll.js"></script>
-	<script src="resources/mainTemplate/sweetalert/dist/sweetalert.min.js"></script>
-	<script src="resources/mainTemplate/js/stisla.js"></script>
+ <script src="resources/mainTemplate/js/scripts.min.js"></script>
+  <script src="resources/mainTemplate/js/main.min.js"></script>
+  <script src="resources/mainTemplate/js/custom.js"></script>
 
 <script type="text/javascript">
 
@@ -164,9 +210,7 @@ function button_selDel(){  //장바구니 선택 삭제
 	var checkArr = [];
    $("input[name='checkRow']:checked").each(function(i) {
      checkArr.push($(this).val());
-	   alert("배열은 " + checkArr);  }); 
 	if (confirm("정말 삭제하시겠습니까??")){
-		alert("배열" + checkArr);
 		$.ajax({				
 			url:"selectDelete.gt",
 			type:"post",
@@ -180,7 +224,8 @@ function button_selDel(){  //장바구니 선택 삭제
 	}else{   //취소.
 	      return;
 	} 			
- }  
+   });
+}  
 function button_selOrder(){  //장바구니 선택 결제
 	  if( $(":checkbox[name='checkRow']:checked").length==1 ){
 		    alert("결제할 항목을 2이상 체크해주세요.");
@@ -191,7 +236,7 @@ function button_selOrder(){  //장바구니 선택 결제
 	     checkOrder.push($(this).val());
 	     }); 
 		if (confirm("모두 결제 하시겠습니까??")){
-			alert("배열" + checkOrder);
+			/* alert("배열" + checkOrder); */
 			$.ajax({				
 				url:"selectOrder.gt",
 				type:"post",
@@ -205,12 +250,12 @@ function button_selOrder(){  //장바구니 선택 결제
 		}else{   //취소.
 		      return;
 		} 			
-	 }
-/* function modify() {   // 수량 수정
+}
+function modify() {   // 수량 수정
 	   var submitTest = document.form1;
 	   submitTest.action="./update.gt";
 	   submitTest.method="post";
 	   submitTest.submit();
-   }  */ 	 
+   }  
 </script>	
 </html>

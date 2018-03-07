@@ -56,8 +56,10 @@ public class MemberController {
 		return "member/mlogin";
 	}
 	@RequestMapping(value = "/logout.gt", method = RequestMethod.GET)
-	public String logout(HttpSession session, HttpServletRequest request) {		
-		session.invalidate();		
+
+	public String logout(HttpSession  session, HttpServletRequest request) {		
+		session.invalidate();
+		System.out.println("회원 로그아웃");
 		return "redirect:index.jsp";
 	}
 	
@@ -68,7 +70,20 @@ public class MemberController {
 	
 	@RequestMapping(value = "/joinSccess.gt", method = RequestMethod.POST)
 	public String joinSccess(HttpServletRequest request, MemberBean memberBean, HttpServletResponse response) throws Exception {
+		//email 세팅하기
+		String emailid = request.getParameter("mem_emailid");
+		String emailadd = request.getParameter("mem_emailadd");
+		String mem_email = emailid + "@" + emailadd;
+		memberBean.setMem_email(mem_email);
 		
+		//phone 세팅하기
+		String mem_phoneFront = request.getParameter("mem_phoneFront");
+		String mem_phoneMiddle = request.getParameter("mem_phoneMiddle");
+		String mem_phoneLast = request.getParameter("mem_phoneLast");
+		String mem_phone = mem_phoneFront + mem_phoneMiddle + mem_phoneLast;
+		memberBean.setMem_phone(mem_phone);
+		
+		//address 세팅하기
 		memberBean.setMem_address(request.getParameter("mem_post")+"/"+
 		request.getParameter("mem_address1")+"/"+request.getParameter("mem_address2"));
 		
@@ -94,8 +109,9 @@ public class MemberController {
 	}
 	
 	@RequestMapping(value = "loginfail.gt", method= RequestMethod.GET)
-	public String lgfail() {
-		return "store/fail2";
+	public ModelAndView lgfail(ModelAndView mav) {
+		mav.setViewName("store/fail2");
+		return mav;
 	}
 	
 	@RequestMapping(value = "/index.gt", method = RequestMethod.GET)
@@ -103,6 +119,12 @@ public class MemberController {
 		return "redirect:index.jsp";
 	}
 
+	@RequestMapping(value = "/newMypage.gt", method = RequestMethod.GET)
+	public ModelAndView newMypage(ModelAndView mav) {
+		mav.setViewName("member/newMypage");
+		return mav;
+	}
+	
 	@RequestMapping(value = "/mypage.gt", method = RequestMethod.GET)
 	public ModelAndView mypage(ModelAndView mav) {
 		mav.setViewName("member/mypage");
@@ -115,10 +137,15 @@ public class MemberController {
 		String mem_id = authentication.getName();
 		MemberBean memberInfo = memberService.memberInfo(mem_id);
 		String mem_address = memberInfo.getMem_address();
+		System.out.println(mem_address);
 		StringTokenizer  st = new StringTokenizer(mem_address,"/");
+		System.out.println(mem_address);
 		String post = st.nextToken();       
 		String address1 = st.nextToken();      
-		String address2 = st.nextToken();      
+		String address2 = st.nextToken();    
+		System.out.println(post);
+		System.out.println(address1);
+		System.out.println(address2);
 		mav.addObject("mem_post", post);
 		mav.addObject("mem_address1", address1);
 		mav.addObject("mem_address2", address2);
@@ -149,6 +176,7 @@ public class MemberController {
 	public String memberUpdate(MemberBean bean, @RequestParam("mem_address1") String address1,
 			@RequestParam("mem_address2") String address2,@RequestParam("mem_post") String post) {
 		String mem_address = post + "/" + address1 + "/" + address2;
+		System.out.println(bean);
 		bean.setMem_address(mem_address);
 		memberService.memberModifi(bean);
 		return "member/mypage";
@@ -162,19 +190,38 @@ public class MemberController {
 	}
 	
 	@RequestMapping(value = "/passCheck.gt", method = RequestMethod.POST)
-	public ModelAndView passCheckPost(MemberBean bean, ModelAndView mav, PrintWriter out, HttpServletResponse response)
-			throws Exception {
+	public ModelAndView passCheckPost(@RequestParam("new_pw") String new_pw, @RequestParam("new_pw2") String new_pw2,
+			MemberBean bean, ModelAndView mav, HttpServletResponse response, RedirectAttributes ra) throws Exception {
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 		String mem_id = authentication.getName();
+		System.out.println("비밀번호 변경하러 왔나~");
 		bean.setMem_id(mem_id);
-		String mem_pw = bean.getMem_pw();
-		System.out.println(mem_pw);
+		System.out.println("빈 한번 보자 : " + bean);
 		int result = memberService.passCheck(bean);
-		if(result == 0) {
-			mav.setViewName("redirect:/passCheck.gt");
-			return mav;
+		System.out.println("비밀번호 체크 : " + result);
+		if(result != 1) {
+			System.out.println("현재비밀번호가 안 맞을때");
+			ra.addFlashAttribute("resultMsg", "fail1");
+			mav.setViewName("member/mypage");
+		}else if(!new_pw.equals(new_pw2)){
+			System.out.println("새로운 비밀번호와 비밀번호 확인이 안 맞을때");
+			ra.addFlashAttribute("resultMsg", "fail2");
+			mav.setViewName("member/mypage");
+		}else {
+			System.out.println("잘 들어왔네");
+			bean.setMem_pw(new_pw);
+			int changeResult = memberService.changePasswordReal(bean);
+			System.out.println("변경결과"+changeResult);
+			if(changeResult != 0) {
+				System.out.println("비밀번호 변경이 성공했네");
+				ra.addFlashAttribute("resultMsg", "success");
+				mav.setViewName("member/mypage");
+			}else {
+				ra.addFlashAttribute("resultMsg", "fail3");
+				mav.setViewName("member/mypage");
+			}
+			
 		}
-		mav.setViewName("member/changePW");
 		return mav;
 	}
 	
@@ -217,28 +264,28 @@ public class MemberController {
  
     // 아이디 찾기
     @RequestMapping(value = "/findID.gt", method = RequestMethod.POST)
-    public String sendMailId(HttpSession session, @RequestParam("mem_email") String email, RedirectAttributes ra, MemberBean bean) {
-       
-        bean =  memberService.findAccount(email);
+    public String sendMailId(HttpSession session, @RequestParam("mem_email") String email,
+    		@RequestParam("mem_name") String name, RedirectAttributes ra, MemberBean bean) {
+    	
         System.out.println(bean);
-        System.out.println(email);
-        if (bean != null) {
+        MemberBean memberBean =  memberService.findAccount(bean);
+        System.out.println(memberBean);
+        if (memberBean != null) {
             String subject = "Goththem 아이디 찾기 안내 입니다.";
             StringBuilder sb = new StringBuilder();
-            sb.append("귀하의 아이디는 " + bean.getMem_id() + " 입니다.");
+            sb.append("귀하의 아이디는 " + memberBean.getMem_id() + " 입니다.");
             if(mailService != null) {
             	System.out.println(mailService);
             } else {
             	System.out.println(" 빈거" + mailService);
             }
             boolean mailResult = mailService.send(subject, sb.toString(), "gotthembit@gmail.com", email, null);
-          
             
             System.out.println("이메일 보내기 성공?"+ mailResult);
             
-            ra.addFlashAttribute("resultMsg", "귀하의 이메일 주소로 해당 이메일로 가입된 아이디를 발송 하였습니다.");
+            ra.addFlashAttribute("resultMsg", "1");
         } else {
-            ra.addFlashAttribute("resultMsg", "귀하의 이메일로 가입된 아이디가 존재하지 않습니다.");
+            ra.addFlashAttribute("resultMsg", "2");
         }
         return "redirect:/findIDAndPW.gt";
     }
@@ -258,30 +305,24 @@ public class MemberController {
             String password = String.valueOf(ran);
             bean.setMem_pw(password);
             bean.setMem_email(email);
-            memberService.changePassword(bean); // 해당 유저의 DB정보 변경
- 
-            String subject = "임시 비밀번호 발급 안내 입니다.";
-            StringBuilder sb = new StringBuilder();
-            sb.append("귀하의 임시 비밀번호는 " + password + " 입니다.");
-            boolean mailResult = mailService.send(subject, sb.toString(), "gotthembit@gmail.com", email, null);
-            System.out.println("이메일 보내기 성공?"+ mailResult);
-            ra.addFlashAttribute("resultMsg", "귀하의 이메일 주소로 새로운 임시 비밀번호를 발송 하였습니다.");
+            int pwChangeResult = memberService.changePassword(bean); // 해당 유저의 DB정보 변경
+            if(pwChangeResult==1) {
+            	String subject = "임시 비밀번호 발급 안내 입니다.";
+                StringBuilder sb = new StringBuilder();
+                sb.append("귀하의 임시 비밀번호는 " + password + " 입니다.");
+                boolean mailResult = mailService.send(subject, sb.toString(), "gotthembit@gmail.com", email, null);
+                System.out.println("이메일 보내기 성공?"+ mailResult);
+                ra.addFlashAttribute("resultMsg", "3");
+            } else {
+                ra.addFlashAttribute("resultMsg", "4");
+            }
+            
         } else {
-            ra.addFlashAttribute("resultMsg", "귀하의 이메일로 가입된 아이디가 존재하지 않습니다.");
+        	ra.addFlashAttribute("resultMsg", "5");
         }
         return "redirect:/findIDAndPW.gt";
     }
     
-    @RequestMapping(value = "/storeDetail.gt")
-	public String storeDetail(Model model, int mem_no) {
-		MemberBean storeInfo = memberService.storeInfo(mem_no);
-		List productInfo = productService.productInfo(mem_no);
-		
-		model.addAttribute("mem_no", mem_no);
-		model.addAttribute("storeInfo", storeInfo);
-		model.addAttribute("productInfo", productInfo);
-		
-		return "store/storeDetail";
-	}
+    
     
 }

@@ -25,7 +25,7 @@ public class MemberServiceImpl implements MemberService {
 	
 	@Override
 	public int stjoin(MemberBean memberBean) {
-		int reuslt = memberDao.join(memberBean);
+		int reuslt = memberDao.stjoin(memberBean);
 		return reuslt;
 	}
 
@@ -45,6 +45,16 @@ public class MemberServiceImpl implements MemberService {
 	}
 	
 	@Override
+	public void storeModi(MemberBean memberBean) {
+		memberDao.storeModi(memberBean);
+	}
+	
+	@Override
+	public void memModi(MemberBean memberBean) {
+		memberDao.memModi(memberBean);
+	}
+	
+	@Override
 	public int passCheck(MemberBean memberBean) {
 		return memberDao.passCheck(memberBean);
 	}
@@ -55,13 +65,14 @@ public class MemberServiceImpl implements MemberService {
 	}
 	
 	@Override
-	public MemberBean findAccount(String email) {
-		return memberDao.findAccount(email);
+	public MemberBean findAccount(MemberBean memberBean) {
+		return memberDao.findAccount(memberBean);
 	}
 	
 	@Override
-	public void changePassword(MemberBean memberBean) {
-		memberDao.changePassword(memberBean);
+	public int changePassword(MemberBean memberBean) {
+		int result = memberDao.changePassword(memberBean);
+		return result;
 	}
 	
 	public List<MemberBean> mlist(){
@@ -74,7 +85,9 @@ public class MemberServiceImpl implements MemberService {
 	}
 	
 	@Override
-	public MemberBean storeInfo(int mem_no) {
-		return memberDao.storeInfo(mem_no);
+	public int changePasswordReal(MemberBean memberBean) {
+		int result = memberDao.changePasswordReal(memberBean);
+		return result;
 	}
+	
 }

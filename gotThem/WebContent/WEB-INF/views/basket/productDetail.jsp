@@ -36,9 +36,10 @@
                             <form name="form1" method="post" action="../insert.gt">
                                <input type="hidden" name="bas_procode" value="${m.pro_code}">
                                <input type="hidden" name="bas_proname" value="${m.pro_name}"> 
-                               <input type="hidden" name="bas_proprice" value="${m.pro_price}">
                                <input type="hidden" name="bas_procategory" value="${m.pro_category}">
-                               <input type="hidden" name="bas_proexdate" value="${m.pro_exdate}">
+                               <input type="hidden" name="bas_proimg" value="${m.pro_img}"> 
+                               <input type="hidden" name="bas_procomment" value="${m.pro_comment}">
+                               <input type="hidden" name="bas_proprice" value="${m.pro_price}">                             
                                 <select name="bas_prostock" >
                                     <c:forEach begin="1" end="10" var="i">
                                         <option value="${i}">${i}</option>

@@ -46,6 +46,18 @@ public class MemberDaoImpl implements MemberDao {
 	}
 	
 	@Override
+	public void storeModi(MemberBean memberBean) {
+	   int result = sqlSessionTemplate.update("storeModi", memberBean);
+	   System.out.println("점포 수정 업데이트 후 결과는 : " + result);
+	}
+	
+	@Override
+	public void memModi(MemberBean memberBean) {
+		int result = sqlSessionTemplate.update("memModi", memberBean);
+		System.out.println("회원정보 관리자 수정 후 결과는 : " + result);
+	}
+	
+	@Override
 	public int passCheck(MemberBean memberBean) {
 		return sqlSessionTemplate.selectOne("passCheck", memberBean);
 	}
@@ -58,15 +70,22 @@ public class MemberDaoImpl implements MemberDao {
 	}
 	
 	@Override
-	public MemberBean findAccount(String email) {
-		return sqlSessionTemplate.selectOne("findAccount",email);
+	public MemberBean findAccount(MemberBean memberBean) {
+		return sqlSessionTemplate.selectOne("findAccount",memberBean);
 	}
 	
 	@Override
-	public void changePassword(MemberBean memberBean){
+	public int changePassword(MemberBean memberBean){
 		System.out.println(memberBean);
 		int result = sqlSessionTemplate.update("changePassword",memberBean);
 		System.out.println("비밀번호 변경 결과는 " + result);
+		return result;
+	}
+	
+	@Override
+	public int changePasswordReal(MemberBean memberBean) {
+		int result = sqlSessionTemplate.update("changePasswordReal",memberBean);
+		return result;
 	}
 	
 	public List<MemberBean> mlist() {
@@ -79,11 +98,6 @@ public class MemberDaoImpl implements MemberDao {
 		System.out.println("점포 리스트 뽑아옴");
 		return sqlSessionTemplate.selectList("stlist");
 	}
-
-	@Override
-	public MemberBean storeInfo(int mem_no) {
-		System.out.println(mem_no);
-		return sqlSessionTemplate.selectOne("storeInfo", mem_no);
-	}
+	
 	
 }

@@ -10,10 +10,10 @@ public class BasketBean {
   private int bas_prostock;
   private int bas_proprice;
   private String bas_procategory;
-  private Date bas_proexdate;
+  private String bas_proimg;
+  private String bas_procomment;
   private int money;
-
-  public int getBas_no() {
+public int getBas_no() {
 	return bas_no;
 }
 public void setBas_no(int bas_no) {
@@ -37,7 +37,6 @@ public String getBas_proname() {
 public void setBas_proname(String bas_proname) {
 	this.bas_proname = bas_proname;
 }
-
 public int getBas_prostock() {
 	return bas_prostock;
 }
@@ -56,11 +55,17 @@ public String getBas_procategory() {
 public void setBas_procategory(String bas_procategory) {
 	this.bas_procategory = bas_procategory;
 }
-public Date getBas_proexdate() {
-	return bas_proexdate;
+public String getBas_proimg() {
+	return bas_proimg;
 }
-public void setBas_proexdate(Date bas_proexdate) {
-	this.bas_proexdate = bas_proexdate;
+public void setBas_proimg(String bas_proimg) {
+	this.bas_proimg = bas_proimg;
+}
+public String getBas_procomment() {
+	return bas_procomment;
+}
+public void setBas_procomment(String bas_procomment) {
+	this.bas_procomment = bas_procomment;
 }
 public int getMoney() {
 	return money;
@@ -72,8 +77,9 @@ public void setMoney(int money) {
 public String toString() {
 	return "BasketBean [bas_no=" + bas_no + ", bas_memno=" + bas_memno + ", bas_procode=" + bas_procode
 			+ ", bas_proname=" + bas_proname + ", bas_prostock=" + bas_prostock + ", bas_proprice=" + bas_proprice
-			+ ", bas_procategory=" + bas_procategory + ", bas_proexdate=" + bas_proexdate + ", money=" + money + "]";
+			+ ", bas_procategory=" + bas_procategory + ", bas_proimg=" + bas_proimg + ", bas_procomment="
+			+ bas_procomment + ", money=" + money + "]";
 }
 
-
+ 
 }

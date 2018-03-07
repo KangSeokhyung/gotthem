@@ -28,9 +28,9 @@
     <!-- 1. 장바구니 추가 -->
     <insert id="insertBasket">
         INSERT INTO basket (
-           bas_memno, bas_procode, bas_proname, bas_prostock,bas_proprice, bas_procategory, bas_proexdate
+           bas_memno, bas_procode, bas_proname, bas_prostock,bas_proprice, bas_procategory, bas_proimg, bas_procomment
       )VALUES(
-       #{bas_memno}, #{bas_procode}, #{bas_proname},#{bas_prostock}, #{bas_proprice}, #{bas_procategory}, #{bas_proexdate})
+       #{bas_memno}, #{bas_procode}, #{bas_proname},#{bas_prostock}, #{bas_proprice}, #{bas_procategory}, #{bas_proimg}, #{bas_procomment})
     </insert> 
 
     <!-- 2. 장바구니 목록 -->
@@ -43,6 +43,8 @@
             b.bas_procategory,
             p.pro_code As pro_code,
             b.bas_proprice,
+            b.bas_proimg,
+            b.bas_procomment,
             m.mem_no AS mem_no, 
             p.pro_name AS pro_name, 
             b.bas_prostock,        
