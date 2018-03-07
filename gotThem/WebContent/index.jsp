@@ -14,7 +14,6 @@
     <link rel="stylesheet" href="resources/mainTemplate/css/styles-merged.css">
     <link rel="stylesheet" href="resources/mainTemplate/css/style.min.css">
     <link rel="stylesheet" href="resources/mainTemplate/css/custom.css">
-
     <!--[if lt IE 9]>
       <script src="resources/mainTemplate/js/vendor/html5shiv.min.js"></script>
       <script src="resources/mainTemplate/js/vendor/respond.min.js"></script>
@@ -23,11 +22,46 @@
   <body>
 
   <!-- START: header -->
-  
+   <header role="banner" class="probootstrap-header">
+    <div class="container">
+        <a href="/gotThem" class="probootstrap-logo">GOT THEM<span>.</span></a>
+        
+        <a href="#" class="probootstrap-burger-menu visible-xs" ><i>Menu</i></a>
+        <div class="mobile-menu-overlay"></div>
+
+        <nav role="navigation" class="probootstrap-nav hidden-xs">
+          <ul class="probootstrap-main-nav">
+            <li><a href="#">GOTTHEM</a></li>
+            <li><a href="#">NOTICE</a></li>
+            <li><a href="#">EVENT</a></li>
+            <c:set var="sessionCheck"
+					value="${sessionScope.SPRING_SECURITY_CONTEXT}" />
+				<c:choose>
+					<c:when test="${sessionCheck eq null}">
+            <li><a href="join.gt">SIGN UP</a></li>
+            <li><a href="login.gt">LOGIN</a></li>
+            		</c:when>
+					<c:otherwise>
+			<li><a href="mypage.gt">MY PAGE</a></li>
+            <li><a href="logout.gt">LOGOUT</a></li>
+				</c:otherwise>
+				</c:choose>
+          </ul>
+          <div class="extra-text visible-xs"> 
+            <a href="#" class="probootstrap-burger-menu"><i>Menu</i></a>
+            <h5>Address</h5>
+            <p>198 West 21th Street, Suite 721 New York NY 10016</p>
+            <h5>Connect</h5>
+            <ul class="social-buttons">
+              <li><a href="#"><i class="icon-twitter"></i></a></li>
+              <li><a href="#"><i class="icon-facebook2"></i></a></li>
+              <li><a href="#"><i class="icon-instagram2"></i></a></li>
+            </ul>
+          </div>
+        </nav>
+    </div>
+  </header>
   <div class="probootstrap-loader"></div>
-<header>
-<%@include file="nav.jsp" %>
-</header>
   <!-- END: header -->
   <section class="probootstrap-slider flexslider">
     <div class="probootstrap-wrap-banner">
@@ -71,9 +105,8 @@
               <img src="resources/mainTemplate/img/flaticon/svg/001-prize.svg" class="svg" alt="Free HTML5 Template by uicookies.com">
             </div>
             <div class="probootstrap-card-text">
-              <h2 class="probootstrap-card-heading">Award Winning Brooker</h2>
+              <h2 class="probootstrap-card-heading">항상 최고의 서비스를!</h2>
               <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
-              <p><a href="#">Find out more</a></p>
             </div>
           </div>
         </div>
@@ -83,9 +116,8 @@
               <img src="resources/mainTemplate/img/flaticon/svg/005-new.svg" class="svg" alt="Free HTML5 Template by uicookies.com">
             </div>
             <div class="probootstrap-card-text">
-              <h2 class="probootstrap-card-heading">New Houses</h2>
+              <h2 class="probootstrap-card-heading">지속적인 가맹점 확대!</h2>
               <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
-              <p><a href="#">Find out more</a></p>
             </div>
           </div>
         </div>
@@ -95,9 +127,8 @@
               <img src="resources/mainTemplate/img/flaticon/svg/006-coin.svg" class="svg" alt="Free HTML5 Template by uicookies.com">
             </div>
             <div class="probootstrap-card-text">
-              <h2 class="probootstrap-card-heading">Affordable Houses</h2>
+              <h2 class="probootstrap-card-heading">점주와 GOT THEM WIN-WIN!</h2>
               <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
-              <p><a href="#">Find out more</a></p>
             </div>
           </div>
         </div>
@@ -172,419 +203,10 @@
       <p><a href="storeIndex.st" class="btn btn-primary mb10">제휴페이지</a></p>
     </div>
   </section>
-  <!-- END: section -->
 
-  <section class="probootstrap-section probootstrap-section-lighter">
-    <div class="container">
-      <div class="row heading">
-        <h2 class="mt0 mb50 text-center">Featured Listing</h2>
-      </div>
-      <div class="row">
-        <div class="col-md-4 col-sm-6">
-          <div class="probootstrap-card probootstrap-listing">
-            <div class="probootstrap-card-media">
-              <img src="img/slider_1.jpg" class="img-responsive" alt="Free HTML5 Template by uicookies.com">
-              <a href="#" class="probootstrap-love"><i class="icon-heart"></i></a>
-            </div>
-            <div class="probootstrap-card-text">
-              <h2 class="probootstrap-card-heading"><a href="#">3 Bed Room Property for Sale</a></h2>
-              <div class="probootstrap-listing-location">
-                <i class="icon-location2"></i> <span>360 W Wellington Chicago, IL 60657</span>
-              </div>
-              <div class="probootstrap-listing-category for-sale"><span>for sale</span></div>
-              <div class="probootstrap-listing-price"><strong>$ 1,121,000</strong> / month</div>
-            </div>
-            <div class="probootstrap-card-extra">
-              <ul>
-                <li>
-                  Area
-                  <span>2400 m2</span>
-                </li>
-                <li>
-                  Beds
-                  <span>3</span>
-                </li>
-                <li>
-                  Baths
-                  <span>2</span>
-                </li>
-                <li>
-                  Garages
-                  <span>1</span>
-                </li>
-              </ul>
-            </div>
-          </div>
-          <!-- END listing -->
-        </div>
-        <div class="col-md-4 col-sm-6">
-          <div class="probootstrap-card probootstrap-listing">
-            <div class="probootstrap-card-media">
-              <img src="img/slider_2.jpg" class="img-responsive" alt="Free HTML5 Template by uicookies.com">
-              <a href="#" class="probootstrap-love"><i class="icon-heart"></i></a>
-            </div>
-            <div class="probootstrap-card-text">
-              <h2 class="probootstrap-card-heading"><a href="#">3 Bed Room Property for Sale</a></h2>
-              <div class="probootstrap-listing-location">
-                <i class="icon-location2"></i> <span>360 W Wellington Chicago, IL 60657</span>
-              </div>
-              <div class="probootstrap-listing-category for-sale"><span>for sale</span></div>
-              <div class="probootstrap-listing-price"><strong>$ 250,000</strong> / month</div>
-            </div>
-            <div class="probootstrap-card-extra">
-              <ul>
-                <li>
-                  Area
-                  <span>2400 m2</span>
-                </li>
-                <li>
-                  Beds
-                  <span>3</span>
-                </li>
-                <li>
-                  Baths
-                  <span>2</span>
-                </li>
-                <li>
-                  Garages
-                  <span>1</span>
-                </li>
-              </ul>
-            </div>
-          </div>
-          <!-- END listing -->
-        </div>
-        <div class="clearfix visible-sm-block"></div>
-        <div class="col-md-4 col-sm-6">
-          <div class="probootstrap-card probootstrap-listing">
-            <div class="probootstrap-card-media">
-              <img src="img/slider_3.jpg" class="img-responsive" alt="Free HTML5 Template by uicookies.com">
-              <a href="#" class="probootstrap-love"><i class="icon-heart"></i></a>
-            </div>
-            <div class="probootstrap-card-text">
-              <h2 class="probootstrap-card-heading"><a href="#">3 Bed Room Property for Sale</a></h2>
-              <div class="probootstrap-listing-location">
-                <i class="icon-location2"></i> <span>360 W Wellington Chicago, IL 60657</span>
-              </div>
-              <div class="probootstrap-listing-category for-rent"><span>for rent</span></div>
-              <div class="probootstrap-listing-price"><strong>$ 60,000</strong> / month</div>
-            </div>
-            <div class="probootstrap-card-extra">
-              <ul>
-                <li>
-                  Area
-                  <span>2400 m2</span>
-                </li>
-                <li>
-                  Beds
-                  <span>3</span>
-                </li>
-                <li>
-                  Baths
-                  <span>2</span>
-                </li>
-                <li>
-                  Garages
-                  <span>1</span>
-                </li>
-              </ul>
-            </div>
-          </div>
-          <!-- END listing -->
-        </div>
-        <div class="col-md-4 col-sm-6">
-          <div class="probootstrap-card probootstrap-listing">
-            <div class="probootstrap-card-media">
-              <img src="img/slider_4.jpg" class="img-responsive" alt="Free HTML5 Template by uicookies.com">
-              <a href="#" class="probootstrap-love"><i class="icon-heart"></i></a>
-            </div>
-            <div class="probootstrap-card-text">
-              <h2 class="probootstrap-card-heading"><a href="#">3 Bed Room Property for Sale</a></h2>
-              <div class="probootstrap-listing-location">
-                <i class="icon-location2"></i> <span>360 W Wellington Chicago, IL 60657</span>
-              </div>
-              <div class="probootstrap-listing-category for-sale"><span>for sale</span></div>
-              <div class="probootstrap-listing-price"><strong>$ 125,000</strong> / month</div>
-            </div>
-            <div class="probootstrap-card-extra">
-              <ul>
-                <li>
-                  Area
-                  <span>2400 m2</span>
-                </li>
-                <li>
-                  Beds
-                  <span>3</span>
-                </li>
-                <li>
-                  Baths
-                  <span>2</span>
-                </li>
-                <li>
-                  Garages
-                  <span>1</span>
-                </li>
-              </ul>
-            </div>
-          </div>
-          <!-- END listing -->
-        </div>
-        <div class="clearfix visible-sm-block"></div>
-        <div class="col-md-4 col-sm-6">
-          <div class="probootstrap-card probootstrap-listing">
-            <div class="probootstrap-card-media">
-              <img src="img/slider_2.jpg" class="img-responsive" alt="Free HTML5 Template by uicookies.com">
-              <a href="#" class="probootstrap-love"><i class="icon-heart"></i></a>
-            </div>
-            <div class="probootstrap-card-text">
-              <h2 class="probootstrap-card-heading"><a href="#">3 Bed Room Property for Sale</a></h2>
-              <div class="probootstrap-listing-location">
-                <i class="icon-location2"></i> <span>360 W Wellington Chicago, IL 60657</span>
-              </div>
-              <div class="probootstrap-listing-category for-sale"><span>for sale</span></div>
-              <div class="probootstrap-listing-price"><strong>$ 125,000</strong> / month</div>
-            </div>
-            <div class="probootstrap-card-extra">
-              <ul>
-                <li>
-                  Area
-                  <span>2400 m2</span>
-                </li>
-                <li>
-                  Beds
-                  <span>3</span>
-                </li>
-                <li>
-                  Baths
-                  <span>2</span>
-                </li>
-                <li>
-                  Garages
-                  <span>1</span>
-                </li>
-              </ul>
-            </div>
-          </div>
-          <!-- END listing -->
-        </div>
-        <div class="col-md-4 col-sm-6">
-          <div class="probootstrap-card probootstrap-listing">
-            <div class="probootstrap-card-media">
-              <img src="img/slider_1.jpg" class="img-responsive" alt="Free HTML5 Template by uicookies.com">
-              <a href="#" class="probootstrap-love"><i class="icon-heart"></i></a>
-            </div>
-            <div class="probootstrap-card-text">
-              <h2 class="probootstrap-card-heading"><a href="#">3 Bed Room Property for Sale</a></h2>
-              <div class="probootstrap-listing-location">
-                <i class="icon-location2"></i> <span>360 W Wellington Chicago, IL 60657</span>
-              </div>
-              <div class="probootstrap-listing-category for-sale"><span>for sale</span></div>
-              <div class="probootstrap-listing-price"><strong>$ 125,000</strong> / month</div>
-            </div>
-            <div class="probootstrap-card-extra">
-              <ul>
-                <li>
-                  Area
-                  <span>2400 m2</span>
-                </li>
-                <li>
-                  Beds
-                  <span>3</span>
-                </li>
-                <li>
-                  Baths
-                  <span>2</span>
-                </li>
-                <li>
-                  Garages
-                  <span>1</span>
-                </li>
-              </ul>
-            </div>
-          </div>
-          <!-- END listing -->
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="probootstrap-half reverse">
-    <div class="image-wrap">
-      <div class="image" style="background-image: url(img/slider_5.jpg);"></div>
-    </div>
-    <div class="text">
-      <p class="mb10 subtitle">Why Choose Us</p>
-      <h3 class="mt0 mb40">You Will Love Our Services</h3>
-      <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.</p>
-      <p class="mb50">A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country, in which roasted parts of sentences fly into your mouth.</p>
-      <p><a href="#" class="btn btn-primary mb10">Find out more</a></p>
-    </div>
-  </section>
-
-  <section class="probootstrap-section">
-    <div class="container">
-      <div class="row heading">
-        <h2 class="mt0 mb50 text-center">Our Services</h2>
-      </div>
-      <div class="row">
-        <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 probootstrap-animate">
-          <div class="service text-center">
-            <div class="icon"><i class="icon-list2"></i></div>
-            <h2 class="heading">Property Listing</h2>
-            <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
-          </div>
-        </div>
-        <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 probootstrap-animate">
-          <div class="service text-center">
-            <div class="icon"><i class="icon-power-cord"></i></div>
-            <h2 class="heading">Property Management</h2>
-            <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
-          </div>
-        </div>
-        <div class="clearfix visible-sm-block"></div>
-        <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 probootstrap-animate">
-          <div class="service text-center">
-            <div class="icon"><i class="icon-price-tag2"></i></div>
-            <h2 class="heading">Renting Properties</h2>
-            <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
-          </div>
-        </div>
-        <div class="clearfix visible-lg-block visible-md-block"></div>
-        <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 probootstrap-animate">
-          <div class="service text-center">
-            <div class="icon"><i class="icon-direction"></i></div>
-            <h2 class="heading">Selling Properties</h2>
-            <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
-          </div>
-        </div>
-        <div class="clearfix visible-sm-block"></div>
-        <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 probootstrap-animate">
-          <div class="service text-center">
-            <div class="icon"><i class="icon-home3"></i></div>
-            <h2 class="heading">Brook A Property</h2>
-            <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
-          </div>
-        </div>
-        <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 probootstrap-animate">
-          <div class="service text-center">
-            <div class="icon"><i class="icon-magnifying-glass"></i></div>
-            <h2 class="heading">Search Property</h2>
-            <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
-          </div>
-        </div>
-        <div class="clearfix visible-lg-block visible-md-block"></div>
-      </div>
-    </div>
-  </section>
-
-  <!-- END: section -->
-
-  <section class="probootstrap-section probootstrap-section-lighter">
-    <div class="container">
-      <div class="row heading">
-        <h2 class="mt0 mb50 text-center">Our Agents</h2>
-      </div>
-      <div class="row">
-        <div class="col-md-3">
-          <div class="probootstrap-card probootstrap-person text-left">
-            <div class="probootstrap-card-media">
-              <img src="img/person_1.jpg" class="img-responsive" alt="Free HTML5 Template by uicookies.com">
-            </div>
-            <div class="probootstrap-card-text">
-              <h2 class="probootstrap-card-heading mb0">Jeremy Slater</h2>
-              <p><small>Real Estate Brooker</small></p>
-              <p><a href="#">View Details</a></p>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-3">
-          <div class="probootstrap-card probootstrap-person text-left">
-            <div class="probootstrap-card-media">
-              <img src="img/person_2.jpg" class="img-responsive" alt="Free HTML5 Template by uicookies.com">
-            </div>
-            <div class="probootstrap-card-text">
-              <h2 class="probootstrap-card-heading mb0">James Butterly</h2>
-              <p><small>Buying Agent</small></p>
-              <p><a href="#">View Details</a></p>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-3">
-          <div class="probootstrap-card probootstrap-person text-left">
-            <div class="probootstrap-card-media">
-              <img src="img/person_3.jpg" class="img-responsive" alt="Free HTML5 Template by uicookies.com">
-            </div>
-            <div class="probootstrap-card-text">
-              <h2 class="probootstrap-card-heading mb0">James Smith</h2>
-              <p><small>Real Estate Brooker</small></p>
-              <p><a href="#">View Details</a></p>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-3">
-          <div class="probootstrap-card probootstrap-person text-left">
-            <div class="probootstrap-card-media">
-              <img src="img/person_4.jpg" class="img-responsive" alt="Free HTML5 Template by uicookies.com">
-            </div>
-            <div class="probootstrap-card-text">
-              <h2 class="probootstrap-card-heading mb0">Chris White</h2>
-              <p><small>Selling Agent</small></p>
-              <p><a href="#">View Details</a></p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
 
   <footer class="probootstrap-footer probootstrap-bg" style="background-image: url(img/slider_3.jpg)">
     <div class="container">
-      <div class="row mb60">
-        <div class="col-md-3">
-          <div class="probootstrap-footer-widget">
-            <h4 class="heading">About Haus.</h4>
-            <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. </p>
-            <p><a href="#">Read more...</a></p>
-          </div> 
-        </div>
-        <div class="col-md-3">
-          <div class="probootstrap-footer-widget probootstrap-link-wrap">
-            <h4 class="heading">Quick Links</h4>
-            <ul class="stack-link">
-              <li><a href="#">Property Listing</a></li>
-              <li><a href="#">Rent Properties</a></li>
-              <li><a href="#">Sell Properties</a></li>
-              <li><a href="#">Agents</a></li>
-              <li><a href="#">Testimonial</a></li>
-            </ul>
-          </div>
-        </div>
-        <div class="col-md-3">
-          <div class="probootstrap-footer-widget">
-            <h4 class="heading">Popular Cities</h4>
-            <ul class="stack-link">
-              <li><a href="#">New York <small>(320 properties)</small></a></li>
-              <li><a href="#">San Francisco <small>(294 properties)</small></a></li>
-              <li><a href="#">Brooklyn <small>(300 properties)</small></a></li>
-              <li><a href="#">Chicago <small>(268 properties)</small></a></li>
-              <li><a href="#">Los Angeles <small>(342 properties)</small></a></li>
-            </ul>
-          </div> 
-        </div>
-        <div class="col-md-3">
-          <div class="probootstrap-footer-widget probootstrap-link-wrap">
-            <h4 class="heading">Subscribe</h4>
-            <p>Far far away behind the word mountains far from.</p>
-            <form action="#">
-              <div class="form-field">
-                <input type="text" class="form-control" placeholder="Enter your email">
-                <button class="btn btn-subscribe">Send</button>
-              </div>
-            </form>
-          </div>
-        </div>
-      </div>
-      <div class="row copyright">
         <div class="col-md-6">
           <div class="probootstrap-footer-widget">
             <p>&copy; 2017 <a href="https://uicookies.com/">uiCookies:Haus</a>. Designed by <a href="https://uicookies.com/">uicookies.com</a> <br> Demo Photos from <a href="https://pixabay.com/">Pixabay</a> &amp; <a href="https://unsplash.com/">Unsplash</a></p>
@@ -599,10 +221,8 @@
             </ul>
           </div>
         </div>
-      </div>
     </div>
   </footer>
-
   <div class="gototop js-top">
     <a href="#" class="js-gotop"><i class="icon-chevron-thin-up"></i></a>
   </div>

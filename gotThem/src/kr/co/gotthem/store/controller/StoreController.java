@@ -57,7 +57,6 @@ public class StoreController {
 	public String stjoin(HttpServletRequest request, HttpSession session) throws Exception{
 		
 		MemberBean stBean = new MemberBean();
-		
 		stBean.setMem_id(request.getParameter("mem_id"));
 		stBean.setMem_pw(request.getParameter("mem_pw"));
 		stBean.setMem_name(request.getParameter("mem_name"));
@@ -78,7 +77,6 @@ public class StoreController {
 	@RequestMapping(value = "/login.st", method = RequestMethod.GET)
 	public String stlogin(HttpServletRequest request, HttpSession session) throws Exception{
 		System.out.println("로그인 페이지 진입했다.");
-		
 		return "store/stLogin";
 	}
 	
@@ -184,6 +182,13 @@ public class StoreController {
 	public ModelAndView findID(ModelAndView mav) {
 		mav.setViewName("store/findIDAndPW");
 		return mav;
+	}
+	
+	@RequestMapping(value = "loginfail.st", method= RequestMethod.GET)
+	public String lgfail(HttpServletRequest request) {
+		String id = (String)request.getParameter("sto_id");
+		System.out.println(id);
+		return "store/fail2";
 	}
 
 }

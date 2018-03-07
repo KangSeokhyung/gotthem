@@ -8,7 +8,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-	     <header role="banner" class="probootstrap-header">
+<header role="banner" class="probootstrap-header">
     <div class="container">
         <a href="/gotThem" class="probootstrap-logo">GOT THEM<span>.</span></a>
         
@@ -20,8 +20,18 @@
             <li><a href="#">GOTTHEM</a></li>
             <li><a href="#">NOTICE</a></li>
             <li><a href="#">EVENT</a></li>
-            <li><a href="join.gt">SIGN UP</a></li>
-            <li><a href="login.gt">LOGIN</a></li>
+            <c:set var="sessionCheck"
+ 					value="${sessionScope.SPRING_SECURITY_CONTEXT}" />
+ 					<c:choose>
+ 					<c:when test="${sessionCheck eq null}">
+					 <li><a href="join.gt">SIGN UP</a></li>
+           			 <li><a href="login.gt">LOGIN</a></li>
+					</c:when>
+					<c:otherwise>
+					<li><a href="mypage.gt">MYPAGE</a></li>
+           			 <li><a href="logout.gt">LOGOUT</a></li>
+ 					</c:otherwise>
+ 				</c:choose>
           </ul>
           <div class="extra-text visible-xs"> 
             <a href="#" class="probootstrap-burger-menu"><i>Menu</i></a>

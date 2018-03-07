@@ -23,12 +23,81 @@
     header{
     padding-bottom:80px;
     }
+    
+    input[type="number"]::-webkit-outer-spin-button,
+	input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+	text-align:center;
+}
     </style>
   </head>
 <body>
-	<header class="header">
-		<%@include file="../../../nav.jsp" %>
-	</header>
+<!-- START: header -->
+   <header role="banner" class="probootstrap-header">
+    <div class="container">
+        <a href="/gotThem" class="probootstrap-logo">GOT THEM<span>.</span></a>
+        
+        <a href="#" class="probootstrap-burger-menu visible-xs" ><i>Menu</i></a>
+        <div class="mobile-menu-overlay"></div>
+
+        <nav role="navigation" class="probootstrap-nav hidden-xs">
+          <ul class="probootstrap-main-nav">
+            <li><a href="#">GOTTHEM</a></li>
+            <li><a href="#">NOTICE</a></li>
+            <li><a href="#">EVENT</a></li>
+            <c:set var="sessionCheck"
+					value="${sessionScope.SPRING_SECURITY_CONTEXT}" />
+				<c:choose>
+					<c:when test="${sessionCheck eq null}">
+            <li class="active"><a href="join.gt">SIGN UP</a></li>
+            <li><a href="login.gt">LOGIN</a></li>
+            		</c:when>
+					<c:otherwise>
+			<li><a href="mypage.gt">MY PAGE</a></li>
+            <li><a href="logout.gt">LOGOUT</a></li>
+				</c:otherwise>
+				</c:choose>
+          </ul>
+          <div class="extra-text visible-xs"> 
+            <a href="#" class="probootstrap-burger-menu"><i>Menu</i></a>
+            <h5>Address</h5>
+            <p>198 West 21th Street, Suite 721 New York NY 10016</p>
+            <h5>Connect</h5>
+            <ul class="social-buttons">
+              <li><a href="#"><i class="icon-twitter"></i></a></li>
+              <li><a href="#"><i class="icon-facebook2"></i></a></li>
+              <li><a href="#"><i class="icon-instagram2"></i></a></li>
+            </ul>
+          </div>
+        </nav>
+    </div>
+  </header>
+  <!-- END: header -->
+  <section class="probootstrap-slider flexslider2 page-inner">
+    <div class="overlay"></div>
+    <div class="probootstrap-wrap-banner">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-8">
+
+            <div class="page-title probootstrap-animate">
+              <div class="probootstrap-breadcrumbs">
+                <a href="#">Home</a><span>Sign up</span>
+              </div>
+              <h1>회원가입</h1>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+    <ul class="slides">
+      <li style="background-image: url(resources/mainTemplate/img/slider_1.jpg);"></li>
+      <li style="background-image: url(resources/mainTemplate/img/slider_4.jpg);"></li>
+      <li style="background-image: url(resources/mainTemplate/img/slider_2.jpg);"></li>
+    </ul>
+  </section>
+  <!-- END: slider  -->
   <section class="mbr-section form1 cid-qIWKYtQnJh" id="form1-r">
     <div class="container">
         <div class="row justify-content-center">
@@ -47,7 +116,7 @@
                         Thanks for filling out the form!
                     </div>
             
-                    <form class="mbr-form" action="join.st" method="post" data-form-title="Mobirise Form">
+                    <form class="mbr-form" action="joinSccess.gt" method="post" data-form-title="Mobirise Form">
                     <input type="hidden" name="email" data-form-email="true" value="v71UZV7rSGKmNdtMTJcCzvbgvRKs8I889PXLsAjbR6NuKJtPYoKYEe+DT90N7gqVmrsYQhYLqTnSDAVjImF7Eb8KP/1hIcQUbq5w77EmgcHnu38hK1G/QmJo9v9/aFIP" data-form-field="Email">
                         <div class="row row-sm-offset">
                             <div class="col-sm-8 multi-horizontal" data-for="id">
@@ -83,15 +152,22 @@
                                 </div>
                          </div>
                           <div class="col-sm-8 multi-horizontal" data-for="email">
-                          <div class="form-group">
-                                    <label class="form-control-label mbr-fonts-style display-7" for="email-form1-r">이메일</label>
-                                    <input type="email" class="form-control" name="mem_email" data-form-field="Name" required="" id="mem_email">
+                         		<div class="form-group">
+                                    <label class="form-control-label mbr-fonts-style display-7" for="email-form1-r">이메일</label><br>
+                                    <input type="text" class="form-control" name="mem_emailid" data-form-field="Name" required="" id="mem_emailid"
+                                    style="width:40%; display:inline-block;">&nbsp;@
+                                    <input type="text" class="form-control" name="mem_emailadd" data-form-field="Name" required="" id="mem_emailadd" style="width:52%; display:inline-block;">
                                 </div>
                             </div>
-                          <div class="col-sm-8 multi-horizontal" data-for="phone">
+                          <div class="col-xs-12 col-sm-8 multi-horizontal" data-for="phone">
                            <div class="form-group">
-                                    <label class="form-control-label mbr-fonts-style display-7" for="phone-form1-r">전화번호</label>
-                                    <input type="text" class="form-control" name="mem_phone" data-form-field="Name" required="" id="mem_phone">
+                                    <label class="form-control-label mbr-fonts-style display-7" for="phone-form1-r">전화번호</label><br>
+                                    <input
+									type="number" class="form-control" name="mem_phoneFront" data-form-field="Name" required="required" id="mem_phoneFront" maxlength="3" style="width:28%; display:inline-block;">&nbsp;&nbsp;-&nbsp;
+                                    <input 
+                                    type="number" class="form-control" name="mem_phoneMiddle" data-form-field="Name" required="required" id="mem_phoneMiddle" maxlength="4" style="width:28%; display:inline-block;">&nbsp;&nbsp;-&nbsp;
+                                    <input 
+                                    type="number" class="form-control" name="mem_phoneLast" data-form-field="Name" required="required" id="mem_phoneLast" maxlength="4" style="width:28%; display:inline-block;">
                                 </div>
                             </div>
                          <div class="col-sm-6 multi-horizontal" data-for="postcode">
@@ -102,10 +178,11 @@
                             </div>
                          <div class="col-sm-6 multi-horizontal" data-for="findpostcode">
                             <div class="form-group" style="text-align:center; vertical-align:bottom;">
-                            <button onclick="sample6_execDaumPostcode()" class="btn btn-primary navbar-btn btn-shadow btn-gradient">우편번호찾기</button>
+                            <label class="form-control-label mbr-fonts-style display-7" for="addr1-form1-r">&nbsp;</label>
+                            <button onclick="sample6_execDaumPostcode()" class="btn btn-primary ">우편번호찾기</button>
                            </div>
                          </div>
-                        <div class="col-sm-12 multi-horizontal" data-for="address1">
+                        <div class="col-sm-12 multi-horizontal" data-for="address1"> 
                             <div class="form-group">
                                     <label class="form-control-label mbr-fonts-style display-7" for="addr1-form1-r">매장 상세주소1</label>
                                     <input type="text" class="form-control" name="mem_addr2" data-form-field="Name" required="" id="mem_address1">
@@ -118,23 +195,21 @@
                                 </div>
                             </div>
                         </div>
-                        <br><br><br>
                             <button type="submit" class="btn btn-primary navbar-btn btn-shadow btn-gradient">가입하기</button>
                     </form>
             </div>
         </div>
     </div>
+    <input type="button" onclick="numkeyCheck(event);" value="test">
 </section>
-
 
 </body>
     <!-- Javascript files-->
     <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"> </script>
-    <script src="resources/landy/vendor/bootstrap/js/bootstrap.min.js"></script>
-    <script src="resources/landy/vendor/jquery.cookie/jquery.cookie.js"> </script>
-    <script src="resources/landy/vendor/owl.carousel/owl.carousel.min.js"></script>
-    <script src="resources/landy/js/front.js"></script>
+     <script src="resources/mainTemplate/js/scripts.min.js"></script>
+  	<script src="resources/mainTemplate/js/main.min.js"></script>
+  	<script src="resources/mainTemplate/js/custom.js"></script>
+  	<script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
 		<script>
 		function duplCheck(){ 
 		    var id = $('#mem_id').val();
@@ -197,9 +272,7 @@
 					return false;
 				}
 			}
-			</script>
-<script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
-	<script>
+			
    		 function sample6_execDaumPostcode() {
        		 new daum.Postcode({
           	  oncomplete: function(data) {
@@ -238,6 +311,37 @@
             }
         }).open();
     }
+   		 
+   		function indexFoward() {
+			if (confirm('메인페이지로 이동하시겠습니까?')) {
+				location.href = "index.jsp";
+			}
+		}
+   		
+		function removeChar(event) {
+			event = event || window.event;
+			var keyID = (event.which) ? event.which : event.keyCode;
+			if ( keyID == 8 || keyID == 46 || keyID == 37 || keyID == 39 ) 
+				return;
+			else
+				event.target.value = event.target.value.replace(/[^0-9]/g, "");
+		}
+   		 
+   		
+	 	
+	 	/*
+	 	function pwCheck(){
+    	 var pw1 = document.getElementById("m_pass1").value;
+    	 var pw2 = document.getElementById("m_pass2").value;
+    		 if(pw1 != pw2){
+    			 	document.getElementById('pwCheck').style.color = "red";
+    			    document.getElementById('pwCheck').innerHTML = "동일한 암호를 입력하세요."; 
+    		 		}else {
+    		 		document.getElementById('pwCheck').style.color = "blue";
+    		 		document.getElementById('pwCheck').innerHTML = "암호가 확인 되었습니다."; 
+    		 		} 			 
+    		 } 	  
+	 	*/
   
 </script>
 </body>

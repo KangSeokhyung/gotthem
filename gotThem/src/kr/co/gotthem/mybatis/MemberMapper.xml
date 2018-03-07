@@ -25,8 +25,8 @@
 	</select>
 	
 	<insert id="join" parameterType="kr.co.gotthem.member.bean.MemberBean">
-		insert into member(mem_id, mem_pw, mem_name, mem_email, mem_phone, mem_address, mem_status, enabled)
-		values(#{mem_id}, #{mem_pw}, #{mem_name}, #{mem_email}, #{mem_phone}, #{mem_address}, 'ROLE_USER', 1)
+		insert into member(mem_id, mem_pw, mem_name, mem_email, mem_phone, mem_address, mem_regdate, mem_status, enabled)
+		values(#{mem_id}, #{mem_pw}, #{mem_name}, #{mem_email}, #{mem_phone}, #{mem_address}, curdate(), 'ROLE_USER', 1)
 	</insert>
 	
 	<insert id="stjoin" parameterType="kr.co.gotthem.member.bean.MemberBean">
@@ -56,5 +56,25 @@
 	<update id="memberDelete" parameterType="kr.co.gotthem.member.bean.MemberBean">
 		update member set enabled = 0 where mem_id=#{mem_id} and mem_pw=#{mem_pw}
 	</update>
+	
+	<select id="findAccount" parameterType="kr.co.gotthem.member.bean.MemberBean" resultType="kr.co.gotthem.member.bean.MemberBean">
+		select * from member where mem_email=#{mem_email} and mem_name = #{mem_name}
+	</select>
+	
+	<update id="changePassword" parameterType="kr.co.gotthem.member.bean.MemberBean">
+		update member set mem_pw = #{mem_pw} where mem_email = #{mem_email} and mem_id=#{mem_id}
+	</update>
+	
+	<update id="changePasswordReal" parameterType="kr.co.gotthem.member.bean.MemberBean">
+		update member set mem_pw = #{mem_pw} where mem_id=#{mem_id}
+	</update>
+	
+	<select id="selectStatus" parameterType="kr.co.gotthem.member.bean.MemberBean" resultType="int">
+		select enabled from member where mem_id=#{mem_id} and mem_pw = #{mem_pw}
+	</select>
 
+	<select id="storeInfo" parameterType="int" resultType="kr.co.gotthem.member.bean.MemberBean">
+		select * from member where mem_no = #{mem_no}
+	</select>
+	
 </mapper>

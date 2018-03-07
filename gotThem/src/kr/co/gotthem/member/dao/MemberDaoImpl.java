@@ -70,6 +70,24 @@ public class MemberDaoImpl implements MemberDao {
 	}
 	
 	@Override
+	public MemberBean findAccount(MemberBean memberBean) {
+		return sqlSessionTemplate.selectOne("findAccount",memberBean);
+	}
+	
+	@Override
+	public int changePassword(MemberBean memberBean){
+		System.out.println(memberBean);
+		int result = sqlSessionTemplate.update("changePassword",memberBean);
+		System.out.println("비밀번호 변경 결과는 " + result);
+		return result;
+	}
+	
+	@Override
+	public int changePasswordReal(MemberBean memberBean) {
+		int result = sqlSessionTemplate.update("changePasswordReal",memberBean);
+		return result;
+	}
+	
 	public List<MemberBean> mlist() {
 		System.out.println("회원 리스트 뽑아옴");
 		return sqlSessionTemplate.selectList("mlist");
@@ -80,5 +98,6 @@ public class MemberDaoImpl implements MemberDao {
 		System.out.println("점포 리스트 뽑아옴");
 		return sqlSessionTemplate.selectList("stlist");
 	}
-
+	
+	
 }

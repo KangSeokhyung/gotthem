@@ -7,32 +7,24 @@ import kr.co.gotthem.order.bean.OrderpayBean;
 
 public interface OrderService {
 	
-	// 1. 결제 추가.
-   public void insertOrder(OrderpayBean orderBean);
-
-   //1.1. 결제 되면, 결제된 수량만큼 장바구니 수량   
-   public void updateBasketOrder(OrderpayBean orderBean);
-
-   // 1.1 상품 삭제
-   public void deleteproduct(int bas_no);
+   // 1. 장바구니에서 결제 추가
+   public void orderInsert(OrderpayBean orderBean);
+   
+   //1.1. 결제 되면, 상품에서 결제된 수량만큼  수량 빼기
+   public void orderUpdateBasket(OrderpayBean orderBean);
+   
+   // 1.2. 결제되면, 장바구니 삭제
+   public void orderDeleteBasket(OrderpayBean orderBean);
     
-   // 2. 장바구니 목록
-    public List<BasketBean> listBasket(int bas_memno);
-    
-    // 3. 장바구니 삭제
-    public void deleteBasket(int bas_no);
-    
-    // 4. 장바구니 수정
-    public void modifyBasket(BasketBean basketBean);
-    
-    // 5. 장바구니 금액 합계
-    public int sumMoney(int bas_memno);
-    
-	// 6. 장바구니 상품 확인
-	public int countBasket(int bas_procode, int bas_memno);
-	
-	// 7. 장바구니 상품 수량 변경
-    public void updateBasket(BasketBean basketBean);
-	
-/*	public MemberBean login(String id);*/
+  
+   // 2. 결제 취소 삭제
+   public void orderDelete(int ord_no);
+   
+   //2.1. 결제 취소되면, 결제된 수량만큼  상품에 수량 더하기
+   public void orderUpdateProduct(OrderpayBean orderBean);   
+   
+   
+   // 3. 아이디별 전체 결제 목록
+   public List<OrderpayBean> listOrder(int userNo);
+     
 }
