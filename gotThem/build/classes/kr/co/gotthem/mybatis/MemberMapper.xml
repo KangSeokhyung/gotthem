@@ -73,4 +73,8 @@
 		select enabled from member where mem_id=#{mem_id} and mem_pw = #{mem_pw}
 	</select>
 
+	<select id="storeInfo" parameterType="int" resultType="kr.co.gotthem.member.bean.MemberBean">
+		select * from member where mem_no = #{mem_no}
+	</select>
+	
 </mapper>

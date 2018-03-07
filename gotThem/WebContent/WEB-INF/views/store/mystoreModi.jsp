@@ -22,6 +22,7 @@
 <link rel="stylesheet" href="resources/landy/css/style.default.css" id="theme-stylesheet">
 <link rel="stylesheet" href="resources/landy/css/custom.css">
 </head>
+</head>
 <body>
 
 	<aside class="probootstrap-aside js-probootstrap-aside">
@@ -41,9 +42,9 @@
 				<ul>
 					<li class="probootstrap-animate"
 						data-animate-effect="fadeInLeft"><a href="/storeIndex">Got them?</a></li>
-					<li class="probootstrap-animate" data-animate-effect="fadeInLeft"><a
-						href="mystore.st">점포관리</a></li>
 					<li class="probootstrap-animate active" data-animate-effect="fadeInLeft"><a
+						href="mystore.st">점포관리</a></li>
+					<li class="probootstrap-animate" data-animate-effect="fadeInLeft"><a
 						href="stock.st">재고관리</a></li>
 				<c:set var="sessionCheck"
 					value="${sessionScope.SPRING_SECURITY_CONTEXT}" />
@@ -87,41 +88,74 @@
 	
 	
 	
-	
-			<div class="cover-container pb-5">
-				<div class="cover-inner container">
-					<table border="1">
-						<tr>
-							<th>번호</th>
-							<th style="text-align: center;">상품명</th>
-							<th>분류</th>
-							<th>가격</th>
-							<th>재고</th>
-						</tr>
-						<c:forEach var="dto" items="${plist }">
-						
-						<tr>
-							<td>${dto.pro_code }</td>
-							<td><a href="detail.st?code=${dto.pro_code }">${dto.pro_name }</a></td>
-							<td>${dto.pro_category }</td>
-							<td>${dto.pro_price }</td>
-							<td>${dto.pro_stock }</td>
-						</tr>
-						</c:forEach>
-					</table>
-					<input type="button" value="상품추가" onclick="location='insert.st'"/>
-					<%-- <div>
-					${sessionScope.SPRING_SECURITY_CONTEXT}					
-					</div> --%>
+	<!--Main content code to be written here -->
+	<br>
+	<div style="border-top: 5px solid gray; border-bottom: 5px solid gray;">
+			<form action="memberModi.gt" method="POST">
+				<div class="panel panel-info">
+					<div class="panel-heading">
+						<h3>회원 정보 수정</h3>
+					</div>
+					<div class="panel-body">
+						<div class="row">
+							<div class=" col-md-12 col-lg-12 " align="center">
+							<input type="hidden" name="mem_id" value="${memberInfo.mem_id}"/>
+								<table class="table table-user-information">
+									<tbody>
+										<tr>
+											<td><span>회원 아이디:</span></td>
+											<td>${memberInfo.mem_id}</td>
+										</tr>
+										<tr>
+											<td><span>이름:</span></td>
+											<td><input style="width: 100%" type="text"
+												name="mem_name" value="${memberInfo.mem_name}"></td>
+										</tr>
+										<tr>
+											<td><span>이메일:</span></td>
+											<td><input style="width: 100%" type="text"
+												name="mem_email" value="${memberInfo.mem_email}"></td>
+
+										</tr>
+										<tr>
+											<td><span>전화번호:</span></td>
+											<td><input style="width: 100%" type="text"
+												name="mem_phone" value="${memberInfo.mem_phone}"></td>
+										</tr>
+										<tr>
+											<td><span>가입일:</span></td>
+											<td>${memberInfo.mem_regdate}</td>
+										</tr>
+										<tr>
+											<td><span>우편번호:</span></td>
+											<td><input style="width: 100%" type="text"
+												name="mem_post" value="${mem_post}"></td>
+										</tr>
+										<tr>
+											<td><span>주소:</span></td>
+											<td><input style="width: 100%" type="text"
+												name="mem_address1" value="${mem_address1}"><br>
+												<input style="width: 100%" type="text" name="mem_address2"
+												value="${mem_address2}"></td>
+										</tr>
+
+									</tbody>
+								</table>
+							</div>
+						</div>
+					</div>
+					<div class="panel-footer"></div>
+						<button class="btn-success" type="submit">완료</button>
+						<button class="btn-danger" onclick="reset()">취소</button>
+						<button class="btn-blue" onclick="history.go(-1)">뒤로가기</button>
 				</div>
-      		</div>
-      		
-      		
-      		
-      		
-      		
-      		
-      		
+			</form>
+
+		</div>
+
+
+
+
 	<div class="container-fluid d-md-none">
 		<div class="row">
 			<div class="col-md-12">
@@ -148,6 +182,6 @@
 	<script src="resources/indexTemplate/js/jquery.waypoints.min.js"></script>
 	<script src="resources/indexTemplate/js/imagesloaded.pkgd.min.js"></script>
 	<script src="resources/indexTemplate/js/main.js"></script>
-
+	
 </body>
 </html>

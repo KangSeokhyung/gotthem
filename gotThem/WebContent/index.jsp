@@ -19,9 +19,42 @@
       <script src="resources/mainTemplate/js/vendor/html5shiv.min.js"></script>
       <script src="resources/mainTemplate/js/vendor/respond.min.js"></script>
     <![endif]-->
-  </head>
-  <body>
-
+<style type="text/css">
+#releatedField { position: absolute; width: 63%; }
+#releatedField a { color: #66615b; }
+</style>  
+<script src="https://code.jquery.com/jquery-3.2.1.js"></script>
+<script type="text/javascript">
+	function relatedSearch() {
+		$("#releatedField").html("");
+		var search = $("#search").val();
+		if(search != ""){
+			$.ajax({
+				url : "relatedSearch.gt",
+				data : { "search" : search },
+				type : "post",
+				success : function(relatedData) {
+					var ob = JSON.parse(relatedData);
+					var innerHtml = "<div class='list-group'>";
+					for (var i = 0; i < 5; i++) {
+						if (typeof(ob["search" + i]) != "undefined") {
+							innerHtml += "<a href='searchList.gt?search=" +  ob["search" + i] 
+									  + "&pageNo=1' class='list-group-item list-group-item-action'>" 
+									  +  ob["search" + i] + "</a>";
+						}
+					}
+					innerHtml += "</div>"
+					$("#releatedField").append(innerHtml);
+				},
+				error : function(xmlHttpReq, status, error) {
+					alert(xmlHttpReq + "리퀘스트\n" + status + "상태\n" + error + "에러\n");
+				}
+			});
+		}
+	}
+</script>    
+</head>
+<body>
   <!-- START: header -->
    <header role="banner" class="probootstrap-header">
     <div class="container">
@@ -64,39 +97,88 @@
   </header>
   <div class="probootstrap-loader"></div>
   <!-- END: header -->
-  <section class="probootstrap-slider flexslider">
-    <div class="probootstrap-wrap-banner">
-      <div class="container">
-        <div class="row">
-          <div class="col-md-8 col-md-offset-2">
+<section class="probootstrap-slider flexslider">
+	<div class="probootstrap-wrap-banner">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-8 col-md-offset-2">
+				
+					<div class="probootstrap-home-search probootstrap-animate">
+						<form action="searchList.gt" method="get">
+							<input type="hidden" name="pageNo" value="1">
+							<h2 class="heading">즉석식품 재고 검색 사이트 GOT THEM</h2>
+							<div class="probootstrap-field-group">
+								<div class="probootstrap-fields">
+									<div class="form-field">
+										<input type="text" class="form-control" name="search" autocomplete="off"
+											id="search" onkeyup="relatedSearch()" placeholder="예) 김밥, 강남역" />
+									</div>
+									<div id="releatedField"></div>
+								</div>
+								<input type="submit" class="btn btn-fill btn-danger" value="검색">
+							</div>
+						</form>
+					</div>
+						
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<ul class="slides">
+		<li style="background-image: url(resources/mainTemplate/img/slider_1.jpg);"
+			class="overlay"></li>
+		<li style="background-image: url(resources/mainTemplate/img/slider_4.jpg);"
+			class="overlay"></li>
+		<li style="background-image: url(resources/mainTemplate/img/slider_2.jpg);"
+			class="overlay"></li>
+	</ul>
+</section>
 
-            <div class="probootstrap-home-search probootstrap-animate">
-              <form action="" method="post">
-                <h2 class="heading">즉석식품 재고 검색 사이트 GOT THEM</h2>
-                <div class="probootstrap-field-group">
-                  <div class="probootstrap-fields">
-                    
-              <div class="form-field">
-                <input type="text" class="form-control" placeholder="여기에 원하는 상품을 검색해보세양">
-             		 </div>
-                  </div>
-                  <button class="btn btn-success" type="submit"><i class="icon-magnifying-glass t2"></i> Start Search</button>
-                </div>
-              </form>
-            </div>
-
+<section class="probootstrap-section probootstrap-section-lighter">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-4">
+        <div class="probootstrap-card text-center probootstrap-animate">
+          <div class="probootstrap-card-media svg-sm colored">
+            <img src="resources/mainTemplate/img/flaticon/svg/001-prize.svg" class="svg" alt="Free HTML5 Template by uicookies.com">
+          </div>
+          <div class="probootstrap-card-text">
+            <h2 class="probootstrap-card-heading">Award Winning Brooker</h2>
+            <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
+            <p><a href="#">Find out more</a></p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="probootstrap-card text-center probootstrap-animate">
+          <div class="probootstrap-card-media svg-sm colored">
+            <img src="resources/mainTemplate/img/flaticon/svg/005-new.svg" class="svg" alt="Free HTML5 Template by uicookies.com">
+          </div>
+          <div class="probootstrap-card-text">
+            <h2 class="probootstrap-card-heading">New Houses</h2>
+            <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
+            <p><a href="#">Find out more</a></p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="probootstrap-card text-center  probootstrap-animate">
+          <div class="probootstrap-card-media svg-sm colored">
+            <img src="resources/mainTemplate/img/flaticon/svg/006-coin.svg" class="svg" alt="Free HTML5 Template by uicookies.com">
+          </div>
+          <div class="probootstrap-card-text">
+            <h2 class="probootstrap-card-heading">Affordable Houses</h2>
+            <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
+            <p><a href="#">Find out more</a></p>
           </div>
         </div>
       </div>
     </div>
-    <ul class="slides">
-      <li style="background-image: url(resources/mainTemplate/img/slider_1.jpg);" class="overlay"></li>
-      <li style="background-image: url(resources/mainTemplate/img/slider_4.jpg);" class="overlay"></li>
-      <li style="background-image: url(resources/mainTemplate/img/slider_2.jpg);" class="overlay"></li>
-    </ul>
-  </section>
-  <!-- END: slider  -->
+  </div>
+</section>
 
+<<<<<<< HEAD
   <section class="probootstrap-section probootstrap-section-lighter">
     <div class="container">
       <div class="row">
@@ -135,14 +217,16 @@
         </div>
       </div>
     </div>
-  </section>
-  <!-- END: section -->
-
-  <section class="probootstrap-section">
-    <div class="container">
-      <div class="row heading">
-        <h2 class="mt0 mb50 text-center">RECENTLY UPDATED STORE</h2>
+    <div class="row probootstrap-gutter10">
+      <div class="col-md-6 col-sm-6">
+        <a href="#" class="probootstrap-hover-overlay">
+          <img src="resources/mainTemplate/img/slider_2.jpg" alt="Free Bootstrap Template by uicookies.com" class="img-responsive">
+          <div class="probootstrap-text-overlay">
+            <h3>씨유 강남점</h3>
+          </div>
+        </a>
       </div>
+
       <div class="row probootstrap-gutter10">
         <div class="col-md-6 col-sm-6">
           <a href="#" class="probootstrap-hover-overlay">
@@ -190,11 +274,41 @@
             </div>
           </a>
         </div>
-
       </div>
+      <div class="clearfix visible-sm-block"></div>
+
+      <div class="col-md-4 col-sm-6">
+        <a href="#" class="probootstrap-hover-overlay">
+          <img src="resources/mainTemplate/img/slider_3.jpg" alt="Free Bootstrap Template by uicookies.com" class="img-responsive">
+          <div class="probootstrap-text-overlay">
+            <h3>Brooklyn</h3>
+            <p>300 Properties</p>
+          </div>
+        </a>
+      </div>
+      <div class="col-md-4 col-sm-6">
+        <a href="#" class="probootstrap-hover-overlay">
+          <img src="resources/mainTemplate/img/slider_4.jpg" alt="Free Bootstrap Template by uicookies.com" class="img-responsive">
+          <div class="probootstrap-text-overlay">
+            <h3>Chicago</h3>
+            <p>268 Properties</p>
+          </div>
+        </a>
+      </div>
+      <div class="clearfix visible-sm-block"></div>
+      <div class="col-md-4 col-sm-6">
+        <a href="#" class="probootstrap-hover-overlay">
+          <img src="resources/mainTemplate/img/slider_2.jpg" alt="Free Bootstrap Template by uicookies.com" class="img-responsive">
+          <div class="probootstrap-text-overlay">
+            <h3>Los Angeles</h3>
+            <p>342 Properties</p>
+          </div>
+        </a>
+      </div>
+
     </div>
-  </section>
-  <!-- END: section -->
+  </div>
+</section>
 
   <section class="probootstrap-section probootstrap-bg" style="background-image: url(resources/mainTemplate/img/partner.jpg); background-size:cover;">
     <div class="container text-center probootstrap-animate" data-animate-effect="fadeIn">
