@@ -112,15 +112,16 @@
             <li><i class="xi-key"></i><span>
             <a href="#tab-3" data-toggle="tab">비밀번호 변경</a>
             </span></li>
+            <li><i class="xi-airplay"></i><span>
+            <a href="#tab-4" data-toggle="tab">회원 탈퇴</a>
+            </span></li>
              <li><i class="xi-cart"></i><span>
-            <a href="#tab-4" data-toggle="tab">구매 정보</a>
+            <a href="#" data-toggle="tab">구매 정보</a>
             </span></li>
              <li><i class="xi-truck"></i><span>
             <a href="#" data-toggle="tab">찾아갈 상품</a>
             </span></li>
-           	<li><i class="xi-airplay"></i><span>
-            <a href="#" data-toggle="tab">회원 탈퇴</a>
-            </span></li>
+           	
           </ul>
           </div>
         </div>

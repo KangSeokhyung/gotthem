@@ -60,7 +60,20 @@ public class MemberController {
 	
 	@RequestMapping(value = "/joinSccess.gt", method = RequestMethod.POST)
 	public String joinSccess(HttpServletRequest request, MemberBean memberBean, HttpServletResponse response) throws Exception {
+		//email 세팅하기
+		String emailid = request.getParameter("mem_emailid");
+		String emailadd = request.getParameter("mem_emailadd");
+		String mem_email = emailid + "@" + emailadd;
+		memberBean.setMem_email(mem_email);
 		
+		//phone 세팅하기
+		String mem_phoneFront = request.getParameter("mem_phoneFront");
+		String mem_phoneMiddle = request.getParameter("mem_phoneMiddle");
+		String mem_phoneLast = request.getParameter("mem_phoneLast");
+		String mem_phone = mem_phoneFront + mem_phoneMiddle + mem_phoneLast;
+		memberBean.setMem_phone(mem_phone);
+		
+		//address 세팅하기
 		memberBean.setMem_address(request.getParameter("mem_post")+"/"+
 		request.getParameter("mem_address1")+"/"+request.getParameter("mem_address2"));
 		

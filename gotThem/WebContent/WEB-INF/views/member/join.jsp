@@ -23,6 +23,12 @@
     header{
     padding-bottom:80px;
     }
+    
+    input[type="number"]::-webkit-outer-spin-button,
+	input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+	text-align:center;
+}
     </style>
   </head>
 <body>
@@ -110,7 +116,7 @@
                         Thanks for filling out the form!
                     </div>
             
-                    <form class="mbr-form" action="join.st" method="post" data-form-title="Mobirise Form">
+                    <form class="mbr-form" action="joinSccess.gt" method="post" data-form-title="Mobirise Form">
                     <input type="hidden" name="email" data-form-email="true" value="v71UZV7rSGKmNdtMTJcCzvbgvRKs8I889PXLsAjbR6NuKJtPYoKYEe+DT90N7gqVmrsYQhYLqTnSDAVjImF7Eb8KP/1hIcQUbq5w77EmgcHnu38hK1G/QmJo9v9/aFIP" data-form-field="Email">
                         <div class="row row-sm-offset">
                             <div class="col-sm-8 multi-horizontal" data-for="id">
@@ -146,15 +152,22 @@
                                 </div>
                          </div>
                           <div class="col-sm-8 multi-horizontal" data-for="email">
-                          <div class="form-group">
-                                    <label class="form-control-label mbr-fonts-style display-7" for="email-form1-r">이메일</label>
-                                    <input type="email" class="form-control" name="mem_email" data-form-field="Name" required="" id="mem_email">
+                         		<div class="form-group">
+                                    <label class="form-control-label mbr-fonts-style display-7" for="email-form1-r">이메일</label><br>
+                                    <input type="text" class="form-control" name="mem_emailid" data-form-field="Name" required="" id="mem_emailid"
+                                    style="width:40%; display:inline-block;">&nbsp;@
+                                    <input type="text" class="form-control" name="mem_emailadd" data-form-field="Name" required="" id="mem_emailadd" style="width:52%; display:inline-block;">
                                 </div>
                             </div>
-                          <div class="col-sm-8 multi-horizontal" data-for="phone">
+                          <div class="col-xs-12 col-sm-8 multi-horizontal" data-for="phone">
                            <div class="form-group">
-                                    <label class="form-control-label mbr-fonts-style display-7" for="phone-form1-r">전화번호</label>
-                                    <input type="text" class="form-control" name="mem_phone" data-form-field="Name" required="" id="mem_phone" maxlength="11">
+                                    <label class="form-control-label mbr-fonts-style display-7" for="phone-form1-r">전화번호</label><br>
+                                    <input
+									type="number" class="form-control" name="mem_phoneFront" data-form-field="Name" required="required" id="mem_phoneFront" maxlength="3" style="width:28%; display:inline-block;">&nbsp;&nbsp;-&nbsp;
+                                    <input 
+                                    type="number" class="form-control" name="mem_phoneMiddle" data-form-field="Name" required="required" id="mem_phoneMiddle" maxlength="4" style="width:28%; display:inline-block;">&nbsp;&nbsp;-&nbsp;
+                                    <input 
+                                    type="number" class="form-control" name="mem_phoneLast" data-form-field="Name" required="required" id="mem_phoneLast" maxlength="4" style="width:28%; display:inline-block;">
                                 </div>
                             </div>
                          <div class="col-sm-6 multi-horizontal" data-for="postcode">
@@ -165,10 +178,11 @@
                             </div>
                          <div class="col-sm-6 multi-horizontal" data-for="findpostcode">
                             <div class="form-group" style="text-align:center; vertical-align:bottom;">
-                            <button onclick="sample6_execDaumPostcode()" class="btn btn-primary navbar-btn btn-shadow btn-gradient">우편번호찾기</button>
+                            <label class="form-control-label mbr-fonts-style display-7" for="addr1-form1-r">&nbsp;</label>
+                            <button onclick="sample6_execDaumPostcode()" class="btn btn-primary ">우편번호찾기</button>
                            </div>
                          </div>
-                        <div class="col-sm-12 multi-horizontal" data-for="address1">
+                        <div class="col-sm-12 multi-horizontal" data-for="address1"> 
                             <div class="form-group">
                                     <label class="form-control-label mbr-fonts-style display-7" for="addr1-form1-r">매장 상세주소1</label>
                                     <input type="text" class="form-control" name="mem_addr2" data-form-field="Name" required="" id="mem_address1">
@@ -181,12 +195,12 @@
                                 </div>
                             </div>
                         </div>
-                        <br><br><br>
                             <button type="submit" class="btn btn-primary navbar-btn btn-shadow btn-gradient">가입하기</button>
                     </form>
             </div>
         </div>
     </div>
+    <input type="button" onclick="numkeyCheck(event);" value="test">
 </section>
 
 </body>
@@ -195,6 +209,7 @@
      <script src="resources/mainTemplate/js/scripts.min.js"></script>
   	<script src="resources/mainTemplate/js/main.min.js"></script>
   	<script src="resources/mainTemplate/js/custom.js"></script>
+  	<script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
 		<script>
 		function duplCheck(){ 
 		    var id = $('#mem_id').val();
@@ -257,9 +272,7 @@
 					return false;
 				}
 			}
-			</script>
-<script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
-	<script>
+			
    		 function sample6_execDaumPostcode() {
        		 new daum.Postcode({
           	  oncomplete: function(data) {
@@ -305,15 +318,6 @@
 			}
 		}
    		
-   		function onlyNumber(event){
-			event = event || window.event;
-			var keyID = (event.which) ? event.which : event.keyCode;
-			if ( (keyID >= 48 && keyID <= 57) || (keyID >= 96 && keyID <= 105) || keyID == 8 || keyID == 46 || keyID == 37 || keyID == 39 ) 
-				return;
-			else
-				return false;
-		}
-		
 		function removeChar(event) {
 			event = event || window.event;
 			var keyID = (event.which) ? event.which : event.keyCode;
