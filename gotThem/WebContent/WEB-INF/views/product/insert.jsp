@@ -43,7 +43,7 @@
 			<nav class="probootstrap-nav">
 				<ul>
 					<li class="probootstrap-animate"
-						data-animate-effect="fadeInLeft"><a href="/storeIndex">Got them?</a></li>
+						data-animate-effect="fadeInLeft"><a href="storeIndex.st">Got them?</a></li>
 					<li class="probootstrap-animate" data-animate-effect="fadeInLeft"><a
 						href="mystore.st">점포관리</a></li>
 					<li class="probootstrap-animate active" data-animate-effect="fadeInLeft"><a

@@ -8,8 +8,6 @@
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta charset="utf-8">
-<link rel="stylesheet" type="text/css" href="resources/Login_v7/css/util.css">
-<link rel="stylesheet" type="text/css" href="resources/Login_v7/css/main.css">
 <link href="https://fonts.googleapis.com/css?family=Work+Sans"rel="stylesheet">
 <link rel="stylesheet" href="resources/indexTemplate/css/bootstrap.min.css">
 <link rel="stylesheet" href="resources/indexTemplate/css/open-iconic-bootstrap.min.css">
@@ -43,7 +41,7 @@
 			<nav class="probootstrap-nav">
 				<ul>
 					<li class="probootstrap-animate"
-						data-animate-effect="fadeInLeft"><a href="/storeIndex">Got them?</a></li>
+						data-animate-effect="fadeInLeft"><a href="storeIndex.st">Got them?</a></li>
 					<li class="probootstrap-animate" data-animate-effect="fadeInLeft"><a
 						href="mystore.st">점포관리</a></li>
 					<li class="probootstrap-animate" data-animate-effect="fadeInLeft"><a

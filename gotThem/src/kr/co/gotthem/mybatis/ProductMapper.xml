@@ -28,7 +28,7 @@
 	
 	<insert id="insertPro" parameterType="kr.co.gotthem.product.bean.ProductBean">
 		insert into product(
-		pro_name, pro_stono, pro_category, pro_stock, pro_price)
+		pro_name, pro_memno, pro_category, pro_stock, pro_price)
 		values(
 		#{pro_name}, #{pro_memno}, #{pro_category}, #{pro_stock}, #{pro_price})
 	</insert>

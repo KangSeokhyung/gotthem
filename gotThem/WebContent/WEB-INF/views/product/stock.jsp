@@ -40,7 +40,7 @@
 			<nav class="probootstrap-nav">
 				<ul>
 					<li class="probootstrap-animate"
-						data-animate-effect="fadeInLeft"><a href="/storeIndex">Got them?</a></li>
+						data-animate-effect="fadeInLeft"><a href="storeIndex.st">Got them?</a></li>
 					<li class="probootstrap-animate" data-animate-effect="fadeInLeft"><a
 						href="mystore.st">점포관리</a></li>
 					<li class="probootstrap-animate active" data-animate-effect="fadeInLeft"><a
@@ -94,7 +94,7 @@
 						<tr>
 							<th>번호</th>
 							<td>사진</td>
-							<th style="text-align: center;">상품명</th>
+							<th>상품명</th>
 							<th>분류</th>
 							<th>가격</th>
 							<th>재고</th>
@@ -103,7 +103,7 @@
 						
 						<tr>
 							<td>${dto.pro_code }</td>
-							<td><img src="/img/${dto.pro_img }" style="width:50px; height:50px"
+							<td><img src="/img/${dto.pro_img }" style="width:50px; height:50px; cursor:pointer"
 							onclick="location='detail.st?code=${dto.pro_code }'"/></td>
 							<td><a href="detail.st?code=${dto.pro_code }">${dto.pro_name }</a></td>
 							<td>${dto.pro_category }</td>
