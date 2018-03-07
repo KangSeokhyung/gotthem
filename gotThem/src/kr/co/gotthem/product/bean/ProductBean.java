@@ -5,9 +5,10 @@ public class ProductBean {
 	private String pro_name;
 	private int pro_stono;
 	private String pro_category;
+	private String pro_img;
+	private String pro_comment;
 	private int pro_stock;
 	private int pro_price;
-	
 	public int getPro_code() {
 		return pro_code;
 	}
@@ -32,6 +33,18 @@ public class ProductBean {
 	public void setPro_category(String pro_category) {
 		this.pro_category = pro_category;
 	}
+	public String getPro_img() {
+		return pro_img;
+	}
+	public void setPro_img(String pro_img) {
+		this.pro_img = pro_img;
+	}
+	public String getPro_comment() {
+		return pro_comment;
+	}
+	public void setPro_comment(String pro_comment) {
+		this.pro_comment = pro_comment;
+	}
 	public int getPro_stock() {
 		return pro_stock;
 	}
@@ -44,13 +57,14 @@ public class ProductBean {
 	public void setPro_price(int pro_price) {
 		this.pro_price = pro_price;
 	}
-	
 	@Override
 	public String toString() {
 		return "ProductBean [pro_code=" + pro_code + ", pro_name=" + pro_name + ", pro_stono=" + pro_stono
-				+ ", pro_category=" + pro_category + ", pro_stock=" + pro_stock + ", pro_price=" + pro_price + "]";
+				+ ", pro_category=" + pro_category + ", pro_img=" + pro_img + ", pro_comment=" + pro_comment
+				+ ", pro_stock=" + pro_stock + ", pro_price=" + pro_price + "]";
 	}
 	
 	
 	
+
 }

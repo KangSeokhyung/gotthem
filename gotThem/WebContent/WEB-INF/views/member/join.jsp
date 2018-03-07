@@ -78,14 +78,8 @@
                          </div>
                             <div class="col-sm-8 multi-horizontal" data-for="ownername">
                                 <div class="form-group">
-                                    <label class="form-control-label mbr-fonts-style display-7" for="owner-form1-r">점주명</label>
+                                    <label class="form-control-label mbr-fonts-style display-7" for="owner-form1-r">이름</label>
                                     <input type="text" id="mem_name" class="form-control" name="mem_name" required="" data-form-field="owner" >
-                                </div>
-                         </div>
-                         <div class="col-sm-8 multi-horizontal" data-for="storename">
-                                <div class="form-group">
-                                    <label class="form-control-label mbr-fonts-style display-7" for="stoname-form1-r">점포명</label>
-                                    <input type="text" class="form-control" name="sto_name" data-form-field="owner" required="" id="sto_name">
                                 </div>
                          </div>
                           <div class="col-sm-8 multi-horizontal" data-for="email">

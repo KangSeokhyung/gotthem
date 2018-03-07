@@ -116,7 +116,6 @@ public class ProductController {
 	
 	@RequestMapping(value="/insert.st", method=RequestMethod.POST)
 	protected ModelAndView handleRequestInternal(HttpServletRequest req, ProductBean bean) throws Exception {
-		
 		System.out.println(req.getParameter("mem_no"));
 		int pro_stono = (Integer.parseInt(req.getParameter("mem_no")));
 		

@@ -93,6 +93,7 @@
 					<table class="table table-user-information">
 						<tr>
 							<th>번호</th>
+							<td>사진</td>
 							<th style="text-align: center;">상품명</th>
 							<th>분류</th>
 							<th>가격</th>
@@ -102,6 +103,7 @@
 						
 						<tr>
 							<td>${dto.pro_code }</td>
+							<td><img src="/img/${dto.pro_img }" style="width:50px; height:50px"/></td>
 							<td><a href="detail.st?code=${dto.pro_code }">${dto.pro_name }</a></td>
 							<td>${dto.pro_category }</td>
 							<td>${dto.pro_price }</td>
