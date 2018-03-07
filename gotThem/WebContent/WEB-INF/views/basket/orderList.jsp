@@ -43,6 +43,7 @@
             		</c:when>
 					<c:otherwise>
 			<li><a href="mypage.gt">MY PAGE</a></li>
+			<li><a href="list.gt">장바구니</a></li>
             <li><a href="logout.gt">LOGOUT</a></li>
 				</c:otherwise>
 				</c:choose>
@@ -63,8 +64,30 @@
   </header>
   <div class="probootstrap-loader"></div>
   <!-- END: header -->
-  	<h1>결제 확인</h1>
-	<h2>결제 확인</h2>
+ <section class="probootstrap-slider flexslider2 page-inner">
+    <div class="overlay"></div>
+    <div class="probootstrap-wrap-banner">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-8">
+
+            <div class="page-title probootstrap-animate">
+              <div class="probootstrap-breadcrumbs">
+                <a href="list.gt">장바구니</a><span>Login</span>
+              </div>
+              <h1>결제 목록</h1>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+    <ul class="slides">
+      <li style="background-image: url(resources/mainTemplate/img/slider_1.jpg);"></li>
+      <li style="background-image: url(resources/mainTemplate/img/slider_4.jpg);"></li>
+      <li style="background-image: url(resources/mainTemplate/img/slider_2.jpg);"></li>
+    </ul>
+  </section>
 <div class="container">	
   <h2>결제 확인 목록</h2>   
  	<form name="form1" id="form1" method="post" action="./update.gt">
