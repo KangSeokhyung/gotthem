@@ -90,7 +90,4 @@ public class MemberServiceImpl implements MemberService {
 		return result;
 	}
 	
-	public MemberBean storeInfo(int mem_no) {
-		return memberDao.storeInfo(mem_no);
-	}
 }

@@ -18,7 +18,6 @@
 	<bean id="productController" class="kr.co.gotthem.product.controller.ProductController">
 		<property name="productService" ref="productService" />
 		<property name="memberService" ref="memberService" />
-		<property name="mongoTemplate" ref="mongoTemplate" />
 	</bean>
 	
 	<!-- Service -->

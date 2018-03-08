@@ -33,8 +33,6 @@ public interface MemberService {
 	
 	public int changePasswordReal(MemberBean memberBean);
 
-	public MemberBean storeInfo(int mem_no);
-
 	public void memModi(MemberBean memberBean);
 	
 }

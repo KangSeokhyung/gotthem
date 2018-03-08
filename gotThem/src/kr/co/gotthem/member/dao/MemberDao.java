@@ -30,8 +30,6 @@ public interface MemberDao {
 	
 	public int changePasswordReal(MemberBean memberBean);
 
-	public MemberBean storeInfo(int mem_no);
-
 	public void storeModi(MemberBean memberBean);
 	
 	public void memModi(MemberBean memberBean);
