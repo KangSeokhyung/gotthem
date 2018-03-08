@@ -47,12 +47,6 @@ public class BasketDaoImpl implements BasketDao {
     	sqlSessionTemplate.insert("insertBasket", basketBean);
     }    
 	
-/*	// 1. 장바구니 추가
-    @Override
-    public void insertBasket(int code, int userNo,int stock) {
-    	sqlSessionTemplate.insert("insertBasket");
-    }*/
-	
 	// 2. 장바구니 목록
     @Override
     public List<BasketBean> listBasket(int bas_memno) {

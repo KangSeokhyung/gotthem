@@ -73,9 +73,9 @@
 
             <div class="page-title probootstrap-animate">
               <div class="probootstrap-breadcrumbs">
-                <a href="list.gt">장바구니</a><span>Login</span>
+                <a href="/gotThem">Home</a><span>Order</span>
               </div>
-              <h1>결제 목록</h1>
+              <h1>결제</h1>
             </div>
 
           </div>
