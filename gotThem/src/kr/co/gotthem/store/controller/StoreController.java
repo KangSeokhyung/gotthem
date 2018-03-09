@@ -1,13 +1,19 @@
 package kr.co.gotthem.store.controller;
 
+import java.io.PrintWriter;
+
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.ModelAndView;
 
 import kr.co.gotthem.member.bean.MemberBean;
 import kr.co.gotthem.member.service.MemberService;
@@ -86,6 +92,60 @@ public class StoreController {
 		return "store/mystore";
 	}
 	
+	@RequestMapping(value = "/passCheck.st", method = RequestMethod.GET)
+	public ModelAndView passCheck(MemberBean bean, ModelAndView mav) {
+		mav.setViewName("store/mystorePWCheck");
+		return mav;
+	}
+	
+	@RequestMapping(value = "/passCheck.st", method = RequestMethod.POST)
+	public ModelAndView passCheckPost(MemberBean bean, ModelAndView mav, PrintWriter out, HttpServletResponse response)
+			throws Exception {
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+		String mem_id = authentication.getName();
+		bean.setMem_id(mem_id);
+		String mem_pw = bean.getMem_pw();
+		System.out.println(mem_pw);
+		int result = memberService.passCheck(bean);
+
+		if(result == 0) {
+			response.setContentType("text/html; charset=UTF-8");
+			out = response.getWriter();
+			out.println("<Script>");
+			out.println("alert('비밀번호를 확인해 주세요');");
+			out.println("history.go(-1);");
+			out.println("</Script>");
+			return null;
+		}
+		System.out.println(result);
+		mav.addObject("passCheck", result);
+		mav.setViewName("store/changePW");
+		return mav;
+	}
+	
+	@RequestMapping(value = "/mystoreDel.st", method = RequestMethod.GET)
+	public ModelAndView memberDel(ModelAndView mav) {
+		mav.setViewName("store/mystoreDel");
+		return mav;
+	}
+	
+	@RequestMapping(value = "/mystoreDel.st", method = RequestMethod.POST)
+	public ModelAndView memberDelete(ModelAndView mav, MemberBean bean, HttpSession  session) {
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+		String mem_id = authentication.getName();
+		bean.setMem_id(mem_id);
+		memberService.memberDelete(bean);
+		session.invalidate();
+		mav.setViewName("redirect:/store/storeindex");
+		return mav;
+	}
+	
+	@RequestMapping(value = "/findIDAndPW.st", method = RequestMethod.GET)
+	public ModelAndView findID(ModelAndView mav) {
+		mav.setViewName("store/findIDAndPW");
+		return mav;
+	}
+
 	@RequestMapping(value = "loginfail.st", method= RequestMethod.GET)
 	public String lgfail(HttpServletRequest request) {
 		String id = (String)request.getParameter("sto_id");

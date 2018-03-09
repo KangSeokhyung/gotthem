@@ -22,9 +22,18 @@
     header{
     padding-bottom:80px;
     }
+<<<<<<< HEAD
     #sample6_postcode{
     margin-left: -10px;
     }
+=======
+    
+    input[type="number"]::-webkit-outer-spin-button,
+	input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+	text-align:center;
+}
+>>>>>>> branch 'sungwoo' of https://github.com/KangSeokhyung/gotthem.git
     </style>
   </head>
 <body>
@@ -97,6 +106,7 @@
   
   	<section class="probootstrap-section">
     <div class="container">
+<<<<<<< HEAD
       <div class="row">
         <div class="col-md-3">
 			<h4>WELCOME TO GOT THEM</h4>
@@ -105,6 +115,110 @@
             <li>info@domain.com</li>
             <li>+123 456 7890</span></li>
           </ul>
+=======
+        <div class="row justify-content-center">
+            <div class="title col-12 col-lg-8">
+                <h3 class="mbr-section-title align-center pb-3 mbr-fonts-style">
+                    GOT THEM 회원가입
+                    <hr>
+                </h3>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="media-container-column col-lg-8" data-form-type="formoid">
+                    <div data-form-alert="" hidden="">
+                        Thanks for filling out the form!
+                    </div>
+            
+                    <form class="mbr-form" action="joinSccess.gt" method="post" data-form-title="Mobirise Form">
+                    <input type="hidden" name="email" data-form-email="true" value="v71UZV7rSGKmNdtMTJcCzvbgvRKs8I889PXLsAjbR6NuKJtPYoKYEe+DT90N7gqVmrsYQhYLqTnSDAVjImF7Eb8KP/1hIcQUbq5w77EmgcHnu38hK1G/QmJo9v9/aFIP" data-form-field="Email">
+                        <div class="row row-sm-offset">
+                            <div class="col-sm-8 multi-horizontal" data-for="id">
+                                <div class="form-group">
+                                    <label class="form-control-label mbr-fonts-style display-7" for="name-form1-r">아이디</label>
+                                    <input type="text" class="form-control" name="mem_id" data-form-field="Name" required=""
+                                   id="mem_id" onkeyup="duplCheck()">
+                                </div>
+                            </div>
+                           <div class="col-sm-12 multi-horizontal">
+                          <p id="idcheck" class="text-mute">아이디를 입력해주세요</p>
+                         </div>
+                            <div class="col-sm-6 multi-horizontal" data-for="password">
+                                <div class="form-group">
+                                    <label class="form-control-label mbr-fonts-style display-7" for="pass-form1-r">패스워드</label>
+                                    <input type="password" id="mem_pw" class="form-control" name="mem_pw" data-form-field="Email" required="" >
+                                </div>
+                            </div>
+                            <div class="col-sm-6 multi-horizontal" data-for="password2">
+                                <div class="form-group">
+                                    <label class="form-control-label mbr-fonts-style display-7" for="pass-form1-r">패스워드 재입력</label>
+                                    <input type="password" id="mem_pw2" class="form-control" name="mem_pw2" data-form-field="Phone"
+                                    onkeyup="pwCheck()" > 
+                                </div>
+                            </div>
+                          <div class="col-sm-12 multi-horizontal">
+                          <p class="text-mute" id="pwdCheckMsg" >비밀번호를 입력해주세요</p>
+                         </div>
+                            <div class="col-sm-8 multi-horizontal" data-for="ownername">
+                                <div class="form-group">
+                                    <label class="form-control-label mbr-fonts-style display-7" for="owner-form1-r">이름</label>
+                                    <input type="text" id="mem_name" class="form-control" name="mem_name" required="" data-form-field="owner" >
+                                </div>
+                         </div>
+                          <div class="col-sm-8 multi-horizontal" data-for="email">
+                         		<div class="form-group">
+                                    <label class="form-control-label mbr-fonts-style display-7" for="email-form1-r">이메일</label><br>
+                                    <input type="text" class="form-control" name="mem_emailid" data-form-field="Name" required="" id="mem_emailid"
+                                    style="width:40%; display:inline-block;">&nbsp;@
+                                    <input type="text" class="form-control" name="mem_emailadd" data-form-field="Name" required="" id="mem_emailadd" style="width:52%; display:inline-block;">
+                                </div>
+                            </div>
+                          <div class="col-xs-12 col-sm-8 multi-horizontal" data-for="phone">
+                           <div class="form-group">
+                                    <label class="form-control-label mbr-fonts-style display-7" for="phone-form1-r">전화번호</label><br>
+                                    <input
+									type="number" class="form-control" name="mem_phoneFront" data-form-field="Name" required="required" id="mem_phoneFront" maxlength="3" style="width:28%; display:inline-block;">&nbsp;&nbsp;-&nbsp;
+                                    <input 
+                                    type="number" class="form-control" name="mem_phoneMiddle" data-form-field="Name" required="required" id="mem_phoneMiddle" maxlength="4" style="width:28%; display:inline-block;">&nbsp;&nbsp;-&nbsp;
+                                    <input 
+                                    type="number" class="form-control" name="mem_phoneLast" data-form-field="Name" required="required" id="mem_phoneLast" maxlength="4" style="width:28%; display:inline-block;">
+                                </div>
+                            </div>
+                         <div class="col-sm-6 multi-horizontal" data-for="postcode">
+                            <div class="form-group">
+                                    <label class="form-control-label mbr-fonts-style display-7" for="addr1-form1-r">우편번호</label>
+                                    <input type="text" class="form-control" name="mem_addr1" data-form-field="Name" required="" id="mem_post">
+                                </div>
+                            </div>
+                         <div class="col-sm-6 multi-horizontal" data-for="findpostcode">
+                            <div class="form-group" style="text-align:center; vertical-align:bottom;">
+                            <label class="form-control-label mbr-fonts-style display-7" for="addr1-form1-r">&nbsp;</label>
+                            <button onclick="sample6_execDaumPostcode()" class="btn btn-primary ">우편번호찾기</button>
+                           </div>
+                         </div>
+                        <div class="col-sm-12 multi-horizontal" data-for="address1"> 
+                            <div class="form-group">
+                                    <label class="form-control-label mbr-fonts-style display-7" for="addr1-form1-r">매장 상세주소1</label>
+                                    <input type="text" class="form-control" name="mem_addr2" data-form-field="Name" required="" id="mem_address1">
+                                </div>
+                            </div>
+                         <div class="col-sm-12 multi-horizontal" data-for="address2">
+                            <div class="form-group">
+                                    <label class="form-control-label mbr-fonts-style display-7" for="addr2-form1-r">매장 상세주소2</label>
+                                    <input type="text" class="form-control" name="mem_addr3" data-form-field="Name" required="" id="mem_address2">
+                                </div>
+                            </div>
+                        </div>
+                            <button type="submit" class="btn btn-primary navbar-btn btn-shadow btn-gradient">가입하기</button>
+                    </form>
+            </div>
+        </div>
+    </div>
+    <input type="button" onclick="numkeyCheck(event);" value="test">
+</section>
+>>>>>>> branch 'sungwoo' of https://github.com/KangSeokhyung/gotthem.git
 
           <h4>문의사항이 있으신가요?</h4>
           <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
@@ -206,6 +320,7 @@
      <script src="resources/mainTemplate/js/scripts.min.js"></script>
   	<script src="resources/mainTemplate/js/main.min.js"></script>
   	<script src="resources/mainTemplate/js/custom.js"></script>
+  	<script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
 		<script>
 		function duplCheck(){ 
 		    var id = $('#mem_id').val();
@@ -268,9 +383,7 @@
 					return false;
 				}
 			}
-			</script>
-<script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
-	<script>
+			
    		 function sample6_execDaumPostcode() {
        		 new daum.Postcode({
           	  oncomplete: function(data) {
@@ -316,15 +429,6 @@
 			}
 		}
    		
-   		function onlyNumber(event){
-			event = event || window.event;
-			var keyID = (event.which) ? event.which : event.keyCode;
-			if ( (keyID >= 48 && keyID <= 57) || (keyID >= 96 && keyID <= 105) || keyID == 8 || keyID == 46 || keyID == 37 || keyID == 39 ) 
-				return;
-			else
-				return false;
-		}
-		
 		function removeChar(event) {
 			event = event || window.event;
 			var keyID = (event.which) ? event.which : event.keyCode;

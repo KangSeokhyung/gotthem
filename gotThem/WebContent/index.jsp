@@ -14,8 +14,7 @@
     <link rel="stylesheet" href="resources/mainTemplate/css/styles-merged.css">
     <link rel="stylesheet" href="resources/mainTemplate/css/style.min.css">
     <link rel="stylesheet" href="resources/mainTemplate/css/custom.css">
-
-    <!--[if lt IE 9]>
+     <!--[if lt IE 9]>
       <script src="resources/mainTemplate/js/vendor/html5shiv.min.js"></script>
       <script src="resources/mainTemplate/js/vendor/respond.min.js"></script>
     <![endif]-->
@@ -224,7 +223,6 @@
         </div>
     </div>
   </footer>
-
   <div class="gototop js-top">
     <a href="#" class="js-gotop"><i class="icon-chevron-thin-up"></i></a>
   </div>
@@ -235,4 +233,6 @@
   <script src="resources/mainTemplate/js/custom.js"></script>
 
   </body>
+
 </html>
+

@@ -34,8 +34,8 @@ public interface MemberService {
 
 	public List<MemberBean> mlist(int begin, int end);
 	
-	public List<MemberBean> stlist(int begin);
-	
+	public List<MemberBean> stlist(int begin);	
+
 	public int changePasswordReal(MemberBean memberBean);
 
 	public void memModi(MemberBean memberBean);

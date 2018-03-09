@@ -16,18 +16,22 @@
 		update basket set bas_prostock=#{bas_prostock} where bas_no = #{bas_no}
 	</update>
 
+    <select id="listProduct" resultType="kr.co.gotthem.product.bean.ProductBean">
+         SELECT * FROM product           
+    </select>
+    
+    <select id="detailProduct1" resultType="kr.co.gotthem.product.bean.ProductBean">
+		select * from product where pro_code = #{pro_code}
+	</select>
+
+
     <!-- 1. 장바구니 추가 -->
     <insert id="insertBasket">
         INSERT INTO basket (
-           bas_memno, bas_procode, bas_proname, bas_prostock, bas_stono,bas_proprice
+           bas_memno, bas_procode, bas_proname, bas_prostock,bas_proprice, bas_procategory, bas_proimg, bas_procomment
       )VALUES(
-       #{bas_memno}, #{bas_procode}, #{bas_proname},#{bas_prostock}, #{bas_stono}, #{bas_proprice})
+       #{bas_memno}, #{bas_procode}, #{bas_proname},#{bas_prostock}, #{bas_proprice}, #{bas_procategory}, #{bas_proimg}, #{bas_procomment})
     </insert> 
-   <!-- 1.1. 상품 삭제 -->
-    <delete id="deleteproduct">
-        DELETE FROM product
-        WHERE pro_no = #{bas_no}
-    </delete>
 
     <!-- 2. 장바구니 목록 -->
     <select id="listBasket" resultType="kr.co.gotthem.basket.bean.BasketBean">
@@ -35,12 +39,12 @@
             b.bas_no AS bas_no, 
             b.bas_memno AS bas_memno,
             b.bas_procode,
-            b.bas_proname,
-            b.bas_stono,          
+            b.bas_proname,        
             b.bas_procategory,
-            b.bas_proexdate,
             p.pro_code As pro_code,
             b.bas_proprice,
+            b.bas_proimg,
+            b.bas_procomment,
             m.mem_no AS mem_no, 
             p.pro_name AS pro_name, 
             b.bas_prostock,        
@@ -72,7 +76,7 @@
     <!-- 5. 장바구니 삭제 -->
     <delete id="deleteBasket">
         DELETE FROM basket
-        WHERE bas_no = #{bas_no}
+        WHERE bas_memno= #{bas_memno} AND bas_no = #{bas_no}
     </delete>
 
 	<!-- 6. 장바구니에 동일한 상품 레코드 확인 -->
@@ -91,61 +95,54 @@
 
 
 <!-- 결제 관련 부분 -->
-  <!-- 1. 단건 결제 추가 -->
-    <insert id="insertOrder" >
+  <!-- 1. 장바구니에서 단건 결제 추가 -->
+    <insert id="orderInsert" >
        INSERT INTO orderpay (
-          ord_procode, ord_proname, ord_memno,ord_stock, ord_price)VALUES(
-         #{ord_procode}, #{ord_proname},#{ord_memno}, #{ord_stock}, #{ord_price})
+          ord_procode, ord_proname, ord_memno,ord_stock, ord_price, ord_basno)VALUES(
+         #{ord_procode}, #{ord_proname},#{ord_memno}, #{ord_stock}, #{ord_price},#{ord_basno})
     </insert> 
-   <!-- 1.1. 결제 되면, 결제된 수량만큼 장바구니 수량 -(insert시,동일한 상품 존재시 기존 수량에 새로운 수량 더하기 -->
-    <update id="updateBasketOrder">
-        UPDATE basket 
-        SET bas_prostock = bas_prostock - #{ord_stock} 
-        WHERE bas_memno= #{ord_memno} AND bas_procode = #{ord_procode}
-    </update> 
-<!--      1.2. 결제  취소 삭제
-    <delete id="deleteBasketOrder">
+  <!-- 1.1. 결제 되면, 상품에서 결제된 수량만큼  수량 빼기 -->
+    <update id="orderUpdateBasket">
+        UPDATE product
+        SET pro_stock = pro_stock - #{ord_stock} 
+        WHERE pro_code = #{ord_procode}
+    </update>
+
+  <!--1.2 결제되면, 장바구니 삭제-->
+    <delete id="orderDeleteBasket">
         DELETE FROM basket
-        WHERE bas_no = #{bas_no}
-    </delete> -->
+        WHERE bas_memno= #{ord_memno} AND bas_no = #{ord_basno}
+    </delete> 
     
-   <!-- 2. 결제  취소 삭제 -->
-    <delete id="deleteOrder">
-        DELETE FROM product
-        WHERE pro_no = #{bas_no}
+    
+    
+    
+   <!-- 2. 결제  취소  -->
+    <delete id="orderDelete">
+        DELETE FROM orderpay
+        WHERE ord_no = #{ord_no}
     </delete>
+  <!-- 2.1. 결제 취소되면, 결제된 수량만큼  수량 더하기 -->
+    <update id="orderUpdateProduct">
+        UPDATE product
+        SET pro_stock = pro_stock + #{ord_stock} 
+        WHERE pro_code = #{ord_procode}
+    </update> 
+  <!-- 2.2 결제 되면, 장바구니에서 다시 생성 -->
+    <insert id="insertBasketOrder" >
+       INSERT INTO basket (
+         bas_no,bas_memno, bas_procode, bas_proname, bas_prostock, money
+      )VALUES(
+        #{ord_basno}, #{ord_memno}, #{ord_procode}, #{ord_proname}, #{ord_stock}, #{ord_price})
+    </insert> 
 
-
-    <!-- 2. 장바구니 목록 -->
+    <!-- 3. 아이디별 전체 결제 목록 -->
     <select id="listOrder" resultType="kr.co.gotthem.order.bean.OrderpayBean">
-         SELECT
-            b.bas_no AS bas_no, 
-            b.bas_memno AS bas_memno,
-            b.bas_procode,
-            b.bas_proname,
-            b.bas_stono,          
-            b.bas_procategory,
-            b.bas_proexdate,
-            p.pro_code As pro_code,
-            b.bas_proprice,
-            m.mem_no AS mem_no, 
-            p.pro_name AS pro_name, 
-            b.bas_prostock,        
-            p.pro_price,
-            (pro_price * bas_prostock) money
-        FROM
-            member m, product p, basket b
-        WHERE m.mem_no = b.bas_memno
-            AND p.pro_code = b.bas_procode
-            AND b.bas_memno = #{bas_memno}
-        ORDER BY
-            b.bas_no
+         SELECT  ord_no, ord_procode, ord_proname, ord_memno,ord_stock,
+                ord_price, ord_findtime, ord_status,ord_basno
+         FROM orderpay           
+         WHERE ord_memno = #{userNo}
+         ORDER BY ord_no
     </select>
 
-    <!-- 7. 장바구니에 동일한 상품이 존재하면 수정(insert시,동일한 상품 존재시 기존 수량에 새로운 수량 더하기 -->
-    <update id="updateOrder">
-        UPDATE basket 
-        SET bas_prostock = bas_prostock + #{bas_prostock} 
-        WHERE bas_memno= #{bas_memno} AND bas_procode = #{bas_procode}
-    </update>
 </mapper>

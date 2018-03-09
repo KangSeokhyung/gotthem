@@ -1,6 +1,5 @@
 package kr.co.gotthem.order.controller;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -14,7 +13,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -51,6 +49,7 @@ public class OrderController {
 	public void setMemberService(MemberService memberService) {
 		this.memberService = memberService;
 	}
+<<<<<<< HEAD
 	
 /*    // product 1. 상품 전체 목록
     @RequestMapping("/productlist.gt")
@@ -59,7 +58,39 @@ public class OrderController {
         mav.addObject("list", productService.listProduct());
         System.out.println("상품리스트왔다");
         return mav;
+=======
+
+   // 1. 장바구니에서 결제 추가
+   @RequestMapping(value ="insertOrder.gt",method = RequestMethod.GET)
+    public String insertOrder(@RequestParam String bas_no, @RequestParam String bas_prostock, @RequestParam String bas_procode,
+    		            @RequestParam String bas_proname,@RequestParam String money,
+    		HttpSession session,HttpServletRequest req,HttpServletResponse res,
+    		@ModelAttribute OrderpayBean orderBean )throws Exception {
+	
+    	Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+    	String mem_id = authentication.getName();
+    	
+    	System.out.println("결제 왔다" );
+    	MemberBean memberInfo = memberService.memberInfo(mem_id);
+    	int userNo = memberInfo.getMem_no();
+    	  orderBean.setOrd_memno(userNo);
+   	      orderBean.setOrd_stock(Integer.parseInt(bas_prostock));
+   	      orderBean.setOrd_procode(Integer.parseInt(bas_procode));
+   	      orderBean.setOrd_proname(bas_proname);
+   	      orderBean.setOrd_price(Integer.parseInt(money)); 
+   	      orderBean.setOrd_basno(Integer.parseInt(bas_no));
+   	
+   	    orderService.orderInsert(orderBean);
+   	    orderService.orderUpdateBasket(orderBean);
+   	    orderService.orderDeleteBasket(orderBean);
+   	 
+   	    System.out.println("결제 완료 변경된 수량" + bas_prostock );
+  
+      return "redirect:/orderList.gt";
+       
+>>>>>>> branch 'sungwoo' of https://github.com/KangSeokhyung/gotthem.git
     }
+<<<<<<< HEAD
     	// product 2. 상품 상세보기
     @RequestMapping("/detail/{pro_code}.gt")
     public ModelAndView detail(@PathVariable("pro_code") int pro_code, ModelAndView mav){
@@ -69,7 +100,19 @@ public class OrderController {
         return mav;
     }
     */
+=======
+    
+  // 1.1 장바구니에서 선택 결제
+   @RequestMapping(value = "selectOrder.gt", method = RequestMethod.POST) 
+   public String testCheck(@RequestParam (value= "arrOrder[]") List valueArr,
+   		@ModelAttribute BasketBean basketBean,@ModelAttribute OrderpayBean orderBean,
+   		HttpServletRequest req,HttpServletResponse res,HttpSession session) throws Exception {
+
+   	Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+   	String mem_id = authentication.getName();
+>>>>>>> branch 'sungwoo' of https://github.com/KangSeokhyung/gotthem.git
    
+<<<<<<< HEAD
   // order 1. 결제 전체 목록
     @RequestMapping("/orderList.gt")
     public String order ( Model model) {
@@ -87,7 +130,28 @@ public class OrderController {
     		            @RequestParam String bas_proname,@RequestParam String money,
     		HttpSession session,HttpServletRequest req,HttpServletResponse res,
     		@ModelAttribute OrderpayBean orderBean )throws Exception {
+=======
+   	MemberBean memberInfo = memberService.memberInfo(mem_id);  
+       int userNo = memberInfo.getMem_no();
+      
+       System.out.println("valueArr은" + valueArr);
+       String A = null;      
+       for(int i=0; i<valueArr.size(); i++){    
+       	A = (String) valueArr.get(i);
+       	System.out.println("여기값"+A.toString());      	
+       java.util.StringTokenizer  st = new java.util.StringTokenizer(A,",");
+       	String bas_no = st.nextToken();
+       	String bas_proname = st.nextToken();
+       	String bas_proprice = st.nextToken(); 
+       	String bas_prostock = st.nextToken();
+       	String bas_procode = st.nextToken();
+    	String money = st.nextToken();
+    	String bas_proimg = st.nextToken();
+       	String bas_procomment = st.nextToken();
+ 
+>>>>>>> branch 'sungwoo' of https://github.com/KangSeokhyung/gotthem.git
     	
+<<<<<<< HEAD
     	Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
     	String mem_id = authentication.getName();
     	
@@ -109,8 +173,32 @@ public class OrderController {
         	 
         
        return "redirect:/list.gt";
-    }
+=======
+        orderBean.setOrd_memno(userNo);       
+        orderBean.setOrd_basno(Integer.parseInt(bas_no));        
+        orderBean.setOrd_proname(bas_proname);
+        orderBean.setOrd_stock(Integer.parseInt(bas_prostock));
+        orderBean.setOrd_procode(Integer.parseInt(bas_procode));
+        orderBean.setOrd_price(Integer.parseInt(money));
 
+ 	    orderService.orderInsert(orderBean);
+ 	    orderService.orderUpdateBasket(orderBean);
+   	    orderService.orderDeleteBasket(orderBean); 	 
+   	    System.out.println("결제 변경된 수량" + bas_prostock );
+       }
+      return "redirect:/orderList.gt";      
+>>>>>>> branch 'sungwoo' of https://github.com/KangSeokhyung/gotthem.git
+    }
+<<<<<<< HEAD
+=======
+
+   
+   // 1.2 상품에서 결제 추가
+
+
+>>>>>>> branch 'sungwoo' of https://github.com/KangSeokhyung/gotthem.git
+
+<<<<<<< HEAD
     // 2. 결제 목록ㅍㅍ
     @RequestMapping("listOrder.gt")
     public ModelAndView listBasket(HttpSession session, ModelAndView mav){
@@ -136,6 +224,40 @@ public class OrderController {
         System.out.println("mav  "+mav );
         return mav;
     }}
+=======
+      // 3. 아이디별 전체 결제 목록
+     @RequestMapping("/orderList.gt")
+     public ModelAndView listOrder(ModelAndView mav,HttpSession session,
+    		 HttpServletRequest req,HttpServletResponse res)throws Exception {
+    	 
+    	Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+     	String mem_id = authentication.getName();
+     	
+     	MemberBean memberInfo = memberService.memberInfo(mem_id);
+     	int userNo = memberInfo.getMem_no();     	
+     	
+     	Map<String, Object> map = new HashMap<String, Object>();
+        List<OrderpayBean> listOrder = orderService.listOrder(userNo); // 장바구니 정보 
+        System.out.println("listOrder타고 " + listOrder);
+        map.put("list",listOrder);
+        mav.setViewName("/basket/orderList");
+        mav.addObject("map", map); 
+
+       return mav;      
+}
+
+
+     // 3. 결제 취소 삭제
+     @RequestMapping("deleteOrder.gt")
+     public String deleteAOrder(@RequestParam int ord_no,@RequestParam int ord_stock,@RequestParam int ord_procode,
+    		 @ModelAttribute OrderpayBean orderBean )throws Exception {
+    	    
+    	 orderBean.setOrd_stock(ord_stock);
+    	 orderBean.setOrd_procode(ord_procode);
+    	 orderService.orderDelete(ord_no);
+    	 orderService.orderUpdateProduct(orderBean);
+	     System.out.println("Order삭제 실행");
+>>>>>>> branch 'sungwoo' of https://github.com/KangSeokhyung/gotthem.git
     
 /*    // 3. 장바구니 삭제
     @RequestMapping("delete.gt")

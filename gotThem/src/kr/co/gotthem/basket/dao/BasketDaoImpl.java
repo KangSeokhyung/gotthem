@@ -72,15 +72,14 @@ public class BasketDaoImpl implements BasketDao {
     
    // 3. 장바구니 삭제
     @Override
-    public void deleteBasket(int bas_no) {
-    	sqlSessionTemplate.delete("deleteBasket", bas_no);
+    public void deleteBasket(BasketBean basketBean) {
+    	sqlSessionTemplate.delete("deleteBasket", basketBean);
     }
     
     // 4. 장바구니 수정
     @Override
     public void modifyBasket(BasketBean basketBean) {
-    	System.out.println("테스트 결과값"+basketBean);
-    	int a = sqlSessionTemplate.update("modifyBasket", basketBean);
+    	sqlSessionTemplate.update("modifyBasket", basketBean);
     }
     
     // 5. 장바구니 금액 합계

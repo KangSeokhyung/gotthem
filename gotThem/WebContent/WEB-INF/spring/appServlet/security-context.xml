@@ -16,7 +16,11 @@
 			authentication-failure-handler-ref="loginFailureHandler"
 			username-parameter="mem_id" password-parameter="mem_pw" />
 		<logout logout-url="/logout.gt" logout-success-url="/" 
+<<<<<<< HEAD
 		 invalidate-session="true"/>
+=======
+		invalidate-session="true"/>
+>>>>>>> branch 'sungwoo' of https://github.com/KangSeokhyung/gotthem.git
 		<csrf disabled="true" />
 	</http>
 	
@@ -24,6 +28,7 @@
 		<intercept-url pattern="/storeIndex.st" access="permitAll" />
 		<intercept-url pattern="/mystore.st" access="hasAnyRole('ROLE_ADMIN', 'ROLE_STORE')" />
 		<intercept-url pattern="/stock.st" access="hasAnyRole('ROLE_ADMIN', 'ROLE_STORE')" />
+		<intercept-url pattern="/mystore.st" access="hasAnyRole('ROLE_ADMIN', 'ROLE_STORE')" />
 		<form-login login-page="/login.st" 
 			default-target-url="/storeIndex.st"
 			login-processing-url="/login.st"

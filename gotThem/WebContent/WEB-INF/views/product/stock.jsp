@@ -15,13 +15,71 @@
 	</head>
 <body>
 <section class="cover-1 text-center">
+	<aside class="probootstrap-aside js-probootstrap-aside">
+		<a href="#"
+			class="probootstrap-close-menu js-probootstrap-close-menu d-md-none"><span
+			class="oi oi-arrow-left"></span> Close</a>
+		<div class="probootstrap-site-logo probootstrap-animate"
+			data-animate-effect="fadeInLeft">
 
+			<a href="storeIndex.st" class="mb-2 d-block probootstrap-logo">GOTTHEM</a>
+			<p class="mb-0">
+				제휴 사이트 
+			</p>
+		</div>
+		<div class="probootstrap-overflow">
+			<nav class="probootstrap-nav">
+				<ul>
+					<li class="probootstrap-animate"
+						data-animate-effect="fadeInLeft"><a href="storeIndex.st">Got them?</a></li>
+					<li class="probootstrap-animate" data-animate-effect="fadeInLeft"><a
+						href="mystore.st">점포관리</a></li>
+					<li class="probootstrap-animate active" data-animate-effect="fadeInLeft"><a
+						href="stock.st">재고관리</a></li>
+				<c:set var="sessionCheck"
+					value="${sessionScope.SPRING_SECURITY_CONTEXT}" />
+				<c:choose>
+					<c:when test="${sessionCheck eq null}">
+					<li class="probootstrap-animate" data-animate-effect="fadeInLeft"><a
+						href="login.st">로그인</a></li>
+					<li class="probootstrap-animate" data-animate-effect="fadeInLeft"><a
+						href="join.st">제휴맺기</a></li>
+					</c:when>
+					<c:otherwise>
+						<li class="probootstrap-animate" data-animate-effect="fadeInLeft"><a href="logout.st" class="nav-link">로그아웃</a></li>
+					</c:otherwise>
+				</c:choose>
+				<li class="probootstrap-animate" data-animate-effect="fadeInLeft"><a
+						href="index.gt">고객 사이트</a></li>
+			</ul>
+			</nav>
+			
+			<footer class="probootstrap-aside-footer probootstrap-animate"
+				data-animate-effect="fadeInLeft">
+				<p>
+					&copy; 2018 <a href="/gotThem" target="_blank">스탑없으 X Got Them</a>.
+					<br> All Rights Reserved.
+				</p>
+			</footer>
+		</div>
+	</aside>
+
+
+	<main role="main" class="probootstrap-main js-probootstrap-main">
+		<div class="probootstrap-bar">
+		<a href="#" class="probootstrap-toggle js-probootstrap-toggle"><span
+			class="oi oi-menu"></span></a>
+		<div class="probootstrap-main-site-logo">
+			<a href="index.html">Aside</a></a>
+		</div>
+	</div>
 			<div class="cover-container pb-5">
 				<div class="cover-inner container">
-					<table border="1">
+					<table class="table table-user-information">
 						<tr>
 							<th>번호</th>
-							<th style="text-align: center;">상품명</th>
+							<td>사진</td>
+							<th>상품명</th>
 							<th>분류</th>
 							<th>가격</th>
 							<th>재고</th>
@@ -30,14 +88,21 @@
 						
 						<tr>
 							<td>${dto.pro_code }</td>
+							<td><img src="/img/${dto.pro_img }" style="width:50px; height:50px; cursor:pointer"
+							onclick="location='detail.st?code=${dto.pro_code }'"/></td>
 							<td><a href="detail.st?code=${dto.pro_code }">${dto.pro_name }</a></td>
 							<td>${dto.pro_category }</td>
 							<td>${dto.pro_price }</td>
 							<td>${dto.pro_stock }</td>
 						</tr>
 						</c:forEach>
+						<tr>
+							<td colspan="12" align="right">
+							<input type="button" value="상품추가" onclick="location='insert.st'"/>
+							</td>
+						</tr>
 					</table>
-					<input type="button" value="상품추가" onclick="location='insert.st'"/>
+					
 					<%-- <div>
 					${sessionScope.SPRING_SECURITY_CONTEXT}					
 					</div> --%>

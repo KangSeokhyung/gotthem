@@ -84,7 +84,6 @@
               </div>
               <h1>회원정보수정</h1>
             </div>
-
           </div>
         </div>
       </div>
@@ -112,23 +111,22 @@
             <li><i class="xi-key"></i><span>
             <a href="#tab-3" data-toggle="tab">비밀번호 변경</a>
             </span></li>
+            <li><i class="xi-airplay"></i><span>
+            <a href="#tab-4" data-toggle="tab">회원 탈퇴</a>
+            </span></li>
              <li><i class="xi-cart"></i><span>
-            <a href="#tab-4" data-toggle="tab">구매 정보</a>
+            <a href="list.gt" data-toggle="tab">장바구니 정보</a>
             </span></li>
              <li><i class="xi-truck"></i><span>
-            <a href="#" data-toggle="tab">찾아갈 상품</a>
+            <a href="orderList.gt" data-toggle="tab">찾아갈 상품</a>
             </span></li>
-           	<li><i class="xi-airplay"></i><span>
-            <a href="#" data-toggle="tab">회원 탈퇴</a>
-            </span></li>
+           	
           </ul>
           </div>
         </div>
         <div class="col-sm-8">
        <div class="tab-content">
-	<div class="tab-pane active" id="tab-1">
-
-				</div>
+	<div class="tab-pane active" id="tab-1"></div>
 				<div class="tab-pane fade" id="tab-2"></div>
 				<div class="tab-pane fade" id="tab-3">
 				</div>

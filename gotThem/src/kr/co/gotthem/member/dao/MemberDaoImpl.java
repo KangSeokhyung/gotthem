@@ -101,10 +101,13 @@ public class MemberDaoImpl implements MemberDao {
 		return sqlSessionTemplate.selectList("stlist", begin);
 	}
 	
+<<<<<<< HEAD
 	@Override
 	public int countRow() {
 		return sqlSessionTemplate.selectOne("memCount");
 	}
+=======
+>>>>>>> branch 'sungwoo' of https://github.com/KangSeokhyung/gotthem.git
 	
 	@Override
 	public int stcountRow() {
