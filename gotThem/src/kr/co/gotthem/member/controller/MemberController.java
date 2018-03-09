@@ -127,15 +127,10 @@ public class MemberController {
 		String mem_id = authentication.getName();
 		MemberBean memberInfo = memberService.memberInfo(mem_id);
 		String mem_address = memberInfo.getMem_address();
-		System.out.println(mem_address);
-		StringTokenizer  st = new StringTokenizer(mem_address,"/");
-		System.out.println(mem_address);
+		StringTokenizer st = new StringTokenizer(mem_address,"/");
 		String post = st.nextToken();       
 		String address1 = st.nextToken();      
 		String address2 = st.nextToken();    
-		System.out.println(post);
-		System.out.println(address1);
-		System.out.println(address2);
 		mav.addObject("mem_post", post);
 		mav.addObject("mem_address1", address1);
 		mav.addObject("mem_address2", address2);
@@ -172,15 +167,15 @@ public class MemberController {
 		return "member/mypage";
 	}
 	
-	@RequestMapping(value = "/passCheck.gt", method = RequestMethod.GET)
+	@RequestMapping(value = "/passChange.gt", method = RequestMethod.GET)
 	public ModelAndView passCheck(MemberBean bean, ModelAndView mav) {
-		mav.setViewName("member/mypagePWCheck");
+		mav.setViewName("member/mypagePWChange");
 		return mav;
 	}
 	
-	@RequestMapping(value = "/passCheck.gt", method = RequestMethod.POST)
+	@RequestMapping(value = "/passChange.gt", method = RequestMethod.POST)
 	public ModelAndView passCheckPost(@RequestParam("new_pw") String new_pw, @RequestParam("new_pw2") String new_pw2,
-			MemberBean bean, ModelAndView mav, HttpServletResponse response, RedirectAttributes ra) throws Exception {
+			MemberBean bean, ModelAndView mav, HttpServletResponse response) throws Exception {
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 		String mem_id = authentication.getName();
 		System.out.println("비밀번호 변경하러 왔나~");
@@ -190,11 +185,11 @@ public class MemberController {
 		System.out.println("비밀번호 체크 : " + result);
 		if(result != 1) {
 			System.out.println("현재비밀번호가 안 맞을때");
-			ra.addFlashAttribute("resultMsg", "fail1");
+			mav.addObject("resultMsg", "fail1");
 			mav.setViewName("member/mypage");
 		}else if(!new_pw.equals(new_pw2)){
 			System.out.println("새로운 비밀번호와 비밀번호 확인이 안 맞을때");
-			ra.addFlashAttribute("resultMsg", "fail2");
+			mav.addObject("resultMsg", "fail2");
 			mav.setViewName("member/mypage");
 		}else {
 			System.out.println("잘 들어왔네");
@@ -203,27 +198,14 @@ public class MemberController {
 			System.out.println("변경결과"+changeResult);
 			if(changeResult != 0) {
 				System.out.println("비밀번호 변경이 성공했네");
-				ra.addFlashAttribute("resultMsg", "success");
+				mav.addObject("resultMsg", "success");
 				mav.setViewName("member/mypage");
 			}else {
-				ra.addFlashAttribute("resultMsg", "fail3");
+				mav.addObject("resultMsg", "fail3");
 				mav.setViewName("member/mypage");
 			}
 			
 		}
-		return mav;
-	}
-	
-	@RequestMapping(value = "/callChangePW.gt", method = RequestMethod.POST)
-	public ModelAndView passChange(MemberBean bean, ModelAndView mav, PrintWriter out, HttpServletResponse response)
-			throws Exception {
-		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-		String mem_id = authentication.getName();
-		bean.setMem_id(mem_id);
-		String mem_pw = bean.getMem_pw();
-		System.out.println(mem_pw);
-		int result = memberService.passCheck(bean);
-		mav.setViewName("member/callChangePW");
 		return mav;
 	}
 	

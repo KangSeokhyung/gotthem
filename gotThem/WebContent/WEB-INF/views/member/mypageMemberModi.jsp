@@ -85,8 +85,8 @@
             </div>
             </div>                   
             <div class="form-group">
-              <input type="submit" class="btn btn-primary" id="submit" name="submit" value="변경">
-              <input type="reset" class="btn btn-primary" id="submit" value="취소">
+              <input type="submit" class="btn btn-primary" name="submit" value="변경">
+              <input type="reset" class="btn btn-primary" value="취소">
             </div>              
           </form>
         </div> 

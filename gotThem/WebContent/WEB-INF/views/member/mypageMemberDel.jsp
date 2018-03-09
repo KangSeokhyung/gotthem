@@ -26,8 +26,8 @@
               </div>
                        
             <div class="form-group">
-              <input type="button" class="btn btn-primary" id="submit" name="submit" value="탈퇴하기" onclick="memberDel()">
-              <input type="reset" class="btn btn-primary" id="submit" value="취소하기">
+              <input type="submit" class="btn btn-primary" value="탈퇴하기" onclick="memberDel()">
+              <input type="reset" class="btn btn-primary" value="취소하기">
             </div>              
           </form>
         </div> 
@@ -39,10 +39,8 @@
 <script>
 	function memberDel(){
 		if(confirm('정말 탈퇴하시겠습니까?')== true){
-			alert('트와이스짱~~~!!!')
 			document.form1.submit();
 		}else{
-			alert('모모짱~~~!!!')
 			history.go(0);
 		}
 	}

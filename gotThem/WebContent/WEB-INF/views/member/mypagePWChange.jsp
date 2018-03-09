@@ -26,34 +26,34 @@
     <div class="container">
       <div class="row">
         <div class="col-md-8">
-          <form action="passCheck.gt" method="post" class="probootstrap-form mb60">
+          <form action="passChange.gt" method="post" class="probootstrap-form mb60">
             <div class="row">
               <div class="col-sm-6">
                 <div class="form-group">
-                  <label for="fname">현재 비밀번호</label>
-                  <input type="password" class="form-control" id="fname" name="mem_pw">
+                  <label for="mem_pw">현재 비밀번호</label>
+                  <input type="password" class="form-control" id="mem_pw" name="mem_pw">
                 </div>
               </div>
               </div>
             <div class="row">
               <div class="col-md-6">
                 <div class="form-group">
-                  <label for="lname">새로운 비밀번호</label>
-                  <input type="password" class="form-control" id="lname" name="new_pw">
+                  <label for="new_pw">새로운 비밀번호</label>
+                  <input type="password" class="form-control" id="new_pw" name="new_pw">
                 </div>
               </div>
             </div>
            <div class="row">
             <div class="col-md-6">
             <div class="form-group">
-              <label for="email">새로운 비밀번호 확인</label>
-              <input type="password" class="form-control" id="email" name="new_pw2">
+              <label for="new_pw2">새로운 비밀번호 확인</label>
+              <input type="password" class="form-control" id="new_pw2" name="new_pw2">
             </div>
             </div>
             </div>            
             <div class="form-group">
               <input type="submit" class="btn btn-primary" id="submit" name="submit" value="비밀번호변경">
-              <input type="reset" class="btn btn-primary" id="submit" value="취소하기">
+              <input type="reset" class="btn btn-primary" id="cancel" value="취소하기">
             </div>              
           </form>
         </div> 
@@ -61,54 +61,6 @@
 	</div>
   </section> 
 </body>
-
-	<c:if test="${resultMsg ne null }">
-
-		<c:choose>
-
-			<c:when test="${resultMsg eq 'fail1' }">
-
-				<script>
-
-				alert("현재 비밀번호가 맞지 않습니다.");
-
-				</script>
-
-			</c:when>
-
-			<c:when test="${resultMsg eq 'fail2' }">
-
-				<script>
-
-				alert("새로운 비밀번호와 비밀번호 확인이 다릅니다. 확인해주세요");
-
-				</script>
-
-			</c:when>
-
-			<c:when test="${resultMsg eq 'fail3' }">
-
-				<script>
-
-				alert("비밀번호가 변경이 실패했습니다.");
-
-				</script>
-
-			</c:when>
-
-			<c:when test="${resultMsg eq 'success' }">
-
-				<script>
-
-				alert("비밀번호가 변경되었습니다.");
-
-				</script>
-
-			</c:when>
-
-		</c:choose>	
-
-	</c:if>
 
 <script>
 

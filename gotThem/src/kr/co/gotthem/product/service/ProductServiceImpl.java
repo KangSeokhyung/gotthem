@@ -37,4 +37,5 @@ public class ProductServiceImpl implements ProductService {
 	public void insertPro(ProductBean bean) {
 		productDao.insertPro(bean);
 	}
+	
 }
