@@ -1,9 +1,11 @@
 package kr.co.gotthem.basket.controller;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -28,7 +30,6 @@ import kr.co.gotthem.order.bean.OrderpayBean;
 import kr.co.gotthem.order.service.OrderService;
 import kr.co.gotthem.product.bean.ProductBean;
 import kr.co.gotthem.product.service.ProductService;
-import oracle.net.aso.b;
 
 @Controller
 public class BasketController {
@@ -170,8 +171,8 @@ public class BasketController {
     	    System.out.println("삭제 실행");
            }
         return "redirect:/list.gt";
-    }   
-       
+    } 
+   
    // 4. 장바구니 수정( 수량만 수정)
     @RequestMapping("update.gt")
   public String update(@RequestParam String[] bas_prostock, @RequestParam String[] bas_procode,

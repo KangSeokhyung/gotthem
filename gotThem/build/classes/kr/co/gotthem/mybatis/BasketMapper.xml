@@ -65,7 +65,7 @@
         FROM basket b,product p
         WHERE b.bas_procode = p.pro_code AND b.bas_memno = #{mem_no}
     </select>
-     
+  
     <!-- 4. 장바구니 수정(수량만 수정). -->
     <update id="modifyBasket">
         UPDATE basket   
