@@ -13,11 +13,11 @@
 	</select>
 	
 	<select id="mlist" resultType="kr.co.gotthem.member.bean.MemberBean">
-		select * from member where mem_status='ROLE_USER'
+		select * from member where mem_status='ROLE_USER' limit  #{begin}, 5 
 	</select>
 	
 	<select id="stlist" resultType="kr.co.gotthem.member.bean.MemberBean">
-		select * from member where mem_status='ROLE_STORE'
+		select * from member where mem_status='ROLE_STORE' limit #{begin}, 5
 	</select>
 	
 	<select id="duplCheck" resultType="int">
@@ -72,5 +72,12 @@
 	<select id="selectStatus" parameterType="kr.co.gotthem.member.bean.MemberBean" resultType="int">
 		select enabled from member where mem_id=#{mem_id} and mem_pw = #{mem_pw}
 	</select>
-
+		
+	 <select id="memCount" resultType="int">
+        select count(mem_id) from member where mem_status='ROLE_USER'
+    </select>
+    
+    <select id="stoCount" resultType="int">
+        select count(mem_id) from member where mem_status='ROLE_STORE'
+    </select>  
 </mapper>

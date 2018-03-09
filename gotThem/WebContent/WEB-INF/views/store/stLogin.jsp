@@ -111,9 +111,6 @@
 
 								<div class="form-group">
 									<label for="password">비밀번호
-										<a href="forgot.html" class="float-right">
-											Forgot Password?
-										</a>
 									</label>
 									<input id="password" type="password" class="form-control" name="sto_pw" required data-eye>
 								</div>

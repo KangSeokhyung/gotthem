@@ -18,12 +18,12 @@
 <link rel="stylesheet" href="resources/indexTemplate/css/icomoon.css">
 <link rel="stylesheet" href="resources/indexTemplate/css/animate.css">
 <link rel="stylesheet" href="resources/indexTemplate/css/style.css">
-  <link rel="stylesheet" href="resources/stlogin/tether/tether.min.css">
-  <link rel="stylesheet" href="resources/stlogin/bootstrap/css/bootstrap.min.css">
-  <link rel="stylesheet" href="resources/stlogin/bootstrap/css/bootstrap-grid.min.css">
-  <link rel="stylesheet" href="resources/stlogin/bootstrap/css/bootstrap-reboot.min.css">
-  <link rel="stylesheet" href="resources/stlogin/theme/css/style.css">
-  <link rel="stylesheet" href="resources/stlogin/mobirise/css/mbr-additional.css" type="text/css">
+  <link rel="stylesheet" href="resources/boardTemplate/assets/tether/tether.min.css">
+  <link rel="stylesheet" href="resources/boardTemplate/assets/bootstrap/css/bootstrap.min.css">
+  <link rel="stylesheet" href="resources/boardTemplate/assets/bootstrap/css/bootstrap-grid.min.css">
+  <link rel="stylesheet" href="resources/boardTemplate/assets/bootstrap/css/bootstrap-reboot.min.css">
+  <link rel="stylesheet" href="resources/boardTemplate/assets/theme/css/style.css">
+  <link rel="stylesheet" href="resources/boardTemplate/assets/mobirise/css/mbr-additional.css" type="text/css">
 
 </head>
 <body>
