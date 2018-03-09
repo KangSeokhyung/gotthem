@@ -68,8 +68,6 @@ public class BasketServiceImpl implements BasketService {
     	basketDao.updateBasket(basketBean);
     }
 
-
-  
      
 	/*@Override
 	public MemberBean login(String id) {

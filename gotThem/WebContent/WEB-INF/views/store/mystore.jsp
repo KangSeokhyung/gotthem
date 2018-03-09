@@ -16,16 +16,8 @@
 <link rel="stylesheet" href="resources/indexTemplate/css/icomoon.css">
 <link rel="stylesheet" href="resources/indexTemplate/css/animate.css">
 <link rel="stylesheet" href="resources/indexTemplate/css/style.css">
-  <link rel="stylesheet" href="resources/stlogin/tether/tether.min.css">
-  <link rel="stylesheet" href="resources/stlogin/bootstrap/css/bootstrap.min.css">
-  <link rel="stylesheet" href="resources/stlogin/bootstrap/css/bootstrap-grid.min.css">
-  <link rel="stylesheet" href="resources/stlogin/bootstrap/css/bootstrap-reboot.min.css">
-  <link rel="stylesheet" href="resources/stlogin/theme/css/style.css">
-  <link rel="stylesheet" href="resources/stlogin/mobirise/css/mbr-additional.css" type="text/css">
-
 </head>
 <body>
-
 	<aside class="probootstrap-aside js-probootstrap-aside">
 		<a href="#"
 			class="probootstrap-close-menu js-probootstrap-close-menu d-md-none"><span
@@ -64,14 +56,6 @@
 						href="index.gt">고객 사이트</a></li>
 			</ul>
 			</nav>
-<<<<<<< HEAD
-			<footer class="probootstrap-aside-footer probootstrap-animate"
-				data-animate-effect="fadeInLeft">
-				<p>
-					&copy; 2018 <a href="/gotThem" target="_blank">스탑없으 X Got Them</a>.
-					<br> All Rights Reserved.
-				</p>
-			</footer>
 		</div>
 	</aside>
 
@@ -81,36 +65,10 @@
 		<a href="#" class="probootstrap-toggle js-probootstrap-toggle"><span
 			class="oi oi-menu"></span></a>
 		<div class="probootstrap-main-site-logo">
-			<a href="index.html">Aside</a></a>
+			<a href="storeIndex.st">GOT THEM</a></a>
 		</div>
 	</div>
-   
-
-	</main>
-
-	<script src="resources/indexTemplate/js/jquery-3.2.1.slim.min.js"></script>
-	<script src="resources/indexTemplate/js/popper.min.js"></script>
-	<script src="resources/indexTemplate/js/bootstrap.min.js"></script>
-	<script src="resources/indexTemplate/js/owl.carousel.min.js"></script>
-	<script src="resources/indexTemplate/js/jquery.waypoints.min.js"></script>
-	<script src="resources/indexTemplate/js/imagesloaded.pkgd.min.js"></script>
-	<script src="resources/indexTemplate/js/main.js"></script>
-	<script src="resources/stlogin/popper/popper.min.js"></script>
-  	<script src="resources/stlogin/tether/tether.min.js"></script>
-  	<script src="resources/stlogin/smoothscroll/smooth-scroll.js"></script>
-  	<script src="resources/stlogin/theme/js/script.js"></script>
-=======
-			
-			<footer class="probootstrap-aside-footer probootstrap-animate"
-				data-animate-effect="fadeInLeft">
-				<p>
-					&copy; 2018 <a href="/gotThem" target="_blank">스탑없으 X Got Them</a>.
-					<br> All Rights Reserved.
-				</p>
-			</footer>
-		</div>
-	</aside>
-
+ 
 
 	<main role="main" class="probootstrap-main js-probootstrap-main">
 		<div class="probootstrap-bar">
@@ -194,7 +152,5 @@
 	<script src="resources/indexTemplate/js/jquery.waypoints.min.js"></script>
 	<script src="resources/indexTemplate/js/imagesloaded.pkgd.min.js"></script>
 	<script src="resources/indexTemplate/js/main.js"></script>
-
->>>>>>> branch 'sungwoo' of https://github.com/KangSeokhyung/gotthem.git
 </body>
 </html>

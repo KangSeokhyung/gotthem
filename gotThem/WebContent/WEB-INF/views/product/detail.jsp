@@ -54,10 +54,7 @@
 </head>
 <body>
 <section class="cover-1 text-center">
-
-<<<<<<< HEAD
 			<div class="cover-container pb-5">
-=======
 			<a href="storeIndex.st" class="mb-2 d-block probootstrap-logo">GOTTHEM</a>
 			<p class="mb-0">
 				제휴 사이트 
@@ -144,14 +141,13 @@
 					<%-- <div>
 					${sessionScope.SPRING_SECURITY_CONTEXT}					
 					</div> --%>
-<<<<<<< HEAD
 				</div>
       		</div>
 </section>
 <footer class="footer-3">
 			<div class="container-fluid">
 				<div class="divider"></div>
-=======
+
 					</div>
 					</div>
 					</div>
