@@ -72,6 +72,12 @@ public class BasketDaoImpl implements BasketDao {
         return sqlSessionTemplate.selectOne("sumMoney", bas_memno);
     }
 
+    // 5.1 장바구니 개별 금액 합계
+    @Override
+    public int selMoney(BasketBean basketBean) {
+    	sqlSessionTemplate.selectOne("selMoney", basketBean);
+        return sqlSessionTemplate.selectOne("selMoney", basketBean);
+    }
 	// 6. 장바구니 동일한 상품 레코드 확인
 	@Override
     public int countBasket(int bas_procode, int bas_memno) {

@@ -32,9 +32,10 @@ public interface BasketDao {
     // 5. 장바구니 금액 합계
     public int sumMoney(int bas_memno);
 	
-/*    // 5.1 장바구니 개별 합계
-    public void money(int bas_memno);*/
-	// 6. 장바구니 동일한 상품 레코드 확인
+    // 5.1 장바구니 개별 금액 합계
+    public int selMoney(BasketBean basketBean);
+	
+    // 6. 장바구니 동일한 상품 레코드 확인
 	public int countBasket(int bas_procode, int bas_memno);
 	
 	// 7. 장바구니 상품수량 변경

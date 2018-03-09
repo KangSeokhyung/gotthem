@@ -69,6 +69,12 @@ public class BasketServiceImpl implements BasketService {
         return basketDao.sumMoney(bas_memno);
     }
     
+    // 5.1 장바구니 개별 금액 합계
+    @Override
+    public int selMoney(BasketBean basketBean) {
+        return basketDao.selMoney(basketBean);
+    }
+    
     // 6. 장바구니 상품 확인
     @Override
     public int countBasket(int bas_procode, int bas_memno) {

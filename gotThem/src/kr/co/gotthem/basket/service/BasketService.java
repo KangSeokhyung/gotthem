@@ -30,6 +30,9 @@ public interface BasketService {
     
     // 5. 장바구니 금액 합계
     public int sumMoney(int bas_memno);
+   
+    // 5.1 장바구니 개별 금액 합계
+    public int selMoney(BasketBean basketBean);
     
 	// 6. 장바구니 상품 확인
 	public int countBasket(int bas_procode, int bas_memno);

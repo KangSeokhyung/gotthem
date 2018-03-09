@@ -114,8 +114,9 @@
              <c:forEach var="row" items="${map.list}" varStatus="i">
                <tr>                
                   <td>
-                      <input type="checkbox" name="checkRow" class="chk"  value="${row.bas_no},${row.bas_proname},
-                      ${row.bas_proprice},${row.bas_prostock},${row.bas_procode},${row.money},${row.bas_proimg}, ${row.bas_procomment}" /> 
+                      <input type="checkbox" name="checkRow" class="chk" id="checkRow"  value="${row.bas_no},${row.bas_proname},
+                      ${row.bas_proprice},${row.bas_prostock},${row.bas_procode},${row.money},${row.bas_proimg}, ${row.bas_procomment}"
+                      onclick="cart();" /> 
                   </td>
                   <td>
                        <img src="/img/${row.bas_proimg}" style="width:50px; height:50px"/>
@@ -123,7 +124,7 @@
                   <td>
                       <a href="detail/${row.bas_procode}.gt" style="color: #7e8890;"> ${row.bas_proname}</a>
                   </td>
-                  <td style="width: 80px" align="right">
+                  <td style="width: 80px" align="right" >
                        <fmt:formatNumber pattern="###,###,###" value="${row.bas_proprice}"/>
                   </td>
                   <td>
@@ -144,9 +145,12 @@
                 </tr>
                </c:forEach>
                 <tr>
-                    <td colspan="5" align="right"> 장바구니 금액 합계 : <fmt:formatNumber pattern="###,###,###" value="${map.sumMoney}"/><br>
+                    <td colspan="12" align="right"> 장바구니 금액 합계 : <fmt:formatNumber pattern="###,###,###" value="${map.sumMoney}"/><br>
                         <%-- 배송료 : ${map.fee}<br>전체 주문금액  :<fmt:formatNumber pattern="###,###,###" value="${map.allSum}"/> --%>
                     </td>
+                </tr>
+                <tr>
+                    <td colspan="10" align="right">선택 상품 결제 예상 금액:<p id="chkSum"></p>  </td>
                 </tr>
             </table>                    
         </form>
@@ -192,18 +196,45 @@
         /* $("#btnOrd").click(function(){
             location.href="ord.gt?bas_no="+bas_no;
         }); */
+        
         $('input[name*="checkRow"]').prop("checked",true); 
-    });
-		 	
-    $("#th_checkAll").click(function(){		//체크박스 전체 선택
+   
+        
+  	    var checkSumArr = [];
+  		$("input[name='checkRow']:checked").each(function(i) {
+  			checkSumArr.push($(this).val());   		
+  		   });
+  		  var sum=0;
+  		  for(var i = 0; i< checkSumArr.length; i++){
+  			var cartSum = checkSumArr[i].split(',')[5];
+  			 cartSum = parseInt(cartSum);
+  			 sum+=cartSum;
+  			 document.getElementById("chkSum").innerHTML = sum;
+  		   } 
+    
+});
+
+$("#th_checkAll").click(function(){		//체크박스 전체 선택
 		var chk= $(this).is(":checked");
 		if(chk){
 			$('input[name*="checkRow"]').prop("checked", true); //체크박스 전체 선택
 		} else{
 	        $('input[name*="checkRow"]').prop("checked", false);//체크박스 전체 해지 
-    	}
-	});	
-		   
+   }	
+});
+function cart(){  //결제 금액 계산
+  var checkSumArr = [];
+	   $("input[name='checkRow']:checked").each(function(i) {
+		   checkSumArr.push($(this).val());   		
+	   });
+	   var sum=0;
+	   for ( var i = 0; i< checkSumArr.length; i++){
+		   var cartSum = checkSumArr[i].split(',')[5];
+		   cartSum = parseInt(cartSum);
+		   sum+=cartSum;
+		   document.getElementById("chkSum").innerHTML = sum;
+	   } 
+	}  		   
 function button_basDel(bas_no){  //직접 삭제
     	alert(bas_no);
    if (confirm("장바구니에서 상품을 삭제 하시겠습니까?")){    
@@ -244,7 +275,7 @@ function button_selDel(){  //장바구니 선택 삭제
 			});	    	
 	}else{   //취소.
 	      return;
-	} 			
+	   } 			
    });
 }  
 function button_selOrder(){  //장바구니 선택 결제
@@ -277,33 +308,7 @@ function modify() {   // 수량 수정
 	   submitTest.action="./update.gt";
 	   submitTest.method="post";
 	   submitTest.submit();
-   }
-/* function button_selOrder(){  //장바구니 수정 ajas
-	  if( $(":checkbox[name='checkRow']:checked").length==1 ){
-		    alert("결제할 항목을 2이상 체크해주세요.");
-		    return;
-		  }   
-	var checkOrder = [];
-	   $("input[name='checkRow']:checked").each(function(i) {
-	     checkOrder.push($(this).val());
-	     }); 
-		if (confirm("모두 결제 하시겠습니까??")){
-			 alert("배열" + checkOrder); 
-			$.ajax({				
-				url:"selectOrder.gt",
-				type:"post",
-				dataType: "text",
-				data:{arrOrder:checkOrder
-					},
-				success:function(result){
-					location.href="./orderList.gt";
-				}	
-				});	    	
-		}else{   //취소.
-		      return;
-		} 			
-}
- */
+} 
 
 </script>	
 </html>
