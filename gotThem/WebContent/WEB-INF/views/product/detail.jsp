@@ -48,7 +48,7 @@
 </head>
 <body>
 <section class="cover-1 text-center">
-		<%@include file ="../store/storeNav.jsp"%>
+
 			<div class="cover-container pb-5">
 				<div class="cover-inner container">
 					<table border ="1">
