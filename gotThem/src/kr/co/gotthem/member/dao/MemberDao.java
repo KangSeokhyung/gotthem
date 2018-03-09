@@ -29,13 +29,8 @@ public interface MemberDao {
 
 	public List<MemberBean> mlist(int begin, int end);
 
-<<<<<<< HEAD
 	public List<MemberBean> stlist(int begin);
-	
-=======
-	public List<MemberBean> stlist();
 
->>>>>>> branch 'sungwoo' of https://github.com/KangSeokhyung/gotthem.git
 	public int changePasswordReal(MemberBean memberBean);
 
 	public void storeModi(MemberBean memberBean);
@@ -44,9 +39,7 @@ public interface MemberDao {
 
 	public int countRow();
 	
-<<<<<<< HEAD
 	public int stcountRow();
+
 	
-=======
->>>>>>> branch 'sungwoo' of https://github.com/KangSeokhyung/gotthem.git
 }

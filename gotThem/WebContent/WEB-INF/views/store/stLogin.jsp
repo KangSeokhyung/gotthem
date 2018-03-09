@@ -50,11 +50,7 @@
 			<nav class="probootstrap-nav">
 				<ul>
 					<li class="probootstrap-animate"
-<<<<<<< HEAD
-						data-animate-effect="fadeInLeft"><a href="/storeIndex.st">Got them?</a></li>
-=======
 						data-animate-effect="fadeInLeft"><a href="storeIndex.st">Got them?</a></li>
->>>>>>> branch 'sungwoo' of https://github.com/KangSeokhyung/gotthem.git
 					<li class="probootstrap-animate" data-animate-effect="fadeInLeft"><a
 						href="mystore.st">점포관리</a></li>
 					<li class="probootstrap-animate" data-animate-effect="fadeInLeft"><a
@@ -65,11 +61,7 @@
 					<c:when test="${sessionCheck eq null}">
 					<li class="probootstrap-animate active" data-animate-effect="fadeInLeft"><a
 						href="login.st">로그인</a></li>
-<<<<<<< HEAD
 					<li class="probootstrap-animate " data-animate-effect="fadeInLeft"><a
-=======
-					<li class="probootstrap-animate" data-animate-effect="fadeInLeft"><a
->>>>>>> branch 'sungwoo' of https://github.com/KangSeokhyung/gotthem.git
 						href="join.st">제휴맺기</a></li>
 					</c:when>
 					<c:otherwise>

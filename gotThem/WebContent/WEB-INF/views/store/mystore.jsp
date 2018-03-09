@@ -16,21 +16,12 @@
 <link rel="stylesheet" href="resources/indexTemplate/css/icomoon.css">
 <link rel="stylesheet" href="resources/indexTemplate/css/animate.css">
 <link rel="stylesheet" href="resources/indexTemplate/css/style.css">
-<<<<<<< HEAD
   <link rel="stylesheet" href="resources/stlogin/tether/tether.min.css">
   <link rel="stylesheet" href="resources/stlogin/bootstrap/css/bootstrap.min.css">
   <link rel="stylesheet" href="resources/stlogin/bootstrap/css/bootstrap-grid.min.css">
   <link rel="stylesheet" href="resources/stlogin/bootstrap/css/bootstrap-reboot.min.css">
   <link rel="stylesheet" href="resources/stlogin/theme/css/style.css">
   <link rel="stylesheet" href="resources/stlogin/mobirise/css/mbr-additional.css" type="text/css">
-=======
-<link rel="stylesheet" href="resources/stlogin/tether/tether.min.css">
-<link rel="stylesheet" href="resources/stlogin/bootstrap/css/bootstrap.min.css">
-<link rel="stylesheet" href="resources/stlogin/bootstrap/css/bootstrap-grid.min.css">
-<link rel="stylesheet" href="resources/stlogin/bootstrap/css/bootstrap-reboot.min.css">
-<link rel="stylesheet" href="resources/stlogin/theme/css/style.css">
-<link rel="stylesheet" href="resources/stlogin/mobirise/css/mbr-additional.css" type="text/css">
->>>>>>> branch 'sungwoo' of https://github.com/KangSeokhyung/gotthem.git
 
 </head>
 <body>
@@ -51,11 +42,7 @@
 			<nav class="probootstrap-nav">
 				<ul>
 					<li class="probootstrap-animate"
-<<<<<<< HEAD
-						data-animate-effect="fadeInLeft"><a href="/storeIndex.ST">Got them?</a></li>
-=======
 						data-animate-effect="fadeInLeft"><a href="storeIndex.st">Got them?</a></li>
->>>>>>> branch 'sungwoo' of https://github.com/KangSeokhyung/gotthem.git
 					<li class="probootstrap-animate active" data-animate-effect="fadeInLeft"><a
 						href="mystore.st">점포관리</a></li>
 					<li class="probootstrap-animate" data-animate-effect="fadeInLeft"><a

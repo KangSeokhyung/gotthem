@@ -53,52 +53,7 @@ public class BasketController {
 	public void setMemberService(MemberService memberService) {
 		this.memberService = memberService;
 	}
-	
-<<<<<<< HEAD
-	/*// product 1. 상품 전체 목록
-=======
-	// product 1. 상품 전체 목록	 
->>>>>>> branch 'sungwoo' of https://github.com/KangSeokhyung/gotthem.git
-    @RequestMapping("/productlist.gt")
-    public ModelAndView list(ModelAndView mav) {     
-    	Map<String, Object> map = new HashMap<String, Object>();
-        map.put("list", productService.listProduct());
-    	mav.setViewName("basket/productList");    
-    	mav.addObject("map", map);
-    	System.out.println("상품list타고 " + productService.listProduct());
-        System.out.println("상품리스트왔다!!!!!!!!");
-        return mav;
-    }
-<<<<<<< HEAD
-	// product 2. 상품 상세보기
-=======
-    
-    
-    
-// product 2. 상품 상세보기
->>>>>>> branch 'sungwoo' of https://github.com/KangSeokhyung/gotthem.git
-    @RequestMapping("/detail/{pro_code}.gt")
-    public ModelAndView detail(@PathVariable("pro_code") int pro_code, ModelAndView mav){
-<<<<<<< HEAD
-    	System.out.println("디테일왔다");
-    	mav.setViewName("basket/productDetail");
-        mav.addObject("m", productService.detailProduct(pro_code));
-        return mav;
-    }*/
- 
-    
-=======
-	System.out.println("디테일왔다");
-	    mav.setViewName("basket/productDetail");
-	    ProductBean bean = productService.detailProduct(pro_code);
-      mav.addObject("m", bean);
-      System.out.println("bean" + bean);
 
-     /*  mav.addObject("m", productService.findCode(Integer.parseInt(pro_code)));*/
-        
-    return mav;
-    }
->>>>>>> branch 'sungwoo' of https://github.com/KangSeokhyung/gotthem.git
     // 1. 장바구니 추가
     @RequestMapping(value ="insert.gt")
     public String insert(@ModelAttribute BasketBean basketBean,
