@@ -5,16 +5,6 @@ import java.util.List;
 import kr.co.gotthem.basket.bean.BasketBean;
 
 public interface BasketService {
-	
-	public List<BasketBean> list();
-	
-	public BasketBean FindByNo(int bas_no);
-	
-    public void insert(BasketBean basketBean);
-	
-	public int totalCount();
-	
-	public int update(int bas_no);
 		
     // 1. 장바구니 추가
     public void insertBasket(BasketBean basketBean);
@@ -31,9 +21,6 @@ public interface BasketService {
     // 5. 장바구니 금액 합계
     public int sumMoney(int bas_memno);
    
-    // 5.1 장바구니 개별 금액 합계
-    public int selMoney(BasketBean basketBean);
-    
 	// 6. 장바구니 상품 확인
 	public int countBasket(int bas_procode, int bas_memno);
 	

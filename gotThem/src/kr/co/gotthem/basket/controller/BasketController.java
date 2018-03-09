@@ -198,50 +198,7 @@ public class BasketController {
            }
         return "redirect:/list.gt";
     } 
-    
-    // 3.1 장바구니 선택 금액
-    @RequestMapping(value = "selectSum.gt", method = RequestMethod.POST) 
-    public ModelAndView selectSum(@RequestParam (value= "arrSum[]") List valueArr,
-    		@ModelAttribute BasketBean basketBean,
-    		HttpServletRequest req,HttpServletResponse res,HttpSession session,ModelAndView mav) throws Exception {
-    	Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-    	String mem_id = authentication.getName();
-    
-    	MemberBean memberInfo = memberService.memberInfo(mem_id);  
-        int userNo = memberInfo.getMem_no();
-       
-        System.out.println("valueArr은" + valueArr);
-        String A = null;
-
-        for(int i=0; i<valueArr.size(); i++){      
-        	A = (String) valueArr.get(i);          
-        	System.out.println("여기값"+A.toString());       	
-        java.util.StringTokenizer  st = new java.util.StringTokenizer(A,",");
-           	String bas_no = st.nextToken();
-           	String bas_proname = st.nextToken();
-           	String bas_proprice = st.nextToken(); 
-           	String bas_prostock = st.nextToken();
-           	String bas_procode = st.nextToken();
-           	String money = st.nextToken(); 
-           	String bas_proimg = st.nextToken();
-           	String bas_procomment = st.nextToken();
- 
-        	basketBean.setBas_memno(userNo);  
-        	basketBean.setBas_no(Integer.parseInt(bas_no));
-        	basketBean.setBas_prostock(Integer.parseInt(bas_prostock));
-        	basketBean.setBas_procode(Integer.parseInt(bas_procode));
-         
-        	int selMoney = basketService.selMoney(basketBean);
-             System.out.println("selMone개별금액 산출" + selMoney);        
-           mav.addObject("selMoney", selMoney);
-           
-           
-           System.out.println("mav개별금액 산출" + mav);
-           mav.setViewName("basket/ajaxCartList"); 
-          }
-        return mav;
-        }   
-
+   
    // 4. 장바구니 수정( 수량만 수정)
     @RequestMapping("update.gt")
   public String update(@RequestParam String[] bas_prostock, @RequestParam String[] bas_procode,

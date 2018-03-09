@@ -14,31 +14,6 @@ public class BasketServiceImpl implements BasketService {
 		this.basketDao = basketDao;
 	}
 
-	@Override
-	public List<BasketBean> list() {
-		return basketDao.list();
-	}
-
-	@Override
-	public BasketBean FindByNo(int bas_no) {		
-		return basketDao.FindByNo(bas_no);
-	}
-	
-	@Override
-	public void insert(BasketBean basketBean) {		
-	}
-	
-	@Override
-	public int totalCount() {
-		return basketDao.totalCount();
-	}
-	
-	@Override
-	public int update(int bas_no) {
-		return basketDao.update(bas_no);
-	}
-
-
 	// 1. 장바구니 추가
     @Override
     public void insertBasket(BasketBean basketBean) {
@@ -68,13 +43,7 @@ public class BasketServiceImpl implements BasketService {
     public int sumMoney(int bas_memno) {
         return basketDao.sumMoney(bas_memno);
     }
-    
-    // 5.1 장바구니 개별 금액 합계
-    @Override
-    public int selMoney(BasketBean basketBean) {
-        return basketDao.selMoney(basketBean);
-    }
-    
+       
     // 6. 장바구니 상품 확인
     @Override
     public int countBasket(int bas_procode, int bas_memno) {

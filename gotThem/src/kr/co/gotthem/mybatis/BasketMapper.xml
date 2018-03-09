@@ -65,14 +65,7 @@
         FROM basket b,product p
         WHERE b.bas_procode = p.pro_code AND b.bas_memno = #{mem_no}
     </select>
- 
-     <!-- 3.1 장바구니 개별 금액 -->
-    <select id="selMoney" resultType="int">
-        SELECT IFNULL(SUM(bas_proprice * bas_prostock), 0)
-        FROM basket
-        WHERE bas_no = #{bas_no} AND bas_memno = #{bas_memno}
-    </select>   
-    
+  
     <!-- 4. 장바구니 수정(수량만 수정). -->
     <update id="modifyBasket">
         UPDATE basket   
