@@ -17,7 +17,9 @@
 		pro_name = #{pro_name},
 		pro_category = #{pro_category},
 		pro_stock = #{pro_stock},
-		pro_price = #{pro_price}
+		pro_price = #{pro_price},
+		pro_comment = #{pro_comment},
+		pro_img = #{pro_img}
 		where
 		pro_code = #{pro_code}
 	</update>
@@ -28,9 +30,9 @@
 	
 	<insert id="insertPro" parameterType="kr.co.gotthem.product.bean.ProductBean">
 		insert into product(
-		pro_name, pro_memno, pro_category, pro_stock, pro_price)
+		pro_name, pro_memno, pro_category, pro_stock, pro_price, pro_img)
 		values(
-		#{pro_name}, #{pro_memno}, #{pro_category}, #{pro_stock}, #{pro_price})
+		#{pro_name}, #{pro_memno}, #{pro_category}, #{pro_stock}, #{pro_price}, #{pro_img})
 	</insert>
 	
 	<select id="searchList" parameterType="java.util.HashMap" resultType="java.util.HashMap">

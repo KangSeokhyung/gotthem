@@ -28,7 +28,6 @@ public class ProductDaoImpl implements ProductDao {
 
 	@Override
 	public void updatePro(ProductBean bean) {
-		System.out.println("dao임플안의 bean = " + bean);
 		sqlSessionTemplate.update("updatePro", bean);
 	}
 	

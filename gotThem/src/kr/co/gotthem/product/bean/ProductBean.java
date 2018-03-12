@@ -1,7 +1,5 @@
 package kr.co.gotthem.product.bean;
 
-import java.sql.Date;
-
 public class ProductBean {
 	
 	private int pro_code;

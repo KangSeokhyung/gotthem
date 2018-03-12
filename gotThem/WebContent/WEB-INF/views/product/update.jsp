@@ -92,7 +92,7 @@
 
 			<div class="cover-container pb-5">
 				<div class="cover-inner container">
-					<form method="post" action="update.st">
+					<form method="post" action="update.st" enctype="multipart/form-data">
 					<div class="row">
 				<div class="col-sm-3">
 				<img src="/img/${pro.pro_img }" style="width:250px; height:250px"/></div>
@@ -113,6 +113,9 @@
 						</tr>
 						<tr>
 							<td><span>재고</span></td><td><input type="text" name="pro_stock" value="${pro.pro_stock }"/></td>
+						</tr>
+						<tr>
+							<td><span>상품사진</span></td><td><input type="file" name="file"/></td>
 						</tr>
 						<tr>
 							<td colspan="2" align="center">
