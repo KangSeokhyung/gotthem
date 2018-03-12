@@ -19,6 +19,42 @@
       <script src="resources/mainTemplate/js/vendor/respond.min.js"></script>
     <![endif]-->
   </head>
+<style type="text/css">
+#releatedField { position: absolute; width: 63%; }
+#releatedField a { color: #66615b; }
+</style>  
+<script src="https://code.jquery.com/jquery-3.2.1.js"></script>
+<script type="text/javascript">
+	function relatedSearch() {
+		$("#releatedField").html("");
+		var search = $("#search").val();
+		if(search != ""){
+			$.ajax({
+				url : "relatedSearch.gt",
+				data : { "search" : search },
+				type : "post",
+				success : function(relatedData) {
+					var ob = JSON.parse(relatedData);
+					var innerHtml = "";
+					for (var i = 0; i < 5; i++) {
+						if (typeof(ob["search" + i]) != "undefined") {
+							innerHtml += "<div class='list-group'>"
+									  + "<a href='searchList.gt?search=" +  ob["search" + i] 
+									  + "&pageNo=1' class='list-group-item list-group-item-action'>" 
+									  +  ob["search" + i] + "</a>";
+									  + "</div>"
+						}
+					}
+					
+					$("#releatedField").append(innerHtml);
+				},
+				error : function(xmlHttpReq, status, error) {
+					alert(xmlHttpReq + "리퀘스트\n" + status + "상태\n" + error + "에러\n");
+				}
+			});
+		}
+	}
+</script>
   <body>
 
   <!-- START: header -->
@@ -70,17 +106,19 @@
           <div class="col-md-8 col-md-offset-2">
 
             <div class="probootstrap-home-search probootstrap-animate">
-              <form action="" method="post">
+              <form action="searchList.gt" method="get">
+              	<input type="hidden" name="pageNo" value="1">
                 <h2 class="heading">즉석식품 재고 검색 사이트 GOT THEM</h2>
-                <div class="probootstrap-field-group">
-                  <div class="probootstrap-fields">
-                    
-              <div class="form-field">
-                <input type="text" class="form-control" placeholder="여기에 원하는 상품을 검색해보세양">
-             		 </div>
-                  </div>
-                  <button class="btn btn-success" type="submit"><i class="icon-magnifying-glass t2"></i> Start Search</button>
-                </div>
+	            <div class="probootstrap-field-group">
+					<div class="probootstrap-fields">
+						<div class="form-field">
+							<input type="text" class="form-control" name="search" autocomplete="off"
+								id="search" onkeyup="relatedSearch()" placeholder="예) 김밥, 강남역" />
+						</div>
+						<div id="releatedField"></div>
+					</div>
+					<input type="submit" class="btn btn-fill btn-danger" value="검색">
+				</div>
               </form>
             </div>
 

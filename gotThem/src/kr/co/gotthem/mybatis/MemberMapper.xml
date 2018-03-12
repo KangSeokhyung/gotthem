@@ -79,5 +79,9 @@
     
     <select id="stoCount" resultType="int">
         select count(mem_id) from member where mem_status='ROLE_STORE'
-    </select>  
+    </select> 
+    
+    <select id="storeInfo" parameterType="int" resultType="kr.co.gotthem.member.bean.MemberBean">
+		select * from member where mem_no = #{mem_no}
+	</select> 
 </mapper>

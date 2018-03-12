@@ -4,18 +4,10 @@
 <!DOCTYPE html>
 <html>
 <head>
-<<<<<<< HEAD
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>상품장바구니 목록</title>
-<meta name="description" content="Free Bootstrap Theme by uicookies.com">
-    <meta name="keywords" content="free website templates, free bootstrap themes, free template, free bootstrap, free website template">
-    
-=======
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>상품장바구니 목록</title>
 <meta name="keywords" content="free website templates, free bootstrap themes, free template, free bootstrap, free website template">
->>>>>>> branch 'cy' of https://github.com/KangSeokhyung/gotthem.git
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400" rel="stylesheet">
     <link rel="stylesheet" href="resources/mainTemplate/css/styles-merged.css">
     <link rel="stylesheet" href="resources/mainTemplate/css/style.min.css">
@@ -25,11 +17,6 @@
       <script src="resources/mainTemplate/js/vendor/respond.min.js"></script>
     <![endif]-->
 </head>
-<<<<<<< HEAD
-<body>
-
-</body>
-=======
 <body>
   <!-- START: header -->
    <header role="banner" class="probootstrap-header">
@@ -311,5 +298,4 @@ function modify(){ //수량수정
 	} 
 
 </script>	
->>>>>>> branch 'cy' of https://github.com/KangSeokhyung/gotthem.git
 </html>

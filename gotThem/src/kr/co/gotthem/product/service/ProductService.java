@@ -18,14 +18,14 @@ public interface ProductService {
 	
 	public void insertPro(ProductBean bean);
 
-	public List searchList(Model model, String search, int pageNo);
-	
-	public List productInfo(int mem_no);
-
-	public List productSearchList(Map<String, Object> map);
-
 	public ProductBean detailProduct(int pro_code);
 	
     public List<ProductBean> listProduct();
+
+    public List productInfo(int mem_no, String category);
+
+	List productSearchList(Map<String, Object> map);
+
+	List searchList(Model model, String search, int pageNo);
 
 }

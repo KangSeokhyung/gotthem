@@ -1,25 +1,21 @@
 package kr.co.gotthem.basket.controller;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import kr.co.gotthem.basket.bean.BasketBean;
@@ -28,13 +24,10 @@ import kr.co.gotthem.member.bean.MemberBean;
 import kr.co.gotthem.member.service.MemberService;
 import kr.co.gotthem.order.bean.OrderpayBean;
 import kr.co.gotthem.order.service.OrderService;
-import kr.co.gotthem.product.bean.ProductBean;
 import kr.co.gotthem.product.service.ProductService;
 
 @Controller
 public class BasketController {
-	
-	private static final Logger logger = LoggerFactory.getLogger(BasketController.class);
 	
 	private BasketService basketService;
 	private ProductService productService;
@@ -56,47 +49,34 @@ public class BasketController {
 	}
 
     // 1. 장바구니 추가
-    @RequestMapping(value ="insert.gt")
-    public String insert(@ModelAttribute BasketBean basketBean,
-    		HttpServletRequest req,HttpServletResponse res,HttpSession session) throws Exception {
-    	System.out.println("장바구니 추가왔다");
+	@RequestMapping(value ="insertBasket.gt")
+    @ResponseBody
+    public void insertBasket(@ModelAttribute BasketBean basketBean) throws Exception {
+    	
     	Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
     	String mem_id = authentication.getName();
     
-    	MemberBean memberInfo = memberService.memberInfo(mem_id);
-   
+    	MemberBean memberInfo = memberService.memberInfo(mem_id);  
         int userNo = memberInfo.getMem_no();
-    	
     	basketBean.setBas_memno(userNo);   
-        // 장바구니에 기존 상품이 있는지 검사
-        int count = basketService.countBasket(basketBean.getBas_procode(),basketBean.getBas_memno());
-        System.out.println("count  " + count);
         
-        /*count == 0 ? basketService.updateBasket(basketBean) : basketService.insertBasket(basketBean);*/
-        if(count == 0){
-         // 없으면 insert
+        int count = basketService.countBasket(basketBean.getBas_procode(),basketBean.getBas_memno());
+        
+        if (count == 0) {
         	 basketBean.setBas_proname(basketBean.getBas_proname());
         	 basketBean.setBas_proprice(basketBean.getBas_proprice());
         	 basketBean.setBas_procategory(basketBean.getBas_procategory());
-        	 basketBean.setBas_proimg(basketBean.getBas_proimg());
-        	 
-        	 basketBean.setBas_procomment(basketBean.getBas_procomment());
-        	 System.out.println("basketBean는"+ basketBean );
         	 basketService.insertBasket(basketBean);
-        	 
-        	System.out.println("0==insert 실행" );
+        	System.out.println("0 == insert 실행" );
         } else {
-         // 있으면 update 동일 상품 존재시 기존 수량에 새로운 수량 더하기
         	basketService.updateBasket(basketBean);
-        	System.out.println("0아닐때 insert 실행" );
+        	System.out.println("0 아닐 때 insert 실행" );
         }
-       return "redirect:/list.gt";
     }
  
     /// 2. 장바구니 목록
     @RequestMapping(value = "list.gt", method = RequestMethod.GET)
-	public ModelAndView listBasket(HttpServletRequest req,HttpServletResponse res, 
-			HttpSession session,ModelAndView mav) throws Exception {
+	public ModelAndView listBasket(ModelAndView mav) throws Exception {
      	
 	Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 	String mem_id = authentication.getName();
@@ -123,8 +103,7 @@ public class BasketController {
 	
     // 3. 장바구니 삭제
     @RequestMapping(value = "delete.gt", method = RequestMethod.GET) 
-    public String delete(@RequestParam int bas_no,@ModelAttribute BasketBean basketBean,
-    		HttpServletRequest req,HttpServletResponse res,HttpSession session) throws Exception {
+    public String delete(@RequestParam int bas_no,@ModelAttribute BasketBean basketBean) throws Exception {
     	
     	Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
     	String mem_id = authentication.getName();
@@ -141,8 +120,7 @@ public class BasketController {
     // 3.1 장바구니 선택 삭제
     @RequestMapping(value = "selectDelete.gt", method = RequestMethod.POST) 
     public String testCheck(@RequestParam (value= "arrDel[]") List valueArr,
-    		@ModelAttribute BasketBean basketBean,
-    		HttpServletRequest req,HttpServletResponse res,HttpSession session) throws Exception {
+    		@ModelAttribute BasketBean basketBean) throws Exception {
     	Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
     	String mem_id = authentication.getName();
     
@@ -155,7 +133,7 @@ public class BasketController {
         for(int i=0; i<valueArr.size(); i++){      
         	A = (String) valueArr.get(i);          
         	System.out.println("여기값"+A.toString());       	
-        java.util.StringTokenizer  st = new java.util.StringTokenizer(A,",");
+        	java.util.StringTokenizer  st = new java.util.StringTokenizer(A,",");
            	String bas_no = st.nextToken();
            	String bas_proname = st.nextToken();
            	String bas_proprice = st.nextToken(); 
@@ -175,8 +153,7 @@ public class BasketController {
    
    // 4. 장바구니 수정( 수량만 수정)
     @RequestMapping("update.gt")
-  public String update(@RequestParam String[] bas_prostock, @RequestParam String[] bas_procode,
-		  HttpSession session) throws Exception {
+  public String update(@RequestParam String[] bas_prostock, @RequestParam String[] bas_procode) throws Exception {
   	
     	Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
     	String mem_id = authentication.getName();
@@ -197,14 +174,32 @@ public class BasketController {
         return "redirect:/list.gt";
     }
    	
-}
-/*        	BasketBean basketBean = new BasketBean();
-basketBean.setBas_memno(userNo); 
-basketBean.setBas_no(Integer.parseInt((bas_no)));
-basketBean.setBas_prostock(Integer.parseInt((bas_prostock)));
-basketBean.setBas_procode(Integer.parseInt((bas_procode)));
-basketService.modifyBasket(basketBean);
-System.out.println("새로 셋팅된 basketBean" + basketBean);
+    // 5. 편의점 상세에서 장바구니 선택 추가
+	@RequestMapping(value = "selectAddBasket.gt", method = RequestMethod.POST)
+	public String selectAddBasket(@RequestParam (value= "checkList[]") List checkList, 
+			BasketBean basketBean) throws Exception {
 
-return "redirect:/list.gt";
-*/
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+		String mem_id = authentication.getName();
+
+		MemberBean memberInfo = memberService.memberInfo(mem_id);
+		int userNo = memberInfo.getMem_no();
+
+		String A = null;
+		for (int i = 0; i < checkList.size(); i++) {
+			A = (String) checkList.get(i);
+			
+			java.util.StringTokenizer st = new java.util.StringTokenizer(A, ",");
+			String bas_no = st.nextToken();
+			String bas_proname = st.nextToken();
+			String bas_proprice = st.nextToken();
+			String bas_prostock = st.nextToken();
+			String bas_procode = st.nextToken();
+			String money = st.nextToken();
+			String bas_proimg = st.nextToken();
+			String bas_procomment = st.nextToken();
+		}
+		
+		return "redirect:/orderList.gt";
+	}
+}

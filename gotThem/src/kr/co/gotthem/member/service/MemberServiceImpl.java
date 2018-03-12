@@ -106,4 +106,9 @@ public class MemberServiceImpl implements MemberService {
 		return memberDao.stcountRow();
 	}
 	
+	@Override
+	public MemberBean storeInfo(int mem_no) {
+		return memberDao.storeInfo(mem_no);
+	}
+	
 }

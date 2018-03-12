@@ -79,8 +79,7 @@ public class OrderController {
   // 1.1 장바구니에서 선택 결제
    @RequestMapping(value = "selectOrder.gt", method = RequestMethod.POST) 
    public String testCheck(@RequestParam (value= "arrOrder[]") List valueArr,
-   		@ModelAttribute BasketBean basketBean,@ModelAttribute OrderpayBean orderBean,
-   		HttpServletRequest req,HttpServletResponse res,HttpSession session) throws Exception {
+   		@ModelAttribute BasketBean basketBean,@ModelAttribute OrderpayBean orderBean) throws Exception {
 	   
 	   Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 	   String mem_id = authentication.getName();

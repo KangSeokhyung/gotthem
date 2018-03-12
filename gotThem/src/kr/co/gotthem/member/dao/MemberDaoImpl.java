@@ -110,4 +110,10 @@ public class MemberDaoImpl implements MemberDao {
 	public int stcountRow() {
 		return sqlSessionTemplate.selectOne("stoCount");
 	}
+	
+	@Override
+	public MemberBean storeInfo(int mem_no) {
+		return sqlSessionTemplate.selectOne("storeInfo", mem_no);
+	}
+	
 }
