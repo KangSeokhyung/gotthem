@@ -3,7 +3,7 @@
 	xmlns:beans="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security.xsd
 		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.2.xsd">
-
+	
 	<!-- 검사 URL -->
  	<http pattern="/*.gt" auto-config="true" disable-url-rewriting="true" use-expressions="true">
 		<intercept-url pattern="/" access="permitAll" />
@@ -49,13 +49,33 @@
 		<csrf disabled="true" />
 	</http> 
 
-	<!-- 성공 실패 핸들러 -->
-	<beans:bean id="loginSuccessHandler"
-		class="kr.co.gotthem.member.security.LoginSuccessHandler"></beans:bean>
+	<!-- 성공 핸들러 -->
+	<beans:bean id="loginSuccessHandler" class="kr.co.gotthem.member.security.LoginSuccessHandler">
+		<beans:property name="memberService" ref="memberService" />
+		<beans:property name="basketService" ref="basketService" />
+	</beans:bean>
+	
+	<beans:bean id="memberService" class="kr.co.gotthem.member.service.MemberServiceImpl">
+		<beans:property name="memberDao" ref="memberDao" />
+	</beans:bean>
+	
+	<beans:bean id="basketService" class="kr.co.gotthem.basket.service.BasketServiceImpl">
+		<beans:property name="basketDao" ref="basketDao" />
+	</beans:bean>
+	
+	<beans:bean id="memberDao" class="kr.co.gotthem.member.dao.MemberDaoImpl">
+		<beans:property name="sqlSessionTemplate" ref="sqlSessionTemplate" />
+	</beans:bean>
+	
+	<beans:bean id="basketDao" class="kr.co.gotthem.basket.dao.BasketDaoImpl">
+		<beans:property name="sqlSessionTemplate" ref="sqlSessionTemplate" />
+	</beans:bean>
+	
+	<!-- 실패 핸들러 -->
 	<beans:bean id="loginFailureHandler"
 		class="kr.co.gotthem.member.security.LoginFailureHandler"></beans:bean>
 
-
+	<!-- Datasource -->
 	<beans:bean id="userDetailsService"
 		class="org.springframework.security.core.userdetails.jdbc.JdbcDaoImpl">
 		<beans:property name="dataSource" ref="dataSource" />

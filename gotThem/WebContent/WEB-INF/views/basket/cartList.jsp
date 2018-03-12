@@ -21,17 +21,15 @@
   <!-- START: header -->
    <header role="banner" class="probootstrap-header">
     <div class="container">
-        <a href="/gotThem" class="probootstrap-logo">GOT THEM<span>.</span></a>
-        
+        <a href="/gotThem" class="probootstrap-logo">GOT THEM<span>.</span></a>       
         <a href="#" class="probootstrap-burger-menu visible-xs" ><i>Menu</i></a>
         <div class="mobile-menu-overlay"></div>
-
         <nav role="navigation" class="probootstrap-nav hidden-xs">
           <ul class="probootstrap-main-nav">
             <li><a href="#">GOTTHEM</a></li>
             <li><a href="#">NOTICE</a></li>
             <li><a href="#">EVENT</a></li>
-            <li><a href="#">CART ${map.count}</a></li>
+            <li><a href="#">CART<span style="color: #FE2E2E;">&nbsp;&nbsp;${map.count}</span></a></li>           
             <c:set var="sessionCheck"
 					value="${sessionScope.SPRING_SECURITY_CONTEXT}" />
 				<c:choose>
@@ -86,12 +84,10 @@
     </ul>
   </section>  
 <div class="container">
- <!-- <img src="/img/aa.jpg"> -->
- <h2>장바구니 확인 ${map.count}</h2>
-
+ <h2 class=sp_numb>장바구니 확인 ${map.count}</h2>
 <c:choose>
 <c:when test="${map.count == 0}">
-           <h1> 장바구니에 담으신 상품이 없습니다.</h1>
+ <img src="/img/cart_img_empty.gif" style=" width:300px;height:219px;margin-left:auto;margin-right:auto;display:block;"/>
 </c:when>
 <c:otherwise>   
   <form name="form1" id="form1" method="post" action="./update.gt">

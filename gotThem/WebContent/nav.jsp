@@ -20,6 +20,7 @@
             <li><a href="#">GOTTHEM</a></li>
             <li><a href="#">NOTICE</a></li>
             <li><a href="#">EVENT</a></li>
+            <li><a href="listBasket.gt">CART<span style="color:#FE2E2E;">&nbsp;&nbsp;${sessionScope.count}</span></a></li>
             <c:set var="sessionCheck"
  					value="${sessionScope.SPRING_SECURITY_CONTEXT}" />
  					<c:choose>

@@ -1,6 +1,14 @@
 package kr.co.gotthem.member.dao;
 
+import java.io.IOException;
+import java.io.Reader;
 import java.util.List;
+
+import org.apache.ibatis.io.Resources;
+import org.apache.ibatis.session.SqlSession;
+import org.apache.ibatis.session.SqlSessionFactory;
+import org.apache.ibatis.session.SqlSessionFactoryBuilder;
+import org.apache.ibatis.session.defaults.DefaultSqlSessionFactory;
 import org.mybatis.spring.SqlSessionTemplate;
 import kr.co.gotthem.member.bean.MemberBean;
 
@@ -16,7 +24,7 @@ public class MemberDaoImpl implements MemberDao {
 	public MemberBean memberInfo(String mem_id) {
 		return sqlSessionTemplate.selectOne("memberInfo", mem_id);
 	}
-	
+
 	@Override
 	public int join(MemberBean memberBean) {
 		int result = sqlSessionTemplate.insert("join", memberBean);

@@ -1,11 +1,9 @@
 package kr.co.gotthem.basket.controller;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -26,8 +24,6 @@ import kr.co.gotthem.basket.bean.BasketBean;
 import kr.co.gotthem.basket.service.BasketService;
 import kr.co.gotthem.member.bean.MemberBean;
 import kr.co.gotthem.member.service.MemberService;
-import kr.co.gotthem.order.bean.OrderpayBean;
-import kr.co.gotthem.order.service.OrderService;
 import kr.co.gotthem.product.bean.ProductBean;
 import kr.co.gotthem.product.service.ProductService;
 
@@ -107,12 +103,32 @@ public class BasketController {
         	basketService.updateBasket(basketBean);
         	System.out.println("0아닐때 insert 실행" );
         }
-       return "redirect:/list.gt";
+       return "redirect:/listBasket.gt";
     }
  
+/*    /// 2. 장바구니 개수
+    @RequestMapping(value = "listSize.gt", method = RequestMethod.GET)
+	public ModelAndView listSize(ModelAndView mav) throws Exception {
+    	Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+	    String mem_id = authentication.getName();
+	
+     	MemberBean memberInfo = memberService.memberInfo(mem_id);
+        int userNo = memberInfo.getMem_no();
+		
+        Map<String, Object> map = new HashMap<String, Object>();
+        List<BasketBean> listBasket = basketService.listBasket(userNo); // 장바구니 정보 
+        System.out.println("list타고,listBasket " + listBasket);
+	    map.put("count", listBasket.size());// 장바구니 상품의 유무
+	    System.out.println("장바구니 사이즈 "+ listBasket.size());
+	    mav.setViewName("basket/cartList");    // view(jsp)의 이름 저장
+	    mav.addObject("map", map);            // map 변수 저장
+	    System.out.println("mav  "+mav );
+	    return mav;
+	}*/
+    
     /// 2. 장바구니 목록
-    @RequestMapping(value = "list.gt", method = RequestMethod.GET)
-	public ModelAndView listBasket(ModelAndView mav) throws Exception {
+    @RequestMapping(value = "listBasket.gt", method = RequestMethod.GET)
+	public ModelAndView listBasket(ModelAndView mav,HttpServletRequest req, HttpServletResponse res) throws Exception {
     	Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 	    String mem_id = authentication.getName();
 	
@@ -127,7 +143,9 @@ public class BasketController {
         System.out.println("userNo  "+userNo );
         System.out.println("sumMoney  "+sumMoney );
 		map.put("list", listBasket);                // 장바구니 정보를 map에 저장
-	    map.put("count", listBasket.size());        // 장바구니 상품의 유무
+	    map.put("count", listBasket.size());// 장바구니 상품의 유무
+	    HttpSession session = req.getSession();
+		session.setAttribute("count", listBasket.size());
 	    map.put("sumMoney", sumMoney);        // 장바구니 전체 금액
 	    /* map.put("fee", fee);                 // 배송금액
 	       map.put("allSum", sumMoney+fee);    // 주문 상품 전체 금액*/
@@ -136,6 +154,8 @@ public class BasketController {
 	    System.out.println("mav  "+mav );
 	    return mav;
 	}
+    
+    
 	
     // 3. 장바구니 삭제
     @RequestMapping(value = "delete.gt", method = RequestMethod.GET) 
@@ -150,7 +170,7 @@ public class BasketController {
         basketBean.setBas_memno(userNo); 
     	basketService.deleteBasket(basketBean);
     	System.out.println("삭제 실행");
-        return "redirect:/list.gt";
+        return "redirect:/listBasket.gt";
     }
     
     // 3.1 장바구니 선택 삭제
@@ -184,7 +204,7 @@ public class BasketController {
         	basketService.deleteBasket(basketBean);
     	    System.out.println("삭제 실행");
            }
-        return "redirect:/list.gt";
+        return "redirect:/listBasket.gt";
     } 
    
    // 4. 장바구니 수정( 수량만 수정)
@@ -207,7 +227,7 @@ public class BasketController {
             basketService.modifyBasket(basketBean);
             System.out.println("for새로 셋팅된 basketBean" + basketBean);
         }
-        return "redirect:/list.gt";
+        return "redirect:/listBasket.gt";
     }
    	
 }

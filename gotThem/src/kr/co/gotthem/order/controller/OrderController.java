@@ -34,6 +34,8 @@ public class OrderController {
 	
 	private OrderService orderService;
 	private MemberService memberService;
+	private BasketService basketService;
+	private ProductService productService;
 	
 	public void setOrderService(OrderService orderService) {
 		this.orderService = orderService;
@@ -41,12 +43,18 @@ public class OrderController {
 	public void setMemberService(MemberService memberService) {
 		this.memberService = memberService;
 	}
-
+	public void setBasketService(BasketService basketService) {
+		this.basketService = basketService;
+	}
+	public void setProductService(ProductService productService) {
+		this.productService = productService;
+	}
+	
    // 1. 장바구니에서 결제 추가
    @RequestMapping(value ="insertOrder.gt",method = RequestMethod.GET)
     public String insertOrder(@RequestParam String bas_no, @RequestParam String bas_prostock, @RequestParam String bas_procode,
     		            @RequestParam String bas_proname,@RequestParam String money, @RequestParam String bas_proimg, @RequestParam String bas_proprice,
-    		@ModelAttribute OrderpayBean orderBean )throws Exception {
+    		@ModelAttribute OrderpayBean orderBean,HttpServletRequest req, HttpServletResponse res )throws Exception {
 	   
 	   Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 	   String mem_id = authentication.getName();
@@ -67,13 +75,17 @@ public class OrderController {
    	   orderService.orderUpdateBasket(orderBean);
    	   orderService.orderDeleteBasket(orderBean);
    	   System.out.println("결제 완료 변경된 수량" + bas_prostock );
+   	   List<BasketBean> listBasket = basketService.listBasket(userNo);
+	   HttpSession session = req.getSession();
+	   session.setAttribute("count", listBasket.size());
    	   return "redirect:/orderList.gt";
    	   }
     
   // 1.1 장바구니에서 선택 결제
    @RequestMapping(value = "selectOrder.gt", method = RequestMethod.POST) 
    public String testCheck(@RequestParam (value= "arrOrder[]") List valueArr,
-   		@ModelAttribute BasketBean basketBean,@ModelAttribute OrderpayBean orderBean) throws Exception {
+   		@ModelAttribute BasketBean basketBean,@ModelAttribute OrderpayBean orderBean,
+   		HttpServletRequest req, HttpServletResponse res) throws Exception {
 	   
 	   Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 	   String mem_id = authentication.getName();
@@ -110,6 +122,9 @@ public class OrderController {
  	       orderService.orderUpdateBasket(orderBean);
    	       orderService.orderDeleteBasket(orderBean); 	 
    	       System.out.println("결제 변경된 수량" + bas_prostock );
+   	       List<BasketBean> listBasket = basketService.listBasket(userNo);
+   	       HttpSession session = req.getSession();
+		   session.setAttribute("count", listBasket.size());
    	       }
        return "redirect:/orderList.gt";
        }

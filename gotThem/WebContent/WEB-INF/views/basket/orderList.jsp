@@ -34,6 +34,7 @@
             <li><a href="#">GOTTHEM</a></li>
             <li><a href="#">NOTICE</a></li>
             <li><a href="#">EVENT</a></li>
+            <li><a href="listBasket.gt">CART<span style="color:#FE2E2E;">&nbsp;&nbsp;${sessionScope.count}</span></a></li>
             <c:set var="sessionCheck"
 					value="${sessionScope.SPRING_SECURITY_CONTEXT}" />
 				<c:choose>
@@ -43,7 +44,6 @@
             		</c:when>
 					<c:otherwise>
 			<li><a href="mypage.gt">MY PAGE</a></li>
-			<li><a href="list.gt">장바구니</a></li>
             <li><a href="logout.gt">LOGOUT</a></li>
 				</c:otherwise>
 				</c:choose>
@@ -167,7 +167,7 @@
             location.href="./productlist.gt";
         });
         $("#btnBasketList").click(function(){  //장바구니 리스트
-            location.href="./list.gt";
+            location.href="./listBasket.gt";
         }); 
     });
 

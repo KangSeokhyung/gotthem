@@ -4,18 +4,6 @@
               
 <mapper namespace="kr.co.gotthem.mybatis.BasketMapper">
 
-	<select id="FindByNo" resultType="kr.co.gotthem.basket.bean.BasketBean">
-		select * from basket where bas_no = #{bas_no}
-	</select>	
-	<insert id="insert" parameterType="kr.co.gotthem.basket.bean.BasketBean">
-		insert into basket
-		values(basket_seq.nextval,#{bas_menno},#{bas_procode},#{bas_proname},#{bas_stono},
-		#{bas_prostock},#{bas_proprice},#{bas_procategory},#{bas_proexdate})
-	</insert>
-	<update id="update" parameterType="kr.co.gotthem.basket.bean.BasketBean">
-		update basket set bas_prostock=#{bas_prostock} where bas_no = #{bas_no}
-	</update>
-
     <select id="listProduct" resultType="kr.co.gotthem.product.bean.ProductBean">
          SELECT * FROM product           
     </select>
