@@ -72,7 +72,6 @@ public class ProductController {
 		MemberBean memberInfo =  memberService.memberInfo(mem_id);
 		int pro_memno = memberInfo.getMem_no();
 		
-		System.out.println("memno = " + pro_memno);
 		List<ProductBean> result = productService.plist(pro_memno);
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("product/stock");
@@ -86,7 +85,6 @@ public class ProductController {
 		
 		ModelAndView mav = new ModelAndView();
 		int code = ServletRequestUtils.getIntParameter(req, "code");
-		System.out.println("code = " + code);
 		ProductBean bean = productService.findCode(code);
 		mav.setViewName("product/detail");
 		mav.addObject("pro",bean);
@@ -97,7 +95,6 @@ public class ProductController {
 	@RequestMapping(value="/update.st", method=RequestMethod.GET)
 	protected ModelAndView movieUpdateForm(HttpServletRequest req, ModelAndView mav){
 		ProductBean bean = productService.findCode(Integer.parseInt(req.getParameter("code")));
-		System.out.println("update.st의 컨트롤"+ bean);
 		mav.setViewName("product/update");
 		mav.addObject("pro",bean);
 		
@@ -147,8 +144,6 @@ public class ProductController {
 		String code = req.getParameter("pro_code");
 		productService.updatePro(bean);
 		
-		System.out.println(code);
-		
 		return new ModelAndView("redirect:/detail.st?code="+code);
 	}
 	
@@ -156,7 +151,6 @@ public class ProductController {
 	protected ModelAndView deleteProcess(HttpServletRequest req){
 		
 		int code = Integer.parseInt(req.getParameter("pro_code"));
-		System.out.println(code);
 		productService.deletePro(code);
 		
 		return new ModelAndView("redirect:/stock.st");
@@ -179,7 +173,6 @@ public class ProductController {
 	@RequestMapping(value="/insert.st", method=RequestMethod.POST)
 	public ModelAndView handleRequestInternal(HttpServletRequest req,
 			@ModelAttribute ProductBean bean, @RequestParam MultipartFile file) throws Exception {
-		System.out.println(req.getParameter("mem_no"));
 		int pro_memno = (Integer.parseInt(req.getParameter("mem_no")));
 		
 		InputStream inputStream = null;
