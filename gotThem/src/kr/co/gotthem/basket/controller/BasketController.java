@@ -38,7 +38,6 @@ public class BasketController {
 	
 	private BasketService basketService;
 	private ProductService productService;
-	private OrderService orderService;
 	private MemberService memberService;
 	
 	public void setBasketService(BasketService basketService) {
@@ -48,9 +47,6 @@ public class BasketController {
 		this.productService = productService;
 	}
 	
-	public void setOrderService(OrderService orderService) {
-		this.orderService = orderService;
-	}
 	public void setMemberService(MemberService memberService) {
 		this.memberService = memberService;
 	}
@@ -66,9 +62,7 @@ public class BasketController {
         System.out.println("상품리스트왔다!!!!!!!!");
         return mav;
     }
-    
-    
-    
+       
 // product 2. 상품 상세보기
     @RequestMapping("/detail/{pro_code}.gt")
     public ModelAndView detail(@PathVariable("pro_code") int pro_code, ModelAndView mav){
@@ -83,10 +77,9 @@ public class BasketController {
     return mav;
     }
     // 1. 장바구니 추가
-    @RequestMapping(value ="insert.gt")
-    public String insertBasket(@ModelAttribute BasketBean basketBean,
-    		HttpServletRequest req,HttpServletResponse res,HttpSession session) throws Exception {
-    	System.out.println("장바구니 추가왔다");
+    @RequestMapping(value ="insertBasket.gt")
+    public String insertBasket(@ModelAttribute BasketBean basketBean) throws Exception {
+    	
     	Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
     	String mem_id = authentication.getName();
     
@@ -99,20 +92,18 @@ public class BasketController {
         System.out.println("count  " + count);
         
         /*count == 0 ? basketService.updateBasket(basketBean) : basketService.insertBasket(basketBean);*/
-        if(count == 0){
-         // 없으면 insert
+        if(count == 0){    // 없으면 insert        
         	 basketBean.setBas_proname(basketBean.getBas_proname());
         	 basketBean.setBas_proprice(basketBean.getBas_proprice());
         	 basketBean.setBas_procategory(basketBean.getBas_procategory());
-        	 basketBean.setBas_proimg(basketBean.getBas_proimg());
-        	 
+        	 basketBean.setBas_proimg(basketBean.getBas_proimg());       	 
         	 basketBean.setBas_procomment(basketBean.getBas_procomment());
+        	 
         	 System.out.println("basketBean는"+ basketBean );
         	 basketService.insertBasket(basketBean);
         	 
         	System.out.println("0==insert 실행" );
-        } else {
-         // 있으면 update 동일 상품 존재시 기존 수량에 새로운 수량 더하기
+        } else {    // 있으면 update, 동일 상품 존재시 기존 수량에 새로운 수량 더하기
         	basketService.updateBasket(basketBean);
         	System.out.println("0아닐때 insert 실행" );
         }
@@ -121,8 +112,7 @@ public class BasketController {
  
     /// 2. 장바구니 목록
     @RequestMapping(value = "list.gt", method = RequestMethod.GET)
-	public ModelAndView listBasket(HttpServletRequest req,HttpServletResponse res, 
-			HttpSession session,ModelAndView mav) throws Exception {
+	public ModelAndView listBasket(ModelAndView mav) throws Exception {
     	Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 	    String mem_id = authentication.getName();
 	
@@ -149,8 +139,7 @@ public class BasketController {
 	
     // 3. 장바구니 삭제
     @RequestMapping(value = "delete.gt", method = RequestMethod.GET) 
-    public String delete(@RequestParam int bas_no,@ModelAttribute BasketBean basketBean,
-    		HttpServletRequest req,HttpServletResponse res,HttpSession session) throws Exception {
+    public String delete(@RequestParam int bas_no,@ModelAttribute BasketBean basketBean) throws Exception {
     	
     	Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
     	String mem_id = authentication.getName();
@@ -167,8 +156,7 @@ public class BasketController {
     // 3.1 장바구니 선택 삭제
     @RequestMapping(value = "selectDelete.gt", method = RequestMethod.POST) 
     public String testCheck(@RequestParam (value= "arrDel[]") List valueArr,
-    		@ModelAttribute BasketBean basketBean,
-    		HttpServletRequest req,HttpServletResponse res,HttpSession session) throws Exception {
+    		@ModelAttribute BasketBean basketBean) throws Exception {
     	Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
     	String mem_id = authentication.getName();
     
@@ -201,8 +189,7 @@ public class BasketController {
    
    // 4. 장바구니 수정( 수량만 수정)
     @RequestMapping("update.gt")
-  public String update(@RequestParam String[] bas_prostock, @RequestParam String[] bas_procode,
-		  HttpSession session) throws Exception {
+  public String update(@RequestParam String[] bas_prostock, @RequestParam String[] bas_procode) throws Exception {
   	
     	Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
     	String mem_id = authentication.getName();

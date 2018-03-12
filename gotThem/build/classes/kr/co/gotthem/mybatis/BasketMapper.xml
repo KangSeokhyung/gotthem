@@ -98,8 +98,8 @@
   <!-- 1. 장바구니에서 단건 결제 추가 -->
     <insert id="orderInsert" >
        INSERT INTO orderpay (
-          ord_procode, ord_proname, ord_memno,ord_stock, ord_price, ord_basno)VALUES(
-         #{ord_procode}, #{ord_proname},#{ord_memno}, #{ord_stock}, #{ord_price},#{ord_basno})
+          ord_procode, ord_proname, ord_memno,ord_stock, ord_price, ord_basno, ord_proimg,ord_proprice)VALUES(
+         #{ord_procode}, #{ord_proname},#{ord_memno}, #{ord_stock}, #{ord_price},#{ord_basno},#{ord_proimg},#{ord_proprice})
     </insert> 
   <!-- 1.1. 결제 되면, 상품에서 결제된 수량만큼  수량 빼기 -->
     <update id="orderUpdateBasket">
@@ -120,13 +120,13 @@
    <!-- 2. 결제  취소  -->
     <delete id="orderDelete">
         DELETE FROM orderpay
-        WHERE ord_no = #{ord_no}
+        WHERE ord_no = #{ord_no} AND ord_memno= #{ord_memno} 
     </delete>
   <!-- 2.1. 결제 취소되면, 결제된 수량만큼  수량 더하기 -->
     <update id="orderUpdateProduct">
         UPDATE product
         SET pro_stock = pro_stock + #{ord_stock} 
-        WHERE pro_code = #{ord_procode}
+        WHERE pro_code = #{ord_procode} AND pro_memno= #{ord_memno}
     </update> 
   <!-- 2.2 결제 되면, 장바구니에서 다시 생성 -->
     <insert id="insertBasketOrder" >
@@ -139,7 +139,7 @@
     <!-- 3. 아이디별 전체 결제 목록 -->
     <select id="listOrder" resultType="kr.co.gotthem.order.bean.OrderpayBean">
          SELECT  ord_no, ord_procode, ord_proname, ord_memno,ord_stock,
-                ord_price, ord_findtime, ord_status,ord_basno
+                ord_price, ord_findtime, ord_status,ord_basno,ord_proimg,ord_proprice
          FROM orderpay           
          WHERE ord_memno = #{userNo}
          ORDER BY ord_no

@@ -1,7 +1,5 @@
 package kr.co.gotthem.basket.bean;
 
-import java.sql.Date;
-//
 public class BasketBean {
   private int bas_no;
   private int bas_memno;
@@ -13,6 +11,7 @@ public class BasketBean {
   private String bas_proimg;
   private String bas_procomment;
   private int money;
+  
 public int getBas_no() {
 	return bas_no;
 }

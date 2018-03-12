@@ -112,13 +112,16 @@
                         ${row.ord_procode}
                   </td>
                   <td>
+                       <img src="/img/${row.ord_proimg}" style="width:50px; height:50px"/>
+                  </td>
+                  <td>
                         ${row.ord_proname}
                   </td>
                   <td>
                         ${row.ord_stock}
                   </td>
                   <td>
-                       <fmt:formatNumber pattern="###,###,###" value="${row.ord_price}"/>
+                       <fmt:formatNumber pattern="###,###,###" value="${row.ord_proprice}"/>
                   </td>
                   <td>
                        <fmt:formatNumber pattern="###,###,###" value="${row.ord_price}"/>

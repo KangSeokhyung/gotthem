@@ -33,18 +33,10 @@ public class OrderController {
 	private static final Logger logger = LoggerFactory.getLogger(OrderController.class);
 	
 	private OrderService orderService;
-	private BasketService basketService;
-	private ProductService productService;
 	private MemberService memberService;
 	
 	public void setOrderService(OrderService orderService) {
 		this.orderService = orderService;
-	}
-	public void setBasketService(BasketService basketService) {
-		this.basketService = basketService;
-	}
-	public void setProductService(ProductService productService) {
-		this.productService = productService;
 	}
 	public void setMemberService(MemberService memberService) {
 		this.memberService = memberService;
@@ -53,8 +45,7 @@ public class OrderController {
    // 1. 장바구니에서 결제 추가
    @RequestMapping(value ="insertOrder.gt",method = RequestMethod.GET)
     public String insertOrder(@RequestParam String bas_no, @RequestParam String bas_prostock, @RequestParam String bas_procode,
-    		            @RequestParam String bas_proname,@RequestParam String money,
-    		HttpSession session,HttpServletRequest req,HttpServletResponse res,
+    		            @RequestParam String bas_proname,@RequestParam String money, @RequestParam String bas_proimg, @RequestParam String bas_proprice,
     		@ModelAttribute OrderpayBean orderBean )throws Exception {
 	   
 	   Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
@@ -64,12 +55,14 @@ public class OrderController {
        MemberBean memberInfo = memberService.memberInfo(mem_id);
        int userNo = memberInfo.getMem_no();
        orderBean.setOrd_memno(userNo);
+       orderBean.setOrd_proprice(Integer.parseInt(bas_proprice));
    	   orderBean.setOrd_stock(Integer.parseInt(bas_prostock));
    	   orderBean.setOrd_procode(Integer.parseInt(bas_procode));
    	   orderBean.setOrd_proname(bas_proname);
    	   orderBean.setOrd_price(Integer.parseInt(money)); 
    	   orderBean.setOrd_basno(Integer.parseInt(bas_no));
-   	   
+       orderBean.setOrd_proimg(bas_proimg);
+       
    	   orderService.orderInsert(orderBean);
    	   orderService.orderUpdateBasket(orderBean);
    	   orderService.orderDeleteBasket(orderBean);
@@ -80,8 +73,7 @@ public class OrderController {
   // 1.1 장바구니에서 선택 결제
    @RequestMapping(value = "selectOrder.gt", method = RequestMethod.POST) 
    public String testCheck(@RequestParam (value= "arrOrder[]") List valueArr,
-   		@ModelAttribute BasketBean basketBean,@ModelAttribute OrderpayBean orderBean,
-   		HttpServletRequest req,HttpServletResponse res,HttpSession session) throws Exception {
+   		@ModelAttribute BasketBean basketBean,@ModelAttribute OrderpayBean orderBean) throws Exception {
 	   
 	   Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 	   String mem_id = authentication.getName();
@@ -103,15 +95,18 @@ public class OrderController {
     	   String money = st.nextToken();
     	   String bas_proimg = st.nextToken();
        	   String bas_procomment = st.nextToken();
-       	   
+                     
        	   orderBean.setOrd_memno(userNo);       
            orderBean.setOrd_basno(Integer.parseInt(bas_no));        
            orderBean.setOrd_proname(bas_proname);
+           orderBean.setOrd_proprice(Integer.parseInt(bas_proprice));
            orderBean.setOrd_stock(Integer.parseInt(bas_prostock));
            orderBean.setOrd_procode(Integer.parseInt(bas_procode));
            orderBean.setOrd_price(Integer.parseInt(money));
-           
+           orderBean.setOrd_proimg(bas_proimg);
+           System.out.println("orderBean은" + orderBean );
            orderService.orderInsert(orderBean);
+          
  	       orderService.orderUpdateBasket(orderBean);
    	       orderService.orderDeleteBasket(orderBean); 	 
    	       System.out.println("결제 변경된 수량" + bas_prostock );
@@ -123,8 +118,7 @@ public class OrderController {
    
       // 3. 아이디별 전체 결제 목록
      @RequestMapping("/orderList.gt")
-     public ModelAndView listOrder(ModelAndView mav,HttpSession session,
-    		 HttpServletRequest req,HttpServletResponse res)throws Exception {
+     public ModelAndView listOrder(ModelAndView mav)throws Exception {
     	 
     	 Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
     	 String mem_id = authentication.getName();

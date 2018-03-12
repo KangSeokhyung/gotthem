@@ -31,6 +31,7 @@
             <li><a href="#">GOTTHEM</a></li>
             <li><a href="#">NOTICE</a></li>
             <li><a href="#">EVENT</a></li>
+            <li><a href="#">CART ${map.count}</a></li>
             <c:set var="sessionCheck"
 					value="${sessionScope.SPRING_SECURITY_CONTEXT}" />
 				<c:choose>
@@ -85,21 +86,18 @@
     </ul>
   </section>  
 <div class="container">
-    <h2>장바구니 확인</h2>
-    <c:choose>
-        <c:when test="${map.count == 0}">
-            장바구니가 비어있습니다.
-           <div>
-            <input type="hidden" name="count" value="${map.count}">
-            <button type="button" value="상품목록1" id="btnList">상품목록</button> 
-            <input type="button" name="seDel" id="button_seDel" onclick="button_selDel();" value="선택삭제" />
-            <input type="button" value="선택결제" onclick="button_selOrder();">  
-           </div>
-        </c:when>
-        <c:otherwise>     
-        <form name="form1" id="form1" method="post" action="./update.gt">
-         <table class="table">
-               <tr>
+ <!-- <img src="/img/aa.jpg"> -->
+ <h2>장바구니 확인 ${map.count}</h2>
+
+<c:choose>
+<c:when test="${map.count == 0}">
+           <h1> 장바구니에 담으신 상품이 없습니다.</h1>
+</c:when>
+<c:otherwise>   
+  <form name="form1" id="form1" method="post" action="./update.gt">
+   <table class="table">
+    <thead>   
+       <tr>
                    <th><input type="checkbox" name="checkAll" id="th_checkAll" /></th> 
                    <th>상품사진</th>
                    <th>상품명</th>
@@ -107,12 +105,14 @@
                    <th >수량 </th>
                    <th style='width:100px'>구매예정가</th>
                    <th>선택</th>
-               </tr>
+     </tr>
+    </thead>
+    <tbody>
+
              <c:forEach var="row" items="${map.list}" varStatus="i">
                <tr>                
                   <td>
-                      <input type="checkbox" name="checkRow" class="chk" id="checkRow"  value="${row.bas_no},${row.bas_proname},
-                      ${row.bas_proprice},${row.bas_prostock},${row.bas_procode},${row.money},${row.bas_proimg}, ${row.bas_procomment}"
+                      <input type="checkbox" name="checkRow" class="chk" id="checkRow"  value="${row.bas_no},${row.bas_proname},${row.bas_proprice},${row.bas_prostock},${row.bas_procode},${row.money},${row.bas_proimg}, ${row.bas_procomment}"
                       onclick="cart();" /> 
                   </td>
                   <td>
@@ -136,8 +136,9 @@
                   <td>
                      <input type="hidden" name="money" value="${row.money}">
                      <input type="hidden" name="bas_no" value="${row.bas_no}">
-                     <input type="button" value="바로구매" style='width:60px;height:25px;font-size: 12px;' onclick="button_order('${row.bas_no}','${row.bas_proname}','${row.bas_procode}','${row.money}','${row.bas_prostock}');"><br>  
-                     <input type="button" value="삭제" style='width:60px;height:25px;font-size: 12px;' onclick="button_basDel(${row.bas_no});">
+                     <input type="button" value="바로구매" style='width:60px;height:25px;font-size: 12px;' 
+                     onclick="button_order('${row.bas_no}','${row.bas_proname}','${row.bas_procode}','${row.money}','${row.bas_prostock}','${row.bas_proimg}','${row.bas_proprice}');"><br>  
+                     <input type="button" value="삭제" style='width:60px;height:25px;font-size: 12px;'  onclick="button_basDel(${row.bas_no});">
                   </td>
                 </tr>
                </c:forEach>
@@ -148,16 +149,18 @@
                 <tr>
                     <td colspan="10" align="right">선택 상품 결제 예상 금액:<p id="chkSum"></p>  </td>
                 </tr>
-            </table>                    
-        </form>
+
+    </tbody>
+   </table>                    
+  </form>
+</c:otherwise>
+</c:choose><div>  
             <input type="hidden" name="count" value="${map.count}">           
             <input type="button" name="seDel" id="button_seDel" onclick="button_selDel();" value="선택상품 삭제" style='height:25px;font-size: 12px;'/>
             <div style='float:right; padding: 3px 30px 3px 6px;'>
              <button type="button" value="상품목록1" id="btnList">상품목록</button> 
              <input type="button" value="바로구매" onclick="button_selOrder();">
-            </div>  
-      </c:otherwise>
-    </c:choose>
+            </div></div>   
 </div>    
  <footer class="probootstrap-footer probootstrap-bg" style="background-image: url(img/slider_3.jpg)">
     <div class="container">
@@ -233,11 +236,11 @@ function button_basDel(bas_no){  //단건 직접 삭제
 			return;
 			}
 	}
-function button_order(bas_no,bas_proname,bas_procode,money,bas_prostock){
-	alert(bas_no);
+function button_order(bas_no,bas_proname,bas_procode,money,bas_prostock,bas_proimg,bas_proprice){
+	alert(bas_proprice);
 	if (confirm("상품을 결제 하시겠습니까?")){ //단건결제
 		location.href="insertOrder.gt?bas_no="+bas_no+"&bas_proname="+bas_proname+
-    		"&bas_procode="+bas_procode+"&money="+money+"&bas_prostock="+bas_prostock;
+    		"&bas_procode="+bas_procode+"&money="+money+"&bas_prostock="+bas_prostock+"&bas_proimg="+bas_proimg+"&bas_proprice="+bas_proprice;
 	}else{ 
 		return;
 		}
