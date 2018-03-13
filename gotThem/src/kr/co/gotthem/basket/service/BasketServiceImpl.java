@@ -34,8 +34,8 @@ public class BasketServiceImpl implements BasketService {
     }*/
 	// 2. 장바구니 목록
     @Override
-    public List<BasketBean> listBasket(int bas_memno) {
-        return basketDao.listBasket(bas_memno);
+    public List<BasketBean> listBasket(int userNo) {
+        return basketDao.listBasket(userNo);
     }
     
     // 3. 장바구니 삭제
@@ -58,8 +58,8 @@ public class BasketServiceImpl implements BasketService {
        
     // 6. 장바구니 상품 확인
     @Override
-    public int countBasket(int bas_procode, int bas_memno) {
-        return basketDao.countBasket(bas_procode, bas_memno);
+    public int countBasket(int bas_procode, int bas_memno, int pro_memno) {
+        return basketDao.countBasket(bas_procode, bas_memno,pro_memno);
     }
   
     // 7. 장바구니 상품 수량 변경

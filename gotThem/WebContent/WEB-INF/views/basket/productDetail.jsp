@@ -33,7 +33,7 @@
                     </tr>
                     <tr align="center">
                         <td colspan="2">
-                            <form name="form1" method="post" action="../insert.gt">
+                            <form name="form1" method="post" action="../insertBasket.gt">
                                <input type="hidden" name="bas_procode" value="${m.pro_code}">
                                <input type="hidden" name="bas_proname" value="${m.pro_name}"> 
                                <input type="hidden" name="bas_procategory" value="${m.pro_category}">

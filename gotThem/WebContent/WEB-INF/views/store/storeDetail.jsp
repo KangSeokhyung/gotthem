@@ -50,13 +50,12 @@
 			alert("해당 상품이 매진되었습니다.");
 			return false;
 		}
-		
 		$.ajax({
 			url : "insertBasket.gt",
 			data : { 
 				"bas_procode" : pro_code, 
 				"bas_proname" : pro_name,
-				"bas_memno" : pro_memno,
+				"pro_memno" : pro_memno,
 				"bas_procategory" : pro_category,
 				"bas_prostock" : 1,
 				"bas_proprice" : pro_price,
@@ -65,6 +64,7 @@
 			type : "post",
 			success : function(check) {
 				alert("장바구니에 추가되었습니다.");
+				$("#navbar").load("nav.jsp");
 			},
 			error : function(xmlHttpReq, status, error) {
 				alert("오류가 발생했습니다. 시스템 관리자에게 문의해주세요.");
@@ -87,6 +87,7 @@
 			checkList.push($(this).val());
 		});
 		
+		alert(checkList);
 		$.ajax({
 			url : "selectAddBasket.gt",
 			type : "post",

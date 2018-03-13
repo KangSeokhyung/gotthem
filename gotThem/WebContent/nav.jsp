@@ -8,7 +8,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-<header role="banner" class="probootstrap-header">
+<header role="banner" id="navbar" class="probootstrap-header">
     <div class="container">
         <a href="/gotThem" class="probootstrap-logo">GOT THEM<span>.</span></a>
         
@@ -20,6 +20,7 @@
             <li><a href="#">GOTTHEM</a></li>
             <li><a href="#">NOTICE</a></li>
             <li><a href="#">EVENT</a></li>
+            <li><a href="listBasket.gt">CART<span id="basketCount" style="color:#FE2E2E;">&nbsp;&nbsp;${sessionScope.count}</span></a></li>
             <c:set var="sessionCheck"
  					value="${sessionScope.SPRING_SECURITY_CONTEXT}" />
  					<c:choose>
