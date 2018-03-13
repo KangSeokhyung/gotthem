@@ -15,43 +15,18 @@ public class BasketDaoImpl implements BasketDao {
 	public void setSqlSessionTemplate(SqlSessionTemplate sqlSessionTemplate) {
 		this.sqlSessionTemplate = sqlSessionTemplate;
 	}
-
-	@Override
-	public List<BasketBean> list() {
-		return sqlSessionTemplate.selectList("list");
-	}
-
-	@Override
-	public BasketBean FindByNo(int bas_no) {
-		return (BasketBean)sqlSessionTemplate.selectOne("FindByNo", bas_no);
-	}
-
-	@Override
-	public void insert(BasketBean basketBean) {
-		sqlSessionTemplate.insert("insert", basketBean);
-	}
-	
-	@Override
-	public int totalCount() {
-		return (int)sqlSessionTemplate.selectOne("totalCount");
-	}
-
-	@Override
-	public int update(int bas_no) {
-		return (int)sqlSessionTemplate.update("update", bas_no);
-	}
 	
 	// 1. 장바구니 추가
     @Override
     public void insertBasket(BasketBean basketBean) {
     	sqlSessionTemplate.insert("insertBasket", basketBean);
     }    
-	
-/*	// 1. 장바구니 추가
+   // 1.1 상품 삭제
     @Override
-    public void insertBasket(int code, int userNo,int stock) {
-    	sqlSessionTemplate.insert("insertBasket");
-    }*/
+    public void deleteproduct(int bas_no) {
+    	sqlSessionTemplate.insert("deleteproduct", bas_no);
+    }
+ 
 	
 	// 2. 장바구니 목록
     @Override

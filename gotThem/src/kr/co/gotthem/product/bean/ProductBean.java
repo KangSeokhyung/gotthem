@@ -64,5 +64,6 @@ public class ProductBean {
 				+ ", pro_category=" + pro_category + ", pro_img=" + pro_img + ", pro_comment=" + pro_comment
 				+ ", pro_stock=" + pro_stock + ", pro_price=" + pro_price + "]";
 	}
-
+	
+	
 }

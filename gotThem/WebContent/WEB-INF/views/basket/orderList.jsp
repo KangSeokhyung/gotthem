@@ -43,6 +43,7 @@
             		</c:when>
 					<c:otherwise>
 			<li><a href="mypage.gt">MY PAGE</a></li>
+			<li><a href="list.gt">장바구니</a></li>
             <li><a href="logout.gt">LOGOUT</a></li>
 				</c:otherwise>
 				</c:choose>
@@ -63,8 +64,30 @@
   </header>
   <div class="probootstrap-loader"></div>
   <!-- END: header -->
-  	<h1>결제 확인</h1>
-	<h2>결제 확인</h2>
+ <section class="probootstrap-slider flexslider2 page-inner">
+    <div class="overlay"></div>
+    <div class="probootstrap-wrap-banner">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-8">
+
+            <div class="page-title probootstrap-animate">
+              <div class="probootstrap-breadcrumbs">
+                <a href="/gotThem">Home</a><span>Order</span>
+              </div>
+              <h1>결제</h1>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+    <ul class="slides">
+      <li style="background-image: url(resources/mainTemplate/img/slider_1.jpg);"></li>
+      <li style="background-image: url(resources/mainTemplate/img/slider_4.jpg);"></li>
+      <li style="background-image: url(resources/mainTemplate/img/slider_2.jpg);"></li>
+    </ul>
+  </section>
 <div class="container">	
   <h2>결제 확인 목록</h2>   
  	<form name="form1" id="form1" method="post" action="./update.gt">
@@ -72,6 +95,7 @@
                <tr>
                    <th>결제 번호</th>
                    <th>상품코드</th>
+                   <th>상품사진</th>
                    <th>상품명</th>
                    <th>상품수량</th>
                    <th>상품가격</th>

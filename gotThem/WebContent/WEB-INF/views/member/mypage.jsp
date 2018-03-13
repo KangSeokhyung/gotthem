@@ -115,10 +115,10 @@
             <a href="#tab-4" data-toggle="tab">회원 탈퇴</a>
             </span></li>
              <li><i class="xi-cart"></i><span>
-            <a href="list.gt" data-toggle="tab">장바구니 정보</a>
+            <a href="list.gt" >장바구니 정보</a>
             </span></li>
              <li><i class="xi-truck"></i><span>
-            <a href="orderList.gt" data-toggle="tab">찾아갈 상품</a>
+            <a href="orderList.gt" >찾아갈 상품</a>
             </span></li>
            	
           </ul>
@@ -132,9 +132,10 @@
 				</div>
 				<div class="tab-pane fade" id="tab-4">
 				</div>
-				<div class="tab-pane fade" id="tabE">
-					<p>Okay, last one E</p>
+				<!-- <div class="tab-pane fade" id="tab-5">	
 				</div>
+				<div class="tab-pane fade" id="tab-6">	
+				</div> -->
 
 
 			</div>

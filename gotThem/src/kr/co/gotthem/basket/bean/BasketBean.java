@@ -7,12 +7,14 @@ public class BasketBean {
   private int bas_memno;
   private int bas_procode;
   private String bas_proname;
+  private int bas_stono;
   private int bas_prostock;
   private int bas_proprice;
   private String bas_procategory;
   private String bas_proimg;
   private String bas_procomment;
   private int money;
+  
 public int getBas_no() {
 	return bas_no;
 }
@@ -37,6 +39,14 @@ public String getBas_proname() {
 public void setBas_proname(String bas_proname) {
 	this.bas_proname = bas_proname;
 }
+
+public int getBas_stono() {
+	return bas_stono;
+}
+public void setBas_stono(int bas_stono) {
+	this.bas_stono = bas_stono;
+}
+
 public int getBas_prostock() {
 	return bas_prostock;
 }

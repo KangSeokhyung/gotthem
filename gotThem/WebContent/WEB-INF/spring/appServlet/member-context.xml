@@ -6,7 +6,6 @@
 	<!-- Controller -->
 	<bean id="memberController" class="kr.co.gotthem.member.controller.MemberController">
 		<property name="memberService" ref="memberService" />
-		<property name="productService" ref="productService"/>
 	</bean>
 	
 	<bean id="storeController" class="kr.co.gotthem.store.controller.StoreController">
@@ -26,5 +25,8 @@
 	<bean id="memberDao" class="kr.co.gotthem.member.dao.MemberDaoImpl">
 		<property name="sqlSessionTemplate" ref="sqlSessionTemplate" />
 	</bean>
+	
+	
+	
 	
 </beans>

@@ -22,11 +22,9 @@ public interface ProductDao {
 	public List productInfo(int mem_no);
 
 	public List productSearchList(Map<String, Object> productSearch);
-
-
+	
 	public int searchListCount(String search);
 
-	
 	public ProductBean detailProduct(int pro_code);
 
 	public List<ProductBean> listProduct();
