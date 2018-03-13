@@ -66,7 +66,9 @@ color:#fff;
 background-color:#178277;
 border-color:#178277;
 }
-
+header {
+    padding-bottom: 0px;
+}
 </style>
 </head>
 <body>
@@ -78,36 +80,41 @@ border-color:#178277;
 <div class="container mama">
     <div class="row vertical-offset-100" >
     	<div class="col-md-5 col-md-offset-4">
-    	<h3>사장님 아이디를 잊으셨나요?</h3>&nbsp;<br>
+    	<h3>사장님 비밀번호 변경하러 오셨어요?</h3>&nbsp;<br>
     		<div class="panel panel-default">
 			  	<div class="panel-heading">
-			    	<h3 class="panel-title">아이디 찾기</h3>
+			    	<h3 class="panel-title">비밀번호 변경</h3>
 			 	</div>
 			  	<div class="panel-body">
-			    	<form accept-charset="UTF-8" role="form" action="<c:url value='/findId.st' />"method="post">
+			    	<form accept-charset="UTF-8" role="form" action="<c:url value='/passWordChange.st' />"method="post">
                     <fieldset>
 			    	  	<div class="form-group mBottom0px">
-			    		    <input class="form-control" placeholder="E-mail을 입력하세요" name="mem_email" type="text">
+			    		    <input class="form-control" placeholder="현재 비밀번호를 입력해주세요" name="mem_pw" type="password">
 			    		</div>
 			    		<div class="form-group">
-			    		    <span class="formform">가입 시 입력한 E-mail 을 입력하세요</span>
+			    		    <span class="formform">현재 비밀번호를 입력해주세요</span>
 			    		</div>
 			    		<div class="form-group mBottom0px">
-			    			<input class="form-control" placeholder="이름을 입력하세요" name="mem_name" type="text" value="">
+			    			<input class="form-control" placeholder="새로운 비밀번호를 입력해주세요" name="new_pw1" type="password" value="">
 			    		</div>
 			    		<div class="form-group">
-			    		    <span class="formform">이름을 입력하세요</span>
+			    		    <span class="formform">새로운 비밀번호를 입력해주세요</span>
 			    		</div>
-			    		<input class="btn btn-lg btn-success btn-block colorGreen" type="submit" value="아이디 찾기">
-			    		 <span style="padding-top:10px;color:blue;">※ 정보를 입력하시면 가입하셨던 이메일로 아이디를 보내드립니다</span>
+			    		<div class="form-group mBottom0px">
+			    			<input class="form-control" placeholder="다시 한번 입력해주세요" name="new_pw2" type="password" value="">
+			    		</div>
+			    		<div class="form-group">
+			    		    <span class="formform">다시한번 입력해주세요</span>
+			    		</div>
+			    		<input class="btn btn-lg btn-success btn-block colorGreen" type="submit" value="비밀번호 변경"><br>
+			    		<input class="btn btn-lg btn-success btn-block colorGreen" type="button" onclick="history.back()" value="취소하기">
+			    		 <span style="padding-top:10px;color:blue;">※ 사장님~ 비밀번호 유출에 주의해주세요</span>
 			    	</fieldset>
 			      	</form>
 			    </div>
 			</div>
-			<h3><a href="findPw.st">비밀번호도 잊으셨어요?</a></h3>
 		</div>
 	</div>
-	
 </div>
 
 	<script src="resources/indexTemplate/js/jquery-3.2.1.slim.min.js"></script>
@@ -132,6 +139,23 @@ border-color:#178277;
    				str="귀하의 이메일로 가입된 아이디가 존재하지 않습니다.";
    			}else if(msg=='5'){
    				str="정보를 입력해주세요";
+   			}
+   			if(str!=null)
+   				alert(str);
+   		}
+   	});
+	$().ready(function(){
+   		var msg= '${resultMsg}';
+   		var str;
+   		if(msg!=null){
+   			if(msg=='fail1'){
+   				str="현재 비밀번호가 맞지 않습니다. 다시 확인해주세요";
+   			}else if(msg=='fail2'){
+   				str="새로운 비밀번호를 정확히 입력하여 주세요";
+   			}else if(msg=='fail3'){
+   				str="비밀번호 변경이 실패하였습니다";
+   			}else if(msg=='success'){
+   				str="비밀번호 변경이 성공하였습니다.";
    			}
    			if(str!=null)
    				alert(str);

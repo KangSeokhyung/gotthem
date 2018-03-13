@@ -2,6 +2,7 @@ package kr.co.gotthem.store.controller;
 
 import java.io.PrintWriter;
 import java.util.Random;
+import java.util.StringTokenizer;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -17,7 +18,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import kr.co.gotthem.member.bean.MemberBean;
 import kr.co.gotthem.member.mail.MailService;
@@ -97,10 +97,47 @@ public class StoreController {
 	}
 	
 	@RequestMapping(value = "/mystore.st", method = RequestMethod.GET)
-	public String mystore(HttpServletRequest request, HttpSession session) throws Exception{
-		System.out.println("마이스토어 진입");
+	public ModelAndView mystore(ModelAndView mav) throws Exception{
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+		String mem_id = authentication.getName();
+		MemberBean memberInfo = memberService.memberInfo(mem_id);
+		String mem_address = memberInfo.getMem_address();
+		StringTokenizer  st = new StringTokenizer(mem_address,"/");
+		String post = st.nextToken();
+		String address1 = st.nextToken();
+		String address2 = st.nextToken();
+		mav.addObject("mem_post", post);
+		mav.addObject("mem_address1", address1);
+		mav.addObject("mem_address2", address2);
+		mav.addObject("info", memberInfo);
+		mav.setViewName("store/mystore");
+		return mav;
+	}
+
+	@RequestMapping(value = "/mystoreModi.st", method = RequestMethod.GET)
+	public ModelAndView memberModi(ModelAndView mav) {
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+		String mem_id = authentication.getName();
+		MemberBean memberInfo = memberService.memberInfo(mem_id);
+		String mem_address = memberInfo.getMem_address();
+		StringTokenizer  st = new StringTokenizer(mem_address,"/");
+		String post = st.nextToken();       
+		String address1 = st.nextToken();      
+		String address2 = st.nextToken();      
+		mav.addObject("mem_post", post);
+		mav.addObject("mem_address1", address1);
+		mav.addObject("mem_address2", address2);
+		mav.addObject("memberInfo", memberInfo);
+		mav.setViewName("store/mystoreModi");
+		return mav;
+	}
+	
+	@RequestMapping(value = "/storeModi.st", method = RequestMethod.POST)
+	public String memberUpdate(MemberBean bean) {
+		memberService.memberModifi(bean);
 		return "store/mystore";
 	}
+
 	
 	@RequestMapping(value = "/passCheck.st", method = RequestMethod.GET)
 	public ModelAndView passCheck(MemberBean bean, ModelAndView mav) {
@@ -231,4 +268,44 @@ public class StoreController {
         return mav;
     }
 
+    @RequestMapping(value = "/passWordChange.st", method= RequestMethod.GET)
+	public String passChange(HttpServletRequest request) {
+		return "store/changePassWord";
+	}
+    
+    @RequestMapping(value = "/passWordChange.st", method = RequestMethod.POST)
+	public ModelAndView passCheckPost(@RequestParam("new_pw1") String new_pw, @RequestParam("new_pw2") String new_pw2,
+			MemberBean bean, ModelAndView mav, HttpServletResponse response) throws Exception {
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+		String mem_id = authentication.getName();
+		System.out.println("비밀번호 변경하러 왔나~");
+		bean.setMem_id(mem_id);
+		System.out.println("빈 한번 보자 : " + bean);
+		int result = memberService.passCheck(bean);
+		System.out.println("비밀번호 체크 : " + result);
+		if(result != 1) {
+			System.out.println("현재비밀번호가 안 맞을때");
+			mav.addObject("resultMsg", "fail1");
+			mav.setViewName("store/changePassWord");
+		}else if(!new_pw.equals(new_pw2)){
+			System.out.println("새로운 비밀번호와 비밀번호 확인이 안 맞을때");
+			mav.addObject("resultMsg", "fail2");
+			mav.setViewName("store/changePassWord");
+		}else {
+			System.out.println("잘 들어왔네");
+			bean.setMem_pw(new_pw);
+			int changeResult = memberService.changePasswordReal(bean);
+			System.out.println("변경결과"+changeResult);
+			if(changeResult != 0) {
+				System.out.println("비밀번호 변경이 성공했네");
+				mav.addObject("resultMsg", "success");
+				mav.setViewName("store/storeIndex");
+			}else {
+				mav.addObject("resultMsg", "fail3");
+				mav.setViewName("store/changePassWord");
+			}
+			
+		}
+		return mav;
+	}
 }

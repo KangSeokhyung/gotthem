@@ -82,7 +82,7 @@
 	
 <div class="cover-container pb-5">
 				<div class="cover-inner container">
-					<form action="insert.st" method="post">
+					<form action="insert.st" method="post" enctype="multipart/form-data">
 					<input type="hidden" name="mem_no" value="${pro.mem_no }"/>
 					<table class="table table-user-information">
 						<tr>
@@ -106,6 +106,9 @@
 						</tr>
 						<tr>
 							<td><span>재고</span></td><td><input type="text" name="pro_stock"/></td>
+						</tr>
+						<tr>
+							<td><span>상품사진</span></td><td><input type="file" name="file"/></td>
 						</tr>
 						<tr>
 							<td colspan="2" align="center">

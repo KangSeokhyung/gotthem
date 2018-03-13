@@ -71,59 +71,14 @@ border-color:#178277;
 </head>
 <body>
 
-	<aside class="probootstrap-aside js-probootstrap-aside">
-		<a href="#"
-			class="probootstrap-close-menu js-probootstrap-close-menu d-md-none"><span
-			class="oi oi-arrow-left"></span> Close</a>
-		<div class="probootstrap-site-logo probootstrap-animate"
-			data-animate-effect="fadeInLeft">
-
-			<a href="storeIndex.st" class="mb-2 d-block probootstrap-logo">GOTTHEM</a>
-			<p class="mb-0">
-				제휴 사이트 
-			</p>
-		</div>
-		<div class="probootstrap-overflow">
-			<nav class="probootstrap-nav">
-				<ul>
-					<li class="probootstrap-animate active"
-						data-animate-effect="fadeInLeft"><a href="storeIndex.st">Got them?</a></li>
-					<li class="probootstrap-animate" data-animate-effect="fadeInLeft"><a
-						href="mystore.st">점포관리</a></li>
-					<li class="probootstrap-animate" data-animate-effect="fadeInLeft"><a
-						href="stock.st">재고관리</a></li>
-				<c:set var="sessionCheck"
-					value="${sessionScope.SPRING_SECURITY_CONTEXT}" />
-				<c:choose>
-					<c:when test="${sessionCheck eq null}">
-					<li class="probootstrap-animate" data-animate-effect="fadeInLeft"><a
-						href="login.st">로그인</a></li>
-					<li class="probootstrap-animate" data-animate-effect="fadeInLeft"><a
-						href="join.st">제휴맺기</a></li>
-					</c:when>
-					<c:otherwise>
-						<li class="probootstrap-animate" data-animate-effect="fadeInLeft"><a href="logout.st" class="nav-link">로그아웃</a></li>
-					</c:otherwise>
-				</c:choose>
-				<li class="probootstrap-animate" data-animate-effect="fadeInLeft"><a
-						href="index.gt">고객 사이트</a></li>
-			</ul>
-			</nav>
-			<footer class="probootstrap-aside-footer probootstrap-animate"
-				data-animate-effect="fadeInLeft">
-				<p>
-					&copy; 2018 <a href="/gotThem" target="_blank">스탑없으 X Got Them</a>.
-					<br> All Rights Reserved.
-				</p>
-			</footer>
-		</div>
-	</aside>
+	<header>
+		<%@include file="nav.jsp"%>
+	</header>
 
 <div class="container mama">
     <div class="row vertical-offset-100" >
-    <h3>사장님 비밀번호를 잊으셨나요?</h3>&nbsp;<br>
     	<div class="col-md-5 col-md-offset-4">
-    	<br>
+    	<h3>사장님 비밀번호를 잊으셨나요?</h3>&nbsp;<br>
     		<div class="panel panel-default">
 			  	<div class="panel-heading">
 			    	<h3 class="panel-title">비밀번호 찾기</h3>
@@ -149,10 +104,10 @@ border-color:#178277;
 			      	</form>
 			    </div>
 			</div>
+			<h3><a href="findId.st">아이디를 잊으셨어요?</a></h3>
 		</div>
 	</div>
-	<br>
-	<h3><a href="findId.st">아이디를 잊으셨어요?</a></h3>
+	
 </div>
 
 

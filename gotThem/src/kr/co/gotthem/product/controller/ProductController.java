@@ -1,5 +1,11 @@
 package kr.co.gotthem.product.controller;
 
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.util.HashMap;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -15,6 +21,9 @@ import org.springframework.web.bind.ServletRequestUtils;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import kr.co.gotthem.member.bean.MemberBean;
@@ -42,15 +51,12 @@ public class ProductController {
 	@RequestMapping(value = "/stock.st", method = RequestMethod.GET)
 	public ModelAndView handleRequest(HttpServletRequest req,
 			HttpServletResponse res, HttpSession session) throws Exception {
-		
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 		String mem_id = authentication.getName();
-		
 		MemberBean memberInfo =  memberService.memberInfo(mem_id);
 		int pro_memno = memberInfo.getMem_no();
-		
-		System.out.println("memno = " + pro_memno);
 		List<ProductBean> result = productService.plist(pro_memno);
+		
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("product/stock");
 		mav.addObject("plist",result);
@@ -63,8 +69,7 @@ public class ProductController {
 		
 		ModelAndView mav = new ModelAndView();
 		int code = ServletRequestUtils.getIntParameter(req, "code");
-		System.out.println("code = " + code);
-		ProductBean bean = productService.findCode(code);		
+		ProductBean bean = productService.findCode(code);
 		mav.setViewName("product/detail");
 		mav.addObject("pro",bean);
 		
@@ -74,19 +79,55 @@ public class ProductController {
 	@RequestMapping(value="/update.st", method=RequestMethod.GET)
 	protected ModelAndView movieUpdateForm(HttpServletRequest req, ModelAndView mav){
 		ProductBean bean = productService.findCode(Integer.parseInt(req.getParameter("code")));
-		System.out.println("update.st의 컨트롤"+ bean);
 		mav.setViewName("product/update");
 		mav.addObject("pro",bean);
 		
 		return mav;
 	}
 	@RequestMapping(value="/update.st", method=RequestMethod.POST)
-	protected ModelAndView updateProcess(@ModelAttribute ProductBean bean, HttpServletRequest req){
+	protected ModelAndView updateProcess(@ModelAttribute ProductBean bean, HttpServletRequest req,
+			@RequestParam MultipartFile file) throws Exception {
 		
-		productService.updatePro(bean);
+		InputStream inputStream = null;
+		OutputStream outputStream = null;
+
+		// 업로드된 파일을 임의의 경로로 이동한다
+		String fileName = file.getOriginalFilename();
+		bean.setPro_img(fileName);
+		if(bean.getPro_img()== null || bean.getPro_img()=="" ) {
+			bean.setPro_img("no_img.jpg");
+		}else {
+			try {
+				
+				inputStream = file.getInputStream();
+
+				File newFile = new File("D:\\outupload/" + fileName);
+				if (!newFile.exists()) {
+					newFile.createNewFile();
+				}
+				outputStream = new FileOutputStream(newFile);
+				
+				int read = 0;
+				byte[] bytes = new byte[1024 * 10];
+
+				while ((read = inputStream.read(bytes)) != -1) {
+					outputStream.write(bytes, 0, read);
+				}
+			} catch (IOException e) {
+				e.printStackTrace();
+			} finally {
+				try {
+					outputStream.close();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+		
 		
 		String code = req.getParameter("pro_code");
-		System.out.println(code);
+		productService.updatePro(bean);
+		
 		return new ModelAndView("redirect:/detail.st?code="+code);
 	}
 	
@@ -94,7 +135,6 @@ public class ProductController {
 	protected ModelAndView deleteProcess(HttpServletRequest req){
 		
 		int code = Integer.parseInt(req.getParameter("pro_code"));
-		System.out.println(code);
 		productService.deletePro(code);
 		
 		return new ModelAndView("redirect:/stock.st");
@@ -115,13 +155,52 @@ public class ProductController {
 	}
 	
 	@RequestMapping(value="/insert.st", method=RequestMethod.POST)
-	protected ModelAndView handleRequestInternal(HttpServletRequest req, ProductBean bean) throws Exception {
-		System.out.println(req.getParameter("mem_no"));
+	public ModelAndView handleRequestInternal(HttpServletRequest req,
+			@ModelAttribute ProductBean bean, @RequestParam MultipartFile file) throws Exception {
 		int pro_memno = (Integer.parseInt(req.getParameter("mem_no")));
+		
+		InputStream inputStream = null;
+		OutputStream outputStream = null;
+
+		// 업로드된 파일을 임의의 경로로 이동한다
+		String fileName = file.getOriginalFilename();
+		bean.setPro_img(fileName);
+		if(bean.getPro_img()== null || bean.getPro_img()=="" ) {
+			bean.setPro_img("no_img.jpg");
+		}else {
+			try {
+				
+				inputStream = file.getInputStream();
+
+				File newFile = new File("D:\\outupload/" + fileName);
+				if (!newFile.exists()) {
+					newFile.createNewFile();
+				}
+				outputStream = new FileOutputStream(newFile);
+				
+				int read = 0;
+				byte[] bytes = new byte[1024 * 10];
+
+				while ((read = inputStream.read(bytes)) != -1) {
+					outputStream.write(bytes, 0, read);
+				}
+			} catch (IOException e) {
+				e.printStackTrace();
+			} finally {
+				try {
+					outputStream.close();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+		
 		bean.setPro_memno(pro_memno);
 		productService.insertPro(bean);
-		
-		return new ModelAndView("redirect:/stock.st");
+		ModelAndView mav = new ModelAndView("redirect:/stock.st");
+
+		return mav;
 	}
+
 	
 }
