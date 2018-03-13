@@ -38,6 +38,26 @@ input[type="submit"].btn-block, input[type="reset"].btn-block, input[type="butto
 .mBottom0px{
 margin-bottom:0px;
 }
+
+.colorGreen{
+	background:#286090;
+    border: 1px solid #2866AB;
+    background: #2866AB;
+    hover:
+}
+input:hover{
+	color:#000080;
+}
+.btn-success:hover,
+.btn-success:focus,
+.btn-success:active,
+.btn-success.active,
+.open .dropdown-toggle.btn-success{
+color:#fff;
+background-color:#337ab7;
+border-color:#337ab7;
+}
+
 </style>
 </head>
 <body>
@@ -46,7 +66,9 @@ margin-bottom:0px;
 </header> 
 
 <div class="container mama">
-    <div class="row vertical-offset-100">
+    <div class="row vertical-offset-100" >
+    <h3 style="text-align:center;">아이디 비밀번호가 기억이 나지 않나요? E-Mail로 보내드릴께요</h3>
+    <hr>
     	<div class="col-md-5 col-md-offset-3">
     		<div class="panel panel-default">
 			  	<div class="panel-heading">
@@ -67,7 +89,7 @@ margin-bottom:0px;
 			    		<div class="form-group">
 			    		    <span class="formform">이름을 입력하세요</span>
 			    		</div>
-			    		<input class="btn btn-lg btn-success btn-block" type="submit" value="아이디 찾기">
+			    		<input class="btn btn-lg btn-success btn-block colorGreen blueHover" type="submit" value="아이디 찾기">
 			    	</fieldset>
 			      	</form>
 			    </div>
@@ -75,8 +97,12 @@ margin-bottom:0px;
 		</div>
 	</div>
 </div>
-
-<div class="container mama">
+<div class="container">
+    <div class="row vertical-offset-100">
+    	<hr>
+    	</div>
+    	</div>
+<div class="container">
     <div class="row vertical-offset-100">
     	<div class="col-md-5 col-md-offset-3">
     		<div class="panel panel-default">
@@ -98,7 +124,7 @@ margin-bottom:0px;
 			    		<div class="form-group">
 			    		    <span class="formform">아이디를 입력하세요</span>
 			    		</div>
-			    		<input class="btn btn-lg btn-success btn-block" type="submit" value="비밀번호 찾기">
+			    		<input class="btn btn-lg btn-success btn-block colorGreen" type="submit" value="비밀번호 찾기">
 			    	</fieldset>
 			      	</form>
 			    </div>
