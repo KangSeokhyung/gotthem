@@ -49,6 +49,7 @@
 			<table class="table table-user-information">
 				<tr>
 					<th>결제 번호</th>
+					<th>결제 시간</th>
 					<th>상품코드</th>
 					<th>상품사진</th>
 					<th>상품명</th>
@@ -64,6 +65,9 @@
                <tr>
                   <td>
                         ${row.ord_no}
+                  </td>
+                  <td>
+                        ${row.ord_findtime}
                   </td>
                   <td>
                         ${row.ord_procode}

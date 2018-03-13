@@ -64,7 +64,6 @@ public class OrderController {
        int userNo = memberInfo.getMem_no();
        orderBean.setOrd_memno(userNo);
        orderBean.setOrd_proprice(Integer.parseInt(bas_proprice));
-       System.out.println("bas_proprice"+ bas_proprice );
    	   orderBean.setOrd_stock(Integer.parseInt(bas_prostock));
    	   orderBean.setOrd_procode(Integer.parseInt(bas_procode));
    	   orderBean.setOrd_proname(bas_proname);
