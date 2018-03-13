@@ -1,14 +1,6 @@
 package kr.co.gotthem.member.dao;
 
-import java.io.IOException;
-import java.io.Reader;
 import java.util.List;
-
-import org.apache.ibatis.io.Resources;
-import org.apache.ibatis.session.SqlSession;
-import org.apache.ibatis.session.SqlSessionFactory;
-import org.apache.ibatis.session.SqlSessionFactoryBuilder;
-import org.apache.ibatis.session.defaults.DefaultSqlSessionFactory;
 import org.mybatis.spring.SqlSessionTemplate;
 import kr.co.gotthem.member.bean.MemberBean;
 
@@ -61,6 +53,7 @@ public class MemberDaoImpl implements MemberDao {
 	
 	@Override
 	public void memModi(MemberBean memberBean) {
+		System.out.println(memberBean);
 		int result = sqlSessionTemplate.update("memModi", memberBean);
 		System.out.println("회원정보 관리자 수정 후 결과는 : " + result);
 	}
@@ -96,16 +89,29 @@ public class MemberDaoImpl implements MemberDao {
 		return result;
 	}
 	
-	public List<MemberBean> mlist() {
-		System.out.println("회원 리스트 뽑아옴");
-		return sqlSessionTemplate.selectList("mlist");
+	@Override
+	public List<MemberBean> mlist(int begin, int end) {
+		return sqlSessionTemplate.selectList("mlist", begin);
 	}
 	
 	@Override
-	public List<MemberBean> stlist(){
-		System.out.println("점포 리스트 뽑아옴");
-		return sqlSessionTemplate.selectList("stlist");
+	public List<MemberBean> stlist(int begin){
+		return sqlSessionTemplate.selectList("stlist", begin);
 	}
 	
+	@Override
+	public int countRow() {
+		return sqlSessionTemplate.selectOne("memCount");
+	}
+	
+	@Override
+	public int stcountRow() {
+		return sqlSessionTemplate.selectOne("stoCount");
+	}
+	
+	@Override
+	public MemberBean storeInfo(int mem_no) {
+		return sqlSessionTemplate.selectOne("storeInfo", mem_no);
+	}
 	
 }

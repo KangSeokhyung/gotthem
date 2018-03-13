@@ -15,12 +15,18 @@ public class BasketDaoImpl implements BasketDao {
 	public void setSqlSessionTemplate(SqlSessionTemplate sqlSessionTemplate) {
 		this.sqlSessionTemplate = sqlSessionTemplate;
 	}
-
+	
 	// 1. 장바구니 추가
     @Override
     public void insertBasket(BasketBean basketBean) {
     	sqlSessionTemplate.insert("insertBasket", basketBean);
     }    
+   // 1.1 상품 삭제
+    @Override
+    public void deleteproduct(int bas_no) {
+    	sqlSessionTemplate.insert("deleteproduct", bas_no);
+    }
+ 
 	
 	// 2. 장바구니 목록
     @Override

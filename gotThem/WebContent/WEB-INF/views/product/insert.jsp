@@ -8,8 +8,7 @@
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta charset="utf-8">
-<link href="https://fonts.googleapis.com/css?family=Work+Sans"
-	rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Work+Sans" rel="stylesheet">
 <link rel="stylesheet" href="resources/indexTemplate/css/bootstrap.min.css">
 <link rel="stylesheet" href="resources/indexTemplate/css/open-iconic-bootstrap.min.css">
 <link rel="stylesheet" href="resources/indexTemplate/css/owl.carousel.min.css">
@@ -17,17 +16,9 @@
 <link rel="stylesheet" href="resources/indexTemplate/css/icomoon.css">
 <link rel="stylesheet" href="resources/indexTemplate/css/animate.css">
 <link rel="stylesheet" href="resources/indexTemplate/css/style.css">
-<link rel="stylesheet" href="resources/landy/css/style.default.css" id="theme-stylesheet">
-<link rel="stylesheet" href="resources/landy/css/custom.css">
-
-	<script type="text/javascript">
-	function fnList(){
-		location.href="stock.st";
-	}
-	</script>
 </head>
 <body>
-<aside class="probootstrap-aside js-probootstrap-aside">
+	<aside class="probootstrap-aside js-probootstrap-aside">
 		<a href="#"
 			class="probootstrap-close-menu js-probootstrap-close-menu d-md-none"><span
 			class="oi oi-arrow-left"></span> Close</a>
@@ -43,7 +34,7 @@
 			<nav class="probootstrap-nav">
 				<ul>
 					<li class="probootstrap-animate"
-						data-animate-effect="fadeInLeft"><a href="/storeIndex">Got them?</a></li>
+						data-animate-effect="fadeInLeft"><a href="storeIndex.st">Got them?</a></li>
 					<li class="probootstrap-animate" data-animate-effect="fadeInLeft"><a
 						href="mystore.st">점포관리</a></li>
 					<li class="probootstrap-animate active" data-animate-effect="fadeInLeft"><a
@@ -65,17 +56,19 @@
 						href="index.gt">고객 사이트</a></li>
 			</ul>
 			</nav>
-			
-			<footer class="probootstrap-aside-footer probootstrap-animate"
-				data-animate-effect="fadeInLeft">
-				<p>
-					&copy; 2018 <a href="/gotThem" target="_blank">스탑없으 X Got Them</a>.
-					<br> All Rights Reserved.
-				</p>
-			</footer>
 		</div>
 	</aside>
 
+
+	<main role="main" class="probootstrap-main js-probootstrap-main">
+		<div class="probootstrap-bar">
+		<a href="#" class="probootstrap-toggle js-probootstrap-toggle"><span
+			class="oi oi-menu"></span></a>
+		<div class="probootstrap-main-site-logo">
+			<a href="storeIndex.st">GOT THEM</a></a>
+		</div>
+	</div>
+ 
 
 	<main role="main" class="probootstrap-main js-probootstrap-main">
 		<div class="probootstrap-bar">
@@ -87,9 +80,7 @@
 	</div>
 	
 	
-	
-	
-			<div class="cover-container pb-5">
+<div class="cover-container pb-5">
 				<div class="cover-inner container">
 					<form action="insert.st" method="post">
 					<input type="hidden" name="mem_no" value="${pro.mem_no }"/>
@@ -129,7 +120,9 @@
 					</div> --%>
 				</div>
       		</div>
-<div class="container-fluid d-md-none">
+      		
+      		
+	<div class="container-fluid d-md-none">
 		<div class="row">
 			<div class="col-md-12">
 				<ul class="list-unstyled d-flex probootstrap-aside-social">
@@ -155,5 +148,10 @@
 	<script src="resources/indexTemplate/js/jquery.waypoints.min.js"></script>
 	<script src="resources/indexTemplate/js/imagesloaded.pkgd.min.js"></script>
 	<script src="resources/indexTemplate/js/main.js"></script>
+	<script type="text/javascript">
+	function fnList(){
+		location.href="stock.st";
+	}
+	</script>
 </body>
 </html>

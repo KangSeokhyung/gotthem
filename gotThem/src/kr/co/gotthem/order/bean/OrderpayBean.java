@@ -15,6 +15,7 @@ public class OrderpayBean {
   private int ord_basno;
   private String ord_proimg;
   private int ord_proprice;
+
 public int getOrd_no() {
 	return ord_no;
 }
@@ -69,6 +70,7 @@ public int getMoney() {
 public void setMoney(int money) {
 	this.money = money;
 }
+
 public int getOrd_basno() {
 	return ord_basno;
 }
@@ -87,12 +89,16 @@ public int getOrd_proprice() {
 public void setOrd_proprice(int ord_proprice) {
 	this.ord_proprice = ord_proprice;
 }
+
 @Override
 public String toString() {
-	return "OrderpayBean [ord_no=" + ord_no + ", ord_procode=" + ord_procode + ", ord_proname=" + ord_proname
+	return "OrderBean [ord_no=" + ord_no + ", ord_procode=" + ord_procode + ", ord_proname=" + ord_proname
 			+ ", ord_memno=" + ord_memno + ", ord_stock=" + ord_stock + ", ord_price=" + ord_price + ", ord_findtime="
 			+ ord_findtime + ", ord_status=" + ord_status + ", money=" + money + ", ord_basno=" + ord_basno
 			+ ", ord_proimg=" + ord_proimg + ", ord_proprice=" + ord_proprice + "]";
+
 }
- 
+
 }
+
+  

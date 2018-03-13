@@ -30,12 +30,11 @@ import kr.co.gotthem.product.service.ProductService;
 @Controller
 public class OrderController {
 	
-	private static final Logger logger = LoggerFactory.getLogger(OrderController.class);
-	
 	private OrderService orderService;
 	private MemberService memberService;
 	private BasketService basketService;
 	private ProductService productService;
+	private OrderService ord_no;
 	
 	public void setOrderService(OrderService orderService) {
 		this.orderService = orderService;
@@ -70,14 +69,12 @@ public class OrderController {
    	   orderBean.setOrd_price(Integer.parseInt(money)); 
    	   orderBean.setOrd_basno(Integer.parseInt(bas_no));
        orderBean.setOrd_proimg(bas_proimg);
-       
+   	   orderBean.setOrd_no(Integer.parseInt(bas_no));
+   	   
    	   orderService.orderInsert(orderBean);
    	   orderService.orderUpdateBasket(orderBean);
    	   orderService.orderDeleteBasket(orderBean);
    	   System.out.println("결제 완료 변경된 수량" + bas_prostock );
-   	   List<BasketBean> listBasket = basketService.listBasket(userNo);
-	   HttpSession session = req.getSession();
-	   session.setAttribute("count", listBasket.size());
    	   return "redirect:/orderList.gt";
    	   }
     
@@ -85,8 +82,7 @@ public class OrderController {
    @RequestMapping(value = "selectOrder.gt", method = RequestMethod.POST) 
    public String testCheck(@RequestParam (value= "arrOrder[]") List valueArr,
    		@ModelAttribute BasketBean basketBean,@ModelAttribute OrderpayBean orderBean,
-   		HttpServletRequest req, HttpServletResponse res) throws Exception {
-	   
+   		HttpServletRequest req, HttpServletResponse res) throws Exception {	   
 	   Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 	   String mem_id = authentication.getName();
 	   
@@ -98,6 +94,9 @@ public class OrderController {
        for(int i=0; i<valueArr.size(); i++){
     	   A = (String) valueArr.get(i);
     	   System.out.println("여기값"+A.toString());
+    	   if ( 2==A.length()) {
+    		   continue;
+    		   } else {
     	   java.util.StringTokenizer  st = new java.util.StringTokenizer(A,",");
     	   String bas_no = st.nextToken();
        	   String bas_proname = st.nextToken();
@@ -109,7 +108,7 @@ public class OrderController {
        	   String bas_procomment = st.nextToken();
                      
        	   orderBean.setOrd_memno(userNo);       
-           orderBean.setOrd_basno(Integer.parseInt(bas_no));        
+           orderBean.setOrd_no(Integer.parseInt(bas_no));        
            orderBean.setOrd_proname(bas_proname);
            orderBean.setOrd_proprice(Integer.parseInt(bas_proprice));
            orderBean.setOrd_stock(Integer.parseInt(bas_prostock));
@@ -122,15 +121,11 @@ public class OrderController {
  	       orderService.orderUpdateBasket(orderBean);
    	       orderService.orderDeleteBasket(orderBean); 	 
    	       System.out.println("결제 변경된 수량" + bas_prostock );
-   	       List<BasketBean> listBasket = basketService.listBasket(userNo);
-   	       HttpSession session = req.getSession();
-		   session.setAttribute("count", listBasket.size());
    	       }
+        }
        return "redirect:/orderList.gt";
        }
  
-   // 1.2 상품에서 결제 추가
-   
       // 3. 아이디별 전체 결제 목록
      @RequestMapping("/orderList.gt")
      public ModelAndView listOrder(ModelAndView mav)throws Exception {

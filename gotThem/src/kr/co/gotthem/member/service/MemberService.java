@@ -1,6 +1,11 @@
 package kr.co.gotthem.member.service;
 
 import java.util.List;
+import java.util.Map;
+
+import org.springframework.ui.Model;
+import org.springframework.web.servlet.ModelAndView;
+
 import kr.co.gotthem.member.bean.MemberBean;
 
 public interface MemberService {
@@ -27,12 +32,18 @@ public interface MemberService {
 	
 	public int changePassword(MemberBean memberBean);
 
-	public List<MemberBean> mlist();
+	public List<MemberBean> mlist(int begin, int end);
 	
-	public List<MemberBean> stlist();
-	
+	public List<MemberBean> stlist(int begin);	
+
 	public int changePasswordReal(MemberBean memberBean);
 
 	public void memModi(MemberBean memberBean);
+
+	public int countRow();
+
+	public int stcountRow();
+
+	public MemberBean storeInfo(int mem_no);
 	
 }

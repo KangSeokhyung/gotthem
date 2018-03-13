@@ -1,6 +1,9 @@
 package kr.co.gotthem.member.dao;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+
 import kr.co.gotthem.member.bean.MemberBean;
 
 public interface MemberDao {
@@ -24,14 +27,21 @@ public interface MemberDao {
 	
 	public int changePassword(MemberBean memberBean);
 
-	public List<MemberBean> mlist();
+	public List<MemberBean> mlist(int begin, int end);
 
-	public List<MemberBean> stlist();
+	public List<MemberBean> stlist(int begin);
 
 	public int changePasswordReal(MemberBean memberBean);
 
 	public void storeModi(MemberBean memberBean);
 	
 	public void memModi(MemberBean memberBean);
+
+	public int countRow();
+	
+	public int stcountRow();
+
+	public MemberBean storeInfo(int mem_no);
+
 	
 }

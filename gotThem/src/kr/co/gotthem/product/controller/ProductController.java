@@ -39,8 +39,6 @@ import kr.co.gotthem.store.controller.StoreController;
 @Controller
 public class ProductController {
 	
-	private static final Logger logger = LoggerFactory.getLogger(StoreController.class);
-	
 	private ProductService productService;
 	private MemberService memberService;
 	private MongoTemplate mongoTemplate;
@@ -48,7 +46,6 @@ public class ProductController {
 	public void setMongoTemplate(MongoTemplate mongoTemplate) {
 		this.mongoTemplate = mongoTemplate;
 	}
-	
 	public void setProductService(ProductService productService) {
 		this.productService = productService;
 	}
@@ -82,7 +79,7 @@ public class ProductController {
 		ModelAndView mav = new ModelAndView();
 		int code = ServletRequestUtils.getIntParameter(req, "code");
 		System.out.println("code = " + code);
-		ProductBean bean = productService.findCode(code);
+		ProductBean bean = productService.findCode(code);		
 		mav.setViewName("product/detail");
 		mav.addObject("pro",bean);
 		
@@ -136,7 +133,6 @@ public class ProductController {
 	protected ModelAndView handleRequestInternal(HttpServletRequest req, ProductBean bean) throws Exception {
 		System.out.println(req.getParameter("mem_no"));
 		int pro_memno = (Integer.parseInt(req.getParameter("mem_no")));
-		
 		bean.setPro_memno(pro_memno);
 		productService.insertPro(bean);
 		
@@ -178,7 +174,6 @@ public class ProductController {
 		map.put("mem_no", mem_no);
 		
 		List productList = productService.productSearchList(map);
-		System.out.println(productList);
 		String jProductList = new ObjectMapper().writeValueAsString(productList);
 		
 		return jProductList;

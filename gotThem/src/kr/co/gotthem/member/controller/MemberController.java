@@ -10,8 +10,6 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.mariadb.jdbc.internal.logging.Logger;
-import org.mariadb.jdbc.internal.logging.LoggerFactory;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
@@ -30,17 +28,14 @@ import kr.co.gotthem.product.service.ProductService;
 @Controller
 public class MemberController {
 	 
-	private static final Logger logger = LoggerFactory.getLogger(MemberController.class);
-	
 	private MemberService memberService;
 	private MailService mailService;
 	private ProductService productService;
 	
-	
 	public void setProductService(ProductService productService) {
 		this.productService = productService;
 	}
-	
+
 	public void setMemberService(MemberService memberService) {
 		this.memberService = memberService;
 	}
@@ -50,13 +45,11 @@ public class MemberController {
         this.mailService = mailService;
     }
 
-	
 	@RequestMapping(value = "/login.gt", method = RequestMethod.GET)
 	public String login() {
 		return "member/mlogin";
 	}
 	@RequestMapping(value = "/logout.gt", method = RequestMethod.GET)
-
 	public String logout(HttpSession  session, HttpServletRequest request) {		
 		session.invalidate();
 		System.out.println("회원 로그아웃");
@@ -181,7 +174,6 @@ public class MemberController {
 		memberService.memberModifi(bean);
 		return "member/mypage";
 	}
-
 	
 	@RequestMapping(value = "/passCheck.gt", method = RequestMethod.GET)
 	public ModelAndView passCheck(MemberBean bean, ModelAndView mav) {
@@ -261,7 +253,6 @@ public class MemberController {
 		return mav;
 	}
 	
- 
     // 아이디 찾기
     @RequestMapping(value = "/findID.gt", method = RequestMethod.POST)
     public String sendMailId(HttpSession session, @RequestParam("mem_email") String email,
@@ -323,6 +314,21 @@ public class MemberController {
         return "redirect:/findIDAndPW.gt";
     }
     
+    @RequestMapping(value = "/storeDetail.gt")
+	public String storeDetail(Model model, int mem_no) {
+		MemberBean storeInfo = memberService.storeInfo(mem_no);
+
+		model.addAttribute("mem_no", mem_no);
+		model.addAttribute("storeInfo", storeInfo);
+		
+		return "store/storeDetail";
+	}
     
-    
+    @RequestMapping(value = "/productList.gt")
+	public String productList(Model model, int mem_no, String category) {
+    	List productInfo = productService.productInfo(mem_no, category);
+		model.addAttribute("productInfo", productInfo);
+		
+		return "product/productTable";
+	}
 }

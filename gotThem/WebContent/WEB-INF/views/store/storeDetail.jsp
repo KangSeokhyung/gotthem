@@ -3,277 +3,238 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html lang="ko">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>I'm Stisla</title>
-<link rel="stylesheet"
-	href="resources/mainTemplate/ionicons/css/ionicons.min.css">
-<link rel="stylesheet"
-	href="resources/mainTemplate/bootstrap/css/bootstrap.min.css">
-<link rel="stylesheet"
-	href="resources/mainTemplate/sweetalert/dist/sweetalert.css">
-<link rel="stylesheet" href="resources/mainTemplate/css/stisla.css">
-<style>
-section{
-background-size : cover;
-}
-#contentbody {
-width: 90%;
-margin: auto;
-}
-</style>
-</head>
-<script src="//code.jquery.com/jquery-3.2.1.min.js"></script>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>편의점 재고 검색 GOT THEM!</title>
+    <meta name="description" content="Free Bootstrap Theme by uicookies.com">
+    <meta name="keywords" content="free website templates, free bootstrap themes, free template, free bootstrap, free website template">
+    
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400" rel="stylesheet">
+    <link rel="stylesheet" href="resources/mainTemplate/css/styles-merged.css">
+    <link rel="stylesheet" href="resources/mainTemplate/css/style.min.css">
+    <link rel="stylesheet" href="resources/mainTemplate/css/custom.css">
+
+    <!--[if lt IE 9]>
+      <script src="resources/mainTemplate/js/vendor/html5shiv.min.js"></script>
+      <script src="resources/mainTemplate/js/vendor/respond.min.js"></script>
+    <![endif]-->
+<style type="text/css">
+#contentbody { width: 90%; margin: auto; }
+#tabStyle a { color: #053741; }
+#tabStyle a:hover { color: #5CC8DD; font-weight: bold; }row 클릭 시 checkbox
+</style>  
+<script src="https://code.jquery.com/jquery-3.2.1.js"></script>
 <script type="text/javascript">
-	$(document).on('click', '#upCount', function(){
-		var pro_stock = $(this).prev().val() * 1 + 1;
-		$(this).prev().val(pro_stock);
-		
-		var pro_price = $(this).parents("td").next("td").text();
-		var pro_price_fin = $(this).parents().siblings("#pro_stock_fin").val();
-		
-		$(this).parents("td").next("td").text("");
-		$(this).parents("td").next("td").text(pro_price * 1 + pro_price_fin * 1);
-		$("#pro_price").val(pro_price);
-		
-		var totalPay = $("#totalPay").val();
-		$("#totalPay").val(totalPay*1 + pro_price_fin*1);
-	});
-	
-	$(document).on('click', '#downCount', function(){
-		var pro_stock = $(this).prev().prev().val() - 1;
-		$(this).prev().prev().val(pro_stock);
-		
-		var pro_price = $(this).parents("td").next("td").text();
-		var pro_price_fin = $(this).parents().siblings("#pro_stock_fin").val();
-		
-		$(this).parents("td").next("td").text("");
-		$(this).parents("td").next("td").text(pro_price * 1 - pro_price_fin * 1);
-		$("#pro_price").val(pro_price);
-		
-		var totalPay = $("#totalPay").val();
-		$("#totalPay").val(totalPay*1 - pro_price_fin*1);
-	});
-	
-	$(function(){
-		var idCount = 1;
-		var rowAddDel = $("#searchTemplate tr").click(function(){
-			
-			var tr = $(this);
-			var td = tr.children('td');
-			
-			var pro_name = td.eq(0).text();
-			var pro_stock = td.eq(2).text();
-			var pro_price = td.eq(3).text();
-				
-			var exist = "no";
-			
-			$("#mySelectField tr").each(function() {
-				var myPro_name = $(this).find("#myPro_name").html();
-				if (pro_name == myPro_name) {
-					exist = "yes";
-					return false;
-				} 
-			});
-			
-			if (exist == "yes") {
-				alert("이미 존재하는 옵션입니다.");
+
+	$(document).on("click", "#statusCheck tr", function(event){
+		if(event.target.nodeName.toLowerCase() == 'td') {
+			var checkbox = $(this).find('td:first-child :checkbox');
+			if (checkbox.is(":checked")) {
+				checkbox.prop("checked", false);
 			} else {
-				/*---------------------------------------------------
-				*	document on과는 다르게 가능한 소스
-				*	$("#upCount"+idCount).unbind("click");
-				*	$("#upCount"+idCount).bind("click", function(){
-				*		alert("테스트");
-				*		var pro_stock = $(this).prev().val();
-				*		$(this).prev().val(pro_stock * 1 + 1);
-				*	}); 
-				-----------------------------------------------------*/
-				
-				$("#mySelectField").append(
-					"<tr><input type='hidden' name='pro_name' value='" + pro_name + "'>" +
-					"<input type='hidden' id='pro_price' name='pro_price' value='" + pro_price + "'>" +
-					"<input type='hidden' id='pro_stock_fin' value='" + pro_price + "'>" +
-					"<td id='myPro_name'>" + pro_name + "</td><td><input type='text' id='pro_stock' value='1'>" +
-					"<input type='button' id='upCount' value='증가'> <input type='button' id='downCount' value='감소'>" + 
-					"</td><td id='myPro_price' class='myPro_price'>" + pro_price + "</td>" +
-					"<td><input type='button' id='deleteRow' value='x'></td></tr>"
-				);
-				
-				var totalPay = $("#totalPay").val();
-				$("#totalPay").val(totalPay*1 + pro_price*1);
+				checkbox.prop("checked", true);
 			}
-		});
-	}); 
-	
-	$(document).on('click', '#deleteRow', function(){
-		var tr = $(this).parents();
-		
-		var pro_price = $(this).parents().siblings("#myPro_price").text();
-		alert(pro_price);
-		
-		var totalPay = $("#totalPay").val();
-		$("#totalPay").val(totalPay*1 - pro_price*1);
-		
+		}
 	});
-	
-	/* onclick='deleteMySelect()' function deleteMySelect() {
-		var tr = $("#deleteRow").parents("td").parents("tr");
 		
-		alert($("#deleteRow").parents("#myPro_price").text());
-		
-		var totalPay = $("#totalPay").val();
-		$("#totalPay").val(totalPay*1 - selectPro_price*1);
-		
-		$(tr).remove();
-	} */
-	
-	function productSearch() {
-		rowAddDel();
-		var productSearch = $("#productSearch").val();
-		var mem_no = $("#mem_no").val();
+	function addBasket(pro_code, pro_name, pro_memno, pro_category, pro_price, pro_img) {
 		$.ajax({
-			url : "productSearch.gt",
-			data : { "productSearch" : productSearch, "mem_no" : mem_no },
+			url : "insertBasket.gt",
+			data : { 
+				"bas_procode" : pro_code, 
+				"bas_proname" : pro_name,
+				"bas_memno" : pro_memno,
+				"bas_procategory" : pro_category,
+				"bas_prostock" : 1,
+				"bas_proprice" : pro_price,
+				"bas_proimg" : pro_img
+			},
 			type : "post",
-			success : function(searchData) {
-				$("#searchTemplate").html("");
-				var ob = JSON.parse(searchData);
-				$.each(ob, function(index, column){
-					$("#searchTemplate").append(
-						"<input type='hidden' name='pro_code' id='pro_code' value='"+ column.pro_code +"'>"
-					);
-					$("#searchTemplate").append(
-						"<tr><td>" + column.pro_name +"</td><td>" + column.pro_category + "</td>" +
-						"<td>" + column.pro_stock + "</td><td>" + column.pro_price + "</td></tr>"
-					);
-				});
+			success : function(check) {
+				alert("장바구니에 추가되었습니다.");
+				$("#navbar").load("nav.jsp");
 			},
 			error : function(xmlHttpReq, status, error) {
-				alert(xmlHttpReq + "리퀘스트\n" + status + "상태\n" + error + "에러\n");
+				alert("오류가 발생했습니다. 시스템 관리자에게 문의해주세요.");
 			}
 		});
 	}
-</script>
-<body>
-	<header>
-		<%@include file="../../../nav.jsp"%>
-	</header>
 	
+	function selectAddBasket() {
+		var checkList = [];
+		
+		$("input[name='statusCheck']:checked").each(function(i) {
+			checkList.push($(this).val());
+		});
+		
+		
+		
+		/* $.ajax({
+			url : "selectAddBasket.gt",
+			type : "post",
+			data : { "checkList" : checkList },
+			success : function(result){
+				if (confirm("장바구니 페이지로 이동 하시겠습니까?")) {
+					location.href="./orderList.gt";	
+				} else {
+					return false;
+				}
+			},
+			error : function(xmlHttpReq, status, error) {
+				alert("오류가 발생했습니다. 시스템 관리자에게 문의해주세요.");
+			}
+		}); */
+	}
+</script>
+</head>
+<body>
+  
+<div class="probootstrap-loader"></div>
+<!-- START: header -->
+<header>
+<%@include file="../../../nav.jsp" %>
+</header>
+<!-- END: header -->
+
+	<!-- 값 보낼때 사용할 Mem_no -->
 	<input type="hidden" id="mem_no" name="mem_no" value="${mem_no}">
 
-	<section class="padding bg-grey" id="blog">
-		<div id="contentbody" class="row">
-			<div class="col-sm-12">
-				<h1>${storeInfo.sto_name }</h1>
-				<hr>
-				<h2><b>소개글</b></h2> 
-				<p>소개글 값 테스트 : ${storeInfo.sto_comment }</p>
-				<br>
-				<h2><b>아래쪽에 이미지가 출력된다.</b></h2>
-				<p>이미지 값 테스트 : ${storeInfo.sto_img }</p>
-			</div>
-		</div>
-		<br><br>
-		<div id="contentbody" class="section-body">
-			<h1>제품 리스트 출력</h1>
-			<h5> * 줄 단위로 클릭 시 나의 상품리스트로 들어가게 됩니다.</h5>
+<section class="probootstrap-section probootstrap-section-lighter">
+  <div class="container">
+    <div class="row">
+    	<div class="col-sm-12">
+			<h1>${storeInfo.sto_name }</h1>
 			<hr>
-			<div class="row">
-				<div class="col-sm-5">
-					<input type="text" id="productSearch" class="form-control" placeholder="원하는 상품을 검색해주세요." 
-							onkeypress="productSearch()">
-				</div>
-				<div class="col-sm-1">
-					<input type="button" class="btn btn-default" onclick="productSearch()" value="검색">
-				</div>
-			</div>
-			<form>
-				<div class="row">
-				<div class="col-sm-8">
-					<table class="table table-bordered table-hover">
-						<colgroup>
-							<col width="25%" />
-							<col width="25%" />
-							<col width="25%" />
-							<col width="25%" />
-						</colgroup>
-						<thead>
-							<tr>
-								<th class="text-center" scope="col">상품명</th>
-								<th class="text-center" scope="col">분류</th>
-								<th class="text-center" scope="col">수량</th>
-								<th class="text-center" scope="col">금액</th>
-							</tr>
-						</thead>
-						<tbody id="searchTemplate">
-							<c:forEach var="list" items="${productInfo }">
-								<input type="hidden" name="pro_code" id="pro_code" value="${list.pro_code }">
-							<tr>
-								<td>${list.pro_name }</td>
-								<td>${list.pro_category }</td>
-								<td>${list.pro_stock }</td>
-								<td>${list.pro_price }</td>
-							</tr>
-							</c:forEach>
-						</tbody>
-					</table>
-				</div>
-				<div class="col-sm-4">	
-					<table class="table custab">
-					<caption></caption>
-						<colgroup>
-							<col width="30%" />
-							<col width="25%" />
-							<col width="25%" />
-							<col width="15%" />
-						</colgroup>
-					    <thead>
-					        <tr>
-					            <th>상품명</th>
-					            <th>수량</th>
-					            <th>금액</th>
-					            <th></th>
-					        </tr>
-					    </thead>
-					    <tbody id="mySelectField">
-			           	</tbody>
-			           	<tfoot>
-			           		<tr>
-			           			<td colspan="4">
-			           				<input type="hidden" name="totalPay"  value="0">
-			           				총 금액 : <input type="text" id="totalPay" class="totalPay" value="0" readonly="readonly">
-			           			</td>
-			           		</tr>
-			           	</tfoot>
-				    </table>
-				</div>
-				</div>
-				<div class="row">
-					<input type="button" class="btn btn-success" value="바로구매" onclick="">&nbsp;
-					<input type="button" class="btn btn-primary" value="장바구니" onclick="">&nbsp;
-					<input type="reset" class="btn btn-default" value="취소">
-				</div>
-			</form>
+			<h2>
+				<b>소개글</b>
+			</h2>
+			<p>소개글 값 테스트 : ${storeInfo.sto_comment }</p>
+			<br>
+			<h2>
+				<b>아래쪽에 이미지가 출력된다.</b>
+			</h2>
+			<p>이미지 값 테스트 : ${storeInfo.sto_img }</p>
 		</div>
-	</section>
+    </div>
+  </div>
+</section>
 
-	<footer>
-		<div class="container">
-			<figure>
-				<img src="resources/mainTemplate/img/logo.png" alt="Logo">
-			</figure>
-			<p>Copyright &copy; 2018 스탑없으</p>
-			<p>
-				Made with <i class="ion-heart"></i> By Kodinger
-			</p>
-		</div>
-	</footer>
-	<script src="resources/mainTemplate/js/jquery.min.js"></script>
-	<script src="resources/indexTemplate/js/popper.min.js"></script>
-	<script src="resources/mainTemplate/bootstrap/js/bootstrap.min.js"></script>
-	<script src="resources/mainTemplate/js/jquery.easeScroll.js"></script>
-	<script src="resources/mainTemplate/sweetalert/dist/sweetalert.min.js"></script>
-	<script src="resources/mainTemplate/js/stisla.js"></script>
-</body>
+<section class="probootstrap-section">
+  <div class="container">
+    <div class="col-sm-12">
+    	
+    </div>
+    <div class="row probootstrap-gutter10">
+      <div class="col-sm-12">
+		<ul id="tabStyle" class="nav nav-tabs" data-tabs="tabs">
+			<li class="active"><a href="#lunchbox" class="nav-link" data-toggle="tab">도시락</a></li>
+			<li class="nav-item"><a href="#kimbob" class="nav-link" data-toggle="tab">김밥</a></li>
+			<li class="nav-item"><a href="#sandwich" class="nav-link" data-toggle="tab">샌드위치</a></li>
+			<li class="nav-item"><a href="#etc" class="nav-link" data-toggle="tab">기타</a></li>
+        </ul>
+        <div class="tab-content text-center">
+			<div class="tab-pane active" id="lunchbox"></div>
+			<div class="tab-pane" id="kimbob"></div>
+			<div class="tab-pane" id="sandwich"></div>
+			<div class="tab-pane" id="etc"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script type="text/javascript">
+	$.get("productList.gt", { "category" : "도시락", "mem_no" : "${mem_no}" }, function(data) {
+		$("#lunchbox").html(data);
+	});
+	
+	$.get("productList.gt", { "category" : "김밥", "mem_no" : "${mem_no}" }, function(data) {
+		$("#kimbob").html(data);
+	});
+	
+	$.get("productList.gt", { "category" : "샌드위치", "mem_no" : "${mem_no}" }, function(data) {
+		$("#sandwich").html(data);
+	});
+	
+	$.get("productList.gt", { "category" : "기타", "mem_no" : "${mem_no}" }, function(data) {
+		$("#etc").html(data);
+	});
+</script>
+
+  <footer class="probootstrap-footer probootstrap-bg" style="background-image: url(img/slider_3.jpg)">
+    <div class="container">
+      <div class="row mb60">
+        <div class="col-md-3">
+          <div class="probootstrap-footer-widget">
+            <h4 class="heading">About Haus.</h4>
+            <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. </p>
+            <p><a href="#">Read more...</a></p>
+          </div> 
+        </div>
+        <div class="col-md-3">
+          <div class="probootstrap-footer-widget probootstrap-link-wrap">
+            <h4 class="heading">Quick Links</h4>
+            <ul class="stack-link">
+              <li><a href="#">Property Listing</a></li>
+              <li><a href="#">Rent Properties</a></li>
+              <li><a href="#">Sell Properties</a></li>
+              <li><a href="#">Agents</a></li>
+              <li><a href="#">Testimonial</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="probootstrap-footer-widget">
+            <h4 class="heading">Popular Cities</h4>
+            <ul class="stack-link">
+              <li><a href="#">New York <small>(320 properties)</small></a></li>
+              <li><a href="#">San Francisco <small>(294 properties)</small></a></li>
+              <li><a href="#">Brooklyn <small>(300 properties)</small></a></li>
+              <li><a href="#">Chicago <small>(268 properties)</small></a></li>
+              <li><a href="#">Los Angeles <small>(342 properties)</small></a></li>
+            </ul>
+          </div> 
+        </div>
+        <div class="col-md-3">
+          <div class="probootstrap-footer-widget probootstrap-link-wrap">
+            <h4 class="heading">Subscribe</h4>
+            <p>Far far away behind the word mountains far from.</p>
+            <form action="#">
+              <div class="form-field">
+                <input type="text" class="form-control" placeholder="Enter your email">
+                <button class="btn btn-subscribe">Send</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+      <div class="row copyright">
+        <div class="col-md-6">
+          <div class="probootstrap-footer-widget">
+            <p>&copy; 2017 <a href="https://uicookies.com/">uiCookies:Haus</a>. Designed by <a href="https://uicookies.com/">uicookies.com</a> <br> Demo Photos from <a href="https://pixabay.com/">Pixabay</a> &amp; <a href="https://unsplash.com/">Unsplash</a></p>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="probootstrap-footer-widget right">
+            <ul class="probootstrap-footer-social">
+              <li><a href="#"><i class="icon-twitter"></i></a></li>
+              <li><a href="#"><i class="icon-facebook"></i></a></li>
+              <li><a href="#"><i class="icon-instagram2"></i></a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <div class="gototop js-top">
+    <a href="#" class="js-gotop"><i class="icon-chevron-thin-up"></i></a>
+  </div>
+
+  <script src="resources/mainTemplate/js/scripts.min.js"></script>
+  <script src="resources/mainTemplate/js/main.min.js"></script>
+  <script src="resources/mainTemplate/js/custom.js"></script>
+
+  </body>
 </html>

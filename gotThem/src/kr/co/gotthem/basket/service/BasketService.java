@@ -4,12 +4,17 @@ import java.util.List;
 
 import kr.co.gotthem.basket.bean.BasketBean;
 
-public interface BasketService {
-		
-    // 1. 장바구니 추가
-    public void insertBasket(BasketBean basketBean);
+public interface BasketService {	
+	
+	//*public void delete(int bas_no);*/
+	
+	// 1. 장바구니 추가
+   public void insertBasket(BasketBean basketBean);
+   // 1.1 상품 삭제
+   public void deleteproduct(int bas_no);
+    
+   // 2. 장바구니 목록
 
-    // 2. 장바구니 목록
     public List<BasketBean> listBasket(int bas_memno);
     
     // 3. 장바구니 삭제

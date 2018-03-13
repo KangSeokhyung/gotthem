@@ -1,7 +1,6 @@
 package kr.co.gotthem.store.controller;
 
 import java.io.PrintWriter;
-import java.util.StringTokenizer;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -88,45 +87,8 @@ public class StoreController {
 	}
 	
 	@RequestMapping(value = "/mystore.st", method = RequestMethod.GET)
-	public ModelAndView mystore(ModelAndView mav) throws Exception{
-
-		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-		String mem_id = authentication.getName();
-		MemberBean memberInfo = memberService.memberInfo(mem_id);
-		String mem_address = memberInfo.getMem_address();
-		StringTokenizer  st = new StringTokenizer(mem_address,"/");
-		String post = st.nextToken();
-		String address1 = st.nextToken();
-		String address2 = st.nextToken();
-		mav.addObject("mem_post", post);
-		mav.addObject("mem_address1", address1);
-		mav.addObject("mem_address2", address2);
-		mav.addObject("info", memberInfo);
-		mav.setViewName("store/mystore");
-		return mav;
-	}
-	
-	@RequestMapping(value = "/mystoreModi.st", method = RequestMethod.GET)
-	public ModelAndView memberModi(ModelAndView mav) {
-		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-		String mem_id = authentication.getName();
-		MemberBean memberInfo = memberService.memberInfo(mem_id);
-		String mem_address = memberInfo.getMem_address();
-		StringTokenizer  st = new StringTokenizer(mem_address,"/");
-		String post = st.nextToken();       
-		String address1 = st.nextToken();      
-		String address2 = st.nextToken();      
-		mav.addObject("mem_post", post);
-		mav.addObject("mem_address1", address1);
-		mav.addObject("mem_address2", address2);
-		mav.addObject("memberInfo", memberInfo);
-		mav.setViewName("store/mystoreModi");
-		return mav;
-	}
-	
-	@RequestMapping(value = "/storeModi.st", method = RequestMethod.POST)
-	public String memberUpdate(MemberBean bean) {
-		memberService.memberModifi(bean);
+	public String mystore(HttpServletRequest request, HttpSession session) throws Exception{
+		System.out.println("마이스토어 진입");
 		return "store/mystore";
 	}
 	
@@ -183,7 +145,7 @@ public class StoreController {
 		mav.setViewName("store/findIDAndPW");
 		return mav;
 	}
-	
+
 	@RequestMapping(value = "loginfail.st", method= RequestMethod.GET)
 	public String lgfail(HttpServletRequest request) {
 		String id = (String)request.getParameter("sto_id");

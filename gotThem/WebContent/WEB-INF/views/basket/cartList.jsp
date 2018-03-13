@@ -18,47 +18,9 @@
     <![endif]-->
 </head>
 <body>
-  <!-- START: header -->
-   <header role="banner" class="probootstrap-header">
-    <div class="container">
-        <a href="/gotThem" class="probootstrap-logo">GOT THEM<span>.</span></a>       
-        <a href="#" class="probootstrap-burger-menu visible-xs" ><i>Menu</i></a>
-        <div class="mobile-menu-overlay"></div>
-        <nav role="navigation" class="probootstrap-nav hidden-xs">
-          <ul class="probootstrap-main-nav">
-            <li><a href="#">GOTTHEM</a></li>
-            <li><a href="#">NOTICE</a></li>
-            <li><a href="#">EVENT</a></li>
-            <li><a href="#">CART<span style="color: #FE2E2E;">&nbsp;&nbsp;${map.count}</span></a></li>           
-            <c:set var="sessionCheck"
-					value="${sessionScope.SPRING_SECURITY_CONTEXT}" />
-				<c:choose>
-					<c:when test="${sessionCheck eq null}">
-            <li><a href="join.gt">SIGN UP</a></li>
-            <li><a href="login.gt">LOGIN</a></li>
-            		</c:when>
-					<c:otherwise>
-			<li><a href="mypage.gt">MY PAGE</a></li>
-            <li><a href="logout.gt">LOGOUT</a></li>
-				</c:otherwise>
-				</c:choose>
-          </ul>
-          <div class="extra-text visible-xs"> 
-            <a href="#" class="probootstrap-burger-menu"><i>Menu</i></a>
-            <h5>Address</h5>
-            <p>198 West 21th Street, Suite 721 New York NY 10016</p>
-            <h5>Connect</h5>
-            <ul class="social-buttons">
-              <li><a href="#"><i class="icon-twitter"></i></a></li>
-              <li><a href="#"><i class="icon-facebook2"></i></a></li>
-              <li><a href="#"><i class="icon-instagram2"></i></a></li>
-            </ul>
-          </div>
-        </nav>
-    </div>
-  </header>
-  <div class="probootstrap-loader"></div>
-  <!-- END: header -->
+<header>
+<%@include file="../../../nav.jsp" %>
+</header>
  <section class="probootstrap-slider flexslider2 page-inner">
     <div class="overlay"></div>
     <div class="probootstrap-wrap-banner">
@@ -242,13 +204,18 @@ function button_order(bas_no,bas_proname,bas_procode,money,bas_prostock,bas_proi
 		}
 	}  
 function button_selDel(){  //장바구니 선택 삭제
-  if( $(":checkbox[name='checkRow']:checked").length==1 ){
-	  alert("삭제할 항목을 2이상 체크해주세요.");
+   if( $(":checkbox[name='checkRow']:checked").length==0 ){
+	  alert("삭제할 항목을 체크해주세요.");
 	 return;
     } 
   var checkArr = [];
   $("input[name='checkRow']:checked").each(function(i){
-	  checkArr.push($(this).val());
+	  if( $(":checkbox[name='checkRow']:checked").length==1 ){
+		  checkArr.push($(this).val());
+		  checkArr.push('[]');
+	  } else {
+		  checkArr.push($(this).val());
+		  }
 	  });
   if (confirm("선택한 상품을 삭제하시겠습니까?")){
 	  $.ajax({
@@ -266,13 +233,18 @@ function button_selDel(){  //장바구니 선택 삭제
 	  }
   }  
 function button_selOrder(){  //장바구니 선택 결제
-	if( $(":checkbox[name='checkRow']:checked").length==1 ){
-		alert("결제할 항목을 2이상 체크해주세요.");
+	if( $(":checkbox[name='checkRow']:checked").length==0 ){
+		alert("결제할 항목을 체크해주세요.");
 		return;
 		}
 	var checkOrder = [];
 	$("input[name='checkRow']:checked").each(function(i){
-		checkOrder.push($(this).val());
+		if( $(":checkbox[name='checkRow']:checked").length==1 ){
+			checkOrder.push($(this).val());
+			checkOrder.push('[]');
+		  } else {
+			  checkOrder.push($(this).val());
+			  }
 		});
 	if (confirm("선택한 상품을 결제 하시겠습니까?")){
 		$.ajax({

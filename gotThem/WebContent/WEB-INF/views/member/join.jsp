@@ -7,7 +7,6 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>편의점 재고 검색 GOT THEM!</title>
-    <meta name="description" content="Free Bootstrap Theme by uicookies.com">
     <meta name="keywords" content="free website templates, free bootstrap themes, free template, free bootstrap, free website template">
     
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400" rel="stylesheet">
@@ -23,12 +22,18 @@
     header{
     padding-bottom:80px;
     }
+<<<<<<< HEAD
+    #sample6_postcode{
+    margin-left: -10px;
+    }
+=======
     
     input[type="number"]::-webkit-outer-spin-button,
 	input[type="number"]::-webkit-inner-spin-button {
     -webkit-appearance: none;
 	text-align:center;
 }
+>>>>>>> branch 'sungwoo' of https://github.com/KangSeokhyung/gotthem.git
     </style>
   </head>
 <body>
@@ -98,8 +103,19 @@
     </ul>
   </section>
   <!-- END: slider  -->
-  <section class="mbr-section form1 cid-qIWKYtQnJh" id="form1-r">
+  
+  	<section class="probootstrap-section">
     <div class="container">
+<<<<<<< HEAD
+      <div class="row">
+        <div class="col-md-3">
+			<h4>WELCOME TO GOT THEM</h4>
+          <ul class="with-icon colored">
+            <li>아이디는 자 이내의 영문, 숫자만<br>가능합니다.</span></li>
+            <li>info@domain.com</li>
+            <li>+123 456 7890</span></li>
+          </ul>
+=======
         <div class="row justify-content-center">
             <div class="title col-12 col-lg-8">
                 <h3 class="mbr-section-title align-center pb-3 mbr-fonts-style">
@@ -202,7 +218,102 @@
     </div>
     <input type="button" onclick="numkeyCheck(event);" value="test">
 </section>
+>>>>>>> branch 'sungwoo' of https://github.com/KangSeokhyung/gotthem.git
 
+          <h4>문의사항이 있으신가요?</h4>
+          <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
+          <p><a href="#">Learn More</a></p>
+        </div>
+        <div class="col-md-8 col-md-push-1">
+                  <form action="#" method="post" class="probootstrap-form mb60">
+            <div class="row">
+              <div class="col-sm-6">
+                <div class="form-group">
+                  <label for="fname">아이디</label>
+                  <input type="text" class="form-control" id="mem_id" name="mem_id" onkeyup="duplCheck()">
+                   <p id="idcheck" class="text-mute">아이디를 입력해주세요</p>
+                </div>
+              </div>
+              </div>
+              <div class="row">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label for="lname">비밀번호</label>
+                  <input type="password" class="form-control" id="mem_pw" name="mem_pw">
+                   <p class="text-mute" id="pwdCheckMsg" >비밀번호를 입력해주세요</p>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label for="lname">비밀번호 확인</label>
+                  <input type="password" class="form-control" id="mem_pw2" name="mem_pw2" onkeyup="pwCheck()">
+                </div>
+                </div>
+            </div>
+           <div class="row">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label for="lname">이름</label>
+                  <input type="text" class="form-control" id="mem_name" name="mem_name">
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label for="lname">이메일</label>
+                  <input type="email" class="form-control" id="mem_email" name="mem_email">
+                </div>
+              </div>
+            </div>
+           <div class="row">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label for="lname">전화번호</label>
+                  <input type="text" class="form-control" id="mem_phone" name="mem_phone">
+                </div>
+              </div>
+            </div>
+             <div class="row">
+              <div class="col-md-10">
+                <label for="lname">우편번호</label>
+                <div class="card-block">
+				<div class="col-md-6" style="padding-left:0px;">
+				 <div class="form-group">
+							<input type="text" value="" id="mem_post" class="form-control">
+								</div>
+								</div>
+					 <div class="col-md-6">
+							<input type="button" class="btn btn-primary" onclick="sample6_execDaumPostcode()" value="우편번호 찾기">
+							</div>					
+					</div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-9">
+                <div class="form-group">
+                  <label for="lname">상세주소1</label>
+                  <input type="text" class="form-control" id="mem_address1" name="sample6_address">
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-9">
+                <div class="form-group">
+                  <label for="lname">상세주소2</label>
+                  <input type="text" class="form-control" id="mem_address2" name="sample6_address2">
+                </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <input type="submit" class="btn btn-primary" id="submit" name="submit" value="가입하기">
+            </div>        
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>  
+  
 </body>
     <!-- Javascript files-->
     <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>

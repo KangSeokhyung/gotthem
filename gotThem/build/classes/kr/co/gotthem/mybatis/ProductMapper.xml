@@ -28,7 +28,7 @@
 	
 	<insert id="insertPro" parameterType="kr.co.gotthem.product.bean.ProductBean">
 		insert into product(
-		pro_name, pro_stono, pro_category, pro_stock, pro_price)
+		pro_name, pro_memno, pro_category, pro_stock, pro_price)
 		values(
 		#{pro_name}, #{pro_memno}, #{pro_category}, #{pro_stock}, #{pro_price})
 	</insert>
@@ -43,8 +43,8 @@
 		limit #{beginList}, 10 
 	</select>
 	
-	<select id="productInfo" resultType="kr.co.gotthem.product.bean.ProductBean">
-		select * from product where pro_memno = #{mem_no} order by pro_name
+	<select id="productInfo" parameterType="java.util.HashMap" resultType="kr.co.gotthem.product.bean.ProductBean">
+		select * from product where pro_memno = #{mem_no} and pro_category = #{category} order by pro_name
 	</select>
 	
 	<select id="productSearchList" resultType="kr.co.gotthem.product.bean.ProductBean">
@@ -58,5 +58,4 @@
 		where m.mem_no=p.pro_memno and p.pro_name like concat('%', #{search}, '%')
 			or m.sto_name like concat('%', #{search}, '%')
 	</select>
-	
 </mapper>

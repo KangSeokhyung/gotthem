@@ -1,6 +1,12 @@
 package kr.co.gotthem.member.service;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+
+import org.springframework.ui.Model;
+import org.springframework.web.servlet.ModelAndView;
+
 import kr.co.gotthem.member.bean.MemberBean;
 import kr.co.gotthem.member.dao.MemberDao;
 import kr.co.gotthem.member.dao.MemberDaoImpl;
@@ -75,19 +81,34 @@ public class MemberServiceImpl implements MemberService {
 		return result;
 	}
 	
-	public List<MemberBean> mlist(){
-		return memberDao.mlist();
+	public List<MemberBean> mlist(int begin, int end){
+		return memberDao.mlist(begin, end);
 	}
 	
 	@Override
-	public List<MemberBean> stlist(){
-		return memberDao.stlist();
+	public List<MemberBean> stlist(int begin){
+		return memberDao.stlist(begin);
 	}
 	
 	@Override
 	public int changePasswordReal(MemberBean memberBean) {
 		int result = memberDao.changePasswordReal(memberBean);
 		return result;
+	}
+	
+	@Override
+	public int countRow() {
+		return memberDao.countRow();
+	}
+	
+	@Override
+	public int stcountRow() {
+		return memberDao.stcountRow();
+	}
+	
+	@Override
+	public MemberBean storeInfo(int mem_no) {
+		return memberDao.storeInfo(mem_no);
 	}
 	
 }

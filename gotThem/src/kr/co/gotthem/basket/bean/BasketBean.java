@@ -1,6 +1,7 @@
 package kr.co.gotthem.basket.bean;
 
 public class BasketBean {
+
   private int bas_no;
   private int bas_memno;
   private int bas_procode;
@@ -11,6 +12,9 @@ public class BasketBean {
   private String bas_proimg;
   private String bas_procomment;
   private int money;
+  
+  public BasketBean() {
+	}
   
 public int getBas_no() {
 	return bas_no;
@@ -80,5 +84,4 @@ public String toString() {
 			+ bas_procomment + ", money=" + money + "]";
 }
 
- 
 }
