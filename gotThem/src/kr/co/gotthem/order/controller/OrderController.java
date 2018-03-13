@@ -52,7 +52,8 @@ public class OrderController {
    // 1. 장바구니에서 결제 추가
    @RequestMapping(value ="insertOrder.gt",method = RequestMethod.GET)
     public String insertOrder(@RequestParam String bas_no, @RequestParam String bas_prostock, @RequestParam String bas_procode,
-    		            @RequestParam String bas_proname,@RequestParam String money, @RequestParam String bas_proimg, @RequestParam String bas_proprice,
+    		            @RequestParam String bas_proname,@RequestParam String money, @RequestParam String bas_proimg, 
+    		            @RequestParam String bas_proprice,@RequestParam String pro_memno,
     		@ModelAttribute OrderpayBean orderBean,HttpServletRequest req, HttpServletResponse res )throws Exception {
 	   
 	   Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
@@ -70,7 +71,8 @@ public class OrderController {
    	   orderBean.setOrd_basno(Integer.parseInt(bas_no));
        orderBean.setOrd_proimg(bas_proimg);
    	   orderBean.setOrd_no(Integer.parseInt(bas_no));
-   	   
+   	   orderBean.setPro_memno(Integer.parseInt(pro_memno));
+   	
    	   orderService.orderInsert(orderBean);
    	   orderService.orderUpdateBasket(orderBean);
    	   orderService.orderDeleteBasket(orderBean);
@@ -106,7 +108,8 @@ public class OrderController {
     	   String money = st.nextToken();
     	   String bas_proimg = st.nextToken();
        	   String bas_procomment = st.nextToken();
-                     
+		   String pro_memno = st.nextToken();
+          
        	   orderBean.setOrd_memno(userNo);       
            orderBean.setOrd_no(Integer.parseInt(bas_no));        
            orderBean.setOrd_proname(bas_proname);
@@ -115,6 +118,8 @@ public class OrderController {
            orderBean.setOrd_procode(Integer.parseInt(bas_procode));
            orderBean.setOrd_price(Integer.parseInt(money));
            orderBean.setOrd_proimg(bas_proimg);
+           orderBean.setPro_memno(Integer.parseInt(pro_memno));
+           
            System.out.println("orderBean은" + orderBean );
            orderService.orderInsert(orderBean);
           
@@ -156,5 +161,24 @@ public class OrderController {
 	     System.out.println("Order삭제 실행");
 	     return "redirect:/orderList.gt";
 	     }
+     
+     // 3. 사장님 아이디별 전체 결제 목록
+    @RequestMapping("/storeOrderList.st")
+    public ModelAndView listOrderStore(ModelAndView mav)throws Exception {
+   	 
+   	 Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+   	 String mem_id = authentication.getName();
+   	 MemberBean memberInfo = memberService.memberInfo(mem_id);
+   	 int userNo = memberInfo.getMem_no();
+   	 
+   	 Map<String, Object> map = new HashMap<String, Object>();
+        List<OrderpayBean> listOrder = orderService.listOrder(userNo); // 장바구니 정보 
+        System.out.println("listOrder타고 " + listOrder);
+        map.put("list",listOrder);
+        mav.setViewName("/product/storeOrderList");
+        mav.addObject("map", map);
+        return mav;
+        }
+     
      }
 

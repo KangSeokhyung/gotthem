@@ -56,6 +56,7 @@
                    <th>상품코드</th>
                    <th>상품사진</th>
                    <th>상품명</th>
+                   <th>매장명</th>
                    <th>상품수량</th>
                    <th>상품가격</th>
                    <th>결제 가격</th>
@@ -75,6 +76,9 @@
                   </td>
                   <td>
                         ${row.ord_proname}
+                  </td>
+                  <td>
+                        ${row.pro_memno}
                   </td>
                   <td>
                         ${row.ord_stock}

@@ -44,7 +44,7 @@
 			data : { 
 				"bas_procode" : pro_code, 
 				"bas_proname" : pro_name,
-				"bas_memno" : pro_memno,
+				"pro_memno" : pro_memno,
 				"bas_procategory" : pro_category,
 				"bas_prostock" : 1,
 				"bas_proprice" : pro_price,

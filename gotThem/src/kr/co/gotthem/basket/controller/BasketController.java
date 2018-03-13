@@ -77,11 +77,13 @@ public class BasketController {
     
     	MemberBean memberInfo = memberService.memberInfo(mem_id);  
         int userNo = memberInfo.getMem_no();
+        System.out.println("userNo" + userNo );
     	basketBean.setBas_memno(userNo);   
         
     	HttpSession session = req.getSession();
     	List<BasketBean> listBasket = null;
-        int count = basketService.countBasket(basketBean.getBas_procode(),basketBean.getBas_memno());        
+        int count = basketService.countBasket(basketBean.getBas_procode(),basketBean.getBas_memno(),basketBean.getPro_memno());
+        System.out.println("basketBean.getPro_memno()ㅡㄴ" + basketBean.getPro_memno() );
         if (count == 0) {
         	 basketService.insertBasket(basketBean);      	 
         	 System.out.println("userNo는"+ userNo);
@@ -173,7 +175,8 @@ public class BasketController {
            	String money = st.nextToken(); 
            	String bas_proimg = st.nextToken();
            	String bas_procomment = st.nextToken();
- 
+           	String pro_memno = st.nextToken();
+           	
         	basketBean.setBas_memno(userNo);  
         	basketBean.setBas_no(Integer.parseInt(bas_no)); 
         	basketService.deleteBasket(basketBean);
@@ -186,7 +189,7 @@ public class BasketController {
    
    // 4. 장바구니 수정( 수량만 수정)
     @RequestMapping("update.gt")
-  public String update(@RequestParam String[] bas_prostock, @RequestParam String[] bas_procode) throws Exception {
+  public String update(@RequestParam String[] bas_prostock, @RequestParam String[] bas_procode, @RequestParam String[] pro_memno) throws Exception {
   	
     	Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
     	String mem_id = authentication.getName();
@@ -201,6 +204,7 @@ public class BasketController {
         	basketBean.setBas_memno(userNo); 
         	basketBean.setBas_prostock(Integer.parseInt((bas_prostock[i])));
         	basketBean.setBas_procode(Integer.parseInt((bas_procode[i])));
+        	basketBean.setPro_memno(Integer.parseInt((pro_memno[i])));
             basketService.modifyBasket(basketBean);
             System.out.println("for새로 셋팅된 basketBean" + basketBean);
         }
@@ -231,6 +235,7 @@ public class BasketController {
 			String money = st.nextToken();
 			String bas_proimg = st.nextToken();
 			String bas_procomment = st.nextToken();
+			String pro_memno = st.nextToken();
 		}
 		
 		return "redirect:/orderList.gt";
