@@ -59,7 +59,7 @@
     <update id="modifyBasket">
         UPDATE basket   
         SET bas_prostock = #{bas_prostock} 
-        WHERE bas_memno= #{bas_memno} AND bas_procode = #{bas_procode} AND pro_memno = #{pro_memno}
+        WHERE bas_memno= #{bas_memno} AND bas_procode = #{bas_procode} 
     </update>  
  
     <!-- 5. 장바구니 삭제 -->
@@ -103,9 +103,6 @@
         WHERE bas_memno= #{ord_memno} AND bas_no = #{ord_basno}
     </delete> 
     
-    
-    
-    
    <!-- 2. 결제  취소  -->
     <delete id="orderDelete">
         DELETE FROM orderpay
@@ -134,4 +131,10 @@
          ORDER BY ord_no desc
     </select>
 
+    <!-- 3. 사장님 아이디별 전체 결제 목록 -->
+    <select id="storeListOrder" resultType="kr.co.gotthem.order.bean.OrderpayBean">
+         SELECT * FROM orderpay           
+         WHERE pro_memno = #{userNo}
+         ORDER BY ord_no desc
+    </select>
 </mapper>

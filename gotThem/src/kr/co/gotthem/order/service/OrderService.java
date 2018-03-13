@@ -26,5 +26,8 @@ public interface OrderService {
    
    // 3. 아이디별 전체 결제 목록
    public List<OrderpayBean> listOrder(int userNo);
-     
+ 
+   // 3.1 사장님 아이디별 전체 결제 목록
+   public List<OrderpayBean> storeListOrder(int userNo);
+   
 }

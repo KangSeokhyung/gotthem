@@ -31,18 +31,19 @@
 					<th class="text-center" scope="col">장바구니 담기</th>
 				</tr>
 			</thead>
-			<tbody>
+			<tbody id="rowCheck">
 				<c:forEach var="list" items="${productInfo }">
 				<tr>
-					<td><input type="checkbox" name="statusCheck"></td>
-					<td><a href="#"><img src="/img/${list.pro_img}" style="width:50px; height:50px"></a></td>
-					<td><a href="#">${list.pro_name }</a></td>
+					<td><input type="checkbox" name="statusCheck" 
+						value="${list.pro_code },${list.pro_name },${list.pro_memno },${list.pro_category },${list.pro_stock },${list.pro_price },${list.pro_img }"></td>
+					<td><a href="javascript:movedetail(${list.pro_code });"><img src="/img/${list.pro_img }" height="50px" width="50px" title="상품이미지" alt="상품이미지"></a></td>
+					<td><a href="javascript:movedetail(${list.pro_code });">${list.pro_name }</a></td>
 					<td>${list.pro_stock }</td>
 					<td>${list.pro_price }</td>
 					<td>
 						<input type="button" id="basketBtn" value="장바구니" 
 							onclick="addBasket('${list.pro_code }', '${list.pro_name }', '${list.pro_memno }', 
-							'${list.pro_category }', '${list.pro_price }', '${list.pro_img }')">
+							'${list.pro_category }', '${list.pro_price }', '${list.pro_img }', '${list.pro_stock }')">
 					</td>
 				</tr>
 				</c:forEach>

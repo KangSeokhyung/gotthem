@@ -27,9 +27,16 @@
 <script src="https://code.jquery.com/jquery-3.2.1.js"></script>
 <script type="text/javascript">
 
-	$(document).on("click", "#statusCheck tr", function(event){
-		if(event.target.nodeName.toLowerCase() == 'td') {
-			var checkbox = $(this).find('td:first-child :checkbox');
+	$(document).on("click", "#rowCheck tr", function(event){
+		if(event.target.nodeName.toLowerCase() == "td") {
+			var checkbox = $(this).find("td:first-child :checkbox");
+			
+			var stock = $(this).find("td:nth-child(4)");
+			if (stock.text()*1 == 0) {
+				alert("해당 상품이 매진되어 선택할 수 없습니다.");
+				return false;
+			}
+			
 			if (checkbox.is(":checked")) {
 				checkbox.prop("checked", false);
 			} else {
@@ -38,7 +45,11 @@
 		}
 	});
 		
-	function addBasket(pro_code, pro_name, pro_memno, pro_category, pro_price, pro_img) {
+	function addBasket(pro_code, pro_name, pro_memno, pro_category, pro_price, pro_img, pro_stock) {
+		if (pro_stock < 1) {
+			alert("해당 상품이 매진되었습니다.");
+			return false;
+		}
 		$.ajax({
 			url : "insertBasket.gt",
 			data : { 
@@ -63,20 +74,27 @@
 	
 	function selectAddBasket() {
 		var checkList = [];
+		var checkOne = "";
+		
+		if ($("input[name='statusCheck']:checked").length == 0) {
+			alert("장바구니에 담을 상품을 선택해주세요.");
+			return false;
+		} else if ($("input[name='statusCheck']:checked").length == 1) {
+			checkOne = $("input[name='statusCheck']:checked").val();
+		}
 		
 		$("input[name='statusCheck']:checked").each(function(i) {
 			checkList.push($(this).val());
 		});
 		
-		
-		
-		/* $.ajax({
+		alert(checkList);
+		$.ajax({
 			url : "selectAddBasket.gt",
 			type : "post",
-			data : { "checkList" : checkList },
+			data : { "checkList" : checkList, "checkOne" : checkOne },
 			success : function(result){
-				if (confirm("장바구니 페이지로 이동 하시겠습니까?")) {
-					location.href="./orderList.gt";	
+				if (confirm("장바구니에 추가되었습니다.\n장바구니 페이지로 이동 하시겠습니까?")) {
+					location.href="listBasket.gt";	
 				} else {
 					return false;
 				}
@@ -84,7 +102,11 @@
 			error : function(xmlHttpReq, status, error) {
 				alert("오류가 발생했습니다. 시스템 관리자에게 문의해주세요.");
 			}
-		}); */
+		}); 
+	}
+	
+	function movedetail(pro_code) {
+		location.href="productDetail.gt?pro_code=" + pro_code;
 	}
 </script>
 </head>
@@ -123,7 +145,7 @@
 <section class="probootstrap-section">
   <div class="container">
     <div class="col-sm-12">
-    	
+    	<input type="button" onclick="" value="장바구니 가기">
     </div>
     <div class="row probootstrap-gutter10">
       <div class="col-sm-12">

@@ -21,12 +21,14 @@ public interface ProductDao {
 
 	public List<ProductBean> listProduct();
 
-	List productInfo(int mem_no, String category);
+	public List productInfo(int mem_no, String category);
 
-	List searchList(HashMap<String, Object> map);
+	public List searchList(HashMap<String, Object> map);
 
-	List productSearchList(Map<String, Object> map);
+	public List productSearchList(Map<String, Object> map);
 
-	int searchListCount(String search);
+	public int searchListCount(String search);
+
+	public ProductBean productDetail(int pro_code);
 
 }

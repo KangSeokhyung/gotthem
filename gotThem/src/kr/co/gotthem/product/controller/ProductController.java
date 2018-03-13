@@ -178,4 +178,14 @@ public class ProductController {
 		
 		return jProductList;
 	}
+	
+	@RequestMapping(value = "/productDetail.gt")
+	public String productDetail(Model model, ProductBean productInfo) {
+		
+		productInfo = productService.productDetail(productInfo.getPro_code());
+		
+		model.addAttribute("productInfo", productInfo);
+		
+		return "product/productDetail";
+	}
 }

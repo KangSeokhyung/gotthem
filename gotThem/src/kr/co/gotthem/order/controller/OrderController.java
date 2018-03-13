@@ -64,6 +64,7 @@ public class OrderController {
        int userNo = memberInfo.getMem_no();
        orderBean.setOrd_memno(userNo);
        orderBean.setOrd_proprice(Integer.parseInt(bas_proprice));
+       System.out.println("bas_proprice"+ bas_proprice );
    	   orderBean.setOrd_stock(Integer.parseInt(bas_prostock));
    	   orderBean.setOrd_procode(Integer.parseInt(bas_procode));
    	   orderBean.setOrd_proname(bas_proname);
@@ -162,23 +163,25 @@ public class OrderController {
 	     return "redirect:/orderList.gt";
 	     }
      
-     // 3. 사장님 아이디별 전체 결제 목록
-    @RequestMapping("/storeOrderList.st")
-    public ModelAndView listOrderStore(ModelAndView mav)throws Exception {
-   	 
-   	 Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-   	 String mem_id = authentication.getName();
-   	 MemberBean memberInfo = memberService.memberInfo(mem_id);
-   	 int userNo = memberInfo.getMem_no();
-   	 
-   	 Map<String, Object> map = new HashMap<String, Object>();
-        List<OrderpayBean> listOrder = orderService.listOrder(userNo); // 장바구니 정보 
-        System.out.println("listOrder타고 " + listOrder);
-        map.put("list",listOrder);
-        mav.setViewName("/product/storeOrderList");
-        mav.addObject("map", map);
-        return mav;
-        }
-     
-     }
 
+     
+	// 3. 사장님 아이디별 전체 결제 목록
+	@RequestMapping("/storeOrderList.st")
+	public ModelAndView listOrderStore(ModelAndView mav) throws Exception {
+
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+		String mem_id = authentication.getName();
+		MemberBean memberInfo = memberService.memberInfo(mem_id);
+		int userNo = memberInfo.getMem_no();
+		System.out.println("userNo타고 " + userNo);
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		List<OrderpayBean> slistOrder = orderService.storeListOrder(userNo);
+		System.out.println("storeLisOrder타고 " + slistOrder);
+		map.put("list", slistOrder);
+		mav.setViewName("/product/storeOrderList");
+		mav.addObject("map", map);
+		return mav;
+	}
+
+}
