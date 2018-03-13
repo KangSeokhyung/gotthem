@@ -75,5 +75,10 @@ public class ProductDaoImpl implements ProductDao {
 	public int searchListCount(String search) {
 		return sqlSessionTemplate.selectOne("searchListCount", search);
 	}
+
+	@Override
+	public ProductBean productDetail(int pro_code) {
+		return sqlSessionTemplate.selectOne("productDetail", pro_code);
+	}
 	
 }

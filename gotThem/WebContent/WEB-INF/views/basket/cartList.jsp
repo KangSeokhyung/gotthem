@@ -267,7 +267,7 @@ function button_selDel(){  //장바구니 선택 삭제
 	  }
   }  
 function button_selOrder(){  //장바구니 선택 결제
-	if( $(":checkbox[name='checkRow']:checked").length==1 ){
+	if( $(":checkbox[name='checkRow']:checked").length < 2 ){
 		alert("결제할 항목을 2이상 체크해주세요.");
 		return;
 		}

@@ -120,5 +120,10 @@ public class ProductServiceImpl implements ProductService {
 	public List productSearchList(Map<String, Object> map) {
 		return productDao.productSearchList(map);
 	}
+
+	@Override
+	public ProductBean productDetail(int pro_code) {
+		return productDao.productDetail(pro_code);
+	}
 	
 }

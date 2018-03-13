@@ -20,145 +20,111 @@
       <script src="resources/mainTemplate/js/vendor/respond.min.js"></script>
     <![endif]-->
 <style type="text/css">
-#releatedField { position: absolute; width: 96%; }
-#releatedField a { color: #66615b; text-decoration: none; }
+
 </style>  
 <script src="https://code.jquery.com/jquery-3.2.1.js"></script>
 <script type="text/javascript">
-	function relatedSearch() {
-		$("#releatedField").html("");
-		var search = $("#search").val();
-		if(search != ""){
-			$.ajax({
-				url : "relatedSearch.gt",
-				data : { "search" : search },
-				type : "post",
-				success : function(relatedData) {
-					var ob = JSON.parse(relatedData);
-					var innerHtml = "<div class='list-group'>";
-					for (var i = 0; i < 5; i++) {
-						if (typeof(ob["search" + i]) != "undefined") {
-							innerHtml += "<a href='searchList.gt?search=" +  ob["search" + i] 
-									  + "&pageNo=1' class='list-group-item list-group-item-action'>" 
-									  +  ob["search" + i] + "</a>";
-						}
-					}
-					innerHtml += "</div>"
-					$("#releatedField").append(innerHtml);
-				},
-				error : function(xmlHttpReq, status, error) {
-					alert(xmlHttpReq + "리퀘스트\n" + status + "상태\n" + error + "에러\n");
+	function addBasket() {
+		if ("${productInfo.pro_stock }" < 1) {
+			alert("해당 상품이 매진되었습니다.");
+			return false;
+		}
+		
+		$.ajax({
+			url : "insertBasket.gt",
+			data : { 
+				"bas_procode" : "${productInfo.pro_code }", 
+				"bas_proname" : "${productInfo.pro_name }",
+				"bas_memno" : "${productInfo.pro_memno }",
+				"bas_procategory" : "${productInfo.pro_category }",
+				"bas_prostock" : 1,
+				"bas_proprice" : "${productInfo.pro_price }",
+				"bas_proimg" : "${productInfo.pro_img }"
+			},
+			type : "post",
+			success : function(check) {
+				//장바구니 추가됨.. 그리고 계속 쇼핑할 것인지 장바구니로 갈 것인지 정하기
+				if (confirm("장바구니에 추가됐습니다. 장바구니로 가시겠으면 '확인',\n계속 쇼핑하시겠으면 '취소'를 클릭해주세요.")) {
+					location.href="listBasket.gt";
+				} else {
+					return false;
 				}
-			});
+			},
+			error : function(xmlHttpReq, status, error) {
+				alert("오류가 발생했습니다. 시스템 관리자에게 문의해주세요.");
+			}
+		});
+	}
+	
+	function selectCount(idx) {
+		var pro_stock = $("#pro_stock").val();
+		var totalPrice = $("#totalPrice").text() * 1;
+		if (idx == 1) {
+			if (pro_stock == 0) {
+				return false;
+			}
+			$("#pro_stock").val(pro_stock * 1 - 1);
+			totalPrice -= ${productInfo.pro_price };
+			$("#totalPrice").text(totalPrice);
+		} else {
+			if (pro_stock >= ${productInfo.pro_stock }) {
+				alert("상품수량보다 적게 입력이 가능합니다.");
+				return false;
+			}
+			$("#pro_stock").val(pro_stock * 1 + 1);
+			totalPrice += ${productInfo.pro_price };
+			$("#totalPrice").text(totalPrice);
 		}
 	}
 </script>
 </head>
 <body>
-
+  
 <div class="probootstrap-loader"></div>
 <!-- START: header -->
 <header>
 <%@include file="../../../nav.jsp" %>
 </header>
-  <!-- END: header -->
+<!-- END: header -->
 
 <section class="probootstrap-section probootstrap-section-lighter">
-	<div class="probootstrap-wrap-banner">
-	  <div class="container">
-	    <div class="row">
-	      <div class="col-sm-12">
-	      	<h1>지도 API 자리</h1>
-	      </div>
-	    </div>
-	  </div>
+  <div class="container">
+    <div class="row">
+    	<div class="col-sm-12">
+		</div>
+    </div>
   </div>
 </section>
 
 <section class="probootstrap-section">
   <div class="container">
-  <form action="searchList.gt" method="get">
-  	<div class="col-xs-8 col-sm-8">
-		<input type="hidden" name="pageNo" value="1">
-		<input type="text" class="form-control" name="search" autocomplete="off"
-			id="search" onkeyup="relatedSearch()"
-			placeholder="예) 김밥, 강남역" />
-		<div id="releatedField"></div>
-	</div>
-	<div class="col-xs-1">
-       	<input type="submit" class="btn btn-fill btn-danger" value="검색">
+    <div class="row probootstrap-gutter10">
+    	<div class="col-xs-6">
+    		<img src="/img/${productInfo.pro_img }" height="350px" width="270px" title="상품이미지" alt="상품이미지">
+    	</div>
+    	<div class="col-xs-6">
+    		<h1>상품 이름 : ${productInfo.pro_name }</h1>
+    		상품 카테고리 : ${productInfo.pro_category } <br>
+    		상품 가격 : ${productInfo.pro_price } <br>
+    		상품 설명 : ${productInfo.pro_comment } <br>
+    		상품 수량 : ${productInfo.pro_stock }
+    		
+    		<div style="border: 1px solid gray; ">
+	    		선택 수량 : 
+	    		<input type="button" id="plusBtn" onclick="selectCount(1)" value="-">
+	    		<input type="text" id="pro_stock" name="pro_stock" value="1">
+	    		<input type="button" id="minusBtn" onclick="selectCount(2)" value="+"><br>
+	    		<label style="float: right;">합계 가격 : 
+	    		<span id="totalPrice">${productInfo.pro_price }</span></label><br>
+	    		<input type="text" name="total_pro_price" value=""> 
+	    	</div>
+	    	
+    		<input type="button" onclick="" value="결제">
+    		<input type="button" onclick="addBasket()" value="장바구니">
+    		<input type="button" onclick="history.back();" value="뒤로">
+    	</div>
     </div>
-    </form>
   </div>
-  
-  <div class="container">
-  <hr>
-   	<span><strong>${search }</strong> 검색결과</span>
-   	<br><br>
-   	<div class="row">
-   		<table class="table table-bordered table-hover">
-		<colgroup>
-			<col width="15%" />
-			<col width="25%" />
-			<col width="25%" />
-			<col width="35%" />
-		</colgroup>
-		<thead>
-			<tr>
-				<th></th>
-				<th class="text-center">매장이름</th>
-				<th class="text-center">상품명</th>
-				<th class="text-center">매장주소</th>
-			</tr>
-		</thead>
-		<tbody>
-			<c:forEach var="list" items="${searchList }">
-			<tr>
-				<th class="text-center"><a href="storeDetail.gt?mem_no=${list.mem_no }">
-						<img src="<%=request.getContextPath() %>/resources/join/images/img-01.png" 
-							class="img-thumbnail img-responsive" height="130px" width="100px"
-							title="${list.pro_img} 썸네일 매장 이미지" alt="썸네일 매장 이미지">
-					</a>
-				</th>
-				<td class="text-center"><a href="storeDetail.gt?mem_no=${list.mem_no }">${list.sto_name }</a></td>
-				<td class="text-center">${list.pro_name }</td>
-				<td class="text-center">${list.mem_address }</td>
-			</tr>
-			</c:forEach>
-		</tbody>
-	</table>
-	<div id="paging">
-		<c:if test="${totalPages ne 0}">
-		<ul class="pagination pagination-danger">
-			<c:choose>
-				<c:when test="${prevPage ne 0}">
-					<li class="page-item"><a class="page-link" 
-						href="searchList.gt?search=${search }&pageNo=${prevPage }">&laquo;</a></li>
-				</c:when>
-			</c:choose>
-				<c:forEach begin="${beginPage }" end="${endPage }" step="1" varStatus="status">
-					<c:choose>
-						<c:when test="${nowPage eq status.index }">
-							<li class="page-item active"><a class="page-link" 
-								href="searchList.gt?search=${search }&pageNo=${status.index }">${status.index }</a></li>
-						</c:when>
-						<c:otherwise>
-							<li class="page-item"><a class="page-link" 
-								href="searchList.gt?search=${search }&pageNo=${status.index }">${status.index }</a></li>
-						</c:otherwise>
-					</c:choose>
-				</c:forEach>
-			<c:choose>
-				<c:when test="${nextPage ne 0 }">
-					<li class="page-item"><a class="page-link" 
-						href="searchList.gt?search=${search }&pageNo=${nextPage }">&raquo;</a></li>
-				</c:when>
-			</c:choose>
-		</ul>
-		</c:if>
-	</div>
-   	</div>
-   </div>
 </section>
 
   <footer class="probootstrap-footer probootstrap-bg" style="background-image: url(img/slider_3.jpg)">
@@ -230,7 +196,6 @@
   <div class="gototop js-top">
     <a href="#" class="js-gotop"><i class="icon-chevron-thin-up"></i></a>
   </div>
-  
 
   <script src="resources/mainTemplate/js/scripts.min.js"></script>
   <script src="resources/mainTemplate/js/main.min.js"></script>

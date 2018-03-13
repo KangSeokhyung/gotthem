@@ -24,8 +24,10 @@ public interface ProductService {
 
     public List productInfo(int mem_no, String category);
 
-	List productSearchList(Map<String, Object> map);
+    public List productSearchList(Map<String, Object> map);
 
-	List searchList(Model model, String search, int pageNo);
+	public List searchList(Model model, String search, int pageNo);
+
+	public ProductBean productDetail(int pro_code);
 
 }

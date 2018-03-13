@@ -3,6 +3,7 @@ package kr.co.gotthem.basket.controller;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.StringTokenizer;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -25,6 +26,7 @@ import kr.co.gotthem.member.service.MemberService;
 import kr.co.gotthem.order.bean.OrderpayBean;
 import kr.co.gotthem.order.service.OrderService;
 import kr.co.gotthem.product.service.ProductService;
+import oracle.sql.CHAR;
 
 @Controller
 public class BasketController {
@@ -63,14 +65,11 @@ public class BasketController {
         int count = basketService.countBasket(basketBean.getBas_procode(),basketBean.getBas_memno());
         
         if (count == 0) {
-        	 basketBean.setBas_proname(basketBean.getBas_proname());
-        	 basketBean.setBas_proprice(basketBean.getBas_proprice());
-        	 basketBean.setBas_procategory(basketBean.getBas_procategory());
-        	 basketService.insertBasket(basketBean);
-        	System.out.println("0 == insert 실행" );
+        	basketService.insertBasket(basketBean);
+        	System.out.println("첫 상품 장바구니 인서트" );
         } else {
         	basketService.updateBasket(basketBean);
-        	System.out.println("0 아닐 때 insert 실행" );
+        	System.out.println("존재하는 상품 인서트" );
         }
     }
  
@@ -176,30 +175,79 @@ public class BasketController {
    	
     // 5. 편의점 상세에서 장바구니 선택 추가
 	@RequestMapping(value = "selectAddBasket.gt", method = RequestMethod.POST)
-	public String selectAddBasket(@RequestParam (value= "checkList[]") List checkList, 
-			BasketBean basketBean) throws Exception {
+	@ResponseBody
+	public void selectAddBasket(@RequestParam (value= "checkList[]") List checkList, 
+			@RequestParam String checkOne, BasketBean basketBean) throws Exception {
 
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 		String mem_id = authentication.getName();
 
 		MemberBean memberInfo = memberService.memberInfo(mem_id);
 		int userNo = memberInfo.getMem_no();
-
-		String A = null;
-		for (int i = 0; i < checkList.size(); i++) {
-			A = (String) checkList.get(i);
-			
-			java.util.StringTokenizer st = new java.util.StringTokenizer(A, ",");
-			String bas_no = st.nextToken();
-			String bas_proname = st.nextToken();
-			String bas_proprice = st.nextToken();
-			String bas_prostock = st.nextToken();
-			String bas_procode = st.nextToken();
-			String money = st.nextToken();
-			String bas_proimg = st.nextToken();
-			String bas_procomment = st.nextToken();
-		}
+		basketBean.setBas_memno(userNo); 
 		
-		return "redirect:/orderList.gt";
+		StringTokenizer st = null;
+		String row = null;
+		
+		if (!(checkOne.equals(""))) { 
+			st = new StringTokenizer(checkOne, ",");
+			String bas_procode = st.nextToken();
+			String bas_proname = st.nextToken();
+			String bas_memno = st.nextToken();
+			String bas_procategory = st.nextToken();
+			String bas_prostock = st.nextToken();
+			String bas_proprice = st.nextToken();
+			String bas_proimg = st.nextToken();
+			
+			basketBean.setBas_procode(Integer.parseInt(bas_procode));
+			basketBean.setBas_proname(bas_proname);
+			basketBean.setBas_memno(Integer.parseInt(bas_memno));
+			basketBean.setBas_procategory(bas_procategory);
+			basketBean.setBas_prostock(Integer.parseInt(bas_prostock));
+			basketBean.setBas_proprice(Integer.parseInt(bas_proprice));
+			basketBean.setBas_proimg(bas_proimg);
+	        
+	        int count = basketService.countBasket(basketBean.getBas_procode(),basketBean.getBas_memno());
+	        
+	        if (count == 0) {
+	        	basketService.insertBasket(basketBean);
+	        	System.out.println("0 == insert 실행" );
+	        } else {
+	        	basketService.updateBasket(basketBean);
+	        	System.out.println("0 아닐 때 insert 실행" );
+	        }
+		} else {
+			for (int i = 0; i < checkList.size(); i++) {
+				row = (String) checkList.get(i);		
+				
+				st = new StringTokenizer(row, ",");
+				
+				String bas_procode = st.nextToken();
+				String bas_proname = st.nextToken();
+				String bas_memno = st.nextToken();
+				String bas_procategory = st.nextToken();
+				String bas_prostock = st.nextToken();
+				String bas_proprice = st.nextToken();
+				String bas_proimg = st.nextToken();
+				
+				basketBean.setBas_procode(Integer.parseInt(bas_procode));
+				basketBean.setBas_proname(bas_proname);
+				basketBean.setBas_memno(Integer.parseInt(bas_memno));
+				basketBean.setBas_procategory(bas_procategory);
+				basketBean.setBas_prostock(Integer.parseInt(bas_prostock));
+				basketBean.setBas_proprice(Integer.parseInt(bas_proprice));
+				basketBean.setBas_proimg(bas_proimg);
+		        
+		        int count = basketService.countBasket(basketBean.getBas_procode(),basketBean.getBas_memno());
+		        
+		        if (count == 0) {
+		        	basketService.insertBasket(basketBean);
+		        	System.out.println("0 == insert 실행" );
+		        } else {
+		        	basketService.updateBasket(basketBean);
+		        	System.out.println("0 아닐 때 insert 실행" );
+		        }
+			}
+		}
 	}
 }

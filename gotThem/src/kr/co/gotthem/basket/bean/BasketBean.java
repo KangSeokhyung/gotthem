@@ -10,8 +10,17 @@ public class BasketBean {
 	private String bas_procategory;
 	private String bas_proimg;
 	private String bas_procomment;
+	private int money;
 	
 	public BasketBean() {
+	}
+
+	public int getMoney() {
+		return money;
+	}
+
+	public void setMoney(int money) {
+		this.money = money;
 	}
 
 	public int getBas_no() {
@@ -91,7 +100,7 @@ public class BasketBean {
 		return "BasketBean [bas_no=" + bas_no + ", bas_memno=" + bas_memno + ", bas_procode=" + bas_procode
 				+ ", bas_proname=" + bas_proname + ", bas_prostock=" + bas_prostock + ", bas_proprice=" + bas_proprice
 				+ ", bas_procategory=" + bas_procategory + ", bas_proimg=" + bas_proimg + ", bas_procomment="
-				+ bas_procomment + "]";
+				+ bas_procomment + ", money=" + money + "]";
 	}
-	
+
 }

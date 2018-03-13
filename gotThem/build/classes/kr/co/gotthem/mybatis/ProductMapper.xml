@@ -58,4 +58,8 @@
 		where m.mem_no=p.pro_memno and p.pro_name like concat('%', #{search}, '%')
 			or m.sto_name like concat('%', #{search}, '%')
 	</select>
+	
+	<select id="productDetail" resultType="kr.co.gotthem.product.bean.ProductBean">
+		select * from product where pro_code = #{pro_code}
+	</select>
 </mapper>
