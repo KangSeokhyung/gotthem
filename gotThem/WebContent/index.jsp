@@ -14,8 +14,7 @@
     <link rel="stylesheet" href="resources/mainTemplate/css/styles-merged.css">
     <link rel="stylesheet" href="resources/mainTemplate/css/style.min.css">
     <link rel="stylesheet" href="resources/mainTemplate/css/custom.css">
-
-    <!--[if lt IE 9]>
+     <!--[if lt IE 9]>
       <script src="resources/mainTemplate/js/vendor/html5shiv.min.js"></script>
       <script src="resources/mainTemplate/js/vendor/respond.min.js"></script>
     <![endif]-->
@@ -146,7 +145,7 @@
       <div class="row probootstrap-gutter10">
         <div class="col-md-6 col-sm-6">
           <a href="#" class="probootstrap-hover-overlay">
-            <img src="resources/mainTemplate/img/slider_2.jpg" alt="Free Bootstrap Template by uicookies.com" class="img-responsive">
+            <img src="resources/mainTemplate/img/cu.png" alt="Free Bootstrap Template by uicookies.com" class="img-responsive">
             <div class="probootstrap-text-overlay">
               <h3>씨유 강남점</h3>
             </div>
@@ -154,7 +153,7 @@
         </div>
         <div class="col-md-6 col-sm-6">
           <a href="#" class="probootstrap-hover-overlay">
-            <img src="resources/mainTemplate/img/slider_1.jpg" alt="Free Bootstrap Template by uicookies.com" class="img-responsive">
+            <img src="resources/mainTemplate/img/gs25.jpg" alt="Free Bootstrap Template by uicookies.com" class="img-responsive">
             <div class="probootstrap-text-overlay">
               <h3>GS25 서울대입구점</h3>
             </div>
@@ -196,7 +195,7 @@
   </section>
   <!-- END: section -->
 
-  <section class="probootstrap-section probootstrap-bg" style="background-image: url(img/slider_2.jpg);">
+  <section class="probootstrap-section probootstrap-bg" style="background-image: url(resources/mainTemplate/img/partner.jpg); background-size:cover;">
     <div class="container text-center probootstrap-animate" data-animate-effect="fadeIn">
       <h2 class="heading">저희와 제휴를 원하시나요?</h2>
       <p class="sub-heading">많은 점주 분들이 <strong>GOT THEM</strong>과 제휴 한 이후로 매출이 상승했습니다.<br>
@@ -224,7 +223,6 @@
         </div>
     </div>
   </footer>
-
   <div class="gototop js-top">
     <a href="#" class="js-gotop"><i class="icon-chevron-thin-up"></i></a>
   </div>
@@ -235,4 +233,6 @@
   <script src="resources/mainTemplate/js/custom.js"></script>
 
   </body>
+
 </html>
+

@@ -13,7 +13,8 @@
 	<context:component-scan base-package="kr.co.gotthem.member"/>
 	
 	<resources mapping="/resources/**" location="/resources/" />
-
+	<resources mapping="/img/**" location="/img/" />
+	
 	<!-- ViewResolver -->
 	<beans:bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<beans:property name="prefix" value="/WEB-INF/views/" />

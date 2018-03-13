@@ -47,10 +47,10 @@ public class ProductController {
 		String mem_id = authentication.getName();
 		
 		MemberBean memberInfo =  memberService.memberInfo(mem_id);
-		int pro_stono = memberInfo.getMem_no();
+		int pro_memno = memberInfo.getMem_no();
 		
-		System.out.println("stono = " + pro_stono);
-		List<ProductBean> result = productService.plist(pro_stono);
+		System.out.println("memno = " + pro_memno);
+		List<ProductBean> result = productService.plist(pro_memno);
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("product/stock");
 		mav.addObject("plist",result);
@@ -116,11 +116,9 @@ public class ProductController {
 	
 	@RequestMapping(value="/insert.st", method=RequestMethod.POST)
 	protected ModelAndView handleRequestInternal(HttpServletRequest req, ProductBean bean) throws Exception {
-		
 		System.out.println(req.getParameter("mem_no"));
-		int pro_stono = (Integer.parseInt(req.getParameter("mem_no")));
-		
-		bean.setPro_stono(pro_stono);
+		int pro_memno = (Integer.parseInt(req.getParameter("mem_no")));
+		bean.setPro_memno(pro_memno);
 		productService.insertPro(bean);
 		
 		return new ModelAndView("redirect:/stock.st");

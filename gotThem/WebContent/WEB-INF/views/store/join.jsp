@@ -8,8 +8,6 @@
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta charset="utf-8">
-<link rel="stylesheet" type="text/css" href="resources/Login_v7/css/util.css">
-<link rel="stylesheet" type="text/css" href="resources/Login_v7/css/main.css">
 <link href="https://fonts.googleapis.com/css?family=Work+Sans"rel="stylesheet">
 <link rel="stylesheet" href="resources/indexTemplate/css/bootstrap.min.css">
 <link rel="stylesheet" href="resources/indexTemplate/css/open-iconic-bootstrap.min.css">
@@ -18,12 +16,12 @@
 <link rel="stylesheet" href="resources/indexTemplate/css/icomoon.css">
 <link rel="stylesheet" href="resources/indexTemplate/css/animate.css">
 <link rel="stylesheet" href="resources/indexTemplate/css/style.css">
-  <link rel="stylesheet" href="resources/stlogin/tether/tether.min.css">
-  <link rel="stylesheet" href="resources/stlogin/bootstrap/css/bootstrap.min.css">
-  <link rel="stylesheet" href="resources/stlogin/bootstrap/css/bootstrap-grid.min.css">
-  <link rel="stylesheet" href="resources/stlogin/bootstrap/css/bootstrap-reboot.min.css">
-  <link rel="stylesheet" href="resources/stlogin/theme/css/style.css">
-  <link rel="stylesheet" href="resources/stlogin/mobirise/css/mbr-additional.css" type="text/css">
+  <link rel="stylesheet" href="resources/boardTemplate/assets/tether/tether.min.css">
+  <link rel="stylesheet" href="resources/boardTemplate/assets/bootstrap/css/bootstrap.min.css">
+  <link rel="stylesheet" href="resources/boardTemplate/assets/bootstrap/css/bootstrap-grid.min.css">
+  <link rel="stylesheet" href="resources/boardTemplate/assets/bootstrap/css/bootstrap-reboot.min.css">
+  <link rel="stylesheet" href="resources/boardTemplate/assets/theme/css/style.css">
+  <link rel="stylesheet" href="resources/boardTemplate/assets/mobirise/css/mbr-additional.css" type="text/css">
 
 </head>
 <body>
@@ -43,7 +41,7 @@
 			<nav class="probootstrap-nav">
 				<ul>
 					<li class="probootstrap-animate"
-						data-animate-effect="fadeInLeft"><a href="/storeIndex">Got them?</a></li>
+						data-animate-effect="fadeInLeft"><a href="storeIndex.st">Got them?</a></li>
 					<li class="probootstrap-animate" data-animate-effect="fadeInLeft"><a
 						href="mystore.st">점포관리</a></li>
 					<li class="probootstrap-animate" data-animate-effect="fadeInLeft"><a
@@ -134,7 +132,7 @@
                                 </div>
                             </div>
                           <div class="col-sm-12 multi-horizontal">
-                          <p class="text-mute" id="pwCheck" >비밀번호를 입력해주세요</p>
+                          <p class="text-mute" id="pwdCheckMsg" >비밀번호를 입력해주세요</p>
                          </div>
                             <div class="col-sm-8 multi-horizontal" data-for="ownername">
                                 <div class="form-group">
@@ -167,7 +165,7 @@
                                 </div>
                             </div>
                          <div class="col-sm-6 multi-horizontal" data-for="findpostcode">
-                            <div class="form-group" style="text-align:center; vertical-align:middle;">
+                            <div class="form-group" style="margin:23px 0px;">
                             <button onclick="sample6_execDaumPostcode()" class="btn btn-primary btn-form display-4">우편번호찾기</button>
                            </div>
                          </div>
@@ -273,17 +271,20 @@
 	          });
 		  }
 	
-        function pwCheck(){
-          	 var pw1 =  document.getElementById("mem_pw").value;
-        	 var pw2 = document.getElementById("mem_pw2").value;
-          		 if(pw1 != pw2){
-          			 	document.getElementById('pwCheck').style.color = "red";
-          			    document.getElementById('pwCheck').innerHTML = "동일한 암호를 입력하세요."; 
-          		 		}else {
-          		 		document.getElementById('pwCheck').style.color = "blue";
-          		 		document.getElementById('pwCheck').innerHTML = "암호가 확인 되었습니다."; 
-          		 		}
-          		 }
+	function pwCheck() {
+		var mem_pwd = $('#mem_pw').val();
+		var mem_pwdCheck = $('#mem_pw2').val();
+		$('#pwdCheckMsg').html('비밀번호는 영문, 숫자 혼합 8자이상  20자 이하로 작성해주세요.').css('color', 'red');
+		if (mem_pwd.length >= 8 || mem_pwdCheck.length >= 8){
+			if (mem_pwd == mem_pwdCheck) {
+				$('#pwdCheckMsg').html('비밀번호가 일치합니다.').css('color', 'blue');
+				$('#pwdConfirm').val('Y');
+			} else {
+				$('#pwdCheckMsg').html('비밀번호가 일치하지 않습니다.').css('color', 'red');
+				$('#pwdConfirm').val('N');
+			}
+		}
+	}
         
 	</script>
 </body>

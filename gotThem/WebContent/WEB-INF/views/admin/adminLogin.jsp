@@ -27,7 +27,7 @@
 						<div class="content">
 							<div class="inner">
 								<h1>관리자 페이지 로그인</h1>
-								<form method="post" action="#">
+								<form method="post">
 										<div class="field half first">
 											<label for="demo-name">아이디</label>
 											<input type="text" name="admin_id" id="demo-name" value=""  />

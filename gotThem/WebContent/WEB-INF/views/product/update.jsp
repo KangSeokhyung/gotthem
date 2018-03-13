@@ -1,17 +1,22 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <meta charset="utf-8">
 <title>Startup UI Kit - Free Sample</title>
 <head>
-		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-		<link rel="shortcut icon" href="resources/ownerindex/images/favicon.ico">
-		<link rel="stylesheet" href="resources/ownerindex/bootstrap/css/bootstrap.css">
-		<link rel="stylesheet" href="resources/ownerindex/css/font-awesome.min.css">
-		<link rel="stylesheet" href="resources/ownerindex/css/style.css">
-		<link href="https://fonts.googleapis.com/css?family=Droid+Serif:400,400i,700,700i|Montserrat:200,200i,300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
-
+<link href="https://fonts.googleapis.com/css?family=Work+Sans"
+	rel="stylesheet">
+<link rel="stylesheet" href="resources/indexTemplate/css/bootstrap.min.css">
+<link rel="stylesheet" href="resources/indexTemplate/css/open-iconic-bootstrap.min.css">
+<link rel="stylesheet" href="resources/indexTemplate/css/owl.carousel.min.css">
+<link rel="stylesheet" href="resources/indexTemplate/css/owl.theme.default.min.css">
+<link rel="stylesheet" href="resources/indexTemplate/css/icomoon.css">
+<link rel="stylesheet" href="resources/indexTemplate/css/animate.css">
+<link rel="stylesheet" href="resources/indexTemplate/css/style.css">
+<link rel="stylesheet" href="resources/landy/css/style.default.css" id="theme-stylesheet">
+<link rel="stylesheet" href="resources/landy/css/custom.css">
 <script type="text/javascript">
 	function fnList(){
 		location.href="stock.st";
@@ -21,27 +26,88 @@
 
 </head>
 <body>
-<section class="cover-1 text-center">
-		<%@include file ="../store/storeNav.jsp"%>
+<aside class="probootstrap-aside js-probootstrap-aside">
+		<a href="#"
+			class="probootstrap-close-menu js-probootstrap-close-menu d-md-none"><span
+			class="oi oi-arrow-left"></span> Close</a>
+		<div class="probootstrap-site-logo probootstrap-animate"
+			data-animate-effect="fadeInLeft">
+
+			<a href="storeIndex.st" class="mb-2 d-block probootstrap-logo">GOTTHEM</a>
+			<p class="mb-0">
+				제휴 사이트 
+			</p>
+		</div>
+		<div class="probootstrap-overflow">
+			<nav class="probootstrap-nav">
+				<ul>
+					<li class="probootstrap-animate"
+						data-animate-effect="fadeInLeft"><a href="storeIndex.st">Got them?</a></li>
+					<li class="probootstrap-animate" data-animate-effect="fadeInLeft"><a
+						href="mystore.st">점포관리</a></li>
+					<li class="probootstrap-animate active" data-animate-effect="fadeInLeft"><a
+						href="stock.st">재고관리</a></li>
+				<c:set var="sessionCheck"
+					value="${sessionScope.SPRING_SECURITY_CONTEXT}" />
+				<c:choose>
+					<c:when test="${sessionCheck eq null}">
+					<li class="probootstrap-animate" data-animate-effect="fadeInLeft"><a
+						href="login.st">로그인</a></li>
+					<li class="probootstrap-animate" data-animate-effect="fadeInLeft"><a
+						href="join.st">제휴맺기</a></li>
+					</c:when>
+					<c:otherwise>
+						<li class="probootstrap-animate" data-animate-effect="fadeInLeft"><a href="logout.st" class="nav-link">로그아웃</a></li>
+					</c:otherwise>
+				</c:choose>
+				<li class="probootstrap-animate" data-animate-effect="fadeInLeft"><a
+						href="index.gt">고객 사이트</a></li>
+			</ul>
+			</nav>
+			
+			<footer class="probootstrap-aside-footer probootstrap-animate"
+				data-animate-effect="fadeInLeft">
+				<p>
+					&copy; 2018 <a href="/gotThem" target="_blank">스탑없으 X Got Them</a>.
+					<br> All Rights Reserved.
+				</p>
+			</footer>
+		</div>
+	</aside>
+
+
+	<main role="main" class="probootstrap-main js-probootstrap-main">
+		<div class="probootstrap-bar">
+		<a href="#" class="probootstrap-toggle js-probootstrap-toggle"><span
+			class="oi oi-menu"></span></a>
+		<div class="probootstrap-main-site-logo">
+			<a href="index.html">Aside</a></a>
+		</div>
+	</div>
+
 			<div class="cover-container pb-5">
 				<div class="cover-inner container">
 					<form method="post" action="update.st">
+					<div class="row">
+				<div class="col-sm-3">
+				<img src="/img/${pro.pro_img }" style="width:250px; height:250px"/></div>
+					<div class="col-sm-9">
 					<input type="hidden" name="pro_code" value="${pro.pro_code }"/>
-					<table border ="1">
+					<table class="table table-user-information">
 						<tr>
-							<td>제품번호</td><td>${pro.pro_code }</td>
+							<td><span>제품번호</span></td><td>${pro.pro_code }</td>
 						</tr>
 						<tr>
-							<td>제품명</td><td><input type="text" name="pro_name" value="${pro.pro_name }"/></td>
+							<td><span>제품명</span></td><td><input type="text" name="pro_name" value="${pro.pro_name }"/></td>
 						</tr>
 						<tr>
-							<td>분류</td><td><input type="text" name="pro_category" value="${pro.pro_category }"/></td>
+							<td><span>분류</span></td><td><input type="text" name="pro_category" value="${pro.pro_category }"/></td>
 						</tr>
 						<tr>
-							<td>가격</td><td><input type="text" name="pro_price" value="${pro.pro_price }"/></td>
+							<td><span>가격</span></td><td><input type="text" name="pro_price" value="${pro.pro_price }"/></td>
 						</tr>
 						<tr>
-							<td>재고</td><td><input type="text" name="pro_stock" value="${pro.pro_stock }"/></td>
+							<td><span>재고</span></td><td><input type="text" name="pro_stock" value="${pro.pro_stock }"/></td>
 						</tr>
 						<tr>
 							<td colspan="2" align="center">
@@ -52,6 +118,8 @@
 							</td>
 						</tr>
 					</table>
+					</div>
+					</div>
 					</form>
 					<%-- <div>
 					${sessionScope.SPRING_SECURITY_CONTEXT}					

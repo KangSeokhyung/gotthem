@@ -6,24 +6,24 @@
 <html>
 <head>
 <meta content="text/html; charset=UTF-8">
-<title>Insert title here</title>
-<script
-	src="http://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<link rel="stylesheet"
-	href="resources/landy/vendor/bootstrap/css/bootstrap.min.css">
+<title>회원정보 관리 - GOT THEM</title>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<link rel="stylesheet" href="resources/landy/vendor/bootstrap/css/bootstrap.min.css">
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"> </script>
+ <script src="resources/landy/vendor/bootstrap/js/bootstrap.min.js"></script>
 <body>
 	<div class="table-responsive">
 		<table class="table">
+		<h2>회원정보 관리</h2>
+		<hr>
 			<thead>
 				<tr>
-					<th>NO</th>
 					<th>아이디</th>
 					<th>이름</th>
 					<th>이메일</th>
 					<th>전화번호</th>
 					<th>주소</th>
 					<th>가입일</th>
-					<th>회원등급</th>
 					<th>계정상태</th>	
 					<th>수정</th>
 				</tr>
@@ -31,14 +31,12 @@
 			<tbody>
 			<c:forEach var="mlist" items="${requestScope.mlist}">
 					<tr>
-						<td>${mlist.mem_no}</td>
 						<td>${mlist.mem_id}</td>
 						<td>${mlist.mem_name}</td>
 						<td>${mlist.mem_email}</td>
 						<td>${mlist.mem_phone}</td>
 						<td>${mlist.mem_address}</td>
 						<td>${mlist.mem_regdate}</td>
-						<td>${mlist.mem_status}</td>
 						<td><c:choose>
 						<c:when test="${mlist.enabled eq 0 }">
 						탈퇴</c:when>
@@ -51,6 +49,37 @@
 				</c:forEach>
 			</tbody>
 		</table>
+						<div id="paging">
+					<c:if test="${totalPages ne 0}">
+					<ul class="pagination pagination-danger">
+						<c:choose>
+							<c:when test="${prevPage ne 0}">
+								<li class="page-item"><a class="page-link" 
+									href="memcontrol.ad?pageNo=${prevPage}">&laquo;</a></li>
+							</c:when>
+						</c:choose>
+							<c:forEach begin="${beginPage}" end="${endPage }" step="1" varStatus="status">
+								<c:choose>
+									<c:when test="${nowPage eq status.index}">
+										<li class="page-item active"><a class="page-link" 
+											href="memcontrol.ad?pageNo=${status.index }">${status.index }</a></li>
+									</c:when>
+									<c:otherwise>
+										<li class="page-item"><a class="page-link" 
+											href="memcontrol.ad?pageNo=${status.index }">${status.index }</a></li>
+									</c:otherwise>
+								</c:choose>
+							</c:forEach>
+						<c:choose>
+							<c:when test="${nextPage ne 0 }">
+								<li class="page-item"><a class="page-link" 
+									href="searchList.gt?pageNo=${nextPage }">&raquo;</a></li>
+							</c:when>
+						</c:choose>
+					</ul>
+					</c:if>
+				</div>
+		<hr>
 	</div>
 	  <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"> 
         <div class="modal-dialog"> 
@@ -60,23 +89,86 @@
                   <h4 class="modal-title" id="myModalLabel">회원정보수정</h4> 
                   </div> 
                  <div class="modal-body">  
-       <form action="memmodify.ad" method="POST">
-      <input type="text" id="mem_id" class="fadeIn second" name="mem_id"  value=""
-      maxlength="10" pattern="^[_A-z0-9]{1,}$" readonly><br>
-       <input type="text" id="mem_name" class="fadeIn second" name="mem_name" value="" 
-       data-toggle="tooltip" data-placement="right" ><br>
-       <input type="text" id="mem_email" class="fadeIn second" name="mem_email" value="" required="requried"><br>
-        <input type="text" id="mem_phone" class="fadeIn second" name="mem_phone" value="" required="requried"><br>
-       <input type="text"  id="sample6_postcode" class ="fadeIn fourth" name="mem_addr1" value="" >
-       <input type="button" onclick="sample6_execDaumPostcode()" class="postcode btn btn-primary" value="주소찾기" ><br>
-       <input type="text" id="sample6_address" class ="fadeIn fourth" name="mem_addr2" value="" ><br>
-       <input type="text" id="sample6_address2" class ="fadeIn fourth" name="mem_addr3" value=""><br>
-       <input type="radio" name="enable" value="가입" checked>가입
-       <input type="radio" name="enable" value="탈퇴">탈퇴<br><br>
-       <br>
-          <button type="submit" class="btn btn-primary">정보수정</button>
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">취소</button>
-       </form> 
+ <section class="mbr-section form1 cid-qIWKYtQnJh" id="form1-r">
+    <div class="container">
+        <div class="row justify-content-center">
+                    <div data-form-alert="" hidden="">
+                        Thanks for filling out the form!
+                    </div>      
+                    <form class="mbr-form" action="memmodify.ad" method="post" data-form-title="Mobirise Form">
+                    <input type="hidden" name="email" data-form-email="true" value="v71UZV7rSGKmNdtMTJcCzvbgvRKs8I889PXLsAjbR6NuKJtPYoKYEe+DT90N7gqVmrsYQhYLqTnSDAVjImF7Eb8KP/1hIcQUbq5w77EmgcHnu38hK1G/QmJo9v9/aFIP" data-form-field="Email">
+                        <div class="row row-sm-offset">
+                            <div class="col-sm-8 multi-horizontal" data-for="id">
+                                <div class="form-group">
+                                    <label class="form-control-label mbr-fonts-style display-7" for="name-form1-r">아이디</label>
+                                    <input type="text" class="form-control" data-form-field="name" disabled="disabled" 
+                                   id="mem_id" >
+                                  <input type="hidden" id="mem_id2" name="mem_id" value="" >
+                                </div>
+                            </div>
+                            <div class="col-sm-8 multi-horizontal" data-for="ownername">
+                                <div class="form-group">
+                                    <label class="form-control-label mbr-fonts-style display-7" for="owner-form1-r">회원명</label>
+                                    <input type="text" id="mem_name" class="form-control" name="mem_name" 
+                                    required="" data-form-field="owner" >
+                                </div>
+                         </div>
+                          <div class="col-sm-8 multi-horizontal" data-for="email">
+                          <div class="form-group">
+                                    <label class="form-control-label mbr-fonts-style display-7" for="email-form1-r">이메일</label>
+                                    <input type="email" class="form-control" name="mem_email" 
+                                    data-form-field="Name" required="" id="mem_email">
+                                </div>
+                            </div>
+                          <div class="col-sm-8 multi-horizontal" data-for="phone">
+                           <div class="form-group">
+                                    <label class="form-control-label mbr-fonts-style display-7" for="phone-form1-r">전화번호</label>
+                                    <input type="text" class="form-control" name="mem_phone" 
+                                    value="${stinfo.mem_phone}" data-form-field="Name" required="" id="mem_phone">
+                                </div>
+                            </div>
+                         <div class="col-sm-6 multi-horizontal" data-for="postcode">
+                            <div class="form-group">
+                                    <label class="form-control-label mbr-fonts-style display-7" for="addr1-form1-r">우편번호</label>
+                                    <input type="text" class="form-control address1" name="mem_addr1" data-form-field="Name" required="" id="sample6_postcode"
+                                    value="${st_post }">
+                                </div>
+                            </div>
+                         <div class="col-sm-6 multi-horizontal" data-for="findpostcode">
+                            <div class="form-group" style="margin:23px 0px;">
+                            <button onclick="sample6_execDaumPostcode()" class="btn btn-primary btn-form display-4">우편번호찾기</button>
+                           </div>
+                         </div>
+                        <div class="col-sm-12 multi-horizontal" data-for="address1">
+                            <div class="form-group">
+                                    <label class="form-control-label mbr-fonts-style display-7" for="addr1-form1-r">상세주소1</label>
+                                    <input type="text" class="form-control address2" name="mem_addr2" 
+                                     value="${st_address1}" data-form-field="Name" required="" id="sample6_address">
+                                </div>
+                            </div>
+                         <div class="col-sm-12 multi-horizontal" data-for="address2">
+                            <div class="form-group">
+                                    <label class="form-control-label mbr-fonts-style display-7" for="addr2-form1-r">상세주소2</label>
+                                    <input type="text" class="form-control address3" name="mem_addr3" 
+                                    value="${st_address2}" data-form-field="Name" required="" id="sample6_address2">
+                                </div>
+                            </div>
+                        <div class="col-sm-12 multi-horizontal" data-for="grade">
+                            <div class="form-group">
+                                    <label class="form-control-label mbr-fonts-style display-7" for="addr2-form1-r">회원 상태</label>
+                                        <br><input type="radio" name="enable" value="가입" checked>가입
+       									<input type="radio" name="enable" value="탈퇴" >탈퇴
+                                </div>
+                            </div>
+                             <div class="col-sm-8 multi-horizontal" data-for="button">
+
+                              <button type="submit"  class="btn btn-primary">정보수정</button>
+          					<button type="button" class="btn btn-secondary" data-dismiss="modal">취소</button>       
+                   			</div>
+                    </form>          
+        </div>       
+    </div>
+</section>
                  	</div>    
                 </div> 
         	</div> 
@@ -95,20 +187,21 @@
 		
 		console.log("클릭한 Row의 모든 데이터 : "+tr.text());
 		
-		var userid = td.eq(1).text();
-		var username = td.eq(2).text();
-		var email = td.eq(3).text();
-		var phone = td.eq(4).text();
-		var address = td.eq(5).text();
+		var userid = td.eq(0).text();
+		var username = td.eq(1).text();
+		var email = td.eq(2).text();
+		var phone = td.eq(3).text();
+		var address = td.eq(4).text();
 		addrarray = address.split('/');
 		var addr1 = addrarray[0];
 		var addr2 = addrarray[1];
 		var addr3 = addrarray[2];
-		var regdate = td.eq(6).text();
+		var regdate = td.eq(5).text();		
 		
 		console.log(addrarray);
 		
 		$("#mem_id").val(userid);
+		$("#mem_id2").val(userid);
 		$("#mem_name").val(username);
 		$("#mem_email").val(email);
 		$("#mem_phone").val(phone);
@@ -117,4 +210,5 @@
 		$("#sample6_address2").val(addr3);
 	});
     </script>
+
 </html>

@@ -5,6 +5,7 @@ import java.util.List;
 import kr.co.gotthem.basket.bean.BasketBean;
 import kr.co.gotthem.order.bean.OrderpayBean;
 import kr.co.gotthem.order.dao.OrderDao;
+import kr.co.gotthem.product.bean.ProductBean;
 
 
 public class OrderServiceImpl implements OrderService {
@@ -15,69 +16,40 @@ public class OrderServiceImpl implements OrderService {
 		this.orderDao = orderDao;
 	}
 
-	// 1. 결제 추가.
+	// 1.장바구니에서 결제 추가
     @Override
-    public void insertOrder(OrderpayBean orderBean) {
-    	orderDao.insertOrder(orderBean);
+    public void orderInsert(OrderpayBean orderBean) {
+    	orderDao.orderInsert(orderBean);
     }
     
-    //1.1. 결제 되면, 결제된 수량만큼 장바구니 수량
+    //1.1. 결제 되면, 상품에서 결제된 수량만큼  수량 빼기
     @Override
-    public void updateBasketOrder(OrderpayBean orderBean) {
-    	orderDao.updateBasketOrder(orderBean);
+    public void orderUpdateBasket(OrderpayBean orderBean) {
+    	orderDao.orderUpdateBasket(orderBean);
     }
     
-    // 1.1 상품 삭제
+    // 1.2. 결제되면, 장바구니 삭제
     @Override
-    public void deleteproduct(int bas_no) {
-    	orderDao.deleteproduct(bas_no);
+    public void orderDeleteBasket(OrderpayBean orderBean) {
+    	orderDao.orderDeleteBasket(orderBean);
     }
-    
-    
-  /*  @Override
-    public void insertBasket(int code, int userNo,int stock) {
-    	basketDao.insertBasket(code,  userNo, stock);
-    }*/
-	// 2. 장바구니 목록
+   
+    // 2. 결제 취소 삭제
     @Override
-    public List<BasketBean> listBasket(int bas_memno) {
-        return orderDao.listBasket(bas_memno);
-    }
-    
-    // 3. 장바구니 삭제
-    @Override
-    public void deleteBasket(int bas_no) {
-    	orderDao.deleteBasket(bas_no);
-    }
-    
-    // 4. 장바구니 수정
-    @Override
-    public void modifyBasket(BasketBean basketBean) {
-    	orderDao.modifyBasket(basketBean);
-    }
-    
-    // 5. 장바구니 금액 합계
-    @Override
-    public int sumMoney(int bas_memno) {
-        return orderDao.sumMoney(bas_memno);
-    }
-    
-    // 6. 장바구니 상품 확인
-    @Override
-    public int countBasket(int bas_procode, int bas_memno) {
-        return orderDao.countBasket(bas_procode, bas_memno);
+    public void orderDelete(int ord_no) {
+    	orderDao.orderDelete(ord_no);
     }
   
-    // 7. 장바구니 상품 수량 변경
+    //2.1. 결제 취소되면, 결제된 수량만큼  상품에 수량 더하기
     @Override
-    public void updateBasket(BasketBean basketBean) {
-    	orderDao.updateBasket(basketBean);
+    public void orderUpdateProduct(OrderpayBean orderBean) {
+    	orderDao.orderUpdateProduct(orderBean);
     }
-  
-     
-	/*@Override
-	public MemberBean login(String id) {
-		return basketDao.login(id);
-	}*/
-		
+    
+    
+    // 3. 아이디별 전체 결제 목록
+    @Override
+    public List<OrderpayBean> listOrder(int userNo) {
+        return orderDao.listOrder(userNo);
+    }	
 }

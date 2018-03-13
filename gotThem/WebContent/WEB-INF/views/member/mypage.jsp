@@ -84,7 +84,6 @@
               </div>
               <h1>회원정보수정</h1>
             </div>
-
           </div>
         </div>
       </div>
@@ -116,10 +115,10 @@
             <a href="#tab-4" data-toggle="tab">회원 탈퇴</a>
             </span></li>
              <li><i class="xi-cart"></i><span>
-            <a href="#" data-toggle="tab">구매 정보</a>
+            <a href="list.gt" >장바구니 정보</a>
             </span></li>
              <li><i class="xi-truck"></i><span>
-            <a href="#" data-toggle="tab">찾아갈 상품</a>
+            <a href="orderList.gt" >찾아갈 상품</a>
             </span></li>
            	
           </ul>
@@ -127,17 +126,18 @@
         </div>
         <div class="col-sm-8">
        <div class="tab-content">
-	<div class="tab-pane active" id="tab-1">
-
-				</div>
+	<div class="tab-pane active" id="tab-1"></div>
 				<div class="tab-pane fade" id="tab-2"></div>
 				<div class="tab-pane fade" id="tab-3">
 				</div>
 				<div class="tab-pane fade" id="tab-4">
 				</div>
-				<div class="tab-pane fade" id="tabE">
-					<p>Okay, last one E</p>
+				<!-- <div class="tab-pane fade" id="tab-5">	
 				</div>
+				<div class="tab-pane fade" id="tab-6">	
+				</div> -->
+
+
 			</div>
         </div>
       </div>

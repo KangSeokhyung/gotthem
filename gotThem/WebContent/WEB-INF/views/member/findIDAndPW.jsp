@@ -45,9 +45,6 @@ margin-bottom:0px;
     background: #2866AB;
     hover:
 }
-input:hover{
-	color:#000080;
-}
 .btn-success:hover,
 .btn-success:focus,
 .btn-success:active,

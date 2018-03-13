@@ -37,8 +37,13 @@
 			</div>
 			<nav>
 				<ul>
-					<li><a href="#work">회원관리</a></li>
-					<li><a href="#store">점포관리</a></li>
+					<li><a href="memcontrol.ad"
+					onclick="window.open
+				   (this.href, '_blank', 'width=1500,height=700,toolbars=no,scrollbars=no' ); return false;">회원관리</a></li>   
+					<li><a href="storecontrol.ad"
+					onclick="window.open
+				   (this.href, '_blank', 'width=1500,height=700,toolbars=no,scrollbars=no' ); return false;"
+					>점포관리</a></li>
 					<li><a href="#contact">게시판관리</a></li>
 				</ul>
 			</nav>
@@ -80,7 +85,8 @@
 												<c:when test="${mlist.enabled eq 1 }">
 						탈퇴</c:when>
 											</c:choose></td>
-										<td><a href="memmodi()" onclick="window.open
+										<td>
+										<a href="showinfo.ad?id=${mlist.mem_id}" onclick="window.open
 										(this.href, '_blank', 'width=400,height=300,toolbars=no,scrollbars=no'); 
 										return false;">수정</a></td>
 									</tr>
@@ -126,8 +132,9 @@
 												<c:when test="${stlist.enabled eq 1 }">
 						승인완료</c:when>
 											</c:choose></td>
-										<td><button type="button" class="btn btn-primary edit"
-												data-toggle="modal" data-target="#myModal1">수정</button></td>
+										<td><a href="showstinfo.ad?id=${stlist.mem_id}" onclick="window.open
+										(this.href, '_blank', 'width=700,height=800,toolbars=no,scrollbars=no'); 
+										return false;">수정</a></td>
 									</tr>
 								</c:forEach>
 							</tbody>

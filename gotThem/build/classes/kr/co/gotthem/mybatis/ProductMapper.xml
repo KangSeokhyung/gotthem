@@ -5,7 +5,7 @@
 <mapper namespace="kr.co.gotthem.mybatis.ProductMapper">
 
 	<select id="plist" resultType="kr.co.gotthem.product.bean.ProductBean">
-		select * from product where pro_stono = #{pro_stono}
+		select * from product where pro_memno = #{pro_memno}
 	</select>
 	
 	<select id="findCode" resultType="kr.co.gotthem.product.bean.ProductBean">
@@ -28,8 +28,8 @@
 	
 	<insert id="insertPro" parameterType="kr.co.gotthem.product.bean.ProductBean">
 		insert into product(
-		pro_name, pro_stono, pro_category, pro_stock, pro_price)
+		pro_name, pro_memno, pro_category, pro_stock, pro_price)
 		values(
-		#{pro_name}, #{pro_stono}, #{pro_category}, #{pro_stock}, #{pro_price})
+		#{pro_name}, #{pro_memno}, #{pro_category}, #{pro_stock}, #{pro_price})
 	</insert>
 </mapper>
