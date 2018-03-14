@@ -22,7 +22,7 @@
 <style type="text/css">
 #contentbody { width: 90%; margin: auto; }
 #tabStyle a { color: #053741; }
-#tabStyle a:hover { color: #5CC8DD; font-weight: bold; }row 클릭 시 checkbox
+#tabStyle a:hover { color: #5CC8DD; font-weight: bold; }
 </style>  
 <script src="https://code.jquery.com/jquery-3.2.1.js"></script>
 <script type="text/javascript">
@@ -119,9 +119,6 @@
 </header>
 <!-- END: header -->
 
-	<!-- 값 보낼때 사용할 Mem_no -->
-	<input type="hidden" id="mem_no" name="mem_no" value="${mem_no}">
-
 <section class="probootstrap-section probootstrap-section-lighter">
   <div class="container">
     <div class="row">
@@ -145,7 +142,7 @@
 <section class="probootstrap-section">
   <div class="container">
     <div class="col-sm-12">
-    	<input type="button" onclick="" value="장바구니 가기">
+    	<input type="button" onclick="location.href='listBasket.gt'" value="장바구니 가기">
     </div>
     <div class="row probootstrap-gutter10">
       <div class="col-sm-12">

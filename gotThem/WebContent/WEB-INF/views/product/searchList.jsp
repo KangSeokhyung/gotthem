@@ -22,6 +22,7 @@
 <style type="text/css">
 #releatedField { position: absolute; width: 96%; }
 #releatedField a { color: #66615b; text-decoration: none; }
+#map { margin-top: 90px; height: 400px; }
 </style>  
 <script src="https://code.jquery.com/jquery-3.2.1.js"></script>
 <script type="text/javascript">
@@ -36,6 +37,7 @@
 				success : function(relatedData) {
 					var ob = JSON.parse(relatedData);
 					var innerHtml = "<div class='list-group'>";
+					$("#releatedField").html("");
 					for (var i = 0; i < 5; i++) {
 						if (typeof(ob["search" + i]) != "undefined") {
 							innerHtml += "<a href='searchList.gt?search=" +  ob["search" + i] 
@@ -63,12 +65,31 @@
 </header>
   <!-- END: header -->
 
-<section class="probootstrap-section probootstrap-section-lighter">
+<section id="map" class="probootstrap-section probootstrap-section-lighter">
 	<div class="probootstrap-wrap-banner">
 	  <div class="container">
 	    <div class="row">
 	      <div class="col-sm-12">
-	      	<h1>지도 API 자리</h1>
+	      <div id="map"></div>
+		    <script>
+		      function initMap() {
+		        var uluru = {lat: 37.494654, lng: 127.028002};
+		        var map = new google.maps.Map(document.getElementById('map'), {
+		          zoom: 18,
+		          center: uluru
+		        });
+		        var marker = new google.maps.Marker({
+		          position: uluru,
+		          map: map
+		        });
+		      }
+		    </script>
+		    <script async defer
+		      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBIBJw0ula3rE8CFX12w0CTcwEWIxjYCZA&callback=initMap">
+		    </script>
+		    <script type="text/javascript"
+			  src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBIBJw0ula3rE8CFX12w0CTcwEWIxjYCZA&libraries=drawing">
+			</script>
 	      </div>
 	    </div>
 	  </div>
@@ -86,14 +107,14 @@
 		<div id="releatedField"></div>
 	</div>
 	<div class="col-xs-1">
-       	<input type="submit" class="btn btn-fill btn-danger" value="검색">
+       	<input type="submit" class="btn btn-sm btn-success" value="검색">
     </div>
     </form>
   </div>
   
   <div class="container">
   <hr>
-   	<span><strong>${search }</strong> 검색결과</span>
+   	<span><strong>${search }</strong> 검색결과 : <strong>${totalRows }</strong>건</span>
    	<br><br>
    	<div class="row">
    		<table class="table table-bordered table-hover">

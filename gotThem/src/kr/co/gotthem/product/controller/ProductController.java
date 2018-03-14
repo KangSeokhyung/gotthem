@@ -142,12 +142,11 @@ public class ProductController {
 	@RequestMapping(value = "/relatedSearch.gt", method = RequestMethod.POST)
 	public void relatedSearch(Model model, String search, HttpServletResponse response) throws IOException {
 		Query query = new Query();
-		query.addCriteria(Criteria.where("search").regex("^" + search));
+		query.addCriteria(Criteria.where("search").regex(search));
 		
 		// 맵으로 돌릴 필요 없이 리스트를 맵 형태로 받는게 좋을 듯하다. 나중에 수정해보기
 		List<SearchBean> list = mongoTemplate.find(query, SearchBean.class, "relatedsearch");
 		Map<String, String> map = new HashMap<String, String>();
-		
 		for (int i = 0; i < list.size(); i++) {
 			map.put("search"+ i, list.get(i).getSearch());
 		}
@@ -187,5 +186,10 @@ public class ProductController {
 		model.addAttribute("productInfo", productInfo);
 		
 		return "product/productDetail";
+	}
+	
+	@RequestMapping(value = "/mapDiv.gt")
+	public String map(Model model) {
+		return "product/mapDiv";
 	}
 }

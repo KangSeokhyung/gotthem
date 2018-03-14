@@ -35,7 +35,7 @@
 				<c:forEach var="list" items="${productInfo }">
 				<tr>
 					<td><input type="checkbox" name="statusCheck" 
-						value="${list.pro_code },${list.pro_name },${list.pro_memno },${list.pro_category },${list.pro_stock },${list.pro_price },이미지임시값"></td>
+						value="${list.pro_code },${list.pro_name },${list.pro_memno },${list.pro_category },${list.pro_stock },${list.pro_price },${list.pro_img }"></td>
 					<td><a href="javascript:movedetail(${list.pro_code });"><img src="/img/${list.pro_img }" height="50px" width="50px" title="상품이미지" alt="상품이미지"></a></td>
 					<td><a href="javascript:movedetail(${list.pro_code });">${list.pro_name }</a></td>
 					<td>${list.pro_stock }</td>

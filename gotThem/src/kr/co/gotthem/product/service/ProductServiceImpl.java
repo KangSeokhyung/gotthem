@@ -56,7 +56,7 @@ public class ProductServiceImpl implements ProductService {
 	public List searchList(Model model, String search, int pageNo) {
 		
 		final int rowPerPage = 10;
-		int beginList = (pageNo - 1) * rowPerPage + 1;
+		int beginList = (pageNo - 1) * rowPerPage;
 		
 		if (search == null) {
 			search = "";
@@ -67,7 +67,7 @@ public class ProductServiceImpl implements ProductService {
 		map.put("search", search);
 		
 		List searchList = productDao.searchList(map);
-		
+		System.out.println(searchList);
 		// 전체 게시물 수 
 		int totalRows = productDao.searchListCount(search);
 		// 전체 페이지 번호 수
@@ -105,6 +105,7 @@ public class ProductServiceImpl implements ProductService {
 		model.addAttribute("prevPage", prevPage);
 		model.addAttribute("nextPage", nextPage);
 		model.addAttribute("totalPages", totalPages);
+		model.addAttribute("totalRows", totalRows);
 		model.addAttribute("search", search);
 		model.addAttribute("searchList", searchList);
 		
