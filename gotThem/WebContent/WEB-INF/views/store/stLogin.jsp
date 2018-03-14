@@ -43,7 +43,7 @@
 		<a href="#" class="probootstrap-toggle js-probootstrap-toggle"><span
 			class="oi oi-menu"></span></a>
 		<div class="probootstrap-main-site-logo">
-			<a href="storeIndex.st">Aside</a></a>
+			<a href="storeIndex.st">GOT THEM</a>
 		</div>
 	</div>
 		<body class="my-login-page">

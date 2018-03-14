@@ -36,7 +36,7 @@ text-decoration: none;
 		<a href="#" class="probootstrap-toggle js-probootstrap-toggle"><span
 			class="oi oi-menu"></span></a>
 		<div class="probootstrap-main-site-logo">
-			<a href="index.html">Aside</a>
+			<a href="index.html">GOT THEM</a>
 		</div>
 	</div>
 
@@ -85,25 +85,6 @@ text-decoration: none;
 	<script src="resources/indexTemplate/js/jquery.waypoints.min.js"></script>
 	<script src="resources/indexTemplate/js/imagesloaded.pkgd.min.js"></script>
 	<script src="resources/indexTemplate/js/main.js"></script>
-	<script>
-	$().ready(function(){
-   		var msg= '${resultMsg}';
-   		var str;
-   		if(msg!=null){
-   			if(msg=='fail1'){
-   				str="현재 비밀번호가 맞지 않습니다. 다시 확인해주세요";
-   			}else if(msg=='fail2'){
-   				str="새로운 비밀번호를 정확히 입력하여 주세요";
-   			}else if(msg=='fail3'){
-   				str="비밀번호 변경이 실패하였습니다";
-   			}else if(msg=='success'){
-   				str="비밀번호 변경이 성공하였습니다.";
-   			}
-   			if(str!=null)
-   				alert(str);
-   		}
-   	});
-	</script>
 
 </body>
 </html>
