@@ -1,6 +1,7 @@
 package kr.co.gotthem.store.controller;
 
 import java.io.PrintWriter;
+import java.util.Random;
 import java.util.StringTokenizer;
 
 import javax.servlet.http.HttpServletRequest;
@@ -9,14 +10,17 @@ import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import kr.co.gotthem.member.bean.MemberBean;
+import kr.co.gotthem.member.mail.MailService;
 import kr.co.gotthem.member.service.MemberService;
 
 @Controller
@@ -25,11 +29,16 @@ public class StoreController {
 	private static final Logger logger = LoggerFactory.getLogger(StoreController.class);
 	
 	private MemberService memberService;
+	private MailService mailService;
 	
 	public void setMemberService(MemberService memberService) {
 		this.memberService = memberService;
 	}
 	
+	@Autowired
+	public void setMailService(MailService mailService) {
+        this.mailService = mailService;
+    }
 	
 	@RequestMapping(value = "/storeIndex.st", method = RequestMethod.GET)
 	public String storeIndex() {
@@ -89,7 +98,6 @@ public class StoreController {
 	
 	@RequestMapping(value = "/mystore.st", method = RequestMethod.GET)
 	public ModelAndView mystore(ModelAndView mav) throws Exception{
-
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 		String mem_id = authentication.getName();
 		MemberBean memberInfo = memberService.memberInfo(mem_id);
@@ -105,7 +113,7 @@ public class StoreController {
 		mav.setViewName("store/mystore");
 		return mav;
 	}
-	
+
 	@RequestMapping(value = "/mystoreModi.st", method = RequestMethod.GET)
 	public ModelAndView memberModi(ModelAndView mav) {
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
@@ -129,6 +137,7 @@ public class StoreController {
 		memberService.memberModifi(bean);
 		return "store/mystore";
 	}
+
 	
 	@RequestMapping(value = "/passCheck.st", method = RequestMethod.GET)
 	public ModelAndView passCheck(MemberBean bean, ModelAndView mav) {
@@ -178,9 +187,15 @@ public class StoreController {
 		return mav;
 	}
 	
-	@RequestMapping(value = "/findIDAndPW.st", method = RequestMethod.GET)
+	@RequestMapping(value = "/findId.st", method = RequestMethod.GET)
 	public ModelAndView findID(ModelAndView mav) {
-		mav.setViewName("store/findIDAndPW");
+		mav.setViewName("store/findId");
+		return mav;
+	}
+	
+	@RequestMapping(value = "/findPw.st", method = RequestMethod.GET)
+	public ModelAndView findPW(ModelAndView mav) {
+		mav.setViewName("store/findPw");
 		return mav;
 	}
 
@@ -190,5 +205,107 @@ public class StoreController {
 		System.out.println(id);
 		return "store/fail2";
 	}
+	
+	// 아이디 찾기
+    @RequestMapping(value = "/findId.st", method = RequestMethod.POST)
+    public ModelAndView sendMailId(HttpSession session, @RequestParam("mem_email") String email,
+    		@RequestParam("mem_name") String name, ModelAndView mav, MemberBean bean) {
+    	
+        System.out.println(bean);
+        MemberBean memberBean =  memberService.findAccount(bean);
+        System.out.println(memberBean);
+        if (memberBean != null) {
+            String subject = "Goththem 아이디 찾기 안내 입니다.";
+            StringBuilder sb = new StringBuilder();
+            sb.append("귀하의 아이디는 " + memberBean.getMem_id() + " 입니다.");
+            if(mailService != null) {
+            	System.out.println(mailService);
+            } else {
+            	System.out.println(" 빈거" + mailService);
+            }
+            boolean mailResult = mailService.send(subject, sb.toString(), "gotthembit@gmail.com", email, null);
+            
+            System.out.println("이메일 보내기 성공?"+ mailResult);
+            
+            mav.addObject("resultMsg", "1");
+        } else {
+        	mav.addObject("resultMsg", "2");
+        }
+        mav.setViewName("store/findId");
+        return mav;
+    }
+    
+    // 비밀번호 찾기
+    @RequestMapping(value = "/findPw.st", method = RequestMethod.POST)
+    public ModelAndView sendMailPassword(HttpSession session, MemberBean bean, @RequestParam("mem_email") String email,
+    		ModelAndView mav) {
+        String mem_id = bean.getMem_id();
+        bean= memberService.login(mem_id);
+        if (bean != null) {
+            if (!bean.getMem_id().equals(mem_id)) {
+                mav.addObject("resultMsg", "6");
+            }
+            int ran = new Random().nextInt(100000) + 10000; // 10000 ~ 99999
+            String password = String.valueOf(ran);
+            bean.setMem_pw(password);
+            bean.setMem_email(email);
+            int pwChangeResult = memberService.changePassword(bean); // 해당 유저의 DB정보 변경
+            if(pwChangeResult==1) {
+            	String subject = "임시 비밀번호 발급 안내 입니다.";
+                StringBuilder sb = new StringBuilder();
+                sb.append("귀하의 임시 비밀번호는 " + password + " 입니다.");
+                boolean mailResult = mailService.send(subject, sb.toString(), "gotthembit@gmail.com", email, null);
+                System.out.println("이메일 보내기 성공?"+ mailResult);
+                mav.addObject("resultMsg", "3");
+            } else {
+            	mav.addObject("resultMsg", "4");
+            }
+            
+        } else {
+        	mav.addObject("resultMsg", "5");
+        }
+        mav.setViewName("store/findPw");
+        return mav;
+    }
 
+    @RequestMapping(value = "/passWordChange.st", method= RequestMethod.GET)
+	public String passChange(HttpServletRequest request) {
+		return "store/changePassWord";
+	}
+    
+    @RequestMapping(value = "/passWordChange.st", method = RequestMethod.POST)
+	public ModelAndView passCheckPost(@RequestParam("new_pw1") String new_pw, @RequestParam("new_pw2") String new_pw2,
+			MemberBean bean, ModelAndView mav, HttpServletResponse response) throws Exception {
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+		String mem_id = authentication.getName();
+		System.out.println("비밀번호 변경하러 왔나~");
+		bean.setMem_id(mem_id);
+		System.out.println("빈 한번 보자 : " + bean);
+		int result = memberService.passCheck(bean);
+		System.out.println("비밀번호 체크 : " + result);
+		if(result != 1) {
+			System.out.println("현재비밀번호가 안 맞을때");
+			mav.addObject("resultMsg", "fail1");
+			mav.setViewName("store/changePassWord");
+		}else if(!new_pw.equals(new_pw2)){
+			System.out.println("새로운 비밀번호와 비밀번호 확인이 안 맞을때");
+			mav.addObject("resultMsg", "fail2");
+			mav.setViewName("store/changePassWord");
+		}else {
+			System.out.println("잘 들어왔네");
+			bean.setMem_pw(new_pw);
+			int changeResult = memberService.changePasswordReal(bean);
+			System.out.println("변경결과"+changeResult);
+			if(changeResult != 0) {
+				System.out.println("비밀번호 변경이 성공했네");
+				mav.addObject("resultMsg", "success");
+				mav.setViewName("store/storeIndex");
+			}else {
+				mav.addObject("resultMsg", "fail3");
+				mav.setViewName("store/changePassWord");
+			}
+			
+		}
+		return mav;
+	}
 }

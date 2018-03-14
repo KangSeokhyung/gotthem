@@ -16,77 +16,11 @@
 <link rel="stylesheet" href="resources/indexTemplate/css/icomoon.css">
 <link rel="stylesheet" href="resources/indexTemplate/css/animate.css">
 <link rel="stylesheet" href="resources/indexTemplate/css/style.css">
-<script type="text/javascript">
-	function relatedSearch() {
-		$("#releatedField").html("");
-		var search = $("#search").val();
-		if(search != ""){
-			$.ajax({
-				url : "stock.st",
-				data : { "pro_memno" : pro_memno},
-				type : "post",
-				success : function(relatedData) {
-					var ob = JSON.parse(relatedData);
-					var innerHtml = "<div class='list-group'>";
-					for (var i = 0; i < 5; i++) {
-						if (typeof(ob["search" + i]) != "undefined") {
-							innerHtml += "<a href='stock.st?search=" +  ob["search" + i] 
-									  + "&pageNo=1' class='list-group-item list-group-item-action'>" 
-									  +  ob["search" + i] + "</a>";
-						}
-					}
-					innerHtml += "</div>"
-					$("#releatedField").append(innerHtml);
-				},
-				error : function(xmlHttpReq, status, error) {
-					alert(xmlHttpReq + "리퀘스트\n" + status + "상태\n" + error + "에러\n");
-				}
-			});
-		}
-	}
-</script>
 </head>
 <body>
-	<aside class="probootstrap-aside js-probootstrap-aside">
-		<a href="#"
-			class="probootstrap-close-menu js-probootstrap-close-menu d-md-none"><span
-			class="oi oi-arrow-left"></span> Close</a>
-		<div class="probootstrap-site-logo probootstrap-animate"
-			data-animate-effect="fadeInLeft">
-
-			<a href="storeIndex.st" class="mb-2 d-block probootstrap-logo">GOTTHEM</a>
-			<p class="mb-0">
-				제휴 사이트 
-			</p>
-		</div>
-		<div class="probootstrap-overflow">
-			<nav class="probootstrap-nav">
-				<ul>
-					<li class="probootstrap-animate"
-						data-animate-effect="fadeInLeft"><a href="storeIndex.st">Got them?</a></li>
-					<li class="probootstrap-animate" data-animate-effect="fadeInLeft"><a
-						href="mystore.st">점포관리</a></li>
-					<li class="probootstrap-animate active" data-animate-effect="fadeInLeft"><a
-						href="stock.st">재고관리</a></li>
-				<c:set var="sessionCheck"
-					value="${sessionScope.SPRING_SECURITY_CONTEXT}" />
-				<c:choose>
-					<c:when test="${sessionCheck eq null}">
-					<li class="probootstrap-animate" data-animate-effect="fadeInLeft"><a
-						href="login.st">로그인</a></li>
-					<li class="probootstrap-animate" data-animate-effect="fadeInLeft"><a
-						href="join.st">제휴맺기</a></li>
-					</c:when>
-					<c:otherwise>
-						<li class="probootstrap-animate" data-animate-effect="fadeInLeft"><a href="logout.st" class="nav-link">로그아웃</a></li>
-					</c:otherwise>
-				</c:choose>
-				<li class="probootstrap-animate" data-animate-effect="fadeInLeft"><a
-						href="index.gt">고객 사이트</a></li>
-			</ul>
-			</nav>
-		</div>
-	</aside>
+	<header>
+		<%@include file="../store/nav.jsp"%>
+	</header>
 
 
 	<main role="main" class="probootstrap-main js-probootstrap-main">

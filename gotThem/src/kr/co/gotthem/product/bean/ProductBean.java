@@ -1,7 +1,6 @@
 package kr.co.gotthem.product.bean;
 
 public class ProductBean {
-	
 	private int pro_code;
 	private String pro_name;
 	private int pro_memno;
@@ -64,6 +63,5 @@ public class ProductBean {
 				+ ", pro_category=" + pro_category + ", pro_img=" + pro_img + ", pro_comment=" + pro_comment
 				+ ", pro_stock=" + pro_stock + ", pro_price=" + pro_price + "]";
 	}
-	
 	
 }
