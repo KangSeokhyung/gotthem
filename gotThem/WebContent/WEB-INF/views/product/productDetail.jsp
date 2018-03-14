@@ -118,9 +118,9 @@
 	    		<input type="text" name="total_pro_price" value=""> 
 	    	</div>
 	    	
-    		<input type="button" onclick="" value="결제">
-    		<input type="button" onclick="addBasket()" value="장바구니">
-    		<input type="button" onclick="history.back();" value="뒤로">
+    		<input type="button" class="btn btn-info" onclick="" value="결제">
+    		<input type="button" class="btn btn-info" onclick="addBasket()" value="장바구니">
+    		<input type="button" class="btn btn-warning" onclick="history.back();" value="뒤로">
     	</div>
     </div>
   </div>

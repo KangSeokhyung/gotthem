@@ -1,8 +1,10 @@
 package kr.co.gotthem.product.service;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.StringTokenizer;
 
 import org.springframework.ui.Model;
 
@@ -98,7 +100,20 @@ public class ProductServiceImpl implements ProductService {
 		if (currentRange != totalRanges) {
 			nextPage = currentRange * pagePerPage + 1;
 		}
-		
+		Map<String, String> row = new HashMap<String, String>();
+		List addressList = new ArrayList();
+		for (int i = 0; i < searchList.size(); i++) {
+			row = (Map) searchList.get(i);
+			String address = (String) row.get("mem_address");
+			
+			StringTokenizer st = new StringTokenizer(address, "/");
+			String post = st.nextToken();
+			String addr1 = st.nextToken();
+			String addr2 = st.nextToken();
+			
+			String mem_address = addr1 + " " + addr2;
+			row.put("mem_address", mem_address);
+		}
 		model.addAttribute("pageNo", pageNo);
 		model.addAttribute("beginPage", beginPage);
 		model.addAttribute("endPage", endPage);
