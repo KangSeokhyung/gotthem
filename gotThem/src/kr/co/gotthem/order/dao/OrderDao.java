@@ -1,5 +1,6 @@
 package kr.co.gotthem.order.dao;
 
+import java.sql.Timestamp;
 import java.util.List;
 
 import kr.co.gotthem.basket.bean.BasketBean;
@@ -22,7 +23,6 @@ public interface OrderDao {
     public void orderDelete(int ord_no);
     
     //2.1. 결제 취소되면, 결제된 수량만큼  상품에 수량 더하기
-
     public void orderUpdateProduct(OrderpayBean orderBean);
     
     
@@ -31,5 +31,7 @@ public interface OrderDao {
    
     // 3.1 사장님 아이디별 전체 결제 목록 
     public List<OrderpayBean> storeListOrder(int userNo);
-
+    
+    // 3.2 사장님 아이디별 기간  결제 목록 
+    public List<OrderpayBean> storeListOrderTime(int userNo, Timestamp begin, Timestamp end);
 }
