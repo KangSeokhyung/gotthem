@@ -22,7 +22,7 @@
 
 <script type="text/javascript">
 	function fnList(){
-		location.href="stock.st";
+		location.href="stock.st?pageNo="+${pageNo};
 	}
 	
 </script>
@@ -93,11 +93,14 @@
 			<div class="cover-container pb-5">
 				<div class="cover-inner container">
 					<form method="post" action="update.st" enctype="multipart/form-data">
+					
 					<div class="row">
 				<div class="col-sm-3">
 				<img src="/img/${pro.pro_img }" style="width:250px; height:250px"/></div>
 					<div class="col-sm-9">
 					<input type="hidden" name="pro_code" value="${pro.pro_code }"/>
+					<input type="hidden" name="pageNo" value="${pageNo }"/>
+					<input type="hidden" name="pro_img" value="${pro.pro_img}"/>
 					<table class="table table-user-information">
 						<tr>
 							<td><span>제품번호</span></td><td>${pro.pro_code }</td>

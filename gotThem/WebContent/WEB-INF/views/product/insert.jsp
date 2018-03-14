@@ -82,7 +82,7 @@
 	
 <div class="cover-container pb-5">
 				<div class="cover-inner container">
-					<form action="insert.st" method="post" enctype="multipart/form-data">
+					<form action="insert.st?pageNo=${pageNo }" method="post" enctype="multipart/form-data">
 					<input type="hidden" name="mem_no" value="${pro.mem_no }"/>
 					<table class="table table-user-information">
 						<tr>

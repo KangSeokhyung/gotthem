@@ -46,7 +46,7 @@ text-decoration: none;
 					<li class="probootstrap-animate" data-animate-effect="fadeInLeft"><a
 						href="mystore.st">점포관리</a></li>
 					<li class="probootstrap-animate" data-animate-effect="fadeInLeft"><a
-						href="stock.st">재고관리</a></li>
+						href="stock.st?pageNo=1">재고관리</a></li>
 				<c:set var="sessionCheck"
 					value="${sessionScope.SPRING_SECURITY_CONTEXT}" />
 				<c:choose>

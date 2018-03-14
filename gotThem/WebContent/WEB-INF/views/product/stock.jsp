@@ -16,6 +16,35 @@
 <link rel="stylesheet" href="resources/indexTemplate/css/icomoon.css">
 <link rel="stylesheet" href="resources/indexTemplate/css/animate.css">
 <link rel="stylesheet" href="resources/indexTemplate/css/style.css">
+<script type="text/javascript">
+	function relatedSearch() {
+		$("#releatedField").html("");
+		var search = $("#search").val();
+		if(search != ""){
+			$.ajax({
+				url : "stock.st",
+				data : { "pro_memno" : pro_memno},
+				type : "post",
+				success : function(relatedData) {
+					var ob = JSON.parse(relatedData);
+					var innerHtml = "<div class='list-group'>";
+					for (var i = 0; i < 5; i++) {
+						if (typeof(ob["search" + i]) != "undefined") {
+							innerHtml += "<a href='stock.st?search=" +  ob["search" + i] 
+									  + "&pageNo=1' class='list-group-item list-group-item-action'>" 
+									  +  ob["search" + i] + "</a>";
+						}
+					}
+					innerHtml += "</div>"
+					$("#releatedField").append(innerHtml);
+				},
+				error : function(xmlHttpReq, status, error) {
+					alert(xmlHttpReq + "리퀘스트\n" + status + "상태\n" + error + "에러\n");
+				}
+			});
+		}
+	}
+</script>
 </head>
 <body>
 	<aside class="probootstrap-aside js-probootstrap-aside">
@@ -70,16 +99,8 @@
 	</div>
  
 
-	<main role="main" class="probootstrap-main js-probootstrap-main">
-		<div class="probootstrap-bar">
-		<a href="#" class="probootstrap-toggle js-probootstrap-toggle"><span
-			class="oi oi-menu"></span></a>
-		<div class="probootstrap-main-site-logo">
-			<a href="index.html">Aside</a></a>
-		</div>
-	</div>
 	
-	
+<section class="probootstrap-section">	
 <div class="cover-container pb-5">
 				<div class="cover-inner container">
 					<table class="table table-user-information">
@@ -96,8 +117,8 @@
 						<tr>
 							<td>${dto.pro_code }</td>
 							<td><img src="/img/${dto.pro_img }" style="width:50px; height:50px; cursor:pointer"
-							onclick="location='detail.st?code=${dto.pro_code }'"/></td>
-							<td><a href="detail.st?code=${dto.pro_code }">${dto.pro_name }</a></td>
+							onclick="location='detail.st?pageNo=${pageNo}&code=${dto.pro_code }'"/></td>
+							<td><a href="detail.st?pageNo=${pageNo}&code=${dto.pro_code }">${dto.pro_name }</a></td>
 							<td>${dto.pro_category }</td>
 							<td>${dto.pro_price }</td>
 							<td>${dto.pro_stock }</td>
@@ -105,17 +126,43 @@
 						</c:forEach>
 						<tr>
 							<td colspan="12" align="right">
-							<input type="button" value="상품추가" onclick="location='insert.st'"/>
+							<input type="button" value="상품추가" onclick="location='insert.st?pageNo=${pageNo}'"/>
 							</td>
 						</tr>
 					</table>
-					
-					<%-- <div>
-					${sessionScope.SPRING_SECURITY_CONTEXT}					
-					</div> --%>
+					<div id="paging">
+						<c:if test="${totalPages ne 0}">
+						<ul class="pagination pagination-danger">
+							<c:choose>
+								<c:when test="${prevPage ne 0}">
+									<li class="page-item"><a class="page-link" 
+										href="stock.st?pageNo=${prevPage }">&laquo;</a></li>
+								</c:when>
+							</c:choose>
+								<c:forEach begin="${beginPage }" end="${endPage }" step="1" varStatus="status">
+									<c:choose>
+										<c:when test="${nowPage eq status.index }">
+											<li class="page-item active"><a class="page-link" 
+												href="stock.st?pageNo=${status.index }">${status.index }</a></li>
+										</c:when>
+										<c:otherwise>
+											<li class="page-item"><a class="page-link" 
+												href="stock.st?pageNo=${status.index }">${status.index }</a></li>
+										</c:otherwise>
+									</c:choose>
+								</c:forEach>
+							<c:choose>
+								<c:when test="${nextPage ne 0 }">
+									<li class="page-item"><a class="page-link" 
+										href="stock.st?pageNo=${nextPage }">&raquo;</a></li>
+								</c:when>
+							</c:choose>
+						</ul>
+						</c:if>
+					</div>
 				</div>
       		</div>	
-      		
+</section>      		
       		
       		
 	<div class="container-fluid d-md-none">

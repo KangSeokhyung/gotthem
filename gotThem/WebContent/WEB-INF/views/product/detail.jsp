@@ -23,19 +23,19 @@
 		
 <script type="text/javascript">
 	function fnList(){
-		location.href="stock.st";
+		location.href="stock.st?pageNo="+${pageNo};
 	}
 	function fnUpdate(){
-		location.href="update.st?code="+${pro.pro_code};
+		location.href="update.st?pageNo="+${pageNo} + "&code=" + ${pro.pro_code};
 	}
 	
-	function fnDelete(pro_code){
+	function fnDelete(pro_code, pageNo){
 		var pro_code = pro_code;
 		if(confirm("상품을 삭제하시겠습니까?")==true){
 			$.ajax({
 					type:"POST",
 					url:"delete.st",
-					data:"pro_code="+pro_code,
+					data:"pro_code="+pro_code+"&pageNo="+pageNo,
 
 					success:function(data){
 						if(data!=1){
@@ -138,7 +138,7 @@
 						<tr>
 							<td colspan="2" align="center">
 								<input type="button" value="수정하기" onclick="fnUpdate()"/>
-								<input type="button" value="삭제하기" onclick="fnDelete(${pro.pro_code})" />
+								<input type="button" value="삭제하기" onclick="fnDelete(${pro.pro_code}, ${pageNo })" />
 								<input type="button" value="목록보기" onclick="fnList()"/>
 							</td>
 						</tr>
