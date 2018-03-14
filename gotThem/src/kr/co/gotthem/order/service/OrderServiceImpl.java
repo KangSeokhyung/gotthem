@@ -51,5 +51,11 @@ public class OrderServiceImpl implements OrderService {
     @Override
     public List<OrderpayBean> listOrder(int userNo) {
         return orderDao.listOrder(userNo);
-    }	
+    }
+    
+    // 3.1 사장님. 아이디별 전체 결제 목록
+    @Override
+    public List<OrderpayBean> storeListOrder(int userNo) {
+        return orderDao.storeListOrder(userNo);
+    }
 }

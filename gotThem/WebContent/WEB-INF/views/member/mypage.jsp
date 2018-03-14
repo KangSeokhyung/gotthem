@@ -115,7 +115,7 @@
             <a href="#tab-4" data-toggle="tab">회원 탈퇴</a>
             </span></li>
              <li><i class="xi-cart"></i><span>
-            <a href="list.gt" >장바구니 정보</a>
+            <a href="listBasket.gt" >장바구니 정보</a>
             </span></li>
              <li><i class="xi-truck"></i><span>
             <a href="orderList.gt" >찾아갈 상품</a>

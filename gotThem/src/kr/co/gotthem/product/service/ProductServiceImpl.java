@@ -41,6 +41,16 @@ public class ProductServiceImpl implements ProductService {
 	public void insertPro(ProductBean bean) {
 		productDao.insertPro(bean);
 	}
+
+	@Override
+	public ProductBean detailProduct(int pro_code) {
+		return productDao.detailProduct(pro_code);
+	}
+
+	@Override
+	public List<ProductBean> listProduct() {
+		return productDao.listProduct();
+	}
 	
 	@Override
 	public List searchList(Model model, String search, int pageNo) {
@@ -55,8 +65,6 @@ public class ProductServiceImpl implements ProductService {
 		HashMap<String, Object> map = new HashMap<String, Object>();
 		map.put("beginList", beginList);
 		map.put("search", search);
-		
-		System.out.println(search +"###"+ beginList);
 		
 		List searchList = productDao.searchList(map);
 		
@@ -104,23 +112,18 @@ public class ProductServiceImpl implements ProductService {
 	}
 
 	@Override
-	public List productInfo(int mem_no) {
-		return productDao.productInfo(mem_no);
+	public List productInfo(int mem_no, String category) {
+		return productDao.productInfo(mem_no, category);
 	}
 
 	@Override
 	public List productSearchList(Map<String, Object> map) {
 		return productDao.productSearchList(map);
 	}
-	
-	@Override
-		public ProductBean detailProduct(int pro_code) {
-		return productDao.detailProduct(pro_code);
-		}
 
 	@Override
-	public List<ProductBean> listProduct() {
-			return productDao.listProduct();
+	public ProductBean productDetail(int pro_code) {
+		return productDao.productDetail(pro_code);
 	}
 	
 }

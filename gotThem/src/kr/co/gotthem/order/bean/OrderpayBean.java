@@ -1,6 +1,7 @@
 package kr.co.gotthem.order.bean;
 
 import java.sql.Date;
+import java.sql.Timestamp;
 
 public class OrderpayBean {
   private int ord_no; 
@@ -9,10 +10,13 @@ public class OrderpayBean {
   private int ord_memno;
   private int ord_stock;
   private int ord_price;
-  private Date ord_findtime;
+  private Timestamp ord_findtime;
   private String ord_status;
   private int money;
-  //
+  private int ord_basno;
+  private String ord_proimg;
+  private int ord_proprice;
+  private int pro_memno;
 public int getOrd_no() {
 	return ord_no;
 }
@@ -49,10 +53,10 @@ public int getOrd_price() {
 public void setOrd_price(int ord_price) {
 	this.ord_price = ord_price;
 }
-public Date getOrd_findtime() {
+public Timestamp getOrd_findtime() {
 	return ord_findtime;
 }
-public void setOrd_findtime(Date ord_findtime) {
+public void setOrd_findtime(Timestamp ord_findtime) {
 	this.ord_findtime = ord_findtime;
 }
 public String getOrd_status() {
@@ -67,13 +71,36 @@ public int getMoney() {
 public void setMoney(int money) {
 	this.money = money;
 }
+public int getOrd_basno() {
+	return ord_basno;
+}
+public void setOrd_basno(int ord_basno) {
+	this.ord_basno = ord_basno;
+}
+public String getOrd_proimg() {
+	return ord_proimg;
+}
+public void setOrd_proimg(String ord_proimg) {
+	this.ord_proimg = ord_proimg;
+}
+public int getOrd_proprice() {
+	return ord_proprice;
+}
+public void setOrd_proprice(int ord_proprice) {
+	this.ord_proprice = ord_proprice;
+}
+public int getPro_memno() {
+	return pro_memno;
+}
+public void setPro_memno(int pro_memno) {
+	this.pro_memno = pro_memno;
+}
 @Override
 public String toString() {
-	return "OrderBean [ord_no=" + ord_no + ", ord_procode=" + ord_procode + ", ord_proname=" + ord_proname
+	return "OrderpayBean [ord_no=" + ord_no + ", ord_procode=" + ord_procode + ", ord_proname=" + ord_proname
 			+ ", ord_memno=" + ord_memno + ", ord_stock=" + ord_stock + ", ord_price=" + ord_price + ", ord_findtime="
-			+ ord_findtime + ", ord_status=" + ord_status + ", money=" + money + "]";
+			+ ord_findtime + ", ord_status=" + ord_status + ", money=" + money + ", ord_basno=" + ord_basno
+			+ ", ord_proimg=" + ord_proimg + ", ord_proprice=" + ord_proprice + ", pro_memno=" + pro_memno + "]";
 }
 
 }
-
-  

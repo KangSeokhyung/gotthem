@@ -1,8 +1,6 @@
 package kr.co.gotthem.member.dao;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import org.mybatis.spring.SqlSessionTemplate;
 import kr.co.gotthem.member.bean.MemberBean;
 
@@ -18,7 +16,7 @@ public class MemberDaoImpl implements MemberDao {
 	public MemberBean memberInfo(String mem_id) {
 		return sqlSessionTemplate.selectOne("memberInfo", mem_id);
 	}
-	
+
 	@Override
 	public int join(MemberBean memberBean) {
 		int result = sqlSessionTemplate.insert("join", memberBean);
@@ -110,4 +108,10 @@ public class MemberDaoImpl implements MemberDao {
 	public int stcountRow() {
 		return sqlSessionTemplate.selectOne("stoCount");
 	}
+	
+	@Override
+	public MemberBean storeInfo(int mem_no) {
+		return sqlSessionTemplate.selectOne("storeInfo", mem_no);
+	}
+	
 }

@@ -20,50 +20,9 @@
     <![endif]-->
 </head>
 <body>
-
-  <!-- START: header -->
-   <header role="banner" class="probootstrap-header">
-    <div class="container">
-        <a href="/gotThem" class="probootstrap-logo">GOT THEM<span>.</span></a>
-        
-        <a href="#" class="probootstrap-burger-menu visible-xs" ><i>Menu</i></a>
-        <div class="mobile-menu-overlay"></div>
-
-        <nav role="navigation" class="probootstrap-nav hidden-xs">
-          <ul class="probootstrap-main-nav">
-            <li><a href="#">GOTTHEM</a></li>
-            <li><a href="#">NOTICE</a></li>
-            <li><a href="#">EVENT</a></li>
-            <c:set var="sessionCheck"
-					value="${sessionScope.SPRING_SECURITY_CONTEXT}" />
-				<c:choose>
-					<c:when test="${sessionCheck eq null}">
-            <li><a href="join.gt">SIGN UP</a></li>
-            <li><a href="login.gt">LOGIN</a></li>
-            		</c:when>
-					<c:otherwise>
-			<li><a href="mypage.gt">MY PAGE</a></li>
-			<li><a href="list.gt">장바구니</a></li>
-            <li><a href="logout.gt">LOGOUT</a></li>
-				</c:otherwise>
-				</c:choose>
-          </ul>
-          <div class="extra-text visible-xs"> 
-            <a href="#" class="probootstrap-burger-menu"><i>Menu</i></a>
-            <h5>Address</h5>
-            <p>198 West 21th Street, Suite 721 New York NY 10016</p>
-            <h5>Connect</h5>
-            <ul class="social-buttons">
-              <li><a href="#"><i class="icon-twitter"></i></a></li>
-              <li><a href="#"><i class="icon-facebook2"></i></a></li>
-              <li><a href="#"><i class="icon-instagram2"></i></a></li>
-            </ul>
-          </div>
-        </nav>
-    </div>
-  </header>
-  <div class="probootstrap-loader"></div>
-  <!-- END: header -->
+<header>
+<%@include file="../../../nav.jsp" %>
+</header>
  <section class="probootstrap-slider flexslider2 page-inner">
     <div class="overlay"></div>
     <div class="probootstrap-wrap-banner">
@@ -97,6 +56,7 @@
                    <th>상품코드</th>
                    <th>상품사진</th>
                    <th>상품명</th>
+                   <th>매장명</th>
                    <th>상품수량</th>
                    <th>상품가격</th>
                    <th>결제 가격</th>
@@ -112,13 +72,19 @@
                         ${row.ord_procode}
                   </td>
                   <td>
+                       <img src="/img/${row.ord_proimg}" style="width:50px; height:50px"/>
+                  </td>
+                  <td>
                         ${row.ord_proname}
+                  </td>
+                  <td>
+                        ${row.pro_memno}
                   </td>
                   <td>
                         ${row.ord_stock}
                   </td>
                   <td>
-                       <fmt:formatNumber pattern="###,###,###" value="${row.ord_price}"/>
+                       <fmt:formatNumber pattern="###,###,###" value="${row.ord_proprice}"/>
                   </td>
                   <td>
                        <fmt:formatNumber pattern="###,###,###" value="${row.ord_price}"/>
@@ -164,7 +130,7 @@
             location.href="./productlist.gt";
         });
         $("#btnBasketList").click(function(){  //장바구니 리스트
-            location.href="./list.gt";
+            location.href="./listBasket.gt";
         }); 
     });
 

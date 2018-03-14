@@ -30,7 +30,6 @@ text-decoration: none;
 		<%@include file="nav.jsp"%>
 	</header>
 
-
 	<main role="main" class="probootstrap-main js-probootstrap-main">
 		<div class="probootstrap-bar">
 		<a href="#" class="probootstrap-toggle js-probootstrap-toggle"><span

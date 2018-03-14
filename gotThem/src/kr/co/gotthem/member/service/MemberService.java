@@ -43,5 +43,7 @@ public interface MemberService {
 	public int countRow();
 
 	public int stcountRow();
+
+	public MemberBean storeInfo(int mem_no);
 	
 }

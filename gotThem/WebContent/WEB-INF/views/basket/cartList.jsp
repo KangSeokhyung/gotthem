@@ -4,18 +4,10 @@
 <!DOCTYPE html>
 <html>
 <head>
-<<<<<<< HEAD
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>상품장바구니 목록</title>
-<meta name="description" content="Free Bootstrap Theme by uicookies.com">
-    <meta name="keywords" content="free website templates, free bootstrap themes, free template, free bootstrap, free website template">
-    
-=======
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>상품장바구니 목록</title>
 <meta name="keywords" content="free website templates, free bootstrap themes, free template, free bootstrap, free website template">
->>>>>>> branch 'cy' of https://github.com/KangSeokhyung/gotthem.git
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400" rel="stylesheet">
     <link rel="stylesheet" href="resources/mainTemplate/css/styles-merged.css">
     <link rel="stylesheet" href="resources/mainTemplate/css/style.min.css">
@@ -25,54 +17,10 @@
       <script src="resources/mainTemplate/js/vendor/respond.min.js"></script>
     <![endif]-->
 </head>
-<<<<<<< HEAD
 <body>
-
-</body>
-=======
-<body>
-  <!-- START: header -->
-   <header role="banner" class="probootstrap-header">
-    <div class="container">
-        <a href="/gotThem" class="probootstrap-logo">GOT THEM<span>.</span></a>
-        
-        <a href="#" class="probootstrap-burger-menu visible-xs" ><i>Menu</i></a>
-        <div class="mobile-menu-overlay"></div>
-
-        <nav role="navigation" class="probootstrap-nav hidden-xs">
-          <ul class="probootstrap-main-nav">
-            <li><a href="#">GOTTHEM</a></li>
-            <li><a href="#">NOTICE</a></li>
-            <li><a href="#">EVENT</a></li>
-            <c:set var="sessionCheck"
-					value="${sessionScope.SPRING_SECURITY_CONTEXT}" />
-				<c:choose>
-					<c:when test="${sessionCheck eq null}">
-            <li><a href="join.gt">SIGN UP</a></li>
-            <li><a href="login.gt">LOGIN</a></li>
-            		</c:when>
-					<c:otherwise>
-			<li><a href="mypage.gt">MY PAGE</a></li>
-            <li><a href="logout.gt">LOGOUT</a></li>
-				</c:otherwise>
-				</c:choose>
-          </ul>
-          <div class="extra-text visible-xs"> 
-            <a href="#" class="probootstrap-burger-menu"><i>Menu</i></a>
-            <h5>Address</h5>
-            <p>198 West 21th Street, Suite 721 New York NY 10016</p>
-            <h5>Connect</h5>
-            <ul class="social-buttons">
-              <li><a href="#"><i class="icon-twitter"></i></a></li>
-              <li><a href="#"><i class="icon-facebook2"></i></a></li>
-              <li><a href="#"><i class="icon-instagram2"></i></a></li>
-            </ul>
-          </div>
-        </nav>
-    </div>
-  </header>
-  <div class="probootstrap-loader"></div>
-  <!-- END: header -->
+<header>
+<%@include file="../../../nav.jsp" %>
+</header>
  <section class="probootstrap-slider flexslider2 page-inner">
     <div class="overlay"></div>
     <div class="probootstrap-wrap-banner">
@@ -98,34 +46,35 @@
     </ul>
   </section>  
 <div class="container">
-    <h2>장바구니 확인</h2>
-    <c:choose>
-        <c:when test="${map.count == 0}">
-            장바구니가 비어있습니다.
-           <div>
-            <input type="hidden" name="count" value="${map.count}">
-            <button type="button" value="상품목록1" id="btnList">상품목록</button> 
-            <input type="button" name="seDel" id="button_seDel" onclick="button_selDel();" value="선택삭제" />
-            <input type="button" value="선택결제" onclick="button_selOrder();">  
-           </div>
-        </c:when>
-        <c:otherwise>     
-        <form name="form1" id="form1" method="post" action="./update.gt">
-         <table class="table">
-               <tr>
+<c:choose>
+<c:when test="${map.count == 0}">
+ <img src="/img/cart_img_empty.gif" style=" width:360px;height:263px;margin-left:auto;margin-right:auto;display:block;"/>
+ <div>  
+            <div style='float:right; padding: 3px 30px 3px 6px;'>
+             <button type="button" value="상품목록1" id="btnList">계속 쇼핑하기</button> 
+            </div></div>  
+</c:when>
+<c:otherwise>   
+  <form name="form1" id="form1" method="post" action="./update.gt">
+   <table class="table">
+    <thead>   
+       <tr>
                    <th><input type="checkbox" name="checkAll" id="th_checkAll" /></th> 
                    <th>상품사진</th>
                    <th>상품명</th>
+                   <th>매장명</th>
                    <th>판매가</th>
                    <th >수량 </th>
                    <th style='width:100px'>구매예정가</th>
                    <th>선택</th>
-               </tr>
+     </tr>
+    </thead>
+    <tbody>
+
              <c:forEach var="row" items="${map.list}" varStatus="i">
                <tr>                
                   <td>
-                      <input type="checkbox" name="checkRow" class="chk" id="checkRow"  value="${row.bas_no},${row.bas_proname},
-                      ${row.bas_proprice},${row.bas_prostock},${row.bas_procode},${row.money},${row.bas_proimg}, ${row.bas_procomment}"
+                      <input type="checkbox" name="checkRow" class="chk" id="checkRow"  value="${row.bas_no},${row.bas_proname},${row.bas_proprice},${row.bas_prostock},${row.bas_procode},${row.money},${row.bas_proimg}, ${row.bas_procomment},${row.pro_memno}"
                       onclick="cart();" /> 
                   </td>
                   <td>
@@ -133,6 +82,9 @@
                   </td>
                   <td>
                       <a href="detail/${row.bas_procode}.gt" style="color: #7e8890;"> ${row.bas_proname}</a>
+                  </td>
+                   <td>
+                       ${row.pro_memno}
                   </td>
                   <td style="width: 80px" align="right" >
                        <fmt:formatNumber pattern="###,###,###" value="${row.bas_proprice}"/>
@@ -149,8 +101,9 @@
                   <td>
                      <input type="hidden" name="money" value="${row.money}">
                      <input type="hidden" name="bas_no" value="${row.bas_no}">
-                     <input type="button" value="바로구매" style='width:60px;height:25px;font-size: 12px;' onclick="button_order('${row.bas_no}','${row.bas_proname}','${row.bas_procode}','${row.money}','${row.bas_prostock}');"><br>  
-                     <input type="button" value="삭제" style='width:60px;height:25px;font-size: 12px;' onclick="button_basDel(${row.bas_no});">
+                     <input type="button" value="바로구매" style='width:60px;height:25px;font-size: 12px;' 
+                     onclick="button_order('${row.bas_no}','${row.bas_proname}','${row.bas_procode}','${row.money}','${row.bas_prostock}','${row.bas_proimg}','${row.bas_proprice}','${row.pro_memno}');"><br>  
+                     <input type="button" value="삭제" style='width:60px;height:25px;font-size: 12px;'  onclick="button_basDel(${row.bas_no});">
                   </td>
                 </tr>
                </c:forEach>
@@ -161,16 +114,19 @@
                 <tr>
                     <td colspan="10" align="right">선택 상품 결제 예상 금액:<p id="chkSum"></p>  </td>
                 </tr>
-            </table>                    
-        </form>
+
+    </tbody>
+   </table>                    
+  </form>
+  <div>  
             <input type="hidden" name="count" value="${map.count}">           
             <input type="button" name="seDel" id="button_seDel" onclick="button_selDel();" value="선택상품 삭제" style='height:25px;font-size: 12px;'/>
             <div style='float:right; padding: 3px 30px 3px 6px;'>
              <button type="button" value="상품목록1" id="btnList">상품목록</button> 
              <input type="button" value="바로구매" onclick="button_selOrder();">
-            </div>  
-      </c:otherwise>
-    </c:choose>
+            </div></div>
+</c:otherwise>
+</c:choose>   
 </div>    
  <footer class="probootstrap-footer probootstrap-bg" style="background-image: url(img/slider_3.jpg)">
     <div class="container">
@@ -246,23 +202,28 @@ function button_basDel(bas_no){  //단건 직접 삭제
 			return;
 			}
 	}
-function button_order(bas_no,bas_proname,bas_procode,money,bas_prostock){
-	alert(bas_no);
+function button_order(bas_no,bas_proname,bas_procode,money,bas_prostock,bas_proimg,bas_proprice,pro_memno){
+	alert(bas_proprice);
 	if (confirm("상품을 결제 하시겠습니까?")){ //단건결제
 		location.href="insertOrder.gt?bas_no="+bas_no+"&bas_proname="+bas_proname+
-    		"&bas_procode="+bas_procode+"&money="+money+"&bas_prostock="+bas_prostock;
+    		"&bas_procode="+bas_procode+"&money="+money+"&bas_prostock="+bas_prostock+"&bas_proimg="+bas_proimg+"&bas_proprice="+bas_proprice+"&pro_memno="+pro_memno;
 	}else{ 
 		return;
 		}
 	}  
 function button_selDel(){  //장바구니 선택 삭제
-  if( $(":checkbox[name='checkRow']:checked").length==1 ){
-	  alert("삭제할 항목을 2이상 체크해주세요.");
+   if( $(":checkbox[name='checkRow']:checked").length==0 ){
+	  alert("삭제할 항목을 체크해주세요.");
 	 return;
     } 
   var checkArr = [];
   $("input[name='checkRow']:checked").each(function(i){
-	  checkArr.push($(this).val());
+	  if( $(":checkbox[name='checkRow']:checked").length==1 ){
+		  checkArr.push($(this).val());
+		  checkArr.push('[]');
+	  } else {
+		  checkArr.push($(this).val());
+		  }
 	  });
   if (confirm("선택한 상품을 삭제하시겠습니까?")){
 	  $.ajax({
@@ -272,7 +233,7 @@ function button_selDel(){  //장바구니 선택 삭제
 		  data:{arrDel:checkArr
 			  },
 			  success:function(result){
-				  location.href="./list.gt";
+				  location.href="./listBasket.gt";
 				  }
 			  });
 	  }else{ // 취소
@@ -280,13 +241,18 @@ function button_selDel(){  //장바구니 선택 삭제
 	  }
   }  
 function button_selOrder(){  //장바구니 선택 결제
-	if( $(":checkbox[name='checkRow']:checked").length==1 ){
-		alert("결제할 항목을 2이상 체크해주세요.");
+	if( $(":checkbox[name='checkRow']:checked").length==0 ){
+		alert("결제할 항목을 체크해주세요.");
 		return;
 		}
 	var checkOrder = [];
 	$("input[name='checkRow']:checked").each(function(i){
-		checkOrder.push($(this).val());
+		if( $(":checkbox[name='checkRow']:checked").length==1 ){
+			checkOrder.push($(this).val());
+			checkOrder.push('[]');
+		  } else {
+			  checkOrder.push($(this).val());
+			  }
 		});
 	if (confirm("선택한 상품을 결제 하시겠습니까?")){
 		$.ajax({
@@ -311,5 +277,4 @@ function modify(){ //수량수정
 	} 
 
 </script>	
->>>>>>> branch 'cy' of https://github.com/KangSeokhyung/gotthem.git
 </html>

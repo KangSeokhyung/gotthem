@@ -42,13 +42,27 @@ public class ProductDaoImpl implements ProductDao {
 	}
 
 	@Override
+	public ProductBean detailProduct(int pro_code) {
+		return	(ProductBean) sqlSessionTemplate.selectOne("detailProduct1", pro_code);
+	}
+	
+	@Override
+	public List<ProductBean> listProduct() {
+			return sqlSessionTemplate.selectList("listProduct");
+	}
+
+	@Override
 	public List searchList(HashMap<String, Object> map) {
 		return sqlSessionTemplate.selectList("searchList", map);
 	}
 	
 	@Override
-	public List productInfo(int mem_no) {
-		return sqlSessionTemplate.selectList("productInfo", mem_no);
+	public List productInfo(int mem_no, String category) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("mem_no", mem_no);
+		map.put("category", category);
+		
+		return sqlSessionTemplate.selectList("productInfo", map);
 	}
 
 	@Override
@@ -56,21 +70,14 @@ public class ProductDaoImpl implements ProductDao {
 		return sqlSessionTemplate.selectList("productSearchList", map);
 	}
 
-
 	@Override
 	public int searchListCount(String search) {
 		return sqlSessionTemplate.selectOne("searchListCount", search);
 	}
 
-	
 	@Override
-		public ProductBean detailProduct(int pro_code) {
-		return	(ProductBean) sqlSessionTemplate.selectOne("detailProduct1", pro_code);
-			}
+	public ProductBean productDetail(int pro_code) {
+		return sqlSessionTemplate.selectOne("productDetail", pro_code);
+	}
 	
-	@Override
-		public List<ProductBean> listProduct() {
-			return sqlSessionTemplate.selectList("listProduct");
-}
-
 }

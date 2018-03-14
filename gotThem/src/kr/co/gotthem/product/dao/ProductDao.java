@@ -16,17 +16,19 @@ public interface ProductDao {
 	public void deletePro(int pro_code);
 
 	public void insertPro(ProductBean bean);
-	
-	public List searchList(HashMap<String, Object> map);
-	
-	public List productInfo(int mem_no);
-
-	public List productSearchList(Map<String, Object> productSearch);
-	
-	public int searchListCount(String search);
 
 	public ProductBean detailProduct(int pro_code);
 
 	public List<ProductBean> listProduct();
+
+	public List productInfo(int mem_no, String category);
+
+	public List searchList(HashMap<String, Object> map);
+
+	public List productSearchList(Map<String, Object> map);
+
+	public int searchListCount(String search);
+
+	public ProductBean productDetail(int pro_code);
 
 }
