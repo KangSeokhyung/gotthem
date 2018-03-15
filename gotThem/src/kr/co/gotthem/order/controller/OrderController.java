@@ -178,12 +178,12 @@ public class OrderController {
 		List<OrderpayBean> slistOrder = orderService.storeListOrder(userNo);
 		System.out.println("storeLisOrder타고 " + slistOrder);
 		map.put("list", slistOrder);
-		mav.setViewName("/product/storeOrderList");
+		mav.setViewName("/store/storeOrderList");
 		mav.addObject("map", map);
 		return mav;
 	}
 	
-	// 3. 사장님 아이디별 전체 결제 목록
+	// 3.1 사장님 아이디 기간별 결제 목록
 	@RequestMapping("/storeOrderListTime.st")
 	public ModelAndView listOrderStore(@RequestParam String from, @RequestParam String to, ModelAndView mav) throws Exception {
 
@@ -204,7 +204,7 @@ public class OrderController {
 		List<OrderpayBean> slistOrder = orderService.storeListOrderTime(userNo,begin, end);
 		System.out.println("storeLisOrdertime타고 " + slistOrder);
 		map.put("list", slistOrder);
-		mav.setViewName("/product/storeOrderList");
+		mav.setViewName("/store/storeOrderList");
 		mav.addObject("map", map);
 		return mav;
 	}

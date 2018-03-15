@@ -106,6 +106,7 @@
 			</div>
 		</div>
 	</div>
+	<script src="resources/indexTemplate/js/jquery-3.2.1.slim.min.js"></script>
 	<script type="text/javascript">
 		$(document).ready(function() {
 			var checkSumArr = [];
@@ -128,7 +129,7 @@
 				$('#fromDate').prop('max', $(this).val());
 			});
 		});
-	</script> <script src="resources/indexTemplate/js/jquery-3.2.1.slim.min.js"></script>
+	</script> 
 	<script src="resources/indexTemplate/js/popper.min.js"></script> <script
 		src="resources/indexTemplate/js/bootstrap.min.js"></script> <script
 		src="resources/indexTemplate/js/owl.carousel.min.js"></script> <script
