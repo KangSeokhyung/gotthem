@@ -7,7 +7,9 @@ import java.util.Map;
 import kr.co.gotthem.product.bean.ProductBean;
 
 public interface ProductDao {
-	public List<ProductBean> plist(int pro_memno);
+	public List<ProductBean> plist(HashMap<String, Object> map);
+	
+	public int plistCount(int pro_memno);
 	
 	public ProductBean findCode(int pro_code);
 	
@@ -30,5 +32,4 @@ public interface ProductDao {
 	public int searchListCount(String search);
 
 	public ProductBean productDetail(int pro_code);
-
 }
