@@ -69,11 +69,11 @@
                    <th>선택</th>
      </tr>
     </thead>
-    <tbody>
+    <tbody id="rowCheck">
 
              <c:forEach var="row" items="${map.list}" varStatus="i">
                <tr>                
-                  <td>
+                  <td> 
                       <input type="checkbox" name="checkRow" class="chk" id="checkRow"  value="${row.bas_no},${row.bas_proname},${row.bas_proprice},${row.bas_prostock},${row.bas_procode},${row.money},${row.bas_proimg}, ${row.bas_procomment},${row.pro_memno}"
                       onclick="cart();" /> 
                   </td>
@@ -81,7 +81,7 @@
                        <img src="/img/${row.bas_proimg}" style="width:50px; height:50px"/>
                   </td>
                   <td>
-                      <a href="detail/${row.bas_procode}.gt" style="color: #7e8890;"> ${row.bas_proname}</a>
+                      <a href="productDetail.gt?pro_code=${row.bas_procode}" style="color: #7e8890;"> ${row.bas_proname}</a>
                   </td>
                    <td>
                        ${row.pro_memno}
@@ -108,10 +108,6 @@
                 </tr>
                </c:forEach>
                 <tr>
-                    <td colspan="12" align="right"> 장바구니 금액 합계 : <fmt:formatNumber pattern="###,###,###" value="${map.sumMoney}"/><br>
-                    </td>
-                </tr>
-                <tr>
                     <td colspan="10" align="right">선택 상품 결제 예상 금액:<p id="chkSum"></p>  </td>
                 </tr>
 
@@ -122,8 +118,8 @@
             <input type="hidden" name="count" value="${map.count}">           
             <input type="button" name="seDel" id="button_seDel" onclick="button_selDel();" value="선택상품 삭제" style='height:25px;font-size: 12px;'/>
             <div style='float:right; padding: 3px 30px 3px 6px;'>
-             <button type="button" value="상품목록1" id="btnList">상품목록</button> 
-             <input type="button" value="바로구매" onclick="payment();">
+             <button type="button" value="상품목록1" id="btnList">계속 쇼핑하기</button> 
+             <input type="button" value="바로구매" onclick="button_selOrder();">
             </div></div>
 </c:otherwise>
 </c:choose>   
@@ -154,11 +150,8 @@
 <script type="text/javascript">
 $(document).ready(function(){
 	$("#btnList").click(function(){// 리스트 페이지로 이동
-		location.href="./productlist.gt";
+		location.href="/gotThem";
 		});
-    /* $("#btnOrd").click(function(){
-    location.href="ord.gt?bas_no="+bas_no;
-      }); */ 
 	$('input[name*="checkRow"]').prop("checked",true);
     
     var checkSumArr = [];
@@ -182,6 +175,19 @@ $("#th_checkAll").click(function(){ //체크박스 전체 선택
 			$('input[name*="checkRow"]').prop("checked", false);//체크박스 전체 해지
 			}
 	});
+	
+ $(document).on("click", "#rowCheck tr", function(event){
+	if(event.target.nodeName.toLowerCase() == "td") {
+		var checkbox = $(this).find("td:first-child :checkbox");
+
+		if (checkbox.is(":checked")) {
+			checkbox.prop("checked", false);
+		} else {
+			checkbox.prop("checked", true);
+		}
+	}
+});
+
 function cart(){ //결제 금액 계산
 	var checkSumArr = [];
 	$("input[name='checkRow']:checked").each(function(i) {

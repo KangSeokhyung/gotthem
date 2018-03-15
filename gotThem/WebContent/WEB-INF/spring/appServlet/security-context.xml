@@ -5,14 +5,16 @@
 		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.2.xsd">
 	
 	<!-- 검사 URL -->
- 	<http pattern="/*.gt" auto-config="true" disable-url-rewriting="true" use-expressions="true">
+    <http pattern="/*.gt" auto-config="true" disable-url-rewriting="true" use-expressions="true">
 		<intercept-url pattern="/" access="permitAll" />
 		<intercept-url pattern="/mypage.gt" access="hasAnyRole('ROLE_USER, ROLE_ADMIN')" />
-		<intercept-url pattern="/listBasket.gt" access="hasAnyRole('ROLE_USER')" />
+		<intercept-url pattern="/listBasket.gt" 	access="hasAnyRole('ROLE_USER')" />
+		<intercept-url pattern="/insertBasket.gt" 	access="hasAnyRole('ROLE_USER')" />
+		<intercept-url pattern="/insertOrder.gt" 	access="hasAnyRole('ROLE_USER')" />
 		<form-login login-page="/login.gt" 
 			default-target-url="/"
 			login-processing-url="/login.gt"
-			authentication-success-handler-ref="loginSuccessHandler"
+		
 			authentication-failure-handler-ref="loginFailureHandler"
 			username-parameter="mem_id" password-parameter="mem_pw" />
 		<logout logout-url="/logout.gt" logout-success-url="/" 

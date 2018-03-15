@@ -99,8 +99,10 @@
                </c:forEach>
             </table>
         </form>
-    <button type="button" value="상품목록" id="btnList">상품목록</button>
+     <div  style='float:right';> 
+    <button type="button" value="상품목록" id="btnList">계속 쇼핑하기</button>
     <button type="button" value="장바구니목록" id="btnBasketList">장바구니목록</button>
+</div>  
 </div>
  <footer class="probootstrap-footer probootstrap-bg" style="background-image: url(img/slider_3.jpg)">
     <div class="container">
@@ -126,12 +128,23 @@
   <script src="resources/mainTemplate/js/custom.js"></script>
 <script type="text/javascript">
     $(document).ready(function(){
-      $("#btnList").click(function(){  // 제품리스트 페이지로 이동
-            location.href="./productlist.gt";
+      $("#btnList").click(function(){  // 계속 쇼핑하기 인덱스 이동
+            location.href="/gotThem";
         });
         $("#btnBasketList").click(function(){  //장바구니 리스트
             location.href="./listBasket.gt";
         }); 
+    });
+    $(document).on("click", "#rowCheck tr", function(event){
+    	if(event.target.nodeName.toLowerCase() == "td") {
+    		var checkbox = $(this).find("td:first-child :checkbox");
+
+    		if (checkbox.is(":checked")) {
+    			checkbox.prop("checked", false);
+    		} else {
+    			checkbox.prop("checked", true);
+    		}
+    	}
     });
 
    function button_delete(ord_no,ord_stock,ord_procode){
