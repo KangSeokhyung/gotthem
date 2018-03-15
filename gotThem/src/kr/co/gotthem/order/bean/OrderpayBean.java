@@ -17,7 +17,8 @@ public class OrderpayBean {
   private String ord_proimg;
   private int ord_proprice;
   private int pro_memno;
-public int getOrd_no() {
+
+  public int getOrd_no() {
 	return ord_no;
 }
 public void setOrd_no(int ord_no) {

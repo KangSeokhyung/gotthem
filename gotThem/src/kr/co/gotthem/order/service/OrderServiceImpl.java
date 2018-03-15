@@ -1,5 +1,6 @@
 package kr.co.gotthem.order.service;
 
+import java.sql.Timestamp;
 import java.util.List;
 
 import kr.co.gotthem.basket.bean.BasketBean;
@@ -53,9 +54,16 @@ public class OrderServiceImpl implements OrderService {
         return orderDao.listOrder(userNo);
     }
     
-    // 3.1 사장님. 아이디별 전체 결제 목록
+    // 3.1 사장님 아이디별 전체 결제 목록
     @Override
     public List<OrderpayBean> storeListOrder(int userNo) {
         return orderDao.storeListOrder(userNo);
     }
+    
+    // 3.2 사장님 아이디별 기간  결제 목록
+    @Override
+    public List<OrderpayBean> storeListOrderTime(int userNo, Timestamp begin, Timestamp end ){
+    	  return orderDao.storeListOrderTime(userNo, begin, end);
+    }
+
 }

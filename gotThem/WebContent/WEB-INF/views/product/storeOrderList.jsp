@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -24,29 +24,31 @@
 <link rel="stylesheet" href="resources/indexTemplate/css/style.css">
 </head>
 <body>
-<aside>
-<%@include file="../store/nav.jsp" %>
-</aside>
+	<aside>
+		<%@include file="../store/nav.jsp"%>
+	</aside>
 	<main role="main" class="probootstrap-main js-probootstrap-main">
-	<div class="probootstrap-bar">
-		<a href="#" class="probootstrap-toggle js-probootstrap-toggle"><span
-			class="oi oi-menu"></span></a>
-		<div class="probootstrap-main-site-logo">
-			<a href="storeIndex.st">GOT THEM</a></a>
-		</div>
-	</div>
-
-<!-- 	<main role="main" class="probootstrap-main js-probootstrap-main">
 	<div class="probootstrap-bar">
 		<a href="#" class="probootstrap-toggle js-probootstrap-toggle"><span
 			class="oi oi-menu"></span></a>
 		<div class="probootstrap-main-site-logo">
 			<a href="index.html">Aside</a></a>
 		</div>
-	</div> -->
+	</div>
+	<br><br>
+	<h2>점포별 결제 목록</h2>
+	<form action="./storeOrderListTime.st"><br>
+		<div>
+			<label for="fromDate">기간:</label>&nbsp;&nbsp; <input type="date"
+				id="fromDate" name="from" required="" /> <label for="toDate">~</label>
+			<input type="date" id="toDate" name="to" required="" />&nbsp;&nbsp;
+			<input type="submit" value="조회" /><strong>&nbsp;&nbsp;&nbsp;총 결제 금액:&nbsp; <span id="chkSum"></span>
+			</strong>
+		</div>
+	</form>
 	<div class="cover-container pb-5">
 		<div class="cover-inner container">
-			<table class="table table-user-information">
+			<table class="table table-user-information" id="mytable">
 				<tr>
 					<th>결제 번호</th>
 					<th>결제 시간</th>
@@ -59,45 +61,28 @@
 					<th>결제 가격</th>
 					<th>상태</th>
 					<th>결제취소</th>
-					<th>합계</th>
 				</tr>
 				<c:forEach var="row" items="${map.list}" varStatus="i">
-               <tr>
-                  <td>
-                        ${row.ord_no}
-                  </td>
-                  <td>
-                        ${row.ord_findtime}
-                  </td>
-                  <td>
-                        ${row.ord_procode}
-                  </td>
-                  <td>
-                       <img src="/img/${row.ord_proimg}" style="width:50px; height:50px"/>
-                  </td>
-                  <td>
-                        ${row.ord_proname}
-                  </td>
-                  <td>
-                        ${row.pro_memno}
-                  </td>
-                  <td>
-                        ${row.ord_stock}
-                  </td>
-                  <td>
-                       <fmt:formatNumber pattern="###,###,###" value="${row.ord_proprice}"/>
-                  </td>
-                  <td>
-                       <fmt:formatNumber pattern="###,###,###" value="${row.ord_price}"/>
-                  </td>
-                  <td>
-                        ${row.ord_status}
-                  </td>
-                   <td>
-                       <input type="button" value="삭제" onclick="button_delete('${row.ord_no}','${row.ord_stock}','${row.ord_procode}');">
-                  </td>
-                 </tr>
-               </c:forEach>
+					<tr>
+						<td>${row.ord_no}</td>
+						<td>${row.ord_findtime}</td>
+						<td>${row.ord_procode}</td>
+						<td><img src="/img/${row.ord_proimg}"
+							style="width: 50px; height: 50px" /></td>
+						<td>${row.ord_proname}</td>
+						<td>${row.pro_memno}</td>
+						<td>${row.ord_stock}</td>
+						<td><fmt:formatNumber pattern="###,###,###"
+								value="${row.ord_proprice}" /></td>
+						<td><fmt:formatNumber pattern="###,###,###"
+								value="${row.ord_price}" /> <input type="hidden" name="sum"
+							value="${row.ord_price}"></td>
+						<td>${row.ord_status}</td>
+						<td><input type="button" value="삭제"
+							onclick="button_delete('${row.ord_no}','${row.ord_stock}','${row.ord_procode}');">
+						</td>
+					</tr>
+				</c:forEach>
 			</table>
 
 		</div>
@@ -121,8 +106,29 @@
 			</div>
 		</div>
 	</div>
-
-	</main> <script src="resources/indexTemplate/js/jquery-3.2.1.slim.min.js"></script>
+	<script type="text/javascript">
+		$(document).ready(function() {
+			var checkSumArr = [];
+			$("input[name='sum']").each(function(i) {
+				checkSumArr.push($(this).val());
+			});
+			var sum = 0;
+			for (var i = 0; i < checkSumArr.length; i++) {
+				var cartSum = checkSumArr[i];
+				cartSum = parseInt(cartSum);
+				sum += cartSum;
+				document.getElementById("chkSum").innerHTML = sum;
+			}
+		});
+		jQuery(function($) {
+			$('#fromDate').on('change', function() {
+				$('#toDate').prop('min', $(this).val());
+			});
+			$('#toDate').on('change', function() {
+				$('#fromDate').prop('max', $(this).val());
+			});
+		});
+	</script> <script src="resources/indexTemplate/js/jquery-3.2.1.slim.min.js"></script>
 	<script src="resources/indexTemplate/js/popper.min.js"></script> <script
 		src="resources/indexTemplate/js/bootstrap.min.js"></script> <script
 		src="resources/indexTemplate/js/owl.carousel.min.js"></script> <script
