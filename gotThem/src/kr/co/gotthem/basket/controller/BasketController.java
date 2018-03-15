@@ -75,7 +75,8 @@ public class BasketController {
  
     // 2. 장바구니 목록
     @RequestMapping(value = "listBasket.gt", method = RequestMethod.GET)
-	public ModelAndView listBasket(ModelAndView mav,HttpServletRequest req, HttpServletResponse res) throws Exception {
+	public ModelAndView listBasket(ModelAndView mav,HttpServletRequest req, HttpServletResponse res,
+			BasketBean basketBean) throws Exception {
     	Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 	    String mem_id = authentication.getName();
 	
@@ -85,18 +86,21 @@ public class BasketController {
         List<BasketBean> listBasket = basketService.listBasket(userNo); // 장바구니 정보 
         System.out.println("list타고,listBasket " + listBasket);
         int sumMoney = basketService.sumMoney(userNo);// 장바구니 전체 금액 호출
-        System.out.println("userNo  "+userNo );
-        System.out.println("sumMoney  "+sumMoney );
-		map.put("list", listBasket);                // 장바구니 정보를 map에 저장
-	    map.put("count", listBasket.size());// 장바구니 상품의 유무
 	    HttpSession session = req.getSession();
 		session.setAttribute("count", listBasket.size());
 	    map.put("sumMoney", sumMoney);        // 장바구니 전체 금액
-	    /* map.put("fee", fee);                 // 배송금액
-	       map.put("allSum", sumMoney+fee);    // 주문 상품 전체 금액*/
+	    for(int i=0; i< listBasket.size(); i++){
+	    	 basketBean = listBasket.get(i);
+	    	 int procode = basketBean.getBas_procode();	 
+	    	 int stock = productService.productSearchStock(procode);
+	 
+	    	 basketBean.setStock(stock);
+	    }	    
+	    map.put("list", listBasket);                // 장바구니 정보를 map에 저장
+	    map.put("count", listBasket.size());
 	    mav.setViewName("basket/cartList");    // view(jsp)의 이름 저장
 	    mav.addObject("map", map);            // map 변수 저장
-	    mav.addObject("memberInfo", memberInfo);
+	    mav.addObject("memberInfo", memberInfo);		    
 	    System.out.println("mav  "+mav );
 	    return mav;
 	}

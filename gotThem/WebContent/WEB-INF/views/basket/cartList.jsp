@@ -55,7 +55,7 @@
             </div></div>  
 </c:when>
 <c:otherwise>   
-  <form name="form1" id="form1" method="post" action="./update.gt">
+  <form name="form1" id="form1" method="post" action="./update.gt" onsubmit="return validate();">
    <table class="table">
     <thead>   
        <tr>
@@ -84,15 +84,16 @@
                       <a href="productDetail.gt?pro_code=${row.bas_procode}" style="color: #7e8890;"> ${row.bas_proname}</a>
                   </td>
                    <td>
-                       ${row.pro_memno}
+                       ${row.pro_memno}, ${row.stock}
                   </td>
                   <td style="width: 80px" align="right" >
                        <fmt:formatNumber pattern="###,###,###" value="${row.bas_proprice}"/>
                   </td>
                   <td>
-                     <input type="number" style="width:50px; height:25px;" name="bas_prostock" value="${row.bas_prostock}" min="1">
+                     <input type="hidden" name="stock1" value="${row.stock}"> 
+                     <input type="number" min="1" max="${row.stock}" id="changeStock" style="width:50px; height:25px;" name="bas_prostock" value="${row.bas_prostock}" >
                      <input type="hidden" name="bas_procode" value="${row.bas_procode}"><br>
-                     <button type="button" id="button_update"style='width:50px;height:25px;font-size: 12px;' onclick="modify();" >변경</button>
+                     <button type="button" id="button_update" name="button_update" style='width:50px;height:25px;font-size: 12px;' onclick="modify(${row.stock});" >변경</button>
                    <!-- <button type="submit" id="btnUpdate" >수정</button> -->
                   </td>
                   <td style="width: 80px" align="right">
@@ -247,13 +248,20 @@ function button_selDel(){  //장바구니 선택 삭제
 		  return;
 	  }
   }  
-
-function modify(){ //수량수정
-	var submitTest = document.form1;
+function modify(stock){ //수량수정
+/* 	$("#button_update").click(function(){
+		var chgStock = $(this).siblings("#changeStock").val();
+		alert(chgStock);
+	}); */
+	
+	
+	/* var submitTest = document.form1;
 	submitTest.action="./update.gt";
 	submitTest.method="post";
-	submitTest.submit();
-	} 
+	submitTest.submit();  */
+ }
+	 
+	                    
 	
 function button_selOrder(){  //장바구니 선택 결제
 	if( $(":checkbox[name='checkRow']:checked").length==0 ){
@@ -284,6 +292,8 @@ function button_selOrder(){  //장바구니 선택 결제
 			return;
 			}
 	}
+
+	
 //결제 함수 스크립트
 function payment(){
 	var IMP = window.IMP; // 생략가능

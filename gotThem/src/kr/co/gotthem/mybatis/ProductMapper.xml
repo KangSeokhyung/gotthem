@@ -68,4 +68,9 @@
 	<select id="productDetail" resultType="kr.co.gotthem.product.bean.ProductBean">
 		select * from product where pro_code = #{pro_code}
 	</select>
+	
+	<select id="productSearchStock" resultType="int" >
+		select pro_stock from product where pro_code = #{pro_code}
+	</select>
+	
 </mapper>

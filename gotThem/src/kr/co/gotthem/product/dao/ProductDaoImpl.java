@@ -84,5 +84,10 @@ public class ProductDaoImpl implements ProductDao {
 	public ProductBean productDetail(int pro_code) {
 		return sqlSessionTemplate.selectOne("productDetail", pro_code);
 	}
+	
+	@Override
+	public int productSearchStock(int pro_code) {
+		return sqlSessionTemplate.selectOne("productSearchStock", pro_code);
+	}
 
 }
