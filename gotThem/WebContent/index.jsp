@@ -54,11 +54,33 @@
 			});
 		}
 	}
+   	$().ready(function(){
+   		var msg= '${resultMsg}';
+   		var str;
+   		if(msg!=null){
+   			if(msg=='fail1'){
+   				str="현재 비밀번호가 맞지 않습니다. 다시 확인해주세요";
+   			}else if(msg=='fail2'){
+   				str="새로운 비밀번호를 정확히 입력하여 주세요";
+   			}else if(msg=='fail3'){
+   				str="비밀번호 변경이 실패하였습니다";
+   			}else if(msg=='success'){
+   				str="비밀번호 변경이 성공하였습니다.";
+   			}else if(msg=='DelSuccess'){
+   				str="회원탈퇴 성공하였습니다. 이용해 주셔서 감사합니다";
+   			}else if(msg=='DelFail'){
+   				str="회원탈퇴에 실패했습니다. 비밀번호를 확인해주세요";
+   			}
+   			if(str!=null)
+   				alert(str);
+   		}
+   	});
 </script>
   <body>
-  <!-- START: header -->
-   <%@include file="nav.jsp" %>
-  <!-- END: header -->
+<!-- START: header -->
+<%@include file="nav.jsp" %>
+<!-- END: header -->
+
   <section class="probootstrap-slider flexslider">
     <div class="probootstrap-wrap-banner">
       <div class="container">
@@ -222,11 +244,11 @@
         </div>
     </div>
   </footer>
+  
   <div class="gototop js-top">
     <a href="#" class="js-gotop"><i class="icon-chevron-thin-up"></i></a>
   </div>
   
-
   <script src="resources/mainTemplate/js/scripts.min.js"></script>
   <script src="resources/mainTemplate/js/main.min.js"></script>
   <script src="resources/mainTemplate/js/custom.js"></script>

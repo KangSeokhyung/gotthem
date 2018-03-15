@@ -38,7 +38,7 @@
 </body>
 <script>
 	function memberDel(){
-		if(confirm('정말 탈퇴하시겠습니까?')== true){
+		if(confirm('수령하지 않은 제품이 있으면 탈퇴 할 수 없습니다. 정말 탈퇴하시겠습니까?')== true){
 			document.form1.submit();
 		}else{
 			history.go(0);

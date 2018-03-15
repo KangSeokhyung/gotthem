@@ -28,46 +28,9 @@
   </head>
 <body>
 <!-- START: header -->
-   <header role="banner" class="probootstrap-header">
-    <div class="container">
-        <a href="/gotThem" class="probootstrap-logo">GOT THEM<span>.</span></a>
-        
-        <a href="#" class="probootstrap-burger-menu visible-xs" ><i>Menu</i></a>
-        <div class="mobile-menu-overlay"></div>
-
-        <nav role="navigation" class="probootstrap-nav hidden-xs">
-          <ul class="probootstrap-main-nav">
-            <li><a href="#">GOTTHEM</a></li>
-            <li><a href="#">NOTICE</a></li>
-            <li><a href="#">EVENT</a></li>
-            <c:set var="sessionCheck"
-					value="${sessionScope.SPRING_SECURITY_CONTEXT}" />
-				<c:choose>
-					<c:when test="${sessionCheck eq null}">
-            <li><a href="join.gt">SIGN UP</a></li>
-            <li class="active"><a href="login.gt">LOGIN</a></li>
-            		</c:when>
-					<c:otherwise>
-			<li><a href="mypage.gt">MY PAGE</a></li>
-            <li><a href="logout.gt">LOGOUT</a></li>
-				</c:otherwise>
-				</c:choose>
-          </ul>
-          <div class="extra-text visible-xs"> 
-            <a href="#" class="probootstrap-burger-menu"><i>Menu</i></a>
-            <h5>Address</h5>
-            <p>198 West 21th Street, Suite 721 New York NY 10016</p>
-            <h5>Connect</h5>
-            <ul class="social-buttons">
-              <li><a href="#"><i class="icon-twitter"></i></a></li>
-              <li><a href="#"><i class="icon-facebook2"></i></a></li>
-              <li><a href="#"><i class="icon-instagram2"></i></a></li>
-            </ul>
-          </div>
-        </nav>
-    </div>
-  </header>
-  <!-- END: header -->
+   <header>
+		<%@include file="../../../nav.jsp"%>
+	</header>
   <section class="probootstrap-slider flexslider2 page-inner">
     <div class="overlay"></div>
     <div class="probootstrap-wrap-banner">
@@ -109,7 +72,7 @@
           <p><a href="#">Learn More</a></p>
         </div>
         <div class="col-md-8 col-md-push-1">
-                  <form action="#" method="post" class="probootstrap-form mb60">
+                  <form method="post" class="probootstrap-form mb60">
             <div class="row">
               <div class="col-sm-6">
                 <div class="form-group">
@@ -128,6 +91,10 @@
             </div>
             <div class="form-group ">
               <input type="submit" class="btn btn-primary" name="submit" value="로그인하기" style="width:48%;" onclick="loginResult()">
+              
+            </div>
+            <div class="form-group ">
+            <a id="kakao-login-btn" style="cursor:pointer; width:48%; height:49px;"></a>
             </div>
             <div class="form-group ">
             <img src="image/naver_Green.png" style="cursor:pointer; width:48%; height:49px;" >
@@ -138,7 +105,12 @@
             <div class="form-group">
              <a href="join.gt">회원 가입이 필요하신가요?</a>
             </div>
-            
+           
+          </form>
+          <form id="kakaoForm" action="kakaoLogin.st" method="post">
+          	<input type="hidden" value="" id="kakao_email" name="mem_id">
+          	<input type="hidden" value="" id="mem_name" name="mem_name">
+          	<input type="hidden" value="" id="mem_email" name="mem_email">
           </form>
         </div>
       </div>
@@ -151,6 +123,38 @@
      <script src="resources/mainTemplate/js/scripts.min.js"></script>
   	<script src="resources/mainTemplate/js/main.min.js"></script>
   	<script src="resources/mainTemplate/js/custom.js"></script>
+  	<!-- KAKAO LOGIN -->
+  	<script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
+  	<script type='text/javascript'>
+  //<![CDATA[
+    // 사용할 앱의 JavaScript 키를 설정해 주세요.
+    Kakao.init('7f93c771faceb935af25ef6e91c4a334');
+    // 카카오 로그인 버튼을 생성합니다.
+    Kakao.Auth.createLoginButton({
+      container: '#kakao-login-btn',
+      success: function(authObj) {
+    	  Kakao.API.request({
+    		    url: '/v1/user/me',
+    		    success: function(res) {
+    		      alert(res.kaccount_email +
+    		      res.id +
+    		      res.properties.nickname);
+    		      if(document.getElementById('mem_id').value !=null){
+    		    	  document.getElementById('mem_id').value = null;
+    		      }
+    		    document.getElementById('kakao_email').value = res.kaccount_email;
+    		    },
+    		    fail: function(error) {
+    		      alert(JSON.stringify(error))
+    		    }
+    		});
+      },
+      fail: function(err) {
+         alert("Login Fail");
+      }
+    });
+  //]]>
+</script>
   	<script>
   	$().ready(function(){
    		var msg= '${errMsg}';

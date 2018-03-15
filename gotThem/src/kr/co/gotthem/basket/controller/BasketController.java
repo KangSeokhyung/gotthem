@@ -81,7 +81,6 @@ public class BasketController {
 	
      	MemberBean memberInfo = memberService.memberInfo(mem_id);
         int userNo = memberInfo.getMem_no();
-		
         Map<String, Object> map = new HashMap<String, Object>();
         List<BasketBean> listBasket = basketService.listBasket(userNo); // 장바구니 정보 
         System.out.println("list타고,listBasket " + listBasket);
@@ -97,6 +96,7 @@ public class BasketController {
 	       map.put("allSum", sumMoney+fee);    // 주문 상품 전체 금액*/
 	    mav.setViewName("basket/cartList");    // view(jsp)의 이름 저장
 	    mav.addObject("map", map);            // map 변수 저장
+	    mav.addObject("memberInfo", memberInfo);
 	    System.out.println("mav  "+mav );
 	    return mav;
 	}

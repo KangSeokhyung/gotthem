@@ -10,10 +10,12 @@
     <title>편의점 재고 검색 GOT THEM!</title>
     <meta name="description" content="Free Bootstrap Theme by uicookies.com">
     <meta name="keywords" content="free website templates, free bootstrap themes, free template, free bootstrap, free website template">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/xeicon@2.3.3/xeicon.min.css">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400" rel="stylesheet">
     <link rel="stylesheet" href="resources/mainTemplate/css/styles-merged.css">
     <link rel="stylesheet" href="resources/mainTemplate/css/style.min.css">
     <link rel="stylesheet" href="resources/mainTemplate/css/custom.css">
+    <link href="resources/table/css/fresh-bootstrap-table.css" rel="stylesheet" />
     <!--[if lt IE 9]>
       <script src="resources/mainTemplate/js/vendor/html5shiv.min.js"></script>
       <script src="resources/mainTemplate/js/vendor/respond.min.js"></script>
@@ -32,7 +34,6 @@
    <header>
 		<%@include file="../../../nav.jsp"%>
 	</header>
-<!-- END: header -->
   <section class="probootstrap-slider flexslider2 page-inner">
     <div class="overlay"></div>
     <div class="probootstrap-wrap-banner">
@@ -88,9 +89,9 @@
         </div>
         <div class="col-sm-8">
        <div class="tab-content">
-	<div class="tab-pane active" id="tab-1"></div>
+				<div class="tab-pane fade" id="tab-1"></div>
 				<div class="tab-pane fade" id="tab-2"></div>
-				<div class="tab-pane fade" id="tab-3">
+				<div class="tab-pane active" id="tab-3">
 				</div>
 				<div class="tab-pane fade" id="tab-4">
 				</div>
