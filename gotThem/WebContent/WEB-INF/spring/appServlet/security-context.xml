@@ -8,7 +8,7 @@
  	<http pattern="/*.gt" auto-config="true" disable-url-rewriting="true" use-expressions="true">
 		<intercept-url pattern="/" access="permitAll" />
 		<intercept-url pattern="/mypage.gt" access="hasAnyRole('ROLE_USER, ROLE_ADMIN')" />
-		<intercept-url pattern="/test.gt" 	access="hasAnyRole('ROLE_USER, ROLE_ADMIN')" />
+		<intercept-url pattern="/listBasket.gt" access="hasAnyRole('ROLE_USER')" />
 		<form-login login-page="/login.gt" 
 			default-target-url="/"
 			login-processing-url="/login.gt"

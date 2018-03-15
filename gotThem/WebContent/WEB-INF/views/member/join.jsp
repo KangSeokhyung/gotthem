@@ -117,7 +117,7 @@
           <p><a href="#">Learn More</a></p>
         </div>
         <div class="col-md-8 col-md-push-1">
-                  <form action="#" method="post" class="probootstrap-form mb60">
+           <form action="joinSccess.gt" method="post" class="probootstrap-form mb60">
             <div class="row">
               <div class="col-sm-6">
                 <div class="form-group">

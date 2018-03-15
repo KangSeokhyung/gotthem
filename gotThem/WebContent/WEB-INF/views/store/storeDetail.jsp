@@ -88,12 +88,12 @@
 			checkList.push($(this).val());
 		});
 		
-		alert(checkList);
 		$.ajax({
 			url : "selectAddBasket.gt",
 			type : "post",
 			data : { "checkList" : checkList, "checkOne" : checkOne },
 			success : function(result){
+				$("#navbar").load("nav.jsp");
 				if (confirm("장바구니에 추가되었습니다.\n장바구니 페이지로 이동 하시겠습니까?")) {
 					location.href="listBasket.gt";	
 				} else {

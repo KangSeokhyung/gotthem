@@ -50,17 +50,16 @@
 					$("#releatedField").append(innerHtml);
 				},
 				error : function(xmlHttpReq, status, error) {
-					alert(xmlHttpReq + "리퀘스트\n" + status + "상태\n" + error + "에러\n");
 				}
 			});
 		}
 	}
 	
 	// Google Map API
-	$(function() {
-		initialize();
+	window.onload = function() {
+		initmap();
 		codeAddress();
-	});
+	}
 	
 	var geocoder;
 	var map;
@@ -70,7 +69,7 @@
 	var imgList = [];
 	var numList = [];
 	
-	function initialize() {
+	function initmap() {
 		geocoder = new google.maps.Geocoder();
 		var latlng = new google.maps.LatLng(37.494602, 127.028017);
 		var mapOptions = {
@@ -102,12 +101,12 @@
 			phone = phoneList[i];
 			img = imgList[i];
 			num = numList[i];
-			
 			mapAction(storeName, addr, phone, img, num);
 		}
 	}
 	
 	function mapAction(storeName, addr, phone, img, num) {
+	
 		geocoder.geocode({ 'address' : addr }, function(results, status) {
 			if (status == 'OK') {
 				map.setCenter(results[0].geometry.location);
@@ -118,7 +117,7 @@
 						title : storeName
 					});
 			} else {
-				alert('Geocode was not successful for the following reason: '+ status);
+				alert(status + '\n 등록된 주소가 올바르지 않거나 시스템 오류입니다.');
 			}
 			
 			var contentString = "<div>"
@@ -165,7 +164,7 @@
 	  </div>
   </div>
 </section>
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBIBJw0ula3rE8CFX12w0CTcwEWIxjYCZA&callback=initMap"
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBIBJw0ula3rE8CFX12w0CTcwEWIxjYCZA&callback"
     async defer></script>
 
 <section class="probootstrap-section">
@@ -174,7 +173,7 @@
   	<div class="col-xs-8 col-sm-8">
 		<input type="hidden" name="pageNo" value="1">
 		<input type="text" class="form-control" name="search" autocomplete="off"
-			id="search" onkeyup="relatedSearch()"
+			id="search" onkeyup="relatedSearch()" required="required"
 			placeholder="예) 김밥, 강남역" />
 		<div id="releatedField"></div>
 	</div>

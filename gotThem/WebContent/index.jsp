@@ -43,14 +43,13 @@
 									  + "<a href='searchList.gt?search=" +  ob["search" + i] 
 									  + "&pageNo=1' class='list-group-item list-group-item-action'>" 
 									  +  ob["search" + i] + "</a>";
-									  + "</div>"
+				 					  + "</div>"
 						}
 					}
 					
 					$("#releatedField").append(innerHtml);
 				},
 				error : function(xmlHttpReq, status, error) {
-					alert(xmlHttpReq + "리퀘스트\n" + status + "상태\n" + error + "에러\n");
 				}
 			});
 		}
@@ -114,7 +113,8 @@
 					<div class="probootstrap-fields">
 						<div class="form-field">
 							<input type="text" class="form-control" name="search" autocomplete="off"
-								id="search" onkeyup="relatedSearch()" placeholder="예) 김밥, 강남역" />
+								id="search" onkeyup="relatedSearch()" required="required" 
+								placeholder="예) 김밥, 강남역" />
 						</div>
 						<div id="releatedField"></div>
 					</div>

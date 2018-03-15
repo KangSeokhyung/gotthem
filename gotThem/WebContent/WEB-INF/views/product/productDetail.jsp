@@ -30,6 +30,7 @@
 			return false;
 		}
 		
+		var pro_stock = $("#pro_stock").val();
 		$.ajax({
 			url : "insertBasket.gt",
 			data : { 
@@ -37,12 +38,13 @@
 				"bas_proname" : "${productInfo.pro_name }",
 				"bas_memno" : "${productInfo.pro_memno }",
 				"bas_procategory" : "${productInfo.pro_category }",
-				"bas_prostock" : 1,
+				"bas_prostock" : pro_stock,
 				"bas_proprice" : "${productInfo.pro_price }",
 				"bas_proimg" : "${productInfo.pro_img }"
 			},
 			type : "post",
 			success : function(check) {
+				$("#navbar").load("nav.jsp");
 				if (confirm("장바구니에 추가됐습니다. \n장바구니로 가시겠으면 '확인',\n계속 쇼핑하시겠으면 '취소' 를 클릭해주세요.")) {
 					location.href="listBasket.gt";
 				} else {

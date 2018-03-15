@@ -202,7 +202,7 @@ public class BasketController {
 			basketBean.setBas_procode(Integer.parseInt(bas_procode));
 			basketBean.setBas_proname(bas_proname);
 			basketBean.setBas_procategory(bas_procategory);
-			basketBean.setBas_prostock(Integer.parseInt(bas_prostock));
+			basketBean.setBas_prostock(1);
 			basketBean.setBas_proprice(Integer.parseInt(bas_proprice));
 			basketBean.setBas_proimg(bas_proimg);
 			basketBean.setPro_memno(Integer.parseInt(pro_memno));
@@ -232,7 +232,7 @@ public class BasketController {
 				basketBean.setBas_procode(Integer.parseInt(bas_procode));
 				basketBean.setBas_proname(bas_proname);
 				basketBean.setBas_procategory(bas_procategory);
-				basketBean.setBas_prostock(Integer.parseInt(bas_prostock));
+				basketBean.setBas_prostock(1);
 				basketBean.setBas_proprice(Integer.parseInt(bas_proprice));
 				basketBean.setBas_proimg(bas_proimg);
 				basketBean.setPro_memno(Integer.parseInt(pro_memno));
