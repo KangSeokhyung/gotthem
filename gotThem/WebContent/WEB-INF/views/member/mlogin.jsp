@@ -130,6 +130,9 @@
               <input type="submit" class="btn btn-primary" name="submit" value="로그인하기" style="width:48%;" onclick="loginResult()">
             </div>
             <div class="form-group ">
+            <a id="kakao-login-btn" style="cursor:pointer; width:48%; height:49px;"></a>
+            </div>
+            <div class="form-group ">
             <img src="image/naver_Green.png" style="cursor:pointer; width:48%; height:49px;" >
             </div>
             <div class="form-group">
@@ -151,6 +154,24 @@
      <script src="resources/mainTemplate/js/scripts.min.js"></script>
   	<script src="resources/mainTemplate/js/main.min.js"></script>
   	<script src="resources/mainTemplate/js/custom.js"></script>
+  	<!-- KAKAO LOGIN -->
+  	<script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
+  	<script type='text/javascript'>
+  //<![CDATA[
+    // 사용할 앱의 JavaScript 키를 설정해 주세요.
+    Kakao.init('7f93c771faceb935af25ef6e91c4a334');
+    // 카카오 로그인 버튼을 생성합니다.
+    Kakao.Auth.createLoginButton({
+      container: '#kakao-login-btn',
+      success: function(authObj) {
+        alert("Login Success");
+      },
+      fail: function(err) {
+         alert("Login Fail");
+      }
+    });
+  //]]>
+</script>
   	<script>
   	$().ready(function(){
    		var msg= '${errMsg}';

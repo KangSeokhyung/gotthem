@@ -124,8 +124,7 @@
 
     <!-- 3. 아이디별 전체 결제 목록 -->
     <select id="listOrder" resultType="kr.co.gotthem.order.bean.OrderpayBean">
-         SELECT  ord_no, ord_procode, ord_proname, ord_memno,ord_stock,
-                ord_price, ord_findtime, ord_status,ord_basno,ord_proimg,pro_memno
+         SELECT *
          FROM orderpay           
          WHERE ord_memno = #{userNo}
          ORDER BY ord_no desc
