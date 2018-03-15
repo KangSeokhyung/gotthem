@@ -122,7 +122,7 @@
             <input type="hidden" name="count" value="${map.count}">           
             <input type="button" name="seDel" id="button_seDel" onclick="button_selDel();" value="선택상품 삭제" style='height:25px;font-size: 12px;'/>
             <div style='float:right; padding: 3px 30px 3px 6px;'>
-             <button type="button" value="상품목록1" id="btnList">상품목록</button> 
+             <button type="button" value="상품목록1" id="btnList">계속 쇼핑하기</button> 
              <input type="button" value="바로구매" onclick="button_selOrder();">
             </div></div>
 </c:otherwise>
@@ -153,7 +153,7 @@
 <script type="text/javascript">
 $(document).ready(function(){
 	$("#btnList").click(function(){// 리스트 페이지로 이동
-		location.href="./productlist.gt";
+		location.href="/gotThem";
 		});
     /* $("#btnOrd").click(function(){
     location.href="ord.gt?bas_no="+bas_no;
