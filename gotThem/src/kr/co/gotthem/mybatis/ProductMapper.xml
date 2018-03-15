@@ -4,8 +4,12 @@
               
 <mapper namespace="kr.co.gotthem.mybatis.ProductMapper">
 
-	<select id="plist" resultType="kr.co.gotthem.product.bean.ProductBean">
-		select * from product where pro_memno = #{pro_memno}
+	<select id="plist" resultType="kr.co.gotthem.product.bean.ProductBean" parameterType="java.util.HashMap">
+		select * from product where pro_memno = #{pro_memno} order by pro_code desc limit #{beginList}, 10 
+	</select>
+	
+	<select id="plistCount" resultType="int" parameterType="int">
+		select count(*) from product where pro_memno = #{pro_memno}
 	</select>
 	
 	<select id="findCode" resultType="kr.co.gotthem.product.bean.ProductBean">
@@ -17,7 +21,9 @@
 		pro_name = #{pro_name},
 		pro_category = #{pro_category},
 		pro_stock = #{pro_stock},
-		pro_price = #{pro_price}
+		pro_price = #{pro_price},
+		pro_comment = #{pro_comment},
+		pro_img = #{pro_img}
 		where
 		pro_code = #{pro_code}
 	</update>
@@ -28,14 +34,14 @@
 	
 	<insert id="insertPro" parameterType="kr.co.gotthem.product.bean.ProductBean">
 		insert into product(
-		pro_name, pro_memno, pro_category, pro_stock, pro_price)
+		pro_name, pro_memno, pro_category, pro_stock, pro_price, pro_img)
 		values(
-		#{pro_name}, #{pro_memno}, #{pro_category}, #{pro_stock}, #{pro_price})
+		#{pro_name}, #{pro_memno}, #{pro_category}, #{pro_stock}, #{pro_price}, #{pro_img})
 	</insert>
 	
 	<select id="searchList" parameterType="java.util.HashMap" resultType="java.util.HashMap">
 		select m.mem_no as mem_no, m.sto_name as sto_name, m.mem_address as mem_address,
-			p.pro_name as pro_name, p.pro_stock as pro_stock, m.sto_img as sto_img 
+			p.pro_name as pro_name, p.pro_stock as pro_stock, m.sto_img as sto_img, m.mem_phone as mem_phone
 		from member m, product p
 		where m.mem_no=p.pro_memno and p.pro_name like concat('%', #{search}, '%')
 			or m.sto_name like concat('%', #{search}, '%')

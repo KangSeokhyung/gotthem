@@ -36,6 +36,7 @@
 				success : function(relatedData) {
 					var ob = JSON.parse(relatedData);
 					var innerHtml = "";
+					$("#releatedField").html("");
 					for (var i = 0; i < 5; i++) {
 						if (typeof(ob["search" + i]) != "undefined") {
 							innerHtml += "<div class='list-group'>"
@@ -117,7 +118,7 @@
 						</div>
 						<div id="releatedField"></div>
 					</div>
-					<input type="submit" class="btn btn-fill btn-danger" value="검색">
+					<input type="submit" class="btn btn-fill btn-success" value="검색">
 				</div>
               </form>
             </div>
@@ -227,7 +228,7 @@
             </div>
           </a>
         </div>
-
+		
       </div>
     </div>
   </section>

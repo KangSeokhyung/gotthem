@@ -1,19 +1,20 @@
 package kr.co.gotthem.product.controller;
 
+import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import org.codehaus.jackson.JsonGenerationException;
 import org.codehaus.jackson.map.JsonMappingException;
 import org.codehaus.jackson.map.ObjectMapper;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
@@ -27,6 +28,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import kr.co.gotthem.member.bean.MemberBean;
@@ -34,11 +36,9 @@ import kr.co.gotthem.member.service.MemberService;
 import kr.co.gotthem.product.bean.ProductBean;
 import kr.co.gotthem.product.bean.SearchBean;
 import kr.co.gotthem.product.service.ProductService;
-import kr.co.gotthem.store.controller.StoreController;
 
 @Controller
 public class ProductController {
-	
 	private ProductService productService;
 	private MemberService memberService;
 	private MongoTemplate mongoTemplate;
@@ -49,105 +49,170 @@ public class ProductController {
 	public void setProductService(ProductService productService) {
 		this.productService = productService;
 	}
-	
+
 	public void setMemberService(MemberService memberService) {
 		this.memberService = memberService;
 	}
-	
+
 	@RequestMapping(value = "/stock.st", method = RequestMethod.GET)
-	public ModelAndView handleRequest(HttpServletRequest req,
-			HttpServletResponse res, HttpSession session) throws Exception {
-		
+	public String stock(Model model, @RequestParam int pageNo) throws Exception {
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 		String mem_id = authentication.getName();
-		
-		MemberBean memberInfo =  memberService.memberInfo(mem_id);
+		MemberBean memberInfo = memberService.memberInfo(mem_id);
 		int pro_memno = memberInfo.getMem_no();
-		
-		System.out.println("memno = " + pro_memno);
-		List<ProductBean> result = productService.plist(pro_memno);
-		ModelAndView mav = new ModelAndView();
-		mav.setViewName("product/stock");
-		mav.addObject("plist",result);
-		
-		return mav;
+
+		productService.plist(model, pro_memno, pageNo);
+		return "product/stock";
 	}
-	
+
 	@RequestMapping(value = "/detail.st", method = RequestMethod.GET)
-	protected ModelAndView handleRequestInternal(HttpServletRequest req) throws Exception {
-		
+	protected ModelAndView handleRequestInternal(HttpServletRequest req, @RequestParam int pageNo) throws Exception {
+
 		ModelAndView mav = new ModelAndView();
 		int code = ServletRequestUtils.getIntParameter(req, "code");
-		System.out.println("code = " + code);
-		ProductBean bean = productService.findCode(code);		
+		ProductBean bean = productService.findCode(code);
 		mav.setViewName("product/detail");
-		mav.addObject("pro",bean);
-		
+		mav.addObject("pro", bean);
+		mav.addObject("pageNo", pageNo);
+
 		return mav;
 	}
-	
-	@RequestMapping(value="/update.st", method=RequestMethod.GET)
-	protected ModelAndView movieUpdateForm(HttpServletRequest req, ModelAndView mav){
+
+	@RequestMapping(value = "/update.st", method = RequestMethod.GET)
+	protected ModelAndView movieUpdateForm(HttpServletRequest req, ModelAndView mav, @RequestParam int pageNo) {
 		ProductBean bean = productService.findCode(Integer.parseInt(req.getParameter("code")));
-		System.out.println("update.st의 컨트롤"+ bean);
 		mav.setViewName("product/update");
-		mav.addObject("pro",bean);
-		
+		mav.addObject("pro", bean);
+		mav.addObject("pageNo", pageNo);
+
 		return mav;
 	}
-	@RequestMapping(value="/update.st", method=RequestMethod.POST)
-	protected ModelAndView updateProcess(@ModelAttribute ProductBean bean, HttpServletRequest req){
-		
-		productService.updatePro(bean);
-		
+
+	@RequestMapping(value = "/update.st", method = RequestMethod.POST)
+	protected ModelAndView updateProcess(@ModelAttribute ProductBean bean, HttpServletRequest req,
+			@RequestParam MultipartFile file, @RequestParam int pageNo) throws Exception {
+
+		InputStream inputStream = null;
+		OutputStream outputStream = null;
+
+		// 업로드된 파일을 임의의 경로로 이동한다
+		String fileName = file.getOriginalFilename();
+		bean.setPro_img(fileName);
+		if (bean.getPro_img() == null || bean.getPro_img() == "") {
+			bean.setPro_img(req.getParameter("pro_img"));
+		} else {
+			try {
+
+				inputStream = file.getInputStream();
+
+				File newFile = new File("D:\\outupload/" + fileName);
+				if (!newFile.exists()) {
+					newFile.createNewFile();
+				}
+				outputStream = new FileOutputStream(newFile);
+
+				int read = 0;
+				byte[] bytes = new byte[1024 * 10];
+
+				while ((read = inputStream.read(bytes)) != -1) {
+					outputStream.write(bytes, 0, read);
+				}
+			} catch (IOException e) {
+				e.printStackTrace();
+			} finally {
+				try {
+					outputStream.close();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+
 		String code = req.getParameter("pro_code");
-		System.out.println(code);
-		return new ModelAndView("redirect:/detail.st?code="+code);
+		productService.updatePro(bean);
+		return new ModelAndView("redirect:/detail.st?pageNo=" + pageNo + "&code=" + code);
 	}
-	
-	@RequestMapping(value="/delete.st", method=RequestMethod.POST)
-	protected ModelAndView deleteProcess(HttpServletRequest req){
-		
+
+	@RequestMapping(value = "/delete.st", method = RequestMethod.POST)
+	protected ModelAndView deleteProcess(HttpServletRequest req, @RequestParam int pageNo) {
+
 		int code = Integer.parseInt(req.getParameter("pro_code"));
-		System.out.println(code);
 		productService.deletePro(code);
-		
-		return new ModelAndView("redirect:/stock.st");
+		ModelAndView mav = new ModelAndView("redirect:/stock.st?pageNo=" + pageNo);
+
+		return mav;
 	}
-	
-	@RequestMapping(value="/insert.st", method=RequestMethod.GET)
-	protected ModelAndView handleRequestInternal(HttpServletRequest req, ModelAndView mav,
-			HttpSession session) throws Exception {
-		
+
+	@RequestMapping(value = "/insert.st", method = RequestMethod.GET)
+	protected ModelAndView handleRequestInternal(ModelAndView mav, @RequestParam int pageNo) throws Exception {
+
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 		String mem_id = authentication.getName();
-		
-		MemberBean bean = memberService.memberInfo(mem_id);		
+
+		MemberBean bean = memberService.memberInfo(mem_id);
 		mav.setViewName("product/insert");
-		mav.addObject("pro",bean);
-		
+		mav.addObject("pro", bean);
+		mav.addObject("pageNo", pageNo);
+
 		return mav;
 	}
-	
-	@RequestMapping(value="/insert.st", method=RequestMethod.POST)
-	protected ModelAndView handleRequestInternal(HttpServletRequest req, ProductBean bean) throws Exception {
-		System.out.println(req.getParameter("mem_no"));
+
+	@RequestMapping(value = "/insert.st", method = RequestMethod.POST)
+	public ModelAndView handleRequestInternal(HttpServletRequest req, @RequestParam int pageNo,
+			@ModelAttribute ProductBean bean, @RequestParam MultipartFile file) throws Exception {
 		int pro_memno = (Integer.parseInt(req.getParameter("mem_no")));
+
+		InputStream inputStream = null;
+		OutputStream outputStream = null;
+
+		// 업로드된 파일을 임의의 경로로 이동한다
+		String fileName = file.getOriginalFilename();
+		bean.setPro_img(fileName);
+		if (bean.getPro_img() == null || bean.getPro_img() == "") {
+			bean.setPro_img("no_img.jpg");
+		} else {
+			try {
+
+				inputStream = file.getInputStream();
+
+				File newFile = new File("D:\\outupload/" + fileName);
+				if (!newFile.exists()) {
+					newFile.createNewFile();
+				}
+				outputStream = new FileOutputStream(newFile);
+
+				int read = 0;
+				byte[] bytes = new byte[1024 * 10];
+
+				while ((read = inputStream.read(bytes)) != -1) {
+					outputStream.write(bytes, 0, read);
+				}
+			} catch (IOException e) {
+				e.printStackTrace();
+			} finally {
+				try {
+					outputStream.close();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+
 		bean.setPro_memno(pro_memno);
 		productService.insertPro(bean);
-		
-		return new ModelAndView("redirect:/stock.st");
+		ModelAndView mav = new ModelAndView("redirect:/stock.st?pageNo=" + pageNo);
+
+		return mav;
 	}
-	
+
 	@RequestMapping(value = "/relatedSearch.gt", method = RequestMethod.POST)
 	public void relatedSearch(Model model, String search, HttpServletResponse response) throws IOException {
 		Query query = new Query();
-		query.addCriteria(Criteria.where("search").regex("^" + search));
+		query.addCriteria(Criteria.where("search").regex(search));
 		
 		// 맵으로 돌릴 필요 없이 리스트를 맵 형태로 받는게 좋을 듯하다. 나중에 수정해보기
 		List<SearchBean> list = mongoTemplate.find(query, SearchBean.class, "relatedsearch");
 		Map<String, String> map = new HashMap<String, String>();
-		
 		for (int i = 0; i < list.size(); i++) {
 			map.put("search"+ i, list.get(i).getSearch());
 		}
@@ -159,9 +224,10 @@ public class ProductController {
 	
 	@RequestMapping(value = "/searchList.gt", method = RequestMethod.GET)
 	public String searchList(Model model, @RequestParam String search, @RequestParam int pageNo) {
-		
-		productService.searchList(model, search, pageNo);
-		
+		System.out.println(search);
+		List list = productService.searchList(model, search, pageNo);
+		System.out.println(list);
+					
 		return "product/searchList";
 	}
 	
@@ -187,5 +253,10 @@ public class ProductController {
 		model.addAttribute("productInfo", productInfo);
 		
 		return "product/productDetail";
+	}
+	
+	@RequestMapping(value = "/mapDiv.gt")
+	public String map(Model model) {
+		return "product/mapDiv";
 	}
 }

@@ -17,8 +17,13 @@ public class ProductDaoImpl implements ProductDao {
 	}
 	
 	@Override
-	public List<ProductBean> plist(int pro_memno) {
-		return sqlSessionTemplate.selectList("plist", pro_memno);
+	public List<ProductBean> plist(HashMap<String, Object> map) {
+		return sqlSessionTemplate.selectList("plist", map);
+	}
+	
+	@Override
+	public int plistCount(int pro_memno) {
+		return sqlSessionTemplate.selectOne("plistCount", pro_memno);
 	}
 
 	@Override
@@ -28,7 +33,6 @@ public class ProductDaoImpl implements ProductDao {
 
 	@Override
 	public void updatePro(ProductBean bean) {
-		System.out.println("dao임플안의 bean = " + bean);
 		sqlSessionTemplate.update("updatePro", bean);
 	}
 	
@@ -80,5 +84,5 @@ public class ProductDaoImpl implements ProductDao {
 	public ProductBean productDetail(int pro_code) {
 		return sqlSessionTemplate.selectOne("productDetail", pro_code);
 	}
-	
+
 }

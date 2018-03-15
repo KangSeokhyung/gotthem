@@ -41,7 +41,7 @@
 					<td>${list.pro_stock }</td>
 					<td>${list.pro_price }</td>
 					<td>
-						<input type="button" id="basketBtn" value="장바구니" 
+						<input type="button" id="basketBtn" value="장바구니" class="btn btn-info"
 							onclick="addBasket('${list.pro_code }', '${list.pro_name }', '${list.pro_memno }', 
 							'${list.pro_category }', '${list.pro_price }', '${list.pro_img }', '${list.pro_stock }')">
 					</td>
@@ -50,7 +50,7 @@
 			</tbody>
 		</table>
 		<div class="col-sm-12">
-			<input type="button" onclick="selectAddBasket()" value="선택 장바구니 ">
+			<input type="button" onclick="selectAddBasket()" class="btn btn-info" value="체크장바구니 ">
 		</div>
 		</form>
 	</div>

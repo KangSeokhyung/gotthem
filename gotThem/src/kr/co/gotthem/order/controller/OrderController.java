@@ -183,30 +183,32 @@ public class OrderController {
 		return mav;
 	}
 	
-	// 3.1 사장님 아이디별 기간 결제 목록
+
+	// 3.1 사장님 아이디 기간별 결제 목록
 	@RequestMapping("/storeOrderListTime.st")
-	public ModelAndView listOrderStore(@RequestParam String from, @RequestParam String to, ModelAndView mav) throws Exception {
+	public ModelAndView listOrderStore(@RequestParam String from, @RequestParam String to, ModelAndView mav)
+			throws Exception {
 
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 		String mem_id = authentication.getName();
 		MemberBean memberInfo = memberService.memberInfo(mem_id);
 		int userNo = memberInfo.getMem_no();
-		
+
 		String from1 = from + " 00:00:00.0";
 		java.sql.Timestamp begin = java.sql.Timestamp.valueOf(from1);
 		String to1 = to + " 23:59:59.9";
 		java.sql.Timestamp end = java.sql.Timestamp.valueOf(to1);
-
-		System.out.println("userNo타고 " + userNo);
-		System.out.println("begin고 " + begin);
-		System.out.println(" end고 " +  end);
-		Map<String, Object> map = new HashMap<String, Object>();		
-		List<OrderpayBean> slistOrder = orderService.storeListOrderTime(userNo,begin, end);
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		List<OrderpayBean> slistOrder = orderService.storeListOrderTime(userNo, begin, end);
 		System.out.println("storeLisOrdertime타고 " + slistOrder);
+		map.put("begin", from);
+		map.put("end", to);
 		map.put("list", slistOrder);
-		mav.setViewName("/store/storeOrderList");
+		System.out.println("map고 " + map);
+		mav.setViewName("/store/storeOrderListTime");
 		mav.addObject("map", map);
 		return mav;
 	}
-   	
+
 }

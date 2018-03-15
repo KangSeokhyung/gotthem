@@ -18,14 +18,6 @@ public class ProductBean {
 		return pro_code;
 	}
 
-	public String getPro_comment() {
-		return pro_comment;
-	}
-
-	public void setPro_comment(String pro_comment) {
-		this.pro_comment = pro_comment;
-	}
-
 	public void setPro_code(int pro_code) {
 		this.pro_code = pro_code;
 	}
@@ -70,6 +62,14 @@ public class ProductBean {
 		this.pro_price = pro_price;
 	}
 
+	public String getPro_comment() {
+		return pro_comment;
+	}
+
+	public void setPro_comment(String pro_comment) {
+		this.pro_comment = pro_comment;
+	}
+
 	public String getPro_img() {
 		return pro_img;
 	}
@@ -84,5 +84,7 @@ public class ProductBean {
 				+ ", pro_category=" + pro_category + ", pro_stock=" + pro_stock + ", pro_price=" + pro_price
 				+ ", pro_comment=" + pro_comment + ", pro_img=" + pro_img + "]";
 	}
+
+	
 	
 }

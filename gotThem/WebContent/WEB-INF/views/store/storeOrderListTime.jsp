@@ -42,13 +42,13 @@
 			<label for="fromDate">기간:</label>&nbsp;&nbsp; <input type="date"
 				id="fromDate" name="from" required="" /> <label for="toDate">~</label>
 			<input type="date" id="toDate" name="to" required="" />&nbsp;&nbsp;
-			<input type="submit" value="조회" /><strong>&nbsp;&nbsp;&nbsp;총 결제 금액:&nbsp; <span id="chkSum"></span>
-			</strong>
+			<input type="submit" value="조회" />&nbsp;&nbsp;&nbsp;
+			<span><strong>${map.begin}&nbsp;~&nbsp;${map.end}&nbsp;&nbsp;&nbsp;총 결제 금액:&nbsp; <span id="chkSum"></span>
+			</strong></span>
 		</div>
 	</form>
 	<div class="cover-container pb-5">
-		<div class="cover-inner container">
-
+		<div class="cover-inner container">     
 			<table class="table table-user-information" id="mytable">
 				<tr>
 					<th>결제 번호</th>

@@ -75,8 +75,6 @@
 		pro_memno = #{pro_memno}
 	</update>
 
-
-
 	<!-- 결제 관련 부분 -->
 	<!-- 1. 장바구니에서 단건 결제 추가 -->
 	<insert id="orderInsert">

@@ -135,6 +135,17 @@
             location.href="./listBasket.gt";
         }); 
     });
+    $(document).on("click", "#rowCheck tr", function(event){
+    	if(event.target.nodeName.toLowerCase() == "td") {
+    		var checkbox = $(this).find("td:first-child :checkbox");
+
+    		if (checkbox.is(":checked")) {
+    			checkbox.prop("checked", false);
+    		} else {
+    			checkbox.prop("checked", true);
+    		}
+    	}
+    });
 
    function button_delete(ord_no,ord_stock,ord_procode){
     	alert(ord_no);

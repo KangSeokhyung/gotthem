@@ -99,13 +99,13 @@
         <div class="col-md-3">
 			<h4>WELCOME TO GOT THEM</h4>
           <ul class="with-icon colored">
-            <li><i class="icon-location2"></i> <span>198 West 21th Street, Suite 721 New York NY 10016</span></li>
-            <li><i class="icon-mail"></i><span>info@domain.com</span></li>
-            <li><i class="icon-phone2"></i><span>+123 456 7890</span></li>
+            <li><i class="icon-location2"></i> <span>서울특별시 서초구 비트아카데미 빌딩 3층</span></li>
+            <li><i class="icon-mail"></i><span>gotthembit@gmail.com</span></li>
+            <li><i class="icon-phone2"></i><span>02-123-4567</span></li>
           </ul>
 
           <h4>Feedback</h4>
-          <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
+          <p>궁금하신 점이 있으면, 언제라도 문의 주세요.<br> Gotthem은 항상 열려 있습니다.</p>
           <p><a href="#">Learn More</a></p>
         </div>
         <div class="col-md-8 col-md-push-1">
@@ -113,21 +113,24 @@
             <div class="row">
               <div class="col-sm-6">
                 <div class="form-group">
-                  <label for="fname">ID</label>
-                  <input type="text" class="form-control" id="fname" name="mem_id">
+                  <label for="mem_id">ID</label>
+                  <input type="text" class="form-control" id="mem_id" name="mem_id" autofocus>
                 </div>
               </div>
               </div>
               <div class="row">
               <div class="col-md-6">
                 <div class="form-group">
-                  <label for="lname">PASSWORD</label>
-                  <input type="password" class="form-control" id="lname" name="mem_pw">
+                  <label for="mem_pw">PASSWORD</label>
+                  <input type="password" class="form-control" id="mem_pw" name="mem_pw">
                 </div>
               </div>
             </div>
-            <div class="form-group">
-              <input type="submit" class="btn btn-primary" id="submit" name="submit" value="로그인하기">
+            <div class="form-group ">
+              <input type="submit" class="btn btn-primary" name="submit" value="로그인하기" style="width:48%;" onclick="loginResult()">
+            </div>
+            <div class="form-group ">
+            <img src="image/naver_Green.png" style="cursor:pointer; width:48%; height:49px;" >
             </div>
             <div class="form-group">
              <a href="findIDAndPW.gt">아이디를 잊으셨나요?</a>
@@ -148,5 +151,16 @@
      <script src="resources/mainTemplate/js/scripts.min.js"></script>
   	<script src="resources/mainTemplate/js/main.min.js"></script>
   	<script src="resources/mainTemplate/js/custom.js"></script>
+  	<script>
+  	$().ready(function(){
+   		var msg= '${errMsg}';
+   		var str;
+   		if(msg==null || msg == ''){
+   			str = 'g';
+   		}else if(msg!=null || msg != ''){
+   			alert("${errMsg}");
+   		}
+   	});
+  	</script>
 </body>
 </html>

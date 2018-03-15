@@ -22,7 +22,8 @@
 <style type="text/css">
 #contentbody { width: 90%; margin: auto; }
 #tabStyle a { color: #053741; }
-#tabStyle a:hover { color: #5CC8DD; font-weight: bold; }row 클릭 시 checkbox
+#tabStyle a:hover { color: #5CC8DD; font-weight: bold; }
+#marginTop { margin-top: 65px;}
 </style>  
 <script src="https://code.jquery.com/jquery-3.2.1.js"></script>
 <script type="text/javascript">
@@ -119,24 +120,14 @@
 </header>
 <!-- END: header -->
 
-	<!-- 값 보낼때 사용할 Mem_no -->
-	<input type="hidden" id="mem_no" name="mem_no" value="${mem_no}">
-
-<section class="probootstrap-section probootstrap-section-lighter">
+<section id="marginTop" class="probootstrap-section probootstrap-section-lighter">
   <div class="container">
     <div class="row">
     	<div class="col-sm-12">
 			<h1>${storeInfo.sto_name }</h1>
 			<hr>
-			<h2>
-				<b>소개글</b>
-			</h2>
-			<p>소개글 값 테스트 : ${storeInfo.sto_comment }</p>
-			<br>
-			<h2>
-				<b>아래쪽에 이미지가 출력된다.</b>
-			</h2>
-			<p>이미지 값 테스트 : ${storeInfo.sto_img }</p>
+			<p><img src="/img/store/${storeInfo.sto_img }" height="350px" width="600px" title="편의점 이미지"></p>
+			<span><strong>소개글</strong> : ${storeInfo.sto_comment }</span>
 		</div>
     </div>
   </div>
@@ -145,7 +136,9 @@
 <section class="probootstrap-section">
   <div class="container">
     <div class="col-sm-12">
-    	<input type="button" onclick="" value="장바구니 가기">
+    	<input type="button" onclick="location.href='listBasket.gt'"
+    		class="btn btn-info" value="장바구니 가기">
+    	<br><br>
     </div>
     <div class="row probootstrap-gutter10">
       <div class="col-sm-12">

@@ -69,11 +69,11 @@
                    <th>선택</th>
      </tr>
     </thead>
-    <tbody>
+    <tbody id="rowCheck">
 
              <c:forEach var="row" items="${map.list}" varStatus="i">
                <tr>                
-                  <td>
+                  <td> 
                       <input type="checkbox" name="checkRow" class="chk" id="checkRow"  value="${row.bas_no},${row.bas_proname},${row.bas_proprice},${row.bas_prostock},${row.bas_procode},${row.money},${row.bas_proimg}, ${row.bas_procomment},${row.pro_memno}"
                       onclick="cart();" /> 
                   </td>
@@ -81,7 +81,7 @@
                        <img src="/img/${row.bas_proimg}" style="width:50px; height:50px"/>
                   </td>
                   <td>
-                      <a href="detail/${row.bas_procode}.gt" style="color: #7e8890;"> ${row.bas_proname}</a>
+                      <a href="productDetail.gt?pro_code=${row.bas_procode}" style="color: #7e8890;"> ${row.bas_proname}</a>
                   </td>
                    <td>
                        ${row.pro_memno}
@@ -181,6 +181,19 @@ $("#th_checkAll").click(function(){ //체크박스 전체 선택
 			$('input[name*="checkRow"]').prop("checked", false);//체크박스 전체 해지
 			}
 	});
+	
+ $(document).on("click", "#rowCheck tr", function(event){
+	if(event.target.nodeName.toLowerCase() == "td") {
+		var checkbox = $(this).find("td:first-child :checkbox");
+
+		if (checkbox.is(":checked")) {
+			checkbox.prop("checked", false);
+		} else {
+			checkbox.prop("checked", true);
+		}
+	}
+});
+
 function cart(){ //결제 금액 계산
 	var checkSumArr = [];
 	$("input[name='checkRow']:checked").each(function(i) {
