@@ -21,7 +21,7 @@
 		<div class="probootstrap-overflow">
 			<nav class="probootstrap-nav">
 				<ul>
-					<li class="probootstrap-animate active"
+					<li class="probootstrap-animate"
 						data-animate-effect="fadeInLeft"><a href="storeIndex.st">Got
 							them?</a></li>
 					<li class="probootstrap-animate" data-animate-effect="fadeInLeft"><a

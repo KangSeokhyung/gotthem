@@ -23,11 +23,7 @@
 <link rel="stylesheet" href="resources/indexTemplate/css/style.css">
 <script type="text/javascript">
 	function fnList() {
-		location.href = "stock.st?pageNo=" + $
-		{
-			pageNo
-		}
-		;
+		location.href = "stock.st?pageNo=" + ${pageNo};
 	}
 </script>
 </head>
@@ -57,7 +53,7 @@
 						<td><select name="pro_category">
 								<option value="도시락">도시락</option>
 								<option value="김밥">김밥</option>
-								<option value="삼각김밥">김밥</option>
+								<option value="삼각김밥">삼각김밥</option>
 								<option value="샌드위치">샌드위치</option>
 								<option value="햄버거">햄버거</option>
 								<option value="주먹밥">주먹밥</option>
@@ -67,15 +63,15 @@
 					</tr>
 					<tr>
 						<td><span>제품명</span></td>
-						<td><input type="text" name="pro_name" /></td>
+						<td><input type="text" name="pro_name" required="" maxlength="20"/></td>
 					</tr>
 					<tr>
 						<td><span>가격</span></td>
-						<td><input type="text" name="pro_price" /></td>
+						<td><input type="text" name="pro_price" required="" maxlength="10"/></td>
 					</tr>
 					<tr>
 						<td><span>재고</span></td>
-						<td><input type="text" name="pro_stock" /></td>
+						<td><input type="text" name="pro_stock" required="" maxlength="10"/></td>
 					</tr>
 					<tr>
 						<td><span>상품사진</span></td>
