@@ -189,10 +189,10 @@ public class MemberController {
 		if(result != 1) {
 			System.out.println("현재비밀번호가 안 맞을때");
 			mav.addObject("resultMsg", "fail1");
-			mav.setViewName("member/mypage");
+			mav.setViewName("member/mypageFailPassChange");
 		}else if(!new_pw.equals(new_pw2)){
 			System.out.println("새로운 비밀번호와 비밀번호 확인이 안 맞을때");
-			mav.addObject("resultMsg", "fail2");
+			mav.addObject("resultMsg", "mypageFailPassChange");
 			mav.setViewName("member/mypage");
 		}else {
 			System.out.println("잘 들어왔네");
@@ -204,7 +204,7 @@ public class MemberController {
 				mav.addObject("resultMsg", "success");
 				mav.setViewName("member/mypage");
 			}else {
-				mav.addObject("resultMsg", "fail3");
+				mav.addObject("resultMsg", "mypageFailPassChange");
 				mav.setViewName("member/mypage");
 			}
 			
@@ -223,9 +223,15 @@ public class MemberController {
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 		String mem_id = authentication.getName();
 		bean.setMem_id(mem_id);
-		memberService.memberDelete(bean);
-		session.invalidate();
-		mav.setViewName("redirect:index.jsp");
+		int result = memberService.memberDelete(bean);
+		if(result==1) {	//탈퇴 성공하면
+			session.invalidate();
+			mav.addObject("resultMsg", "DelSuccess");
+			mav.setViewName("../../index");
+		}else {
+			mav.addObject("resultMsg", "DelFail");
+			mav.setViewName("member/memberDelFail");
+		}
 		return mav;
 	}
 	

@@ -27,10 +27,12 @@ public interface BasketService {
     public int sumMoney(int bas_memno);
    
 	// 6. 장바구니 상품 확인
-	public int countBasket(int bas_procode, int bas_memno,int pro_memno);
+    public int countBasket(int bas_procode, int bas_memno);
 	
 	// 7. 장바구니 상품 수량 변경
     public void updateBasket(BasketBean basketBean);
+	
+    
 	
 /*	public MemberBean login(String id);*/
 }

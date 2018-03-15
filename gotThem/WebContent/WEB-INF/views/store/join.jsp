@@ -35,7 +35,7 @@
 		<a href="#" class="probootstrap-toggle js-probootstrap-toggle"><span
 			class="oi oi-menu"></span></a>
 		<div class="probootstrap-main-site-logo">
-			<a href="index.html">Aside</a></a>
+			<a href="index.html">GOT THEM</a>
 		</div>
 	</div>
 	<section class="mbr-section form1 cid-qIWKYtQnJh" id="form1-r">

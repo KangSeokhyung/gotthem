@@ -26,7 +26,7 @@ public interface MemberService {
 	
 	public int passCheck(MemberBean memberBean);
 	
-	public void memberDelete(MemberBean memberBean);
+	public int memberDelete(MemberBean memberBean);
 	
 	public MemberBean findAccount(MemberBean memberBean);
 	

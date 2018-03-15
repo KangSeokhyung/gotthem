@@ -26,7 +26,7 @@ public interface BasketDao {
     public int sumMoney(int bas_memno);
 
     // 6. 장바구니 동일한 상품 레코드 확인
-	public int countBasket(int bas_procode, int bas_memno,int pro_memno);
+	public int countBasket(int bas_procode, int bas_memno);
 	
 	// 7. 장바구니 상품수량 변경
 	public void updateBasket(BasketBean basketBean);

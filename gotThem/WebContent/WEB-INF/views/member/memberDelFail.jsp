@@ -126,11 +126,11 @@
         </div>
         <div class="col-sm-8">
        <div class="tab-content">
-	<div class="tab-pane active" id="tab-1"></div>
+				<div class="tab-pane fade" id="tab-1"></div>
 				<div class="tab-pane fade" id="tab-2"></div>
 				<div class="tab-pane fade" id="tab-3">
 				</div>
-				<div class="tab-pane fade" id="tab-4">
+				<div class="tab-pane active" id="tab-4">
 				</div>
 				<!-- <div class="tab-pane fade" id="tab-5">	
 				</div>
@@ -164,8 +164,6 @@
    				str="비밀번호 변경이 실패하였습니다";
    			}else if(msg=='success'){
    				str="비밀번호 변경이 성공하였습니다.";
-   			}else if(msg=='DelSuccess'){
-   				str="회원탈퇴 성공하였습니다. 이용해 주셔서 감사합니다";
    			}else if(msg=='DelFail'){
    				str="회원탈퇴에 실패했습니다. 비밀번호를 확인해주세요";
    			}

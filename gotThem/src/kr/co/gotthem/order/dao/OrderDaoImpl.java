@@ -1,9 +1,11 @@
 package kr.co.gotthem.order.dao;
 
+import java.sql.Timestamp;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.ibatis.session.SqlSession;
 import org.mybatis.spring.SqlSessionTemplate;
 
 import kr.co.gotthem.basket.bean.BasketBean;
@@ -55,17 +57,23 @@ public class OrderDaoImpl implements OrderDao {
         return sqlSessionTemplate.selectList("listOrder",userNo);
     }
    
-    // 3.1 사장님 아이디별 전체 결제 목록 
-    @Override
-    public List<OrderpayBean> storeListOrder(int userNo) {
-        return sqlSessionTemplate.selectList("storeListOrder",userNo);
-    }
     
+	// 3.1 사장님 아이디별 전체 결제 목록
+	@Override
+	public List<OrderpayBean> storeListOrder(int userNo) {
+		return sqlSessionTemplate.selectList("storeListOrder", userNo);
+	}
+
+	// 3.2 사장님 아이디별 기간 결제 목록
+	@Override
+	public List<OrderpayBean> storeListOrderTime(int userNo, Timestamp begin, Timestamp end) {
+/*		List<OrderpayBean> storeListOrderTime = null;
+*/		HashMap<String, Object> count = new HashMap<String, Object>();
+		count.put("userNo", userNo);
+		count.put("begin", begin);
+		count.put("end", end);
+
+		return sqlSessionTemplate.selectList("storeListOrderTime", count);
+	}
     
-/*	// 1. 장바구니 추가
-    @Override
-    public void insertBasket(int code, int userNo,int stock) {
-    	sqlSessionTemplate.insert("insertBasket");
-    }*/
-		
 }

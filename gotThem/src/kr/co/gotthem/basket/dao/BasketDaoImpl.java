@@ -55,11 +55,10 @@ public class BasketDaoImpl implements BasketDao {
 
 	// 6. 장바구니 동일한 상품 레코드 확인
 	@Override
-    public int countBasket(int bas_procode, int bas_memno,int pro_memno) {
+    public int countBasket(int bas_procode, int bas_memno) {
         Map<String, Object> map = new HashMap<String, Object>();
         map.put("bas_procode", bas_procode);
         map.put("bas_memno", bas_memno);
-        map.put("pro_memno", pro_memno);
         return sqlSessionTemplate.selectOne("countBasket", map);
     }
 	

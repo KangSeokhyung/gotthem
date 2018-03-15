@@ -1,139 +1,145 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
               "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-              
-<mapper namespace="kr.co.gotthem.mybatis.BasketMapper">
 
-    <select id="listProduct" resultType="kr.co.gotthem.product.bean.ProductBean">
-         SELECT * FROM product           
-    </select>
-    
-    <select id="detailProduct1" resultType="kr.co.gotthem.product.bean.ProductBean">
-		select * from product where pro_code = #{pro_code}
+<mapper namespace="kr.co.gotthem.mybatis.BasketMapper">
+	<!-- 1. 장바구니 추가 -->
+	<insert id="insertBasket">
+		INSERT INTO basket (
+		bas_memno, bas_procode, bas_proname, bas_prostock,bas_proprice, bas_procategory,
+		bas_proimg, bas_procomment,pro_memno
+		)VALUES(
+		#{bas_memno}, #{bas_procode}, #{bas_proname},#{bas_prostock}, #{bas_proprice},
+		#{bas_procategory}, #{bas_proimg}, #{bas_procomment},#{pro_memno})
+	</insert>
+
+	<!-- 2. 장바구니 목록 -->
+	<select id="listBasket" resultType="kr.co.gotthem.basket.bean.BasketBean">
+		SELECT
+		b.bas_no AS bas_no,
+		b.bas_memno AS bas_memno,
+		b.bas_procode,
+		b.bas_proname,
+		b.bas_procategory,
+		p.pro_code As pro_code,
+		b.bas_proprice,
+		b.bas_proimg,
+		b.bas_procomment,
+		m.mem_no AS mem_no,
+		p.pro_name AS pro_name,
+		b.bas_prostock,
+		p.pro_price,
+		b.pro_memno,
+		(pro_price * bas_prostock) money
+		FROM
+		member m, product p, basket b
+		WHERE m.mem_no = b.bas_memno
+		AND p.pro_code = b.bas_procode
+		AND b.bas_memno = #{userNo}
+		ORDER BY
+		b.bas_no
 	</select>
 
+	<!-- 3. 장바구니 전체 금액 -->
+	<select id="sumMoney" resultType="int">
+		SELECT IFNULL(SUM(pro_price * bas_prostock), 0)
+		FROM basket b,product p
+		WHERE b.bas_procode = p.pro_code AND b.bas_memno = #{mem_no}
+	</select>
 
-    <!-- 1. 장바구니 추가 -->
-    <insert id="insertBasket">
-        INSERT INTO basket (
-           bas_memno, bas_procode, bas_proname, bas_prostock,bas_proprice, bas_procategory, bas_proimg, bas_procomment,pro_memno
-      )VALUES(
-       #{bas_memno}, #{bas_procode}, #{bas_proname},#{bas_prostock}, #{bas_proprice}, #{bas_procategory}, #{bas_proimg}, #{bas_procomment},#{pro_memno})
-    </insert> 
+	<!-- 4. 장바구니 수정(수량만 수정). -->
+	<update id="modifyBasket">
+		UPDATE basket
+		SET bas_prostock = #{bas_prostock}
+		WHERE bas_memno= #{bas_memno} AND bas_procode = #{bas_procode}
+	</update>
 
-    <!-- 2. 장바구니 목록 -->
-    <select id="listBasket" resultType="kr.co.gotthem.basket.bean.BasketBean">
-         SELECT
-            b.bas_no AS bas_no, 
-            b.bas_memno AS bas_memno,
-            b.bas_procode,
-            b.bas_proname,        
-            b.bas_procategory,
-            p.pro_code As pro_code,
-            b.bas_proprice,
-            b.bas_proimg,
-            b.bas_procomment,
-            m.mem_no AS mem_no, 
-            p.pro_name AS pro_name, 
-            b.bas_prostock,        
-            p.pro_price,
-            b.pro_memno,
-            (pro_price * bas_prostock) money
-        FROM
-            member m, product p, basket b
-        WHERE m.mem_no = b.bas_memno
-            AND p.pro_code = b.bas_procode
-            AND b.bas_memno = #{userNo}
-        ORDER BY
-            b.bas_no
-    </select>
-    
-    <!-- 3. 장바구니 전체 금액 -->
-    <select id="sumMoney" resultType="int">
-        SELECT IFNULL(SUM(pro_price * bas_prostock), 0)
-        FROM basket b,product p
-        WHERE b.bas_procode = p.pro_code AND b.bas_memno = #{mem_no}
-    </select>
-  
-    <!-- 4. 장바구니 수정(수량만 수정). -->
-    <update id="modifyBasket">
-        UPDATE basket   
-        SET bas_prostock = #{bas_prostock} 
-        WHERE bas_memno= #{bas_memno} AND bas_procode = #{bas_procode} 
-    </update>  
- 
-    <!-- 5. 장바구니 삭제 -->
-    <delete id="deleteBasket">
-        DELETE FROM basket
-        WHERE bas_memno= #{bas_memno} AND bas_no = #{bas_no}
-    </delete>
+	<!-- 5. 장바구니 삭제 -->
+	<delete id="deleteBasket">
+		DELETE FROM basket
+		WHERE bas_memno= #{bas_memno} AND bas_no = #{bas_no}
+	</delete>
 
 	<!-- 6. 장바구니에 동일한 상품 레코드 확인 -->
-    <select id="countBasket" resultType="int">
-        select count(*) from basket
-        WHERE bas_memno= #{bas_memno} AND bas_procode = #{bas_procode}  AND pro_memno = #{pro_memno}
-    </select>
-    
-    <!-- 7. 장바구니에 동일한 상품이 존재하면 수정(insert시,동일한 상품 존재시 기존 수량에 새로운 수량 더하기 -->
-    <update id="updateBasket">
-        UPDATE basket 
-        SET bas_prostock = bas_prostock + #{bas_prostock} 
-        WHERE bas_memno= #{bas_memno} AND bas_procode = #{bas_procode}  AND pro_memno = #{pro_memno}
-    </update>
+	<select id="countBasket" resultType="int">
+		select count(*) from basket
+		WHERE bas_memno= #{bas_memno} AND bas_procode = #{bas_procode} AND
+		pro_memno = #{pro_memno}
+	</select>
 
+	<!-- 7. 장바구니에 동일한 상품이 존재하면 수정(insert시,동일한 상품 존재시 기존 수량에 새로운 수량 더하기 -->
+	<update id="updateBasket">
+		UPDATE basket
+		SET bas_prostock = bas_prostock + #{bas_prostock}
+		WHERE bas_memno= #{bas_memno} AND bas_procode = #{bas_procode} AND
+		pro_memno = #{pro_memno}
+	</update>
 
+	<!-- 결제 관련 부분 -->
+	<!-- 1. 장바구니에서 단건 결제 추가 -->
+	<insert id="orderInsert">
+		INSERT INTO orderpay (
+		ord_procode, ord_proname, ord_memno,ord_stock, ord_price, ord_basno,
+		ord_proimg,ord_proprice,pro_memno,ord_findtime)VALUES(
+		#{ord_procode}, #{ord_proname},#{ord_memno}, #{ord_stock},
+		#{ord_price},#{ord_basno},#{ord_proimg},#{ord_proprice},#{pro_memno},now())
+	</insert>
+	
+	<!-- 1.1. 결제 되면, 상품에서 결제된 수량만큼 수량 빼기 -->
+	<update id="orderUpdateBasket">
+		UPDATE product
+		SET pro_stock = pro_stock - #{ord_stock}
+		WHERE pro_code = #{ord_procode} AND pro_memno = #{pro_memno}
+	</update>
 
-<!-- 결제 관련 부분 -->
-  <!-- 1. 장바구니에서 단건 결제 추가 -->
-    <insert id="orderInsert" >
-       INSERT INTO orderpay (
-          ord_procode, ord_proname, ord_memno,ord_stock, ord_price, ord_basno, ord_proimg,ord_proprice,pro_memno,ord_findtime)VALUES(
-         #{ord_procode}, #{ord_proname},#{ord_memno}, #{ord_stock}, #{ord_price},#{ord_basno},#{ord_proimg},#{ord_proprice},#{pro_memno},now())
-    </insert> 
-  <!-- 1.1. 결제 되면, 상품에서 결제된 수량만큼  수량 빼기 -->
-    <update id="orderUpdateBasket">
-        UPDATE product
-        SET pro_stock = pro_stock - #{ord_stock} 
-        WHERE pro_code = #{ord_procode}  AND pro_memno = #{pro_memno}
-    </update>
+	<!--1.2 결제되면, 장바구니 삭제 -->
+	<delete id="orderDeleteBasket">
+		DELETE FROM basket
+		WHERE bas_memno= #{ord_memno} AND bas_no = #{ord_basno}
+	</delete>
 
-  <!--1.2 결제되면, 장바구니 삭제-->
-    <delete id="orderDeleteBasket">
-        DELETE FROM basket
-        WHERE bas_memno= #{ord_memno} AND bas_no = #{ord_basno}
-    </delete> 
-    
-   <!-- 2. 결제  취소  -->
-    <delete id="orderDelete">
-        DELETE FROM orderpay
-        WHERE ord_no = #{ord_no} AND ord_memno= #{ord_memno} 
-    </delete>
-  <!-- 2.1. 결제 취소되면, 결제된 수량만큼  수량 더하기 -->
-    <update id="orderUpdateProduct">
-        UPDATE product
-        SET pro_stock = pro_stock + #{ord_stock} 
-        WHERE pro_code = #{ord_procode} AND pro_memno= #{ord_memno}
-    </update> 
-  <!-- 2.2 결제 되면, 장바구니에서 다시 생성 -->
-    <insert id="insertBasketOrder" >
-       INSERT INTO basket (
-         bas_no,bas_memno, bas_procode, bas_proname, bas_prostock, money
-      )VALUES(
-        #{ord_basno}, #{ord_memno}, #{ord_procode}, #{ord_proname}, #{ord_stock}, #{ord_price})
-    </insert> 
+	<!-- 2. 결제 취소 -->
+	<delete id="orderDelete">
+		DELETE FROM orderpay
+		WHERE ord_no = #{ord_no} AND ord_memno= #{ord_memno}
+	</delete>
+	
+	<!-- 2.1. 결제 취소되면, 결제된 수량만큼 수량 더하기 -->
+	<update id="orderUpdateProduct">
+		UPDATE product
+		SET pro_stock = pro_stock + #{ord_stock}
+		WHERE pro_code = #{ord_procode} AND pro_memno= #{ord_memno}
+	</update>
+	
+	<!-- 2.2 결제 되면, 장바구니에서 다시 생성 -->
+	<insert id="insertBasketOrder">
+		INSERT INTO basket (
+		bas_no,bas_memno, bas_procode, bas_proname, bas_prostock, money
+		)VALUES(
+		#{ord_basno}, #{ord_memno}, #{ord_procode}, #{ord_proname}, #{ord_stock},
+		#{ord_price})
+	</insert>
 
-    <!-- 3. 아이디별 전체 결제 목록 -->
-    <select id="listOrder" resultType="kr.co.gotthem.order.bean.OrderpayBean">
-         SELECT *
-         FROM orderpay           
-         WHERE ord_memno = #{userNo}
-         ORDER BY ord_no desc
-    </select>
+	<!-- 3. 아이디별 전체 결제 목록 -->
+	<select id="listOrder" resultType="kr.co.gotthem.order.bean.OrderpayBean">
+		SELECT *
+		FROM orderpay
+		WHERE ord_memno = #{userNo}
+		ORDER BY ord_no desc
+	</select>
 
-    <!-- 3. 사장님 아이디별 전체 결제 목록 -->
-    <select id="storeListOrder" resultType="kr.co.gotthem.order.bean.OrderpayBean">
-         SELECT * FROM orderpay           
-         WHERE pro_memno = #{userNo}
-         ORDER BY ord_no desc
-    </select>
+    <!-- 3.1 사장님 아이디별 전체 결제 목록 -->
+	<select id="storeListOrder" parameterType="java.util.HashMap" resultType="kr.co.gotthem.order.bean.OrderpayBean">
+		SELECT * FROM orderpay
+		WHERE pro_memno = #{userNo}
+		ORDER BY ord_no desc
+	</select> 
+	
+    <!-- 3.2 사장님 아이디별 전체 결제 목록 -->  
+	<select id="storeListOrderTime" parameterType="java.util.HashMap" resultType="kr.co.gotthem.order.bean.OrderpayBean">
+		SELECT * FROM orderpay
+		WHERE pro_memno = #{userNo} AND ord_findtime BETWEEN #{begin} AND #{end}
+		ORDER BY ord_no desc
+	</select>
+	
 </mapper>

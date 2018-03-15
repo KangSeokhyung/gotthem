@@ -126,9 +126,9 @@
         </div>
         <div class="col-sm-8">
        <div class="tab-content">
-	<div class="tab-pane active" id="tab-1"></div>
+				<div class="tab-pane fade" id="tab-1"></div>
 				<div class="tab-pane fade" id="tab-2"></div>
-				<div class="tab-pane fade" id="tab-3">
+				<div class="tab-pane active" id="tab-3">
 				</div>
 				<div class="tab-pane fade" id="tab-4">
 				</div>

@@ -43,8 +43,7 @@
 			},
 			type : "post",
 			success : function(check) {
-				//장바구니 추가됨.. 그리고 계속 쇼핑할 것인지 장바구니로 갈 것인지 정하기
-				if (confirm("장바구니에 추가됐습니다. 장바구니로 가시겠으면 '확인',\n계속 쇼핑하시겠으면 '취소'를 클릭해주세요.")) {
+				if (confirm("장바구니에 추가됐습니다. \n장바구니로 가시겠으면 '확인',\n계속 쇼핑하시겠으면 '취소' 를 클릭해주세요.")) {
 					location.href="listBasket.gt";
 				} else {
 					return false;
@@ -119,9 +118,9 @@
 	    		<input type="text" name="total_pro_price" value=""> 
 	    	</div>
 	    	
-    		<input type="button" onclick="" value="결제">
-    		<input type="button" onclick="addBasket()" value="장바구니">
-    		<input type="button" onclick="history.back();" value="뒤로">
+    		<input type="button" class="btn btn-info" onclick="" value="결제">
+    		<input type="button" class="btn btn-info" onclick="addBasket()" value="장바구니">
+    		<input type="button" class="btn btn-warning" onclick="history.back();" value="뒤로">
     	</div>
     </div>
   </div>

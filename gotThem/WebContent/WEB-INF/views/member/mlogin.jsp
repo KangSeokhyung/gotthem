@@ -109,7 +109,7 @@
           <p><a href="#">Learn More</a></p>
         </div>
         <div class="col-md-8 col-md-push-1">
-                  <form action="#" method="post" class="probootstrap-form mb60">
+                  <form method="post" class="probootstrap-form mb60">
             <div class="row">
               <div class="col-sm-6">
                 <div class="form-group">
@@ -128,6 +128,7 @@
             </div>
             <div class="form-group ">
               <input type="submit" class="btn btn-primary" name="submit" value="로그인하기" style="width:48%;" onclick="loginResult()">
+              
             </div>
             <div class="form-group ">
             <a id="kakao-login-btn" style="cursor:pointer; width:48%; height:49px;"></a>
@@ -141,7 +142,12 @@
             <div class="form-group">
              <a href="join.gt">회원 가입이 필요하신가요?</a>
             </div>
-            
+           
+          </form>
+          <form id="kakaoForm" action="kakaoLogin.st" method="post">
+          	<input type="hidden" value="" id="kakao_email" name="mem_id">
+          	<input type="hidden" value="" id="mem_name" name="mem_name">
+          	<input type="hidden" value="" id="mem_email" name="mem_email">
           </form>
         </div>
       </div>
@@ -164,7 +170,21 @@
     Kakao.Auth.createLoginButton({
       container: '#kakao-login-btn',
       success: function(authObj) {
-        alert("Login Success");
+    	  Kakao.API.request({
+    		    url: '/v1/user/me',
+    		    success: function(res) {
+    		      alert(res.kaccount_email +
+    		      res.id +
+    		      res.properties.nickname);
+    		      if(document.getElementById('mem_id').value !=null){
+    		    	  document.getElementById('mem_id').value = null;
+    		      }
+    		    document.getElementById('kakao_email').value = res.kaccount_email;
+    		    },
+    		    fail: function(error) {
+    		      alert(JSON.stringify(error))
+    		    }
+    		});
       },
       fail: function(err) {
          alert("Login Fail");

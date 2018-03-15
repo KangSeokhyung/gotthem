@@ -31,6 +31,12 @@
     -webkit-appearance: none;
 	text-align:center;
 }
+.paddingRight30{
+	padding-right:30px;
+}
+.padding0{
+	padding-left:0px;
+}
     </style>
   </head>
 <body>
@@ -122,7 +128,8 @@
               <div class="col-sm-6">
                 <div class="form-group">
                   <label for="fname">아이디</label>
-                  <input type="text" class="form-control" id="mem_id" name="mem_id" onkeyup="duplCheck()">
+                  <input type="text" class="form-control" title="영어,숫자를 조합하여 아이디를 입력해 주세요 "
+                  pattern="[A-Za-z0-9]{0,15}" id="mem_id" name="mem_id" autofocus onkeyup="duplCheck()">
                    <p id="idcheck" class="text-mute">아이디를 입력해주세요</p>
                 </div>
               </div>
@@ -153,16 +160,19 @@
             <div class="row">
               <div class="col-md-6">
                 <div class="form-group">
-                  <label for="lname">이메일</label>
-                  <input type="email" class="form-control" id="mem_email" name="mem_email">
+                  <label for="lname">이메일</label><br>
+                  <input type="text" class="form-control" id="mem_emailid" name="mem_emailid" style="width:45%; display:inline;">&nbsp;@
+                  <input type="text" class="form-control" id="mem_emailadd" name="mem_emailadd" style="width:46%; display:inline;">
                 </div>
               </div>
             </div>
            <div class="row">
               <div class="col-md-6">
                 <div class="form-group">
-                  <label for="lname">전화번호</label>
-                  <input type="text" class="form-control" id="mem_phone" name="mem_phone">
+                  <label for="lname">전화번호</label><br>
+                  <input type="text" class="form-control" id="mem_phoneFront" name="mem_phoneFront" style="width:30%; display:inline;">&nbsp;-
+                  <input type="text" class="form-control" id="mem_phoneMiddle" name="mem_phoneMiddle" style="width:30%; display:inline;">&nbsp;-
+                  <input type="text" class="form-control" id="mem_phoneLast" name="mem_phoneLast" style="width:30%; display:inline;">
                 </div>
               </div>
             </div>
@@ -170,15 +180,17 @@
               <div class="col-md-10">
                 <label for="lname">우편번호</label>
                 <div class="card-block">
-				<div class="col-md-6" style="padding-left:0px;">
-				 <div class="form-group">
-							<input type="text" value="" id="mem_post" class="form-control">
+									<div class="col-md-6 paddingRight30" style="padding-left: 0px;">
+										<div class="form-group">
+											<input type="text" value="" id="mem_post"
+												class="form-control">
+										</div>
+									</div>
+									<div class="col-md-6 padding0">
+										<input type="button" class="btn btn-primary"
+											onclick="sample6_execDaumPostcode()" value="우편번호 찾기">
+									</div>
 								</div>
-								</div>
-					 <div class="col-md-6">
-							<input type="button" class="btn btn-primary" onclick="sample6_execDaumPostcode()" value="우편번호 찾기">
-							</div>					
-					</div>
               </div>
             </div>
             <div class="row">
@@ -214,7 +226,7 @@
   	<script src="resources/mainTemplate/js/custom.js"></script>
   	<script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
 		<script>
-		function duplCheck(){ 
+		/* function duplCheck(){ 
 		    var id = $('#mem_id').val();
 		 		$.ajax({
 		              url : "duplCheck.gt",
@@ -234,8 +246,44 @@
 		            	  console.log(errorThrown);
 		              }
 		          });
-			  }
-		 	 
+			  } */
+		function duplCheck() {	
+			var mem_id = $('#mem_id').val();
+			if(mem_id == "" || mem_id == null) {
+				alert("아이디를 입력하세요");
+				return;
+			} else {
+				var idExp = /^[a-z0-9]{0,15}/;
+				if (!idExp.test(mem_id)){
+					$('#mem_id').val("");
+					$('#mem_id').focus();
+					$('#duplicate').val('N');
+					$('#idcheck').html('숫자와 영어를 조합하여 아이디를 입력하세요').css('color', 'red');
+	                return false;
+				} else {
+				 $.ajax({ 
+		                type : 'post',
+		                url  : 'duplCheck.gt',
+		                data : {"mem_id": mem_id},
+		                success : function(data){
+			                   if(data=="0"){
+			                	   $("#idcheck").html('<p style="color:blue"> 사용가능한 아이디입니다.</p>');
+			                	   $('#duplicate').val('Y');
+			                   }else if(data!="0"){
+			                	   $("#idcheck").html('<p style="color:red"> 이미 사용중입니다.</p>');
+			                	   $('#duplicate').val('F');
+			                   }
+			             },
+		                error : function(jqXHR, textStatus, errorThrown) { 
+		                	alert('시스템 문제발생');
+		                	console.log(jqXHR);
+		            	 	console.log(textStatus);
+		            	 	console.log(errorThrown);
+		                }
+		           }); 
+				}
+			}
+		} 
 			function pwCheck() {
 				var mem_pwd = $('#mem_pw').val();
 				var mem_pwdCheck = $('#mem_pw2').val();
@@ -329,22 +377,16 @@
 			else
 				event.target.value = event.target.value.replace(/[^0-9]/g, "");
 		}
-   		 
-   		
-	 	
-	 	/*
-	 	function pwCheck(){
-    	 var pw1 = document.getElementById("m_pass1").value;
-    	 var pw2 = document.getElementById("m_pass2").value;
-    		 if(pw1 != pw2){
-    			 	document.getElementById('pwCheck').style.color = "red";
-    			    document.getElementById('pwCheck').innerHTML = "동일한 암호를 입력하세요."; 
-    		 		}else {
-    		 		document.getElementById('pwCheck').style.color = "blue";
-    		 		document.getElementById('pwCheck').innerHTML = "암호가 확인 되었습니다."; 
-    		 		} 			 
-    		 } 	  
-	 	*/
+		
+		//한글입력 안되게 처리
+		$(document).ready(function(){
+			  $("input[name=mem_id]").keyup(function(event){ 
+			   if (!(event.keyCode >=37 && event.keyCode<=40)) {
+			    var inputVal = $(this).val();
+			    $(this).val(inputVal.replace(/[^a-z0-9]/gi,''));
+			   }
+			  });
+			});
   
 </script>
 </body>

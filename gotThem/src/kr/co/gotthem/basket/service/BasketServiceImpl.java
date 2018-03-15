@@ -58,8 +58,8 @@ public class BasketServiceImpl implements BasketService {
        
     // 6. 장바구니 상품 확인
     @Override
-    public int countBasket(int bas_procode, int bas_memno, int pro_memno) {
-        return basketDao.countBasket(bas_procode, bas_memno,pro_memno);
+    public int countBasket(int bas_procode, int bas_memno) {
+        return basketDao.countBasket(bas_procode, bas_memno);
     }
   
     // 7. 장바구니 상품 수량 변경
@@ -67,11 +67,5 @@ public class BasketServiceImpl implements BasketService {
     public void updateBasket(BasketBean basketBean) {
     	basketDao.updateBasket(basketBean);
     }
-
-     
-	/*@Override
-	public MemberBean login(String id) {
-		return basketDao.login(id);
-	}*/
 		
 }
