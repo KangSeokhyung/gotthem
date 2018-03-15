@@ -1,7 +1,6 @@
 package kr.co.gotthem.member.security;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -16,7 +15,7 @@ public class LoginFailureHandler implements AuthenticationFailureHandler{
 	public void onAuthenticationFailure(HttpServletRequest req, HttpServletResponse res, AuthenticationException auth)
 			throws IOException, ServletException {
 		System.out.println("인증실패");
-		String errMsg = "로그인에 실패하셨습니다.<br>회원정보를 확인하여 주세요";
+		String errMsg = "로그인에 실패하셨습니다. 회원정보를 확인하여 주세요";
 		 req.setAttribute("errMsg",errMsg);
 		 req.getRequestDispatcher("/WEB-INF/views/member/mlogin.jsp").forward(req, res);
 	}

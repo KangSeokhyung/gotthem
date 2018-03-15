@@ -1,6 +1,7 @@
 package kr.co.gotthem.order.bean;
 
 import java.sql.Date;
+import java.sql.Timestamp;
 
 public class OrderpayBean {
   private int ord_no; 
@@ -9,7 +10,7 @@ public class OrderpayBean {
   private int ord_memno;
   private int ord_stock;
   private int ord_price;
-  private Date ord_findtime;
+  private Timestamp ord_findtime;
   private String ord_status;
   private int money;
   private int ord_basno;
@@ -52,10 +53,10 @@ public int getOrd_price() {
 public void setOrd_price(int ord_price) {
 	this.ord_price = ord_price;
 }
-public Date getOrd_findtime() {
+public Timestamp getOrd_findtime() {
 	return ord_findtime;
 }
-public void setOrd_findtime(Date ord_findtime) {
+public void setOrd_findtime(Timestamp ord_findtime) {
 	this.ord_findtime = ord_findtime;
 }
 public String getOrd_status() {

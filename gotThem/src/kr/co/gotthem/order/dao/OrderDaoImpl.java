@@ -54,6 +54,14 @@ public class OrderDaoImpl implements OrderDao {
     public List<OrderpayBean> listOrder(int userNo) {
         return sqlSessionTemplate.selectList("listOrder",userNo);
     }
+   
+    // 3.1 사장님 아이디별 전체 결제 목록 
+    @Override
+    public List<OrderpayBean> storeListOrder(int userNo) {
+        return sqlSessionTemplate.selectList("storeListOrder",userNo);
+    }
+    
+    
 /*	// 1. 장바구니 추가
     @Override
     public void insertBasket(int code, int userNo,int stock) {

@@ -233,7 +233,7 @@ function button_selDel(){  //장바구니 선택 삭제
 		  data:{arrDel:checkArr
 			  },
 			  success:function(result){
-				  location.href="./list.gt";
+				  location.href="./listBasket.gt";
 				  }
 			  });
 	  }else{ // 취소

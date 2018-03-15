@@ -1,28 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+    pageEncoding="UTF-8"%>
+    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
-<html lang="ko">
+<html>
 <head>
-<title>편의점 재고 검색 포털 Got them</title>
-<meta name="viewport"
-	content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<meta charset="utf-8">
-<link href="https://fonts.googleapis.com/css?family=Work+Sans"
-	rel="stylesheet">
-<link rel="stylesheet" href="resources/indexTemplate/css/bootstrap.min.css">
-<link rel="stylesheet" href="resources/indexTemplate/css/open-iconic-bootstrap.min.css">
-<link rel="stylesheet" href="resources/indexTemplate/css/owl.carousel.min.css">
-<link rel="stylesheet" href="resources/indexTemplate/css/owl.theme.default.min.css">
-<link rel="stylesheet" href="resources/indexTemplate/css/icomoon.css">
-<link rel="stylesheet" href="resources/indexTemplate/css/animate.css">
-<link rel="stylesheet" href="resources/indexTemplate/css/style.css">
-<link rel="stylesheet" href="resources/landy/css/style.default.css" id="theme-stylesheet">
-<style>
-a{
-text-decoration: none;
-}
-</style>
+<meta charset="UTF-8">
+<title>Insert title here</title>
 </head>
 <body>
 	<aside class="probootstrap-aside js-probootstrap-aside">
@@ -46,8 +29,6 @@ text-decoration: none;
 						href="mystore.st">점포관리</a></li>
 					<li class="probootstrap-animate" data-animate-effect="fadeInLeft"><a
 						href="stock.st">재고관리</a></li>
-					<li class="probootstrap-animate" data-animate-effect="fadeInLeft"><a
-						href="storeOrderList.st">결제관리</a></li>	
 				<c:set var="sessionCheck"
 					value="${sessionScope.SPRING_SECURITY_CONTEXT}" />
 				<c:choose>
@@ -59,6 +40,7 @@ text-decoration: none;
 					</c:when>
 					<c:otherwise>
 						<li class="probootstrap-animate" data-animate-effect="fadeInLeft"><a href="logout.st" class="nav-link">로그아웃</a></li>
+						<li class="probootstrap-animate" data-animate-effect="fadeInLeft"><a href="passWordChange.st" class="nav-link">비밀번호 변경</a></li>
 					</c:otherwise>
 				</c:choose>
 				<li class="probootstrap-animate" data-animate-effect="fadeInLeft"><a
@@ -74,12 +56,5 @@ text-decoration: none;
 			</footer>
 		</div>
 	</aside>
-	<script src="resources/indexTemplate/js/jquery-3.2.1.slim.min.js"></script>
-	<script src="resources/indexTemplate/js/popper.min.js"></script>
-	<script src="resources/indexTemplate/js/bootstrap.min.js"></script>
-	<script src="resources/indexTemplate/js/owl.carousel.min.js"></script>
-	<script src="resources/indexTemplate/js/jquery.waypoints.min.js"></script>
-	<script src="resources/indexTemplate/js/imagesloaded.pkgd.min.js"></script>
-	<script src="resources/indexTemplate/js/main.js"></script>
 </body>
 </html>

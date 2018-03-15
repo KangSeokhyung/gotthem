@@ -142,8 +142,9 @@
         </div>
       </div>
     </div>
-  </section>  
+  </section>
 
+  
 </body>
     <!-- Javascript files-->
     <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
@@ -151,21 +152,32 @@
   	<script src="resources/mainTemplate/js/main.min.js"></script>
   	<script src="resources/mainTemplate/js/custom.js"></script>
    	<script>
+   	$().ready(function(){
+   		var msg= '${resultMsg}';
+   		var str;
+   		if(msg!=null){
+   			if(msg=='fail1'){
+   				str="현재 비밀번호가 맞지 않습니다. 다시 확인해주세요";
+   			}else if(msg=='fail2'){
+   				str="새로운 비밀번호를 정확히 입력하여 주세요";
+   			}else if(msg=='fail3'){
+   				str="비밀번호 변경이 실패하였습니다";
+   			}else if(msg=='success'){
+   				str="비밀번호 변경이 성공하였습니다.";
+   			}
+   			if(str!=null)
+   				alert(str);
+   		}
+   	});
 		$.get("mypageMemberInfo.gt", function(data) {
 			$('#tab-1').html(data);
 		});
-	</script> 
-	<script>
 		$.get("mypageMemberModi.gt", function(data) {
 			$('#tab-2').html(data);
 		});
-	</script>
-	<script>
-		$.get("passCheck.gt", function(data) {
+		$.get("passChange.gt", function(data) {
 			$('#tab-3').html(data);
 		});
-	</script>
-	<script>
 		$.get("mypageMemberDel.gt", function(data) {
 			$('#tab-4').html(data);
 		});

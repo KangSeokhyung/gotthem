@@ -208,7 +208,6 @@ public class BasketController {
 			basketBean.setPro_memno(Integer.parseInt(pro_memno));
 			
 	        int count = basketService.countBasket(basketBean.getBas_procode(),basketBean.getBas_memno());
-	        
 	        if (count == 0) {
 	        	basketService.insertBasket(basketBean);
 	        	System.out.println("첫 상품 장바구니 인서트");
@@ -239,7 +238,6 @@ public class BasketController {
 				basketBean.setPro_memno(Integer.parseInt(pro_memno));
 				
 		        int count = basketService.countBasket(basketBean.getBas_procode(),basketBean.getBas_memno());
-		        
 		        if (count == 0) {
 		        	basketService.insertBasket(basketBean);
 		        	System.out.println("첫 상품 장바구니 인서트");
