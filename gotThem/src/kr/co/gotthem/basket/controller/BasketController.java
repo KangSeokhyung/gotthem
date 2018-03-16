@@ -154,29 +154,25 @@ public class BasketController {
         return "redirect:/listBasket.gt";
     } 
    
-   // 4. 장바구니 수정( 수량만 수정)
-    @RequestMapping("update.gt")
-    public String update(@RequestParam String[] bas_prostock, @RequestParam String[] bas_procode) throws Exception {
-  	
+ // 4. 장바구니 수정( 수량만 수정)
+    @RequestMapping(value ="update.gt", method = RequestMethod.GET)
+	public String update(@RequestParam int bas_procode, @RequestParam int bas_prostock) throws Exception {
     	Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-    	String mem_id = authentication.getName();
-    	MemberBean memberInfo = memberService.memberInfo(mem_id);
-    	
-        int userNo = memberInfo.getMem_no();
-     	System.out.println("update왔다");  
-    	
-     	// 레코드의 갯수 만큼 반복문 실행
-        for(int i=0; i< bas_procode.length; i++){
-        	BasketBean basketBean = new BasketBean();
-        	basketBean.setBas_memno(userNo); 
-        	basketBean.setBas_prostock(Integer.parseInt((bas_prostock[i])));
-        	basketBean.setBas_procode(Integer.parseInt((bas_procode[i])));
-            basketService.modifyBasket(basketBean);
-            System.out.println("for새로 셋팅된 basketBean" + basketBean);
-        }
-        return "redirect:/listBasket.gt";
+		String mem_id = authentication.getName();
+		MemberBean memberInfo = memberService.memberInfo(mem_id);
+
+		int userNo = memberInfo.getMem_no();
+		System.out.println("update왔다");
+		BasketBean basketBean = new BasketBean();
+		basketBean.setBas_memno(userNo);
+		basketBean.setBas_prostock(bas_prostock);
+		basketBean.setBas_procode(bas_procode);
+		basketService.modifyBasket(basketBean);
+		System.out.println("for새로 셋팅된 basketBean" + basketBean);
+
+		return "redirect:/listBasket.gt";
     }
-   	
+    
     // 5. 편의점 상세에서 장바구니 선택 추가
 	@RequestMapping(value = "selectAddBasket.gt", method = RequestMethod.POST)
 	@ResponseBody

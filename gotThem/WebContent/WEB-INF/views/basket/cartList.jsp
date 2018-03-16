@@ -84,17 +84,16 @@
                       <a href="productDetail.gt?pro_code=${row.bas_procode}" style="color: #7e8890;"> ${row.bas_proname}</a>
                   </td>
                    <td>
-                       ${row.pro_memno}, ${row.stock}
+                       ${row.pro_memno}
                   </td>
                   <td style="width: 80px" align="right" >
                        <fmt:formatNumber pattern="###,###,###" value="${row.bas_proprice}"/>
                   </td>
                   <td>
-                     <input type="hidden" name="stock1" value="${row.stock}"> 
+                     <input type="hidden" name="stock1" id="stock1" value="${row.stock}"> 
                      <input type="number" min="1" max="${row.stock}" id="changeStock" style="width:50px; height:25px;" name="bas_prostock" value="${row.bas_prostock}" >
-                     <input type="hidden" name="bas_procode" value="${row.bas_procode}"><br>
-                     <button type="button" id="button_update" name="button_update" style='width:50px;height:25px;font-size: 12px;' onclick="modify(${row.stock});" >변경</button>
-                   <!-- <button type="submit" id="btnUpdate" >수정</button> -->
+                     <input type="hidden" id="bas_procode" name="bas_procode" value="${row.bas_procode}"><br>
+                     <button type="button" id="button_update" name="button_update" style='width:50px;height:25px;font-size: 12px;' >변경</button>
                   </td>
                   <td style="width: 80px" align="right">
                        <fmt:formatNumber pattern="###,###,###" value="${row.money}"/>
@@ -104,7 +103,7 @@
                      <input type="hidden" name="bas_no" value="${row.bas_no}">
                      <input type="button" value="바로구매" style='width:60px;height:25px;font-size: 12px;' 
                      onclick="button_order('${row.bas_no}','${row.bas_proname}','${row.bas_procode}','${row.money}','${row.bas_prostock}','${row.bas_proimg}','${row.bas_proprice}','${row.pro_memno}');"><br>  
-                     <input type="button" value="삭제" style='width:60px;height:25px;font-size: 12px;'  onclick="button_basDel(${row.bas_no});">
+                     <input type="button" value="삭제" style='width:60px;height:25px;font-size: 12px;' onclick="button_basDel(${row.bas_no});">
                   </td>
                 </tr>
                </c:forEach>
@@ -150,7 +149,7 @@
  <script src="resources/mainTemplate/js/custom.js"></script>
 <script type="text/javascript">
 $(document).ready(function(){
-	$("#btnList").click(function(){// 리스트 페이지로 이동
+	$("#btnList").click(function(){
 		location.href="/gotThem";
 		});
 	$('input[name*="checkRow"]').prop("checked",true);
@@ -164,7 +163,9 @@ $(document).ready(function(){
     	var cartSum = checkSumArr[i].split(',')[5];
     	cartSum = parseInt(cartSum);
     	sum+=cartSum;
-    	document.getElementById("chkSum").innerHTML = sum;
+    	var str = sum;
+     	var bb = Number(str).toLocaleString('en').split(".")[0];	
+    	document.getElementById("chkSum").innerHTML = bb;
     	}
     });
 
@@ -177,30 +178,34 @@ $("#th_checkAll").click(function(){ //체크박스 전체 선택
 			}
 	});
 	
- $(document).on("click", "#rowCheck tr", function(event){
+  $(document).on("click", "#rowCheck tr", function(event){
 	if(event.target.nodeName.toLowerCase() == "td") {
 		var checkbox = $(this).find("td:first-child :checkbox");
 
 		if (checkbox.is(":checked")) {
 			checkbox.prop("checked", false);
+			cart();
 		} else {
 			checkbox.prop("checked", true);
+			cart();
 		}
 	}
-});
+}); 
 
 function cart(){ //결제 금액 계산
 	var checkSumArr = [];
 	$("input[name='checkRow']:checked").each(function(i) {
-		checkSumArr.push($(this).val());
-		});
+		checkSumArr.push($(this).val());	
+	});
 	var sum=0;
 	for ( var i = 0; i< checkSumArr.length; i++){
 		var cartSum = checkSumArr[i].split(',')[5];
 		cartSum = parseInt(cartSum);
 		sum+=cartSum;
-		document.getElementById("chkSum").innerHTML = sum;
-		}
+		var str = sum;
+     	var bb = Number(str).toLocaleString('en').split(".")[0];	
+    	document.getElementById("chkSum").innerHTML = bb;
+    	}
 	}  		   
 function button_basDel(bas_no){  //단건 직접 삭제
 	alert(bas_no);
@@ -248,20 +253,6 @@ function button_selDel(){  //장바구니 선택 삭제
 		  return;
 	  }
   }  
-function modify(stock){ //수량수정
-/* 	$("#button_update").click(function(){
-		var chgStock = $(this).siblings("#changeStock").val();
-		alert(chgStock);
-	}); */
-	
-	
-	/* var submitTest = document.form1;
-	submitTest.action="./update.gt";
-	submitTest.method="post";
-	submitTest.submit();  */
- }
-	 
-	                    
 	
 function button_selOrder(){  //장바구니 선택 결제
 	if( $(":checkbox[name='checkRow']:checked").length==0 ){
@@ -292,6 +283,17 @@ function button_selOrder(){  //장바구니 선택 결제
 			return;
 			}
 	}
+$(document).on("click", "#button_update",function(){ //수량변경
+	var bas_procode= $(this).prev().prev().val()*1;
+	var chaS= $(this).prev().prev().prev().val()*1;
+    var basS = $(this).prev().prev().prev().prev().val()*1;
+    if (chaS < basS) {
+    	location.href="update.gt?bas_procode="+bas_procode+"&bas_prostock=" +chaS;
+    	} else{
+    		alert(basS+"개 이상 주문이 불가능합니다.");
+    		location.reload();
+    		}
+    });
 
 	
 //결제 함수 스크립트
