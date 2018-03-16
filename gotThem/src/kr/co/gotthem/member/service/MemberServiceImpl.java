@@ -111,4 +111,8 @@ public class MemberServiceImpl implements MemberService {
 		return memberDao.storeInfo(mem_no);
 	}
 	
+	@Override
+	public void kakaoJoin(MemberBean memberBean) {
+		memberDao.kakaoJoin(memberBean);
+	}
 }

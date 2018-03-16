@@ -14,6 +14,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -45,6 +46,37 @@ public class MemberController {
         this.mailService = mailService;
     }
 
+	@RequestMapping(value = "/kakaoLogin.gt", method = RequestMethod.POST)
+	public void kakaoLogin(ModelAndView mav, MemberBean memberBean,@ModelAttribute("kakao_id") String id2,
+			@RequestParam("kakao_id") String id, @RequestParam("kakao_name") String name,
+			@RequestParam("kakao_email") String email, HttpServletResponse response) throws Exception {
+		System.out.println(id2);
+		System.out.println(id + name + email);
+		System.out.println(memberBean);
+		int result = memberService.duplCheck(id);
+		if (result == 1) {
+			System.out.println("아이디 없음");
+			memberBean.setMem_id(email);
+			memberBean.setMem_pw(id);
+			memberBean.setMem_name(name);
+			memberBean.setMem_email(email);
+			memberService.kakaoJoin(memberBean);
+		} else {
+			System.out.println("아이디 존재");
+		}
+		System.out.println("아웃문 실행전");
+		response.setContentType("text/html; charset=UTF-8");
+        PrintWriter out = response.getWriter();
+        out.println("<form action='/login.gt' id='kakaoLogin' method='post'>");
+        out.println("<input type='hidden' name='mem_id' value='" + memberBean.getMem_id() + "'>");
+        out.println("<input type='hidden' name='mem_pw' value='" + memberBean.getMem_pw() + "'>");
+        out.println("</form>");
+        out.println("<script type='text/javascript'>");
+        out.println("alert('뭐라도 뜨나');");
+        out.println("kakaoLogin.submit();");
+        out.println("</script>");
+	}
+    
 	@RequestMapping(value = "/login.gt", method = RequestMethod.GET)
 	public String login() {
 		return "member/mlogin";

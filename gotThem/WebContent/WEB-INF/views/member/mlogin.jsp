@@ -72,7 +72,7 @@
           <p><a href="#">Learn More</a></p>
         </div>
         <div class="col-md-8 col-md-push-1">
-                  <form method="post" class="probootstrap-form mb60">
+                  <form id="kakaoLogin" method="post" class="probootstrap-form mb60">
             <div class="row">
               <div class="col-sm-6">
                 <div class="form-group">
@@ -107,16 +107,16 @@
             </div>
            
           </form>
-          <form id="kakaoForm" action="kakaoLogin.st" method="post">
-          	<input type="hidden" value="" id="kakao_email" name="mem_id">
-          	<input type="hidden" value="" id="mem_name" name="mem_name">
-          	<input type="hidden" value="" id="mem_email" name="mem_email">
-          </form>
+          
         </div>
       </div>
     </div>
   </section>  
-
+		<form id="kakaoForm" action="kakaoLogin.gt" method="post">
+          	<input type="hidden" value="" id="kakao_id" name="kakao_id">
+          	<input type="hidden" value="" id="kakao_name" name="kakao_name">
+          	<input type="hidden" value="" id="kakao_email" name="kakao_email">
+          </form>
 </body>
     <!-- Javascript files-->
     <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
@@ -139,10 +139,14 @@
     		      alert(res.kaccount_email +
     		      res.id +
     		      res.properties.nickname);
-    		      if(document.getElementById('mem_id').value !=null){
+    		      if(document.getElementById('mem_id').value !=null || document.getElementById('mem_pw').value !=null){
     		    	  document.getElementById('mem_id').value = null;
+    		    	  document.getElementById('mem_pw').value = null;
     		      }
     		    document.getElementById('kakao_email').value = res.kaccount_email;
+    		    document.getElementById('kakao_id').value = res.id;
+    		    document.getElementById('kakao_name').value = res.properties.nickname;
+    		    document.getElementById("kakaoForm").submit();
     		    },
     		    fail: function(error) {
     		      alert(JSON.stringify(error))

@@ -42,6 +42,8 @@ public interface MemberDao {
 	public int stcountRow();
 
 	public MemberBean storeInfo(int mem_no);
+	
+	public void kakaoJoin(MemberBean memberBean);
 
 	
 }
