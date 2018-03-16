@@ -112,7 +112,7 @@ public class ProductController {
 				outputStream = new FileOutputStream(newFile);
 
 				int read = 0;
-				byte[] bytes = new byte[1024 * 10];
+				byte[] bytes = new byte[1024 * 1024];
 
 				while ((read = inputStream.read(bytes)) != -1) {
 					outputStream.write(bytes, 0, read);

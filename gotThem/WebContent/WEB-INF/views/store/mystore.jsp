@@ -80,7 +80,7 @@
 						<tr>
 							<td colspan="2" align="center">
 								<input type="button" value="정보수정" onclick="location='mystoreModi.st'"/>
-								<input type="button" value="제휴해지" onclick="fnDelete(${info.mem_no})" />
+								<input type="button" value="제휴해지" onclick="location='mystoreDel.st'" />
 							</td>
 						</tr>
 					</table>
