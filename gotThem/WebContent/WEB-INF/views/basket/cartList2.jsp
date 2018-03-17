@@ -58,23 +58,25 @@
   <form name="form1" id="form1" method="post" action="./update.gt" onsubmit="return validate();">
    <table class="table">
     <thead>   
-       <tr>              
+       <tr>
+                   <th><input type="checkbox" name="checkAll" id="th_checkAll" /></th> 
                    <th>상품사진</th>
                    <th>상품명</th>
                    <th>매장명</th>
                    <th>판매가</th>
                    <th >수량 </th>
                    <th style='width:100px'>구매예정가</th>
-                   <!-- <th><input type="checkbox" name="checkAll" id="th_checkAll" /></th>  -->
-                   <th><input type="button" value="전체 선택" name="checkAll" id="th_checkAll" onclick="button_checkAll();" /></th>
-                   <th>결제하기</th>
-                   <th>삭제하기</th>
+                   <th>선택</th>
      </tr>
     </thead>
     <tbody id="rowCheck">
 
              <c:forEach var="row" items="${map.list}" varStatus="i">
-               <tr>
+               <tr>                
+                  <td> 
+                      <input type="checkbox" name="checkRow" class="chk" id="checkRow"  value="${row.bas_no},${row.bas_proname},${row.bas_proprice},${row.bas_prostock},${row.bas_procode},${row.money},${row.bas_proimg}, ${row.bas_procomment},${row.pro_memno}"
+                      onclick="cart();" /> 
+                  </td>
                   <td>
                        <img src="/img/${row.bas_proimg}" style="width:50px; height:50px"/>
                   </td>
@@ -96,18 +98,12 @@
                   <td style="width: 80px" align="right">
                        <fmt:formatNumber pattern="###,###,###" value="${row.money}"/>
                   </td>
-                  <td> 
-                      <input type="checkbox" name="checkRow" class="chk" id="checkRow"  value="${row.bas_no},${row.bas_proname},${row.bas_proprice},${row.bas_prostock},${row.bas_procode},${row.money},${row.bas_proimg}, ${row.bas_procomment},${row.pro_memno}"
-                      onclick="cart();" /> 
-                  </td>
                   <td>
                      <input type="hidden" name="money" value="${row.money}">
                      <input type="hidden" name="bas_no" value="${row.bas_no}">
-                     <input type="button" value="결제" style='width:60px;height:25px;font-size: 12px;' 
+                     <input type="button" value="바로구매" style='width:60px;height:25px;font-size: 12px;' 
                      onclick="button_order('${row.bas_no}','${row.bas_proname}','${row.bas_procode}','${row.money}','${row.bas_prostock}','${row.bas_proimg}','${row.bas_proprice}','${row.pro_memno}');"><br>  
-                  </td>
-                  <td>
-                      <input type="button" value="삭제" style='width:60px;height:25px;font-size: 12px;' onclick="button_basDel(${row.bas_no});">
+                     <input type="button" value="삭제" style='width:60px;height:25px;font-size: 12px;' onclick="button_basDel(${row.bas_no});">
                   </td>
                 </tr>
                </c:forEach>
@@ -156,7 +152,7 @@ $(document).ready(function(){
 	$("#btnList").click(function(){
 		location.href="/gotThem";
 		});
-	/* $('input[name*="checkRow"]').prop("checked",true); */
+	$('input[name*="checkRow"]').prop("checked",true);
     
     var checkSumArr = [];
     $("input[name='checkRow']:checked").each(function(i){
@@ -173,24 +169,14 @@ $(document).ready(function(){
     	}
     });
 
-/*  $("#th_checkAll").click(function(){ //체크박스 전체 선택
+$("#th_checkAll").click(function(){ //체크박스 전체 선택
 	var chk= $(this).is(":checked");
 	if(chk){
 		$('input[name*="checkRow"]').prop("checked", true);//체크박스 전체 선택
 		} else{
 			$('input[name*="checkRow"]').prop("checked", false);//체크박스 전체 해지
 			}
-	}); */
-/* $(document).on("click", "#th_checkAll", function(event){
-/* $("#th_checkAll").click(function(){ //체크박스 전체 선택 */
-	function button_checkAll(){
-	var chk= $("input[name='checkAll']").is(":checked");
-	if(chk){
-		$('input[name*="checkRow"]').prop("checked", true);//체크박스 전체 선택
-		} else{
-			$('input[name*="checkRow"]').prop("checked", false);//체크박스 전체 해지
-			}
-	}	
+	});
 	
   $(document).on("click", "#rowCheck tr", function(event){
 	if(event.target.nodeName.toLowerCase() == "td") {
