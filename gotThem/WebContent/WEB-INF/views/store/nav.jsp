@@ -16,14 +16,10 @@
 			data-animate-effect="fadeInLeft">
 
 			<a href="storeIndex.st" class="mb-2 d-block probootstrap-logo">GOTTHEM</a>
-			<p class="mb-0">제휴 사이트</p>
 		</div>
 		<div class="probootstrap-overflow">
 			<nav class="probootstrap-nav">
 				<ul>
-					<li class="probootstrap-animate active"
-						data-animate-effect="fadeInLeft"><a href="storeIndex.st">Got
-							them?</a></li>
 					<li class="probootstrap-animate" data-animate-effect="fadeInLeft"><a
 						href="mystore.st">점포관리</a></li>
 					<li class="probootstrap-animate" data-animate-effect="fadeInLeft"><a

@@ -44,7 +44,7 @@
 			<table class="table table-user-information">
 				<tr>
 					<th>번호</th>
-					<td>사진</td>
+					<th>사진</th>
 					<th>상품명</th>
 					<th>분류</th>
 					<th>가격</th>

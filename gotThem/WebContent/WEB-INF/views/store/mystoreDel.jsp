@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -18,7 +17,7 @@
 <link rel="stylesheet" href="resources/indexTemplate/css/style.css">
 </head>
 <body>
-	<header>
+<header>
 		<%@include file="nav.jsp"%>
 	</header>
 
@@ -31,53 +30,35 @@
 			<a href="storeIndex.st">GOT THEM</a>
 		</div>
 	</div>
- 	
-	<div class="cover-container pb-5">
-		<div class="cover-inner container">
-			<input type="hidden" name="mem_no" value="${info.mem_no }"/> 
-			<table class="table table-user-information">
-						<tr>
-							<td>아이디</td><td>${info.mem_id }</td>
-						</tr>
-						<tr>
-							<td>이름</td><td>${info.mem_name }</td>
-						</tr>
-						<tr>
-							<td>매장명</td><td>${info.sto_name }</td>
-						</tr>
-						<tr>
-							<td>이메일</td><td>${info.mem_email }</td>
-						</tr>
-						<tr>
-							<td>전화번호</td><td>${info.mem_phone }</td>
-						</tr>
-						<tr>
-							<td>우편번호</td><td>${mem_post }</td>
-						</tr>
-						<tr>
-							<td>주소</td><td>${mem_address1 }</td>
-						</tr>
-						<tr>
-							<td>상세주소</td><td>${mem_address2 }</td>
-						</tr>
-						<tr>
-							<td>사진</td><td><img src="/img/store/${info.sto_img }" style="height:250px"/></td>
-						</tr>
-						<tr>
-							<td>매장소개</td><td>${info.sto_comment }</td>
-						</tr>
-						<tr>
-							<td colspan="2" align="center">
-								<input type="button" value="정보수정" onclick="location='mystoreModi.st'"/>
-								<input type="button" value="제휴해지" onclick="location='mystoreDel.st'" />
-							</td>
-						</tr>
-					</table>
-    	</div>
-    </div>		
-      		
-      		
-      		
+	
+<section class="probootstrap-section">
+         
+    <div class="container">
+      <div class="row">
+      <div class="alert alert-info alert-dismissable">
+          <a class="panel-close close" data-dismiss="alert">×</a> 
+          <h4 style="color:red;">주의!!</h4>회원탈퇴 전에 구매한 상품을 수령해주세요. 수령받지 않으시면 탈퇴할 수 없습니다
+        </div>
+        <div class="col-md-8">
+          <form id="form1" action="mystoreDel.st" method="post" class="probootstrap-form mb60">
+            <div class="row">
+              <div class="col-sm-6">
+                <div class="form-group">
+                  <label for="fname">현재 비밀번호</label>
+                  <input type="password" class="form-control" id="fname" name="mem_pw">
+                </div>
+              </div>
+              </div>
+                       
+            <div class="form-group">
+              <input type="button" class="btn btn-primary" value="탈퇴하기" onclick="storeDel()">
+              <input type="reset" class="btn btn-primary" value="취소하기">
+            </div>              
+          </form>
+        </div> 
+	</div>
+	</div>
+  </section> 
 	<div class="container-fluid d-md-none">
 		<div class="row">
 			<div class="col-md-12">
@@ -96,7 +77,7 @@
 	</div>
 
 	</main>
-
+	<script src="resources/mainTemplate/js/scripts.min.js"></script>
 	<script src="resources/indexTemplate/js/jquery-3.2.1.slim.min.js"></script>
 	<script src="resources/indexTemplate/js/popper.min.js"></script>
 	<script src="resources/indexTemplate/js/bootstrap.min.js"></script>
@@ -105,4 +86,14 @@
 	<script src="resources/indexTemplate/js/imagesloaded.pkgd.min.js"></script>
 	<script src="resources/indexTemplate/js/main.js"></script>
 </body>
+<script>
+	function storeDel(){
+		if(confirm('정말 탈퇴하시겠습니까?')== true){
+			document.form1.submit();
+		}else{
+			alert("취소하셨습니다.")
+			history.go(0);
+		}
+	}
+</script>
 </html>

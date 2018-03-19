@@ -65,22 +65,30 @@
 							<tr>
 								<td><span>제품명</span></td>
 								<td><input type="text" name="pro_name"
-									value="${pro.pro_name }" /></td>
+									value="${pro.pro_name }" required="" maxlength="20"/></td>
 							</tr>
 							<tr>
 								<td><span>분류</span></td>
-								<td><input type="text" name="pro_category"
-									value="${pro.pro_category }" /></td>
+								<td><select name="pro_category">
+										<option value="도시락">도시락</option>
+										<option value="김밥">김밥</option>
+										<option value="삼각김밥">삼각김밥</option>
+										<option value="샌드위치">샌드위치</option>
+										<option value="햄버거">햄버거</option>
+										<option value="주먹밥">주먹밥</option>
+										<option value="과일">과일</option>
+										<option value="셀러드">셀러드</option>
+								</select>
 							</tr>
 							<tr>
 								<td><span>가격</span></td>
 								<td><input type="text" name="pro_price"
-									value="${pro.pro_price }" /></td>
+									value="${pro.pro_price }" required="" maxlength="10"/></td>
 							</tr>
 							<tr>
 								<td><span>재고</span></td>
 								<td><input type="text" name="pro_stock"
-									value="${pro.pro_stock }" /></td>
+									value="${pro.pro_stock }" required="" maxlength="10"/></td>
 							</tr>
 							<tr>
 								<td><span>상품사진</span></td>
