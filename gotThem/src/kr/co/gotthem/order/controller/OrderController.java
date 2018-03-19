@@ -112,7 +112,7 @@ public class OrderController {
 		   String pro_memno = st.nextToken();
           
        	   orderBean.setOrd_memno(userNo);       
-           orderBean.setOrd_no(Integer.parseInt(bas_no));        
+           orderBean.setOrd_basno(Integer.parseInt(bas_no));        
            orderBean.setOrd_proname(bas_proname);
            orderBean.setOrd_proprice(Integer.parseInt(bas_proprice));
            orderBean.setOrd_stock(Integer.parseInt(bas_prostock));

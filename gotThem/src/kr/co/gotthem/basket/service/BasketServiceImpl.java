@@ -67,5 +67,10 @@ public class BasketServiceImpl implements BasketService {
     public void updateBasket(BasketBean basketBean) {
     	basketDao.updateBasket(basketBean);
     }
-		
+	
+    // 8. 장바구니 All삭제
+    @Override
+    public void deleteBasketAll() {
+    	basketDao.deleteBasketAll();
+    }
 }

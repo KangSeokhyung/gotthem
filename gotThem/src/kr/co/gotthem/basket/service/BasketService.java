@@ -32,7 +32,8 @@ public interface BasketService {
 	// 7. 장바구니 상품 수량 변경
     public void updateBasket(BasketBean basketBean);
 	
-    
+   // 8. 장바구니 All삭제
+    public void deleteBasketAll();
 	
 /*	public MemberBean login(String id);*/
 }

@@ -9,9 +9,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
+import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -41,6 +43,15 @@ public class BasketController {
 	
 	public void setMemberService(MemberService memberService) {
 		this.memberService = memberService;
+	}
+	
+	@Service
+	class SchedulerTest { 
+	    @Scheduled(cron = "59 09 18 * * ?") // 매일 오전 1시에 실행
+	    public void doSomething() {
+	    	basketService.deleteBasketAll();
+    	    System.out.println("전체삭제 실행");
+	    }
 	}
 	
     // 1. 장바구니 추가

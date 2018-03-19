@@ -46,6 +46,9 @@
     </ul>
   </section>  
 <div class="container">
+ <div style='float:right; padding: 3px 30px 3px 6px;'>
+  <button type="button" value="상품목록1" id="btnList">쇼핑목록 이동</button> 
+ </div>
 <c:choose>
 <c:when test="${map.count == 0}">
  <img src="/img/cart_img_empty.gif" style=" width:360px;height:263px;margin-left:auto;margin-right:auto;display:block;"/>
@@ -89,25 +92,25 @@
                   </td>
                   <td>
                      <input type="hidden" name="stock1" id="stock1" value="${row.stock}"> 
-                     <input type="number" min="1" max="${row.stock}" id="changeStock" style="width:50px; height:25px;" name="bas_prostock" value="${row.bas_prostock}" >
-                     <input type="hidden" id="bas_procode" name="bas_procode" value="${row.bas_procode}"><br>
-                     <button type="button" id="button_update" name="button_update" style='width:50px;height:25px;font-size: 12px;' >변경</button>
+                     <input type="number" min="1" max="${row.stock}" require="" id="changeStock" name="bas_prostock"  value="${row.bas_prostock}" >
+                     <input type="hidden" id="bas_procode" name="bas_procode" value="${row.bas_procode}">
+                     <button type="button" id="button_update" name="button_update">변경</button>
                   </td>
                   <td style="width: 80px" align="right">
                        <fmt:formatNumber pattern="###,###,###" value="${row.money}"/>
                   </td>
                   <td> 
+                      <input type="hidden" name="bas_procomment" value="${row.bas_procomment}">
                       <input type="checkbox" name="checkRow" class="chk" id="checkRow"  value="${row.bas_no},${row.bas_proname},${row.bas_proprice},${row.bas_prostock},${row.bas_procode},${row.money},${row.bas_proimg}, ${row.bas_procomment},${row.pro_memno}"
                       onclick="cart();" /> 
                   </td>
                   <td>
                      <input type="hidden" name="money" value="${row.money}">
                      <input type="hidden" name="bas_no" value="${row.bas_no}">
-                     <input type="button" value="결제" style='width:60px;height:25px;font-size: 12px;' 
-                     onclick="button_order('${row.bas_no}','${row.bas_proname}','${row.bas_procode}','${row.money}','${row.bas_prostock}','${row.bas_proimg}','${row.bas_proprice}','${row.pro_memno}');"><br>  
+                     <input type="button" value="결제" onclick="button_order('${row.bas_no}','${row.bas_proname}','${row.bas_procode}','${row.money}','${row.bas_prostock}','${row.bas_proimg}','${row.bas_proprice}','${row.pro_memno}');">
                   </td>
                   <td>
-                      <input type="button" value="삭제" style='width:60px;height:25px;font-size: 12px;' onclick="button_basDel(${row.bas_no});">
+                      <input type="button" value="삭제" onclick="button_basDel(${row.bas_no});">
                   </td>
                 </tr>
                </c:forEach>
@@ -119,11 +122,12 @@
    </table>                    
   </form>
   <div>  
-            <input type="hidden" name="count" value="${map.count}">           
-            <input type="button" name="seDel" id="button_seDel" onclick="button_selDel();" value="선택상품 삭제" style='height:25px;font-size: 12px;'/>
+            <input type="hidden" name="count" value="${map.count}">                      
             <div style='float:right; padding: 3px 30px 3px 6px;'>
+             <input type="button" name="seDel" id="button_seDel" onclick="button_selDel();" value="선택상품 삭제" />
              <button type="button" value="상품목록1" id="btnList">계속 쇼핑하기</button> 
-             <input type="button" value="바로구매" onclick="button_selOrder();">
+             <input type="button" value="선택상품 주문" onclick="button_selOrder();">
+             <input type="button" value="전체상품 주문" onclick="button_allOrder();">
             </div></div>
 </c:otherwise>
 </c:choose>   
@@ -156,45 +160,35 @@ $(document).ready(function(){
 	$("#btnList").click(function(){
 		location.href="/gotThem";
 		});
-	/* $('input[name*="checkRow"]').prop("checked",true); */
-    
-    var checkSumArr = [];
-    $("input[name='checkRow']:checked").each(function(i){
-    	checkSumArr.push($(this).val());
-    	});
-    var sum=0;
-    for(var i = 0; i< checkSumArr.length; i++){
-    	var cartSum = checkSumArr[i].split(',')[5];
-    	cartSum = parseInt(cartSum);
-    	sum+=cartSum;
-    	var str = sum;
-     	var bb = Number(str).toLocaleString('en').split(".")[0];	
-    	document.getElementById("chkSum").innerHTML = bb;
-    	}
-    });
-
-/*  $("#th_checkAll").click(function(){ //체크박스 전체 선택
-	var chk= $(this).is(":checked");
-	if(chk){
-		$('input[name*="checkRow"]').prop("checked", true);//체크박스 전체 선택
-		} else{
-			$('input[name*="checkRow"]').prop("checked", false);//체크박스 전체 해지
-			}
-	}); */
-/* $(document).on("click", "#th_checkAll", function(event){
-/* $("#th_checkAll").click(function(){ //체크박스 전체 선택 */
-	function button_checkAll(){
-	var chk= $("input[name='checkAll']").is(":checked");
-	if(chk){
-		$('input[name*="checkRow"]').prop("checked", true);//체크박스 전체 선택
-		} else{
-			$('input[name*="checkRow"]').prop("checked", false);//체크박스 전체 해지
-			}
-	}	
-	
-  $(document).on("click", "#rowCheck tr", function(event){
+        
+ $("#th_checkAll").click(function(){
+	 var chk= $('input[name*="checkRow"]').is(":checked");
+	 if(chk){
+		 $('input[name*="checkRow"]').prop("checked", false);
+		 cart();
+		 } else{
+			 $('input[name*="checkRow"]').prop("checked", true);
+			 cart();
+		 }
+	 });
+ 
+ var checkSumArr = [];
+ $("input[name='checkRow']").each(function(i){
+ 	checkSumArr.push($(this).val());
+ 	});
+ var sum=0;
+ for(var i = 0; i< checkSumArr.length; i++){
+ 	var cartSum = checkSumArr[i].split(',')[5];
+ 	cartSum = parseInt(cartSum);
+ 	sum+=cartSum;
+ 	var str = sum;
+  	var bb = Number(str).toLocaleString('en').split(".")[0];	
+ 	document.getElementById("chkSum").innerHTML = bb;
+ 	}
+ });
+ $(document).on("click", "#rowCheck tr", function(event){
 	if(event.target.nodeName.toLowerCase() == "td") {
-		var checkbox = $(this).find("td:first-child :checkbox");
+		var checkbox = $(this).find("td:nth-child(7) :checkbox");
 
 		if (checkbox.is(":checked")) {
 			checkbox.prop("checked", false);
@@ -205,7 +199,29 @@ $(document).ready(function(){
 		}
 	}
 }); 
-
+ function button_allOrder(){//장바구니 전체 결제
+	 alert("wjscp");
+	var checkAllOrder = [];
+	$("input[name='checkRow']").each(function(i){
+		checkAllOrder.push($(this).val());
+		});
+	alert("checkAllOrder요." +checkAllOrder);
+		if (confirm("전체 상품을 결제 하시겠습니까?")){
+			$.ajax({
+				url:"selectOrder.gt",
+				type:"post",
+				dataType: "text",
+				data:{arrOrder:checkAllOrder
+					},
+					success:function(result){
+						location.href="./orderList.gt";
+						}
+					});
+			}else{ 
+				return;
+				} 
+		}
+		
 function cart(){ //결제 금액 계산
 	var checkSumArr = [];
 	$("input[name='checkRow']:checked").each(function(i) {
@@ -297,10 +313,11 @@ function button_selOrder(){  //장바구니 선택 결제
 			return;
 			}
 	}
+ 
 $(document).on("click", "#button_update",function(){ //수량변경
-	var bas_procode= $(this).prev().prev().val()*1;
-	var chaS= $(this).prev().prev().prev().val()*1;
-    var basS = $(this).prev().prev().prev().prev().val()*1;
+	var bas_procode= $(this).prev().val()*1;
+	var chaS= $(this).prev().prev().val()*1;
+    var basS = $(this).prev().prev().prev().val()*1;
     if (chaS < basS) {
     	location.href="update.gt?bas_procode="+bas_procode+"&bas_prostock=" +chaS;
     	} else{
@@ -309,7 +326,6 @@ $(document).on("click", "#button_update",function(){ //수량변경
     		}
     });
 
-	
 //결제 함수 스크립트
 function payment(){
 	var IMP = window.IMP; // 생략가능

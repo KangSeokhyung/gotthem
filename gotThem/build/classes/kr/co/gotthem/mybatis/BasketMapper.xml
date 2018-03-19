@@ -73,6 +73,12 @@
 		WHERE bas_memno= #{bas_memno} AND bas_procode = #{bas_procode}
 	</update>
 
+    <!-- 8. 장바구니 All삭제 -->
+	<delete id="deleteBasketAll">
+		DELETE FROM basket
+	</delete>
+
+
 	<!-- 결제 관련 부분 -->
 	<!-- 1. 장바구니에서 단건 결제 추가 -->
 	<insert id="orderInsert">
