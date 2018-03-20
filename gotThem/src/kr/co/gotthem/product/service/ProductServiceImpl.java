@@ -116,10 +116,21 @@ public class ProductServiceImpl implements ProductService {
 		// 전체 게시물 수
 		int totalRows = productDao.searchListCount(searchParent);
 		
-		// 주소 파싱용 
 		Map<String, String> row = new HashMap<String, String>();
 		List addressList = new ArrayList();
-		// 검색 파싱용
+		for (int i = 0; i < searchList.size(); i++) {
+			row = (Map) searchList.get(i);
+			String address = (String) row.get("mem_address");
+			
+			StringTokenizer st = new StringTokenizer(address, "/");
+			String post = st.nextToken();
+			String addr1 = st.nextToken();
+			String addr2 = st.nextToken();
+			
+			String mem_address = addr1 + " " + addr2;
+			row.put("mem_address", mem_address);
+		}
+		
 		Map rowParse = new HashMap();
 		List searchParseList = new ArrayList();
 		
@@ -185,18 +196,7 @@ public class ProductServiceImpl implements ProductService {
 			nextPage = currentRange * pagePerPage + 1;
 		}
 		
-		for (int i = 0; i < searchList.size(); i++) {
-			row = (Map) searchList.get(i);
-			String address = (String) row.get("mem_address");
-			
-			StringTokenizer st = new StringTokenizer(address, "/");
-			String post = st.nextToken();
-			String addr1 = st.nextToken();
-			String addr2 = st.nextToken();
-			
-			String mem_address = addr1 + " " + addr2;
-			row.put("mem_address", mem_address);
-		}
+		
 		
 		model.addAttribute("pageNo", pageNo);
 		model.addAttribute("beginPage", beginPage);
