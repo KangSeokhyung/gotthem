@@ -92,5 +92,6 @@
 				authorities-by-username-query="select mem_id as username, mem_status as authority from member where mem_id = ?" />
 		</authentication-provider>
 	</authentication-manager>
+	
 
 </beans:beans>

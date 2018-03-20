@@ -40,7 +40,7 @@
 
             <div class="page-title probootstrap-animate">
               <div class="probootstrap-breadcrumbs">
-                <a href="#">Home</a><span>Login</span>
+                <a href="index.gt">Home</a><span>Login</span>
               </div>
               <h1>로그인</h1>
             </div>
@@ -69,14 +69,14 @@
 
           <h4>Feedback</h4>
           <p>궁금하신 점이 있으면, 언제라도 문의 주세요.<br> Gotthem은 항상 열려 있습니다.</p>
-          <p><a href="#">Learn More</a></p>
+          <p><a href="gotthemInfo.gt">Learn More</a></p>
         </div>
         <div class="col-md-8 col-md-push-1">
                   <form id="kakaoLogin" method="post" class="probootstrap-form mb60">
             <div class="row">
               <div class="col-sm-6">
                 <div class="form-group">
-                  <label for="mem_id">ID</label>
+                  <label for="mem_id">아이디</label>
                   <input type="text" class="form-control" id="mem_id" name="mem_id" autofocus>
                 </div>
               </div>
@@ -84,7 +84,7 @@
               <div class="row">
               <div class="col-md-6">
                 <div class="form-group">
-                  <label for="mem_pw">PASSWORD</label>
+                  <label for="mem_pw">패스워드</label>
                   <input type="password" class="form-control" id="mem_pw" name="mem_pw">
                 </div>
               </div>
@@ -136,9 +136,6 @@
     	  Kakao.API.request({
     		    url: '/v1/user/me',
     		    success: function(res) {
-    		      alert(res.kaccount_email +
-    		      res.id +
-    		      res.properties.nickname);
     		      if(document.getElementById('mem_id').value !=null || document.getElementById('mem_pw').value !=null){
     		    	  document.getElementById('mem_id').value = null;
     		    	  document.getElementById('mem_pw').value = null;

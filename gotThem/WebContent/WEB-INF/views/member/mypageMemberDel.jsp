@@ -26,8 +26,8 @@
               </div>
                        
             <div class="form-group">
-              <input type="submit" class="btn btn-primary" value="탈퇴하기" onclick="memberDel()">
-              <input type="reset" class="btn btn-primary" value="취소하기">
+              <input type="button" class="btn btn-primary" value="탈퇴하기" onclick="memberDel()">
+              <input type="button" class="btn btn-primary" onclick="histiry.back()" value="돌아가기">
             </div>              
           </form>
         </div> 
@@ -41,6 +41,7 @@
 		if(confirm('수령하지 않은 제품이 있으면 탈퇴 할 수 없습니다. 정말 탈퇴하시겠습니까?')== true){
 			document.form1.submit();
 		}else{
+			alert('회원탈퇴가 취소되었습니다');
 			history.go(0);
 		}
 	}

@@ -14,7 +14,7 @@
 	
 	<insert id="kakaoJoin" parameterType="kr.co.gotthem.member.bean.MemberBean">
 		insert into member(mem_id, mem_pw, mem_name, mem_email, mem_regdate, mem_status, enabled)
-		values(#{mem_id}, #{mem_pw}, #{mem_name}, #{mem_email}, curdate(), 'ROLE_USER' , 0)
+		values(#{mem_id}, #{mem_pw}, #{mem_name}, #{mem_email}, curdate(), 'ROLE_USER' , 1)
 	</insert>
 	
 	<select id="mlist" resultType="kr.co.gotthem.member.bean.MemberBean">
@@ -25,7 +25,7 @@
 		select * from member where mem_status='ROLE_STORE' limit #{begin}, 5
 	</select>
 	
-	<select id="duplCheck" resultType="int">
+	<select id="duplCheck" parameterType="String" resultType="int">
 		select count(*) from member where mem_id=#{mem_id}
 	</select>
 	
