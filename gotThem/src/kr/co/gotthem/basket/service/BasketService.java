@@ -33,7 +33,7 @@ public interface BasketService {
     public void updateBasket(BasketBean basketBean);
 	
    // 8. 장바구니 All삭제
-    public void deleteBasketAll();
+    public void deleteBasketAll(int a);
 	
 /*	public MemberBean login(String id);*/
 }

@@ -32,7 +32,7 @@ public interface BasketDao {
 	public void updateBasket(BasketBean basketBean);
 	
 	// 8. 장바구니 all삭제
-    public void deleteBasketAll();
+    public void deleteBasketAll(int a);
 	
 	
 	/*public MemberBean login(String id);*/

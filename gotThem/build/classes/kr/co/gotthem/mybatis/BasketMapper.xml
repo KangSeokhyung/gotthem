@@ -75,7 +75,7 @@
 
     <!-- 8. 장바구니 All삭제 -->
 	<delete id="deleteBasketAll">
-		DELETE FROM basket
+		DELETE FROM basket where 1= #{a}
 	</delete>
 
 

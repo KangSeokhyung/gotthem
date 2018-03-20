@@ -45,15 +45,7 @@ public class BasketController {
 		this.memberService = memberService;
 	}
 	
-	@Service
-	class SchedulerTest { 
-	    @Scheduled(cron = "59 09 18 * * ?") // 매일 오전 1시에 실행
-	    public void doSomething() {
-	    	basketService.deleteBasketAll();
-    	    System.out.println("전체삭제 실행");
-	    }
-	}
-	
+
     // 1. 장바구니 추가
 	@RequestMapping(value ="insertBasket.gt")
     @ResponseBody

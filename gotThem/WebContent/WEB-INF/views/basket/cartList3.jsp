@@ -19,20 +19,39 @@
 <style>
 #bo {
 	border: 1px solid black;
-	 margin-right: 0;
-     margin-left: 0;
 }
 #bo div {
 	border: 1px solid black;
-	 margin-right: 0;
-     margin-left: 0;
 }
-[class^="col-xs"] {
-  margin-right: 0;
-  margin-left: 0;
-  background: yellow;
-  padding: 0px;
+
+.table {
+  display: table;
+  table-layout: fixed;
+  border-collapse: collapse;
+  text-align: center;
 }
+.thead{
+  display: table-header-group;
+}
+.tbody{
+  display: table-row-group;
+
+}
+.tr {
+  display: table-row;
+}
+.th {
+  display: table-cell;
+  border: 1px solid #333;
+
+}
+.td {
+  display: table-cell;
+  border: 1px solid #333;
+  vertical-align: middle;
+  height:100px; 
+}
+
 </style>
 </head>
 <body>
@@ -64,7 +83,20 @@
     </ul>
   </section>  
   
- 
+  <div class="container" >
+  	<div class="row" id="bo">
+  		<div class="col-xs-4 col-md-2">안녕</div>
+  		<div class="col-xs-4 col-md-3">하세요</div>
+  		<div class="col-xs-4 col-md-1">저는</div>
+  		<div class="col-xs-3 col-md-1">더용</div>
+  		<div class="col-xs-3 col-md-3">입니다</div>
+  		<div class="col-xs-3 col-md-1">방가</div>
+  		<div class="col-xs-3 col-md-1">워용</div>
+  	</div>
+  </div>
+  
+  
+  
 <div class="container">
  <div style='float:right; padding: 3px 30px 3px 6px;'>
   <button type="button" value="상품목록1" id="btnList">쇼핑목록 이동</button> 
@@ -79,38 +111,23 @@
   </div>  
 </c:when>
 <c:otherwise>   
- <div class="container" >
-  	<div class="row" id="bo">
-  		<div class="col-xs-4 col-md-2">안녕</div>
-  		<div class="col-xs-4 col-md-3">하세요</div>
-  		<div class="col-xs-4 col-md-1">저는</div>
-  		<div class="col-xs-3 col-md-1">더용</div>
-  		<div class="col-xs-3 col-md-3">입니다</div>
-  		<div class="col-xs-3 col-md-1">방가</div>
-  		<div class="col-xs-3 col-md-1">워용</div>
-  	</div>
-  </div>
-  <br><br><br><br><br>
   <form name="form1" id="form1" method="post" action="./update.gt" onsubmit="return validate();">   
-    <div class="container" >   
-       <div class="row" id="bo">
-       <div class="col-xs-12 col-md-6" >
-                   <div class="col-xs-3 col-md-3" >상품사진</div>
-                   <div class="col-xs-3 col-md-3" >상품명</div>
-                   <div class="col-xs-3 col-md-3" >매장명</div>
-                   <div class="col-xs-3 col-md-3" >판매가</div>                  
-           </div>
-           <div class="col-xs-12 col-md-6" >
-                   <div class="col-xs-2 col-md-2" >수량 </div>
-                   <div class="col-xs-3 col-md-3" >예정가</div>
+   <div class="table">
+    <div class="thead">   
+       <div class="tr row">
+                   <div class="th col-sm-3">상품사진</div>
+                   <div class="th col-sm-3">상품명</div>
+                   <div class="th col-sm-3">매장명</div>
+                   <div class="th col-sm-3">판매가</div>                  
+                   <div class="th col-sm-3">수량 </div>
+                   <div class="th col-sm-2" style='width:100px'>구매예정가</div>
                    <!-- <th><input type="checkbox" name="checkAll" id="th_checkAll" /></th>  -->
-                   <div class="col-xs-3 col-md-3"  ><input type="button"  style='width:30px;height:20px;font-size: 12px;'value="All" name="checkAll" id="th_checkAll" onclick="button_checkAll();" /></div>
-                   <div class="col-xs-2 col-md-2">결제</div>
-                   <div class="col-xs-2 col-md-2" >삭제</div>
-              </div>     
+                   <div class="th col-sm-1" ><input type="button" value="전체 선택" name="checkAll" id="th_checkAll" onclick="button_checkAll();" /></div>
+                   <div class="th col-sm-3">결제하기</div>
+                   <div class="th col-sm-3">삭제하기</div>
        </div>
      </div>
-    <br><br><br><br><br>
+    
     <div class="tbody" id="rowCheck">
 
              <c:forEach var="row" items="${map.list}" varStatus="i">
@@ -155,7 +172,8 @@
                     <div >선택 상품 결제 예상 금액:<p id="chkSum"></p> </div>
                 </div><hr>
 
-    </div>                 
+    </div>
+   </div>                  
   </form>
   <div>  
             <input type="hidden" name="count" value="${map.count}">                      
