@@ -21,6 +21,15 @@
 <link rel="stylesheet" href="resources/indexTemplate/css/icomoon.css">
 <link rel="stylesheet" href="resources/indexTemplate/css/animate.css">
 <link rel="stylesheet" href="resources/indexTemplate/css/style.css">
+<link rel="stylesheet" href="resources/landy/css/style.default.css"
+	id="theme-stylesheet">
+<style>
+.btn-primary{
+border-radius:4px;
+margin:1px;
+padding: 0.6rem 1rem;
+}
+</style>
 </head>
 <body>
 	<header>
@@ -97,7 +106,8 @@
 				</c:if>
 			</div>
 			<div align="right">
-				<input type="button" value="상품추가" onclick="location='insert.st?pageNo=${pageNo}'"/>
+				<input type="button" value="상품추가" class="btn btn-primary"
+				 onclick="location='insert.st?pageNo=${pageNo}'"/>
 			</div>
 		</div>
 	</div>

@@ -56,7 +56,13 @@
 		}
 	    }
 </script>
-
+<style>
+.btn-primary{
+border-radius:4px;
+margin:1px;
+padding: 0.6rem 1rem;
+}
+</style>
 </head>
 <body>
 	<header>
@@ -100,10 +106,10 @@
 							<td>${pro.pro_stock }</td>
 						</tr>
 						<tr>
-							<td colspan="2" align="center"><input type="button"
-								value="수정하기" onclick="fnUpdate()" /> <input type="button"
+							<td colspan="2" align="center"><input type="button" class="btn btn-primary"
+								value="수정하기" onclick="fnUpdate()" /> <input type="button" class="btn btn-primary"
 								value="삭제하기" onclick="fnDelete(${pro.pro_code}, ${pageNo })" />
-								<input type="button" value="목록보기" onclick="fnList()" /></td>
+								<input type="button"  class="btn btn-primary" value="목록으로" onclick="fnList()" /></td>
 						</tr>
 					</table>
 				</div>

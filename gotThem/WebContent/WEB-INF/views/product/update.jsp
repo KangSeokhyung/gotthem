@@ -22,12 +22,38 @@
 <link rel="stylesheet" href="resources/landy/css/style.default.css"
 	id="theme-stylesheet">
 <link rel="stylesheet" href="resources/landy/css/custom.css">
+<style>
+.btn-primary{
+border-radius:4px;
+margin:1px;
+padding: 0.6rem 1rem;
+}
+
+label {
+margin-bottom:0px;
+}
+
+.fileBox .fileName {display:inline-block;width:172px;height:30px;padding-left:10px;margin-right:5px;line-height:30px;border:1px solid #aaa;background-color:#fff;vertical-align:middle}
+.fileBox .btn_file {background:#1FAD9F;color:#fff;border-radius:4px;display:inline-block;width:100px;height:30px;font-size:0.8em;line-height:30px;text-align:center;vertical-align:middle;}
+.fileBox input[type="file"] {position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);border:0}
+.fileBox .btn_file:hover {color:#fff;background-color:#178277;}
+</style>
 <script type="text/javascript">
 	function fnList() {
 		location.href = "stock.st?pageNo=" + ${pageNo};
 	}
 </script>
-
+<script type="text/javascript">
+var uploadFile = $('.fileBox .uploadBtn');
+	uploadFile.on('change', function(){
+		if(window.FileReader){
+			var filename = $(this)[0].files[0].name;
+		} else {
+			var filename = $(this).val().split('/').pop().split('\\').pop();
+		}
+		$(this).siblings('.fileName').val(filename);
+	});
+</script>
 </head>
 <body>
 	<header>
@@ -92,13 +118,19 @@
 							</tr>
 							<tr>
 								<td><span>상품사진</span></td>
-								<td><input type="file" name="file" value="${pro.pro_img }" /></td>
+								<td><%-- <input type="file" name="file" value="${pro.pro_img }" /> --%>
+								<div class="fileBox">
+									<input type="text" class="fileName" readonly="readonly">
+									<label for="uploadBtn" class="btn_file">찾아보기</label>
+									<input type="file" name="file" id="uploadBtn" class="uploadBtn">
+								</div>
+								</td>
 							</tr>
 							<tr>
-								<td colspan="2" align="center"><input type="submit"
-									value="확인" /> <input type="button" value="리셋"
-									onclick="reset()" /> <input type="button" value="취소"
-									onclick="history.back()" /> <input type="button" value="목록으로"
+								<td colspan="2" align="center"><input type="submit" class="btn btn-primary"
+									value="수정확인" /> <input type="button" value="되돌리기" class="btn btn-primary"
+									onclick="reset()" /> <input type="button" value="수정취소" class="btn btn-primary"
+									onclick="history.back()" /> <input type="button" value="목록으로" class="btn btn-primary"
 									onclick="fnList()" /></td>
 							</tr>
 						</table>
