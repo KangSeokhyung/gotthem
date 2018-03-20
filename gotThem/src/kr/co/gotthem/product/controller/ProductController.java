@@ -8,6 +8,7 @@ import java.io.OutputStream;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.StringTokenizer;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -225,8 +226,8 @@ public class ProductController {
 	@RequestMapping(value = "/searchList.gt", method = RequestMethod.GET)
 	public String searchList(Model model, @RequestParam String search, @RequestParam int pageNo) {
 		System.out.println(search);
-		List list = productService.searchList(model, search, pageNo);
-		System.out.println(list);
+		
+		productService.searchList(model, search, pageNo);
 					
 		return "product/searchList";
 	}
@@ -253,10 +254,5 @@ public class ProductController {
 		model.addAttribute("productInfo", productInfo);
 		
 		return "product/productDetail";
-	}
-	
-	@RequestMapping(value = "/mapDiv.gt")
-	public String map(Model model) {
-		return "product/mapDiv";
 	}
 }

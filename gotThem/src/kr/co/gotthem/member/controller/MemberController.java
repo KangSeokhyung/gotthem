@@ -1,6 +1,5 @@
 package kr.co.gotthem.member.controller;
 
-import java.io.PrintWriter;
 import java.util.List;
 import java.util.Random;
 import java.util.StringTokenizer;
@@ -14,15 +13,20 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.sun.mail.handlers.message_rfc822;
+
+import kr.co.gotthem.basket.bean.BasketBean;
 import kr.co.gotthem.member.bean.MemberBean;
 import kr.co.gotthem.member.mail.MailService;
 import kr.co.gotthem.member.service.MemberService;
+import kr.co.gotthem.product.bean.ProductBean;
 import kr.co.gotthem.product.service.ProductService;
 
 @Controller
@@ -46,9 +50,26 @@ public class MemberController {
     }
 
 	@RequestMapping(value = "/login.gt", method = RequestMethod.GET)
-	public String login() {
+	public String login(String prevUrl, @RequestParam(required=false) String mem_no, HttpSession session) {
+		/*if (productBean.getPro_code() != 0) {
+			productBean = productService.productDetail(productBean.getPro_code());
+			
+			basketBean.setBas_procode(productBean.getPro_code());
+			basketBean.setBas_proname(productBean.getPro_name());
+			basketBean.setPro_memno(productBean.getPro_memno());
+			basketBean.setBas_procategory(productBean.getPro_category());
+			basketBean.setBas_proprice(productBean.getPro_price());
+			basketBean.setBas_proimg(productBean.getPro_img());
+			basketBean.setBas_prostock(productBean.getPro_stock());
+			
+			session.setAttribute("oneBasketInfo", basketBean);
+		}*/
+		if(prevUrl !=null && mem_no != null)
+			session.setAttribute("prevUrl", prevUrl+"?mem_no="+mem_no);
+		
 		return "member/mlogin";
 	}
+	
 	@RequestMapping(value = "/logout.gt", method = RequestMethod.GET)
 	public String logout(HttpSession  session, HttpServletRequest request) {		
 		session.invalidate();
@@ -298,8 +319,8 @@ public class MemberController {
     
     @RequestMapping(value = "/storeDetail.gt")
 	public String storeDetail(Model model, int mem_no) {
-		MemberBean storeInfo = memberService.storeInfo(mem_no);
-
+    	MemberBean storeInfo = memberService.storeInfo(mem_no);
+    	
 		model.addAttribute("mem_no", mem_no);
 		model.addAttribute("storeInfo", storeInfo);
 		

@@ -1,38 +1,58 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%
+	String prevUrl = request.getAttribute("javax.servlet.forward.request_uri").toString();
+	System.out.println(prevUrl);
+%>
 <!DOCTYPE html>
 <html lang="ko">
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>편의점 재고 검색 GOT THEM!</title>
+    
     <meta name="description" content="Free Bootstrap Theme by uicookies.com">
     <meta name="keywords" content="free website templates, free bootstrap themes, free template, free bootstrap, free website template">
-    
+   
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400" rel="stylesheet">
     <link rel="stylesheet" href="resources/mainTemplate/css/styles-merged.css">
     <link rel="stylesheet" href="resources/mainTemplate/css/style.min.css">
     <link rel="stylesheet" href="resources/mainTemplate/css/custom.css">
-
+    <link rel="stylesheet" href="resources/autocomplete/auto-complete.css">
+    
     <!--[if lt IE 9]>
       <script src="resources/mainTemplate/js/vendor/html5shiv.min.js"></script>
       <script src="resources/mainTemplate/js/vendor/respond.min.js"></script>
     <![endif]-->
 <style type="text/css">
-#contentbody { width: 90%; margin: auto; }
+#marginChg { 
+	padding-bottom: 10px; 
+	margin-top: 200px; 
+	background: none;
+	-webkit-box-shadow: none;
+	box-shadow: none;
+}
+#btnColor { background: #fe490f; }
 #tabStyle a { color: #053741; }
 #tabStyle a:hover { color: #5CC8DD; font-weight: bold; }
-#marginTop { margin-top: 65px;}
 </style>  
+<script src="resources/autocomplete/auto-complete.js"></script>
 <script src="https://code.jquery.com/jquery-3.2.1.js"></script>
 <script type="text/javascript">
-
+	/* $(function(){
+		var oneBasketInfo = '${oneBasketInfo}';
+		if (oneBasketInfo != null && '${oneBasketInfo.bas_procode}' != 0) {
+			addBasket('${oneBasketInfo.bas_procode}', '${oneBasketInfo.bas_proname}', '${oneBasketInfo.pro_memno}',
+					'${oneBasketInfo.bas_procategory}', '${oneBasketInfo.bas_proprice}', '${oneBasketInfo.bas_proimg}');
+		}
+	}); */
+	
 	$(document).on("click", "#rowCheck tr", function(event){
 		if(event.target.nodeName.toLowerCase() == "td") {
-			var checkbox = $(this).find("td:first-child :checkbox");
+			var checkbox = $(this).find("td:nth-child(5) :checkbox");
 			
-			var stock = $(this).find("td:nth-child(4)");
+			var stock = $(this).find("td:nth-child(3)");
 			if (stock.text()*1 == 0) {
 				alert("해당 상품이 매진되어 선택할 수 없습니다.");
 				return false;
@@ -46,11 +66,7 @@
 		}
 	});
 		
-	function addBasket(pro_code, pro_name, pro_memno, pro_category, pro_price, pro_img, pro_stock) {
-		if (pro_stock < 1) {
-			alert("해당 상품이 매진되었습니다.");
-			return false;
-		}
+	function addBasket(pro_code, pro_name, pro_memno, pro_category, pro_price, pro_img) {
 		$.ajax({
 			url : "insertBasket.gt",
 			data : { 
@@ -109,38 +125,94 @@
 	function movedetail(pro_code) {
 		location.href="productDetail.gt?pro_code=" + pro_code;
 	}
+	
+	function loginForward(pro_code) {
+		alert("로그인하고 이용하실 수 있습니다.\n로그인 창으로 이동합니다.");
+		location.href="login.gt?prevUrl=storeDetail.gt&mem_no=${mem_no}";
+	}
 </script>
 </head>
 <body>
   
-<div class="probootstrap-loader"></div>
 <!-- START: header -->
 <header>
 <%@include file="../../../nav.jsp" %>
 </header>
 <!-- END: header -->
 
-<section id="marginTop" class="probootstrap-section probootstrap-section-lighter">
-  <div class="container">
-    <div class="row">
-    	<div class="col-sm-12">
-			<h1>${storeInfo.sto_name }</h1>
-			<hr>
-			<p><img src="/img/store/${storeInfo.sto_img }" height="350px" width="600px" title="편의점 이미지"></p>
-			<span><strong>소개글</strong> : ${storeInfo.sto_comment }</span>
-		</div>
+<section class="probootstrap-slider flexslider" style="height:400px">
+    <div class="probootstrap-wrap-banner">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-8 col-md-offset-2">
+          
+            <div id="marginChg" class="probootstrap-home-search probootstrap-animate">
+              <form action="searchList.gt" method="get">
+              	<input type="hidden" name="pageNo" value="1">
+	            <div class="probootstrap-field-group">
+					<div class="probootstrap-fields">
+						<div class="form-field">
+							<input type="text" class="form-control" id="autoComplete" name="search"
+								required="required"
+								placeholder="예) 도시락, 서초, 강남  김밥" />
+						</div>
+					</div>
+					<input type="submit" id="btnColor" class="btn btn-fill btn-success" value="검색">
+				</div>
+              </form>
+            </div>
+
+          </div>
+        </div>
+      </div>
     </div>
-  </div>
+    <ul class="slides">
+      <li style="background-image: url(resources/mainTemplate/img/slider_1.jpg);" class="overlay"></li>
+      <li style="background-image: url(resources/mainTemplate/img/slider_4.jpg);" class="overlay"></li>
+      <li style="background-image: url(resources/mainTemplate/img/slider_2.jpg);" class="overlay"></li>
+    </ul>
 </section>
+  <script type="text/javascript">
+	  var ac = new autoComplete({
+		    selector: "#autoComplete",
+		  	minChars: 0,
+		    source: function(term, suggest){
+		    	term = term.toLocaleUpperCase();
+		    	$.ajax({
+					url : "relatedSearch.gt",
+					data : { "search" : term },
+					type : "post",
+					success : function(relatedData) {
+						if (term != "") {
+							var suggestions = [];	
+							var ob = JSON.parse(relatedData);
+							for (var i = 0; i < 5; i++) {
+								if (typeof(ob["search" + i]) != "undefined") {
+									suggestions.push(ob["search" + i]);
+								}
+							}
+							suggest(suggestions);
+						}
+					},
+					error : function(xmlHttpReq, status, error) {
+					}
+				});
+		    }
+		});  
+  </script>
+
 
 <section class="probootstrap-section">
   <div class="container">
-    <div class="col-sm-12">
+  <div class="row">
+    <div class="col-xs-12 col-sm-12">
+    	<h1><strong>${storeInfo.sto_name }</strong></h1>
+		<hr>
     	<input type="button" onclick="location.href='listBasket.gt'"
     		class="btn btn-info" value="장바구니 가기">
+    	<input type="button" onclick="history.back()" class="btn btn-warning" value="이전">
     	<br><br>
     </div>
-    <div class="row probootstrap-gutter10">
       <div class="col-sm-12">
 		<ul id="tabStyle" class="nav nav-tabs" data-tabs="tabs">
 			<li class="active"><a href="#lunchbox" class="nav-link" data-toggle="tab">도시락</a></li>
@@ -155,7 +227,7 @@
 			<div class="tab-pane" id="etc"></div>
         </div>
       </div>
-    </div>
+      </div>
   </div>
 </section>
 
@@ -177,7 +249,32 @@
 	});
 </script>
 
-  <footer class="probootstrap-footer probootstrap-bg" style="background-image: url(img/slider_3.jpg)">
+<section class="probootstrap-section probootstrap-section-lighter">
+  <div class="container">
+    <div class="row">
+    	<div class="col-sm-6">
+			<img src="/img/store/${storeInfo.sto_img }" height="350px" width="550px" title="편의점 이미지">
+		</div>
+		<div class="col-sm-6">
+			<strong>${storeInfo.sto_name }</strong> <br>
+			<hr>
+			매장주소 : ${storeInfo.mem_address } <br>
+			매장번호 : ${storeInfo.mem_phone } <br>
+			${storeInfo.sto_comment } <br>
+			맛있는 슈퍼계란딸기오이 굳굳 샌드위치가 이벤트 중입니다. <br>
+			맛있는 슈퍼계란딸기오이 굳굳 샌드위치가 이벤트 중입니다. <br>
+			맛있는 슈퍼계란딸기오이 굳굳 샌드위치가 이벤트 중입니다. <br>
+			맛있는 슈퍼계란딸기오이 굳굳 샌드위치가 이벤트 중입니다. <br>
+			맛있는 슈퍼계란딸기오이 굳굳 샌드위치가 이벤트 중입니다. <br>
+			맛있는 슈퍼계란딸기오이 굳굳 샌드위치가 이벤트 중입니다. <br>
+			맛있는 슈퍼계란딸기오이 굳굳 샌드위치가 이벤트 중입니다. <br>
+			맛있는 슈퍼계란딸기오이 굳굳 샌드위치가 이벤트 중입니다. <br>
+		</div>
+    </div>
+  </div>
+</section>
+
+  <footer class="probootstrap-footer probootstrap-bg">
     <div class="container">
       <div class="row mb60">
         <div class="col-md-3">

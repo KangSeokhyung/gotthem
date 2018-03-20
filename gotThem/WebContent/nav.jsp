@@ -10,19 +10,16 @@
 <body>
 <header role="banner" id="navbar" class="probootstrap-header">
     <div class="container">
-        <a href="/gotThem" class="probootstrap-logo">GOT THEM<span>.</span></a>
+        <a href="/gotThem" style="font-weight: bold; color: #f00d04; font-size: 28px;">GOT THEM</a>
         
         <a href="#" class="probootstrap-burger-menu visible-xs" ><i>Menu</i></a>
         <div class="mobile-menu-overlay"></div>
 
         <nav role="navigation" class="probootstrap-nav hidden-xs">
           <ul class="probootstrap-main-nav">
-            <li><a href="#">GOTTHEM</a></li>
-            <li><a href="#">NOTICE</a></li>
-            <li><a href="#">EVENT</a></li>
+            <li><a href="/gotThem">GOTTHEM</a></li>
             <li><a href="listBasket.gt">CART<span id="basketCount" style="color:#FE2E2E;">&nbsp;&nbsp;${sessionScope.count}</span></a></li>
-            <c:set var="sessionCheck"
- 					value="${sessionScope.SPRING_SECURITY_CONTEXT}" />
+            <c:set var="sessionCheck" value="${sessionScope.SPRING_SECURITY_CONTEXT}" />
  					<c:choose>
  					<c:when test="${sessionCheck eq null}">
 					 <li><a href="join.gt">SIGN UP</a></li>

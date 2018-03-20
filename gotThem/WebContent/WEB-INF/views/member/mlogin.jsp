@@ -91,7 +91,6 @@
             </div>
             <div class="form-group ">
               <input type="submit" class="btn btn-primary" name="submit" value="로그인하기" style="width:48%;" onclick="loginResult()">
-              
             </div>
             <div class="form-group ">
             <a id="kakao-login-btn" style="cursor:pointer; width:48%; height:49px;"></a>

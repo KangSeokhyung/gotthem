@@ -38,15 +38,20 @@ public class LoginSuccessHandler implements AuthenticationSuccessHandler{
 		 String a = u.getUsername();
 		 System.out.println("Username은 " + a );
 
-		 MemberBean memberInfo = memberService.memberInfo(a);
+		  MemberBean memberInfo = memberService.memberInfo(a);
 		 int userNo = memberInfo.getMem_no();
 		 BasketBean basketBean = new BasketBean();
 		 basketBean.setBas_memno(userNo);
 		 List<BasketBean> listBasket = basketService.listBasket(userNo);
 		 HttpSession session = req.getSession();
-		 session.setAttribute("count", listBasket.size());
-		 
-		 res.sendRedirect(req.getContextPath()+"/");
+		 // 카트 카운트 세션에 담기 (누나 작업)
+		  
+		 String prevUrl = (String) session.getAttribute("prevUrl");
+		 if (prevUrl != null) {
+			 session.removeAttribute("prevUrl");
+			 res.sendRedirect(prevUrl);
+		 } else {
+			 res.sendRedirect(req.getContextPath()+"/");
+		 }
 	}
-
 }

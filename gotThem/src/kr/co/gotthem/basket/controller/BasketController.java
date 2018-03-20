@@ -54,7 +54,6 @@ public class BasketController {
     	MemberBean memberInfo = memberService.memberInfo(mem_id);  
         int userNo = memberInfo.getMem_no();
     	basketBean.setBas_memno(userNo);
-    	System.out.println(userNo);
         
     	HttpSession session = req.getSession();
     	List<BasketBean> listBasket = null;
@@ -83,10 +82,7 @@ public class BasketController {
         int userNo = memberInfo.getMem_no();
         Map<String, Object> map = new HashMap<String, Object>();
         List<BasketBean> listBasket = basketService.listBasket(userNo); // 장바구니 정보 
-        System.out.println("list타고,listBasket " + listBasket);
         int sumMoney = basketService.sumMoney(userNo);// 장바구니 전체 금액 호출
-        System.out.println("userNo  "+userNo );
-        System.out.println("sumMoney  "+sumMoney );
 		map.put("list", listBasket);                // 장바구니 정보를 map에 저장
 	    map.put("count", listBasket.size());// 장바구니 상품의 유무
 	    HttpSession session = req.getSession();
@@ -97,7 +93,6 @@ public class BasketController {
 	    mav.setViewName("basket/cartList");    // view(jsp)의 이름 저장
 	    mav.addObject("map", map);            // map 변수 저장
 	    mav.addObject("memberInfo", memberInfo);
-	    System.out.println("mav  "+mav );
 	    return mav;
 	}
 
@@ -128,12 +123,10 @@ public class BasketController {
     	MemberBean memberInfo = memberService.memberInfo(mem_id);  
         int userNo = memberInfo.getMem_no();
        
-        System.out.println("valueArr은" + valueArr);
         String A = null;
 
         for(int i=0; i<valueArr.size(); i++){      
         	A = (String) valueArr.get(i);          
-        	System.out.println("여기값"+A.toString());
         	if ( 2==A.length()) {
         		continue;
         	}else {
@@ -159,7 +152,6 @@ public class BasketController {
     	MemberBean memberInfo = memberService.memberInfo(mem_id);
     	
         int userNo = memberInfo.getMem_no();
-     	System.out.println("update왔다");  
     	
      	// 레코드의 갯수 만큼 반복문 실행
         for(int i=0; i< bas_procode.length; i++){
@@ -168,7 +160,6 @@ public class BasketController {
         	basketBean.setBas_prostock(Integer.parseInt((bas_prostock[i])));
         	basketBean.setBas_procode(Integer.parseInt((bas_procode[i])));
             basketService.modifyBasket(basketBean);
-            System.out.println("for새로 셋팅된 basketBean" + basketBean);
         }
         return "redirect:/listBasket.gt";
     }
