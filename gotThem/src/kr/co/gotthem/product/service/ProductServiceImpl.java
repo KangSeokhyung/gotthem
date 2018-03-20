@@ -112,8 +112,6 @@ public class ProductServiceImpl implements ProductService {
 		map.put("beginList", beginList);
 		map.put("search", searchParent);
 		List searchList = productDao.searchList(map);
-
-		// 전체 게시물 수
 		int totalRows = productDao.searchListCount(searchParent);
 		
 		Map<String, String> row = new HashMap<String, String>();
@@ -133,7 +131,6 @@ public class ProductServiceImpl implements ProductService {
 		
 		Map rowParse = new HashMap();
 		List searchParseList = new ArrayList();
-		
 		if (searchList.size() == 0) {
 			StringTokenizer st = new StringTokenizer(searchParent, " ");
 			
@@ -163,13 +160,12 @@ public class ProductServiceImpl implements ProductService {
 				String mem_address = addr1 + " " + addr2;
 				row.put("mem_address", mem_address);
 			}
-			
 			model.addAttribute("searchList", searchParseList);
 		}
 		
 		// 전체 페이지 번호 수
 		int totalPages = (int) Math.ceil((double) totalRows / rowPerPage);
-
+		
 		// 화면 하단에 표시될 페이지의 개수
 		final int pagePerPage = 5;
 
@@ -196,17 +192,15 @@ public class ProductServiceImpl implements ProductService {
 			nextPage = currentRange * pagePerPage + 1;
 		}
 		
-		
-		
 		model.addAttribute("pageNo", pageNo);
 		model.addAttribute("beginPage", beginPage);
 		model.addAttribute("endPage", endPage);
 		model.addAttribute("prevPage", prevPage);
 		model.addAttribute("nextPage", nextPage);
 		model.addAttribute("totalPages", totalPages);
-		model.addAttribute("totalRows", totalRows);
 		model.addAttribute("search", searchParent);
 		model.addAttribute("searchList", searchList);
+		model.addAttribute("totalRows", totalRows);
 		
 		return null;
 	}
