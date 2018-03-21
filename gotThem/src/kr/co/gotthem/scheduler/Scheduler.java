@@ -13,7 +13,7 @@ public class Scheduler {
     @Autowired
     private BasketService basketService;
 
-    @Scheduled(cron="01 01 03 * * ?")
+    @Scheduled(cron="01 01 10 * * ?")
     public void HofScheduler() {
         try{
         	int a = 1;

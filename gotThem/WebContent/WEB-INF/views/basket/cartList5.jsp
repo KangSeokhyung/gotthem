@@ -18,40 +18,22 @@
     <![endif]-->
 <style>
 #bo {
-	border: 1px solid black;
+	border: 0.1px solid black;
+	 margin-right: 0;
+     margin-left: 0;
 }
 #bo div {
-	border: 1px solid black;
+	border:0.1px solid black;
+	 margin-right: 0;
+     margin-left: 0;
 }
-
-.table {
-  display: table;
-  table-layout: fixed;
-  border-collapse: collapse;
-  text-align: center;
+[class^="col-xs"] {
+  margin-right: 0;
+  margin-left: 0;
+  /* background: yellow; */
+  padding: 0px;
+  height:70px;
 }
-.thead{
-  display: table-header-group;
-}
-.tbody{
-  display: table-row-group;
-
-}
-.tr {
-  display: table-row;
-}
-.th {
-  display: table-cell;
-  border: 1px solid #333;
-
-}
-.td {
-  display: table-cell;
-  border: 1px solid #333;
-  vertical-align: middle;
-  height:100px; 
-}
-
 </style>
 </head>
 <body>
@@ -83,20 +65,7 @@
     </ul>
   </section>  
   
-  <div class="container" >
-  	<div class="row" id="bo">
-  		<div class="col-xs-4 col-md-2">안녕</div>
-  		<div class="col-xs-4 col-md-3">하세요</div>
-  		<div class="col-xs-4 col-md-1">저는</div>
-  		<div class="col-xs-3 col-md-1">더용</div>
-  		<div class="col-xs-3 col-md-3">입니다</div>
-  		<div class="col-xs-3 col-md-1">방가</div>
-  		<div class="col-xs-3 col-md-1">워용</div>
-  	</div>
-  </div>
-  
-  
-  
+ 
 <div class="container">
  <div style='float:right; padding: 3px 30px 3px 6px;'>
   <button type="button" value="상품목록1" id="btnList">쇼핑목록 이동</button> 
@@ -111,62 +80,81 @@
   </div>  
 </c:when>
 <c:otherwise>   
+ <div class="container" id="bo" >
+  	<div class="row" id="bo">
+  		<div class="col-xs-4 col-md-2">안녕</div>
+  		<div class="col-xs-4 col-md-3">하세요</div>
+  		<div class="col-xs-4 col-md-1">저는</div>
+  		<div class="col-xs-3 col-md-1">더용</div>
+  		<div class="col-xs-3 col-md-3">입니다</div>
+  		<div class="col-xs-3 col-md-1">방가</div>
+  		<div class="col-xs-3 col-md-1">워용</div>
+  	</div>
+  </div>
+  <br><br><br><br><br>
   <form name="form1" id="form1" method="post" action="./update.gt" onsubmit="return validate();">   
-   <div class="table">
-    <div class="thead">   
-       <div class="tr row">
-                   <div class="th col-sm-3">상품사진</div>
-                   <div class="th col-sm-3">상품명</div>
-                   <div class="th col-sm-3">매장명</div>
-                   <div class="th col-sm-3">판매가</div>                  
-                   <div class="th col-sm-3">수량 </div>
-                   <div class="th col-sm-2" style='width:100px'>구매예정가</div>
+    <div class="container" >   
+       <div class="row" id="bo">
+       <div class="col-xs-12 col-md-6" >
+                   <div class="col-xs-3 col-md-3" >상품사진</div>
+                   <div class="col-xs-3 col-md-3" >상품명</div>
+                   <div class="col-xs-3 col-md-3" >매장명</div>
+                   <div class="col-xs-3 col-md-3" >판매가</div>                  
+           </div>
+           <div class="col-xs-12 col-md-6" >
+                   <div class="col-xs-2 col-md-2" >수량 </div>
+                   <div class="col-xs-3 col-md-3" >예정가</div>
                    <!-- <th><input type="checkbox" name="checkAll" id="th_checkAll" /></th>  -->
-                   <div class="th col-sm-1" ><input type="button" value="전체 선택" name="checkAll" id="th_checkAll" onclick="button_checkAll();" /></div>
-                   <div class="th col-sm-3">결제하기</div>
-                   <div class="th col-sm-3">삭제하기</div>
+                   <div class="col-xs-3 col-md-3"  ><input type="button"  style='width:30px;height:20px;font-size: 12px;'value="All" name="checkAll" id="th_checkAll" onclick="button_checkAll();" /></div>
+                   <div class="col-xs-2 col-md-2">결제</div>
+                   <div class="col-xs-2 col-md-2" >삭제</div>
+              </div>     
        </div>
      </div>
-    
-    <div class="tbody" id="rowCheck">
-
+    <br><br><br><br><br>
+<div class="container" id="bo" >   
+    <div  id="rowCheck">
              <c:forEach var="row" items="${map.list}" varStatus="i">
-               <div class="tr">
-                  <div class="td">
+               <div class="col-xs-12 col-md-6" >
+                  <div class="col-xs-3 col-md-3">
                        <img src="/img/${row.bas_proimg}" style="width:50px; height:50px"/>
                   </div>
-                  <div class="td">
+                  <div class="col-xs-3 col-md-3">
                       <a href="productDetail.gt?pro_code=${row.bas_procode}" style="color: #7e8890;"> ${row.bas_proname}</a>
                   </div>
-                   <div class="td">
+                   <div class="col-xs-3 col-md-3">
                        ${row.pro_memno}
                   </div>
-                  <div class="td" style="width: 80px" align="right" >
+                  <div class="col-xs-3 col-md-3" style="width: 80px" align="right" >
                        <fmt:formatNumber pattern="###,###,###" value="${row.bas_proprice}"/>
                   </div>
-                  <div class="td">
+                </div>  
+                <div class="col-xs-12 col-md-6" >
+                  <div class="col-xs-2 col-md-2">
                      <input type="hidden" name="stock1" id="stock1" value="${row.stock}"> 
                      <input type="number" min="1" max="${row.stock}" require="" id="changeStock" name="bas_prostock"  value="${row.bas_prostock}" >
                      <input type="hidden" id="bas_procode" name="bas_procode" value="${row.bas_procode}">
                      <button type="button" id="button_update" name="button_update">변경</button>
                   </div>
-                  <div class="td"  style="width: 80px" align="right">
+                  <div class="col-xs-3 col-md-3"  style="width: 80px" align="right">
                        <fmt:formatNumber pattern="###,###,###" value="${row.money}"/>
                   </div>
-                  <div class="td">
+               
+                  <div class="col-xs-3 col-md-3" >
                       <input type="hidden" name="bas_procomment" value="${row.bas_procomment}">
                       <input  class = "check" type="checkbox" name="checkRow" class="chk" id="checkRow"  value="${row.bas_no},${row.bas_proname},${row.bas_proprice},${row.bas_prostock},${row.bas_procode},${row.money},${row.bas_proimg}, ${row.bas_procomment},${row.pro_memno}"
                       onclick="cart();" /> 
                   </div>
-                  <div class="td">
+                  <div class="col-xs-2 col-md-2">
                      <input type="hidden" name="money" value="${row.money}">
                      <input type="hidden" name="bas_no" value="${row.bas_no}">
                      <input type="button" value="결제" onclick="button_order('${row.bas_no}','${row.bas_proname}','${row.bas_procode}','${row.money}','${row.bas_prostock}','${row.bas_proimg}','${row.bas_proprice}','${row.pro_memno}');">
                   </div>
-                  <div class="td">
+                  <div class="col-xs-2 col-md-2">
                       <input type="button" value="삭제" onclick="button_basDel(${row.bas_no});">
                   </div>
-                </div>
+                 </div> 
+                
                </c:forEach>
                 <div class="tr">
                     <div >선택 상품 결제 예상 금액:<p id="chkSum"></p> </div>
@@ -243,8 +231,8 @@ $(document).ready(function(){
  });
  $(document).on("click", "#rowCheck tr", function(event){
 	if(event.target.nodeName.toLowerCase() == "td") {
-		 var checkbox = $(this).find("td:nth-child(7) :checkbox"); 
-		 /*  var checkbox = $(this).find("td:first-child :checkbox");*/
+		var checkbox = $(this).find("td:nth-child(7) :checkbox");
+
 		if (checkbox.is(":checked")) {
 			checkbox.prop("checked", false);
 			cart();
