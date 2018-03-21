@@ -22,6 +22,7 @@
 <link rel="stylesheet" href="resources/landy/css/style.default.css"
 	id="theme-stylesheet">
 <link rel="stylesheet" href="resources/landy/css/custom.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <style>
 .btn-primary{
 border-radius:4px;
@@ -42,9 +43,9 @@ margin-bottom:0px;
 	function fnList() {
 		location.href = "stock.st?pageNo=" + ${pageNo};
 	}
-</script>
-<script type="text/javascript">
-var uploadFile = $('.fileBox .uploadBtn');
+
+$(document).ready(function(){
+	var uploadFile = $('.fileBox .uploadBtn');
 	uploadFile.on('change', function(){
 		if(window.FileReader){
 			var filename = $(this)[0].files[0].name;
@@ -53,7 +54,9 @@ var uploadFile = $('.fileBox .uploadBtn');
 		}
 		$(this).siblings('.fileName').val(filename);
 	});
+});
 </script>
+
 </head>
 <body>
 	<header>

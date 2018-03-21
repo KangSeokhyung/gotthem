@@ -29,6 +29,8 @@ border-radius:4px;
 margin:1px;
 padding: 0.6rem 1rem;
 }
+
+.table-responsive{-sm|-md|-lg|-xl}
 </style>
 </head>
 <body>
@@ -50,8 +52,8 @@ padding: 0.6rem 1rem;
 
 	<div class="cover-container pb-5">
 		<div class="cover-inner container">
-			<table class="table table-user-information">
-				<tr>
+			<table class="table table-responsive">
+				<tr class="table-success">
 					<th>번호</th>
 					<th>사진</th>
 					<th>상품명</th>
