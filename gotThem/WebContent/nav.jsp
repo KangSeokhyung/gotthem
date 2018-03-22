@@ -8,6 +8,7 @@
 <title>Insert title here</title>
 </head>
 <body>
+<c:set var="sessionCheck" value="${sessionScope.SPRING_SECURITY_CONTEXT}" />
 <header role="banner" id="navbar" class="probootstrap-header">
     <div class="container">
         <a href="/gotThem" style="font-weight: bold; color: #f00d04; font-size: 28px;">GOT THEM</a>
@@ -18,19 +19,30 @@
         <nav role="navigation" class="probootstrap-nav hidden-xs">
           <ul class="probootstrap-main-nav">
             <li><a href="/gotThem">GOTTHEM</a></li>
-            <li><a href="listBasket.gt">CART<span id="basketCount" style="color:#FE2E2E;">&nbsp;&nbsp;${sessionScope.count}</span></a></li>
-            <c:set var="sessionCheck" value="${sessionScope.SPRING_SECURITY_CONTEXT}" />
- 					<c:choose>
- 					<c:when test="${sessionCheck eq null}">
-					 <li><a href="join.gt">SIGN UP</a></li>
-           			 <li><a href="login.gt">LOGIN</a></li>
-					</c:when>
-					<c:otherwise>
+            <c:choose>
+				<c:when test="${sessionCheck eq null}">
+					<li><a href="login.gt?prevUrl=listBasket.gt">CART<span id="basketCount" style="color:#FE2E2E;"></span></a></li>
+				</c:when>
+				<c:otherwise>
+					<li><a href="listBasket.gt">CART<span id="basketCount" style="color:#FE2E2E;"></span></a></li>
+				</c:otherwise>
+			</c:choose>
+			<c:choose>
+				<c:when test="${sessionCheck eq null}">
+					<li><a href="join.gt">SIGN UP</a></li>
+					<c:if test="${search ne null }">
+						<li><a href="login.gt?search=${search }">LOGIN</a></li>
+					</c:if>
+					<c:if test="${search eq null }">
+						<li><a href="login.gt">LOGIN</a></li>
+					</c:if>
+				</c:when>
+				<c:otherwise>
 					<li><a href="mypage.gt">MYPAGE</a></li>
-           			 <li><a href="logout.gt">LOGOUT</a></li>
- 					</c:otherwise>
- 				</c:choose>
-          </ul>
+					<li><a href="logout.gt">LOGOUT</a></li>
+				</c:otherwise>
+			</c:choose>
+		  </ul>
           <div class="extra-text visible-xs"> 
             <a href="#" class="probootstrap-burger-menu"><i>Menu</i></a>
             <h5>Address</h5>

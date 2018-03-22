@@ -1,7 +1,6 @@
 package kr.co.gotthem.member.security;
 
 import java.io.IOException;
-import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -13,45 +12,24 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 
-import kr.co.gotthem.basket.bean.BasketBean;
-import kr.co.gotthem.basket.service.BasketService;
-import kr.co.gotthem.member.bean.MemberBean;
-import kr.co.gotthem.member.service.MemberService;
-
 public class LoginSuccessHandler implements AuthenticationSuccessHandler{
-	
-	private MemberService memberService;
-	private BasketService basketService;
-	
-	public void setMemberService(MemberService memberService) {
-		this.memberService = memberService;
-	}
-	public void setBasketService(BasketService basketService) {
-		this.basketService = basketService;
-	}
 	
 	@Override
 	public void onAuthenticationSuccess(HttpServletRequest req, HttpServletResponse res, Authentication auth)
 			throws IOException, ServletException {
 		System.out.println("인증됨");
-		 UserDetails u = (UserDetails) auth.getPrincipal();
-		 String a = u.getUsername();
-		 System.out.println("Username은 " + a );
+		UserDetails u = (UserDetails) auth.getPrincipal();
+		String a = u.getUsername();
+		System.out.println("Username은 " + a );
 
-		  MemberBean memberInfo = memberService.memberInfo(a);
-		 int userNo = memberInfo.getMem_no();
-		 BasketBean basketBean = new BasketBean();
-		 basketBean.setBas_memno(userNo);
-		 List<BasketBean> listBasket = basketService.listBasket(userNo);
-		 HttpSession session = req.getSession();
-		 // 카트 카운트 세션에 담기 (누나 작업)
+		HttpSession session = req.getSession();
 		  
-		 String prevUrl = (String) session.getAttribute("prevUrl");
-		 if (prevUrl != null) {
-			 session.removeAttribute("prevUrl");
-			 res.sendRedirect(prevUrl);
-		 } else {
-			 res.sendRedirect(req.getContextPath()+"/");
-		 }
+		String prevUrl = (String) session.getAttribute("prevUrl");
+		if (prevUrl != null) {
+			session.removeAttribute("prevUrl");
+			res.sendRedirect(prevUrl);
+		} else {
+			res.sendRedirect(req.getContextPath()+"/");
+		}
 	}
 }

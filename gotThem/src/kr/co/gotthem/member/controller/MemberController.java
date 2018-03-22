@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Random;
 import java.util.StringTokenizer;
 
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -13,16 +14,14 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import com.sun.mail.handlers.message_rfc822;
-
 import kr.co.gotthem.basket.bean.BasketBean;
+import kr.co.gotthem.basket.service.BasketService;
 import kr.co.gotthem.member.bean.MemberBean;
 import kr.co.gotthem.member.mail.MailService;
 import kr.co.gotthem.member.service.MemberService;
@@ -35,6 +34,11 @@ public class MemberController {
 	private MemberService memberService;
 	private MailService mailService;
 	private ProductService productService;
+	private BasketService basketService;
+	
+	public void setBasketService(BasketService basketService) {
+		this.basketService = basketService;
+	}
 	
 	public void setProductService(ProductService productService) {
 		this.productService = productService;
@@ -50,28 +54,60 @@ public class MemberController {
     }
 
 	@RequestMapping(value = "/login.gt", method = RequestMethod.GET)
-	public String login(String prevUrl, @RequestParam(required=false) String mem_no, HttpSession session) {
-		/*if (productBean.getPro_code() != 0) {
-			productBean = productService.productDetail(productBean.getPro_code());
+	public String login(@RequestParam(required=false) String prevUrl, 
+			@RequestParam(required=false) String mem_no, HttpSession session,
+			HttpServletRequest request, ProductBean product, 
+			@RequestParam (required=false) String search,
+			@RequestParam(defaultValue="NO") String gubun) {
+		
+		String referer = request.getHeader("referer");
+		String path = request.getScheme() + "://"
+				+ request.getServerName() + ":"
+				+ request.getServerPort()
+				+ request.getContextPath()+"/";
+		String url = null;
+		StringTokenizer st = null;
+		String qs = null;
+		String prevUrl2 = null;
+		
+		prevUrl2 = referer.substring(path.length());
+		session.setAttribute("prevUrl", prevUrl2);
+		
+		if (prevUrl2.length() < 2) {
+			session.removeAttribute("prevUrl");
+		}
+		
+		if (search != null) {
+			url = referer.substring(path.length());
+			st = new StringTokenizer(url, "&");
+			qs = st.nextToken();
+			prevUrl = qs + "&search=" + search; 
 			
-			basketBean.setBas_procode(productBean.getPro_code());
-			basketBean.setBas_proname(productBean.getPro_name());
-			basketBean.setPro_memno(productBean.getPro_memno());
-			basketBean.setBas_procategory(productBean.getPro_category());
-			basketBean.setBas_proprice(productBean.getPro_price());
-			basketBean.setBas_proimg(productBean.getPro_img());
-			basketBean.setBas_prostock(productBean.getPro_stock());
-			
-			session.setAttribute("oneBasketInfo", basketBean);
-		}*/
-		if(prevUrl !=null && mem_no != null)
-			session.setAttribute("prevUrl", prevUrl+"?mem_no="+mem_no);
+			session.setAttribute("prevUrl", prevUrl);
+		}
+		
+		if (prevUrl != null && mem_no != null) {  
+			session.setAttribute("prevUrl", 
+					prevUrl+"?mem_no=" + mem_no +
+					"&pro_code=" + product.getPro_code());
+		}
+		
+		if (gubun.equals("pdPage")) {
+			session.setAttribute("prevUrl", 
+					prevUrl+"?&pro_code=" + product.getPro_code() +
+					"&pro_stock=" + product.getPro_stock() + 
+					"&gubun=" + gubun);
+		} 
+		
+		if (prevUrl != null && prevUrl.equals("listBasket.gt")) {
+			session.setAttribute("prevUrl", prevUrl);
+		}
 		
 		return "member/mlogin";
 	}
 	
 	@RequestMapping(value = "/logout.gt", method = RequestMethod.GET)
-	public String logout(HttpSession  session, HttpServletRequest request) {		
+	public String logout(HttpSession session, HttpServletRequest request) {		
 		session.invalidate();
 		System.out.println("회원 로그아웃");
 		return "redirect:index.jsp";
@@ -318,14 +354,77 @@ public class MemberController {
     }
     
     @RequestMapping(value = "/storeDetail.gt")
-	public String storeDetail(Model model, int mem_no) {
+	public String storeDetail(Model model, int mem_no, @RequestParam(defaultValue="NO") String gubun) {
     	MemberBean storeInfo = memberService.storeInfo(mem_no);
     	
-		model.addAttribute("mem_no", mem_no);
-		model.addAttribute("storeInfo", storeInfo);
-		
-		return "store/storeDetail";
+    	model.addAttribute("mem_no", mem_no);
+    	model.addAttribute("storeInfo", storeInfo);
+    	if (gubun.equals("OK")) {
+    		model.addAttribute("gubun", "OK");
+    	}
+    	
+    	return "store/storeDetail";
 	}
+    
+    @RequestMapping(value = "/detailForward.gt")
+	public String detailForward(Model model, @RequestParam(required=false) String mem_no,
+			ProductBean product, BasketBean basketBean, @RequestParam(defaultValue="NO") String gubun,
+			HttpServletResponse response) {
+    	int pro_stock = product.getPro_stock();
+    	product = productService.productDetail(product.getPro_code());
+    	
+    	Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+    	String mem_id = authentication.getName();
+    
+    	MemberBean memberInfo = memberService.memberInfo(mem_id);  
+        int userNo = memberInfo.getMem_no();
+    	basketBean.setBas_memno(userNo);
+    	basketBean.setBas_procode(product.getPro_code());
+    	basketBean.setBas_proname(product.getPro_name());
+    	basketBean.setBas_procategory(product.getPro_category());
+    	basketBean.setBas_prostock(1);
+    	basketBean.setBas_proprice(product.getPro_price());
+    	basketBean.setBas_proimg(product.getPro_img());
+    	
+    	if (gubun.equals("pdPage")) {
+    		basketBean.setBas_prostock(pro_stock);
+        }
+    	List<BasketBean> listBasket = null;
+        int count = basketService.countBasket(product.getPro_code(), basketBean.getBas_memno());
+        if (count == 0) {
+        	 basketService.insertBasket(basketBean);      	 
+        	 System.out.println("첫 상품 장바구니 인서트");
+        	 listBasket = basketService.listBasket(userNo);
+      	    
+        } else {    // 있으면 update, 동일 상품 존재시 기존 수량에 새로운 수량 더하기
+        	basketService.updateBasket(basketBean);
+			System.out.println("존재하는 상품 인서트");
+        	listBasket = basketService.listBasket(userNo);
+        }
+        
+        Cookie cookie = new Cookie("confirm", "OK");
+    	cookie.setMaxAge(10);  
+    	cookie.setPath("/");
+    	response.addCookie(cookie);
+        
+        if (gubun.equals("pdPage")) {
+        	model.addAttribute("pro_code", product.getPro_code());
+        	return "redirect:/productDetail.gt";
+        } else {
+        	model.addAttribute("mem_no", mem_no);
+        	model.addAttribute("gubun", "OK");
+        }
+    	
+    	return "redirect:/storeDetail.gt";
+	}
+    
+    @RequestMapping(value = "/selectDetailForward.gt")
+	public String selectDetailForward(Model model, @RequestParam(required=false) String mem_no,
+			ProductBean product, BasketBean basketBean, @RequestParam(defaultValue="NO") String gubun,
+			HttpServletResponse response) {
+    	
+    	return null;
+    }
     
     @RequestMapping(value = "/productList.gt")
 	public String productList(Model model, int mem_no, String category) {
@@ -334,4 +433,5 @@ public class MemberController {
 		
 		return "product/productTable";
 	}
+    
 }

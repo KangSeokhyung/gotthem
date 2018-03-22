@@ -1,10 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%
-	String prevUrl = request.getAttribute("javax.servlet.forward.request_uri").toString();
-	System.out.println(prevUrl);
-%>
 <!DOCTYPE html>
 <html lang="ko">
   <head>
@@ -40,13 +36,24 @@
 <script src="resources/autocomplete/auto-complete.js"></script>
 <script src="https://code.jquery.com/jquery-3.2.1.js"></script>
 <script type="text/javascript">
-	/* $(function(){
-		var oneBasketInfo = '${oneBasketInfo}';
-		if (oneBasketInfo != null && '${oneBasketInfo.bas_procode}' != 0) {
-			addBasket('${oneBasketInfo.bas_procode}', '${oneBasketInfo.bas_proname}', '${oneBasketInfo.pro_memno}',
-					'${oneBasketInfo.bas_procategory}', '${oneBasketInfo.bas_proprice}', '${oneBasketInfo.bas_proimg}');
+	$(function(){
+		function getCookie(name) {
+			var value = document.cookie.match('(^|;) ?' + name + '=([^;]*)(;|$)');
+			return value? value[2] : null;
+		};
+		
+		function deleteCookie(name) {
+			var expireDate = new Date();
+			  
+			expireDate.setDate( expireDate.getDate() - 1 );
+			document.cookie = name + "= " + "; expires=" + expireDate.toGMTString() + "; path=/;";
 		}
-	}); */
+		
+		if (getCookie("confirm") == "OK") {
+			alert("장바구니에 추가됐습니다.");
+			deleteCookie("confirm");
+		}
+	});
 	
 	$(document).on("click", "#rowCheck tr", function(event){
 		if(event.target.nodeName.toLowerCase() == "td") {
@@ -128,8 +135,14 @@
 	
 	function loginForward(pro_code) {
 		alert("로그인하고 이용하실 수 있습니다.\n로그인 창으로 이동합니다.");
-		location.href="login.gt?prevUrl=storeDetail.gt&mem_no=${mem_no}";
+		location.href="login.gt?prevUrl=detailForward.gt&mem_no=${mem_no}&pro_code=" + pro_code;
 	}
+	
+	function loginForward2() {
+		alert("로그인하고 이용하실 수 있습니다.\n로그인 창으로 이동합니다.");
+		location.href="login.gt?prevUrl=listBasket.gt";
+	}
+	
 </script>
 </head>
 <body>
@@ -208,8 +221,14 @@
     <div class="col-xs-12 col-sm-12">
     	<h1><strong>${storeInfo.sto_name }</strong></h1>
 		<hr>
-    	<input type="button" onclick="location.href='listBasket.gt'"
-    		class="btn btn-info" value="장바구니 가기">
+		<c:choose>
+			<c:when test="${sessionCheck eq null}">
+				<input type="button" onclick="loginForward2();" class="btn btn-info" value="장바구니 가기">
+			</c:when>
+			<c:otherwise>
+				<input type="button" onclick="location.href='login.gt?prevUrl=listBasket.gt'" class="btn btn-info" value="장바구니 가기">
+			</c:otherwise>
+		</c:choose>
     	<input type="button" onclick="history.back()" class="btn btn-warning" value="이전">
     	<br><br>
     </div>
@@ -256,7 +275,7 @@
 			<img src="/img/store/${storeInfo.sto_img }" height="350px" width="550px" title="편의점 이미지">
 		</div>
 		<div class="col-sm-6">
-			<strong>${storeInfo.sto_name }</strong> <br>
+			<h4><strong>${storeInfo.sto_name }</strong></h4>
 			<hr>
 			매장주소 : ${storeInfo.mem_address } <br>
 			매장번호 : ${storeInfo.mem_phone } <br>
@@ -274,66 +293,12 @@
   </div>
 </section>
 
-  <footer class="probootstrap-footer probootstrap-bg">
+  <footer class="probootstrap-footer probootstrap-bg" style="height: 100px">
     <div class="container">
-      <div class="row mb60">
-        <div class="col-md-3">
-          <div class="probootstrap-footer-widget">
-            <h4 class="heading">About Haus.</h4>
-            <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. </p>
-            <p><a href="#">Read more...</a></p>
-          </div> 
-        </div>
-        <div class="col-md-3">
-          <div class="probootstrap-footer-widget probootstrap-link-wrap">
-            <h4 class="heading">Quick Links</h4>
-            <ul class="stack-link">
-              <li><a href="#">Property Listing</a></li>
-              <li><a href="#">Rent Properties</a></li>
-              <li><a href="#">Sell Properties</a></li>
-              <li><a href="#">Agents</a></li>
-              <li><a href="#">Testimonial</a></li>
-            </ul>
-          </div>
-        </div>
-        <div class="col-md-3">
-          <div class="probootstrap-footer-widget">
-            <h4 class="heading">Popular Cities</h4>
-            <ul class="stack-link">
-              <li><a href="#">New York <small>(320 properties)</small></a></li>
-              <li><a href="#">San Francisco <small>(294 properties)</small></a></li>
-              <li><a href="#">Brooklyn <small>(300 properties)</small></a></li>
-              <li><a href="#">Chicago <small>(268 properties)</small></a></li>
-              <li><a href="#">Los Angeles <small>(342 properties)</small></a></li>
-            </ul>
-          </div> 
-        </div>
-        <div class="col-md-3">
-          <div class="probootstrap-footer-widget probootstrap-link-wrap">
-            <h4 class="heading">Subscribe</h4>
-            <p>Far far away behind the word mountains far from.</p>
-            <form action="#">
-              <div class="form-field">
-                <input type="text" class="form-control" placeholder="Enter your email">
-                <button class="btn btn-subscribe">Send</button>
-              </div>
-            </form>
-          </div>
-        </div>
-      </div>
       <div class="row copyright">
         <div class="col-md-6">
           <div class="probootstrap-footer-widget">
             <p>&copy; 2017 <a href="https://uicookies.com/">uiCookies:Haus</a>. Designed by <a href="https://uicookies.com/">uicookies.com</a> <br> Demo Photos from <a href="https://pixabay.com/">Pixabay</a> &amp; <a href="https://unsplash.com/">Unsplash</a></p>
-          </div>
-        </div>
-        <div class="col-md-6">
-          <div class="probootstrap-footer-widget right">
-            <ul class="probootstrap-footer-social">
-              <li><a href="#"><i class="icon-twitter"></i></a></li>
-              <li><a href="#"><i class="icon-facebook"></i></a></li>
-              <li><a href="#"><i class="icon-instagram2"></i></a></li>
-            </ul>
           </div>
         </div>
       </div>

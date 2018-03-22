@@ -14,13 +14,13 @@
 <body>
 	<div>
 		<form id="tableForm" action="login.gt" method="get">
-			<input type="hidden" id="pro_code" name="bas_procode">
+			<!-- <input type="hidden" id="pro_code" name="bas_procode">
 			<input type="hidden" id="pro_name" name="bas_proname">
 			<input type="hidden" id="pro_memno" name="pro_memno">
 			<input type="hidden" id="pro_category" name="bas_procategory">
 			<input type="hidden" id="pro_price" name="bas_proprice">
 			<input type="hidden" id="pro_img" name="bas_proimg">
-			<input type="hidden" id="pro_stock" name="bas_prostock">
+			<input type="hidden" id="pro_stock" name="bas_prostock"> -->
 		<table class="table table-bordered table-hover">
 			<colgroup>
 				<col width="17%" />
@@ -43,6 +43,7 @@
 			<tbody id="rowCheck">
 				<c:forEach var="list" items="${productInfo }">
 				<c:if test="${list.pro_stock > 0 }">
+				<input type="hidden" id="pro_code" name="pro_code" value="${list.pro_code }">
 				<tr>
 					<td><a href="javascript:movedetail(${list.pro_code });"><img src="/img/${list.pro_img }" height="50px" width="50px" title="상품이미지" alt="상품이미지"></a></td>
 					<td><a href="javascript:movedetail(${list.pro_code });">${list.pro_name }</a></td>
@@ -70,9 +71,19 @@
 				</c:forEach>
 			</tbody>
 		</table>
-		<div class="col-sm-12">
-			<input type="button" onclick="selectAddBasket()" class="btn btn-info" value="선택항목 담기 ">
-		</div>
+		<c:choose>
+			<c:when test="${sessionCheck eq null}">
+				<div class="col-sm-12">
+					<input type="button" onclick="loginForward2()" class="btn btn-info" value="선택항목 담기 ">
+				</div>
+			</c:when>
+			<c:otherwise>
+				<div class="col-sm-12">
+					<input type="button" onclick="selectAddBasket()" class="btn btn-info" value="선택항목 담기 ">
+				</div>
+			</c:otherwise>
+		</c:choose>
+		
 		</form>
 	</div>
 </body>
