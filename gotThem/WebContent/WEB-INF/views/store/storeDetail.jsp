@@ -50,8 +50,15 @@
 		}
 		
 		if (getCookie("confirm") == "OK") {
-			alert("장바구니에 추가됐습니다.");
 			deleteCookie("confirm");
+			alert("장바구니에 추가됐습니다.");
+		} else if (getCookie("confirm") == "OK2") {
+			deleteCookie("confirm");
+			if (confirm("장바구니에 추가되었습니다.\n장바구니 페이지로 이동 하시겠습니까?")) {
+				location.href="listBasket.gt";	
+			} else {
+				return false;
+			}
 		}
 	});
 	
@@ -134,13 +141,42 @@
 	}
 	
 	function loginForward(pro_code) {
-		alert("로그인하고 이용하실 수 있습니다.\n로그인 창으로 이동합니다.");
+		alert("로그인 후 이용하실 수 있습니다.\n로그인 창으로 이동합니다.");
 		location.href="login.gt?prevUrl=detailForward.gt&mem_no=${mem_no}&pro_code=" + pro_code;
 	}
 	
 	function loginForward2() {
-		alert("로그인하고 이용하실 수 있습니다.\n로그인 창으로 이동합니다.");
+		alert("로그인 후 이용하실 수 있습니다.\n로그인 창으로 이동합니다.");
 		location.href="login.gt?prevUrl=listBasket.gt";
+	}
+	
+	function loginForward3() {
+		var checkList = [];
+		var checkOne = "";
+		
+		if ($("input[name='statusCheck']:checked").length == 0) {
+			alert("장바구니에 담을 상품을 선택해주세요.");
+			return false;
+		} else if ($("input[name='statusCheck']:checked").length == 1) {
+			checkOne = $("input[name='statusCheck']:checked").val();
+		}
+		
+		$("input[name='statusCheck']:checked").each(function(i) {
+			checkList.push($(this).val());
+		});
+		
+		$.ajax({
+			url : "sessionSet.gt",
+			type : "post",
+			data : { "checkList" : checkList, "checkOne" : checkOne },
+			success : function(){
+				alert("로그인 후 이용하실 수 있습니다.\n로그인 창으로 이동합니다.");
+				location.href="login.gt?prevUrl=selectDetailForward.gt";
+			},
+			error : function(xmlHttpReq, status, error) {
+				alert("오류가 발생했습니다. 시스템 관리자에게 문의해주세요.");
+			}
+		}); 
 	}
 	
 </script>

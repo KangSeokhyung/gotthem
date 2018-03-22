@@ -17,6 +17,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -54,11 +55,13 @@ public class MemberController {
     }
 
 	@RequestMapping(value = "/login.gt", method = RequestMethod.GET)
-	public String login(@RequestParam(required=false) String prevUrl, 
-			@RequestParam(required=false) String mem_no, HttpSession session,
-			HttpServletRequest request, ProductBean product, 
+	public String login(HttpSession session, HttpServletRequest request, 
+			ProductBean product, BasketBean basketBean,
+			@RequestParam (required=false) String prevUrl,
+			@RequestParam (required=false) String mem_no, 
 			@RequestParam (required=false) String search,
-			@RequestParam(defaultValue="NO") String gubun) {
+			@RequestParam (defaultValue="NO") String gubun,
+			@RequestParam (required=false) String checkOne) {
 		
 		String referer = request.getHeader("referer");
 		String path = request.getScheme() + "://"
@@ -100,6 +103,10 @@ public class MemberController {
 		} 
 		
 		if (prevUrl != null && prevUrl.equals("listBasket.gt")) {
+			session.setAttribute("prevUrl", prevUrl);
+		}
+		
+		if (prevUrl != null && prevUrl.equals("selectDetailForward.gt")) {
 			session.setAttribute("prevUrl", prevUrl);
 		}
 		
@@ -419,13 +426,106 @@ public class MemberController {
 	}
     
     @RequestMapping(value = "/selectDetailForward.gt")
-	public String selectDetailForward(Model model, @RequestParam(required=false) String mem_no,
-			ProductBean product, BasketBean basketBean, @RequestParam(defaultValue="NO") String gubun,
-			HttpServletResponse response) {
+	public String selectDetailForward(Model model,
+			HttpServletResponse response, HttpSession session,
+			ProductBean product, BasketBean basketBean, 
+			@RequestParam(defaultValue="NO") String gubun) {
     	
-    	return null;
+    	Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+    	String mem_id = authentication.getName();
+    
+    	MemberBean memberInfo = memberService.memberInfo(mem_id);  
+        int userNo = memberInfo.getMem_no();
+        basketBean.setBas_memno(userNo); 
+        
+        List checkList = (List) session.getAttribute("checkList");
+        String checkOne = (String) session.getAttribute("checkOne");
+        
+		StringTokenizer st = null;
+		String row = null;
+		
+		if (checkOne != null) { 
+			st = new StringTokenizer(checkOne, ",");
+			String bas_procode = st.nextToken();
+			String bas_proname = st.nextToken();
+			String pro_memno = st.nextToken();
+			String bas_procategory = st.nextToken();
+			String bas_prostock = st.nextToken();
+			String bas_proprice = st.nextToken();
+			String bas_proimg = st.nextToken();
+			
+			basketBean.setBas_procode(Integer.parseInt(bas_procode));
+			basketBean.setBas_proname(bas_proname);
+			basketBean.setBas_procategory(bas_procategory);
+			basketBean.setBas_prostock(1);
+			basketBean.setBas_proprice(Integer.parseInt(bas_proprice));
+			basketBean.setBas_proimg(bas_proimg);
+			basketBean.setPro_memno(Integer.parseInt(pro_memno));
+			
+	        int count = basketService.countBasket(basketBean.getBas_procode(),basketBean.getBas_memno());
+	        if (count == 0) {
+	        	basketService.insertBasket(basketBean);
+	        	System.out.println("첫 상품 장바구니 인서트");
+	        } else {
+	        	basketService.updateBasket(basketBean);
+	        	System.out.println("존재하는 상품 인서트");
+	        }
+	        
+	        model.addAttribute("mem_no", pro_memno);
+		} else {
+			String pro_memno = null;
+			for (int i = 0; i < checkList.size(); i++) {
+				row = (String) checkList.get(i);		
+				
+				st = new StringTokenizer(row, ",");
+				
+				String bas_procode = st.nextToken();
+				String bas_proname = st.nextToken();
+				pro_memno = st.nextToken();
+				String bas_procategory = st.nextToken();
+				String bas_prostock = st.nextToken();
+				String bas_proprice = st.nextToken();
+				String bas_proimg = st.nextToken();
+				
+				basketBean.setBas_procode(Integer.parseInt(bas_procode));
+				basketBean.setBas_proname(bas_proname);
+				basketBean.setBas_procategory(bas_procategory);
+				basketBean.setBas_prostock(1);
+				basketBean.setBas_proprice(Integer.parseInt(bas_proprice));
+				basketBean.setBas_proimg(bas_proimg);
+				basketBean.setPro_memno(Integer.parseInt(pro_memno));
+				
+		        int count = basketService.countBasket(basketBean.getBas_procode(),basketBean.getBas_memno());
+		        if (count == 0) {
+		        	basketService.insertBasket(basketBean);
+		        	System.out.println("첫 상품 장바구니 인서트");
+		        } else {
+		        	basketService.updateBasket(basketBean);
+		        	System.out.println("존재하는 상품 인서트");
+		        }
+			}
+			model.addAttribute("mem_no", pro_memno);
+		}
+    	
+		Cookie cookie = new Cookie("confirm", "OK2");
+    	cookie.setMaxAge(10);  
+    	cookie.setPath("/");
+    	response.addCookie(cookie);
+    	
+    	return "redirect:/storeDetail.gt";
     }
     
+	@RequestMapping(value = "/sessionSet.gt")
+	@ResponseBody
+	public void sessionSet(HttpSession session, 
+			@RequestParam (required=false) String checkOne,
+			@RequestParam (required=false, value="checkList[]") List checkList) {
+    	if (checkOne != null && !(checkOne.equals(""))) {
+    		session.setAttribute("checkOne", checkOne);
+    	} 
+    	session.setAttribute("checkList", checkList);
+    }
+	
     @RequestMapping(value = "/productList.gt")
 	public String productList(Model model, int mem_no, String category) {
     	List productInfo = productService.productInfo(mem_no, category);
