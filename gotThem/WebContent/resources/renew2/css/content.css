@@ -902,8 +902,8 @@ span.searchStyleSelectBox.changed{background-color: #fff;}
 
 .listType .qty {position:relative; width:98px; margin:0 auto; text-align:left; overflow:hidden;}
 .listType .qty input {width:46px; height:39px; line-height:39px; color:#777; border:1px #ddd solid; border-right:0; padding:0 0 0 10px;}
-.listType .qty .up {position:absolute; left:56px; top:0;}
-.listType .qty .down {position:absolute; left:56px; top:21px;}
+.listType .qty .up {position:absolute; left:46px; top:0;}
+.listType .qty .down {position:absolute; left:46px; top:19px;}
 
 
 /* view */
@@ -1270,7 +1270,7 @@ span.searchStyleSelectBox.changed{background-color: #fff;}
 .pCancelBtn p {font-size:16px; color:#fff; font-weight:600; padding:17px 0 0 0;}
 .pCancelBtn:hover {color:#fff;}
 
-.minPurchase {display:inline-block; width:70px; height:24px; line-height:24px; text-align:center; font-size:13px; font-weight:600; color:#fff !important; background:#37c8b6; border-radius:2px; margin:2px auto;}
+.minPurchase {display:inline-block; width:70px; height:24px; line-height:24px; text-align:center; font-size:13px; font-weight:600; color:#fff !important; background:#FA5858; border-radius:2px; margin:2px auto;}
 .minPurchase:hover {color:#fff;}
 .minCart {display:inline-block; width:70px; height:24px; line-height:24px; text-align:center; font-size:13px; font-weight:600; color:#fff !important; background:#555; border-radius:2px; margin:2px auto;}
 .minCart:hover {color:#fff;}
@@ -1288,11 +1288,11 @@ span.searchStyleSelectBox.changed{background-color: #fff;}
 .informBtn {display:inline-block; width:94px; height:38px; line-height:38px; font-size:13px; color:#555; font-weight:600; text-align:center; border:1px #cdcdcd solid;}
 .informBtn:hover {color:#555;}
 
-.sOrder {display:inline-block; width:170px; height:50px; line-height:1.4; text-align:center; background:#37c8b6; border-radius:4px;}
+.sOrder {display:inline-block; width:170px; height:50px; line-height:1.4; text-align:center; background:#333; border-radius:4px;}
 .sOrder p {font-size:16px; color:#fff; font-weight:600; padding:17px 0 0 0;}
 .sOrder span {font-size:16px;}
 .sOrder:hover {color:#fff;}
-.aOrder {display:inline-block; width:170px; height:50px; line-height:1.4; text-align:center; background:#333; border-radius:4px;}
+.aOrder {display:inline-block; width:170px; height:50px; line-height:1.4; text-align:center; background:#FA5858; border-radius:4px;}
 .aOrder p {font-size:16px; color:#fff; font-weight:600; padding:17px 0 0 0;}
 .aOrder span {font-size:16px;}
 .aOrder:hover {color:#fff;}
@@ -1300,6 +1300,9 @@ span.searchStyleSelectBox.changed{background-color: #fff;}
 .continuation p {font-size:16px; color:#fff; font-weight:600; padding:17px 0 0 0;}
 .continuation span {font-size:16px;}
 .continuation:hover {color:#fff;}
+
+.con {display:inline-block; width:23px; height:20px; line-height:1.4; text-align:center; font-size:13px; font-weight:600; color:#fff !important; background:#FA5858; border-radius:2px; margin:2px auto;}
+
 
 .infoBtn {font-size:13px; color:#555; font-weight:600; line-height:1.4; padding:0 0 0 38px;}
 .infoBtn:hover {color:#555;}
@@ -1880,11 +1883,12 @@ span.ui-radio-state-checked-hover {background-position:0 -200px;}
 
 /* table */
 .tNonePre {display:none;}
-.cartImg {width:15%;}
-.cartw25 {width:25%;}
-.cartw27 {width:27%;}
-
-
+.cartImg {width:12%;}
+.cartw25 {width:18%;}
+.cartw27 {width:18%;}
+.cartw13 {width:20%;}
+.cartw28 {width:18%;}
+.cartw29 {width:20%;}
 
 .agreeWrap .agreeBoxConf .category ul.list {width:94%;}
 
@@ -2217,13 +2221,16 @@ span.ui-radio-state-checked-hover {background-position:0 -200px;}
 
 .listType .qty {width:70px;}
 .listType .qty input {width:30px; height:28px; line-height:28px;}
-.listType .qty .up {left:40px;}
+.listType .qty .up {left:30px;}
 .listType .qty .up img {width:30px;}
-.listType .qty .down {left:40px; top:15px;}
+.listType .qty .down {left:30px; top:14px;}
 .listType .qty .down img {width:30px;}
 
 /* table */
 .cartImg {width:15%;}
+.cartw25 {width:19%;}
+.cartw28 {width:20%;}
+.cartw29 {width:22%;}
 
 /* amount */
 .amount .won {font-size:14px;}
@@ -2906,6 +2913,8 @@ span.searchStyleSelectBox{height:32px; font-size:12px; background:url('../images
 /* table wide */
 .thWide {width:70px;}
 .cartImg {width:1px;}
+.cartw28 {width:25%;}
+.cartw29 {width:25%;}
 .listType td.img {padding:0; width:0; line-height:0; font-size:0;}
 .listType td.img img {display:none;}
 

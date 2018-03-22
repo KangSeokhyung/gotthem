@@ -46,6 +46,17 @@
 <!-- <script src="/renew2/common/zipcode/postcode.v2.js"></script>-->
 
 <script src="https://spi.maps.daum.net/imap/map_js_init/postcode.v2.js"></script>   
+<style>
+ #pro_stock {
+ padding:0 0 0 15px
+}
+  
+@media ( max-width: 768px ) {
+ #pro_stock {
+ padding:0 0 0 8px
+}
+}
+</style>
 </head>
 <body>
 <header>
@@ -103,18 +114,27 @@
    <table class="listType" border="1" cellspacing="0">
     <caption>장바구니 목록</caption>
 							<colgroup>
-							<col width="5%" class="tw8"/><col width="10%" class="cartImg"/><col width="*" /><col width="13%" class="tNonePre"/><col width="13%" class="cartw27"/><col width="16%" class="cartw25"/><col width="13%" class="tNonePre"/>
+							<col width="4%" class="tw8"/>
+							<col width="10%" class="cartImg"/>
+							<col width="*" />
+							<col width="13%" class="cartw13" />
+							<col width="10%" class="tNonePre"/>
+							<col width="13%" class="cartw27"/>
+							<col width="14%" class="cartw25"/>
+							<col width="12%" class="tNonePre"/>
 							</colgroup>
     <thead>   
        <tr>
                    <th scope="col"><!-- <input type="checkbox" name="checkAll" id="th_checkAll" /> -->
-                   <input type="button"  style='width:30px;height:20px;font-size: 12px;'value="All" name="checkAll" id="th_checkAll" onclick="button_checkAll();" /></th> 
-                   <th scope="col">상품사진</th>
-                   <th scope="col">상품명</th>
+                   
+                   <a href="#" class="con"  name="checkAll" id="th_checkAll" onclick="button_checkAll();" />all</a>
+                   <!-- <input type="button" class="con" value="All" name="checkAll" id="th_checkAll" onclick="button_checkAll();" /> --></th> 
+                   <th scope="col" colspan="2">상품정보</th>
+                   <!-- <th scope="col" ></th> -->
                    <th scope="col">매장명</th>
                    <th scope="col" class="tNonePre">가격</th>
                    <th scope="col">수량 </th>
-                   <th scope="col"style='width:100px'>구매예정가</th>
+                   <th scope="col"style='width:100px'>주문금액</th>
                    <th scope="col" class="tNonePre">주문</th>
      </tr>
     </thead>
@@ -126,10 +146,10 @@
                       <input type="checkbox" name="checkRow" class="chk" id="checkRow"  value="${row.bas_no},${row.bas_proname},${row.bas_proprice},${row.bas_prostock},${row.bas_procode},${row.money},${row.bas_proimg}, ${row.bas_procomment},${row.pro_memno}"
                       onclick="cart();" /> 
                   </td>
-                  <td class="img">
+                  <td class="img" class="tNonePre">
                        <a href="productDetail.gt?pro_code=${row.bas_procode}"><img src="/img/${row.bas_proimg}" style="width:50px; height:50px" class="dn" alt="" /></a>
                   </td>
-                  <td class="minLeft">
+                  <td class="minLeft" >
                       <a href="productDetail.gt?pro_code=${row.bas_procode}" style="color: #7e8890;"> ${row.bas_proname}</a>
                   </td>
                    <td>
@@ -148,7 +168,7 @@
                     </div>
 				  </td>
                   <td class="total"style="width: 80px" align="right">
-                       <fmt:formatNumber pattern="###,###,###" value="${row.money}"/>
+                       <fmt:formatNumber pattern="###,###,###" value="${row.money}"/>원
                   </td>
                    <td class="tNonePre">
                         <input type="hidden" name="money" value="${row.money}">
@@ -163,7 +183,9 @@
     <table class="listType" border="1" cellspacing="0">
 							<caption>결제 목록</caption>
 							<colgroup>
-							<col width="*" /><col width="16%" class="cartw27"/><col width="13%" class="cartw25"/>
+							<col width="*" />
+							<col width="14%" class="cartw28"/>
+							<col width="12%" class="cartw29"/>
 							</colgroup>
 							<tbody>
 								<tr>
@@ -185,7 +207,7 @@
 </c:otherwise>
 </c:choose>   
 </div>    
-
+<br>
  <footer class="probootstrap-footer probootstrap-bg" style="background-image: url(img/slider_3.jpg)">
     <div class="container">
         <div class="col-md-6">

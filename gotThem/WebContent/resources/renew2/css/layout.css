@@ -51,7 +51,7 @@ html{overflow-y:scroll; width:100%;}
 
 
 
-/****** header navigation ******/
+ /****** header navigation ******/
 #header {clear:both; position:relative; width:1100px; margin:0 auto;}
 #header:after {content:""; display:block; clear:both;}
 #header h1 {float:left; padding:21px 0 0 8px;}
@@ -60,7 +60,7 @@ html{overflow-y:scroll; width:100%;}
 #header #navi {float:right;}
 #header #navi ul {}
 #header #navi ul li {position:relative; float:left;}
-#header #navi ul li a {position:relative; display:block; font-size:17px; color:#4f4f4f; font-family:"Arial"; font-weight:600; padding:30px 45px 29px; vertical-align:middle; background:url(none);}
+#header #navi ul li a {position:relative; display:block; font-size:14px; color:#4f4f4f; font-family:"Arial"; font-weight:600; padding:30px 45px 29px; vertical-align:middle; background:url(none);}
 #header #navi ul li a:hover {color:#38c1b0;}
 #header #navi ul li a.hover {color:#38c1b0;}
 #header #navi ul li a span {position:absolute; right:45px; top:28px; display:inline-block; width:48px; height:19px; line-height:18px; font-size:11px; color:#fff; font-weight:600; text-align:center; font-family:"NanumGothic","Nanum Gothic"; background:#fc6e57; border-radius:4px;}
