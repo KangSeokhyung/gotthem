@@ -133,7 +133,7 @@
   	<script type='text/javascript'>
   //<![CDATA[
     // 사용할 앱의 JavaScript 키를 설정해 주세요.
-    Kakao.init('7f93c771faceb935af25ef6e91c4a334');
+    Kakao.init('363553076ca8777f012d9c9ce3b92b8c');
     // 카카오 로그인 버튼을 생성합니다.
     Kakao.Auth.createLoginButton({
       container: '#kakao-login-btn',
