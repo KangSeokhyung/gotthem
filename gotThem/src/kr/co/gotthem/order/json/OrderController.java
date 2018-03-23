@@ -1,4 +1,4 @@
-package kr.co.gotthem.order.controller;
+package kr.co.gotthem.order.json;
 
 import java.util.HashMap;
 import java.util.List;
@@ -10,16 +10,19 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import kr.co.gotthem.basket.bean.BasketBean;
 import kr.co.gotthem.basket.service.BasketService;
+import kr.co.gotthem.kakaopay.KakaoPayRequest;
+import kr.co.gotthem.kakaopay.KakaoPayResponse;
+import kr.co.gotthem.kakaopay.Purchase;
 import kr.co.gotthem.member.bean.MemberBean;
 import kr.co.gotthem.member.service.MemberService;
 import kr.co.gotthem.order.bean.OrderpayBean;
@@ -214,28 +217,25 @@ public class OrderController {
 		return "basket/purchase";
 	}
 	
-	@RequestMapping(value="/payment.gt", method = RequestMethod.POST)
-    @ResponseBody
-	public HashMap payment(String accessToken, HttpSession session) throws Exception {
-		System.out.println("접속된 토큰 : " + accessToken);
+	@RequestMapping("/payment.gt")
+    public Object payment(String accessToken, HttpSession session) throws Exception {
+		System.out.println("aaaaaaaaaaaaaaaaaaaaaa");
 		@SuppressWarnings("rawtypes")
         HashMap result = orderService.pay(accessToken, HashMap.class);
-        System.out.println("페이한 결과 : " + result);
-		session.setAttribute("tid",result.get("tid"));
+        System.out.println(result+"aaaaaaaaaaaaaaaaaaaaaa");
+        session.setAttribute("tid",result.get("tid"));
         session.setAttribute("accessToken", accessToken);
     return result;
     }
     
-    
-    @RequestMapping(value="/approve.gt")
-    public ModelAndView approve(HttpServletRequest req,HttpSession session, ModelAndView mav) throws Exception {
-        String pg_Token = req.getParameter("pg_token");
-        System.out.println(pg_Token);
+    @RequestMapping(value="approve")
+    public Object approve(String pg_Token,HttpSession session) throws Exception {
+        
         @SuppressWarnings("rawtypes")
         HashMap result = orderService.approve(pg_Token,session,HashMap.class);
-        mav.addObject("result", result);
-        mav.setViewName("basket/purchase");
-        return mav;
+        return result;
         }
 	
+	
+
 }

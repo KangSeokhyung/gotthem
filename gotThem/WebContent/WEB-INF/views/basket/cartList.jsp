@@ -120,7 +120,8 @@
             <div style='float:right; padding: 3px 30px 3px 6px;'>
              <button type="button" value="상품목록1" id="btnList">계속 쇼핑하기</button> 
              <input type="button" value="바로구매" onclick="button_selOrder();">
-             <a name="kakaoPay">hhhh</a>
+             <button type="button" id="payBtn">카카오페이</button>
+             <a href="test.gt">dd</a>
             </div></div>
 </c:otherwise>
 </c:choose>   
@@ -142,15 +143,17 @@
           </div>
         </div>
     </div>
+   
   </footer>
 </body>
-<script type="text/javascript" src="https://service.iamport.kr/js/iamport.payment-1.1.2.js"></script>
+
+
  <script src="resources/mainTemplate/js/scripts.min.js"></script>
- <script src="resources/mainTemplate/js/main.min.js"></script>
  <script src="resources/mainTemplate/js/custom.js"></script>
+<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
  <!-- KAKAO API -->
   <script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
-  
+  <script type="text/javascript" src="https://service.iamport.kr/js/iamport.payment-1.1.2.js"></script>
 <script type="text/javascript">
 $(document).ready(function(){
 	$("#btnList").click(function(){// 리스트 페이지로 이동
@@ -274,41 +277,62 @@ function button_selOrder(){  //장바구니 선택 결제
 			  }
 		});
 	if (confirm("선택한 상품을 결제 하시겠습니까?")){
-		$.ajax({
-			url:"selectOrder.gt",
-			type:"post",
-			dataType: "text",
-			data:{arrOrder:checkOrder
-				},
-				success:function(result){
-					location.href="./orderList.gt";
-					}
-				});
+		location.href="test.gt";
 		}else{ 
 			return;
 			}
 	}
-function fncUpdateBasketPurchase() {
 	
-	var myForm = document.form1;
-	var url = "/kapi.kakao.com";
-	window.open("",	"form1", "toolbar=no, width=475, height=700, directories=no, status=no, scrollorbars=no, resizable=no");
-	myForm.action = url;
-	myForm.method = "post";
-	myForm.target = "form1";
-	myForm.testVal = "${ kakaoUri }";
-	myForm.submit();
 	
-//	$("form").attr("method", "POST").attr('action', '/purchase/kakaoPay').submit();
-}
+	
 
-$( function(){
-	$("a[name='kakaoPay']").bind("click", function(event){
-		event.preventDefault();
-		fncUpdateBasketPurchase(); 
-	})
-});
+var access_Token = '${sessionScope.token}';
+
+Kakao.init("7f93c771faceb935af25ef6e91c4a334");	
+$('#payBtn').click(()=> {
 	
+     if(!access_Token){
+    	 console.log('토큰이 없음');
+         loginWithKakao();
+     } else {
+    	 console.log("토근존재");
+         payment();
+     }
+}); 
+ 
+
+function payment() {
+  $.ajax({
+	 url : 'payment.gt',
+     data: {
+         accessToken : access_Token
+     },
+     method: 'POST',
+     success: (result) => {
+    	 console.log(result);
+     	window.open(result.next_redirect_pc_url,
+     			"","width=400, height=700");
+     	console.log("온다아아앙");
+     }, 
+     error: () => {
+         window.alert('payment 서버 실행 오류!');
+     }
+  });
+}
+function loginWithKakao() {
+    Kakao.Auth.login({
+      success: function(authObj) {
+    	  console.log("토큰이없으면 여기");
+          access_Token = authObj.access_token;
+          console.log(access_Token)
+          payment();
+      },
+      fail: function(err) {
+        alert(JSON.stringify(err));
+      }
+    });
+  };
+
 
 </script>	
 </html>

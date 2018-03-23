@@ -54,9 +54,11 @@ public class MemberController {
 	@RequestMapping(value = "/kakaoLogin.gt", method = RequestMethod.POST)
 	public void kakaoLogin(ModelAndView mav, MemberBean memberBean,
 			@RequestParam("kakao_id") String id, @RequestParam("kakao_name") String name,
-			@RequestParam("kakao_email") String email, HttpServletResponse response) throws Exception {
+			@RequestParam("kakao_email") String email, @RequestParam("kakao_token") String token, HttpServletResponse response, HttpSession session) throws Exception {
 		System.out.println(id + name + email);
 		System.out.println(memberBean);
+		session.setAttribute("token", token);
+		System.out.println(session.getAttribute("token"));
 		int result = memberService.duplCheck(email);
 		memberBean.setMem_id(email);
 		memberBean.setMem_pw(id);

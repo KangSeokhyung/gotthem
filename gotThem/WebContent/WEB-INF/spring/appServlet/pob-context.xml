@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:p="http://www.springframework.org/schema/p"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 	
 	<!-- Controller -->
@@ -47,4 +48,32 @@
 		<property name="sqlSessionTemplate" ref="sqlSessionTemplate" />
 	</bean>
 	
+	<!-- 페이지 컨트롤러가 사용할 객체 설정 -->
+    <!-- <bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter">
+        <property name="messageConverters">
+           <list>
+               클라이언트가 보낸 데이터의 Content-Type이 "application/json"일 때,  
+                    "자바 객체"로 변환해주는 컨버터  
+                    또한 요청 핸들러가 리턴한 자바 객체를 
+                    "application/json" 형식의 문자열로 변환해주는 작업도 
+                    함께 수행한다.
+               <bean class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter"/>
+               클라이언트가 보낸 데이터의 Content-Type이 "text/plain"일 때,
+                    String으로 변환해주는 컨버터
+               <bean class="org.springframework.http.converter.StringHttpMessageConverter"/>
+           </list>
+       </property>
+    </bean> -->
+    
+    <bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter">
+		<property name="messageConverters">
+			<list>
+				<ref bean="jsonMessageConverter"/>
+			</list>
+		</property>
+	</bean>
+
+	<bean id="jsonMessageConverter" class="org.springframework.http.converter.json.GsonHttpMessageConverter">
+   	</bean>
+
 </beans>

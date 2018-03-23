@@ -24,6 +24,10 @@
     header{
     padding-bottom:80px;
     }
+    backgroundColor{
+    background: #2866AB;
+    }
+    
     </style>
   </head>
 <body>
@@ -116,6 +120,7 @@
           	<input type="hidden" value="" id="kakao_id" name="kakao_id">
           	<input type="hidden" value="" id="kakao_name" name="kakao_name">
           	<input type="hidden" value="" id="kakao_email" name="kakao_email">
+          	<input type="hidden" value="" id="kakao_token" name="kakao_token">
           </form>
 </body>
     <!-- Javascript files-->
@@ -136,6 +141,7 @@
     	  Kakao.API.request({
     		    url: '/v1/user/me',
     		    success: function(res) {
+    		    	  alert(authObj.access_token);
     		      if(document.getElementById('mem_id').value !=null || document.getElementById('mem_pw').value !=null){
     		    	  document.getElementById('mem_id').value = null;
     		    	  document.getElementById('mem_pw').value = null;
@@ -143,12 +149,14 @@
     		    document.getElementById('kakao_email').value = res.kaccount_email;
     		    document.getElementById('kakao_id').value = res.id;
     		    document.getElementById('kakao_name').value = res.properties.nickname;
+    		    document.getElementById('kakao_token').value = authObj.access_token;
     		    document.getElementById("kakaoForm").submit();
     		    },
     		    fail: function(error) {
     		      alert(JSON.stringify(error))
     		    }
     		});
+    	  
       },
       fail: function(err) {
          alert("Login Fail");
