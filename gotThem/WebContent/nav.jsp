@@ -17,27 +17,27 @@
 
         <nav role="navigation" class="probootstrap-nav hidden-xs">
           <ul class="probootstrap-main-nav">
-            <li><a href="#">GOTTHEM</a></li>
-            <li><a href="#">NOTICE</a></li>
-            <li><a href="#">EVENT</a></li>
-            <li><a href="listBasket.gt">CART<span id="basketCount" style="color:#FE2E2E;">&nbsp;&nbsp;${sessionScope.count}</span></a></li>
+            <li><a href="gotthemInfo.gt">GOTTHEM 소개</a></li>
+            <li><a href="#">공지</a></li>
+            <li><a href="#">이벤트</a></li>
+            <li><a href="listBasket.gt">장바구니<span id="basketCount" style="color:#FE2E2E;">&nbsp;&nbsp;${sessionScope.count}</span></a></li>
             <c:set var="sessionCheck"
  					value="${sessionScope.SPRING_SECURITY_CONTEXT}" />
  					<c:choose>
  					<c:when test="${sessionCheck eq null}">
-					 <li><a href="join.gt">SIGN UP</a></li>
-           			 <li><a href="login.gt">LOGIN</a></li>
+					 <li><a href="join.gt">회원가입</a></li>
+           			 <li><a href="login.gt">로그인</a></li>
 					</c:when>
 					<c:otherwise>
-					<li><a href="mypage.gt">MYPAGE</a></li>
-           			 <li><a href="logout.gt">LOGOUT</a></li>
+					<li><a href="mypage.gt">마이페이지</a></li>
+           			 <li><a href="logout.gt">로그아웃</a></li>
  					</c:otherwise>
  				</c:choose>
           </ul>
           <div class="extra-text visible-xs"> 
-            <a href="#" class="probootstrap-burger-menu"><i>Menu</i></a>
-            <h5>Address</h5>
-            <p>198 West 21th Street, Suite 721 New York NY 10016</p>
+            <a href="#" class="probootstrap-burger-menu"><i>메뉴</i></a>
+            <h5>주소</h5>
+            <p>서울광역시 서초구 비트교육센터 별관 503호</p>
             <h5>Connect</h5>
             <ul class="social-buttons">
               <li><a href="#"><i class="icon-twitter"></i></a></li>

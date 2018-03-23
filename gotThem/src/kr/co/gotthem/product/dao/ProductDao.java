@@ -32,4 +32,6 @@ public interface ProductDao {
 	public int searchListCount(String search);
 
 	public ProductBean productDetail(int pro_code);
+	
+	public int productSearchStock(int pro_code);
 }

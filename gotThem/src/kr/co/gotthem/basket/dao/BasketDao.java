@@ -31,5 +31,9 @@ public interface BasketDao {
 	// 7. 장바구니 상품수량 변경
 	public void updateBasket(BasketBean basketBean);
 	
+	// 8. 장바구니 all삭제
+    public void deleteBasketAll(int a);
+	
+	
 	/*public MemberBean login(String id);*/
 }

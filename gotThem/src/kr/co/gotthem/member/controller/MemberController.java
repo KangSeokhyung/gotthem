@@ -2,6 +2,7 @@ package kr.co.gotthem.member.controller;
 
 import java.io.PrintWriter;
 import java.util.List;
+import java.util.Map;
 import java.util.Random;
 import java.util.StringTokenizer;
 
@@ -12,14 +13,19 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import kr.co.gotthem.kakaopay.KakaoPayRequest;
+import kr.co.gotthem.kakaopay.KakaoPayResponse;
+import kr.co.gotthem.kakaopay.Purchase;
 import kr.co.gotthem.member.bean.MemberBean;
 import kr.co.gotthem.member.mail.MailService;
 import kr.co.gotthem.member.service.MemberService;
@@ -45,6 +51,37 @@ public class MemberController {
         this.mailService = mailService;
     }
 
+	@RequestMapping(value = "/kakaoLogin.gt", method = RequestMethod.POST)
+	public void kakaoLogin(ModelAndView mav, MemberBean memberBean,
+			@RequestParam("kakao_id") String id, @RequestParam("kakao_name") String name,
+			@RequestParam("kakao_email") String email, @RequestParam("kakao_token") String token, HttpServletResponse response, HttpSession session) throws Exception {
+		System.out.println(id + name + email);
+		System.out.println(memberBean);
+		session.setAttribute("token", token);
+		System.out.println(session.getAttribute("token"));
+		int result = memberService.duplCheck(email);
+		memberBean.setMem_id(email);
+		memberBean.setMem_pw(id);
+		memberBean.setMem_name(name);
+		memberBean.setMem_email(email);
+		if (result == 0) {
+			System.out.println("아이디 없음");
+			memberService.kakaoJoin(memberBean);
+		} else {
+			System.out.println("아이디 존재");
+		}
+		System.out.println("아웃문 실행전");
+		response.setContentType("text/html; charset=UTF-8");
+        PrintWriter out = response.getWriter();
+        out.println("<form action='login.gt' id='kakaoLogin' method='post'>");
+        out.println("<input type='hidden' name='mem_id' value='" + memberBean.getMem_id() + "'>");
+        out.println("<input type='hidden' name='mem_pw' value='" + memberBean.getMem_pw() + "'>");
+        out.println("</form>");
+        out.println("<script type='text/javascript'>");
+        out.println("kakaoLogin.submit();");
+        out.println("</script>");
+	}
+    
 	@RequestMapping(value = "/login.gt", method = RequestMethod.GET)
 	public String login() {
 		return "member/mlogin";
@@ -110,6 +147,11 @@ public class MemberController {
 	@RequestMapping(value = "/index.gt", method = RequestMethod.GET)
 	public String index() {	
 		return "redirect:index.jsp";
+	}
+	
+	@RequestMapping(value = "/gotthemInfo.gt", method = RequestMethod.GET)
+	public String gotthemInfo() {	
+		return "member/gotthemInfo";
 	}
 	
 	@RequestMapping(value = "/mypage.gt", method = RequestMethod.GET)
@@ -313,4 +355,6 @@ public class MemberController {
 		
 		return "product/productTable";
 	}
+    
+    
 }
