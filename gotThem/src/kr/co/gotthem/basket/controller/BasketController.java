@@ -201,6 +201,7 @@ public class BasketController {
 			String bas_prostock = st.nextToken();
 			String bas_proprice = st.nextToken();
 			String bas_proimg = st.nextToken();
+			String sto_name = st.nextToken();
 			
 			basketBean.setBas_procode(Integer.parseInt(bas_procode));
 			basketBean.setBas_proname(bas_proname);
@@ -209,6 +210,7 @@ public class BasketController {
 			basketBean.setBas_proprice(Integer.parseInt(bas_proprice));
 			basketBean.setBas_proimg(bas_proimg);
 			basketBean.setPro_memno(Integer.parseInt(pro_memno));
+			basketBean.setSto_name(sto_name);
 			
 	        int count = basketService.countBasket(basketBean.getBas_procode(),basketBean.getBas_memno());
 	        if (count == 0) {
@@ -231,6 +233,7 @@ public class BasketController {
 				String bas_prostock = st.nextToken();
 				String bas_proprice = st.nextToken();
 				String bas_proimg = st.nextToken();
+				String sto_name = st.nextToken();
 				
 				basketBean.setBas_procode(Integer.parseInt(bas_procode));
 				basketBean.setBas_proname(bas_proname);
@@ -239,6 +242,7 @@ public class BasketController {
 				basketBean.setBas_proprice(Integer.parseInt(bas_proprice));
 				basketBean.setBas_proimg(bas_proimg);
 				basketBean.setPro_memno(Integer.parseInt(pro_memno));
+				basketBean.setSto_name(sto_name);
 				
 		        int count = basketService.countBasket(basketBean.getBas_procode(),basketBean.getBas_memno());
 		        if (count == 0) {

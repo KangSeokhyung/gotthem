@@ -96,7 +96,7 @@
  <img src="/img/cart_img_empty.gif" style=" width:360px;height:263px;margin-left:auto;margin-right:auto;display:block;"/>
  <div>  
             <div style='float:right; padding: 3px 30px 3px 6px;'>
-             <button type="button" value="상품목록1" id="btnList">계속 쇼핑하기</button> 
+            <a href="/gotThem" class="continuation" onclick=""><p>쇼핑 <span>계속하기</span></p></a>
             </div>
  </div>  
 </c:when>
@@ -143,7 +143,7 @@
              <c:forEach var="row" items="${map.list}" varStatus="i">
                <tr>                
                   <td> 
-                      <input type="checkbox" name="checkRow" class="chk" id="checkRow"  value="${row.bas_no},${row.bas_proname},${row.bas_proprice},${row.bas_prostock},${row.bas_procode},${row.money},${row.bas_proimg}, ${row.bas_procomment},${row.pro_memno}"
+                      <input type="checkbox" name="checkRow" class="chk" id="checkRow"  value="${row.bas_no},${row.bas_proname},${row.bas_proprice},${row.bas_prostock},${row.bas_procode},${row.money},${row.bas_proimg}, ${row.bas_procomment},${row.pro_memno},${row.sto_name}"
                       onclick="cart();" /> 
                   </td>
                   <td class="img" class="tNonePre">
@@ -153,7 +153,7 @@
                       <a href="productDetail.gt?pro_code=${row.bas_procode}" style="color: #7e8890;"> ${row.bas_proname}</a>
                   </td>
                    <td>
-                       ${row.pro_memno}
+                       ${row.sto_name}
                   </td>
                   <td class="tNonePre" style="width: 80px" align="right" >
                        <fmt:formatNumber pattern="###,###,###" value="${row.bas_proprice}"/>
@@ -173,7 +173,7 @@
                    <td class="tNonePre">
                         <input type="hidden" name="money" value="${row.money}">
                         <input type="hidden" name="bas_no" value="${row.bas_no}">
-						<a href="#" class="minPurchase" onclick="button_order('${row.bas_no}','${row.bas_proname}','${row.bas_procode}','${row.money}','${row.bas_prostock}','${row.bas_proimg}','${row.bas_proprice}','${row.pro_memno}');">바로구매</a><br/>
+						<a href="#" class="minPurchase" onclick="button_order('${row.bas_no}','${row.bas_proname}','${row.bas_procode}','${row.money}','${row.bas_prostock}','${row.bas_proimg}','${row.bas_proprice}','${row.pro_memno}','${row.sto_name}');">바로구매</a><br/>
 						<a href="#" class="minDel02" onclick="button_basDel(${row.bas_no});">상품삭제</a>
 				   </td>
                 </tr>
@@ -300,11 +300,11 @@ function button_basDel(bas_no){  //단건 직접 삭제
 			return;
 			}
 	}
-function button_order(bas_no,bas_proname,bas_procode,money,bas_prostock,bas_proimg,bas_proprice,pro_memno){
+function button_order(bas_no,bas_proname,bas_procode,money,bas_prostock,bas_proimg,bas_proprice,pro_memno,sto_name){
 	alert(bas_proprice);
 	if (confirm("상품을 결제 하시겠습니까?")){ //단건결제
 		location.href="insertOrder.gt?bas_no="+bas_no+"&bas_proname="+bas_proname+
-    		"&bas_procode="+bas_procode+"&money="+money+"&bas_prostock="+bas_prostock+"&bas_proimg="+bas_proimg+"&bas_proprice="+bas_proprice+"&pro_memno="+pro_memno;
+    		"&bas_procode="+bas_procode+"&money="+money+"&bas_prostock="+bas_prostock+"&bas_proimg="+bas_proimg+"&bas_proprice="+bas_proprice+"&pro_memno="+pro_memno+"&sto_name="+sto_name;
 	}else{ 
 		return;
 		}
@@ -369,21 +369,17 @@ function button_selOrder(){  //장바구니 선택 결제
 			}
 	}
 function button_allDel(){  //장바구니 전체 삭제
-	  var checkArr = [];
+	  var checkAllDel = [];
 	  $("input[name='checkRow']").each(function(i){
-		  if( $(":checkbox[name='checkRow']:checked").length==1 ){
-			  checkArr.push($(this).val());
-			  checkArr.push('[]');
-		  } else {
-			  checkArr.push($(this).val());
-			  }
-		  });
+	       checkAllDel.push($(this).val());
+	       });
+	  checkAllDel.push('[]');
 	  if (confirm("전체 상품을 삭제하시겠습니까?")){
 		  $.ajax({
 			  url:"selectDelete.gt",
 			  type:"post",
 			  dataType: "text",
-			  data:{arrDel:checkArr
+			  data:{arrDel:checkAllDel
 				  },
 				  success:function(result){
 					  location.href="./listBasket.gt";
@@ -393,11 +389,12 @@ function button_allDel(){  //장바구니 전체 삭제
 			  return;
 		  }
 	  }  
-function button_allOrder(){//장바구니 전체 결제
+function button_allOrder(){ //장바구니 전체 주문하기
 	var checkAllOrder = [];
 	$("input[name='checkRow']").each(function(i){
-		checkAllOrder.push($(this).val());
-		});
+		checkAllOrder.push($(this).val());		
+	});
+	checkAllOrder.push('[]');
 	alert("checkAllOrder요." +checkAllOrder);
 		if (confirm("전체 상품을 결제 하시겠습니까?")){
 			$.ajax({

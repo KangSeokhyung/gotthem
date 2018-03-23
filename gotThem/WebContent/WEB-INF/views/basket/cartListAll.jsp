@@ -78,7 +78,7 @@
              <c:forEach var="row" items="${map.list}" varStatus="i">
                <tr>                
                   <td> 
-                      <input type="checkbox" name="checkRow" class="chk" id="checkRow"  value="${row.bas_no},${row.bas_proname},${row.bas_proprice},${row.bas_prostock},${row.bas_procode},${row.money},${row.bas_proimg}, ${row.bas_procomment},${row.pro_memno}"
+                      <input type="checkbox" name="checkRow" class="chk" id="checkRow"  value="${row.bas_no},${row.bas_proname},${row.bas_proprice},${row.bas_prostock},${row.bas_procode},${row.money},${row.bas_proimg}, ${row.bas_procomment},${row.sto_name}"
                       onclick="cart();" /> 
                   </td>
                   <td>
@@ -88,7 +88,7 @@
                       <a href="productDetail.gt?pro_code=${row.bas_procode}" style="color: #7e8890;"> ${row.bas_proname}</a>
                   </td>
                    <td>
-                       ${row.pro_memno}
+                       ${row.sto_name}
                   </td>
                   <td style="width: 80px" align="right" >
                        <fmt:formatNumber pattern="###,###,###" value="${row.bas_proprice}"/>
@@ -106,7 +106,7 @@
                      <input type="hidden" name="money" value="${row.money}">
                      <input type="hidden" name="bas_no" value="${row.bas_no}">
                      <input type="button" value="바로구매" style='width:60px;height:25px;font-size: 12px;' 
-                     onclick="button_order('${row.bas_no}','${row.bas_proname}','${row.bas_procode}','${row.money}','${row.bas_prostock}','${row.bas_proimg}','${row.bas_proprice}','${row.pro_memno}');"><br>  
+                     onclick="button_order('${row.bas_no}','${row.bas_proname}','${row.bas_procode}','${row.money}','${row.bas_prostock}','${row.bas_proimg}','${row.bas_proprice}','${row.sto_name}');"><br>  
                      <input type="button" value="삭제" style='width:60px;height:25px;font-size: 12px;' onclick="button_basDel(${row.bas_no});">
                   </td>
                 </tr>
@@ -243,11 +243,11 @@ function button_basDel(bas_no){  //단건 직접 삭제
 			return;
 			}
 	}
-function button_order(bas_no,bas_proname,bas_procode,money,bas_prostock,bas_proimg,bas_proprice,pro_memno){
+function button_order(bas_no,bas_proname,bas_procode,money,bas_prostock,bas_proimg,bas_proprice,sto_name){
 	alert(bas_proprice);
 	if (confirm("상품을 결제 하시겠습니까?")){ //단건결제
 		location.href="insertOrder.gt?bas_no="+bas_no+"&bas_proname="+bas_proname+
-    		"&bas_procode="+bas_procode+"&money="+money+"&bas_prostock="+bas_prostock+"&bas_proimg="+bas_proimg+"&bas_proprice="+bas_proprice+"&pro_memno="+pro_memno;
+    		"&bas_procode="+bas_procode+"&money="+money+"&bas_prostock="+bas_prostock+"&bas_proimg="+bas_proimg+"&bas_proprice="+bas_proprice+"&sto_name="+sto_name;
 	}else{ 
 		return;
 		}

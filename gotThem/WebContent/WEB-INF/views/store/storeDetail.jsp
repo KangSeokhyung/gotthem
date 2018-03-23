@@ -47,6 +47,7 @@
 	});
 		
 	function addBasket(pro_code, pro_name, pro_memno, pro_category, pro_price, pro_img, pro_stock) {
+		var sto_name = $("#sto_name").val();
 		if (pro_stock < 1) {
 			alert("해당 상품이 매진되었습니다.");
 			return false;
@@ -60,7 +61,8 @@
 				"bas_procategory" : pro_category,
 				"bas_prostock" : 1,
 				"bas_proprice" : pro_price,
-				"bas_proimg" : pro_img
+				"bas_proimg" : pro_img,
+				"sto_name": sto_name
 			},
 			type : "post",
 			success : function(check) {
@@ -91,7 +93,9 @@
 		$.ajax({
 			url : "selectAddBasket.gt",
 			type : "post",
-			data : { "checkList" : checkList, "checkOne" : checkOne },
+			data : { 
+				"checkList" : checkList, 
+				"checkOne" : checkOne },
 			success : function(result){
 				$("#navbar").load("nav.jsp");
 				if (confirm("장바구니에 추가되었습니다.\n장바구니 페이지로 이동 하시겠습니까?")) {
@@ -119,7 +123,7 @@
 <%@include file="../../../nav.jsp" %>
 </header>
 <!-- END: header -->
-
+<input type="hidden" id="sto_name" value="${storeInfo.sto_name }">
 <section id="marginTop" class="probootstrap-section probootstrap-section-lighter">
   <div class="container">
     <div class="row">

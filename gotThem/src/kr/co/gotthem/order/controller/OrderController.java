@@ -52,7 +52,7 @@ public class OrderController {
    @RequestMapping(value ="insertOrder.gt",method = RequestMethod.GET)
     public String insertOrder(@RequestParam String bas_no, @RequestParam String bas_prostock, @RequestParam String bas_procode,
     		            @RequestParam String bas_proname,@RequestParam String money, @RequestParam String bas_proimg, 
-    		            @RequestParam String bas_proprice,@RequestParam String pro_memno,
+    		            @RequestParam String bas_proprice,@RequestParam String pro_memno,@RequestParam String sto_name,
     		@ModelAttribute OrderpayBean orderBean,HttpServletRequest req, HttpServletResponse res )throws Exception {
 	   
 	   Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
@@ -73,6 +73,7 @@ public class OrderController {
        orderBean.setOrd_proimg(bas_proimg);
    	   orderBean.setOrd_no(Integer.parseInt(bas_no));
    	   orderBean.setPro_memno(Integer.parseInt(pro_memno));
+   	   orderBean.setSto_name(sto_name);
    	System.out.println("orderBean " + orderBean );
    	   orderService.orderInsert(orderBean);
    	   orderService.orderUpdateBasket(orderBean);
@@ -109,8 +110,14 @@ public class OrderController {
     	   String money = st.nextToken();
     	   String bas_proimg = st.nextToken();
        	   String bas_procomment = st.nextToken();
-		   String pro_memno = st.nextToken();
+           String pro_memno = st.nextToken();
+       	   String sto_name = st.nextToken();
           
+       	System.out.println("bas_no는" + bas_no );
+       	System.out.println("bas_proname는" + bas_proname );
+       	System.out.println("bas_proprice는" + bas_proprice );
+
+
        	   orderBean.setOrd_memno(userNo);       
            orderBean.setOrd_basno(Integer.parseInt(bas_no));        
            orderBean.setOrd_proname(bas_proname);
@@ -120,6 +127,7 @@ public class OrderController {
            orderBean.setOrd_price(Integer.parseInt(money));
            orderBean.setOrd_proimg(bas_proimg);
            orderBean.setPro_memno(Integer.parseInt(pro_memno));
+           orderBean.setSto_name(sto_name);
            
            System.out.println("orderBean은" + orderBean );
            orderService.orderInsert(orderBean);
@@ -172,11 +180,15 @@ public class OrderController {
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 		String mem_id = authentication.getName();
 		MemberBean memberInfo = memberService.memberInfo(mem_id);
+	
 		int userNo = memberInfo.getMem_no();
+		String userName = memberInfo.getSto_name();
+		
 		System.out.println("userNo타고 " + userNo);
 		Map<String, Object> map = new HashMap<String, Object>();
-		List<OrderpayBean> slistOrder = orderService.storeListOrder(userNo);
-		System.out.println("storeLisOrder타고 " + slistOrder);
+		List<OrderpayBean> slistOrder = orderService.storeListOrder(userName);
+/*		List<OrderpayBean> slistOrder = orderService.storeListOrder(userNo);
+*/		System.out.println("storeLisOrder타고 " + slistOrder);
 		map.put("list", slistOrder);
 		mav.setViewName("/store/storeOrderList");
 		mav.addObject("map", map);
@@ -193,6 +205,7 @@ public class OrderController {
 		String mem_id = authentication.getName();
 		MemberBean memberInfo = memberService.memberInfo(mem_id);
 		int userNo = memberInfo.getMem_no();
+		String userName = memberInfo.getSto_name();
 
 		String from1 = from + " 00:00:00.0";
 		java.sql.Timestamp begin = java.sql.Timestamp.valueOf(from1);
@@ -200,7 +213,7 @@ public class OrderController {
 		java.sql.Timestamp end = java.sql.Timestamp.valueOf(to1);
 		
 		Map<String, Object> map = new HashMap<String, Object>();
-		List<OrderpayBean> slistOrder = orderService.storeListOrderTime(userNo, begin, end);
+		List<OrderpayBean> slistOrder = orderService.storeListOrderTime(userName, begin, end);
 		System.out.println("storeLisOrdertime타고 " + slistOrder);
 		map.put("begin", from);
 		map.put("end", to);

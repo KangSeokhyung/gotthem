@@ -15,6 +15,7 @@ public class OrderpayBean {
   private int ord_basno;
   private String ord_proimg;
   private int ord_proprice;
+  private String sto_name;
   private int pro_memno;
 public int getOrd_no() {
 	return ord_no;
@@ -82,6 +83,12 @@ public int getOrd_proprice() {
 public void setOrd_proprice(int ord_proprice) {
 	this.ord_proprice = ord_proprice;
 }
+public String getSto_name() {
+	return sto_name;
+}
+public void setSto_name(String sto_name) {
+	this.sto_name = sto_name;
+}
 public int getPro_memno() {
 	return pro_memno;
 }
@@ -93,7 +100,8 @@ public String toString() {
 	return "OrderpayBean [ord_no=" + ord_no + ", ord_procode=" + ord_procode + ", ord_proname=" + ord_proname
 			+ ", ord_memno=" + ord_memno + ", ord_stock=" + ord_stock + ", ord_price=" + ord_price + ", ord_findtime="
 			+ ord_findtime + ", ord_status=" + ord_status + ", ord_basno=" + ord_basno + ", ord_proimg=" + ord_proimg
-			+ ", ord_proprice=" + ord_proprice + ", pro_memno=" + pro_memno + "]";
+			+ ", ord_proprice=" + ord_proprice + ", sto_name=" + sto_name + ", pro_memno=" + pro_memno + "]";
 }
-
+  
+  
 }

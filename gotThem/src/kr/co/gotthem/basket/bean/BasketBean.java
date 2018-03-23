@@ -12,6 +12,7 @@ public class BasketBean {
 	private String bas_proimg;
 	private String bas_procomment;
 	private int money;
+	private String sto_name;
 	private int pro_memno;
     private int stock;
 	
@@ -78,6 +79,12 @@ public class BasketBean {
 	public void setMoney(int money) {
 		this.money = money;
 	}
+	public String getSto_name() {
+		return sto_name;
+	}
+	public void setSto_name(String sto_name) {
+		this.sto_name = sto_name;
+	}
 	public int getPro_memno() {
 		return pro_memno;
 	}
@@ -95,7 +102,9 @@ public class BasketBean {
 		return "BasketBean [bas_no=" + bas_no + ", bas_memno=" + bas_memno + ", bas_procode=" + bas_procode
 				+ ", bas_proname=" + bas_proname + ", bas_prostock=" + bas_prostock + ", bas_proprice=" + bas_proprice
 				+ ", bas_procategory=" + bas_procategory + ", bas_proimg=" + bas_proimg + ", bas_procomment="
-				+ bas_procomment + ", money=" + money + ", pro_memno=" + pro_memno + ", stock=" + stock + "]";
-	} 
-
+				+ bas_procomment + ", money=" + money + ", sto_name=" + sto_name + ", pro_memno=" + pro_memno
+				+ ", stock=" + stock + "]";
+	}
+	
+    
 }
