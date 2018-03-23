@@ -67,6 +67,12 @@ public class BasketDaoImpl implements BasketDao {
     public void updateBasket(BasketBean basketBean) {
     	sqlSessionTemplate.update("updateBasket", basketBean);
     }
+    
+   // 8. 장바구니  All 삭제
+    @Override
+    public void deleteBasketAll(int a) {
+    	sqlSessionTemplate.delete("deleteBasketAll", a);
+    }
 	/*@Override
 	public MemberBean login(String id) {
 		return sqlSessionTemplate.selectOne("login", id);

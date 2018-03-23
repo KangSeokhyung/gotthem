@@ -51,17 +51,17 @@
 		<div class="cover-inner container">     
 			<table class="table table-user-information" id="mytable">
 				<tr>
-					<th>결제 번호</th>
-					<th>결제 시간</th>
-					<th>상품코드</th>
-					<th>상품사진</th>
-					<th>상품명</th>
-					<th>매장명</th>
-					<th>상품수량</th>
-					<th>상품가격</th>
-					<th>결제 가격</th>
-					<th>상태</th>
-					<th>결제취소</th>
+					<th style="width: 5%">No</th>
+					<th class = 2>결제 시간</th>
+					<th class = 1>Code</th>
+					<th style="width: 6%">img</th>
+					<th class = 2>상품명</th>
+					<th style="width: 6%">점포</th>
+					<th style="width: 6%">수량</th>
+					<th >가격</th>
+					<th >결제</th>
+					<th >상태</th>
+					<th >결제취소</th>
 				</tr>
 				<c:forEach var="row" items="${map.list}" varStatus="i">
 					<tr>
@@ -119,7 +119,9 @@
 				var cartSum = checkSumArr[i];
 				cartSum = parseInt(cartSum);
 				sum += cartSum;
-				document.getElementById("chkSum").innerHTML = sum;
+				var str = sum;
+		     	var bb = Number(str).toLocaleString('en').split(".")[0];	
+				document.getElementById("chkSum").innerHTML = bb;
 			}
 		});
 		jQuery(function($) {

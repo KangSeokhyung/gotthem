@@ -64,14 +64,14 @@ public class OrderServiceImpl implements OrderService {
     
     // 3.1 사장님 아이디별 전체 결제 목록
     @Override
-    public List<OrderpayBean> storeListOrder(int userNo) {
-        return orderDao.storeListOrder(userNo);
+    public List<OrderpayBean> storeListOrder(String userName) {
+        return orderDao.storeListOrder(userName);
     }
     
     // 3.2 사장님 아이디별 기간  결제 목록
     @Override
-    public List<OrderpayBean> storeListOrderTime(int userNo, Timestamp begin, Timestamp end ){
-    	  return orderDao.storeListOrderTime(userNo, begin, end);
+    public List<OrderpayBean> storeListOrderTime(String userName, Timestamp begin, Timestamp end ){
+    	  return orderDao.storeListOrderTime(userName, begin, end);
     }
     
     //결제 api 실험중
@@ -90,6 +90,7 @@ public class OrderServiceImpl implements OrderService {
         param.add("quantity", "2");
         param.add("total_amount", "10000");
         param.add("tax_free_amount", "100");
+        
         param.add("approval_url", "http://localhost:8080/gotThem/approve.gt");
         param.add("cancel_url", "http://localhost:8080/gotThem/index.jsp");
         param.add("fail_url", "http://localhost:8080/gotThem/index.jsp");

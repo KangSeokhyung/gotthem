@@ -7,10 +7,10 @@
 	<insert id="insertBasket">
 		INSERT INTO basket (
 		bas_memno, bas_procode, bas_proname, bas_prostock,bas_proprice, bas_procategory,
-		bas_proimg, bas_procomment,pro_memno
+		bas_proimg, bas_procomment,pro_memno,sto_name
 		)VALUES(
 		#{bas_memno}, #{bas_procode}, #{bas_proname},#{bas_prostock}, #{bas_proprice},
-		#{bas_procategory}, #{bas_proimg}, #{bas_procomment},#{pro_memno})
+		#{bas_procategory}, #{bas_proimg}, #{bas_procomment},#{pro_memno},#{sto_name})
 	</insert>
 
 	<!-- 2. 장바구니 목록 -->
@@ -30,6 +30,7 @@
 		b.bas_prostock,
 		p.pro_price,
 		b.pro_memno,
+		b.sto_name,
 		(pro_price * bas_prostock) money
 		FROM
 		member m, product p, basket b
@@ -73,14 +74,20 @@
 		WHERE bas_memno= #{bas_memno} AND bas_procode = #{bas_procode}
 	</update>
 
+    <!-- 8. 장바구니 All삭제 -->
+	<delete id="deleteBasketAll">
+		DELETE FROM basket where 1= #{a}
+	</delete>
+
+
 	<!-- 결제 관련 부분 -->
 	<!-- 1. 장바구니에서 단건 결제 추가 -->
 	<insert id="orderInsert">
 		INSERT INTO orderpay (
 		ord_procode, ord_proname, ord_memno,ord_stock, ord_price, ord_basno,
-		ord_proimg,ord_proprice,pro_memno,ord_findtime)VALUES(
+		ord_proimg,ord_proprice,pro_memno,sto_name,ord_findtime)VALUES(
 		#{ord_procode}, #{ord_proname},#{ord_memno}, #{ord_stock},
-		#{ord_price},#{ord_basno},#{ord_proimg},#{ord_proprice},#{pro_memno},now())
+		#{ord_price},#{ord_basno},#{ord_proimg},#{ord_proprice},#{pro_memno},#{sto_name},now())
 	</insert>
 	
 	<!-- 1.1. 결제 되면, 상품에서 결제된 수량만큼 수량 빼기 -->
@@ -106,7 +113,7 @@
 	<update id="orderUpdateProduct">
 		UPDATE product
 		SET pro_stock = pro_stock + #{ord_stock}
-		WHERE pro_code = #{ord_procode} AND pro_memno= #{ord_memno}
+		WHERE pro_code = #{ord_procode} AND pro_name= #{ord_name}
 	</update>
 	
 	<!-- 2.2 결제 되면, 장바구니에서 다시 생성 -->
@@ -129,14 +136,14 @@
     <!-- 3.1 사장님 아이디별 전체 결제 목록 -->
 	<select id="storeListOrder" parameterType="java.util.HashMap" resultType="kr.co.gotthem.order.bean.OrderpayBean">
 		SELECT * FROM orderpay
-		WHERE pro_memno = #{userNo}
+		WHERE sto_name = #{userName}
 		ORDER BY ord_no desc
 	</select> 
 	
     <!-- 3.2 사장님 아이디별 전체 결제 목록 -->  
 	<select id="storeListOrderTime" parameterType="java.util.HashMap" resultType="kr.co.gotthem.order.bean.OrderpayBean">
 		SELECT * FROM orderpay
-		WHERE pro_memno = #{userNo} AND ord_findtime BETWEEN #{begin} AND #{end}
+		WHERE sto_name = #{userName} AND ord_findtime BETWEEN #{begin} AND #{end}
 		ORDER BY ord_no desc
 	</select>
 	

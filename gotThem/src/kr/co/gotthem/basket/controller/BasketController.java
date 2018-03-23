@@ -9,9 +9,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
+import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -43,6 +45,7 @@ public class BasketController {
 		this.memberService = memberService;
 	}
 	
+
     // 1. 장바구니 추가
 	@RequestMapping(value ="insertBasket.gt")
     @ResponseBody
@@ -75,7 +78,8 @@ public class BasketController {
  
     // 2. 장바구니 목록
     @RequestMapping(value = "listBasket.gt", method = RequestMethod.GET)
-	public ModelAndView listBasket(ModelAndView mav,HttpServletRequest req, HttpServletResponse res) throws Exception {
+	public ModelAndView listBasket(ModelAndView mav,HttpServletRequest req, HttpServletResponse res,
+			BasketBean basketBean) throws Exception {
     	Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 	    String mem_id = authentication.getName();
 	
@@ -85,18 +89,21 @@ public class BasketController {
         List<BasketBean> listBasket = basketService.listBasket(userNo); // 장바구니 정보 
         System.out.println("list타고,listBasket " + listBasket);
         int sumMoney = basketService.sumMoney(userNo);// 장바구니 전체 금액 호출
-        System.out.println("userNo  "+userNo );
-        System.out.println("sumMoney  "+sumMoney );
-		map.put("list", listBasket);                // 장바구니 정보를 map에 저장
-	    map.put("count", listBasket.size());// 장바구니 상품의 유무
 	    HttpSession session = req.getSession();
 		session.setAttribute("count", listBasket.size());
 	    map.put("sumMoney", sumMoney);        // 장바구니 전체 금액
-	    /* map.put("fee", fee);                 // 배송금액
-	       map.put("allSum", sumMoney+fee);    // 주문 상품 전체 금액*/
+	    for(int i=0; i< listBasket.size(); i++){
+	    	 basketBean = listBasket.get(i);
+	    	 int procode = basketBean.getBas_procode();	 
+	    	 int stock = productService.productSearchStock(procode);
+	 
+	    	 basketBean.setStock(stock);
+	    }	    
+	    map.put("list", listBasket);                // 장바구니 정보를 map에 저장
+	    map.put("count", listBasket.size());
 	    mav.setViewName("basket/cartList");    // view(jsp)의 이름 저장
 	    mav.addObject("map", map);            // map 변수 저장
-	    mav.addObject("memberInfo", memberInfo);
+	    mav.addObject("memberInfo", memberInfo);		    
 	    System.out.println("mav  "+mav );
 	    return mav;
 	}
@@ -150,29 +157,25 @@ public class BasketController {
         return "redirect:/listBasket.gt";
     } 
    
-   // 4. 장바구니 수정( 수량만 수정)
-    @RequestMapping("update.gt")
-    public String update(@RequestParam String[] bas_prostock, @RequestParam String[] bas_procode) throws Exception {
-  	
+ // 4. 장바구니 수정( 수량만 수정)
+    @RequestMapping(value ="update.gt", method = RequestMethod.GET)
+	public String update(@RequestParam int bas_procode, @RequestParam int bas_prostock) throws Exception {
     	Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-    	String mem_id = authentication.getName();
-    	MemberBean memberInfo = memberService.memberInfo(mem_id);
-    	
-        int userNo = memberInfo.getMem_no();
-     	System.out.println("update왔다");  
-    	
-     	// 레코드의 갯수 만큼 반복문 실행
-        for(int i=0; i< bas_procode.length; i++){
-        	BasketBean basketBean = new BasketBean();
-        	basketBean.setBas_memno(userNo); 
-        	basketBean.setBas_prostock(Integer.parseInt((bas_prostock[i])));
-        	basketBean.setBas_procode(Integer.parseInt((bas_procode[i])));
-            basketService.modifyBasket(basketBean);
-            System.out.println("for새로 셋팅된 basketBean" + basketBean);
-        }
-        return "redirect:/listBasket.gt";
+		String mem_id = authentication.getName();
+		MemberBean memberInfo = memberService.memberInfo(mem_id);
+
+		int userNo = memberInfo.getMem_no();
+		System.out.println("update왔다");
+		BasketBean basketBean = new BasketBean();
+		basketBean.setBas_memno(userNo);
+		basketBean.setBas_prostock(bas_prostock);
+		basketBean.setBas_procode(bas_procode);
+		basketService.modifyBasket(basketBean);
+		System.out.println("for새로 셋팅된 basketBean" + basketBean);
+
+		return "redirect:/listBasket.gt";
     }
-   	
+    
     // 5. 편의점 상세에서 장바구니 선택 추가
 	@RequestMapping(value = "selectAddBasket.gt", method = RequestMethod.POST)
 	@ResponseBody
@@ -198,6 +201,7 @@ public class BasketController {
 			String bas_prostock = st.nextToken();
 			String bas_proprice = st.nextToken();
 			String bas_proimg = st.nextToken();
+			String sto_name = st.nextToken();
 			
 			basketBean.setBas_procode(Integer.parseInt(bas_procode));
 			basketBean.setBas_proname(bas_proname);
@@ -206,6 +210,7 @@ public class BasketController {
 			basketBean.setBas_proprice(Integer.parseInt(bas_proprice));
 			basketBean.setBas_proimg(bas_proimg);
 			basketBean.setPro_memno(Integer.parseInt(pro_memno));
+			basketBean.setSto_name(sto_name);
 			
 	        int count = basketService.countBasket(basketBean.getBas_procode(),basketBean.getBas_memno());
 	        if (count == 0) {
@@ -228,6 +233,7 @@ public class BasketController {
 				String bas_prostock = st.nextToken();
 				String bas_proprice = st.nextToken();
 				String bas_proimg = st.nextToken();
+				String sto_name = st.nextToken();
 				
 				basketBean.setBas_procode(Integer.parseInt(bas_procode));
 				basketBean.setBas_proname(bas_proname);
@@ -236,6 +242,7 @@ public class BasketController {
 				basketBean.setBas_proprice(Integer.parseInt(bas_proprice));
 				basketBean.setBas_proimg(bas_proimg);
 				basketBean.setPro_memno(Integer.parseInt(pro_memno));
+				basketBean.setSto_name(sto_name);
 				
 		        int count = basketService.countBasket(basketBean.getBas_procode(),basketBean.getBas_memno());
 		        if (count == 0) {
