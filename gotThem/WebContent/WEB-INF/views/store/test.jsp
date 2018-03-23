@@ -1,20 +1,50 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html lang="ko">
+<html>
 <head>
-<title>편의점 재고 검색 포털 Got them</title>
+
+<title>Insert title here</title>
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta charset="utf-8">
-<link href="https://fonts.googleapis.com/css?family=Work+Sans" rel="stylesheet">
-<link rel="stylesheet" href="resources/indexTemplate/css/bootstrap.min.css">
-<link rel="stylesheet" href="resources/indexTemplate/css/open-iconic-bootstrap.min.css">
-<link rel="stylesheet" href="resources/indexTemplate/css/owl.carousel.min.css">
-<link rel="stylesheet" href="resources/indexTemplate/css/owl.theme.default.min.css">
+<link href="https://fonts.googleapis.com/css?family=Work+Sans"
+	rel="stylesheet">
+<link rel="stylesheet"
+	href="resources/indexTemplate/css/bootstrap.min.css">
+<link rel="stylesheet"
+	href="resources/indexTemplate/css/open-iconic-bootstrap.min.css">
+<link rel="stylesheet"
+	href="resources/indexTemplate/css/owl.carousel.min.css">
+<link rel="stylesheet"
+	href="resources/indexTemplate/css/owl.theme.default.min.css">
 <link rel="stylesheet" href="resources/indexTemplate/css/icomoon.css">
 <link rel="stylesheet" href="resources/indexTemplate/css/animate.css">
 <link rel="stylesheet" href="resources/indexTemplate/css/style.css">
+<link rel="stylesheet" href="resources/landy/css/style.default.css"
+	id="theme-stylesheet">
+<style>
+@media( max-width: 640px ) {
+	#tickets,
+	#tickets thead,
+	#tickets tbody,
+	#tickets tr,
+	#tickets th,
+	#tickets td {
+		display: block;
+	}
+
+	#tickets tr {
+		border-bottom: 1px solid #ddd;
+	}
+
+	#tickets th,
+	#tickets td {
+		border-top: none;
+		border-bottom: none;
+	}
+}
+</style>
 </head>
 <body>
 <header>
@@ -39,36 +69,25 @@
 			</c:choose>
 		</div>
 	</div>
-	
-<section class="probootstrap-section">
-         
-    <div class="container">
-      <div class="row">
-      <div class="alert alert-info alert-dismissable">
-          <a class="panel-close close" data-dismiss="alert">×</a> 
-          <h4 style="color:red;">주의!!</h4>회원탈퇴 전에 구매한 상품을 수령해주세요.<br>구매목록에 미수령 상품이 있다면 탈퇴할 수 없습니다.
-        </div>
-        <div class="col-md-8">
-          <form id="form1" action="mystoreDel.st" method="post" class="probootstrap-form mb60">
-            <div class="row">
-              <div class="col-sm-6">
-                <div class="form-group">
-                  <label for="fname">현재 비밀번호</label>
-                  <input type="password" class="form-control" id="fname" name="mem_pw">
-                </div>
-              </div>
-              </div>
-                       
-            <div class="form-group">
-              <input type="button" class="btn btn-primary" value="탈퇴하기" onclick="storeDel()">
-              <input type="reset" class="btn btn-primary" value="취소하기">
-            </div>              
-          </form>
-        </div> 
-	</div>
-	</div>
-  </section> 
-	<div class="container-fluid d-md-none">
+
+<table id="tickets" class="table">
+	<tr>
+		<th nowrap>입장권</th>
+		<td>테마파크만 입장하고 놀이기구를 이용하지 않을 경우 최적입니다.</td>
+		<td nowrap>20,000원</td>
+	</tr>
+	<tr>
+		<th nowrap>자유이용권</th>
+		<td>폐장시간까지 모든 기구를 자유롭게 이용합니다.</td>
+		<td nowrap>40,000원</td>
+	</tr>
+	<tr>
+		<th nowrap>야간 자유이용권</th>
+		<td>오후 5시 이후 입장해 폐장시간까지 모든 기구를 자유롭게 이용합니다.</td>
+		<td nowrap>30,000원</td>
+	</tr>
+</table>
+<div class="container-fluid d-md-none">
 		<div class="row">
 			<div class="col-md-12">
 				<ul class="list-unstyled d-flex probootstrap-aside-social">
@@ -84,10 +103,8 @@
 			</div>
 		</div>
 	</div>
-
-	</main>
-	<script src="resources/mainTemplate/js/scripts.min.js"></script>
-	<script src="resources/indexTemplate/js/jquery-3.2.1.slim.min.js"></script>
+</main>
+<script src="resources/indexTemplate/js/jquery-3.2.1.slim.min.js"></script>
 	<script src="resources/indexTemplate/js/popper.min.js"></script>
 	<script src="resources/indexTemplate/js/bootstrap.min.js"></script>
 	<script src="resources/indexTemplate/js/owl.carousel.min.js"></script>
@@ -95,14 +112,4 @@
 	<script src="resources/indexTemplate/js/imagesloaded.pkgd.min.js"></script>
 	<script src="resources/indexTemplate/js/main.js"></script>
 </body>
-<script>
-	function storeDel(){
-		if(confirm('정말 탈퇴하시겠습니까?')== true){
-			document.form1.submit();
-		}else{
-			alert("취소하셨습니다.")
-			history.go(0);
-		}
-	}
-</script>
 </html>

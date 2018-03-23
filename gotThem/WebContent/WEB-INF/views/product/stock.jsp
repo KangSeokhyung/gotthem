@@ -30,7 +30,19 @@ margin:1px;
 padding: 0.6rem 1rem;
 }
 
-.table-responsive{-sm|-md|-lg|-xl}
+@media all and (max-width:767px){
+.stocktable .no {display:none}
+.stocktable .category {display:none}
+.stocktable .price {display:none}
+td .img{weight:10%}
+td .name{weight:70%}
+td .stock{weight:20%}
+}
+
+.pb-5{
+padding-top:5%;
+padding-left:0;
+}
 </style>
 </head>
 <body>
@@ -44,7 +56,16 @@ padding: 0.6rem 1rem;
 		<a href="#" class="probootstrap-toggle js-probootstrap-toggle"><span
 			class="oi oi-menu"></span></a>
 		<div class="probootstrap-main-site-logo">
-			<a href="storeIndex.st">GOT THEM</a>
+			<c:set var="sessionCheck"
+						value="${sessionScope.SPRING_SECURITY_CONTEXT}" />
+			<c:choose>
+				<c:when test="${sessionCheck eq null}">
+			<a href="login.st">GOT THEM</a>
+			</c:when>
+				<c:otherwise>
+					<a href="stock.st?pageNo=1" class="mb-2 d-block probootstrap-logo">GOTTHEM</a>
+				</c:otherwise>
+			</c:choose>
 		</div>
 	</div>
 
@@ -52,27 +73,27 @@ padding: 0.6rem 1rem;
 
 	<div class="cover-container pb-5">
 		<div class="cover-inner container">
-			<table class="table table-responsive">
-				<tr class="table-success">
-					<th>번호</th>
-					<th>사진</th>
-					<th>상품명</th>
-					<th>분류</th>
-					<th>가격</th>
-					<th>재고</th>
+			<table class="table stocktable">
+				<tr>
+					<th class="no" scope="col">번호</th>
+					<th class="img" scope="col">사진</th>
+					<th class="name" scope="col">상품명</th>
+					<th class="category" scope="col">분류</th>
+					<th class="price" scope="col">가격</th>
+					<th class="stock" scope="col">재고</th>
 				</tr>
 				<c:forEach var="dto" items="${plist }">
 
 					<tr>
-						<td>${dto.pro_code }</td>
-						<td><img src="/img/${dto.pro_img }"
+						<td class="no">${dto.pro_code }</td>
+						<td class="img" style="padding:.4rem"><img src="/img/${dto.pro_img }"
 							style="width: 50px; height: 50px; cursor: pointer"
 							onclick="location='detail.st?pageNo=${pageNo}&code=${dto.pro_code }'" /></td>
-						<td><a
+						<td class="name"><a
 							href="detail.st?pageNo=${pageNo}&code=${dto.pro_code }">${dto.pro_name }</a></td>
-						<td>${dto.pro_category }</td>
-						<td>${dto.pro_price }</td>
-						<td>${dto.pro_stock }</td>
+						<td class="category">${dto.pro_category }</td>
+						<td class="price">${dto.pro_price }</td>
+						<td class="stock">${dto.pro_stock }&nbsp;&nbsp;</td>
 					</tr>
 				</c:forEach>
 			</table>

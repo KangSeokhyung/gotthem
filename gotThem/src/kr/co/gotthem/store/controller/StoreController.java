@@ -46,11 +46,6 @@ public class StoreController {
         this.mailService = mailService;
     }
 	
-	@RequestMapping(value = "/storeIndex.st", method = RequestMethod.GET)
-	public String storeIndex() {
-		return "store/storeIndex";
-	}
-	
 	@RequestMapping(value = "/join.st", method = RequestMethod.GET)
 	public String join(HttpServletRequest request, HttpSession session) throws Exception{
 		
@@ -86,7 +81,7 @@ public class StoreController {
 		int result = memberService.stjoin(stBean);
 		System.out.println(result);
 	
-		return "store/storeIndex";
+		return "store/stLogin";
 	}
 	
 	@RequestMapping(value = "/login.st", method = RequestMethod.GET)
@@ -99,7 +94,7 @@ public class StoreController {
 	public String stlogout(HttpServletRequest request, HttpSession session) throws Exception{
 		session.invalidate();	
 		System.out.println("로그아웃 했다.");
-		return "store/storeIndex";
+		return "store/stLogin";
 	}
 	
 	@RequestMapping(value = "/mystore.st", method = RequestMethod.GET)
@@ -234,7 +229,7 @@ public class StoreController {
 		if(result==1) {	//탈퇴 성공하면
 			session.invalidate();
 			mav.addObject("resultMsg", "DelSuccess");
-			mav.setViewName("store/storeIndex");
+			mav.setViewName("store/stLogin");
 		}else {
 			mav.addObject("resultMsg", "storeDelFail");
 			mav.setViewName("store/storeDelFail");
@@ -354,7 +349,7 @@ public class StoreController {
 			if(changeResult != 0) {
 				System.out.println("비밀번호 변경이 성공했네");
 				mav.addObject("resultMsg", "success");
-				mav.setViewName("store/storeIndex");
+				mav.setViewName("store/stLogin");
 			}else {
 				mav.addObject("resultMsg", "fail3");
 				mav.setViewName("store/changePassWord");

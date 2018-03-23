@@ -61,6 +61,10 @@ border-radius:4px;
 margin:1px;
 padding: 0.6rem 1rem;
 }
+
+.pb-5{
+padding-top:5%;
+}
 </style>
 </head>
 <body>
@@ -73,7 +77,16 @@ padding: 0.6rem 1rem;
 		<a href="#" class="probootstrap-toggle js-probootstrap-toggle"><span
 			class="oi oi-menu"></span></a>
 		<div class="probootstrap-main-site-logo">
-			<a href="index.html">GOT THEM</a>
+		<c:set var="sessionCheck"
+						value="${sessionScope.SPRING_SECURITY_CONTEXT}" />
+			<c:choose>
+				<c:when test="${sessionCheck eq null}">
+			<a href="login.st">GOT THEM</a>
+			</c:when>
+				<c:otherwise>
+					<a href="stock.st?pageNo=1" class="mb-2 d-block probootstrap-logo">GOTTHEM</a>
+				</c:otherwise>
+			</c:choose>
 		</div>
 	</div>
 	<div class="cover-container pb-5">
@@ -106,9 +119,9 @@ padding: 0.6rem 1rem;
 						</tr>
 						<tr>
 							<td colspan="2" align="center"><input type="button" class="btn btn-primary"
-								value="수정하기" onclick="fnUpdate()" /> <input type="button" class="btn btn-primary"
-								value="삭제하기" onclick="fnDelete(${pro.pro_code}, ${pageNo })" />
-								<input type="button"  class="btn btn-primary" value="목록으로" onclick="fnList()" /></td>
+								value="수정" onclick="fnUpdate()" /> <input type="button" class="btn btn-primary"
+								value="삭제" onclick="fnDelete(${pro.pro_code}, ${pageNo })" />
+								<input type="button"  class="btn btn-primary" value="목록" onclick="fnList()" /></td>
 						</tr>
 					</table>
 				</div>
