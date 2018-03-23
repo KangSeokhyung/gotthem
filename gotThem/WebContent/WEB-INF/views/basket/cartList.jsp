@@ -19,33 +19,7 @@
     <link rel="stylesheet" href="resources/mainTemplate/css/styles-merged.css">
     <link rel="stylesheet" href="resources/mainTemplate/css/style.min.css">
     <link rel="stylesheet" href="resources/mainTemplate/css/custom.css">
-<script type="text/javascript" src="resources/renew2/js/jquery.min.js"></script>
-<script type="text/javascript" src="resources/renew2/js/common.js"></script>
-<script type="text/javascript" src="resources/renew2/js/top_navi.js"></script>
-<script type="text/javascript" src="resources/renew2/js/jquery.easing.1.3.js"></script>
-<script type="text/javascript" src="resources/renew2/js/idangerous.swiper-2.1.min.js"></script>
-<script type="text/javascript" src="resources/renew2/js/jquery.anchor.js"></script>
-<script type="text/javascript" src="resources/renew2/js/jquery.fancybox-1.3.4.pack.js"></script>
-<script type="text/javascript" src="resources/renew2/js/isotope.pkgd.min.js"></script>
-<script type="text/javascript" src="resources/renew2/js/jquery.word-break-keep-all.min.js"></script>
-<script type="text/javascript" src="resources/renew2/js/jquery.matchHeight-min.js"></script>
-<script type="text/javascript" src="resources/renew2/js/jquery.bind.js"></script>
-<script type="text/javascript" src="resources/renew2/js/ui.core.js"></script>
-<script type="text/javascript" src="resources/renew2/js/ui.checkbox.js"></script>
-<script type="text/javascript" src="resources/renew2/js/jquery-ui-1.9.2.custom.min.js"></script>
-    <!--[if lt IE 9]>
-      <script src="resources/mainTemplate/js/vendor/html5shiv.min.js"></script>
-      <script src="resources/mainTemplate/js/vendor/respond.min.js"></script>
-    <![endif]-->
- <!-- RENEW 1 -->
-<!--<link rel="stylesheet" href="/renew2/common/css/common.css" type="text/css"/>-->
-<!--<link rel="stylesheet" href="/renew2/common/css/etc.css" type="text/css"/>-->
-
-<!--<script type="text/javascript" src="/renew2/common/js/jquery-1.7.1.min.js"></script>-->
-<script type="text/javascript" src="resources/renew2/common/js/renew.js"></script>
-<!-- <script src="/renew2/common/zipcode/postcode.v2.js"></script>-->
-
-<script src="https://spi.maps.daum.net/imap/map_js_init/postcode.v2.js"></script>   
+ 
 <style>
  #pro_stock {
  padding:0 0 0 15px
@@ -448,35 +422,6 @@ $(document).on("change", "#pro_stock", function(){//텍스트로 수량 변경
 				 }
 	 });  
     
-//결제 함수 스크립트
-function payment(){
-	var IMP = window.IMP; // 생략가능
-	IMP.init('imp71254112');  // 가맹점 식별 코드
-	
-	IMP.request_pay({
-	   pg : 'kakao', // 결제방식
-	    pay_method : 'card',	// 결제 수단
-	    merchant_uid : 'merchant_' + new Date().getTime(),
-	   name : '주문명: 결제 테스트',	// order 테이블에 들어갈 주문명 혹은 주문 번호
-	    amount : '100',	// 결제 금액
-	    buyer_email : '${MemberInfo.getMember_email}',	// 구매자 email
-	   buyer_name :  '${MemberInfo.getMember_name}',	// 구매자 이름
-	    buyer_tel :  '',	// 구매자 전화번호
-	    buyer_addr :  '',	// 구매자 주소
-	    buyer_postcode :  '',	// 구매자 우편번호
-	    m_redirect_url : '/khx/payEnd.action'	// 결제 완료 후 보낼 컨트롤러의 메소드명
-	}, function(rsp) {
-		if ( rsp.success ) { // 성공시
-			var msg = '결제가 완료되었습니다.';
-			msg += '고유ID : ' + rsp.imp_uid;
-			msg += '상점 거래ID : ' + rsp.merchant_uid;
-			msg += '결제 금액 : ' + rsp.paid_amount;
-			msg += '카드 승인번호 : ' + rsp.apply_num;
-		} else { // 실패시
-			var msg = '결제에 실패하였습니다.';
-			msg += '에러내용 : ' + rsp.error_msg;
-		}
-	});
-}
+
 </script>	
 </html>
