@@ -77,4 +77,8 @@
 	    <beans:property name="javaMailSender" ref="javaMailSender" />
 	</beans:bean>
 	
+	
+	
+	
+	
 </beans:beans>

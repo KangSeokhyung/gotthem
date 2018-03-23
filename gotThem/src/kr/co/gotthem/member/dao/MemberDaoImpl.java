@@ -115,4 +115,12 @@ public class MemberDaoImpl implements MemberDao {
 		return sqlSessionTemplate.selectOne("storeInfo", mem_no);
 	}
 	
+	@Override
+	public void kakaoJoin(MemberBean memberBean) {
+		int result = sqlSessionTemplate.insert("kakaoJoin",memberBean);
+		if(result > 0) {
+			System.out.println("카톡으로 회원가입 성공");
+		}
+	}
+	
 }

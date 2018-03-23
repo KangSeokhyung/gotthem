@@ -3,6 +3,8 @@ package kr.co.gotthem.order.service;
 import java.sql.Timestamp;
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import kr.co.gotthem.basket.bean.BasketBean;
 import kr.co.gotthem.order.bean.OrderpayBean;
 
@@ -33,4 +35,9 @@ public interface OrderService {
    
    // 3.2 사장님 아이디별 기간  결제 목록 
    public List<OrderpayBean> storeListOrderTime(String userName, Timestamp begin, Timestamp end );
+   
+   // 결제 api 실험중
+   public <T> T pay(String accessToken, Class<T> type);
+   
+   public <T> T approve(String pg_Token, HttpSession session, Class<T> type);
 }

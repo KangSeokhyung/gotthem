@@ -104,7 +104,6 @@
                    <a href="#" class="con"  name="checkAll" id="th_checkAll" onclick="button_checkAll();" />all</a>
                    <!-- <input type="button" class="con" value="All" name="checkAll" id="th_checkAll" onclick="button_checkAll();" /> --></th> 
                    <th scope="col" colspan="2">상품정보</th>
-                   <!-- <th scope="col" ></th> -->
                    <th scope="col">매장명</th>
                    <th scope="col" class="tNonePre">가격</th>
                    <th scope="col">수량 </th>
@@ -121,7 +120,7 @@
                       onclick="cart();" /> 
                   </td>
                   <td class="img" class="tNonePre">
-                       <a href="productDetail.gt?pro_code=${row.bas_procode}"><img src="/img/${row.bas_proimg}" style="width:50px; height:50px" class="dn" alt="" /></a>
+                       <a href="productDetail.gt?pro_code=${row.bas_procode}"><img src="/img/${row.bas_proimg}" style="width:60px; height:60px" class="dn" alt="" /></a>
                   </td>
                   <td class="minLeft" >
                       <a href="productDetail.gt?pro_code=${row.bas_procode}" style="color: #7e8890;"> ${row.bas_proname}</a>
@@ -177,6 +176,7 @@
 		<a href="#" class="sOrder" onclick="button_selOrder();"><p>선택상품 <span>주문하기</span></p></a>&nbsp;&nbsp;
 		<a href="#" class="aOrder" onclick="button_allOrder();"><p>전체상품 <span>주문하기</span></p></a>&nbsp;&nbsp;
 		<a href="/gotThem" class="continuation" onclick=""><p>쇼핑 <span>계속하기</span></p></a>
+		<button id = "payBtn" value="ddd" >ddddddd</button>
 	</div>
 </c:otherwise>
 </c:choose>   
@@ -201,10 +201,12 @@
     </div>
   </footer>
 </body>
-<script type="text/javascript" src="https://service.iamport.kr/js/iamport.payment-1.1.2.js"></script>
- <script src="resources/mainTemplate/js/scripts.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+<script src="resources/mainTemplate/js/scripts.min.js"></script>
  <script src="resources/mainTemplate/js/main.min.js"></script>
  <script src="resources/mainTemplate/js/custom.js"></script>
+ <!-- KAKAO API -->
+  <script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
 <script type="text/javascript">
 $(document).ready(function(){
 	$("#btnList").click(function(){
@@ -267,7 +269,6 @@ function cart(){ //결제 금액 계산
     	}
 	}  		   
 function button_basDel(bas_no){  //단건 직접 삭제
-	alert(bas_no);
 	if (confirm("장바구니에서 상품을 삭제 하시겠습니까?")){
 		location.href="delete.gt?bas_no="+bas_no;
 		}else{ 
@@ -275,7 +276,6 @@ function button_basDel(bas_no){  //단건 직접 삭제
 			}
 	}
 function button_order(bas_no,bas_proname,bas_procode,money,bas_prostock,bas_proimg,bas_proprice,pro_memno,sto_name){
-	alert(bas_proprice);
 	if (confirm("상품을 결제 하시겠습니까?")){ //단건결제
 		location.href="insertOrder.gt?bas_no="+bas_no+"&bas_proname="+bas_proname+
     		"&bas_procode="+bas_procode+"&money="+money+"&bas_prostock="+bas_prostock+"&bas_proimg="+bas_proimg+"&bas_proprice="+bas_proprice+"&pro_memno="+pro_memno+"&sto_name="+sto_name;
@@ -369,7 +369,6 @@ function button_allOrder(){ //장바구니 전체 주문하기
 		checkAllOrder.push($(this).val());		
 	});
 	checkAllOrder.push('[]');
-	alert("checkAllOrder요." +checkAllOrder);
 		if (confirm("전체 상품을 결제 하시겠습니까?")){
 			$.ajax({
 				url:"selectOrder.gt",
@@ -422,6 +421,53 @@ $(document).on("change", "#pro_stock", function(){//텍스트로 수량 변경
 				 }
 	 });  
     
+
+var access_Token = '${sessionScope.token}';
+
+Kakao.init("7f93c771faceb935af25ef6e91c4a334");	
+$('#payBtn').click(()=> {
+	
+     if(!access_Token){
+    	 console.log('토큰이 없음');
+         loginWithKakao();
+     } else {
+    	 console.log("토근존재");
+         payment();
+     }
+}); 
+ 
+
+function payment() {
+  $.ajax({
+	 url : 'payment.gt',
+     data: {
+         accessToken : access_Token
+     },
+     method: 'POST',
+     success: (result) => {
+    	 console.log(result);
+     	window.open(result.next_redirect_pc_url,
+     			"","width=400, height=700");
+     	console.log("온다아아앙");
+     }, 
+     error: () => {
+         window.alert('payment 서버 실행 오류!');
+     }
+  });
+}
+function loginWithKakao() {
+    Kakao.Auth.login({
+      success: function(authObj) {
+    	  console.log("토큰이없으면 여기");
+          access_Token = authObj.access_token;
+          console.log(access_Token)
+          payment();
+      },
+      fail: function(err) {
+        alert(JSON.stringify(err));
+      }
+    });
+  };
 
 </script>	
 </html>

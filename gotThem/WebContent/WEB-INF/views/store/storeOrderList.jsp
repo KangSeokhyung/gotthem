@@ -80,7 +80,7 @@ th.1 {
 						<td><img src="/img/${row.ord_proimg}"
 							style="width: 50px; height: 50px" /></td>
 						<td>${row.ord_proname}</td>
-						<td>${row.pro_memno}</td>
+						<td>${row.sto_name}</td>
 						<td>${row.ord_stock}</td>
 						<td><fmt:formatNumber pattern="###,###,###"
 								value="${row.ord_proprice}" /></td>
