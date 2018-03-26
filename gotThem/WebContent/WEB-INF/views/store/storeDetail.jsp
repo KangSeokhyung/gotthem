@@ -81,6 +81,7 @@
 	});
 		
 	function addBasket(pro_code, pro_name, pro_memno, pro_category, pro_price, pro_img) {
+		var sto_name = $("#sto_name").val();
 		$.ajax({
 			url : "insertBasket.gt",
 			data : { 
@@ -90,7 +91,8 @@
 				"bas_procategory" : pro_category,
 				"bas_prostock" : 1,
 				"bas_proprice" : pro_price,
-				"bas_proimg" : pro_img
+				"bas_proimg" : pro_img,
+				"sto_name" : sto_name
 			},
 			type : "post",
 			success : function(check) {
@@ -188,6 +190,9 @@
 <%@include file="../../../nav.jsp" %>
 </header>
 <!-- END: header -->
+
+<!-- hidden -->
+<input type="hidden" id="sto_name" value="${storeInfo.sto_name }">
 
 <section class="probootstrap-slider flexslider" style="height:400px">
     <div class="probootstrap-wrap-banner">
@@ -287,20 +292,24 @@
 </section>
 
 <script type="text/javascript">
-	$.get("productList.gt", { "category" : "도시락", "mem_no" : "${mem_no}" }, function(data) {
-		$("#lunchbox").html(data);
+	$.get("productList.gt", { "category" : "도시락", "mem_no" : "${mem_no}", "sto_name" : "${storeInfo.sto_name }" }, 
+			function(data) {
+				$("#lunchbox").html(data);
 	});
 	
-	$.get("productList.gt", { "category" : "김밥", "mem_no" : "${mem_no}" }, function(data) {
-		$("#kimbob").html(data);
+	$.get("productList.gt", { "category" : "김밥", "mem_no" : "${mem_no}", "sto_name" : "${storeInfo.sto_name }" }, 
+			function(data) {
+				$("#kimbob").html(data);
 	});
 	
-	$.get("productList.gt", { "category" : "샌드위치", "mem_no" : "${mem_no}" }, function(data) {
-		$("#sandwich").html(data);
+	$.get("productList.gt", { "category" : "샌드위치", "mem_no" : "${mem_no}", "sto_name" : "${storeInfo.sto_name }" }, 
+			function(data) {
+				$("#sandwich").html(data);
 	});
 	
-	$.get("productList.gt", { "category" : "기타", "mem_no" : "${mem_no}" }, function(data) {
-		$("#etc").html(data);
+	$.get("productList.gt", { "category" : "기타", "mem_no" : "${mem_no}", "sto_name" : "${storeInfo.sto_name }" }, 
+			function(data) {
+				$("#etc").html(data);
 	});
 </script>
 

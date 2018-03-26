@@ -13,8 +13,17 @@ public class BasketBean {
 	private String bas_procomment;
 	private int money;
 	private int pro_memno;
+	private String sto_name;
 
 	public BasketBean() {
+	}
+
+	public String getSto_name() {
+		return sto_name;
+	}
+
+	public void setSto_name(String sto_name) {
+		this.sto_name = sto_name;
 	}
 
 	public int getBas_no() {

@@ -54,22 +54,15 @@ public class BasketController {
     	MemberBean memberInfo = memberService.memberInfo(mem_id);  
         int userNo = memberInfo.getMem_no();
     	basketBean.setBas_memno(userNo);
-        
-    	HttpSession session = req.getSession();
-    	List<BasketBean> listBasket = null;
+    	
         int count = basketService.countBasket(basketBean.getBas_procode(),basketBean.getBas_memno());
         if (count == 0) {
         	 basketService.insertBasket(basketBean);      	 
         	 System.out.println("첫 상품 장바구니 인서트");
-        	 listBasket = basketService.listBasket(userNo);
-      	    
         } else {    // 있으면 update, 동일 상품 존재시 기존 수량에 새로운 수량 더하기
         	basketService.updateBasket(basketBean);
 			System.out.println("존재하는 상품 인서트");
-        	listBasket = basketService.listBasket(userNo);
         }
-        
- 	    session.setAttribute("count", listBasket.size());
     }
  
     // 2. 장바구니 목록
@@ -189,6 +182,7 @@ public class BasketController {
 			String bas_prostock = st.nextToken();
 			String bas_proprice = st.nextToken();
 			String bas_proimg = st.nextToken();
+			String sto_name = st.nextToken();
 			
 			basketBean.setBas_procode(Integer.parseInt(bas_procode));
 			basketBean.setBas_proname(bas_proname);
@@ -197,6 +191,7 @@ public class BasketController {
 			basketBean.setBas_proprice(Integer.parseInt(bas_proprice));
 			basketBean.setBas_proimg(bas_proimg);
 			basketBean.setPro_memno(Integer.parseInt(pro_memno));
+			basketBean.setSto_name(sto_name);
 			
 	        int count = basketService.countBasket(basketBean.getBas_procode(),basketBean.getBas_memno());
 	        if (count == 0) {
@@ -219,6 +214,7 @@ public class BasketController {
 				String bas_prostock = st.nextToken();
 				String bas_proprice = st.nextToken();
 				String bas_proimg = st.nextToken();
+				String sto_name = st.nextToken();
 				
 				basketBean.setBas_procode(Integer.parseInt(bas_procode));
 				basketBean.setBas_proname(bas_proname);
@@ -227,6 +223,7 @@ public class BasketController {
 				basketBean.setBas_proprice(Integer.parseInt(bas_proprice));
 				basketBean.setBas_proimg(bas_proimg);
 				basketBean.setPro_memno(Integer.parseInt(pro_memno));
+				basketBean.setSto_name(sto_name);
 				
 		        int count = basketService.countBasket(basketBean.getBas_procode(),basketBean.getBas_memno());
 		        if (count == 0) {

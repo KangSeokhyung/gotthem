@@ -44,7 +44,7 @@
 					<td><fmt:formatNumber pattern="###,###,###" value="${list.pro_price }" /></td>
 					<td>
 						<input type="checkbox" name="statusCheck" 
-						value="${list.pro_code },${list.pro_name },${list.pro_memno },${list.pro_category },${list.pro_stock },${list.pro_price },${list.pro_img }">
+						value="${list.pro_code },${list.pro_name },${list.pro_memno },${list.pro_category },${list.pro_stock },${list.pro_price },${list.pro_img },${sto_name }">
 					</td>
 					<td>
 						<c:set var="sessionCheck" value="${sessionScope.SPRING_SECURITY_CONTEXT}" />

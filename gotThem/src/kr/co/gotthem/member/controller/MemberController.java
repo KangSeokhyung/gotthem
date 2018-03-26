@@ -527,9 +527,10 @@ public class MemberController {
     }
 	
     @RequestMapping(value = "/productList.gt")
-	public String productList(Model model, int mem_no, String category) {
+	public String productList(Model model, int mem_no, String category, String sto_name) {
     	List productInfo = productService.productInfo(mem_no, category);
 		model.addAttribute("productInfo", productInfo);
+		model.addAttribute("sto_name", sto_name);
 		
 		return "product/productTable";
 	}
