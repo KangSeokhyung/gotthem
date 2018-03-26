@@ -28,7 +28,7 @@ import kr.co.gotthem.member.service.MemberService;
 import kr.co.gotthem.product.service.ProductService;
 
 @Controller
-public class BasketController {
+public class BasketController2 {
 	
 	private BasketService basketService;
 	private ProductService productService;
@@ -87,7 +87,8 @@ public class BasketController {
         Map<String, Object> map = new HashMap<String, Object>();
         List<BasketBean> listBasket = basketService.listBasket(userNo); // 장바구니 정보 
         int sumMoney = basketService.sumMoney(userNo);// 장바구니 전체 금액 호출
-
+	    HttpSession session = req.getSession();
+		session.setAttribute("count", listBasket.size());
 	    map.put("sumMoney", sumMoney);        // 장바구니 전체 금액
 	    for(int i=0; i< listBasket.size(); i++){
 	    	 basketBean = listBasket.get(i);
