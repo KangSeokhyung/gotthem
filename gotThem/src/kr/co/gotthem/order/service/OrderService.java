@@ -34,10 +34,10 @@ public interface OrderService {
    public List<OrderpayBean> storeListOrder(String userName);
    
    // 3.2 사장님 아이디별 기간  결제 목록 
-   public List<OrderpayBean> storeListOrderTime(String userName, Timestamp begin, Timestamp end );
+   public List<OrderpayBean> storeListOrderTime(int userNo, Timestamp begin, Timestamp end );
    
    // 결제 api 실험중
-   public <T> T pay(String accessToken, Class<T> type);
+   public <T> T pay(String accessToken, Class<T> type, List valueArr);
    
    public <T> T approve(String pg_Token, HttpSession session, Class<T> type);
 }

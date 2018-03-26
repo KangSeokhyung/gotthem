@@ -38,6 +38,54 @@ margin-bottom:0px;
 padding-top:5%;
 }
 
+.form-control {
+	width: 253px;
+	height: 34px;
+}
+
+.fileBox .fileName {
+	display: inline-block;
+	width: 172px;
+	height: 30px;
+	padding-left: 10px;
+	margin-right: 5px;
+	line-height: 1.42857143;
+	border: 1px solid #ccc;
+	background-color: #fff;
+	vertical-align: middle;
+	border-radius: 4px;
+}
+
+.fileBox .btn_file {
+	background: #1FAD9F;
+	color: #fff;
+	border-radius: 4px;
+	display: inline-block;
+	width: 100px;
+	height: 30px;
+	font-size: 0.8em;
+	line-height: 30px;
+	text-align: center;
+	vertical-align: middle;
+	margin-top: 2px;
+}
+
+.fileBox input[type="file"] {
+	position: absolute;
+	width: 1px;
+	height: 1px;
+	padding: 0;
+	margin: -1px;
+	overflow: hidden;
+	clip: rect(0, 0, 0, 0);
+	border: 0
+}
+
+.fileBox .btn_file:hover {
+	color: #fff;
+	background-color: #178277;
+}
+
 .fileBox .fileName {display:inline-block;width:172px;height:30px;padding-left:10px;margin-right:5px;line-height:30px;border:1px solid #aaa;background-color:#fff;vertical-align:middle}
 .fileBox .btn_file {background:#1FAD9F;color:#fff;border-radius:4px;display:inline-block;width:100px;height:30px;font-size:0.8em;line-height:30px;text-align:center;vertical-align:middle;margin-top:2px;}
 .fileBox input[type="file"] {position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);border:0}
@@ -105,11 +153,6 @@ $(document).ready(function(){
 								<td>${pro.pro_code }</td>
 							</tr>
 							<tr>
-								<td><span>제품명</span></td>
-								<td><input type="text" name="pro_name"
-									value="${pro.pro_name }" required="" maxlength="20"/></td>
-							</tr>
-							<tr>
 								<td><span>분류</span></td>
 								<td><select name="pro_category">
 										<option value="도시락">도시락</option>
@@ -123,13 +166,18 @@ $(document).ready(function(){
 								</select>
 							</tr>
 							<tr>
+								<td><span>제품명</span></td>
+								<td><input type="text" name="pro_name" class="form-control"
+									value="${pro.pro_name }" required="" maxlength="20"/></td>
+							</tr>
+							<tr>
 								<td><span>가격</span></td>
-								<td><input type="text" name="pro_price"
+								<td><input type="text" name="pro_price" class="form-control"
 									value="${pro.pro_price }" required="" maxlength="10"/></td>
 							</tr>
 							<tr>
 								<td><span>재고</span></td>
-								<td><input type="text" name="pro_stock"
+								<td><input type="text" name="pro_stock" class="form-control"
 									value="${pro.pro_stock }" required="" maxlength="10"/></td>
 							</tr>
 							<tr>

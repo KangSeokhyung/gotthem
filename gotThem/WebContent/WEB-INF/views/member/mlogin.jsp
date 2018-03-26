@@ -95,7 +95,6 @@
             </div>
             <div class="form-group ">
               <input type="submit" class="btn btn-primary" name="submit" value="로그인하기" style="width:48%;" onclick="loginResult()">
-              
             </div>
             <div class="form-group ">
             <a id="kakao-login-btn" style="cursor:pointer; width:48%; height:49px;"></a>
@@ -133,7 +132,7 @@
   	<script type='text/javascript'>
   //<![CDATA[
     // 사용할 앱의 JavaScript 키를 설정해 주세요.
-    Kakao.init('7f93c771faceb935af25ef6e91c4a334');
+    Kakao.init('363553076ca8777f012d9c9ce3b92b8c');
     // 카카오 로그인 버튼을 생성합니다.
     Kakao.Auth.createLoginButton({
       container: '#kakao-login-btn',

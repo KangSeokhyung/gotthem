@@ -17,9 +17,9 @@ public class BasketBean {
     private int stock;
 	
     public BasketBean() {
-	}
-    
-    public int getBas_no() {
+    }
+
+	public int getBas_no() {
 		return bas_no;
 	}
 	public void setBas_no(int bas_no) {

@@ -224,9 +224,9 @@ public class ProductController {
 	
 	@RequestMapping(value = "/searchList.gt", method = RequestMethod.GET)
 	public String searchList(Model model, @RequestParam String search, @RequestParam int pageNo) {
-		System.out.println(search);
-		List list = productService.searchList(model, search, pageNo);
-		System.out.println(list);
+		System.out.println(search+"##");
+		
+		productService.searchList(model, search, pageNo);
 					
 		return "product/searchList";
 	}
@@ -253,10 +253,5 @@ public class ProductController {
 		model.addAttribute("productInfo", productInfo);
 		
 		return "product/productDetail";
-	}
-	
-	@RequestMapping(value = "/mapDiv.gt")
-	public String map(Model model) {
-		return "product/mapDiv";
 	}
 }

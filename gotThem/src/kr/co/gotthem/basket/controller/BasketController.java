@@ -64,15 +64,10 @@ public class BasketController {
         if (count == 0) {
         	 basketService.insertBasket(basketBean);      	 
         	 System.out.println("첫 상품 장바구니 인서트");
-        	 listBasket = basketService.listBasket(userNo);
-      	    
         } else {    // 있으면 update, 동일 상품 존재시 기존 수량에 새로운 수량 더하기
         	basketService.updateBasket(basketBean);
 			System.out.println("존재하는 상품 인서트");
-        	listBasket = basketService.listBasket(userNo);
         }
-        
- 	    session.setAttribute("count", listBasket.size());
     }
  
     // 2. 장바구니 목록
@@ -87,22 +82,20 @@ public class BasketController {
         Map<String, Object> map = new HashMap<String, Object>();
         List<BasketBean> listBasket = basketService.listBasket(userNo); // 장바구니 정보 
         int sumMoney = basketService.sumMoney(userNo);// 장바구니 전체 금액 호출
-	    HttpSession session = req.getSession();
-		session.setAttribute("count", listBasket.size());
-	    map.put("sumMoney", sumMoney);        // 장바구니 전체 금액
 	    for(int i=0; i< listBasket.size(); i++){
 	    	 basketBean = listBasket.get(i);
 	    	 int procode = basketBean.getBas_procode();	 
 	    	 int stock = productService.productSearchStock(procode);
 	 
 	    	 basketBean.setStock(stock);
-	    }	    
+	    }	
+	    map.put("sumMoney", sumMoney);        // 장바구니 전체 금액
 	    map.put("list", listBasket);                // 장바구니 정보를 map에 저장
 	    map.put("count", listBasket.size());
 	    mav.setViewName("basket/cartList");    // view(jsp)의 이름 저장
 	    mav.addObject("map", map);            // map 변수 저장
 	    mav.addObject("memberInfo", memberInfo);		    
-	    System.out.println("리스트mav  "+mav );
+	    System.out.println("mav  "+mav );
 	    return mav;
 	}
 

@@ -99,25 +99,73 @@ public class ProductServiceImpl implements ProductService {
 	}
 
 	@Override
-	public List searchList(Model model, String search, int pageNo) {
+	public List searchList(Model model, String searchParent, int pageNo) {
 
 		final int rowPerPage = 10;
 		int beginList = (pageNo - 1) * rowPerPage;
 		
-		if (search == null) {
-			search = "";
+		if (searchParent == null) {
+			searchParent = "";
 		}
 
 		HashMap<String, Object> map = new HashMap<String, Object>();
 		map.put("beginList", beginList);
-		map.put("search", search);
+		map.put("search", searchParent);
 		List searchList = productDao.searchList(map);
-
-		// 전체 게시물 수
-		int totalRows = productDao.searchListCount(search);
+		int totalRows = productDao.searchListCount(searchParent);
+		
+		Map<String, String> row = new HashMap<String, String>();
+		List addressList = new ArrayList();
+		for (int i = 0; i < searchList.size(); i++) {
+			row = (Map) searchList.get(i);
+			String address = (String) row.get("mem_address");
+			
+			StringTokenizer st = new StringTokenizer(address, "/");
+			String post = st.nextToken();
+			String addr1 = st.nextToken();
+			String addr2 = st.nextToken();
+			
+			String mem_address = addr1 + " " + addr2;
+			row.put("mem_address", mem_address);
+		}
+		
+		Map rowParse = new HashMap();
+		List searchParseList = new ArrayList();
+		if (searchList.size() == 0) {
+			StringTokenizer st = new StringTokenizer(searchParent, " ");
+			
+			while (st.hasMoreTokens()) {
+				String search = st.nextToken();
+				map.put("search", search);
+				searchList = productDao.searchList(map);
+				
+				for (int i = 0; i < searchList.size(); i++) {
+					rowParse = (Map) searchList.get(i);
+					if (!searchParseList.contains(rowParse)) {
+						searchParseList.add(rowParse);
+					}
+				}
+			}
+			totalRows = searchParseList.size();
+			
+			for (int i = 0; i < searchParseList.size(); i++) {
+				row = (Map) searchParseList.get(i);
+				String address = (String) row.get("mem_address");
+				
+				StringTokenizer st1 = new StringTokenizer(address, "/");
+				String post = st1.nextToken();
+				String addr1 = st1.nextToken();
+				String addr2 = st1.nextToken();
+				
+				String mem_address = addr1 + " " + addr2;
+				row.put("mem_address", mem_address);
+			}
+			model.addAttribute("searchList", searchParseList);
+		}
+		
 		// 전체 페이지 번호 수
 		int totalPages = (int) Math.ceil((double) totalRows / rowPerPage);
-
+		
 		// 화면 하단에 표시될 페이지의 개수
 		final int pagePerPage = 5;
 
@@ -143,31 +191,18 @@ public class ProductServiceImpl implements ProductService {
 		if (currentRange != totalRanges) {
 			nextPage = currentRange * pagePerPage + 1;
 		}
-		Map<String, String> row = new HashMap<String, String>();
-		List addressList = new ArrayList();
-		for (int i = 0; i < searchList.size(); i++) {
-			row = (Map) searchList.get(i);
-			String address = (String) row.get("mem_address");
-			
-			StringTokenizer st = new StringTokenizer(address, "/");
-			String post = st.nextToken();
-			String addr1 = st.nextToken();
-			String addr2 = st.nextToken();
-			
-			String mem_address = addr1 + " " + addr2;
-			row.put("mem_address", mem_address);
-		}
+		
 		model.addAttribute("pageNo", pageNo);
 		model.addAttribute("beginPage", beginPage);
 		model.addAttribute("endPage", endPage);
 		model.addAttribute("prevPage", prevPage);
 		model.addAttribute("nextPage", nextPage);
 		model.addAttribute("totalPages", totalPages);
-		model.addAttribute("totalRows", totalRows);
-		model.addAttribute("search", search);
+		model.addAttribute("search", searchParent);
 		model.addAttribute("searchList", searchList);
-
-		return searchList;
+		model.addAttribute("totalRows", totalRows);
+		
+		return null;
 	}
 
 	@Override

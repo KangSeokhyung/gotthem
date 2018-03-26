@@ -102,12 +102,12 @@ padding-top:5%;
 							<td>${pro.pro_code }</td>
 						</tr>
 						<tr>
-							<td>제품명</td>
-							<td>${pro.pro_name }</td>
-						</tr>
-						<tr>
 							<td>분류</td>
 							<td>${pro.pro_category }</td>
+						</tr>
+						<tr>
+							<td>제품명</td>
+							<td>${pro.pro_name }</td>
 						</tr>
 						<tr>
 							<td>가격</td>

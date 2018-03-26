@@ -31,20 +31,36 @@ padding: 0.6rem 1rem;
 }
 td .img{padding:0px;}
 
-@media all and (max-width:767px){
-.table-user-information .no {display:none}
-.table-user-information .category {display:none}
-.table-user-information .price {display:none}
-td .img{weight:10%}
-td .name{weight:70%}
-td .stock{weight:20%}
+.form-control {
+	width: 253px;
+	height: 34px;
+	display:inline;
 }
 
 .container{
 padding-top:50px;
 padding-bottom:20px;
 padding-left:0;
-margin-left:200px;
+margin-left:180px;
+}
+
+@media all and (max-width:767px){
+.container{
+padding-top:20px;
+padding-bottom:20px;
+padding-left:0;
+margin-left:0px;
+}
+
+.table-user-information .no {display:none}
+.table-user-information .img {display:none}
+.table-user-information .fidetime {display:none}
+td .img{weight:10%}
+td .name{weight:70%}
+td .stock{weight:20%}
+}
+
+.datePick{display:none;}
 }
 </style>
 <body>
@@ -64,46 +80,44 @@ margin-left:200px;
 		<div class="cover-inner container">
 	<form action="./storeOrderListTime.st"><br>
 		<div>
-			<label for="fromDate">기간:</label>&nbsp;&nbsp; <input type="date"
-				id="fromDate" name="from" required="" /> <label for="toDate">~</label>
-			<input type="date" id="toDate" name="to" required="" max=""/>&nbsp;&nbsp;
-			<input type="submit" value="조회" /><strong>&nbsp;&nbsp;&nbsp;총 결제 금액:&nbsp; <span id="chkSum"></span>
+			<label for="fromDate"><span class="datePick">기간: &nbsp;&nbsp; </span></label><input type="date"
+				id="fromDate" name="from" class="form-control" required="" /> <label for="toDate"><span class="datePick">~</span></label>
+			<input type="date" id="toDate" class="form-control" name="to" required="" max=""/>&nbsp;&nbsp;
+			<input type="submit" class="btn btn-primary" value="조회" /><strong>&nbsp;&nbsp;&nbsp;총 결제 금액:&nbsp; <span id="chkSum"></span>
 			</strong>
 		</div>
 	</form>
 			<table class="table table-user-information" id="mytable">
 				<tr>
-					<th style="width: 5%">No</th>
-					<th style="width: 6%">img</th>
-					<th class = 2>결제 시간</th>
-					<th class = 1>Code</th>
-					<th class = 2>상품명</th>
-					<th>점포</th>
-					<th style="width: 6%">수량</th>
-					<th >가격</th>
-					<th >결제</th>
-					<th >상태</th>
-					<th >결제취소</th>
+					<th class="no" scope="col">no.</th>
+					<th class="img" scope="col">사진</th>
+					<th class="name" scope="col">상품명</th>
+					<th class="stock" scope="col">수량</th>
+					<th class="price" scope="col">가격</th>
+					<th class="status" scope="col">상태</th>
+					<th class="findtime" scope="col">결제 시간</th>
+					<th class="info" scope="col">고객정보</th>
+					<th class="delete" scope="col">결제취소</th>
 				</tr>
 				<c:forEach var="row" items="${map.list}" varStatus="i">
 					<tr>
-						<td>${row.ord_no}</td>
+						<td class="no">${row.ord_no}</td>
 						<td class="img"><img src="/img/${row.ord_proimg}"
 							style="width: 50px; height: 50px" /></td>
-						<td>${row.ord_findtime}</td>
-						<td>${row.ord_procode}</td>
-						<td>${row.ord_proname}</td>
-						<td>${row.sto_name}</td>
-						<td>${row.ord_stock}</td>
-						<td><fmt:formatNumber pattern="###,###,###"
-								value="${row.ord_proprice}" /></td>
-						<td><fmt:formatNumber pattern="###,###,###"
+						<td class="name">${row.ord_proname}</td>
+						<td class="stock">${row.ord_stock}</td>
+						<td class="price"><fmt:formatNumber pattern="###,###,###"
 								value="${row.ord_price}" /> <input type="hidden" name="sum"
 							value="${row.ord_price}"></td>
-						<td>${row.ord_status}</td>
-						<td><input type="button" value="삭제"
+						<td class="status">${row.ord_status}</td>
+						<td class="findtime">${row.ord_findtime}</td>
+						<td class="info"><input type="button" value="상세" class="btn btn-primary"
+							onclick="button_detail('${row.ord_no}','${row.ord_stock}','${row.ord_procode}');">
+						</td>
+						<td class="delete"><input type="button" value="취소" class="btn btn-primary"
 							onclick="button_delete('${row.ord_no}','${row.ord_stock}','${row.ord_procode}');">
 						</td>
+						
 					</tr>
 				</c:forEach>
 			</table>

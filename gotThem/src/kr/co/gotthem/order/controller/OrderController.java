@@ -199,9 +199,13 @@ public class OrderController {
 		String to1 = to + " 23:59:59.9";
 		java.sql.Timestamp end = java.sql.Timestamp.valueOf(to1);
 		
+		
+		System.out.println("begin은 " + begin);
+		System.out.println("end은 " + end);
 		Map<String, Object> map = new HashMap<String, Object>();
-		List<OrderpayBean> slistOrder = orderService.storeListOrderTime(userName, begin, end);
-
+		List<OrderpayBean> slistOrder = orderService.storeListOrderTime(userNo, begin, end);
+		System.out.println("Time " + slistOrder);
+		
 		map.put("begin", from);
 		map.put("end", to);
 		map.put("list", slistOrder);
@@ -216,10 +220,12 @@ public class OrderController {
 	
 	@RequestMapping(value="/payment.gt", method = RequestMethod.POST)
     @ResponseBody
-	public HashMap payment(String accessToken, HttpSession session) throws Exception {
+	public HashMap payment(String accessToken, HttpSession session,
+			@RequestParam (value= "arrOrder[]") List valueArr) throws Exception {
+		
 		System.out.println("접속된 토큰 : " + accessToken);
 		@SuppressWarnings("rawtypes")
-        HashMap result = orderService.pay(accessToken, HashMap.class);
+        HashMap result = orderService.pay(accessToken, HashMap.class,valueArr);
         System.out.println("페이한 결과 : " + result);
 		session.setAttribute("tid",result.get("tid"));
         session.setAttribute("accessToken", accessToken);
@@ -230,7 +236,7 @@ public class OrderController {
     @RequestMapping(value="/approve.gt")
     public ModelAndView approve(HttpServletRequest req,HttpSession session, ModelAndView mav) throws Exception {
         String pg_Token = req.getParameter("pg_token");
-        System.out.println(pg_Token);
+        System.out.println("pg_Token:승인컨트롤"+pg_Token);
         @SuppressWarnings("rawtypes")
         HashMap result = orderService.approve(pg_Token,session,HashMap.class);
         mav.addObject("result", result);
