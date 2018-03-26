@@ -1,25 +1,49 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%
-	
-%>
-<!DOCTYPE html >
-<html>
-<head>
-<meta content="text/html; charset=UTF-8">
-<title>점주 정보 관리 - GOT THEM</title>
-<script
-	src="http://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<link rel="stylesheet"
-	href="resources/landy/vendor/bootstrap/css/bootstrap.min.css">
-<script
-	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js">
-	
-</script>
-<script src="resources/landy/vendor/bootstrap/js/bootstrap.min.js"></script>
-</head>
-<body>
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>편의점 재고 검색 GOT THEM!</title>
+    <meta name="description" content="Free Bootstrap Theme by uicookies.com">
+    <meta name="keywords" content="free website templates, free bootstrap themes, free template, free bootstrap, free website template">
+    
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400" rel="stylesheet">
+    <link rel="stylesheet" href="resources/mainTemplate/css/styles-merged.css">
+    <link rel="stylesheet" href="resources/mainTemplate/css/style.min.css">
+    <link rel="stylesheet" href="resources/mainTemplate/css/custom.css">
+     <!--[if lt IE 9]>
+      <script src="resources/mainTemplate/js/vendor/html5shiv.min.js"></script>
+      <script src="resources/mainTemplate/js/vendor/respond.min.js"></script>
+    <![endif]-->
+    <style>
+    .table-responsive{
+    margin-top: 80px;
+    padding: 50px;
+    }
+    </style>
+  </head>
+  <body>
+
+  <!-- START: header -->
+   <header role="banner" class="probootstrap-header">
+    <div class="container">
+       알아서 로고 넣으셈
+        
+        <a href="#" class="probootstrap-burger-menu visible-xs" ><i>Menu</i></a>
+        <div class="mobile-menu-overlay"></div>
+
+        <nav role="navigation" class="probootstrap-nav hidden-xs">
+          <ul class="probootstrap-main-nav">
+            <li><a href="memcontrol.ad">회원관리</a></li>
+            <li><a href="storecontrol.ad">점포관리</a></li>
+            <li><a href="#">게시판관리</a></li>
+          </ul>
+        </nav>
+    </div>
+  </header>
 	<div class="table-responsive">
 		<table class="table">
 		<h2>점포정보 관리</h2>
@@ -215,42 +239,46 @@
 		</div>
 	</div>
 
-</body>
 <script>
-	$(".edit").click(function() {
-
+    $(".edit").click(function(){ 
+		
 		var str = ""
 		var edit = $(this);
-
+		
 		// checkBtn.parent() : checkBtn의 부모는 <td>이다.
 		// checkBtn.parent().parent() : <td>의 부모이므로 <tr>이다.
 		var tr = edit.parent().parent();
 		var td = tr.children();
-
-		console.log("클릭한 Row의 모든 데이터 : " + tr.text());
-
+		
+		console.log("클릭한 Row의 모든 데이터 : "+tr.text());
+		
 		var userid = td.eq(0).text();
 		var username = td.eq(1).text();
-		var stoname = td.eq(2).text();
-		var email = td.eq(3).text();
-		var phone = td.eq(4).text();
-		var address = td.eq(5).text();
+		var email = td.eq(2).text();
+		var phone = td.eq(3).text();
+		var address = td.eq(4).text();
 		addrarray = address.split('/');
 		var addr1 = addrarray[0];
 		var addr2 = addrarray[1];
 		var addr3 = addrarray[2];
-
+		var regdate = td.eq(5).text();		
+		
 		console.log(addrarray);
-
+		
 		$("#mem_id").val(userid);
 		$("#mem_id2").val(userid);
 		$("#mem_name").val(username);
-		$("#sto_name").val(stoname);
 		$("#mem_email").val(email);
 		$("#mem_phone").val(phone);
-		$(".address1").val(addr1);
-		$(".address2").val(addr2);
-		$(".address3").val(addr3);
+		$("#sample6_postcode").val(addr1);
+		$("#sample6_address").val(addr2);
+		$("#sample6_address2").val(addr3);
 	});
-</script>
+    </script>
+  <script src="resources/mainTemplate/js/scripts.min.js"></script>
+  <script src="resources/mainTemplate/js/main.min.js"></script>
+  <script src="resources/mainTemplate/js/custom.js"></script>
+
+  </body>
+
 </html>

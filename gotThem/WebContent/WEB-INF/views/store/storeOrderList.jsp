@@ -23,15 +23,30 @@
 <link rel="stylesheet" href="resources/indexTemplate/css/animate.css">
 <link rel="stylesheet" href="resources/indexTemplate/css/style.css">
 </head>
-<!-- <style type="text/css">
-th.1 {
-	width: 5px;
+<style>
+.btn-primary{
+border-radius:4px;
+margin:1px;
+padding: 0.6rem 1rem;
+}
+td .img{padding:0px;}
+
+@media all and (max-width:767px){
+.table-user-information .no {display:none}
+.table-user-information .category {display:none}
+.table-user-information .price {display:none}
+td .img{weight:10%}
+td .name{weight:70%}
+td .stock{weight:20%}
 }
 
-.2 {
-	width: 5%;
+.container{
+padding-top:50px;
+padding-bottom:20px;
+padding-left:0;
+margin-left:200px;
 }
-</style> -->
+</style>
 <body>
 	<aside>
 		<%@include file="../store/nav.jsp"%>
@@ -41,11 +56,12 @@ th.1 {
 		<a href="#" class="probootstrap-toggle js-probootstrap-toggle"><span
 			class="oi oi-menu"></span></a>
 		<div class="probootstrap-main-site-logo">
-			<a href="index.html">Aside</a></a>
+			<a href="index.html">GOT THEM</a></a>
 		</div>
 	</div>
 	<br><br>
-	<h2>점포별 결제 목록</h2>
+	<div class="cover-container pb-5">
+		<div class="cover-inner container">
 	<form action="./storeOrderListTime.st"><br>
 		<div>
 			<label for="fromDate">기간:</label>&nbsp;&nbsp; <input type="date"
@@ -55,17 +71,14 @@ th.1 {
 			</strong>
 		</div>
 	</form>
-	<div class="cover-container pb-5">
-		<div class="cover-inner container">
-
 			<table class="table table-user-information" id="mytable">
 				<tr>
 					<th style="width: 5%">No</th>
+					<th style="width: 6%">img</th>
 					<th class = 2>결제 시간</th>
 					<th class = 1>Code</th>
-					<th style="width: 6%">img</th>
 					<th class = 2>상품명</th>
-					<th style="width: 6%">점포</th>
+					<th>점포</th>
 					<th style="width: 6%">수량</th>
 					<th >가격</th>
 					<th >결제</th>
@@ -75,10 +88,10 @@ th.1 {
 				<c:forEach var="row" items="${map.list}" varStatus="i">
 					<tr>
 						<td>${row.ord_no}</td>
+						<td class="img"><img src="/img/${row.ord_proimg}"
+							style="width: 50px; height: 50px" /></td>
 						<td>${row.ord_findtime}</td>
 						<td>${row.ord_procode}</td>
-						<td><img src="/img/${row.ord_proimg}"
-							style="width: 50px; height: 50px" /></td>
 						<td>${row.ord_proname}</td>
 						<td>${row.sto_name}</td>
 						<td>${row.ord_stock}</td>
@@ -95,9 +108,8 @@ th.1 {
 				</c:forEach>
 			</table>
 
-		</div>
 	</div>
-
+	</div>
 
 
 	<div class="container-fluid d-md-none">

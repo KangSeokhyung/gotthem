@@ -42,6 +42,7 @@ td .stock{weight:20%}
 
 .pb-5{
 padding-top:50px;
+padding-bottom:20px;
 padding-left:0;
 }
 </style>

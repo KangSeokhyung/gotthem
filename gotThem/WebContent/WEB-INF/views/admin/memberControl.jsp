@@ -1,17 +1,51 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%  %>
-<!DOCTYPE html >
-<html>
-<head>
-<meta content="text/html; charset=UTF-8">
-<title>회원정보 관리 - GOT THEM</title>
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<link rel="stylesheet" href="resources/landy/vendor/bootstrap/css/bootstrap.min.css">
- <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"> </script>
- <script src="resources/landy/vendor/bootstrap/js/bootstrap.min.js"></script>
-<body>
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>편의점 재고 검색 GOT THEM!</title>
+    <meta name="description" content="Free Bootstrap Theme by uicookies.com">
+    <meta name="keywords" content="free website templates, free bootstrap themes, free template, free bootstrap, free website template">
+    
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400" rel="stylesheet">
+    <link rel="stylesheet" href="resources/mainTemplate/css/styles-merged.css">
+    <link rel="stylesheet" href="resources/mainTemplate/css/style.min.css">
+    <link rel="stylesheet" href="resources/mainTemplate/css/custom.css">
+     <!--[if lt IE 9]>
+      <script src="resources/mainTemplate/js/vendor/html5shiv.min.js"></script>
+      <script src="resources/mainTemplate/js/vendor/respond.min.js"></script>
+    <![endif]-->
+    <style>
+    .table-responsive{
+    margin-top: 80px;
+    padding: 50px;
+    }
+    </style>
+  </head>
+  <body>
+
+  <!-- START: header -->
+   <header role="banner" class="probootstrap-header">
+    <div class="container">
+        알아서 로고 넣으셈
+        
+        <a href="#" class="probootstrap-burger-menu visible-xs" ><i>Menu</i></a>
+        <div class="mobile-menu-overlay"></div>
+
+        <nav role="navigation" class="probootstrap-nav hidden-xs">
+          <ul class="probootstrap-main-nav">
+            <li><a href="memcontrol.ad">회원관리</a></li>
+            <li><a href="storecontrol.ad">점포관리</a></li>
+            <li><a href="#">게시판관리</a></li>
+          </ul>
+        </nav>
+    </div>
+  </header>
+
+  <div class="probootstrap-loader"></div>
 	<div class="table-responsive">
 		<table class="table">
 		<h2>회원정보 관리</h2>
@@ -173,7 +207,6 @@
                 </div> 
         	</div> 
 		</div>
-</body>
 <script>
     $(".edit").click(function(){ 
 		
@@ -210,5 +243,10 @@
 		$("#sample6_address2").val(addr3);
 	});
     </script>
+  <script src="resources/mainTemplate/js/scripts.min.js"></script>
+  <script src="resources/mainTemplate/js/main.min.js"></script>
+  <script src="resources/mainTemplate/js/custom.js"></script>
+
+  </body>
 
 </html>
