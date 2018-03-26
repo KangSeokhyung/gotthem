@@ -40,8 +40,8 @@
 	</insert>
 	
 	<select id="searchList" parameterType="java.util.HashMap" resultType="java.util.HashMap">
-		select m.mem_no as mem_no, m.sto_name as sto_name, m.mem_address as mem_address,
-			p.pro_name as pro_name, p.pro_stock as pro_stock, m.sto_img as sto_img, m.mem_phone as mem_phone
+		select distinct m.mem_no as mem_no, m.sto_name as sto_name, m.mem_address as mem_address,
+			m.sto_img as sto_img, m.mem_phone as mem_phone
 		from member m, product p
 		where m.mem_no=p.pro_memno and p.pro_name like concat('%', #{search}, '%')
 			or m.sto_name like concat('%', #{search}, '%')
@@ -59,7 +59,7 @@
 	</select>
 	
 	<select id="searchListCount" resultType="int" parameterType="String">
-		select count(*)
+		select count(distinct sto_name)
 		from member m, product p
 		where m.mem_no=p.pro_memno and p.pro_name like concat('%', #{search}, '%')
 			or m.sto_name like concat('%', #{search}, '%')

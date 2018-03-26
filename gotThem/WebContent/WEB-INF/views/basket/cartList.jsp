@@ -146,7 +146,9 @@
                    <td class="tNonePre">
                         <input type="hidden" name="money" value="${row.money}">
                         <input type="hidden" name="bas_no" value="${row.bas_no}">
-						<a href="#" class="minPurchase" onclick="button_order('${row.bas_no}','${row.bas_proname}','${row.bas_procode}','${row.money}','${row.bas_prostock}','${row.bas_proimg}','${row.bas_proprice}','${row.pro_memno}','${row.sto_name}');">바로구매</a><br/>
+						<input type="hidden" name="bas_all" id="bas_all" value="${row.bas_no},${row.bas_proname},${row.bas_proprice},${row.bas_prostock},${row.bas_procode},${row.money},${row.bas_proimg}, ${row.bas_procomment},${row.pro_memno},${row.sto_name},${row.bas_memno}">
+						<a href="#" class="minPurchase" id= "orderOne"
+						onclick="button_order('${row.bas_no}','${row.bas_proname}','${row.bas_procode}','${row.money}','${row.bas_prostock}','${row.bas_proimg}','${row.bas_proprice}','${row.pro_memno}','${row.sto_name}');" >바로구매</a><br/>
 						<a href="#" class="minDel02" onclick="button_basDel(${row.bas_no});">상품삭제</a>
 				   </td>
                 </tr>
@@ -275,14 +277,14 @@ function button_basDel(bas_no){  //단건 직접 삭제
 			return;
 			}
 	}
-function button_order(bas_no,bas_proname,bas_procode,money,bas_prostock,bas_proimg,bas_proprice,pro_memno,sto_name){
+/* function button_order(bas_no,bas_proname,bas_procode,money,bas_prostock,bas_proimg,bas_proprice,pro_memno,sto_name){
 	if (confirm("상품을 결제 하시겠습니까?")){ //단건결제
 		location.href="insertOrder.gt?bas_no="+bas_no+"&bas_proname="+bas_proname+
     		"&bas_procode="+bas_procode+"&money="+money+"&bas_prostock="+bas_prostock+"&bas_proimg="+bas_proimg+"&bas_proprice="+bas_proprice+"&pro_memno="+pro_memno+"&sto_name="+sto_name;
 	}else{ 
 		return;
 		}
-	}  
+	}  */ 
 function button_selDel(){  //장바구니 선택 삭제
    if( $(":checkbox[name='checkRow']:checked").length==0 ){
 	  alert("삭제할 항목을 체크해주세요.");
@@ -416,16 +418,51 @@ $('#payBtn').click(()=> {
      }
 }); 
 
-$('#button_allOrder').click(()=> {
-	
+$('#orderOne').click(function() {	  
     if(!access_Token){
    	 console.log('토큰이 없음');
         loginWithKakao();
     } else {
    	 console.log("토근존재");
-        payment();
+   	 var orderOne = $(this).prev().val();  
+   	 paymentOne(orderOne);
     }
 });
+
+function paymentOne(orderOne) {
+	if (confirm("상품을 결제 하시겠습니까?")){
+	$.ajax({
+	 url : 'paymentOne.gt',
+	 data : { 
+		 accessToken : access_Token,		
+		 "orderOne": orderOne
+		},
+     method: 'POST',
+     success: (result) => {
+    	 console.log(result);
+     	window.open(result.next_redirect_pc_url,
+     			"","width=400, height=700");
+     	console.log("온다아아앙");
+     }, 
+     error: () => {
+         window.alert('payment 서버 실행 오류!');
+     }
+  });
+	}else{ 
+		return;
+		} 
+}
+
+
+/* function button_order(bas_no,bas_proname,bas_procode,money,bas_prostock,bas_proimg,bas_proprice,pro_memno,sto_name){
+	if (confirm("상품을 결제 하시겠습니까?")){ //단건결제
+		location.href="insertOrder.gt?bas_no="+bas_no+"&bas_proname="+bas_proname+
+    		"&bas_procode="+bas_procode+"&money="+money+"&bas_prostock="+bas_prostock+"&bas_proimg="+bas_proimg+"&bas_proprice="+bas_proprice+"&pro_memno="+pro_memno+"&sto_name="+sto_name;
+	}else{ 
+		return;
+		}
+	}  */
+
 
 /* function button_allOrder(){ //장바구니 전체 주문하기
 	var checkAllOrder = [];
@@ -449,6 +486,18 @@ $('#button_allOrder').click(()=> {
 				} 
 		}  */
 
+		$('#button_allOrder').click(()=> {
+			
+		    if(!access_Token){
+		   	 console.log('토큰이 없음');
+		        loginWithKakao();
+		    } else {
+		   	 console.log("토근존재");
+		        payment();
+		    }
+		});		
+		
+		
 function payment() {
 	var checkAllOrder = [];
 	$("input[name='checkRow']").each(function(i){
@@ -456,17 +505,6 @@ function payment() {
 	});
 	checkAllOrder.push('[]');
 	if (confirm("전체 상품을 결제 하시겠습니까?")){
-	/* 	$.ajax({
-			url:"selectOrder.gt",
-			type:"post",
-			dataType: "text",
-			data:{arrOrder:checkAllOrder
-				},
-				success:function(result){
-					location.href="./orderList.gt";
-					}
-				}); */
-			
 	$.ajax({
 	 url : 'payment.gt',
      data: {

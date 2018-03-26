@@ -40,4 +40,10 @@ public interface OrderService {
    public <T> T pay(String accessToken, Class<T> type, List valueArr);
    
    public <T> T approve(String pg_Token, HttpSession session, Class<T> type);
+   
+   
+   // 4.1 단건 결제 api 
+   public <T> T payOne(String accessToken, Class<T> type, String orderOne);
+   
+   public <T> T approveOne(String pg_Token, HttpSession session, Class<T> type,String orderOne);
 }

@@ -231,8 +231,80 @@ public class OrderController {
         session.setAttribute("accessToken", accessToken);
     return result;
     }
-    
-    
+ 
+	
+	// 단건 결제 api
+	@RequestMapping(value="/paymentOne.gt", method = RequestMethod.POST)
+    @ResponseBody
+	public HashMap paymentOne(String accessToken, HttpSession session,
+			@RequestParam String orderOne) throws Exception {
+		System.out.println("접속된 토큰 : " + accessToken);
+		@SuppressWarnings("rawtypes")
+        HashMap result = orderService.payOne(accessToken, HashMap.class, orderOne);
+        
+		System.out.println("페이한 결과 : " + result);
+		System.out.println("orderOne : " + orderOne);
+		session.setAttribute("tid",result.get("tid"));
+        session.setAttribute("accessToken", accessToken);
+        session.setAttribute("orderOne", orderOne);
+       
+    return result;
+    }
+	
+	@RequestMapping(value="/approveOne.gt")
+    public ModelAndView approveOne(HttpServletRequest req,HttpSession session, ModelAndView mav) throws Exception {
+        String orderOne = (String)session.getAttribute("orderOne");
+		session.removeAttribute("orderOne");
+		String pg_Token = req.getParameter("pg_token");
+        System.out.println("pg_Token:승인컨트롤"+pg_Token);
+        System.out.println("승인orderOne: "+ orderOne);
+        
+        @SuppressWarnings("rawtypes")
+        HashMap result = orderService.approveOne(pg_Token,session,HashMap.class,orderOne);
+        System.out.println("승인컨트롤 돌아옴 ");
+        
+        System.out.println("orderOne서비스 "+ orderOne);
+       
+        java.util.StringTokenizer  st = new java.util.StringTokenizer(orderOne,",");
+        String bas_no = st.nextToken();
+    	String bas_proname = st.nextToken();
+    	String bas_proprice = st.nextToken(); 
+    	String bas_prostock = st.nextToken();
+    	String bas_procode = st.nextToken();
+ 	    String money = st.nextToken();
+ 	    String bas_proimg = st.nextToken();
+    	String bas_procomment = st.nextToken();
+        String pro_memno = st.nextToken();
+    	String sto_name = st.nextToken();
+    	String bas_memno = st.nextToken();
+    	
+    	OrderpayBean orderBean = new OrderpayBean();
+    	orderBean.setOrd_memno(Integer.parseInt(bas_memno));      
+        orderBean.setOrd_basno(Integer.parseInt(bas_no));        
+        orderBean.setOrd_proname(bas_proname);
+        orderBean.setOrd_proprice(Integer.parseInt(bas_proprice));
+        orderBean.setOrd_stock(Integer.parseInt(bas_prostock));
+        orderBean.setOrd_procode(Integer.parseInt(bas_procode));
+        orderBean.setOrd_price(Integer.parseInt(money));
+        orderBean.setOrd_proimg(bas_proimg);
+        orderBean.setPro_memno(Integer.parseInt(pro_memno));
+        orderBean.setSto_name(sto_name);
+        
+        orderService.orderInsert(orderBean);
+	    orderService.orderUpdateBasket(orderBean);
+	    orderService.orderDeleteBasket(orderBean); 
+	    int userNo = orderBean.getOrd_memno();
+	    orderService.listOrder(userNo);
+	    System.out.println("결제 db연동");
+
+        mav.addObject("result", result);
+        mav.setViewName("basket/purchase");
+        return mav;
+          
+	}
+	 
+	 
+	
     @RequestMapping(value="/approve.gt")
     public ModelAndView approve(HttpServletRequest req,HttpSession session, ModelAndView mav) throws Exception {
         String pg_Token = req.getParameter("pg_token");
