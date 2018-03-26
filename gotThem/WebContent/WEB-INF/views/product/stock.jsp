@@ -30,6 +30,7 @@ margin:1px;
 padding: 0.6rem 1rem;
 }
 
+
 @media all and (max-width:767px){
 .stocktable .no {display:none}
 .stocktable .category {display:none}
@@ -40,7 +41,7 @@ td .stock{weight:20%}
 }
 
 .pb-5{
-padding-top:5%;
+padding-top:50px;
 padding-left:0;
 }
 </style>

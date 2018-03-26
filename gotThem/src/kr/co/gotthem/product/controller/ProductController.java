@@ -259,9 +259,4 @@ public class ProductController {
 	public String map(Model model) {
 		return "product/mapDiv";
 	}
-	
-	@RequestMapping(value = "/test.st")
-	public String test(Model model) {
-		return "store/test";
-	}
 }
