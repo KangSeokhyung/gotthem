@@ -102,7 +102,7 @@ public class BasketController {
 	    mav.setViewName("basket/cartList");    // view(jsp)의 이름 저장
 	    mav.addObject("map", map);            // map 변수 저장
 	    mav.addObject("memberInfo", memberInfo);		    
-	    System.out.println("리스트mav  "+mav );
+	    System.out.println("mav  "+mav );
 	    return mav;
 	}
 

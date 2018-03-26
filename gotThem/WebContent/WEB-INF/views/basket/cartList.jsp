@@ -173,8 +173,8 @@
   </div>
   </form>
   	<div class="btnAreaList">
-		<a href="#" class="sOrder" onclick="button_selOrder();"><p>선택상품 <span>주문하기</span></p></a>&nbsp;&nbsp;
-		<a href="#" class="aOrder" onclick="button_allOrder();"><p>전체상품 <span>주문하기</span></p></a>&nbsp;&nbsp;
+		<a href="#" class="sOrder"  onclick="button_selOrder();"><p>선택상품 <span>주문하기</span></p></a>&nbsp;&nbsp;
+		<a href="#" class="aOrder" id=button_allOrder onclick="button_allOrder();"><p>전체상품 <span>주문하기</span></p></a>&nbsp;&nbsp;
 		<a href="/gotThem" class="continuation" onclick=""><p>쇼핑 <span>계속하기</span></p></a>
 		<button id = "payBtn" value="ddd" >ddddddd</button>
 	</div>
@@ -363,27 +363,7 @@ function button_allDel(){  //장바구니 전체 삭제
 			  return;
 		  }
 	  }  
-function button_allOrder(){ //장바구니 전체 주문하기
-	var checkAllOrder = [];
-	$("input[name='checkRow']").each(function(i){
-		checkAllOrder.push($(this).val());		
-	});
-	checkAllOrder.push('[]');
-		if (confirm("전체 상품을 결제 하시겠습니까?")){
-			$.ajax({
-				url:"selectOrder.gt",
-				type:"post",
-				dataType: "text",
-				data:{arrOrder:checkAllOrder
-					},
-					success:function(result){
-						location.href="./orderList.gt";
-						}
-					});
-			}else{ 
-				return;
-				} 
-		}
+
 		 
 $(document).on("click", "#count_down",function(){// 수량 변경 다운
 	var bas_procode= $(this).parent().prev().prev().prev().prev().val()*1;
@@ -435,13 +415,63 @@ $('#payBtn').click(()=> {
          payment();
      }
 }); 
- 
+
+$('#button_allOrder').click(()=> {
+	
+    if(!access_Token){
+   	 console.log('토큰이 없음');
+        loginWithKakao();
+    } else {
+   	 console.log("토근존재");
+        payment();
+    }
+});
+
+/* function button_allOrder(){ //장바구니 전체 주문하기
+	var checkAllOrder = [];
+	$("input[name='checkRow']").each(function(i){
+		checkAllOrder.push($(this).val());		
+	});
+	checkAllOrder.push('[]');
+		if (confirm("전체 상품을 결제 하시겠습니까?")){
+			$.ajax({
+				url:"selectOrder.gt",
+				type:"post",
+				dataType: "text",
+				data:{arrOrder:checkAllOrder
+					},
+					success:function(result){
+						location.href="./orderList.gt";
+						}
+					});
+			}else{ 
+				return;
+				} 
+		}  */
 
 function payment() {
-  $.ajax({
+	var checkAllOrder = [];
+	$("input[name='checkRow']").each(function(i){
+		checkAllOrder.push($(this).val());		
+	});
+	checkAllOrder.push('[]');
+	if (confirm("전체 상품을 결제 하시겠습니까?")){
+	/* 	$.ajax({
+			url:"selectOrder.gt",
+			type:"post",
+			dataType: "text",
+			data:{arrOrder:checkAllOrder
+				},
+				success:function(result){
+					location.href="./orderList.gt";
+					}
+				}); */
+			
+	$.ajax({
 	 url : 'payment.gt',
      data: {
-         accessToken : access_Token
+         accessToken : access_Token,
+         arrOrder: checkAllOrder
      },
      method: 'POST',
      success: (result) => {
@@ -454,6 +484,9 @@ function payment() {
          window.alert('payment 서버 실행 오류!');
      }
   });
+	}else{ 
+		return;
+		} 
 }
 function loginWithKakao() {
     Kakao.Auth.login({
