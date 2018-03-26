@@ -30,4 +30,6 @@ public interface ProductService {
 
 	public ProductBean productDetail(int pro_code);
 	
+	public int productSearchStock(int pro_code);
+	
 }

@@ -23,6 +23,15 @@
 <link rel="stylesheet" href="resources/indexTemplate/css/animate.css">
 <link rel="stylesheet" href="resources/indexTemplate/css/style.css">
 </head>
+<!-- <style type="text/css">
+th.1 {
+	width: 5px;
+}
+
+.2 {
+	width: 5%;
+}
+</style> -->
 <body>
 	<aside>
 		<%@include file="../store/nav.jsp"%>
@@ -41,7 +50,7 @@
 		<div>
 			<label for="fromDate">기간:</label>&nbsp;&nbsp; <input type="date"
 				id="fromDate" name="from" required="" /> <label for="toDate">~</label>
-			<input type="date" id="toDate" name="to" required="" />&nbsp;&nbsp;
+			<input type="date" id="toDate" name="to" required="" max=""/>&nbsp;&nbsp;
 			<input type="submit" value="조회" /><strong>&nbsp;&nbsp;&nbsp;총 결제 금액:&nbsp; <span id="chkSum"></span>
 			</strong>
 		</div>
@@ -51,17 +60,17 @@
 
 			<table class="table table-user-information" id="mytable">
 				<tr>
-					<th>결제 번호</th>
-					<th>결제 시간</th>
-					<th>상품코드</th>
-					<th>상품사진</th>
-					<th>상품명</th>
-					<th>매장명</th>
-					<th>상품수량</th>
-					<th>상품가격</th>
-					<th>결제 가격</th>
-					<th>상태</th>
-					<th>결제취소</th>
+					<th style="width: 5%">No</th>
+					<th class = 2>결제 시간</th>
+					<th class = 1>Code</th>
+					<th style="width: 6%">img</th>
+					<th class = 2>상품명</th>
+					<th style="width: 6%">점포</th>
+					<th style="width: 6%">수량</th>
+					<th >가격</th>
+					<th >결제</th>
+					<th >상태</th>
+					<th >결제취소</th>
 				</tr>
 				<c:forEach var="row" items="${map.list}" varStatus="i">
 					<tr>
@@ -71,7 +80,7 @@
 						<td><img src="/img/${row.ord_proimg}"
 							style="width: 50px; height: 50px" /></td>
 						<td>${row.ord_proname}</td>
-						<td>${row.pro_memno}</td>
+						<td>${row.sto_name}</td>
 						<td>${row.ord_stock}</td>
 						<td><fmt:formatNumber pattern="###,###,###"
 								value="${row.ord_proprice}" /></td>
@@ -119,7 +128,9 @@
 				var cartSum = checkSumArr[i];
 				cartSum = parseInt(cartSum);
 				sum += cartSum;
-				document.getElementById("chkSum").innerHTML = sum;
+				var str = sum;
+		     	var bb = Number(str).toLocaleString('en').split(".")[0];	
+				document.getElementById("chkSum").innerHTML = bb;
 			}
 		});
 		jQuery(function($) {
@@ -130,7 +141,8 @@
 				$('#fromDate').prop('max', $(this).val());
 			});
 		});
-	</script> 
+		document.getElementById('toDate').valueAsDate = new Date();
+		</script> 
 	<script src="resources/indexTemplate/js/popper.min.js"></script> <script
 		src="resources/indexTemplate/js/bootstrap.min.js"></script> <script
 		src="resources/indexTemplate/js/owl.carousel.min.js"></script> <script

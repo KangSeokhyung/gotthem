@@ -225,4 +225,8 @@ public class ProductServiceImpl implements ProductService {
 		return productDao.productDetail(pro_code);
 	}
 
+	@Override
+	public int productSearchStock(int pro_code) {
+		return productDao.productSearchStock(pro_code);
+	}
 }

@@ -30,7 +30,7 @@ public interface OrderDao {
     public List<OrderpayBean> listOrder(int userNo);
    
     // 3.1 사장님 아이디별 전체 결제 목록 
-    public List<OrderpayBean> storeListOrder(int userNo);
+    public List<OrderpayBean> storeListOrder(String userName);
     
     // 3.2 사장님 아이디별 기간  결제 목록 
     public List<OrderpayBean> storeListOrderTime(int userNo, Timestamp begin, Timestamp end);

@@ -24,6 +24,10 @@
     header{
     padding-bottom:80px;
     }
+    backgroundColor{
+    background: #2866AB;
+    }
+    
     </style>
   </head>
 <body>
@@ -40,7 +44,7 @@
 
             <div class="page-title probootstrap-animate">
               <div class="probootstrap-breadcrumbs">
-                <a href="#">Home</a><span>Login</span>
+                <a href="index.gt">Home</a><span>Login</span>
               </div>
               <h1>로그인</h1>
             </div>
@@ -69,14 +73,14 @@
 
           <h4>Feedback</h4>
           <p>궁금하신 점이 있으면, 언제라도 문의 주세요.<br> Gotthem은 항상 열려 있습니다.</p>
-          <p><a href="#">Learn More</a></p>
+          <p><a href="gotthemInfo.gt">Learn More</a></p>
         </div>
         <div class="col-md-8 col-md-push-1">
-                  <form method="post" class="probootstrap-form mb60">
+                  <form id="kakaoLogin" method="post" class="probootstrap-form mb60">
             <div class="row">
               <div class="col-sm-6">
                 <div class="form-group">
-                  <label for="mem_id">ID</label>
+                  <label for="mem_id">아이디</label>
                   <input type="text" class="form-control" id="mem_id" name="mem_id" autofocus>
                 </div>
               </div>
@@ -84,7 +88,7 @@
               <div class="row">
               <div class="col-md-6">
                 <div class="form-group">
-                  <label for="mem_pw">PASSWORD</label>
+                  <label for="mem_pw">패스워드</label>
                   <input type="password" class="form-control" id="mem_pw" name="mem_pw">
                 </div>
               </div>
@@ -106,16 +110,17 @@
             </div>
            
           </form>
-          <form id="kakaoForm" action="kakaoLogin.st" method="post">
-          	<input type="hidden" value="" id="kakao_email" name="mem_id">
-          	<input type="hidden" value="" id="mem_name" name="mem_name">
-          	<input type="hidden" value="" id="mem_email" name="mem_email">
-          </form>
+          
         </div>
       </div>
     </div>
   </section>  
-
+		<form id="kakaoForm" action="kakaoLogin.gt" method="post">
+          	<input type="hidden" value="" id="kakao_id" name="kakao_id">
+          	<input type="hidden" value="" id="kakao_name" name="kakao_name">
+          	<input type="hidden" value="" id="kakao_email" name="kakao_email">
+          	<input type="hidden" value="" id="kakao_token" name="kakao_token">
+          </form>
 </body>
     <!-- Javascript files-->
     <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
@@ -127,7 +132,7 @@
   	<script type='text/javascript'>
   //<![CDATA[
     // 사용할 앱의 JavaScript 키를 설정해 주세요.
-    Kakao.init('7f93c771faceb935af25ef6e91c4a334');
+    Kakao.init('363553076ca8777f012d9c9ce3b92b8c');
     // 카카오 로그인 버튼을 생성합니다.
     Kakao.Auth.createLoginButton({
       container: '#kakao-login-btn',
@@ -135,18 +140,22 @@
     	  Kakao.API.request({
     		    url: '/v1/user/me',
     		    success: function(res) {
-    		      alert(res.kaccount_email +
-    		      res.id +
-    		      res.properties.nickname);
-    		      if(document.getElementById('mem_id').value !=null){
+    		    	  alert(authObj.access_token);
+    		      if(document.getElementById('mem_id').value !=null || document.getElementById('mem_pw').value !=null){
     		    	  document.getElementById('mem_id').value = null;
+    		    	  document.getElementById('mem_pw').value = null;
     		      }
     		    document.getElementById('kakao_email').value = res.kaccount_email;
+    		    document.getElementById('kakao_id').value = res.id;
+    		    document.getElementById('kakao_name').value = res.properties.nickname;
+    		    document.getElementById('kakao_token').value = authObj.access_token;
+    		    document.getElementById("kakaoForm").submit();
     		    },
     		    fail: function(error) {
     		      alert(JSON.stringify(error))
     		    }
     		});
+    	  
       },
       fail: function(err) {
          alert("Login Fail");

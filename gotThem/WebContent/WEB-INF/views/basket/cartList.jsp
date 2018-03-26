@@ -6,16 +6,31 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 <title>상품장바구니 목록</title>
 <meta name="keywords" content="free website templates, free bootstrap themes, free template, free bootstrap, free website template">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scaleable=no" />
+<link rel="stylesheet" type="text/css" href="resources/renew2/css/reset.css" />
+<link rel="stylesheet" type="text/css" href="resources/renew2/css/layout.css" />
+<link rel="stylesheet" type="text/css" href="resources/renew2/css/content.css" />
+<link rel="stylesheet" type="text/css" href="resources/renew2/css/jquery.fancybox-1.3.4.css" />
+<link rel="stylesheet" type="text/css" href="resources/renew2/css/jquery-ui-1.9.2.custom.min.css" />
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400" rel="stylesheet">
     <link rel="stylesheet" href="resources/mainTemplate/css/styles-merged.css">
     <link rel="stylesheet" href="resources/mainTemplate/css/style.min.css">
     <link rel="stylesheet" href="resources/mainTemplate/css/custom.css">
-    <!--[if lt IE 9]>
-      <script src="resources/mainTemplate/js/vendor/html5shiv.min.js"></script>
-      <script src="resources/mainTemplate/js/vendor/respond.min.js"></script>
-    <![endif]-->
+ 
+<style>
+ #pro_stock {
+ padding:0 0 0 15px
+}
+  
+@media ( max-width: 768px ) {
+ #pro_stock {
+ padding:0 0 0 8px
+}
+}
+</style>
 </head>
 <body>
 <header>
@@ -44,29 +59,56 @@
       <li style="background-image: url(resources/mainTemplate/img/slider_4.jpg);"></li>
       <li style="background-image: url(resources/mainTemplate/img/slider_2.jpg);"></li>
     </ul>
-  </section>  
+  </section>
+    
 <div class="container">
+<!--  <div style='float:right; padding: 3px 30px 3px 6px;'>
+  <button type="button" value="상품목록1" id="btnList">계속 쇼핑하기</button> 
+ </div> -->
 <c:choose>
 <c:when test="${map.count == 0}">
  <img src="/img/cart_img_empty.gif" style=" width:360px;height:263px;margin-left:auto;margin-right:auto;display:block;"/>
  <div>  
             <div style='float:right; padding: 3px 30px 3px 6px;'>
-             <button type="button" value="상품목록1" id="btnList">계속 쇼핑하기</button> 
-            </div></div>  
+            <a href="/gotThem" class="continuation" onclick=""><p>쇼핑 <span>계속하기</span></p></a>
+            </div>
+ </div>  
 </c:when>
 <c:otherwise>   
-  <form name="form1" id="form1" method="post" action="./update.gt">
-   <table class="table">
+  <form name="form1" id="form1" method="post" action="./update.gt" onsubmit="return validate();">
+   <!-- del btnArea -->
+					<div class="btnArea nMn">
+						<ul class="delTopLeft">
+							<li><a href="#" onclick="button_selDel()"><img src="/img/btn_select_del.gif" alt="선택삭제"/></a></li>
+							<li><a href="#" onclick="button_allDel()"><img src="/img/btn_all_del.gif" alt="전체삭제"/></a></li>
+						</ul>
+					</div>
+					<!-- //del btnArea -->
+   <div class="listDiv">
+   <table class="listType" border="1" cellspacing="0">
+    <caption>장바구니 목록</caption>
+							<colgroup>
+							<col width="4%" class="tw8"/>
+							<col width="10%" class="cartImg"/>
+							<col width="*" />
+							<col width="13%" class="cartw13" />
+							<col width="10%" class="tNonePre"/>
+							<col width="13%" class="cartw27"/>
+							<col width="14%" class="cartw25"/>
+							<col width="12%" class="tNonePre"/>
+							</colgroup>
     <thead>   
        <tr>
-                   <th><input type="checkbox" name="checkAll" id="th_checkAll" /></th> 
-                   <th>상품사진</th>
-                   <th>상품명</th>
-                   <th>매장명</th>
-                   <th>판매가</th>
-                   <th >수량 </th>
-                   <th style='width:100px'>구매예정가</th>
-                   <th>선택</th>
+                   <th scope="col"><!-- <input type="checkbox" name="checkAll" id="th_checkAll" /> -->
+                   
+                   <a href="#" class="con"  name="checkAll" id="th_checkAll" onclick="button_checkAll();" />all</a>
+                   <!-- <input type="button" class="con" value="All" name="checkAll" id="th_checkAll" onclick="button_checkAll();" /> --></th> 
+                   <th scope="col" colspan="2">상품정보</th>
+                   <th scope="col">매장명</th>
+                   <th scope="col" class="tNonePre">가격</th>
+                   <th scope="col">수량 </th>
+                   <th scope="col"style='width:100px'>주문금액</th>
+                   <th scope="col" class="tNonePre">주문</th>
      </tr>
     </thead>
     <tbody id="rowCheck">
@@ -74,56 +116,72 @@
              <c:forEach var="row" items="${map.list}" varStatus="i">
                <tr>                
                   <td> 
-                      <input type="checkbox" name="checkRow" class="chk" id="checkRow"  value="${row.bas_no},${row.bas_proname},${row.bas_proprice},${row.bas_prostock},${row.bas_procode},${row.money},${row.bas_proimg}, ${row.bas_procomment},${row.pro_memno}"
+                      <input type="checkbox" name="checkRow" class="chk" id="checkRow"  value="${row.bas_no},${row.bas_proname},${row.bas_proprice},${row.bas_prostock},${row.bas_procode},${row.money},${row.bas_proimg}, ${row.bas_procomment},${row.pro_memno},${row.sto_name}"
                       onclick="cart();" /> 
                   </td>
-                  <td>
-                       <img src="/img/${row.bas_proimg}" style="width:50px; height:50px"/>
+                  <td class="img" class="tNonePre">
+                       <a href="productDetail.gt?pro_code=${row.bas_procode}"><img src="/img/${row.bas_proimg}" style="width:60px; height:60px" class="dn" alt="" /></a>
                   </td>
-                  <td>
+                  <td class="minLeft" >
                       <a href="productDetail.gt?pro_code=${row.bas_procode}" style="color: #7e8890;"> ${row.bas_proname}</a>
                   </td>
                    <td>
-                       ${row.pro_memno}
+                       ${row.sto_name}
                   </td>
-                  <td style="width: 80px" align="right" >
+                  <td class="tNonePre" style="width: 80px" align="right" >
                        <fmt:formatNumber pattern="###,###,###" value="${row.bas_proprice}"/>
                   </td>
-                  <td>
-                     <input type="number" style="width:50px; height:25px;" name="bas_prostock" value="${row.bas_prostock}" min="1">
-                     <input type="hidden" name="bas_procode" value="${row.bas_procode}"><br>
-                     <button type="button" id="button_update"style='width:50px;height:25px;font-size: 12px;' onclick="modify();" >변경</button>
-                   <!-- <button type="submit" id="btnUpdate" >수정</button> -->
+                  <td  id = "stock2">
+					<div class="qty">
+                      <input type="hidden" id="bas_procode" name="bas_procode" value="${row.bas_procode}">
+                      <input type="hidden" name="stock1" id="stock1" value="${row.stock}"> 
+	    		      <input type="text" id="pro_stock" name="pro_stock" value="${row.bas_prostock}" onChange="asc();">
+	    		      <div class="up"><a href="#" id= count_up ><img src="/img/btn_qty_up.gif" alt="up" /></a></div>
+	    		      <div class="down"><a href="#" id=count_down><img src="/img/btn_qty_down.gif" alt="down" /></a></div>
+                    </div>
+				  </td>
+                  <td class="total"style="width: 80px" align="right">
+                       <fmt:formatNumber pattern="###,###,###" value="${row.money}"/>원
                   </td>
-                  <td style="width: 80px" align="right">
-                       <fmt:formatNumber pattern="###,###,###" value="${row.money}"/>
-                  </td>
-                  <td>
-                     <input type="hidden" name="money" value="${row.money}">
-                     <input type="hidden" name="bas_no" value="${row.bas_no}">
-                     <input type="button" value="바로구매" style='width:60px;height:25px;font-size: 12px;' 
-                     onclick="button_order('${row.bas_no}','${row.bas_proname}','${row.bas_procode}','${row.money}','${row.bas_prostock}','${row.bas_proimg}','${row.bas_proprice}','${row.pro_memno}');"><br>  
-                     <input type="button" value="삭제" style='width:60px;height:25px;font-size: 12px;'  onclick="button_basDel(${row.bas_no});">
-                  </td>
+                   <td class="tNonePre">
+                        <input type="hidden" name="money" value="${row.money}">
+                        <input type="hidden" name="bas_no" value="${row.bas_no}">
+						<a href="#" class="minPurchase" onclick="button_order('${row.bas_no}','${row.bas_proname}','${row.bas_procode}','${row.money}','${row.bas_prostock}','${row.bas_proimg}','${row.bas_proprice}','${row.pro_memno}','${row.sto_name}');">바로구매</a><br/>
+						<a href="#" class="minDel02" onclick="button_basDel(${row.bas_no});">상품삭제</a>
+				   </td>
                 </tr>
                </c:forEach>
-                <tr>
-                    <td colspan="10" align="right">선택 상품 결제 예상 금액:<p id="chkSum"></p>  </td>
-                </tr>
-
     </tbody>
    </table>                    
+    <table class="listType" border="1" cellspacing="0">
+							<caption>결제 목록</caption>
+							<colgroup>
+							<col width="*" />
+							<col width="14%" class="cartw28"/>
+							<col width="12%" class="cartw29"/>
+							</colgroup>
+							<tbody>
+								<tr>
+									<td class="bg">&nbsp;</td>
+									<td class="total bg">총 주문금액</td>
+									<td class="total bg"><strong><span ID="chkSum"></span></strong> 원</td>
+								</tr>
+							</tbody>
+						</table>
+  
+  
+  </div>
   </form>
-  <div>  
-            <input type="hidden" name="count" value="${map.count}">           
-            <input type="button" name="seDel" id="button_seDel" onclick="button_selDel();" value="선택상품 삭제" style='height:25px;font-size: 12px;'/>
-            <div style='float:right; padding: 3px 30px 3px 6px;'>
-             <button type="button" value="상품목록1" id="btnList">계속 쇼핑하기</button> 
-             <input type="button" value="바로구매" onclick="button_selOrder();">
-            </div></div>
+  	<div class="btnAreaList">
+		<a href="#" class="sOrder"  onclick="button_selOrder();"><p>선택상품 <span>주문하기</span></p></a>&nbsp;&nbsp;
+		<a href="#" class="aOrder" id=button_allOrder onclick="button_allOrder();"><p>전체상품 <span>주문하기</span></p></a>&nbsp;&nbsp;
+		<a href="/gotThem" class="continuation" onclick=""><p>쇼핑 <span>계속하기</span></p></a>
+		<button id = "payBtn" value="ddd" >ddddddd</button>
+	</div>
 </c:otherwise>
 </c:choose>   
 </div>    
+<br>
  <footer class="probootstrap-footer probootstrap-bg" style="background-image: url(img/slider_3.jpg)">
     <div class="container">
         <div class="col-md-6">
@@ -143,77 +201,84 @@
     </div>
   </footer>
 </body>
-<script type="text/javascript" src="https://service.iamport.kr/js/iamport.payment-1.1.2.js"></script>
- <script src="resources/mainTemplate/js/scripts.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+<script src="resources/mainTemplate/js/scripts.min.js"></script>
  <script src="resources/mainTemplate/js/main.min.js"></script>
  <script src="resources/mainTemplate/js/custom.js"></script>
+ <!-- KAKAO API -->
+  <script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
 <script type="text/javascript">
 $(document).ready(function(){
-	$("#btnList").click(function(){// 리스트 페이지로 이동
+	$("#btnList").click(function(){
 		location.href="/gotThem";
 		});
-	$('input[name*="checkRow"]').prop("checked",true);
-    
-    var checkSumArr = [];
-    $("input[name='checkRow']:checked").each(function(i){
-    	checkSumArr.push($(this).val());
-    	});
-    var sum=0;
-    for(var i = 0; i< checkSumArr.length; i++){
-    	var cartSum = checkSumArr[i].split(',')[5];
-    	cartSum = parseInt(cartSum);
-    	sum+=cartSum;
-    	document.getElementById("chkSum").innerHTML = sum;
-    	}
-    });
-
-$("#th_checkAll").click(function(){ //체크박스 전체 선택
-	var chk= $(this).is(":checked");
-	if(chk){
-		$('input[name*="checkRow"]').prop("checked", true);//체크박스 전체 선택
-		} else{
-			$('input[name*="checkRow"]').prop("checked", false);//체크박스 전체 해지
-			}
-	});
-	
+        
+ $("#th_checkAll").click(function(){
+	 var chk= $('input[name*="checkRow"]').is(":checked");
+	 if(chk){
+		 $('input[name*="checkRow"]').prop("checked", false);
+		 cart();
+		 } else{
+			 $('input[name*="checkRow"]').prop("checked", true);
+			 cart();
+		 }
+	 });
+ 
+ var checkSumArr = [];
+ $("input[name='checkRow']").each(function(i){
+ 	checkSumArr.push($(this).val());
+ 	});
+ var sum=0;
+ for(var i = 0; i< checkSumArr.length; i++){
+ 	var cartSum = checkSumArr[i].split(',')[5];
+ 	cartSum = parseInt(cartSum);
+ 	sum+=cartSum;
+ 	var str = sum;
+  	var bb = Number(str).toLocaleString('en').split(".")[0];	
+ 	document.getElementById("chkSum").innerHTML = bb;
+ 	}
+ });
  $(document).on("click", "#rowCheck tr", function(event){
 	if(event.target.nodeName.toLowerCase() == "td") {
+		/* var checkbox = $(this).find("td:nth-child(7) :checkbox"); */
 		var checkbox = $(this).find("td:first-child :checkbox");
 
 		if (checkbox.is(":checked")) {
 			checkbox.prop("checked", false);
+			cart();
 		} else {
 			checkbox.prop("checked", true);
+			cart();
 		}
 	}
-});
+}); 
 
 function cart(){ //결제 금액 계산
 	var checkSumArr = [];
 	$("input[name='checkRow']:checked").each(function(i) {
-		checkSumArr.push($(this).val());
-		});
+		checkSumArr.push($(this).val());	
+	});
 	var sum=0;
 	for ( var i = 0; i< checkSumArr.length; i++){
 		var cartSum = checkSumArr[i].split(',')[5];
 		cartSum = parseInt(cartSum);
 		sum+=cartSum;
-		document.getElementById("chkSum").innerHTML = sum;
-		}
+		var str = sum;
+     	var bb = Number(str).toLocaleString('en').split(".")[0];	
+    	document.getElementById("chkSum").innerHTML = bb;
+    	}
 	}  		   
 function button_basDel(bas_no){  //단건 직접 삭제
-	alert(bas_no);
 	if (confirm("장바구니에서 상품을 삭제 하시겠습니까?")){
 		location.href="delete.gt?bas_no="+bas_no;
 		}else{ 
 			return;
 			}
 	}
-function button_order(bas_no,bas_proname,bas_procode,money,bas_prostock,bas_proimg,bas_proprice,pro_memno){
-	alert(bas_proprice);
+function button_order(bas_no,bas_proname,bas_procode,money,bas_prostock,bas_proimg,bas_proprice,pro_memno,sto_name){
 	if (confirm("상품을 결제 하시겠습니까?")){ //단건결제
 		location.href="insertOrder.gt?bas_no="+bas_no+"&bas_proname="+bas_proname+
-    		"&bas_procode="+bas_procode+"&money="+money+"&bas_prostock="+bas_prostock+"&bas_proimg="+bas_proimg+"&bas_proprice="+bas_proprice+"&pro_memno="+pro_memno;
+    		"&bas_procode="+bas_procode+"&money="+money+"&bas_prostock="+bas_prostock+"&bas_proimg="+bas_proimg+"&bas_proprice="+bas_proprice+"&pro_memno="+pro_memno+"&sto_name="+sto_name;
 	}else{ 
 		return;
 		}
@@ -247,13 +312,6 @@ function button_selDel(){  //장바구니 선택 삭제
 		  return;
 	  }
   }  
-
-function modify(){ //수량수정
-	var submitTest = document.form1;
-	submitTest.action="./update.gt";
-	submitTest.method="post";
-	submitTest.submit();
-	} 
 	
 function button_selOrder(){  //장바구니 선택 결제
 	if( $(":checkbox[name='checkRow']:checked").length==0 ){
@@ -284,35 +342,165 @@ function button_selOrder(){  //장바구니 선택 결제
 			return;
 			}
 	}
-//결제 함수 스크립트
-function payment(){
-	var IMP = window.IMP; // 생략가능
-	IMP.init('imp71254112');  // 가맹점 식별 코드
-	
-	IMP.request_pay({
-	   pg : 'kakao', // 결제방식
-	    pay_method : 'card',	// 결제 수단
-	    merchant_uid : 'merchant_' + new Date().getTime(),
-	   name : '주문명: 결제 테스트',	// order 테이블에 들어갈 주문명 혹은 주문 번호
-	    amount : '100',	// 결제 금액
-	    buyer_email : '${MemberInfo.getMember_email}',	// 구매자 email
-	   buyer_name :  '${MemberInfo.getMember_name}',	// 구매자 이름
-	    buyer_tel :  '',	// 구매자 전화번호
-	    buyer_addr :  '',	// 구매자 주소
-	    buyer_postcode :  '',	// 구매자 우편번호
-	    m_redirect_url : '/khx/payEnd.action'	// 결제 완료 후 보낼 컨트롤러의 메소드명
-	}, function(rsp) {
-		if ( rsp.success ) { // 성공시
-			var msg = '결제가 완료되었습니다.';
-			msg += '고유ID : ' + rsp.imp_uid;
-			msg += '상점 거래ID : ' + rsp.merchant_uid;
-			msg += '결제 금액 : ' + rsp.paid_amount;
-			msg += '카드 승인번호 : ' + rsp.apply_num;
-		} else { // 실패시
-			var msg = '결제에 실패하였습니다.';
-			msg += '에러내용 : ' + rsp.error_msg;
-		}
+function button_allDel(){  //장바구니 전체 삭제
+	  var checkAllDel = [];
+	  $("input[name='checkRow']").each(function(i){
+	       checkAllDel.push($(this).val());
+	       });
+	  checkAllDel.push('[]');
+	  if (confirm("전체 상품을 삭제하시겠습니까?")){
+		  $.ajax({
+			  url:"selectDelete.gt",
+			  type:"post",
+			  dataType: "text",
+			  data:{arrDel:checkAllDel
+				  },
+				  success:function(result){
+					  location.href="./listBasket.gt";
+					  }
+				  });
+		  }else{ // 취소
+			  return;
+		  }
+	  }  
+
+		 
+$(document).on("click", "#count_down",function(){// 수량 변경 다운
+	var bas_procode= $(this).parent().prev().prev().prev().prev().val()*1;
+	var basS = $(this).parent().prev().prev().prev().val()*1;
+	var chaS=  $(this).parent().prev().prev().val()*1 -1;
+	if (chaS > 0) {
+		location.href="update.gt?bas_procode="+bas_procode+"&bas_prostock=" +chaS;
+		} else{
+			return;
+			}
 	});
+$(document).on("click", "#count_up",function(){//수량변경 업
+	var bas_procode= $(this).parent().prev().prev().prev().val()*1;	
+	var basS = $(this).parent().prev().prev().val()*1;
+	var chaS= 1+ $(this).parent().prev().val()*1;    
+    if (chaS <= basS) {
+    	location.href="update.gt?bas_procode="+bas_procode+"&bas_prostock=" +chaS;
+    	} else{
+    		alert("최대 "+ basS+"개 이하 주문이 가능합니다.");
+    		location.reload();
+    		}
+    });
+
+$(document).on("change", "#pro_stock", function(){//텍스트로 수량 변경
+	var bas_procode= $(this).prev().prev().val()*1;	
+	var basS =$(this).prev().val()*1;
+	var chaS= $(this).val()*1;
+	 if (chaS < 0) {
+		 location.reload();
+		 }else if (chaS <= basS) {
+			 location.href="update.gt?bas_procode="+bas_procode+"&bas_prostock=" +chaS;
+			 } else{
+				 alert("최대 "+ basS+"개 이하 주문이 가능합니다.");
+				 location.reload();
+				 }
+	 });  
+    
+
+var access_Token = '${sessionScope.token}';
+
+Kakao.init("363553076ca8777f012d9c9ce3b92b8c");	
+$('#payBtn').click(()=> {
+	
+     if(!access_Token){
+    	 console.log('토큰이 없음');
+         loginWithKakao();
+     } else {
+    	 console.log("토근존재");
+         payment();
+     }
+}); 
+
+$('#button_allOrder').click(()=> {
+	
+    if(!access_Token){
+   	 console.log('토큰이 없음');
+        loginWithKakao();
+    } else {
+   	 console.log("토근존재");
+        payment();
+    }
+});
+
+/* function button_allOrder(){ //장바구니 전체 주문하기
+	var checkAllOrder = [];
+	$("input[name='checkRow']").each(function(i){
+		checkAllOrder.push($(this).val());		
+	});
+	checkAllOrder.push('[]');
+		if (confirm("전체 상품을 결제 하시겠습니까?")){
+			$.ajax({
+				url:"selectOrder.gt",
+				type:"post",
+				dataType: "text",
+				data:{arrOrder:checkAllOrder
+					},
+					success:function(result){
+						location.href="./orderList.gt";
+						}
+					});
+			}else{ 
+				return;
+				} 
+		}  */
+
+function payment() {
+	var checkAllOrder = [];
+	$("input[name='checkRow']").each(function(i){
+		checkAllOrder.push($(this).val());		
+	});
+	checkAllOrder.push('[]');
+	if (confirm("전체 상품을 결제 하시겠습니까?")){
+	/* 	$.ajax({
+			url:"selectOrder.gt",
+			type:"post",
+			dataType: "text",
+			data:{arrOrder:checkAllOrder
+				},
+				success:function(result){
+					location.href="./orderList.gt";
+					}
+				}); */
+			
+	$.ajax({
+	 url : 'payment.gt',
+     data: {
+         accessToken : access_Token,
+         arrOrder: checkAllOrder
+     },
+     method: 'POST',
+     success: (result) => {
+    	 console.log(result);
+     	window.open(result.next_redirect_pc_url,
+     			"","width=400, height=700");
+     	console.log("온다아아앙");
+     }, 
+     error: () => {
+         window.alert('payment 서버 실행 오류!');
+     }
+  });
+	}else{ 
+		return;
+		} 
 }
+function loginWithKakao() {
+    Kakao.Auth.login({
+      success: function(authObj) {
+    	  console.log("토큰이없으면 여기");
+          access_Token = authObj.access_token;
+          console.log(access_Token)
+          payment();
+      },
+      fail: function(err) {
+        alert(JSON.stringify(err));
+      }
+    });
+  };
+
 </script>	
 </html>

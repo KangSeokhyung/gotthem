@@ -6,18 +6,30 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 <title>결제 목록</title>
-<meta name="description" content="Free Bootstrap Theme by uicookies.com">
-    <meta name="keywords" content="free website templates, free bootstrap themes, free template, free bootstrap, free website template">
-    
+<meta name="keywords" content="free website templates, free bootstrap themes, free template, free bootstrap, free website template">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scaleable=no" />
+<link rel="stylesheet" type="text/css" href="resources/renew2/css/reset.css" />
+<link rel="stylesheet" type="text/css" href="resources/renew2/css/layout.css" />
+<link rel="stylesheet" type="text/css" href="resources/renew2/css/content.css" />
+<link rel="stylesheet" type="text/css" href="resources/renew2/css/jquery.fancybox-1.3.4.css" />
+<link rel="stylesheet" type="text/css" href="resources/renew2/css/jquery-ui-1.9.2.custom.min.css" />
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400" rel="stylesheet">
     <link rel="stylesheet" href="resources/mainTemplate/css/styles-merged.css">
     <link rel="stylesheet" href="resources/mainTemplate/css/style.min.css">
-    <link rel="stylesheet" href="resources/mainTemplate/css/custom.css">
-    <!--[if lt IE 9]>
-      <script src="resources/mainTemplate/js/vendor/html5shiv.min.js"></script>
-      <script src="resources/mainTemplate/js/vendor/respond.min.js"></script>
-    <![endif]-->
+    <link rel="stylesheet" href="resources/mainTemplate/css/custom.css"> 
+<style>
+ #pro_stock {
+ padding:0 0 0 15px
+}
+  
+@media ( max-width: 768px ) {
+ #pro_stock {
+ padding:0 0 0 8px
+}
+}
+</style>
 </head>
 <body>
 <header>
@@ -47,63 +59,88 @@
       <li style="background-image: url(resources/mainTemplate/img/slider_2.jpg);"></li>
     </ul>
   </section>
-<div class="container">	
-  <h2>결제 확인 목록</h2>   
- 	<form name="form1" id="form1" method="post" action="./update.gt">
-           <table class="table">
-               <tr>
-                   <th>결제 번호</th>
-                   <th>상품코드</th>
-                   <th>상품사진</th>
-                   <th>상품명</th>
-                   <th>매장명</th>
-                   <th>상품수량</th>
-                   <th>상품가격</th>
-                   <th>결제 가격</th>
-                   <th>상태</th>
-                   <th>결제취소</th>
-               </tr>
-             <c:forEach var="row" items="${map.list}" varStatus="i">
-               <tr>
-                  <td>
-                        ${row.ord_no}
+    
+<div class="container"> 
+<h2>결제 확인 목록</h2> 
+  <form name="form1" id="form1" method="post" action="./update.gt" onsubmit="return validate();">
+   <div class="listDiv">
+   <table class="listType" border="1" cellspacing="0">
+    <caption>결제 목록</caption>
+							<colgroup>
+							<col width="4%" class="tw8"/>
+							<col width="10%" class="cartImg"/>
+							<col width="*" />
+							<col width="13%" class="cartw13" />
+							<col width="10%" class="tNonePre"/>
+							<col width="13%" class="cartw27"/>
+							<col width="14%" class="cartw25"/>
+							<col width="12%" class="tNonePre"/>
+							</colgroup>
+    <thead>   
+       <tr>
+                   <th scope="col">결제 번호 </th> 
+                   <th scope="col">상품코드</th>
+                   <th scope="col" >상품사진</th>
+                   <th scope="col">상품명</th>
+                   <th scope="col">매장명</th>
+                   <th scope="col">수량 </th>
+                   <th scope="col">상품가격</th>
+                    <th scope="col">결제가격</th>
+                    <th scope="col">상태</th>
+                   <th scope="col" class="tNonePre">결제취소</th>
+     </tr>
+    </thead>
+    <tbody id="rowCheck">
+      <c:forEach var="row" items="${map.list}" varStatus="i">
+               <tr>                
+                  <td> 
+                      ${row.ord_no}
                   </td>
-                  <td>
-                        ${row.ord_procode}
+                  <td class="img" class="tNonePre">
+                       <a href="productDetail.gt?pro_code=${row.ord_procode}"><img src="/img/${row.ord_proimg}" style="width:50px; height:50px" class="dn" alt="" /></a>
                   </td>
-                  <td>
-                       <img src="/img/${row.ord_proimg}" style="width:50px; height:50px"/>
-                  </td>
-                  <td>
-                        ${row.ord_proname}
-                  </td>
-                  <td>
-                        ${row.pro_memno}
-                  </td>
-                  <td>
-                        ${row.ord_stock}
-                  </td>
-                  <td>
-                       <fmt:formatNumber pattern="###,###,###" value="${row.ord_proprice}"/>
-                  </td>
-                  <td>
-                       <fmt:formatNumber pattern="###,###,###" value="${row.ord_price}"/>
-                  </td>
-                  <td>
-                        ${row.ord_status}
+                  <td class="minLeft" >
+                   ${row.ord_procode}
                   </td>
                    <td>
+                        ${row.ord_proname}
+                  </td>
+                   <td>
+                       ${row.sto_name}
+                  </td>
+                   <td>
+                      ${row.ord_stock}
+                  </td>
+                  <td class="tNonePre" style="width: 80px" align="right" >
+                       <fmt:formatNumber pattern="###,###,###" value="${row.ord_proprice}"/>
+                  </td>
+                  
+                  <td class="total"style="width: 80px" align="right">
+                       <fmt:formatNumber pattern="###,###,###" value="${row.ord_price}"/>원
+                  </td>
+                   <td class="tNonePre">
+                     ${row.ord_status}
+                  </td>
+                  <td>
                        <input type="button" value="삭제" onclick="button_delete('${row.ord_no}','${row.ord_stock}','${row.ord_procode}');">
                   </td>
-                 </tr>
+                </tr>
                </c:forEach>
-            </table>
-        </form>
-     <div  style='float:right';> 
-    <button type="button" value="상품목록" id="btnList">계속 쇼핑하기</button>
-    <button type="button" value="장바구니목록" id="btnBasketList">장바구니목록</button>
-</div>  
-</div>
+    </tbody>
+   </table>                    
+
+  
+  
+  </div>
+  </form>
+  	<div class="btnAreaList">
+		<a href="./listBasket.gt" class="aOrder" ><p>장바구니 <span>돌아가기</span></p></a>&nbsp;&nbsp;
+		<a href="/gotThem" class="continuation" onclick=""><p>쇼핑 <span>계속하기</span></p></a>
+	   <!--  <button type="button" value="장바구니목록" id="btnBasketList">장바구니목록</button> -->	
+	</div>
+  
+</div>    
+<br>
  <footer class="probootstrap-footer probootstrap-bg" style="background-image: url(img/slider_3.jpg)">
     <div class="container">
         <div class="col-md-6">
@@ -123,18 +160,19 @@
     </div>
   </footer>
 </body>
-	 <script src="resources/mainTemplate/js/scripts.min.js"></script>
-  <script src="resources/mainTemplate/js/main.min.js"></script>
-  <script src="resources/mainTemplate/js/custom.js"></script>
+<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+ <script src="resources/mainTemplate/js/scripts.min.js"></script>
+ <script src="resources/mainTemplate/js/main.min.js"></script>
+ <script src="resources/mainTemplate/js/custom.js"></script>
 <script type="text/javascript">
-    $(document).ready(function(){
+  /*   $(document).ready(function(){
       $("#btnList").click(function(){  // 계속 쇼핑하기 인덱스 이동
             location.href="/gotThem";
         });
         $("#btnBasketList").click(function(){  //장바구니 리스트
             location.href="./listBasket.gt";
         }); 
-    });
+    }); */
     $(document).on("click", "#rowCheck tr", function(event){
     	if(event.target.nodeName.toLowerCase() == "td") {
     		var checkbox = $(this).find("td:first-child :checkbox");
