@@ -23,6 +23,8 @@
     margin-top: 80px;
     padding: 50px;
     }
+    
+    .container{width:1400px;}
     </style>
   </head>
   <body>
@@ -30,7 +32,9 @@
   <!-- START: header -->
    <header role="banner" class="probootstrap-header">
     <div class="container">
-        알아서 로고 넣으셈
+        <a href="memcontrol.ad" class="probootstrap-logo"><img
+				src="resources/image/GotthemLogo.PNG" height="50" width="200"
+				alt="Gotthem" style="margin-top: 5px;"></a>
         
         <a href="#" class="probootstrap-burger-menu visible-xs" ><i>Menu</i></a>
         <div class="mobile-menu-overlay"></div>
@@ -126,7 +130,6 @@
     <div class="container">
         <div class="row justify-content-center">
                     <div data-form-alert="" hidden="">
-                        Thanks for filling out the form!
                     </div>      
                     <form class="mbr-form" action="memmodify.ad" method="post" data-form-title="Mobirise Form">
                     <input type="hidden" name="email" data-form-email="true" value="v71UZV7rSGKmNdtMTJcCzvbgvRKs8I889PXLsAjbR6NuKJtPYoKYEe+DT90N7gqVmrsYQhYLqTnSDAVjImF7Eb8KP/1hIcQUbq5w77EmgcHnu38hK1G/QmJo9v9/aFIP" data-form-field="Email">
@@ -134,36 +137,36 @@
                             <div class="col-sm-8 multi-horizontal" data-for="id">
                                 <div class="form-group">
                                     <label class="form-control-label mbr-fonts-style display-7" for="name-form1-r">아이디</label>
-                                    <input type="text" class="form-control" data-form-field="name" disabled="disabled" 
-                                   id="mem_id" >
+                                    <input type="text" name="mem_id" class="form-control" disabled="disabled" 
+                                   id="mem_id" value="${requestScope.mem_id }">
                                   <input type="hidden" id="mem_id2" name="mem_id" value="" >
                                 </div>
                             </div>
                             <div class="col-sm-8 multi-horizontal" data-for="ownername">
                                 <div class="form-group">
                                     <label class="form-control-label mbr-fonts-style display-7" for="owner-form1-r">회원명</label>
-                                    <input type="text" id="mem_name" class="form-control" name="mem_name" 
-                                    required="" data-form-field="owner" >
+                                    <input type="text" name="mem_id" id="mem_name" class="form-control" name="mem_name" 
+                                    required="" value="${requestScope.mem_name}" >
                                 </div>
                          </div>
                           <div class="col-sm-8 multi-horizontal" data-for="email">
                           <div class="form-group">
                                     <label class="form-control-label mbr-fonts-style display-7" for="email-form1-r">이메일</label>
                                     <input type="email" class="form-control" name="mem_email" 
-                                    data-form-field="Name" required="" id="mem_email">
+                                     required="" id="mem_email">
                                 </div>
                             </div>
                           <div class="col-sm-8 multi-horizontal" data-for="phone">
                            <div class="form-group">
                                     <label class="form-control-label mbr-fonts-style display-7" for="phone-form1-r">전화번호</label>
                                     <input type="text" class="form-control" name="mem_phone" 
-                                    value="${stinfo.mem_phone}" data-form-field="Name" required="" id="mem_phone">
+                                    value="${stinfo.mem_phone}" required="" id="mem_phone">
                                 </div>
                             </div>
                          <div class="col-sm-6 multi-horizontal" data-for="postcode">
                             <div class="form-group">
                                     <label class="form-control-label mbr-fonts-style display-7" for="addr1-form1-r">우편번호</label>
-                                    <input type="text" class="form-control address1" name="mem_addr1" data-form-field="Name" required="" id="sample6_postcode"
+                                    <input type="text" class="form-control address1" name="mem_addr1" required="" id="sample6_postcode"
                                     value="${st_post }">
                                 </div>
                             </div>
@@ -176,14 +179,14 @@
                             <div class="form-group">
                                     <label class="form-control-label mbr-fonts-style display-7" for="addr1-form1-r">상세주소1</label>
                                     <input type="text" class="form-control address2" name="mem_addr2" 
-                                     value="${st_address1}" data-form-field="Name" required="" id="sample6_address">
+                                     value="${st_address1}" required="" id="sample6_address">
                                 </div>
                             </div>
                          <div class="col-sm-12 multi-horizontal" data-for="address2">
                             <div class="form-group">
                                     <label class="form-control-label mbr-fonts-style display-7" for="addr2-form1-r">상세주소2</label>
                                     <input type="text" class="form-control address3" name="mem_addr3" 
-                                    value="${st_address2}" data-form-field="Name" required="" id="sample6_address2">
+                                    value="${st_address2}" required="" id="sample6_address2">
                                 </div>
                             </div>
                         <div class="col-sm-12 multi-horizontal" data-for="grade">

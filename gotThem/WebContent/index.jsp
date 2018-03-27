@@ -17,10 +17,54 @@
     <link rel="stylesheet" href="resources/mainTemplate/css/styles-merged.css">
     <link rel="stylesheet" href="resources/mainTemplate/css/style.min.css">
     <link rel="stylesheet" href="resources/mainTemplate/css/custom.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="resources/autocomplete/auto-complete.css">
     
   </head>
 <style type="text/css">
+#releatedField { position: absolute; width: 63%; }
+#releatedField a { color: #66615b; text-decoration: none; }
+.overlay{opacity:1;}
+.buttonBackgroundColor{
+background-color:#fe490f;
+}
+.buttonBackgroundColor:hover{
+background-color:#ff990f;
+color:#fff;
+}
+.probootstrap-section.probootstrap-bg:before {
+    position: absolute;
+    content: "";
+    background: rgba(255, 255, 255, 0.6);
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: -1;
+}
+.colorCyan{
+color:#1fad9f !important;
+}
+.btn.btn-primary {
+    border: 2px solid #1fad9f;
+    background: #1fad9f;
+    color: #fff;
+}
+.btn.btn-primary:hover {
+	border: 2px solid #1fffff;
+    background: #1fffff;
+    color: #fff;
+}
+.probootstrap-footer.probootstrap-bg {
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    padding: 2em 0;
+    position: relative;
+    color: rgba(255,255,255,.9);
+}
+
+
 #marginChg { 
 	padding-bottom: 10px; 
 	margin-top: 340px; 
@@ -28,7 +72,7 @@
 	-webkit-box-shadow: none;
 	box-shadow: none;
 }
-#btnColor { background: #fe490f; }
+#btnColor { background: #fa2848; }
 </style>  
 <script src="resources/autocomplete/auto-complete.js"></script>
 <script src="https://code.jquery.com/jquery-3.2.1.js"></script>
@@ -65,11 +109,10 @@
       <div class="container">
         <div class="row">
           <div class="col-md-8 col-md-offset-2">
-
             <div id="marginChg" class="probootstrap-home-search probootstrap-animate">
               <form action="searchList.gt" method="get">
               	<input type="hidden" name="pageNo" value="1">
-	            <div class="probootstrap-field-group">
+	            <div class="probootstrap-field-group" >
 					<div class="probootstrap-fields">
 						<div class="form-field">
 							<input type="text" class="form-control" id="autoComplete" name="search"
@@ -77,7 +120,9 @@
 								placeholder="예) 도시락, 서초, 강남  김밥" />
 						</div>
 					</div>
-					<input type="submit" id="btnColor" class="btn btn-fill btn-success" value="검색">
+					<button title="검색" onclick="submit();" id="btnColor" class="btn">
+					<i style="font-size:48px;"class="material-icons">search</i>
+					</button>
 				</div>
               </form>
             </div>
@@ -88,166 +133,30 @@
     </div>
     <ul class="slides">
       <li style="background-image: url(resources/mainTemplate/img/slider_1.jpg);" class="overlay"></li>
-      <li style="background-image: url(resources/mainTemplate/img/slider_4.jpg);" class="overlay"></li>
-      <li style="background-image: url(resources/mainTemplate/img/slider_2.jpg);" class="overlay"></li>
+      <li style="background-image: url(resources/image/711.jpg);" class="overlay"></li>
+      <li style="background-image: url(resources/image/withme.jpg);" class="overlay"></li>
+      <li style="background-image: url(resources/image/gs25.jpg);" class="overlay"></li>
+      <li style="background-image: url(resources/image/CU2.jpg);" class="overlay"></li>
+     
+      
     </ul>
   </section>
-  <script type="text/javascript">
-	  var ac = new autoComplete({
-		    selector: "#autoComplete",
-		  	minChars: 0,
-		    source: function(term, suggest){
-		    	term = term.toLocaleUpperCase();
-		    	$.ajax({
-					url : "relatedSearch.gt",
-					data : { "search" : term },
-					type : "post",
-					success : function(relatedData) {
-						if (term != "") {
-							var suggestions = [];	
-							var ob = JSON.parse(relatedData);
-							for (var i = 0; i < 5; i++) {
-								if (typeof(ob["search" + i]) != "undefined") {
-									suggestions.push(ob["search" + i]);
-								}
-							}
-							suggest(suggestions);
-						}
-					},
-					error : function(xmlHttpReq, status, error) {
-					}
-				});
-		     }
-	  });  
-  </script>
-
-  <section class="probootstrap-section probootstrap-section-lighter">
-    <div class="container">
-      <div class="row">
-        <div class="col-md-4">
-          <div class="probootstrap-card text-center probootstrap-animate">
-            <div class="probootstrap-card-media svg-sm colored">
-              <img src="resources/mainTemplate/img/flaticon/svg/001-prize.svg" class="svg" alt="Free HTML5 Template by uicookies.com">
-            </div>
-            <div class="probootstrap-card-text">
-              <h2 class="probootstrap-card-heading">항상 최고의 서비스를!</h2>
-              <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-4">
-          <div class="probootstrap-card text-center probootstrap-animate">
-            <div class="probootstrap-card-media svg-sm colored">
-              <img src="resources/mainTemplate/img/flaticon/svg/005-new.svg" class="svg" alt="Free HTML5 Template by uicookies.com">
-            </div>
-            <div class="probootstrap-card-text">
-              <h2 class="probootstrap-card-heading">지속적인 가맹점 확대!</h2>
-              <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-4">
-          <div class="probootstrap-card text-center  probootstrap-animate">
-            <div class="probootstrap-card-media svg-sm colored">
-              <img src="resources/mainTemplate/img/flaticon/svg/006-coin.svg" class="svg" alt="Free HTML5 Template by uicookies.com">
-            </div>
-            <div class="probootstrap-card-text">
-              <h2 class="probootstrap-card-heading">점주와 GOT THEM WIN-WIN!</h2>
-              <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-  <!-- END: section -->
-
-  <section class="probootstrap-section">
-    <div class="container">
-      <div class="row heading">
-        <h2 class="mt0 mb50 text-center">RECENTLY UPDATED STORE</h2>
-      </div>
-      <div class="row probootstrap-gutter10">
-        <div class="col-md-6 col-sm-6">
-          <a href="#" class="probootstrap-hover-overlay">
-            <img src="resources/mainTemplate/img/cu.png" alt="Free Bootstrap Template by uicookies.com" class="img-responsive">
-            <div class="probootstrap-text-overlay">
-              <h3>씨유 강남점</h3>
-            </div>
-          </a>
-        </div>
-        <div class="col-md-6 col-sm-6">
-          <a href="#" class="probootstrap-hover-overlay">
-            <img src="resources/mainTemplate/img/gs25.jpg" alt="Free Bootstrap Template by uicookies.com" class="img-responsive">
-            <div class="probootstrap-text-overlay">
-              <h3>GS25 서울대입구점</h3>
-            </div>
-          </a>
-        </div>
-        <div class="clearfix visible-sm-block"></div>
-
-        <div class="col-md-4 col-sm-6">
-          <a href="#" class="probootstrap-hover-overlay">
-            <img src="resources/mainTemplate/img/slider_3.jpg" alt="Free Bootstrap Template by uicookies.com" class="img-responsive">
-            <div class="probootstrap-text-overlay">
-              <h3>Brooklyn</h3>
-              <p>300 Properties</p>
-            </div>
-          </a>
-        </div>
-        <div class="col-md-4 col-sm-6">
-          <a href="#" class="probootstrap-hover-overlay">
-            <img src="resources/mainTemplate/img/slider_4.jpg" alt="Free Bootstrap Template by uicookies.com" class="img-responsive">
-            <div class="probootstrap-text-overlay">
-              <h3>Chicago</h3>
-              <p>268 Properties</p>
-            </div>
-          </a>
-        </div>
-        <div class="clearfix visible-sm-block"></div>
-        <div class="col-md-4 col-sm-6">
-          <a href="#" class="probootstrap-hover-overlay">
-            <img src="resources/mainTemplate/img/slider_2.jpg" alt="Free Bootstrap Template by uicookies.com" class="img-responsive">
-            <div class="probootstrap-text-overlay">
-              <h3>Los Angeles</h3>
-              <p>342 Properties</p>
-            </div>
-          </a>
-        </div>
-		
-      </div>
-    </div>
-  </section>
-  <!-- END: section -->
-
-  <section class="probootstrap-section probootstrap-bg" style="background-image: url(resources/mainTemplate/img/partner.jpg); background-size:cover;">
+  <!-- END: slider  -->
+  <section class="probootstrap-section probootstrap-bg" style="background:#fff; background-size:cover;">
     <div class="container text-center probootstrap-animate" data-animate-effect="fadeIn">
-      <h2 class="heading">저희와 제휴를 원하시나요?</h2>
-      <p class="sub-heading">많은 점주 분들이 <strong>GOT THEM</strong>과 제휴 한 이후로 매출이 상승했습니다.<br>
-      당신도 이제 GOT THEM과 제휴를 맺고 급격한 매출상승을 이루어보세요! </p>
+      <h2 class="heading colorCyan"><b>저희와 제휴를 원하시나요?</b></h2><br>
+      <div style="width: 300px; height: auto; overflow: hidden; margin-left: auto; margin-right: auto; ">
+	    <img src="resources/image/캐릭터.png" style="width:150px; height: auto; margin-left: auto; margin-right: auto; display: block;">
+	  </div><br>
+      <p class="sub-heading colorCyan">많은 점주 분들이 <strong>GOT THEM</strong> 과 제휴 한 이후로 매출이 상승했습니다.<br>
+      당신도 이제 <strong>GOT THEM</strong> 과 제휴를 맺고 급격한 매출상승을 이루어보세요! </p>
       <p><a href="login.st" class="btn btn-primary mb10">제휴페이지</a></p>
     </div>
   </section>
 
-
-  <footer class="probootstrap-footer probootstrap-bg" style="height:100px">
-    <div class="container">
-        <div class="col-md-6">
-          <div class="probootstrap-footer-widget">
-            <p>&copy; 2017 <a href="https://uicookies.com/">uiCookies:Haus</a>. Designed by <a href="https://uicookies.com/">uicookies.com</a> <br> Demo Photos from <a href="https://pixabay.com/">Pixabay</a> &amp; <a href="https://unsplash.com/">Unsplash</a></p>
-          </div>
-        </div>
-        <div class="col-md-6">
-          <div class="probootstrap-footer-widget right">
-            <ul class="probootstrap-footer-social">
-              <li><a href="#"><i class="icon-twitter"></i></a></li>
-              <li><a href="#"><i class="icon-facebook"></i></a></li>
-              <li><a href="#"><i class="icon-instagram2"></i></a></li>
-            </ul>
-          </div>
-        </div>
-    </div>
-  </footer>
+<!-- START: footer -->
+<%@include file="footer.jsp" %>
+<!-- END: footer -->
   
   <div class="gototop js-top">
     <a href="#" class="js-gotop"><i class="icon-chevron-thin-up"></i></a>

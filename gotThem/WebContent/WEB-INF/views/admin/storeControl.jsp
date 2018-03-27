@@ -23,6 +23,8 @@
     margin-top: 80px;
     padding: 50px;
     }
+    
+    .container{width:1400px;}
     </style>
   </head>
   <body>
@@ -30,7 +32,9 @@
   <!-- START: header -->
    <header role="banner" class="probootstrap-header">
     <div class="container">
-       알아서 로고 넣으셈
+       <a href="memcontrol.ad" class="probootstrap-logo"><img
+				src="resources/image/GotthemLogo.PNG" height="50" width="200"
+				alt="Gotthem" style="margin-top: 5px;"></a>
         
         <a href="#" class="probootstrap-burger-menu visible-xs" ><i>Menu</i></a>
         <div class="mobile-menu-overlay"></div>

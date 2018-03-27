@@ -104,6 +104,8 @@ public class AdminController {
 		mav.addObject("nextPage", nextPage);
 		mav.addObject("mlist", mlist);
 		mav.setViewName("admin/memberControl");
+		
+		System.out.println("asdadasda"+mlist);
 
 		return mav;
 
@@ -133,7 +135,7 @@ public class AdminController {
 		
 		memberService.memModi(membean);
 		
-		return "redirect:memberControl.ad";
+		return "redirect:/admin/memberControl";
 	}
 
 	@RequestMapping(value = "/storecontrol.ad", method = RequestMethod.GET)
