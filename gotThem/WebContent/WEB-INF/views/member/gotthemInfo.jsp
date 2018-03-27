@@ -50,6 +50,43 @@
     </ul>
   </section>
   
+  <section class="probootstrap-section probootstrap-section-lighter">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-4">
+          <div class="probootstrap-card text-center probootstrap-animate">
+            <div class="probootstrap-card-media svg-sm colored">
+              <img src="resources/mainTemplate/img/flaticon/svg/001-prize.svg" class="svg" alt="Free HTML5 Template by uicookies.com">
+            </div>
+            <div class="probootstrap-card-text">
+              <h2 class="probootstrap-card-heading">항상 최고의 서비스를!</h2>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="probootstrap-card text-center probootstrap-animate">
+            <div class="probootstrap-card-media svg-sm colored">
+              <img src="resources/mainTemplate/img/flaticon/svg/005-new.svg" class="svg" alt="Free HTML5 Template by uicookies.com">
+            </div>
+            <div class="probootstrap-card-text">
+              <h2 class="probootstrap-card-heading">지속적인 가맹점 확대!</h2>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="probootstrap-card text-center  probootstrap-animate">
+            <div class="probootstrap-card-media svg-sm colored">
+              <img src="resources/mainTemplate/img/flaticon/svg/006-coin.svg" class="svg" alt="Free HTML5 Template by uicookies.com">
+            </div>
+            <div class="probootstrap-card-text">
+              <h2 class="probootstrap-card-heading">점주와 GOT THEM WIN-WIN!</h2>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  
 </body>
     <!-- Javascript files-->
     <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
