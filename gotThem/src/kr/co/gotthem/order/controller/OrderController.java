@@ -47,7 +47,7 @@ public class OrderController {
 		this.productService = productService;
 	}
 	
-   // 1. 장바구니에서 결제 추가
+   /*// 1. 장바구니에서 결제 추가
    @RequestMapping(value ="insertOrder.gt",method = RequestMethod.GET)
     public String insertOrder(@RequestParam String bas_no, @RequestParam String bas_prostock, @RequestParam String bas_procode,
     		            @RequestParam String bas_proname,@RequestParam String money, @RequestParam String bas_proimg, 
@@ -78,7 +78,7 @@ public class OrderController {
    	   orderService.orderDeleteBasket(orderBean);
    	   System.out.println("결제 완료 변경된 수량" + bas_prostock );
    	   return "redirect:/orderList.gt";
-   	   }
+   	   }*/
     
   // 1.1 장바구니에서 선택 결제
    @RequestMapping(value = "selectOrder.gt", method = RequestMethod.POST) 
@@ -218,51 +218,35 @@ public class OrderController {
 		return "basket/purchase";
 	}
 	
-	@RequestMapping(value="/payment.gt", method = RequestMethod.POST)
-    @ResponseBody
-	public HashMap payment(String accessToken, HttpSession session,
-			@RequestParam (value= "arrOrder[]") List valueArr) throws Exception {
-		
-		System.out.println("접속된 토큰 : " + accessToken);
-		@SuppressWarnings("rawtypes")
-        HashMap result = orderService.pay(accessToken, HashMap.class,valueArr);
-        System.out.println("페이한 결과 : " + result);
-		session.setAttribute("tid",result.get("tid"));
-        session.setAttribute("accessToken", accessToken);
-    return result;
-    }
+	
  
 	
-	// 단건 결제 api
+	// 4.단건 결제 api
 	@RequestMapping(value="/paymentOne.gt", method = RequestMethod.POST)
-    @ResponseBody
+	@ResponseBody
 	public HashMap paymentOne(String accessToken, HttpSession session,
-			@RequestParam String orderOne) throws Exception {
+			@RequestParam String orderOne) throws Exception{
 		System.out.println("접속된 토큰 : " + accessToken);
 		@SuppressWarnings("rawtypes")
-        HashMap result = orderService.payOne(accessToken, HashMap.class, orderOne);
-        
-		System.out.println("페이한 결과 : " + result);
+		HashMap result = orderService.payOne(accessToken, HashMap.class, orderOne);
 		System.out.println("orderOne : " + orderOne);
 		session.setAttribute("tid",result.get("tid"));
         session.setAttribute("accessToken", accessToken);
         session.setAttribute("orderOne", orderOne);
-       
-    return result;
-    }
+        return result;
+        }
 	
+	// 4.1 단건 승인 api
 	@RequestMapping(value="/approveOne.gt")
-    public ModelAndView approveOne(HttpServletRequest req,HttpSession session, ModelAndView mav) throws Exception {
-        String orderOne = (String)session.getAttribute("orderOne");
+	public ModelAndView approveOne(HttpServletRequest req,HttpSession session, ModelAndView mav) throws Exception {
+		String orderOne = (String)session.getAttribute("orderOne");
 		session.removeAttribute("orderOne");
 		String pg_Token = req.getParameter("pg_token");
         System.out.println("pg_Token:승인컨트롤"+pg_Token);
-        System.out.println("승인orderOne: "+ orderOne);
-        
+        System.out.println("승인컨트롤orderOne: "+ orderOne);
         @SuppressWarnings("rawtypes")
         HashMap result = orderService.approveOne(pg_Token,session,HashMap.class,orderOne);
         System.out.println("승인컨트롤 돌아옴 ");
-        
         System.out.println("orderOne서비스 "+ orderOne);
        
         java.util.StringTokenizer  st = new java.util.StringTokenizer(orderOne,",");
@@ -293,27 +277,88 @@ public class OrderController {
         orderService.orderInsert(orderBean);
 	    orderService.orderUpdateBasket(orderBean);
 	    orderService.orderDeleteBasket(orderBean); 
-	    int userNo = orderBean.getOrd_memno();
-	    orderService.listOrder(userNo);
 	    System.out.println("결제 db연동");
-
-        mav.addObject("result", result);
-        mav.setViewName("basket/purchase");
-        return mav;
-          
-	}
-	 
-	 
-	
-    @RequestMapping(value="/approve.gt")
-    public ModelAndView approve(HttpServletRequest req,HttpSession session, ModelAndView mav) throws Exception {
-        String pg_Token = req.getParameter("pg_token");
-        System.out.println("pg_Token:승인컨트롤"+pg_Token);
-        @SuppressWarnings("rawtypes")
-        HashMap result = orderService.approve(pg_Token,session,HashMap.class);
-        mav.addObject("result", result);
+	    
+	    mav.addObject("result", result);
         mav.setViewName("basket/purchase");
         return mav;
         }
 	
-}
+	// 5. 복수 결제 api
+	@RequestMapping(value="/payment.gt", method = RequestMethod.POST)
+    @ResponseBody
+	public HashMap payment(String accessToken, HttpSession session,
+			@RequestParam (value= "arrOrder[]") List valueArr,@RequestParam String sum) throws Exception {
+		System.out.println("sum : " + sum);
+		System.out.println("접속된 토큰 : " + accessToken);
+		String oneArr = (String) valueArr.get(0);
+		@SuppressWarnings("rawtypes")
+		
+        HashMap result = orderService.pay(accessToken, HashMap.class, oneArr, sum);
+        System.out.println("페이한 결과 : " + result);
+		session.setAttribute("tid",result.get("tid"));
+        session.setAttribute("accessToken", accessToken);
+        session.setAttribute("valueArr", valueArr);
+    return result;
+    }
+	
+	
+	// 5.1 복수 승인 api
+	@RequestMapping(value="/approve.gt")
+    public ModelAndView approve(HttpServletRequest req,HttpSession session, ModelAndView mav) throws Exception {
+		List valueArr = (List)session.getAttribute("valueArr");
+	    session.removeAttribute("valueArr");
+	    System.out.println("valueArr:승인컨트롤"+valueArr);
+	    String oneArr = (String) valueArr.get(0);
+	    /*String oneArr = (String) valueArr[0];*/
+	    System.out.println("oneArr:승인컨트롤"+oneArr);
+	    String pg_Token = req.getParameter("pg_token");
+        System.out.println("pg_Token:승인컨트롤"+pg_Token);
+        @SuppressWarnings("rawtypes")
+        HashMap result = orderService.approve(pg_Token,session,HashMap.class,oneArr);
+        
+        String A = null;
+        for(int i=0; i<valueArr.size(); i++){
+        	A = (String) valueArr.get(i);
+     	    System.out.println("복수결제 컨드롤"+A.toString());
+     	    if ( 2==A.length()) {
+     	    	System.out.println("빈 배열");
+     	    	continue;
+     	    	} else {
+     	    		System.out.println("빈 배열ㅋㅋ");
+     	    		java.util.StringTokenizer  st = new java.util.StringTokenizer(A,",");
+     	            String bas_no = st.nextToken();
+        	        String bas_proname = st.nextToken();
+        	        String bas_proprice = st.nextToken(); 
+        	        String bas_prostock = st.nextToken();
+        	        String bas_procode = st.nextToken();
+     	            String money = st.nextToken();
+     	            String bas_proimg = st.nextToken();
+        	        String bas_procomment = st.nextToken();
+                    String pro_memno = st.nextToken();
+        	        String sto_name = st.nextToken();
+        	        String bas_memno = st.nextToken();
+        	        
+        	        OrderpayBean orderBean = new OrderpayBean();
+        	        orderBean.setOrd_procode(Integer.parseInt(bas_procode));
+        	        orderBean.setOrd_proname(bas_proname);
+                    orderBean.setOrd_memno(Integer.parseInt(bas_memno));;
+                    orderBean.setOrd_stock(Integer.parseInt(bas_prostock));
+                    orderBean.setOrd_price(Integer.parseInt(money));
+                    orderBean.setOrd_basno(Integer.parseInt(bas_no));        
+                    orderBean.setOrd_proimg(bas_proimg);
+                    orderBean.setOrd_proprice(Integer.parseInt(bas_proprice));
+                    orderBean.setSto_name(sto_name);
+                    orderBean.setPro_memno(Integer.parseInt(pro_memno));
+       
+                    orderService.orderInsert(orderBean);
+                    orderService.orderUpdateBasket(orderBean);
+                    orderService.orderDeleteBasket(orderBean);
+                    System.out.println("복수결제 DB orderBean:"+orderBean);
+                    }
+     	    }
+        mav.addObject("result", result);
+        mav.setViewName("basket/purchase");
+        return mav;
+        }
+	}

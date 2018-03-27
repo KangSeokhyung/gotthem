@@ -75,97 +75,8 @@ public class OrderServiceImpl implements OrderService {
     	  return orderDao.storeListOrderTime(userNo, begin, end);
     }
     
-    //결제 api 실험중
-    @Override
-    public <T> T pay(String accessToken, Class<T> type, List valueArr) {
-        HttpHeaders headers = new HttpHeaders();
-        headers.setContentType(MediaType.APPLICATION_FORM_URLENCODED);
-        headers.setAccept(Arrays.asList(new MediaType[]{MediaType.ALL}));
-        headers.set("Authorization", "Bearer " + accessToken);
- 
-        System.out.println("valueArr서비스 "+ valueArr);
-        String A = null;
-        for(int i=0; i<valueArr.size(); i++){
-     	   A = (String) valueArr.get(i);
-     	   System.out.println("결제 서비스A"+A.toString());
-     	   if ( 2==A.length()) {
-     		   continue;
-     		   } else {
-     	   java.util.StringTokenizer  st = new java.util.StringTokenizer(A,",");
-     	   String bas_no = st.nextToken();
-      	   String bas_proname = st.nextToken();
-      	   String bas_proprice = st.nextToken(); 
-      	   String bas_prostock = st.nextToken();
-      	   String bas_procode = st.nextToken();
-   	       String money = st.nextToken();
-   	       String bas_proimg = st.nextToken();
-      	   String bas_procomment = st.nextToken();
-           String pro_memno = st.nextToken();
-      	   String sto_name = st.nextToken();
-
-      	   OrderpayBean orderBean = new OrderpayBean();
-           orderBean.setOrd_basno(Integer.parseInt(bas_no));        
-           orderBean.setOrd_proname(bas_proname);
-           orderBean.setOrd_proprice(Integer.parseInt(bas_proprice));
-           orderBean.setOrd_stock(Integer.parseInt(bas_prostock));
-           orderBean.setOrd_procode(Integer.parseInt(bas_procode));
-           orderBean.setOrd_price(Integer.parseInt(money));
-           orderBean.setOrd_proimg(bas_proimg);
-           orderBean.setPro_memno(Integer.parseInt(pro_memno));
-           orderBean.setSto_name(sto_name);
-           System.out.println("Sto_name서비스 "+ sto_name);
-     		   }
-        }
-           MultiValueMap<String,String> param = new LinkedMultiValueMap<>();
-        param.add("cid", "TC0ONETIME");
-        param.add("partner_order_id", "partner_order_id");
-        param.add("partner_user_id", "partner_user_id");
-        param.add("item_name", "상품명");
-        param.add("quantity", "2");
-        param.add("total_amount", "10000");
-        param.add("tax_free_amount", "100"); 
-        
-        param.add("approval_url", "http://localhost:8080/gotThem/approve.gt");
-        param.add("cancel_url", "http://localhost:8080/gotThem/index.jsp");
-        param.add("fail_url", "http://localhost:8080/gotThem/index.jsp");
-        System.out.println("파람 : " + param + "\n헤더 : " + headers);
-        HttpEntity<MultiValueMap<String,String>> entity = new HttpEntity<>(param, headers);
-        System.out.println("엔티티 : "+entity);
-        RestTemplate restTemplate = new RestTemplate();
-        
-        try {
-        	System.out.println("zzx고 ");
-        return restTemplate.postForObject("https://kapi.kakao.com/v1/payment/ready",entity, type);
-        } catch (Exception e) {
-            throw new RuntimeException("카카오 API 실행 오류!",e);
-        }
-    }
     
-    @Override
-    public <T> T approve(String pg_Token, HttpSession session, Class<T> type) {
-        HttpHeaders headers = new HttpHeaders();
-        headers.setContentType(MediaType.APPLICATION_FORM_URLENCODED);
-        headers.setAccept(Arrays.asList(new MediaType[]{MediaType.ALL}));
-        headers.set("Authorization", "Bearer " + session.getAttribute("accessToken"));
-        
-        
-        MultiValueMap<String,String> param = new LinkedMultiValueMap<>();
-        param.add("cid", "TC0ONETIME");
-        param.add("tid", (String)session.getAttribute("tid"));
-        param.add("partner_order_id", "partner_order_id");
-        param.add("partner_user_id", "partner_user_id");
-        param.add("pg_token", pg_Token);
-        System.out.println("승인파람" + param);
-        HttpEntity<MultiValueMap<String,String>> entity = new HttpEntity<>(param, headers);
-        RestTemplate restTemplate = new RestTemplate();
-        try {
-        return restTemplate.postForObject("https://kapi.kakao.com/v1/payment/approve",entity, type);
-        } catch (Exception e) {
-            throw new RuntimeException("카카오 API 실행 오류!",e);
-        }
-    }
-    
-  // 단건 결제 api 
+    //4. 단건 결제 api 
     @Override
     public <T> T payOne(String accessToken, Class<T> type, String orderOne) {
         HttpHeaders headers = new HttpHeaders();
@@ -186,27 +97,15 @@ public class OrderServiceImpl implements OrderService {
         String pro_memno = st.nextToken();
     	String sto_name = st.nextToken();
     	String bas_memno = st.nextToken();
-    	
-    	OrderpayBean orderBean = new OrderpayBean();
-    	orderBean.setOrd_memno(Integer.parseInt(bas_memno));      
-        orderBean.setOrd_basno(Integer.parseInt(bas_no));        
-        orderBean.setOrd_proname(bas_proname);
-        orderBean.setOrd_proprice(Integer.parseInt(bas_proprice));
-        orderBean.setOrd_stock(Integer.parseInt(bas_prostock));
-        orderBean.setOrd_procode(Integer.parseInt(bas_procode));
-        orderBean.setOrd_price(Integer.parseInt(money));
-        orderBean.setOrd_proimg(bas_proimg);
-        orderBean.setPro_memno(Integer.parseInt(pro_memno));
-        orderBean.setSto_name(sto_name);
-        
+
         MultiValueMap<String,String> param = new LinkedMultiValueMap<>();
        
         param.add("cid", "TC0ONETIME");
-        param.add("partner_order_id", orderBean.getSto_name());
-        param.add("partner_user_id",  String.valueOf(orderBean.getOrd_memno()));
-        param.add("item_name", orderBean.getOrd_proname());
-        param.add("quantity", String.valueOf(orderBean.getOrd_stock()));
-        param.add("total_amount",String.valueOf(orderBean.getOrd_price()));
+        param.add("partner_order_id", sto_name);
+        param.add("partner_user_id",  bas_memno);
+        param.add("item_name", bas_proname);
+        param.add("quantity", bas_prostock);
+        param.add("total_amount",bas_proprice);
         param.add("tax_free_amount", "0"); 
         
         param.add("approval_url", "http://localhost:8080/gotThem/approveOne.gt");
@@ -225,7 +124,7 @@ public class OrderServiceImpl implements OrderService {
         }
     }
     
-    
+    //4.1 단건 승인 api 
     @Override
     public <T> T approveOne(String pg_Token, HttpSession session, Class<T> type, String orderOne) {
         HttpHeaders headers = new HttpHeaders();
@@ -266,4 +165,98 @@ public class OrderServiceImpl implements OrderService {
         }
     }
 
+    
+    //5. 복수 결제 api 
+    @Override
+    public <T> T pay(String accessToken, Class<T> type, String oneArr, String sum) {
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_FORM_URLENCODED);
+        headers.setAccept(Arrays.asList(new MediaType[]{MediaType.ALL}));
+        headers.set("Authorization", "Bearer " + accessToken);
+       
+        
+        System.out.println("oneArr서비스 "+ oneArr);
+        java.util.StringTokenizer  st = new java.util.StringTokenizer(oneArr,",");
+        String bas_no = st.nextToken();
+      	String bas_proname = st.nextToken();
+      	String bas_proprice = st.nextToken(); 
+      	String bas_prostock = st.nextToken();
+      	String bas_procode = st.nextToken();
+   	    String money = st.nextToken();
+   	    String bas_proimg = st.nextToken();
+      	String bas_procomment = st.nextToken();
+        String pro_memno = st.nextToken();
+      	String sto_name = st.nextToken();
+      	String bas_memno = st.nextToken();
+      	
+      	MultiValueMap<String,String> param = new LinkedMultiValueMap<>();
+      	param.add("cid", "TC0ONETIME");
+        param.add("partner_order_id", sto_name);
+        param.add("partner_user_id", bas_memno);
+        param.add("item_name", bas_proname+" 등");
+        param.add("quantity", bas_prostock);
+        param.add("total_amount",sum);
+        param.add("tax_free_amount", "0"); 
+  
+  
+        param.add("approval_url", "http://localhost:8080/gotThem/approve.gt");
+        param.add("cancel_url", "http://localhost:8080/gotThem/index.jsp");
+        param.add("fail_url", "http://localhost:8080/gotThem/index.jsp");
+        
+       /* System.out.println("파람 : " + param + "\n헤더 : " + headers);*/
+     	
+     	
+        HttpEntity<MultiValueMap<String,String>> entity = new HttpEntity<>(param, headers);
+        System.out.println("엔티티 : "+entity);
+        System.out.println("파람 : " + param );
+        RestTemplate restTemplate = new RestTemplate();
+        
+        try {
+        	System.out.println("zzx고 ");
+        return restTemplate.postForObject("https://kapi.kakao.com/v1/payment/ready",entity, type);
+        } catch (Exception e) {
+            throw new RuntimeException("카카오 API 실행 오류!",e);
+        }
+    }
+ 	 
+    
+    //5.1  복수 승인 api 
+    @Override
+    public <T> T approve(String pg_Token, HttpSession session, Class<T> type, String oneArr) {
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_FORM_URLENCODED);
+        headers.setAccept(Arrays.asList(new MediaType[]{MediaType.ALL}));
+        headers.set("Authorization", "Bearer " + session.getAttribute("accessToken"));
+        
+        System.out.println("oneArr서비스 "+ oneArr);
+        java.util.StringTokenizer  st = new java.util.StringTokenizer(oneArr,",");
+        String bas_no = st.nextToken();
+      	String bas_proname = st.nextToken();
+      	String bas_proprice = st.nextToken(); 
+      	String bas_prostock = st.nextToken();
+      	String bas_procode = st.nextToken();
+   	    String money = st.nextToken();
+   	    String bas_proimg = st.nextToken();
+      	String bas_procomment = st.nextToken();
+        String pro_memno = st.nextToken();
+      	String sto_name = st.nextToken();
+      	String bas_memno = st.nextToken();
+        
+        MultiValueMap<String,String> param = new LinkedMultiValueMap<>();
+        param.add("cid", "TC0ONETIME");
+        param.add("tid", (String)session.getAttribute("tid"));
+        param.add("partner_order_id", sto_name);
+        param.add("partner_user_id", bas_memno);
+        param.add("pg_token", pg_Token);
+        System.out.println("승인파람" + param);
+        HttpEntity<MultiValueMap<String,String>> entity = new HttpEntity<>(param, headers);
+        RestTemplate restTemplate = new RestTemplate();
+        try {
+        return restTemplate.postForObject("https://kapi.kakao.com/v1/payment/approve",entity, type);
+        } catch (Exception e) {
+            throw new RuntimeException("카카오 API 실행 오류!",e);
+        }
+    }
+    
+  
 }

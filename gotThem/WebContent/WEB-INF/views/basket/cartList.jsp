@@ -116,7 +116,7 @@
              <c:forEach var="row" items="${map.list}" varStatus="i">
                <tr>                
                   <td> 
-                      <input type="checkbox" name="checkRow" class="chk" id="checkRow"  value="${row.bas_no},${row.bas_proname},${row.bas_proprice},${row.bas_prostock},${row.bas_procode},${row.money},${row.bas_proimg}, ${row.bas_procomment},${row.pro_memno},${row.sto_name}"
+                      <input type="checkbox" name="checkRow" class="chk" id="checkRow"  value="${row.bas_no},${row.bas_proname},${row.bas_proprice},${row.bas_prostock},${row.bas_procode},${row.money},${row.bas_proimg}, ${row.bas_procomment},${row.pro_memno},${row.sto_name},${row.bas_memno}"
                       onclick="cart();" /> 
                   </td>
                   <td class="img" class="tNonePre">
@@ -144,11 +144,8 @@
                        <fmt:formatNumber pattern="###,###,###" value="${row.money}"/>원
                   </td>
                    <td class="tNonePre">
-                        <input type="hidden" name="money" value="${row.money}">
-                        <input type="hidden" name="bas_no" value="${row.bas_no}">
 						<input type="hidden" name="bas_all" id="bas_all" value="${row.bas_no},${row.bas_proname},${row.bas_proprice},${row.bas_prostock},${row.bas_procode},${row.money},${row.bas_proimg}, ${row.bas_procomment},${row.pro_memno},${row.sto_name},${row.bas_memno}">
-						<a href="#" class="minPurchase" id= "orderOne"
-						onclick="button_order('${row.bas_no}','${row.bas_proname}','${row.bas_procode}','${row.money}','${row.bas_prostock}','${row.bas_proimg}','${row.bas_proprice}','${row.pro_memno}','${row.sto_name}');" >바로구매</a><br/>
+						<a href="#" class="minPurchase" id= "orderOne" onclick="" >바로구매</a><br/>
 						<a href="#" class="minDel02" onclick="button_basDel(${row.bas_no});">상품삭제</a>
 				   </td>
                 </tr>
@@ -175,7 +172,7 @@
   </div>
   </form>
   	<div class="btnAreaList">
-		<a href="#" class="sOrder"  onclick="button_selOrder();"><p>선택상품 <span>주문하기</span></p></a>&nbsp;&nbsp;
+		<a href="#" class="sOrder"  id=button_selOrder onclick="button_selOrder();"><p>선택상품 <span>주문하기</span></p></a>&nbsp;&nbsp;
 		<a href="#" class="aOrder" id=button_allOrder onclick="button_allOrder();"><p>전체상품 <span>주문하기</span></p></a>&nbsp;&nbsp;
 		<a href="/gotThem" class="continuation" onclick=""><p>쇼핑 <span>계속하기</span></p></a>
 		<button id = "payBtn" value="ddd" >ddddddd</button>
@@ -269,6 +266,7 @@ function cart(){ //결제 금액 계산
      	var bb = Number(str).toLocaleString('en').split(".")[0];	
     	document.getElementById("chkSum").innerHTML = bb;
     	}
+	return sum;
 	}  		   
 function button_basDel(bas_no){  //단건 직접 삭제
 	if (confirm("장바구니에서 상품을 삭제 하시겠습니까?")){
@@ -315,35 +313,7 @@ function button_selDel(){  //장바구니 선택 삭제
 	  }
   }  
 	
-function button_selOrder(){  //장바구니 선택 결제
-	if( $(":checkbox[name='checkRow']:checked").length==0 ){
-		alert("결제할 항목을 체크해주세요.");
-		return;
-		}
-	var checkOrder = [];
-	$("input[name='checkRow']:checked").each(function(i){
-		if( $(":checkbox[name='checkRow']:checked").length==1 ){
-			checkOrder.push($(this).val());
-			checkOrder.push('[]');
-		  } else {
-			  checkOrder.push($(this).val());
-			  }
-		});
-	if (confirm("선택한 상품을 결제 하시겠습니까?")){
-		$.ajax({
-			url:"selectOrder.gt",
-			type:"post",
-			dataType: "text",
-			data:{arrOrder:checkOrder
-				},
-				success:function(result){
-					location.href="./orderList.gt";
-					}
-				});
-		}else{ 
-			return;
-			}
-	}
+
 function button_allDel(){  //장바구니 전체 삭제
 	  var checkAllDel = [];
 	  $("input[name='checkRow']").each(function(i){
@@ -418,41 +388,40 @@ $('#payBtn').click(()=> {
      }
 }); 
 
-$('#orderOne').click(function() {	  
-    if(!access_Token){
-   	 console.log('토큰이 없음');
-        loginWithKakao();
-    } else {
-   	 console.log("토근존재");
-   	 var orderOne = $(this).prev().val();  
-   	 paymentOne(orderOne);
-    }
-});
+$(document).on("click", "#orderOne",function(){
+	if(!access_Token){
+		console.log('토큰이 없음');
+		loginWithKakao();
+		} else {
+			console.log("토근존재");
+			var orderOne = $(this).prev().val();
+			paymentOne(orderOne);
+			}
+	});
 
-function paymentOne(orderOne) {
-	if (confirm("상품을 결제 하시겠습니까?")){
-	$.ajax({
-	 url : 'paymentOne.gt',
-	 data : { 
-		 accessToken : access_Token,		
-		 "orderOne": orderOne
-		},
-     method: 'POST',
-     success: (result) => {
-    	 console.log(result);
-     	window.open(result.next_redirect_pc_url,
-     			"","width=400, height=700");
-     	console.log("온다아아앙");
-     }, 
-     error: () => {
-         window.alert('payment 서버 실행 오류!');
-     }
-  });
-	}else{ 
-		return;
-		} 
-}
-
+function paymentOne(orderOne){
+	if(confirm("상품을 결제 하시겠습니까?")){
+		$.ajax({
+			url : 'paymentOne.gt',
+			data : {
+				accessToken : access_Token,
+				"orderOne": orderOne
+				},
+				method: 'POST',
+				success: (result) => {
+					console.log(result);
+					window.open(result.next_redirect_pc_url,
+							"","width=400, height=700");
+					console.log("온다아아앙");
+					},
+					error: () => {
+						window.alert('payment 서버 실행 오류!');
+						}
+					});
+		}else{
+			return;
+			}
+	}
 
 /* function button_order(bas_no,bas_proname,bas_procode,money,bas_prostock,bas_proimg,bas_proprice,pro_memno,sto_name){
 	if (confirm("상품을 결제 하시겠습니까?")){ //단건결제
@@ -486,46 +455,77 @@ function paymentOne(orderOne) {
 				} 
 		}  */
 
-		$('#button_allOrder').click(()=> {
-			
-		    if(!access_Token){
-		   	 console.log('토큰이 없음');
-		        loginWithKakao();
-		    } else {
-		   	 console.log("토근존재");
-		        payment();
-		    }
-		});		
+
+$(document).on("click", "#button_allOrder",function(){
+			if(!access_Token){
+				console.log('토큰이 없음');
+				loginWithKakao();
+				} else {
+					console.log("토근존재");
+					var checkAllOrder = [];
+					$("input[name='checkRow']").each(function(i){
+						checkAllOrder.push($(this).val());
+						});
+					checkAllOrder.push('[]');
+					alert("checkAllOrder는"+checkAllOrder);
+					if (confirm("전체 상품을 결제 하시겠습니까?")){
+						payment(checkAllOrder);
+						} else {
+							return;
+							}
+					}
+			});
 		
-		
-function payment() {
-	var checkAllOrder = [];
-	$("input[name='checkRow']").each(function(i){
-		checkAllOrder.push($(this).val());		
+$(document).on("click", "#button_selOrder",function(){
+	if(!access_Token){
+		console.log('토큰이 없음');
+		loginWithKakao();
+		} else {
+			console.log("토근존재");
+			if( $(":checkbox[name='checkRow']:checked").length==0 ){
+				alert("결제할 항목을 체크해주세요.");
+				return;
+				}
+			var checkAllOrder = [];
+			$("input[name='checkRow']:checked").each(function(i){
+				if( $(":checkbox[name='checkRow']:checked").length==1 ){
+					checkAllOrder.push($(this).val());
+					checkAllOrder.push('[]');
+					} else {
+						checkAllOrder.push($(this).val());
+						}
+				});
+			if (confirm("선택한 상품을 결제 하시겠습니까?")){
+				payment(checkAllOrder);
+				} else {
+					return;
+					}
+			}
 	});
-	checkAllOrder.push('[]');
-	if (confirm("전체 상품을 결제 하시겠습니까?")){
-	$.ajax({
-	 url : 'payment.gt',
-     data: {
-         accessToken : access_Token,
-         arrOrder: checkAllOrder
-     },
-     method: 'POST',
-     success: (result) => {
-    	 console.log(result);
-     	window.open(result.next_redirect_pc_url,
-     			"","width=400, height=700");
-     	console.log("온다아아앙");
-     }, 
-     error: () => {
-         window.alert('payment 서버 실행 오류!');
-     }
-  });
-	}else{ 
-		return;
-		} 
-}
+				
+
+function payment(checkAllOrder) {
+	var chkSum = $("#chkSum").text();
+    var sum =  chkSum.replace(/,/g, '');
+    $.ajax({
+		url : 'payment.gt',
+		data: {
+			accessToken : access_Token,
+			arrOrder: checkAllOrder,
+			sum: sum
+			},
+			method: 'POST',
+			success: (result) => {
+				console.log(result);
+				window.open(result.next_redirect_pc_url,
+						"","width=400, height=700");
+				console.log("온다아아앙");
+				},
+				error: () => {
+					window.alert('payment 서버 실행 오류!');
+					}
+				});
+	}
 function loginWithKakao() {
     Kakao.Auth.login({
       success: function(authObj) {
@@ -539,6 +539,34 @@ function loginWithKakao() {
       }
     });
   };
-
+	/* function button_selOrder(){  //장바구니 선택 결제
+	if( $(":checkbox[name='checkRow']:checked").length==0 ){
+		alert("결제할 항목을 체크해주세요.");
+		return;
+		}
+	var checkOrder = [];
+	$("input[name='checkRow']:checked").each(function(i){
+		if( $(":checkbox[name='checkRow']:checked").length==1 ){
+			checkOrder.push($(this).val());
+			checkOrder.push('[]');
+		  } else {
+			  checkOrder.push($(this).val());
+			  }
+		});
+	if (confirm("선택한 상품을 결제 하시겠습니까?")){
+		$.ajax({
+			url:"selectOrder.gt",
+			type:"post",
+			dataType: "text",
+			data:{arrOrder:checkOrder
+				},
+				success:function(result){
+					location.href="./orderList.gt";
+					}
+				});
+		}else{ 
+			return;
+			}
+	}		 */
 </script>	
 </html>
