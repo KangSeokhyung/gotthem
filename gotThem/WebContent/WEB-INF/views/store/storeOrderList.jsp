@@ -32,7 +32,7 @@ padding: 0.6rem 1rem;
 td .img{padding:0px;}
 
 .form-control {
-	width: 253px;
+	width: 240px;
 	height: 34px;
 	display:inline;
 }
@@ -44,20 +44,76 @@ padding-left:0;
 margin-left:180px;
 }
 
+table th, td {
+  text-align: center;
+  vertical-align: middle;
+}
+
+
+
 @media all and (max-width:767px){
+table, tr, td {
+    display: block;
+    font-size:16px;
+}
+
+td:first-child {
+    position: absolute;
+    top: 50%;
+    -webkit-transform: translateY(-50%);
+            transform: translateY(-50%);
+    width: 100px;
+  }
+  td:not(:first-child) {
+    clear: both;
+    padding: 4px 20px 4px 90px;
+    position: relative;
+    text-align: left;
+  }
+  td:not(:first-child):before {
+    content: '';
+    display: block;
+    left: 0;
+    position: absolute;
+  }
+  td:nth-child(2):before {
+    content: '사진:';
+  }
+  td:nth-child(3):before {
+    content: '상품명:';
+  }
+  td:nth-child(4):before {
+    content: '수량:';
+  }
+  td:nth-child(5):before {
+    content: '가격:';
+  }
+  td:nth-child(6):before {
+    content: '상태:';
+  }
+  td:nth-child(7):before {
+    content: '결제시간:';
+  }
+  td:nth-child(8):before {
+    content: '고객정보:';
+  }
+  td:nth-child(9):before {
+    content: '결제취소:';
+  }
+
+  tr {
+    padding: 10px 0;
+    position: relative;
+  }
+  tr:first-child {
+    display: none;
+  }
+  
 .container{
 padding-top:20px;
 padding-bottom:20px;
 padding-left:0;
 margin-left:0px;
-}
-
-.table-user-information .no {display:none}
-.table-user-information .img {display:none}
-.table-user-information .fidetime {display:none}
-td .img{weight:10%}
-td .name{weight:70%}
-td .stock{weight:20%}
 }
 
 .datePick{display:none;}
@@ -72,7 +128,7 @@ td .stock{weight:20%}
 		<a href="#" class="probootstrap-toggle js-probootstrap-toggle"><span
 			class="oi oi-menu"></span></a>
 		<div class="probootstrap-main-site-logo">
-			<a href="index.html">GOT THEM</a></a>
+			<a href="index.html">GOT THEM</a>
 		</div>
 	</div>
 	<br><br>
@@ -89,20 +145,20 @@ td .stock{weight:20%}
 	</form>
 			<table class="table table-user-information" id="mytable">
 				<tr>
-					<th class="no" scope="col">no.</th>
-					<th class="img" scope="col">사진</th>
-					<th class="name" scope="col">상품명</th>
-					<th class="stock" scope="col">수량</th>
-					<th class="price" scope="col">가격</th>
-					<th class="status" scope="col">상태</th>
-					<th class="findtime" scope="col">결제 시간</th>
-					<th class="info" scope="col">고객정보</th>
-					<th class="delete" scope="col">결제취소</th>
+					<th class="no">no.</th>
+					<th class="img">사진</th>
+					<th class="name">상품명</th>
+					<th class="stock">수량</th>
+					<th class="price">가격</th>
+					<th class="status">상태</th>
+					<th class="findtime">결제 시간</th>
+					<th class="info">고객정보</th>
+					<th class="delete">결제취소</th>
 				</tr>
 				<c:forEach var="row" items="${map.list}" varStatus="i">
 					<tr>
 						<td class="no">${row.ord_no}</td>
-						<td class="img"><img src="/img/${row.ord_proimg}"
+						<td class="img"><img src="/img/${row.ord_proimg}" 
 							style="width: 50px; height: 50px" /></td>
 						<td class="name">${row.ord_proname}</td>
 						<td class="stock">${row.ord_stock}</td>

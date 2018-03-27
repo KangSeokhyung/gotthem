@@ -358,4 +358,11 @@ public class StoreController {
 		}
 		return mav;
 	}
+    
+    @RequestMapping(value = "/test.st", method= RequestMethod.GET)
+	public String test(HttpServletRequest request) {
+		return "store/test";
+	}
+    
+    
 }

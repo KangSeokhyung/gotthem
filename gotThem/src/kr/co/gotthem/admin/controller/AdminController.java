@@ -46,7 +46,7 @@ public class AdminController {
 		return mav;
 	}
 		
-	@RequestMapping(value = "/memcontrol.ad", method = RequestMethod.GET)
+	@RequestMapping(value = "/memberControl.ad", method = RequestMethod.GET)
 	public ModelAndView member(ModelAndView mav, HttpServletRequest request) {
         
 		List<MemberBean> mlist = null;
@@ -133,10 +133,10 @@ public class AdminController {
 		
 		memberService.memModi(membean);
 		
-		return "redirect:memcontrol.ad";
+		return "redirect:memberControl.ad";
 	}
 
-	@RequestMapping(value = "/storecontrol.ad", method = RequestMethod.GET)
+	@RequestMapping(value = "/storeControl.ad", method = RequestMethod.GET)
 	public ModelAndView store(ModelAndView mav, HttpServletRequest request) {
 		List<MemberBean> stlist = null;
 		
@@ -222,7 +222,7 @@ public class AdminController {
 		
 		memberService.memModi(mbean);
 	
-		return "redirect:storecontrol.ad";
+		return "redirect:storeControl.ad";
 
 	}
 	
