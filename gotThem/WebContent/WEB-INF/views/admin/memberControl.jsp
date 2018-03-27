@@ -39,7 +39,6 @@
           <ul class="probootstrap-main-nav">
             <li><a href="memcontrol.ad">회원관리</a></li>
             <li><a href="storecontrol.ad">점포관리</a></li>
-            <li><a href="#">게시판관리</a></li>
           </ul>
         </nav>
     </div>

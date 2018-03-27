@@ -143,7 +143,7 @@ body{
 	<div class="container">
 		<div class="row">
 			<div class="col-md-4 offset-md-4 col-10 offset-1 login-main border rounded pb-4 pt-5">
-				<form method="post" action="#">
+				<form method="post">
 					<div class="row">
 						<div class="col-md-4 col-12 heading-image text-white text-center">
 					      	<i class="fa fa-users" aria-hidden="true"></i>

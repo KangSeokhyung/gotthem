@@ -29,6 +29,7 @@
 		width: 400px;
 	}
 }
+body {font-family:나눔스퀘어라운드;}
 </style>
 </head>
 <body>
@@ -81,7 +82,7 @@
 											<strong>아직 GOTTHEM 식구가<br>아니신가요?
 											</strong>
 										</h4>
-										<h6 class="card-description" style="font-family:나눔고딕;">
+										<h6 class="card-description" style="font-family:나눔스퀘어라운드;"><strong>
 											제휴 신청 버튼을 눌러 가입합니다. 지정된 양식을 쓰고 제출버튼을 누르면 끝! 
 											마지막으로 관리자의 최종 승인이 나면 GOT THEM의 제휴 가맹점이 됩니다.<br><br><br>
 											제휴신청 후 일정기간 승인 대기상태가됩니다.<br> 제휴신청 회원가입을 해 주시면 담당자가 검토후 연락을 드리겠습니다.<br>

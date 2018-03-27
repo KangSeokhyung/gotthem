@@ -38,9 +38,9 @@
 
 	<http pattern="/*.ad" auto-config="true" disable-url-rewriting="true" use-expressions="true">
 		<intercept-url pattern="/admin.ad" access="permitAll" />
-		<intercept-url pattern="/control.ad" access="hasRole('ROLE_ADMIN')" />
+		<intercept-url pattern="/memcontrol.ad" access="hasRole('ROLE_ADMIN')" />
 		<form-login login-page="/admin.ad" 
-			default-target-url="/control.ad"
+			default-target-url="/memcontrol.ad"
 			authentication-failure-url="/loginfail.gt" 
 			login-processing-url="/admin.ad"
 			username-parameter="admin_id"
