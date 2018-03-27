@@ -61,8 +61,7 @@ public class OrderController {
        MemberBean memberInfo = memberService.memberInfo(mem_id);
        int userNo = memberInfo.getMem_no();
        orderBean.setOrd_memno(userNo);
-   	   System.out.println("상품개별 가격 " + Integer.parseInt(bas_proprice) );
-
+   	
        orderBean.setOrd_proprice(Integer.parseInt(bas_proprice));
    	   orderBean.setOrd_stock(Integer.parseInt(bas_prostock));
    	   orderBean.setOrd_procode(Integer.parseInt(bas_procode));
@@ -73,7 +72,7 @@ public class OrderController {
    	   orderBean.setOrd_no(Integer.parseInt(bas_no));
    	   orderBean.setPro_memno(Integer.parseInt(pro_memno));
    	   orderBean.setSto_name(sto_name);
-   	System.out.println("orderBean " + orderBean );
+ 
    	   orderService.orderInsert(orderBean);
    	   orderService.orderUpdateBasket(orderBean);
    	   orderService.orderDeleteBasket(orderBean);
@@ -91,12 +90,10 @@ public class OrderController {
 	   
 	   MemberBean memberInfo = memberService.memberInfo(mem_id);  
        int userNo = memberInfo.getMem_no();
-       System.out.println("valueArr은" + valueArr);
-       
        String A = null;
        for(int i=0; i<valueArr.size(); i++){
     	   A = (String) valueArr.get(i);
-    	   System.out.println("여기값"+A.toString());
+    	   System.out.println("선택결제 여기값"+A.toString());
     	   if ( 2==A.length()) {
     		   continue;
     		   } else {
@@ -111,11 +108,6 @@ public class OrderController {
        	   String bas_procomment = st.nextToken();
            String pro_memno = st.nextToken();
        	   String sto_name = st.nextToken();
-          
-       	System.out.println("bas_no는" + bas_no );
-       	System.out.println("bas_proname는" + bas_proname );
-       	System.out.println("bas_proprice는" + bas_proprice );
-
 
        	   orderBean.setOrd_memno(userNo);       
            orderBean.setOrd_basno(Integer.parseInt(bas_no));        
@@ -127,13 +119,11 @@ public class OrderController {
            orderBean.setOrd_proimg(bas_proimg);
            orderBean.setPro_memno(Integer.parseInt(pro_memno));
            orderBean.setSto_name(sto_name);
-           
-           System.out.println("orderBean은" + orderBean );
+
            orderService.orderInsert(orderBean);
-          
  	       orderService.orderUpdateBasket(orderBean);
    	       orderService.orderDeleteBasket(orderBean); 	 
-   	       System.out.println("결제 변경된 수량" + bas_prostock );
+   	       System.out.println("선택결제 성공");
    	       }
         }
        return "redirect:/orderList.gt";
@@ -150,7 +140,6 @@ public class OrderController {
     	 
     	 Map<String, Object> map = new HashMap<String, Object>();
          List<OrderpayBean> listOrder = orderService.listOrder(userNo); // 장바구니 정보 
-         System.out.println("listOrder타고 " + listOrder);
          map.put("list",listOrder);
          mav.setViewName("/basket/orderList");
          mav.addObject("map", map);
@@ -182,8 +171,7 @@ public class OrderController {
 	
 		int userNo = memberInfo.getMem_no();
 		String userName = memberInfo.getSto_name();
-		
-		System.out.println("userNo타고 " + userNo);
+
 		Map<String, Object> map = new HashMap<String, Object>();
 		List<OrderpayBean> slistOrder = orderService.storeListOrder(userName);
 /*		List<OrderpayBean> slistOrder = orderService.storeListOrder(userNo);
@@ -211,13 +199,16 @@ public class OrderController {
 		String to1 = to + " 23:59:59.9";
 		java.sql.Timestamp end = java.sql.Timestamp.valueOf(to1);
 		
+		
+		System.out.println("begin은 " + begin);
+		System.out.println("end은 " + end);
 		Map<String, Object> map = new HashMap<String, Object>();
-		List<OrderpayBean> slistOrder = orderService.storeListOrderTime(userName, begin, end);
-		System.out.println("storeLisOrdertime타고 " + slistOrder);
+		List<OrderpayBean> slistOrder = orderService.storeListOrderTime(userNo, begin, end);
+		System.out.println("Time " + slistOrder);
+		
 		map.put("begin", from);
 		map.put("end", to);
 		map.put("list", slistOrder);
-		System.out.println("map고 " + map);
 		mav.setViewName("/store/storeOrderListTime");
 		mav.addObject("map", map);
 		return mav;
@@ -229,10 +220,12 @@ public class OrderController {
 	
 	@RequestMapping(value="/payment.gt", method = RequestMethod.POST)
     @ResponseBody
-	public HashMap payment(String accessToken, HttpSession session) throws Exception {
+	public HashMap payment(String accessToken, HttpSession session,
+			@RequestParam (value= "arrOrder[]") List valueArr) throws Exception {
+		
 		System.out.println("접속된 토큰 : " + accessToken);
 		@SuppressWarnings("rawtypes")
-        HashMap result = orderService.pay(accessToken, HashMap.class);
+        HashMap result = orderService.pay(accessToken, HashMap.class,valueArr);
         System.out.println("페이한 결과 : " + result);
 		session.setAttribute("tid",result.get("tid"));
         session.setAttribute("accessToken", accessToken);
@@ -243,7 +236,7 @@ public class OrderController {
     @RequestMapping(value="/approve.gt")
     public ModelAndView approve(HttpServletRequest req,HttpSession session, ModelAndView mav) throws Exception {
         String pg_Token = req.getParameter("pg_token");
-        System.out.println(pg_Token);
+        System.out.println("pg_Token:승인컨트롤"+pg_Token);
         @SuppressWarnings("rawtypes")
         HashMap result = orderService.approve(pg_Token,session,HashMap.class);
         mav.addObject("result", result);

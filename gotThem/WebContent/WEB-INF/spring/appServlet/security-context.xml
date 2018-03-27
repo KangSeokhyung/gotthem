@@ -8,9 +8,6 @@
     <http pattern="/*.gt" auto-config="true" disable-url-rewriting="true" use-expressions="true">
 		<intercept-url pattern="/" access="permitAll" />
 		<intercept-url pattern="/mypage.gt" access="hasAnyRole('ROLE_USER, ROLE_ADMIN')" />
-		<intercept-url pattern="/listBasket.gt" 	access="hasAnyRole('ROLE_USER')" />
-		<intercept-url pattern="/insertBasket.gt" 	access="hasAnyRole('ROLE_USER')" />
-		<intercept-url pattern="/insertOrder.gt" 	access="hasAnyRole('ROLE_USER')" />
 		<form-login login-page="/login.gt" 
 			default-target-url="/"
 			login-processing-url="/login.gt"
@@ -53,8 +50,6 @@
 
 	<!-- 성공 핸들러 -->
 	<beans:bean id="loginSuccessHandler" class="kr.co.gotthem.member.security.LoginSuccessHandler">
-		<beans:property name="memberService" ref="memberService" />
-		<beans:property name="basketService" ref="basketService" />
 	</beans:bean>
 	
 	<beans:bean id="memberService" class="kr.co.gotthem.member.service.MemberServiceImpl">

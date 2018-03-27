@@ -18,34 +18,7 @@
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400" rel="stylesheet">
     <link rel="stylesheet" href="resources/mainTemplate/css/styles-merged.css">
     <link rel="stylesheet" href="resources/mainTemplate/css/style.min.css">
-    <link rel="stylesheet" href="resources/mainTemplate/css/custom.css">
-<script type="text/javascript" src="resources/renew2/js/jquery.min.js"></script>
-<script type="text/javascript" src="resources/renew2/js/common.js"></script>
-<script type="text/javascript" src="resources/renew2/js/top_navi.js"></script>
-<script type="text/javascript" src="resources/renew2/js/jquery.easing.1.3.js"></script>
-<script type="text/javascript" src="resources/renew2/js/idangerous.swiper-2.1.min.js"></script>
-<script type="text/javascript" src="resources/renew2/js/jquery.anchor.js"></script>
-<script type="text/javascript" src="resources/renew2/js/jquery.fancybox-1.3.4.pack.js"></script>
-<script type="text/javascript" src="resources/renew2/js/isotope.pkgd.min.js"></script>
-<script type="text/javascript" src="resources/renew2/js/jquery.word-break-keep-all.min.js"></script>
-<script type="text/javascript" src="resources/renew2/js/jquery.matchHeight-min.js"></script>
-<script type="text/javascript" src="resources/renew2/js/jquery.bind.js"></script>
-<script type="text/javascript" src="resources/renew2/js/ui.core.js"></script>
-<script type="text/javascript" src="resources/renew2/js/ui.checkbox.js"></script>
-<script type="text/javascript" src="resources/renew2/js/jquery-ui-1.9.2.custom.min.js"></script>
-    <!--[if lt IE 9]>
-      <script src="resources/mainTemplate/js/vendor/html5shiv.min.js"></script>
-      <script src="resources/mainTemplate/js/vendor/respond.min.js"></script>
-    <![endif]-->
- <!-- RENEW 1 -->
-<!--<link rel="stylesheet" href="/renew2/common/css/common.css" type="text/css"/>-->
-<!--<link rel="stylesheet" href="/renew2/common/css/etc.css" type="text/css"/>-->
-
-<!--<script type="text/javascript" src="/renew2/common/js/jquery-1.7.1.min.js"></script>-->
-<script type="text/javascript" src="resources/renew2/common/js/renew.js"></script>
-<!-- <script src="/renew2/common/zipcode/postcode.v2.js"></script>-->
-
-<script src="https://spi.maps.daum.net/imap/map_js_init/postcode.v2.js"></script>   
+    <link rel="stylesheet" href="resources/mainTemplate/css/custom.css"> 
 <style>
  #pro_stock {
  padding:0 0 0 15px
@@ -187,7 +160,7 @@
     </div>
   </footer>
 </body>
-<script type="text/javascript" src="https://service.iamport.kr/js/iamport.payment-1.1.2.js"></script>
+<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
  <script src="resources/mainTemplate/js/scripts.min.js"></script>
  <script src="resources/mainTemplate/js/main.min.js"></script>
  <script src="resources/mainTemplate/js/custom.js"></script>
@@ -222,4 +195,3 @@
    }
 </script>
 </html>
->>>>>>> branch 'cy' of https://github.com/KangSeokhyung/gotthem.git

@@ -1,6 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%
+	session.setAttribute("basketFoward", "/gotThem/listBasket.gt");
+%>
 <!DOCTYPE html>
 <html lang="ko">
   <head>
@@ -9,16 +12,14 @@
     <title>편의점 재고 검색 GOT THEM!</title>
     <meta name="description" content="Free Bootstrap Theme by uicookies.com">
     <meta name="keywords" content="free website templates, free bootstrap themes, free template, free bootstrap, free website template">
-    
+   
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400" rel="stylesheet">
     <link rel="stylesheet" href="resources/mainTemplate/css/styles-merged.css">
     <link rel="stylesheet" href="resources/mainTemplate/css/style.min.css">
     <link rel="stylesheet" href="resources/mainTemplate/css/custom.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-     <!--[if lt IE 9]>
-      <script src="resources/mainTemplate/js/vendor/html5shiv.min.js"></script>
-      <script src="resources/mainTemplate/js/vendor/respond.min.js"></script>
-    <![endif]-->
+    <link rel="stylesheet" href="resources/autocomplete/auto-complete.css">
+    
   </head>
 <style type="text/css">
 #releatedField { position: absolute; width: 63%; }
@@ -74,61 +75,41 @@ color:#1fad9f !important;
     box-shadow: 0 6px 68px -6px rgba(0,0,0,.7);
 }
 
+#marginChg { 
+	padding-bottom: 10px; 
+	margin-top: 340px; 
+	background: none;
+	-webkit-box-shadow: none;
+	box-shadow: none;
+}
+#btnColor { background: #fe490f; }
 </style>  
+<script src="resources/autocomplete/auto-complete.js"></script>
 <script src="https://code.jquery.com/jquery-3.2.1.js"></script>
 <script type="text/javascript">
-	function relatedSearch() {
-		$("#releatedField").html("");
-		var search = $("#search").val();
-		if(search != ""){
-			$.ajax({
-				url : "relatedSearch.gt",
-				data : { "search" : search },
-				type : "post",
-				success : function(relatedData) {
-					var ob = JSON.parse(relatedData);
-					var innerHtml = "";
-					$("#releatedField").html("");
-					for (var i = 0; i < 5; i++) {
-						if (typeof(ob["search" + i]) != "undefined") {
-							innerHtml += "<div class='list-group'>"
-									  + "<a href='searchList.gt?search=" +  ob["search" + i] 
-									  + "&pageNo=1' class='list-group-item list-group-item-action'>" 
-									  +  ob["search" + i] + "</a>";
-				 					  + "</div>"
-						}
-					}
-					
-					$("#releatedField").append(innerHtml);
-				},
-				error : function(xmlHttpReq, status, error) {
-				}
-			});
+	$().ready(function() {
+		var msg = '${resultMsg}';
+		var str;
+		if (msg != null) {
+			if (msg == 'fail1') {
+				str = "현재 비밀번호가 맞지 않습니다. 다시 확인해주세요";
+			} else if (msg == 'fail2') {
+				str = "새로운 비밀번호를 정확히 입력하여 주세요";
+			} else if (msg == 'fail3') {
+				str = "비밀번호 변경이 실패하였습니다";
+			} else if (msg == 'success') {
+				str = "비밀번호 변경이 성공하였습니다.";
+			} else if (msg == 'DelSuccess') {
+				str = "회원탈퇴 성공하였습니다. 이용해 주셔서 감사합니다";
+			} else if (msg == 'DelFail') {
+				str = "회원탈퇴에 실패했습니다. 비밀번호를 확인해주세요";
+			}
+			if (str != null)
+				alert(str);
 		}
-	}
-   	$().ready(function(){
-   		var msg= '${resultMsg}';
-   		var str;
-   		if(msg!=null){
-   			if(msg=='fail1'){
-   				str="현재 비밀번호가 맞지 않습니다. 다시 확인해주세요";
-   			}else if(msg=='fail2'){
-   				str="새로운 비밀번호를 정확히 입력하여 주세요";
-   			}else if(msg=='fail3'){
-   				str="비밀번호 변경이 실패하였습니다";
-   			}else if(msg=='success'){
-   				str="비밀번호 변경이 성공하였습니다.";
-   			}else if(msg=='DelSuccess'){
-   				str="회원탈퇴 성공하였습니다. 이용해 주셔서 감사합니다";
-   			}else if(msg=='DelFail'){
-   				str="회원탈퇴에 실패했습니다. 비밀번호를 확인해주세요";
-   			}
-   			if(str!=null)
-   				alert(str);
-   		}
-   	});
+	});
 </script>
-  <body>
+<body>
 <!-- START: header -->
 <%@include file="nav.jsp" %>
 <!-- END: header -->
@@ -138,23 +119,21 @@ color:#1fad9f !important;
       <div class="container">
         <div class="row">
           <div class="col-md-8 col-md-offset-2">
-				<form action="searchList.gt" method="get" class="probootstrap-home-search probootstrap-animate">
-					<input type="hidden" name="pageNo" value="1">
-					<h2 class="heading" style="padding-bottom: 10px;">드시고 싶은
-						즉석식품을 검색하세요</h2>
-					<div class="probootstrap-field-group">
-						<div class="probootstrap-fields">
-							<div class="form-field">
-								<input type="text" class="form-control" name="search"
-									autocomplete="off" id="search" onkeyup="relatedSearch()"
-									required="required" placeholder="예) 김밥, 강남역" />
-							</div>
-							<div id="releatedField"></div>
+            <div id="marginChg" class="probootstrap-home-search probootstrap-animate">
+              <form action="searchList.gt" method="get">
+              	<input type="hidden" name="pageNo" value="1">
+	            <div class="probootstrap-field-group">
+					<div class="probootstrap-fields">
+						<div class="form-field">
+							<input type="text" class="form-control" id="autoComplete" name="search"
+								required="required"
+								placeholder="예) 도시락, 서초, 강남  김밥" />
 						</div>
-						<input type="submit" class="btn btn-fill buttonBackgroundColor"
-							value="검색">
 					</div>
-				</form>
+					<input type="submit" id="btnColor" class="btn btn-fill btn-success" value="검색">
+				</div>
+              </form>
+            </div>
 
           </div>
         </div>

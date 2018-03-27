@@ -57,7 +57,6 @@ public class BasketController {
     	MemberBean memberInfo = memberService.memberInfo(mem_id);  
         int userNo = memberInfo.getMem_no();
     	basketBean.setBas_memno(userNo);
-    	System.out.println(userNo);
         
     	HttpSession session = req.getSession();
     	List<BasketBean> listBasket = null;
@@ -65,15 +64,10 @@ public class BasketController {
         if (count == 0) {
         	 basketService.insertBasket(basketBean);      	 
         	 System.out.println("첫 상품 장바구니 인서트");
-        	 listBasket = basketService.listBasket(userNo);
-      	    
         } else {    // 있으면 update, 동일 상품 존재시 기존 수량에 새로운 수량 더하기
         	basketService.updateBasket(basketBean);
 			System.out.println("존재하는 상품 인서트");
-        	listBasket = basketService.listBasket(userNo);
         }
-        
- 	    session.setAttribute("count", listBasket.size());
     }
  
     // 2. 장바구니 목록
@@ -87,18 +81,15 @@ public class BasketController {
         int userNo = memberInfo.getMem_no();
         Map<String, Object> map = new HashMap<String, Object>();
         List<BasketBean> listBasket = basketService.listBasket(userNo); // 장바구니 정보 
-        System.out.println("list타고,listBasket " + listBasket);
         int sumMoney = basketService.sumMoney(userNo);// 장바구니 전체 금액 호출
-	    HttpSession session = req.getSession();
-		session.setAttribute("count", listBasket.size());
-	    map.put("sumMoney", sumMoney);        // 장바구니 전체 금액
 	    for(int i=0; i< listBasket.size(); i++){
 	    	 basketBean = listBasket.get(i);
 	    	 int procode = basketBean.getBas_procode();	 
 	    	 int stock = productService.productSearchStock(procode);
 	 
 	    	 basketBean.setStock(stock);
-	    }	    
+	    }	
+	    map.put("sumMoney", sumMoney);        // 장바구니 전체 금액
 	    map.put("list", listBasket);                // 장바구니 정보를 map에 저장
 	    map.put("count", listBasket.size());
 	    mav.setViewName("basket/cartList");    // view(jsp)의 이름 저장
@@ -121,7 +112,7 @@ public class BasketController {
     	
         basketBean.setBas_memno(userNo); 
     	basketService.deleteBasket(basketBean);
-    	System.out.println("삭제 실행");
+    	System.out.println("한건삭제 실행");
         return "redirect:/listBasket.gt";
     }
     
@@ -134,13 +125,9 @@ public class BasketController {
     
     	MemberBean memberInfo = memberService.memberInfo(mem_id);  
         int userNo = memberInfo.getMem_no();
-       
-        System.out.println("valueArr은" + valueArr);
         String A = null;
-
-        for(int i=0; i<valueArr.size(); i++){      
-        	A = (String) valueArr.get(i);          
-        	System.out.println("여기값"+A.toString());
+        for(int i=0; i<valueArr.size(); i++){
+        	A = (String) valueArr.get(i);
         	if ( 2==A.length()) {
         		continue;
         	}else {
@@ -150,10 +137,9 @@ public class BasketController {
         	basketBean.setBas_memno(userNo);  
         	basketBean.setBas_no(Integer.parseInt(bas_no)); 
         	basketService.deleteBasket(basketBean);
-    	    System.out.println("삭제 실행");
            }
         }
-        System.out.println("1개 성공삭제 실행");
+        System.out.println("선택삭제 실행");
         return "redirect:/listBasket.gt";
     } 
    
@@ -165,13 +151,13 @@ public class BasketController {
 		MemberBean memberInfo = memberService.memberInfo(mem_id);
 
 		int userNo = memberInfo.getMem_no();
-		System.out.println("update왔다");
+
 		BasketBean basketBean = new BasketBean();
 		basketBean.setBas_memno(userNo);
 		basketBean.setBas_prostock(bas_prostock);
 		basketBean.setBas_procode(bas_procode);
 		basketService.modifyBasket(basketBean);
-		System.out.println("for새로 셋팅된 basketBean" + basketBean);
+		System.out.println("수량 변경");
 
 		return "redirect:/listBasket.gt";
     }
