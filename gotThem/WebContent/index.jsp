@@ -63,17 +63,7 @@ color:#1fad9f !important;
     position: relative;
     color: rgba(255,255,255,.9);
 }
-.probootstrap-home-search {
-    padding: 30px;
-    margin-top: 300px;
-    color: #fff;
-    text-align: center;
-    float: left;
-    width: 100%;
-    border-radius: 0px;
-    -webkit-box-shadow: 0 6px 68px -6px rgba(0,0,0,.7);
-    box-shadow: 0 6px 68px -6px rgba(0,0,0,.7);
-}
+
 
 #marginChg { 
 	padding-bottom: 10px; 
@@ -82,7 +72,7 @@ color:#1fad9f !important;
 	-webkit-box-shadow: none;
 	box-shadow: none;
 }
-#btnColor { background: #fe490f; }
+#btnColor { background: #fa2848; }
 </style>  
 <script src="resources/autocomplete/auto-complete.js"></script>
 <script src="https://code.jquery.com/jquery-3.2.1.js"></script>
@@ -122,7 +112,7 @@ color:#1fad9f !important;
             <div id="marginChg" class="probootstrap-home-search probootstrap-animate">
               <form action="searchList.gt" method="get">
               	<input type="hidden" name="pageNo" value="1">
-	            <div class="probootstrap-field-group">
+	            <div class="probootstrap-field-group" >
 					<div class="probootstrap-fields">
 						<div class="form-field">
 							<input type="text" class="form-control" id="autoComplete" name="search"
@@ -130,7 +120,9 @@ color:#1fad9f !important;
 								placeholder="예) 도시락, 서초, 강남  김밥" />
 						</div>
 					</div>
-					<input type="submit" id="btnColor" class="btn btn-fill btn-success" value="검색">
+					<button title="검색" onclick="submit();" id="btnColor" class="btn">
+					<i style="font-size:48px;"class="material-icons">search</i>
+					</button>
 				</div>
               </form>
             </div>
