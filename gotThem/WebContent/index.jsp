@@ -170,7 +170,7 @@ color:#fff;
 	  </div><br>
       <p class="sub-heading colorCyan">많은 점주 분들이 <strong>GOT THEM</strong> 과 제휴 한 이후로 매출이 상승했습니다.<br>
       당신도 이제 <strong>GOT THEM</strong> 과 제휴를 맺고 급격한 매출상승을 이루어보세요! </p>
-      <p><a href="storeIndex.st" class="btn btn-primary mb10">제휴페이지</a></p>
+      <p><a href="login.st" class="btn btn-primary mb10">제휴페이지</a></p>
     </div>
   </section>
 

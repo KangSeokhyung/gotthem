@@ -14,20 +14,24 @@
 			class="oi oi-arrow-left"></span> Close</a>
 		<div class="probootstrap-site-logo probootstrap-animate"
 			data-animate-effect="fadeInLeft">
-
-			<a href="storeIndex.st" class="mb-2 d-block probootstrap-logo">GOTTHEM</a>
-			<p class="mb-0">제휴 사이트</p>
+			<c:set var="sessionCheck"
+						value="${sessionScope.SPRING_SECURITY_CONTEXT}" />
+			<c:choose>
+				<c:when test="${sessionCheck eq null}">
+					<a href="login.st" class="mb-2 d-block probootstrap-logo">GOTTHEM</a>
+				</c:when>
+				<c:otherwise>
+					<a href="stock.st?pageNo=1" class="mb-2 d-block probootstrap-logo">GOTTHEM</a>
+				</c:otherwise>
+			</c:choose>
 		</div>
 		<div class="probootstrap-overflow">
 			<nav class="probootstrap-nav">
 				<ul>
-					<li class="probootstrap-animate active"
-						data-animate-effect="fadeInLeft"><a href="storeIndex.st">Got
-							them?</a></li>
-					<li class="probootstrap-animate" data-animate-effect="fadeInLeft"><a
-						href="mystore.st">점포관리</a></li>
 					<li class="probootstrap-animate" data-animate-effect="fadeInLeft"><a
 						href="stock.st?pageNo=1">재고관리</a></li>
+					<li class="probootstrap-animate" data-animate-effect="fadeInLeft"><a
+						href="mystore.st">점포관리</a></li>
 					<li class="probootstrap-animate" data-animate-effect="fadeInLeft"><a
 						href="storeOrderList.st">결제관리</a></li>
 					<c:set var="sessionCheck"

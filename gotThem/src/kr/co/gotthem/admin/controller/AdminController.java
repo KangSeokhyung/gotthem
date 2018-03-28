@@ -37,11 +37,11 @@ public class AdminController {
 		return "admin/adminLogin";
 	}
 
-	@RequestMapping(value = "/control.ad", method = RequestMethod.GET)
+	@RequestMapping(value = "/showInfo.ad", method = RequestMethod.GET)
 	public ModelAndView ccc(ModelAndView mav) {
 		System.out.println("최종 관리자 로그인 진입");
 
-		mav.setViewName("admin/controlPage");
+		mav.setViewName("admin/showInfo");
 		
 		return mav;
 	}
@@ -104,6 +104,8 @@ public class AdminController {
 		mav.addObject("nextPage", nextPage);
 		mav.addObject("mlist", mlist);
 		mav.setViewName("admin/memberControl");
+		
+		System.out.println("asdadasda"+mlist);
 
 		return mav;
 
@@ -133,7 +135,7 @@ public class AdminController {
 		
 		memberService.memModi(membean);
 		
-		return "redirect:memcontrol.ad";
+		return "redirect:/admin/memberControl";
 	}
 
 	@RequestMapping(value = "/storecontrol.ad", method = RequestMethod.GET)
@@ -222,7 +224,7 @@ public class AdminController {
 		
 		memberService.memModi(mbean);
 	
-		return "redirect:storecontrol.ad";
+		return "redirect:storeControl.ad";
 
 	}
 	

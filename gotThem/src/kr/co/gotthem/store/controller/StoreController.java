@@ -1,5 +1,10 @@
 package kr.co.gotthem.store.controller;
 
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.io.PrintWriter;
 import java.util.Random;
 import java.util.StringTokenizer;
@@ -17,6 +22,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import kr.co.gotthem.member.bean.MemberBean;
@@ -39,11 +45,6 @@ public class StoreController {
 	public void setMailService(MailService mailService) {
         this.mailService = mailService;
     }
-	
-	@RequestMapping(value = "/storeIndex.st", method = RequestMethod.GET)
-	public String storeIndex() {
-		return "store/storeIndex";
-	}
 	
 	@RequestMapping(value = "/join.st", method = RequestMethod.GET)
 	public String join(HttpServletRequest request, HttpSession session) throws Exception{
@@ -80,7 +81,7 @@ public class StoreController {
 		int result = memberService.stjoin(stBean);
 		System.out.println(result);
 	
-		return "store/storeIndex";
+		return "store/stLogin";
 	}
 	
 	@RequestMapping(value = "/login.st", method = RequestMethod.GET)
@@ -93,7 +94,7 @@ public class StoreController {
 	public String stlogout(HttpServletRequest request, HttpSession session) throws Exception{
 		session.invalidate();	
 		System.out.println("로그아웃 했다.");
-		return "store/storeIndex";
+		return "store/stLogin";
 	}
 	
 	@RequestMapping(value = "/mystore.st", method = RequestMethod.GET)
@@ -133,9 +134,51 @@ public class StoreController {
 	}
 	
 	@RequestMapping(value = "/storeModi.st", method = RequestMethod.POST)
-	public String memberUpdate(MemberBean bean) {
-		memberService.memberModifi(bean);
-		return "store/mystore";
+	public String memberUpdate(HttpServletRequest req, MemberBean bean,
+			@RequestParam("mem_address1") String address1,@RequestParam("mem_address2") String address2,
+			@RequestParam("mem_post") String post, @RequestParam MultipartFile file) {
+		
+		String mem_address = post + "/" + address1 + "/" + address2;
+		bean.setMem_address(mem_address);
+		
+		InputStream inputStream = null;
+		OutputStream outputStream = null;
+
+		// 업로드된 파일을 임의의 경로로 이동한다
+		String fileName = file.getOriginalFilename();
+		bean.setSto_img(fileName);
+		if (bean.getSto_img() == null || bean.getSto_img() == "") {
+			bean.setSto_img(req.getParameter("sto_img"));
+		} else {
+			try {
+
+				inputStream = file.getInputStream();
+
+				File newFile = new File("D:\\outupload/store/" + fileName);
+				if (!newFile.exists()) {
+					newFile.createNewFile();
+				}
+				outputStream = new FileOutputStream(newFile);
+
+				int read = 0;
+				byte[] bytes = new byte[1024 * 10];
+
+				while ((read = inputStream.read(bytes)) != -1) {
+					outputStream.write(bytes, 0, read);
+				}
+			} catch (IOException e) {
+				e.printStackTrace();
+			} finally {
+				try {
+					outputStream.close();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+		
+		memberService.storeModi(bean);
+		return "redirect:/mystore.st";
 	}
 
 	
@@ -171,8 +214,9 @@ public class StoreController {
 	}
 	
 	@RequestMapping(value = "/mystoreDel.st", method = RequestMethod.GET)
-	public ModelAndView memberDel(ModelAndView mav) {
+	public ModelAndView memberDel(ModelAndView mav, MemberBean bean) {
 		mav.setViewName("store/mystoreDel");
+		mav.addObject("bean", bean);
 		return mav;
 	}
 	
@@ -181,9 +225,15 @@ public class StoreController {
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 		String mem_id = authentication.getName();
 		bean.setMem_id(mem_id);
-		memberService.memberDelete(bean);
-		session.invalidate();
-		mav.setViewName("redirect:/store/storeindex");
+		int result = memberService.memberDelete(bean);
+		if(result==1) {	//탈퇴 성공하면
+			session.invalidate();
+			mav.addObject("resultMsg", "DelSuccess");
+			mav.setViewName("store/stLogin");
+		}else {
+			mav.addObject("resultMsg", "storeDelFail");
+			mav.setViewName("store/storeDelFail");
+		}
 		return mav;
 	}
 	
@@ -299,7 +349,7 @@ public class StoreController {
 			if(changeResult != 0) {
 				System.out.println("비밀번호 변경이 성공했네");
 				mav.addObject("resultMsg", "success");
-				mav.setViewName("store/storeIndex");
+				mav.setViewName("store/stLogin");
 			}else {
 				mav.addObject("resultMsg", "fail3");
 				mav.setViewName("store/changePassWord");
@@ -308,4 +358,11 @@ public class StoreController {
 		}
 		return mav;
 	}
+    
+    @RequestMapping(value = "/test.st", method= RequestMethod.GET)
+	public String test(HttpServletRequest request) {
+		return "store/test";
+	}
+    
+    
 }

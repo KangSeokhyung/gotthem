@@ -22,8 +22,7 @@
 <link rel="stylesheet" href="resources/landy/css/style.default.css"
 	id="theme-stylesheet">
 <link rel="stylesheet" href="resources/landy/css/custom.css">
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
 <script type="text/javascript">
 	function fnList(){
@@ -56,7 +55,17 @@
 		}
 	    }
 </script>
+<style>
+.btn-primary{
+border-radius:4px;
+margin:1px;
+padding: 0.6rem 1rem;
+}
 
+.pb-5{
+padding-top:5%;
+}
+</style>
 </head>
 <body>
 	<header>
@@ -68,7 +77,16 @@
 		<a href="#" class="probootstrap-toggle js-probootstrap-toggle"><span
 			class="oi oi-menu"></span></a>
 		<div class="probootstrap-main-site-logo">
-			<a href="index.html">GOT THEM</a>
+		<c:set var="sessionCheck"
+						value="${sessionScope.SPRING_SECURITY_CONTEXT}" />
+			<c:choose>
+				<c:when test="${sessionCheck eq null}">
+			<a href="login.st">GOT THEM</a>
+			</c:when>
+				<c:otherwise>
+					<a href="stock.st?pageNo=1" class="mb-2 d-block probootstrap-logo">GOTTHEM</a>
+				</c:otherwise>
+			</c:choose>
 		</div>
 	</div>
 	<div class="cover-container pb-5">
@@ -84,12 +102,12 @@
 							<td>${pro.pro_code }</td>
 						</tr>
 						<tr>
-							<td>제품명</td>
-							<td>${pro.pro_name }</td>
-						</tr>
-						<tr>
 							<td>분류</td>
 							<td>${pro.pro_category }</td>
+						</tr>
+						<tr>
+							<td>제품명</td>
+							<td>${pro.pro_name }</td>
 						</tr>
 						<tr>
 							<td>가격</td>
@@ -100,10 +118,10 @@
 							<td>${pro.pro_stock }</td>
 						</tr>
 						<tr>
-							<td colspan="2" align="center"><input type="button"
-								value="수정하기" onclick="fnUpdate()" /> <input type="button"
-								value="삭제하기" onclick="fnDelete(${pro.pro_code}, ${pageNo })" />
-								<input type="button" value="목록보기" onclick="fnList()" /></td>
+							<td colspan="2" align="center"><input type="button" class="btn btn-primary"
+								value="수정" onclick="fnUpdate()" /> <input type="button" class="btn btn-primary"
+								value="삭제" onclick="fnDelete(${pro.pro_code}, ${pageNo })" />
+								<input type="button"  class="btn btn-primary" value="목록" onclick="fnList()" /></td>
 						</tr>
 					</table>
 				</div>

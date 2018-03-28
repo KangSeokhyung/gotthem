@@ -1,347 +1,211 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-
-<!DOCTYPE HTML>
-<!--
-	Dimension by HTML5 UP
-	html5up.net | @ajlkn
-	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
--->
-<html>
-	<head>
-		<title>Dimension by HTML5 UP</title>
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-		<link rel="stylesheet" href="resources/admintemplate/assets/css/main.css" />
-		<!--[if lte IE 9]><link rel="stylesheet" href="assets/css/ie9.css" /><![endif]-->
-		<noscript><link rel="stylesheet" href="resources/admintemplate/assets/css/noscript.css" /></noscript>
-	</head>
-	<body>
-
-		<!-- Wrapper -->
-			<div id="wrapper">
-
-				<!-- Header -->
-					<header id="header">
-						<div class="content">
-							<div class="inner">
-								<h1>관리자 페이지 로그인</h1>
-								<form method="post">
-										<div class="field half first">
-											<label for="demo-name">아이디</label>
-											<input type="text" name="admin_id" id="demo-name" value=""  />
-										</div>
-										<div class="field half first">
-											<label for="demo-name">비밀번호</label>
-											<input type="password" name="admin_pw" id="demo-name" value=""  />
-										</div>
-										<input type="submit" value="login" class="special" />
-										</form>
-							</div>
-						</div>
-					</header>
-
-				<!-- Main -->
-					<div id="main">
-
-						<!-- Work -->
-							<article id="work">
-								
-							</article>
-
-						<!-- Store -->
-							<article id="store">
-								
-							</article>
-
-						<!-- Contact -->
-							<article id="contact">
-								<h2 class="major">Contact</h2>
-								<form method="post" action="#">
-									<div class="field half first">
-										<label for="name">Name</label>
-										<input type="text" name="name" id="name" />
-									</div>
-									<div class="field half">
-										<label for="email">Email</label>
-										<input type="text" name="email" id="email" />
-									</div>
-									<div class="field">
-										<label for="message">Message</label>
-										<textarea name="message" id="message" rows="4"></textarea>
-									</div>
-									<ul class="actions">
-										<li><input type="submit" value="Send Message" class="special" /></li>
-										<li><input type="reset" value="Reset" /></li>
-									</ul>
-								</form>
-								<ul class="icons">
-									<li><a href="#" class="icon fa-twitter"><span class="label">Twitter</span></a></li>
-									<li><a href="#" class="icon fa-facebook"><span class="label">Facebook</span></a></li>
-									<li><a href="#" class="icon fa-instagram"><span class="label">Instagram</span></a></li>
-									<li><a href="#" class="icon fa-github"><span class="label">GitHub</span></a></li>
-								</ul>
-							</article>
-
-						<!-- Elements -->
-							<article id="elements">
-								<h2 class="major">Elements</h2>
-
-								<section>
-									<h3 class="major">Text</h3>
-									<p>This is <b>bold</b> and this is <strong>strong</strong>. This is <i>italic</i> and this is <em>emphasized</em>.
-									This is <sup>superscript</sup> text and this is <sub>subscript</sub> text.
-									This is <u>underlined</u> and this is code: <code>for (;;) { ... }</code>. Finally, <a href="#">this is a link</a>.</p>
-									<hr />
-									<h2>Heading Level 2</h2>
-									<h3>Heading Level 3</h3>
-									<h4>Heading Level 4</h4>
-									<h5>Heading Level 5</h5>
-									<h6>Heading Level 6</h6>
-									<hr />
-									<h4>Blockquote</h4>
-									<blockquote>Fringilla nisl. Donec accumsan interdum nisi, quis tincidunt felis sagittis eget tempus euismod. Vestibulum ante ipsum primis in faucibus vestibulum. Blandit adipiscing eu felis iaculis volutpat ac adipiscing accumsan faucibus. Vestibulum ante ipsum primis in faucibus lorem ipsum dolor sit amet nullam adipiscing eu felis.</blockquote>
-									<h4>Preformatted</h4>
-									<pre><code>i = 0;
-
-while (!deck.isInOrder()) {
-    print 'Iteration ' + i;
-    deck.shuffle();
-    i++;
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/css/bootstrap.min.css">
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/js/bootstrap.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<style>
+body{
+	background: #44B3C2;
+}
+.login-main{
+	margin-top: 150px;
+    z-index: 1;
+}
+.heading-image{
+	top: 0%;
+    left: 50%;
+    opacity: 0.9;
+    height: 120px;
+    width: 120px;
+    border-radius: 100%;
+    background: #2B5377;
+    position: absolute;
+    transform: translate(-50%, -50%);
+}
+.heading-image i{
+	font-size: 60px;
+	margin-top: 30px;
+}
+.input-group-prepend span{
+	font-size: 20px;
+	color: #9B9FAB;
+}
+.options{
+	font-size: 15px;
+}
+.copyright-main{
+	font-size: 13px;
 }
 
-print 'It took ' + i + ' iterations to sort the deck.';</code></pre>
-								</section>
+/*Bubble Boxes Animation CSS*/
 
-								<section>
-									<h3 class="major">Lists</h3>
-
-									<h4>Unordered</h4>
-									<ul>
-										<li>Dolor pulvinar etiam.</li>
-										<li>Sagittis adipiscing.</li>
-										<li>Felis enim feugiat.</li>
-									</ul>
-
-									<h4>Alternate</h4>
-									<ul class="alt">
-										<li>Dolor pulvinar etiam.</li>
-										<li>Sagittis adipiscing.</li>
-										<li>Felis enim feugiat.</li>
-									</ul>
-
-									<h4>Ordered</h4>
-									<ol>
-										<li>Dolor pulvinar etiam.</li>
-										<li>Etiam vel felis viverra.</li>
-										<li>Felis enim feugiat.</li>
-										<li>Dolor pulvinar etiam.</li>
-										<li>Etiam vel felis lorem.</li>
-										<li>Felis enim et feugiat.</li>
-									</ol>
-									<h4>Icons</h4>
-									<ul class="icons">
-										<li><a href="#" class="icon fa-twitter"><span class="label">Twitter</span></a></li>
-										<li><a href="#" class="icon fa-facebook"><span class="label">Facebook</span></a></li>
-										<li><a href="#" class="icon fa-instagram"><span class="label">Instagram</span></a></li>
-										<li><a href="#" class="icon fa-github"><span class="label">Github</span></a></li>
-									</ul>
-
-									<h4>Actions</h4>
-									<ul class="actions">
-										<li><a href="#" class="button special">Default</a></li>
-										<li><a href="#" class="button">Default</a></li>
-									</ul>
-									<ul class="actions vertical">
-										<li><a href="#" class="button special">Default</a></li>
-										<li><a href="#" class="button">Default</a></li>
-									</ul>
-								</section>
-
-								<section>
-									<h3 class="major">Table</h3>
-									<h4>Default</h4>
-									<div class="table-wrapper">
-										<table>
-											<thead>
-												<tr>
-													<th>Name</th>
-													<th>Description</th>
-													<th>Price</th>
-												</tr>
-											</thead>
-											<tbody>
-												<tr>
-													<td>Item One</td>
-													<td>Ante turpis integer aliquet porttitor.</td>
-													<td>29.99</td>
-												</tr>
-												<tr>
-													<td>Item Two</td>
-													<td>Vis ac commodo adipiscing arcu aliquet.</td>
-													<td>19.99</td>
-												</tr>
-												<tr>
-													<td>Item Three</td>
-													<td> Morbi faucibus arcu accumsan lorem.</td>
-													<td>29.99</td>
-												</tr>
-												<tr>
-													<td>Item Four</td>
-													<td>Vitae integer tempus condimentum.</td>
-													<td>19.99</td>
-												</tr>
-												<tr>
-													<td>Item Five</td>
-													<td>Ante turpis integer aliquet porttitor.</td>
-													<td>29.99</td>
-												</tr>
-											</tbody>
-											<tfoot>
-												<tr>
-													<td colspan="2"></td>
-													<td>100.00</td>
-												</tr>
-											</tfoot>
-										</table>
-									</div>
-
-									<h4>Alternate</h4>
-									<div class="table-wrapper">
-										<table class="alt">
-											<thead>
-												<tr>
-													<th>Name</th>
-													<th>Description</th>
-													<th>Price</th>
-												</tr>
-											</thead>
-											<tbody>
-												<tr>
-													<td>Item One</td>
-													<td>Ante turpis integer aliquet porttitor.</td>
-													<td>29.99</td>
-												</tr>
-												<tr>
-													<td>Item Two</td>
-													<td>Vis ac commodo adipiscing arcu aliquet.</td>
-													<td>19.99</td>
-												</tr>
-												<tr>
-													<td>Item Three</td>
-													<td> Morbi faucibus arcu accumsan lorem.</td>
-													<td>29.99</td>
-												</tr>
-												<tr>
-													<td>Item Four</td>
-													<td>Vitae integer tempus condimentum.</td>
-													<td>19.99</td>
-												</tr>
-												<tr>
-													<td>Item Five</td>
-													<td>Ante turpis integer aliquet porttitor.</td>
-													<td>29.99</td>
-												</tr>
-											</tbody>
-											<tfoot>
-												<tr>
-													<td colspan="2"></td>
-													<td>100.00</td>
-												</tr>
-											</tfoot>
-										</table>
-									</div>
-								</section>
-
-								<section>
-									<h3 class="major">Buttons</h3>
-									<ul class="actions">
-										<li><a href="#" class="button special">Special</a></li>
-										<li><a href="#" class="button">Default</a></li>
-									</ul>
-									<ul class="actions">
-										<li><a href="#" class="button">Default</a></li>
-										<li><a href="#" class="button small">Small</a></li>
-									</ul>
-									<ul class="actions">
-										<li><a href="#" class="button special icon fa-download">Icon</a></li>
-										<li><a href="#" class="button icon fa-download">Icon</a></li>
-									</ul>
-									<ul class="actions">
-										<li><span class="button special disabled">Disabled</span></li>
-										<li><span class="button disabled">Disabled</span></li>
-									</ul>
-								</section>
-
-								<section>
-									<h3 class="major">Form</h3>
-									<form method="post" action="#">
-										<div class="field half first">
-											<label for="demo-name">Name</label>
-											<input type="text" name="demo-name" id="demo-name" value="" placeholder="Jane Doe" />
-										</div>
-										<div class="field half">
-											<label for="demo-email">Email</label>
-											<input type="email" name="demo-email" id="demo-email" value="" placeholder="jane@untitled.tld" />
-										</div>
-										<div class="field">
-											<label for="demo-category">Category</label>
-											<div class="select-wrapper">
-												<select name="demo-category" id="demo-category">
-													<option value="">-</option>
-													<option value="1">Manufacturing</option>
-													<option value="1">Shipping</option>
-													<option value="1">Administration</option>
-													<option value="1">Human Resources</option>
-												</select>
-											</div>
-										</div>
-										<div class="field half first">
-											<input type="radio" id="demo-priority-low" name="demo-priority" checked>
-											<label for="demo-priority-low">Low</label>
-										</div>
-										<div class="field half">
-											<input type="radio" id="demo-priority-high" name="demo-priority">
-											<label for="demo-priority-high">High</label>
-										</div>
-										<div class="field half first">
-											<input type="checkbox" id="demo-copy" name="demo-copy">
-											<label for="demo-copy">Email me a copy</label>
-										</div>
-										<div class="field half">
-											<input type="checkbox" id="demo-human" name="demo-human" checked>
-											<label for="demo-human">Not a robot</label>
-										</div>
-										<div class="field">
-											<label for="demo-message">Message</label>
-											<textarea name="demo-message" id="demo-message" placeholder="Enter your message" rows="6"></textarea>
-										</div>
-										<ul class="actions">
-											<li><input type="submit" value="Send Message" class="special" /></li>
-											<li><input type="reset" value="Reset" /></li>
-										</ul>
-									</form>
-								</section>
-
-							</article>
-
+.bubble-boxes{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 40%;
+}
+.bubble-boxes li{
+    position: absolute;
+    list-style: none;
+    display: flex;
+    width: 20px;
+    height: 20px;
+    background: rgba(255,255,255,.2);
+    animation: animate 25s linear infinite;
+    bottom: -800px;
+}
+.bubble-boxes li:nth-child(1){
+    left: 25%;
+    width: 80px;
+    height: 80px;
+    animation-delay: 0;
+}
+.bubble-boxes li:nth-child(2){
+    left: 10%;
+    width: 20px;
+    height: 20px;
+    animation-delay: 2s;
+    animation-duration: 12s;
+}
+.bubble-boxes li:nth-child(3){
+    left: 70%;
+    width: 20px;
+    height: 20px;
+    animation-delay: 4s;
+}
+.bubble-boxes li:nth-child(4){
+    left: 40%;
+    width: 60px;
+    height: 60px;
+    animation-delay: 0s;
+    animation-duration: 18s;
+}
+.bubble-boxes li:nth-child(5){
+    left: 65%;
+    width: 20px;
+    height: 20px;
+    animation-delay: 0s;
+}
+.bubble-boxes li:nth-child(6){
+    left: 75%;
+    width: 110px;
+    height: 110px;
+    animation-delay: 3s;
+}
+.bubble-boxes li:nth-child(7){
+    left: 35%;
+    width: 150px;
+    height: 150px;
+    animation-delay: 7s;
+}
+.bubble-boxes li:nth-child(8){
+    left: 50%;
+    width: 25px;
+    height: 25px;
+    animation-delay: 15s;
+    animation-duration: 45s;
+}
+.bubble-boxes li:nth-child(9){
+    left: 20%;
+    width: 15px;
+    height: 15px;
+    animation-delay: 2s;
+    animation-duration: 35s;
+}
+.bubble-boxes li:nth-child(10){
+    left: 85%;
+    width: 150px;
+    height: 150px;
+    animation-delay: 0s;
+    animation-duration: 12s;
+}
+@keyframes animate{
+    0%{
+        transform: translateY(0) rotate(0deg);
+        opacity: 1;
+        border-radius: 0;
+    }
+    100%{
+        transform: translateY(-1000px) rotate(720deg);
+        opacity: 1;
+        border-radius: 50%;
+    }
+}
+</style>
+</head>
+<body>
+	<div class="container">
+		<div class="row">
+			<div class="col-md-4 offset-md-4 col-10 offset-1 login-main border rounded pb-4 pt-5">
+				<form method="post">
+					<div class="row">
+						<div class="col-md-4 col-12 heading-image text-white text-center">
+					      	<i class="fa fa-users" aria-hidden="true"></i>
+						</div>
 					</div>
-
-				<!-- Footer -->
-					<footer id="footer">
-						<p class="copyright">&copy; Untitled. Design: <a href="https://html5up.net">HTML5 UP</a>.</p>
-					</footer>
-
+					<div class="row">
+						<div class="col-md-12 col-12 mt-5">
+					      	<div class="input-group">
+					        	<div class="input-group-prepend">
+					          		<span class="input-group-text bg-white border-0 p-3"><i class="fa fa-user"></i></span>
+					        	</div>
+					        	<input type="text" class="form-control border-0 pl-3" placeholder="아이디" aria-describedby="validationTooltipUsernamePrepend" 
+					        	name="admin_id" required>
+					      	</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-12 col-12 mt-3">
+					      	<div class="input-group">
+					        	<div class="input-group-prepend">
+					          		<span class="input-group-text bg-white border-0 p-3" id="validationTooltipUsernamePrepend"><i class="fa fa-lock" aria-hidden="true"></i></span>
+					        	</div>
+					        	<input type="password" class="form-control border-0 pl-3 pb-0" id="validationTooltipUsername" placeholder="비밀번호" aria-describedby="validationTooltipUsernamePrepend"
+					        	name="admin_pw" required>
+					      	</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-12 col-12 mt-3">
+					      	<button type="submit" class="btn btn-info rounded-0 w-100">로그인</button><br><br>
+					      	이 페이지는 관리자만 로그인이 가능합니다.
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-12 col-12 mt-3 options">
+					      	<div class="row">
+					      		<div class="col-md-6 col-12 pl-4">
+					      			<div class="custom-control custom-checkbox mr-sm-2">
+								        <input type="checkbox" class="custom-control-input" id="customControlAutosizing">
+								    </div>
+					      		</div>
+					      	</div>
+						</div>
+					</div>
+				</form>
 			</div>
-
-		<!-- BG -->
-			<div id="bg"></div>
-
-		<!-- Scripts -->
-			<script src="resources/admintemplate/assets/js/jquery.min.js"></script>
-			<script src="resources/admintemplate/assets/js/skel.min.js"></script>
-			<script src="resources/admintemplate/assets/js/util.js"></script>
-			<script src="resources/admintemplate/assets/js/main.js"></script>
-	</body>
+			<div class="col-md-4 offset-md-4 col-12 text-white text-center mt-2 copyright-main">
+				<p>Copyright © 2018 Aatman Infotech,Inc</p>
+			</div>
+		</div>
+	</div>
+	<ul class="bubble-boxes">
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+    </ul>
+</body>
 </html>

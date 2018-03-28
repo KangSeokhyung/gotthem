@@ -23,15 +23,102 @@
 <link rel="stylesheet" href="resources/indexTemplate/css/animate.css">
 <link rel="stylesheet" href="resources/indexTemplate/css/style.css">
 </head>
-<!-- <style type="text/css">
-th.1 {
-	width: 5px;
+<style>
+.btn-primary{
+border-radius:4px;
+margin:1px;
+padding: 0.6rem 1rem;
+}
+td .img{padding:0px;}
+
+.form-control {
+	width: 240px;
+	height: 34px;
+	display:inline;
 }
 
-.2 {
-	width: 5%;
+.container{
+padding-top:50px;
+padding-bottom:20px;
+padding-left:0;
+margin-left:180px;
 }
-</style> -->
+
+table th, td {
+  text-align: center;
+  vertical-align: middle;
+}
+
+
+
+@media all and (max-width:767px){
+table, tr, td {
+    display: block;
+    font-size:16px;
+}
+
+td:first-child {
+    position: absolute;
+    top: 50%;
+    -webkit-transform: translateY(-50%);
+            transform: translateY(-50%);
+    width: 100px;
+  }
+  td:not(:first-child) {
+    clear: both;
+    padding: 4px 20px 4px 90px;
+    position: relative;
+    text-align: left;
+  }
+  td:not(:first-child):before {
+    content: '';
+    display: block;
+    left: 0;
+    position: absolute;
+  }
+  td:nth-child(2):before {
+    content: '사진:';
+  }
+  td:nth-child(3):before {
+    content: '상품명:';
+  }
+  td:nth-child(4):before {
+    content: '수량:';
+  }
+  td:nth-child(5):before {
+    content: '가격:';
+  }
+  td:nth-child(6):before {
+    content: '상태:';
+  }
+  td:nth-child(7):before {
+    content: '결제시간:';
+  }
+  td:nth-child(8):before {
+    content: '고객정보:';
+  }
+  td:nth-child(9):before {
+    content: '결제취소:';
+  }
+
+  tr {
+    padding: 10px 0;
+    position: relative;
+  }
+  tr:first-child {
+    display: none;
+  }
+  
+.container{
+padding-top:20px;
+padding-bottom:20px;
+padding-left:0;
+margin-left:0px;
+}
+
+.datePick{display:none;}
+}
+</style>
 <body>
 	<aside>
 		<%@include file="../store/nav.jsp"%>
@@ -41,63 +128,58 @@ th.1 {
 		<a href="#" class="probootstrap-toggle js-probootstrap-toggle"><span
 			class="oi oi-menu"></span></a>
 		<div class="probootstrap-main-site-logo">
-			<a href="index.html">Aside</a></a>
+			<a href="index.html">GOT THEM</a>
 		</div>
 	</div>
 	<br><br>
-	<h2>점포별 결제 목록</h2>
+	<div class="cover-container pb-5">
+		<div class="cover-inner container">
 	<form action="./storeOrderListTime.st"><br>
 		<div>
-			<label for="fromDate">기간:</label>&nbsp;&nbsp; <input type="date"
-				id="fromDate" name="from" required="" /> <label for="toDate">~</label>
-			<input type="date" id="toDate" name="to" required="" max=""/>&nbsp;&nbsp;
-			<input type="submit" value="조회" /><strong>&nbsp;&nbsp;&nbsp;총 결제 금액:&nbsp; <span id="chkSum"></span>
+			<label for="fromDate"><span class="datePick">기간: &nbsp;&nbsp; </span></label><input type="date"
+				id="fromDate" name="from" class="form-control" required="" /> <label for="toDate"><span class="datePick">~</span></label>
+			<input type="date" id="toDate" class="form-control" name="to" required="" max=""/>&nbsp;&nbsp;
+			<input type="submit" class="btn btn-primary" value="조회" /><strong>&nbsp;&nbsp;&nbsp;총 결제 금액:&nbsp; <span id="chkSum"></span>
 			</strong>
 		</div>
 	</form>
-	<div class="cover-container pb-5">
-		<div class="cover-inner container">
-
 			<table class="table table-user-information" id="mytable">
 				<tr>
-					<th style="width: 5%">No</th>
-					<th class = 2>결제 시간</th>
-					<th class = 1>Code</th>
-					<th style="width: 6%">img</th>
-					<th class = 2>상품명</th>
-					<th style="width: 6%">점포</th>
-					<th style="width: 6%">수량</th>
-					<th >가격</th>
-					<th >결제</th>
-					<th >상태</th>
-					<th >결제취소</th>
+					<th class="no">no.</th>
+					<th class="img">사진</th>
+					<th class="name">상품명</th>
+					<th class="stock">수량</th>
+					<th class="price">가격</th>
+					<th class="status">상태</th>
+					<th class="findtime">결제 시간</th>
+					<th class="info">고객정보</th>
+					<th class="delete">결제취소</th>
 				</tr>
 				<c:forEach var="row" items="${map.list}" varStatus="i">
 					<tr>
-						<td>${row.ord_no}</td>
-						<td>${row.ord_findtime}</td>
-						<td>${row.ord_procode}</td>
-						<td><img src="/img/${row.ord_proimg}"
+						<td class="no">${row.ord_no}</td>
+						<td class="img"><img src="/img/${row.ord_proimg}" 
 							style="width: 50px; height: 50px" /></td>
-						<td>${row.ord_proname}</td>
-						<td>${row.sto_name}</td>
-						<td>${row.ord_stock}</td>
-						<td><fmt:formatNumber pattern="###,###,###"
-								value="${row.ord_proprice}" /></td>
-						<td><fmt:formatNumber pattern="###,###,###"
+						<td class="name">${row.ord_proname}</td>
+						<td class="stock">${row.ord_stock}</td>
+						<td class="price"><fmt:formatNumber pattern="###,###,###"
 								value="${row.ord_price}" /> <input type="hidden" name="sum"
 							value="${row.ord_price}"></td>
-						<td>${row.ord_status}</td>
-						<td><input type="button" value="삭제"
+						<td class="status">${row.ord_status}</td>
+						<td class="findtime">${row.ord_findtime}</td>
+						<td class="info"><input type="button" value="상세" class="btn btn-primary"
+							onclick="button_detail('${row.ord_no}','${row.ord_stock}','${row.ord_procode}');">
+						</td>
+						<td class="delete"><input type="button" value="취소" class="btn btn-primary"
 							onclick="button_delete('${row.ord_no}','${row.ord_stock}','${row.ord_procode}');">
 						</td>
+						
 					</tr>
 				</c:forEach>
 			</table>
 
-		</div>
 	</div>
-
+	</div>
 
 
 	<div class="container-fluid d-md-none">
