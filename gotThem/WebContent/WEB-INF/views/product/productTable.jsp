@@ -37,9 +37,9 @@
 				<c:if test="${list.pro_stock > 0 }">
 				<input type="hidden" id="pro_code" name="pro_code" value="${list.pro_code }">
 				<tr>
-					<td><a href="javascript:movedetail(${list.pro_code });"><img src="/img/${list.pro_img }" 
+					<td><a href="javascript:movedetail('${list.pro_code }', '${sto_name }');"><img src="/img/${list.pro_img }" 
 					 		height="50px" width="50px" title="상품이미지" alt="상품이미지"></a></td>
-					<td><a href="javascript:movedetail(${list.pro_code });">${list.pro_name }</a></td>
+					<td><a href="javascript:movedetail('${list.pro_code }', '${sto_name }');">${list.pro_name }</a></td>
 					<td class="tNonePre">${list.pro_stock }</td>
 					<td><fmt:formatNumber pattern="###,###,###" value="${list.pro_price }" /></td>
 					<td>
@@ -55,7 +55,7 @@
 							<c:otherwise>
 								<input type="button" id="basketBtn" value="담기" class="btn btnColor4 col-sm-12 col-md-6 col-md-offset-3"
 									onclick="addBasket('${list.pro_code }', '${list.pro_name }', '${list.pro_memno }', 
-									'${list.pro_category }', '${list.pro_price }', '${list.pro_img }')">
+									'${list.pro_category }', '${list.pro_price }', '${list.pro_img }','${sto_name }')">
 							</c:otherwise>
 						</c:choose>
 					</td>

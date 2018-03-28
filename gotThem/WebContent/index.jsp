@@ -162,6 +162,35 @@ color:#fff;
     </ul>
   </section>
   
+  <script type="text/javascript">
+	  var ac = new autoComplete({
+		    selector: "#autoComplete",
+		  	minChars: 0,
+		    source: function(term, suggest){
+		    	term = term.toLocaleUpperCase();
+		    	$.ajax({
+					url : "relatedSearch.gt",
+					data : { "search" : term },
+					type : "post",
+					success : function(relatedData) {
+						if (term != "") {
+							var suggestions = [];	
+							var ob = JSON.parse(relatedData);
+							for (var i = 0; i < 5; i++) {
+								if (typeof(ob["search" + i]) != "undefined") {
+									suggestions.push(ob["search" + i]);
+								}
+							}
+							suggest(suggestions);
+						}
+					},
+					error : function(xmlHttpReq, status, error) {
+					}
+				});
+		     }
+	  });  
+  	</script>
+  
   <!-- END: slider  -->
   <section class="probootstrap-section probootstrap-bg" style="background:#fff; background-size:cover;">
     <div class="container text-center probootstrap-animate" data-animate-effect="fadeIn">

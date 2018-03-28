@@ -30,8 +30,8 @@
 }
 #pro_stock { width: 55px; text-align: center; }
 #btnColor { background: #fa2848; }
-.btnColor2 { background: #70C585; color: white; padding: 10px 15px; }
-.btnColor3 { background: #FD6929; color: white; padding: 10px 15px; }
+.btnColor2 { background: #70C585; color: white; padding: 10px 20px; }
+.btnColor3 { background: #FD6929; color: white; padding: 10px 20px; }
 .zeroP { padding: 0px; }
 </style>  
 <script src="resources/autocomplete/auto-complete.js"></script>
@@ -77,7 +77,8 @@
 				"bas_procategory" : "${productInfo.pro_category }",
 				"bas_prostock" : pro_stock,
 				"bas_proprice" : "${productInfo.pro_price }",
-				"bas_proimg" : "${productInfo.pro_img }"
+				"bas_proimg" : "${productInfo.pro_img }",
+				"sto_name" : "${sto_name}"
 			},
 			type : "post",
 			success : function(check) {
@@ -237,7 +238,7 @@
   </div>
 </section>
 
-  <footer class="probootstrap-footer probootstrap-bg" style="background-image: url(img/slider_3.jpg)">
+  <footer class="probootstrap-footer probootstrap-bg">
     <div class="container">
       <div class="row copyright">
         <div class="col-md-6">

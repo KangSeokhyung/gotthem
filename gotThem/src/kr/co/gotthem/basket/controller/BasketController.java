@@ -58,8 +58,6 @@ public class BasketController {
         int userNo = memberInfo.getMem_no();
     	basketBean.setBas_memno(userNo);
         
-    	HttpSession session = req.getSession();
-    	List<BasketBean> listBasket = null;
         int count = basketService.countBasket(basketBean.getBas_procode(),basketBean.getBas_memno());
         if (count == 0) {
         	 basketService.insertBasket(basketBean);      	 
@@ -144,22 +142,21 @@ public class BasketController {
     } 
    
  // 4. 장바구니 수정( 수량만 수정)
-    @RequestMapping(value ="update.gt", method = RequestMethod.GET)
-	public String update(@RequestParam int bas_procode, @RequestParam int bas_prostock) throws Exception {
+    @RequestMapping(value ="update.gt", method = RequestMethod.POST)
+    @ResponseBody
+	public void update(@RequestParam int bas_procode, @RequestParam int bas_prostock,@ModelAttribute BasketBean basketBean) throws Exception {
     	Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 		String mem_id = authentication.getName();
 		MemberBean memberInfo = memberService.memberInfo(mem_id);
 
 		int userNo = memberInfo.getMem_no();
 
-		BasketBean basketBean = new BasketBean();
+		/*BasketBean basketBean = new BasketBean();*/
 		basketBean.setBas_memno(userNo);
 		basketBean.setBas_prostock(bas_prostock);
 		basketBean.setBas_procode(bas_procode);
 		basketService.modifyBasket(basketBean);
 		System.out.println("수량 변경");
-
-		return "redirect:/listBasket.gt";
     }
     
     // 5. 편의점 상세에서 장바구니 선택 추가

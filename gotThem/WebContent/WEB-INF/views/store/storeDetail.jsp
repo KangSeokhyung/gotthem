@@ -96,7 +96,7 @@ table {
 		}
 	});
 		
-	function addBasket(pro_code, pro_name, pro_memno, pro_category, pro_price, pro_img) {
+	function addBasket(pro_code, pro_name, pro_memno, pro_category, pro_price, pro_img, sto_name) {
 		var sto_name = $("#sto_name").val();
 		$.ajax({
 			url : "insertBasket.gt",
@@ -156,8 +156,8 @@ table {
 		}); 
 	}
 	
-	function movedetail(pro_code) {
-		location.href="productDetail.gt?pro_code=" + pro_code;
+	function movedetail(pro_code, sto_name) {
+		location.href="productDetail.gt?pro_code=" + pro_code + "&sto_name=" + sto_name;
 	}
 	
 	function loginForward(pro_code) {
@@ -188,7 +188,7 @@ table {
 		$.ajax({
 			url : "sessionSet.gt",
 			type : "post",
-			data : { "checkList" : checkList, "checkOne" : checkOne },
+			data : { "checkList" : checkList, "checkOne" : checkOne, "sto_name" : "${storeInfo.sto_name }" },
 			success : function(){
 				alert("로그인 후 이용하실 수 있습니다.\n로그인 창으로 이동합니다.");
 				location.href="login.gt?prevUrl=selectDetailForward.gt";
@@ -348,16 +348,10 @@ table {
 			<hr>
 			
 			<strong>매장주소</strong> : <span id="addr"></span> <br>
-			<strong>매장번호</strong> : ${storeInfo.mem_phone } <br>
+			<strong>매장번호</strong> : ${storeInfo.mem_phone } <br><br>
 			${storeInfo.sto_comment } <br>
-			맛있는 슈퍼계란딸기오이 굳굳 샌드위치가 이벤트 중입니다. <br>
-			맛있는 슈퍼계란딸기오이 굳굳 샌드위치가 이벤트 중입니다. <br>
-			맛있는 슈퍼계란딸기오이 굳굳 샌드위치가 이벤트 중입니다. <br>
-			맛있는 슈퍼계란딸기오이 굳굳 샌드위치가 이벤트 중입니다. <br>
-			맛있는 슈퍼계란딸기오이 굳굳 샌드위치가 이벤트 중입니다. <br>
-			맛있는 슈퍼계란딸기오이 굳굳 샌드위치가 이벤트 중입니다. <br>
-			맛있는 슈퍼계란딸기오이 굳굳 샌드위치가 이벤트 중입니다. <br>
-			맛있는 슈퍼계란딸기오이 굳굳 샌드위치가 이벤트 중입니다. <br>
+			김밥 종류 5~10% 행사 중!!<br>
+			백종원 도시락 신메뉴 입고!!
 		</div>
     </div>
   </div>

@@ -6,12 +6,15 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
+<style type="text/css">
+#wordLine { word-break: keep-all;  }
+</style>
 </head>
 <body>
 <footer class="probootstrap-footer probootstrap-bg">
     <div class="container">
         <div class="col-md-12">
-          <div class="probootstrap-footer-widget">
+          <div id="wordLine" class="probootstrap-footer-widget">
             <p>&copy; 2018 스탑없으팀 Gotthem 프로젝트 </p>
             <strong>주소 : </strong>
             <span>서울광역시 서초구 비트교육센터 별관 503호</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;

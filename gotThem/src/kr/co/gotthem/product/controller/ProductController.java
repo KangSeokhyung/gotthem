@@ -246,11 +246,12 @@ public class ProductController {
 	}
 	
 	@RequestMapping(value = "/productDetail.gt")
-	public String productDetail(Model model, ProductBean productInfo) {
+	public String productDetail(Model model, ProductBean productInfo, String sto_name) {
 		
 		productInfo = productService.productDetail(productInfo.getPro_code());
 		
 		model.addAttribute("productInfo", productInfo);
+		model.addAttribute("sto_name", sto_name);
 		
 		return "product/productDetail";
 	}
