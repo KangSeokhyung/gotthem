@@ -16,7 +16,8 @@
     <link rel="stylesheet" href="resources/mainTemplate/css/style.min.css">
     <link rel="stylesheet" href="resources/mainTemplate/css/custom.css">
     <link rel="stylesheet" href="resources/autocomplete/auto-complete.css">
-    
+	<link rel="stylesheet" type="text/css" href="resources/renew2/css/content.css" >
+	
     <!--[if lt IE 9]>
       <script src="resources/mainTemplate/js/vendor/html5shiv.min.js"></script>
       <script src="resources/mainTemplate/js/vendor/respond.min.js"></script>
@@ -29,9 +30,19 @@
 	-webkit-box-shadow: none;
 	box-shadow: none;
 }
-#btnColor { background: #fe490f; }
-#tabStyle a { color: #053741; }
-#tabStyle a:hover { color: #5CC8DD; font-weight: bold; }
+#btnColor { background: #fa2848; }
+#btnColor2 { background: #FD6929; color: white; padding: 10px 15px; }
+.btnColor3 { background: #70C585; color: white; padding: 10px 15px; }
+.btnColor4 { background: #70C585; color: white; padding: 10px 10px; font-size: 15px; }
+#tabStyle { height: 0px; border-bottom: 0px }
+#tabStyle a { color: gray; }
+#tabStyle a:hover { color: #fa2848; font-weight: bold; }
+#wordLine { word-break: keep-all; }
+table {
+	font-size: 13px;
+	text-align: center;
+}
+.zeroP { padding: 0px; }
 </style>  
 <script src="resources/autocomplete/auto-complete.js"></script>
 <script src="https://code.jquery.com/jquery-3.2.1.js"></script>
@@ -60,6 +71,11 @@
 				return false;
 			}
 		}
+		
+		var fullAddress = '${storeInfo.mem_address }';
+		var addrArr = fullAddress.split("/");
+		var address = addrArr[1]+ " " +addrArr[2];
+		$("#addr").text(address);
 	});
 	
 	$(document).on("click", "#rowCheck tr", function(event){
@@ -200,20 +216,24 @@
     <div class="probootstrap-wrap-banner">
       <div class="container">
         <div class="row">
-          <div class="col-md-8 col-md-offset-2">
-          
+          <div class=" col-md-offset-2">
+
             <div id="marginChg" class="probootstrap-home-search probootstrap-animate">
               <form action="searchList.gt" method="get">
               	<input type="hidden" name="pageNo" value="1">
 	            <div class="probootstrap-field-group">
 					<div class="probootstrap-fields">
 						<div class="form-field">
-							<input type="text" class="form-control" id="autoComplete" name="search"
-								required="required"
-								placeholder="예) 도시락, 서초, 강남  김밥" />
+							<div class="col-xs-9 col-sm-10 col-md-10 col-lg-10 zeroP">
+								<input type="text" class="form-control" id="autoComplete" name="search"
+									required="required"
+									placeholder="예) 도시락, 서초, 강남  김밥" />
+							</div>
+							<div class="col-xs-3 col-sm-2 col-md-2 col-lg-2 zeroP">
+								<input type="submit" id="btnColor" class="btn btn-fill col-xs-4" value="검색">
+							</div>		
 						</div>
 					</div>
-					<input type="submit" id="btnColor" class="btn btn-fill btn-success" value="검색">
 				</div>
               </form>
             </div>
@@ -264,17 +284,19 @@
     <div class="col-xs-12 col-sm-12">
     	<h1><strong>${storeInfo.sto_name }</strong></h1>
 		<hr>
+		<c:set var="sessionCheck" value="${sessionScope.SPRING_SECURITY_CONTEXT}" />
 		<c:choose>
 			<c:when test="${sessionCheck eq null}">
-				<input type="button" onclick="loginForward2();" class="btn btn-info" value="장바구니 가기">
+				<input type="button" onclick="loginForward2();" class="btn" id="btnColor2"
+				 	value="장바구니 이동">
 			</c:when>
 			<c:otherwise>
-				<input type="button" onclick="location.href='login.gt?prevUrl=listBasket.gt'" class="btn btn-info" value="장바구니 가기">
+				<input type="button" onclick="location.href='listBasket.gt'" 
+					id="btnColor2" class="btn" value="장바구니 이동">
 			</c:otherwise>
 		</c:choose>
-    	<input type="button" onclick="history.back()" class="btn btn-warning" value="이전">
-    	<br><br>
     </div>
+    <p style="margin-bottom: 0px">&nbsp;</p>
       <div class="col-sm-12">
 		<ul id="tabStyle" class="nav nav-tabs" data-tabs="tabs">
 			<li class="active"><a href="#lunchbox" class="nav-link" data-toggle="tab">도시락</a></li>
@@ -318,14 +340,15 @@
 <section class="probootstrap-section probootstrap-section-lighter">
   <div class="container">
     <div class="row">
-    	<div class="col-sm-6">
-			<img src="/img/store/${storeInfo.sto_img }" height="350px" width="550px" title="편의점 이미지">
+    	<div class="col-xs-12 col-sm-6">
+			<img src="/img/store/${storeInfo.sto_img }" width="100%" title="편의점 이미지">
 		</div>
-		<div class="col-sm-6">
-			<h4><strong>${storeInfo.sto_name }</strong></h4>
+		<div id="wordLine" class="col-xs-12 col-sm-6">
+			<h3>${storeInfo.sto_name } 편의점 정보</h3>
 			<hr>
-			매장주소 : ${storeInfo.mem_address } <br>
-			매장번호 : ${storeInfo.mem_phone } <br>
+			
+			<strong>매장주소</strong> : <span id="addr"></span> <br>
+			<strong>매장번호</strong> : ${storeInfo.mem_phone } <br>
 			${storeInfo.sto_comment } <br>
 			맛있는 슈퍼계란딸기오이 굳굳 샌드위치가 이벤트 중입니다. <br>
 			맛있는 슈퍼계란딸기오이 굳굳 샌드위치가 이벤트 중입니다. <br>

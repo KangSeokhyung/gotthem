@@ -21,10 +21,10 @@
             <li><a href="/gotThem">GOTTHEM 소개</a></li>
             <c:choose>
 				<c:when test="${sessionCheck eq null}">
-					<li><a href="login.gt?prevUrl=listBasket.gt">장바구니<span id="basketCount" style="color:#FE2E2E;"></span></a></li>
+					<li><a href="login.gt?prevUrl=listBasket.gt">장바구니</a></li>
 				</c:when>
 				<c:otherwise>
-					<li><a href="listBasket.gt">장바구니<span id="basketCount" style="color:#FE2E2E;"></span></a></li>
+					<li><a href="listBasket.gt">장바구니</a></li>
 				</c:otherwise>
 			</c:choose>
 			<c:choose>

@@ -28,7 +28,8 @@
 	-webkit-box-shadow: none;
 	box-shadow: none;
 }
-#btnColor { background: #fe490f; }
+#btnColor { background: #fa2848; }
+.zeroP { padding: 0px; }
 </style>  
 <script src="resources/autocomplete/auto-complete.js"></script>
 <script src="https://code.jquery.com/jquery-3.2.1.js"></script>
@@ -64,7 +65,7 @@
     <div class="probootstrap-wrap-banner">
       <div class="container">
         <div class="row">
-          <div class="col-md-8 col-md-offset-2">
+          <div class=" col-md-offset-2">
 
             <div id="marginChg" class="probootstrap-home-search probootstrap-animate">
               <form action="searchList.gt" method="get">
@@ -72,12 +73,16 @@
 	            <div class="probootstrap-field-group">
 					<div class="probootstrap-fields">
 						<div class="form-field">
-							<input type="text" class="form-control" id="autoComplete" name="search"
-								required="required"
-								placeholder="예) 도시락, 서초, 강남  김밥" />
+							<div class="col-xs-9 col-sm-10 col-md-10 col-lg-10 zeroP">
+								<input type="text" class="form-control" id="autoComplete" name="search"
+									required="required"
+									placeholder="예) 도시락, 서초, 강남  김밥" />
+							</div>
+							<div class="col-xs-3 col-sm-2 col-md-2 col-lg-2 zeroP">
+								<input type="submit" id="btnColor" class="btn btn-fill col-xs-4" value="검색">
+							</div>		
 						</div>
 					</div>
-					<input type="submit" id="btnColor" class="btn btn-fill btn-success" value="검색">
 				</div>
               </form>
             </div>

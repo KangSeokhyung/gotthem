@@ -99,10 +99,9 @@
 							</colgroup>
     <thead>   
        <tr>
-                   <th scope="col"><!-- <input type="checkbox" name="checkAll" id="th_checkAll" /> -->
-                   
-                   <a href="#" class="con"  name="checkAll" id="th_checkAll" onclick="button_checkAll();" />all</a>
-                   <!-- <input type="button" class="con" value="All" name="checkAll" id="th_checkAll" onclick="button_checkAll();" /> --></th> 
+                   <th scope="col">
+                   	<a href="#" class="con" id="th_checkAll" onclick="button_checkAll();">all</a>
+                   </th>
                    <th scope="col" colspan="2">상품정보</th>
                    <th scope="col">매장명</th>
                    <th scope="col" class="tNonePre">가격</th>
@@ -116,7 +115,8 @@
              <c:forEach var="row" items="${map.list}" varStatus="i">
                <tr>                
                   <td> 
-                      <input type="checkbox" name="checkRow" class="chk" id="checkRow"  value="${row.bas_no},${row.bas_proname},${row.bas_proprice},${row.bas_prostock},${row.bas_procode},${row.money},${row.bas_proimg}, ${row.bas_procomment},${row.pro_memno},${row.sto_name}"
+                      <input type="checkbox" name="checkRow" class="chk" id="checkRow"  
+                      value="${row.bas_no},${row.bas_proname},${row.bas_proprice},${row.bas_prostock},${row.bas_procode},${row.money},${row.bas_proimg}, ${row.bas_procomment},${row.pro_memno},${row.sto_name}"
                       onclick="cart();" /> 
                   </td>
                   <td class="img" class="tNonePre">
@@ -174,6 +174,7 @@
   </form>
   	<div class="btnAreaList">
 		<a href="#" class="sOrder"  onclick="button_selOrder();"><p>선택상품 <span>주문하기</span></p></a>&nbsp;&nbsp;
+		<input type="hidden" id="t" value="테스트">
 		<a href="#" class="aOrder" id=button_allOrder onclick="button_allOrder();"><p>전체상품 <span>주문하기</span></p></a>&nbsp;&nbsp;
 		<a href="/gotThem" class="continuation" onclick=""><p>쇼핑 <span>계속하기</span></p></a>
 		<button id = "payBtn" value="ddd" >ddddddd</button>
@@ -182,7 +183,7 @@
 </c:choose>   
 </div>    
 <br>
- <footer class="probootstrap-footer probootstrap-bg" style="background-image: url(img/slider_3.jpg)">
+ <footer class="probootstrap-footer probootstrap-bg">
     <div class="container">
         <div class="col-md-6">
           <div class="probootstrap-footer-widget">
@@ -408,23 +409,22 @@ Kakao.init("363553076ca8777f012d9c9ce3b92b8c");
 $('#payBtn').click(()=> {
 	
      if(!access_Token){
-    	 console.log('토큰이 없음');
+    	 console.log('토큰 없음');
          loginWithKakao();
      } else {
-    	 console.log("토근존재");
+    	 console.log("토큰 존재");
          payment();
      }
 }); 
 
-$('#button_allOrder').click(()=> {
-	
+$('#button_allOrder').click(function() {
     if(!access_Token){
-   	 console.log('토큰이 없음');
+   	 console.log('토큰 없음');
         loginWithKakao();
     } else {
-   	 console.log("토근존재");
+   	 console.log("토큰 존재");
         payment();
-    }
+    } 
 });
 
 /* function button_allOrder(){ //장바구니 전체 주문하기
@@ -466,7 +466,7 @@ function payment() {
 					location.href="./orderList.gt";
 					}
 				}); */
-			
+				
 	$.ajax({
 	 url : 'payment.gt',
      data: {
@@ -475,10 +475,9 @@ function payment() {
      },
      method: 'POST',
      success: (result) => {
-    	 console.log(result);
+    	console.log(result)
      	window.open(result.next_redirect_pc_url,
      			"","width=400, height=700");
-     	console.log("온다아아앙");
      }, 
      error: () => {
          window.alert('payment 서버 실행 오류!');

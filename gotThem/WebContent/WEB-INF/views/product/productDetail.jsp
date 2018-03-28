@@ -28,7 +28,11 @@
 	-webkit-box-shadow: none;
 	box-shadow: none;
 }
-#btnColor { background: #fe490f; }
+#pro_stock { width: 55px; text-align: center; }
+#btnColor { background: #fa2848; }
+.btnColor2 { background: #70C585; color: white; padding: 10px 15px; }
+.btnColor3 { background: #FD6929; color: white; padding: 10px 15px; }
+.zeroP { padding: 0px; }
 </style>  
 <script src="resources/autocomplete/auto-complete.js"></script>
 <script src="https://code.jquery.com/jquery-3.2.1.js"></script>
@@ -130,20 +134,24 @@
     <div class="probootstrap-wrap-banner">
       <div class="container">
         <div class="row">
-          <div class="col-md-8 col-md-offset-2">
-          
+          <div class=" col-md-offset-2">
+
             <div id="marginChg" class="probootstrap-home-search probootstrap-animate">
               <form action="searchList.gt" method="get">
               	<input type="hidden" name="pageNo" value="1">
 	            <div class="probootstrap-field-group">
 					<div class="probootstrap-fields">
 						<div class="form-field">
-							<input type="text" class="form-control" id="autoComplete" name="search"
-								required="required"
-								placeholder="예) 도시락, 서초, 강남  김밥" />
+							<div class="col-xs-9 col-sm-10 col-md-10 col-lg-10 zeroP">
+								<input type="text" class="form-control" id="autoComplete" name="search"
+									required="required"
+									placeholder="예) 도시락, 서초, 강남  김밥" />
+							</div>
+							<div class="col-xs-3 col-sm-2 col-md-2 col-lg-2 zeroP">
+								<input type="submit" id="btnColor" class="btn btn-fill col-xs-4" value="검색">
+							</div>		
 						</div>
 					</div>
-					<input type="submit" id="btnColor" class="btn btn-fill btn-success" value="검색">
 				</div>
               </form>
             </div>
@@ -190,10 +198,11 @@
 <section class="probootstrap-section">
   <div class="container">
     <div class="row probootstrap-gutter10">
-    	<div class="col-sm-4 col-sm-offset-1">
+    	<div class="col-xs-11 col-xs-offset-1 col-sm-4 col-sm-offset-1">
     		<img src="/img/${productInfo.pro_img }" height="350px" width="280px" title="상품이미지" alt="상품이미지">
+    		<br><br>
     	</div>
-    	<div class="col-sm-6 col-sm-offset-1">
+    	<div class="col-xs-12 col-sm-6 col-sm-offset-1">
     		<h1>${productInfo.pro_name }</h1>
     		<hr style="border-color: black">
     		<h3>상품 가격 : ${productInfo.pro_price }</h3>
@@ -213,16 +222,16 @@
 	    		<span id="totalPrice">${productInfo.pro_price }</span></label>
 	    	</div>
 			<hr>	    	
-    		<input type="button" class="btn btn-info" onclick="" value="결제">
+    		<input type="button" class="btn btnColor2" onclick="" value="결제">
     		<c:choose>
 				<c:when test="${sessionCheck eq null}">
-					<input type="button" class="btn btn-info" onclick="loginForward('${productInfo.pro_code }')" value="장바구니 담기">
+					<input type="button" class="btn btnColor2" onclick="loginForward('${productInfo.pro_code }')" value="장바구니">
 				</c:when>
 				<c:otherwise>
-					<input type="button" class="btn btn-info" onclick="addBasket()" value="장바구니 담기">
+					<input type="button" class="btn btnColor2" onclick="addBasket()" value="장바구니">
 				</c:otherwise>
 			</c:choose>
-    		<input type="button" class="btn btn-warning" onclick="history.back();" value="이전">
+    		<input type="button" class="btn btnColor3" onclick="history.back();" value="이전">
     	</div>
     </div>
   </div>

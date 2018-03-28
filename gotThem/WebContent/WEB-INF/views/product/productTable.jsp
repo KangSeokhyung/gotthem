@@ -13,24 +13,23 @@
 </head>
 <body>
 	<div>
-		<form id="tableForm" action="login.gt" method="get">
 		<table class="table table-bordered table-hover">
 			<colgroup>
 				<col width="17%" />
 				<col width="30%" />
-				<col width="10%" />
+				<col width="10%" class="tNonePre" />
 				<col width="15%" />
 				<col width="8%" />
 				<col width="20%" />
 			</colgroup>
 			<thead>
 				<tr>
-					<th class="text-center" scope="col">상품이미지</th>
+					<th class="text-center" scope="col">이미지</th>
 					<th class="text-center" scope="col">상품명</th>
-					<th class="text-center" scope="col">수량</th>
+					<th class="text-center tNonePre" scope="col">수량</th>
 					<th class="text-center" scope="col">금액</th>
 					<th class="text-center" scope="col">선택</th>
-					<th class="text-center" scope="col">장바구니 담기</th>
+					<th class="text-center" scope="col">장바구니</th>
 				</tr>
 			</thead>
 			<tbody id="rowCheck">
@@ -38,9 +37,10 @@
 				<c:if test="${list.pro_stock > 0 }">
 				<input type="hidden" id="pro_code" name="pro_code" value="${list.pro_code }">
 				<tr>
-					<td><a href="javascript:movedetail(${list.pro_code });"><img src="/img/${list.pro_img }" height="50px" width="50px" title="상품이미지" alt="상품이미지"></a></td>
+					<td><a href="javascript:movedetail(${list.pro_code });"><img src="/img/${list.pro_img }" 
+					 		height="50px" width="50px" title="상품이미지" alt="상품이미지"></a></td>
 					<td><a href="javascript:movedetail(${list.pro_code });">${list.pro_name }</a></td>
-					<td>${list.pro_stock }</td>
+					<td class="tNonePre">${list.pro_stock }</td>
 					<td><fmt:formatNumber pattern="###,###,###" value="${list.pro_price }" /></td>
 					<td>
 						<input type="checkbox" name="statusCheck" 
@@ -50,10 +50,10 @@
 						<c:set var="sessionCheck" value="${sessionScope.SPRING_SECURITY_CONTEXT}" />
 						<c:choose>
 							<c:when test="${sessionCheck eq null}">
-								<input type="button" onclick="loginForward('${list.pro_code }')" value="담기" class="btn btn-info">
+								<input type="button" onclick="loginForward('${list.pro_code }')" value="담기" class="btn btnColor4 col-sm-12 col-md-6 col-md-offset-3">
 							</c:when>
 							<c:otherwise>
-								<input type="button" id="basketBtn" value="담기" class="btn btn-info"
+								<input type="button" id="basketBtn" value="담기" class="btn btnColor4 col-sm-12 col-md-6 col-md-offset-3"
 									onclick="addBasket('${list.pro_code }', '${list.pro_name }', '${list.pro_memno }', 
 									'${list.pro_category }', '${list.pro_price }', '${list.pro_img }')">
 							</c:otherwise>
@@ -67,17 +67,16 @@
 		<c:choose>
 			<c:when test="${sessionCheck eq null}">
 				<div class="col-sm-12">
-					<input type="button" onclick="loginForward3()" class="btn btn-info" value="선택항목 담기 ">
+					<input type="button" onclick="loginForward3()" class="btn btnColor3" value="선택항목 담기 ">
 				</div>
 			</c:when>
 			<c:otherwise>
 				<div class="col-sm-12">
-					<input type="button" onclick="selectAddBasket()" class="btn btn-info" value="선택항목 담기 ">
+					<input type="button" onclick="selectAddBasket()" class="btn btnColor3" value="선택항목 담기 ">
 				</div>
 			</c:otherwise>
 		</c:choose>
 		
-		</form>
 	</div>
 </body>
 </html>

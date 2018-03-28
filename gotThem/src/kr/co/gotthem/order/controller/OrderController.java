@@ -225,9 +225,10 @@ public class OrderController {
 		
 		System.out.println("접속된 토큰 : " + accessToken);
 		@SuppressWarnings("rawtypes")
-        HashMap result = orderService.pay(accessToken, HashMap.class,valueArr);
+		HashMap result = orderService.pay(accessToken, HashMap.class, valueArr);
+		
         System.out.println("페이한 결과 : " + result);
-		session.setAttribute("tid",result.get("tid"));
+		session.setAttribute("tid", result.get("tid"));
         session.setAttribute("accessToken", accessToken);
     return result;
     }

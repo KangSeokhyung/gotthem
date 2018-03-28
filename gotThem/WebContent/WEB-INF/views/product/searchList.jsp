@@ -1,9 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<% 
-	request.setCharacterEncoding("UTF-8"); 
-%>
 <!DOCTYPE html>
 <html lang="ko">
   <head>
@@ -18,6 +15,7 @@
     <link rel="stylesheet" href="resources/mainTemplate/css/style.min.css">
     <link rel="stylesheet" href="resources/mainTemplate/css/custom.css">
 	<link rel="stylesheet" href="resources/autocomplete/auto-complete.css">
+	<link rel="stylesheet" type="text/css" href="resources/renew2/css/content.css" />
 
     <!--[if lt IE 9]>
       <script src="resources/mainTemplate/js/vendor/html5shiv.min.js"></script>
@@ -31,10 +29,16 @@
 	-webkit-box-shadow: none;
 	box-shadow: none;
 }
-#btnColor { background: #fe490f; }
+#btnColor { background: #fa2848; color: white; }
 .pad { padding: 0px; }
 #map { margin-top: 90px; height: 400px; }
 #hide { display: none; }
+table {
+	font-size: 13px;
+	text-align: center;
+	word-break: keep-all; 
+}
+th { color: black; }
 </style>  
 <script src="resources/autocomplete/auto-complete.js"></script>
 <script src="https://code.jquery.com/jquery-3.2.1.js"></script>
@@ -179,7 +183,7 @@
 				placeholder="예) 도시락, 서초, 강남  김밥" />
 		</div>
 		<div class="col-xs-3 col-sm-3 pad">
-			<input type="submit" id="btnColor" class="btn btn-sm btn-success" value="검색">
+			<input type="submit" id="btnColor" class="btn btn-sm" value="검색">
 		</div>
 	  </form>
 	</div>
@@ -215,19 +219,19 @@
    	<div class="row">
    	<div class="col-sm-12">
    	<h4><strong>${search }</strong> 상품 판매 편의점 : <strong>${totalRows }</strong>건</h4>
-   		<table class="table table-bordered table-hover">
+   		<table class="table table-hover">
 		<colgroup>
-			<col width="17%" />
-			<col width="25%" />
+			<col width="17%" class="tNonePre" />
+			<col width="22%" />
 			<col width="45%" />
-			<col width="13%" />
+			<col width="16%" />
 		</colgroup>
 		<thead>
 			<tr>
-				<th></th>
+				<th class="tNonePre"></th>
 				<th class="text-center">매장이름</th>
 				<th class="text-center">매장주소</th>
-				<th class="text-center">전화번호</th>
+				<th class="text-center">번호</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -238,15 +242,15 @@
 			</c:if>
 			<c:forEach var="list" items="${searchList }">
 			<tr class="rowCount">
-				<td class="text-center"><a href="storeDetail.gt?mem_no=${list.mem_no }">
+				<td class="tNonePre"><a href="storeDetail.gt?mem_no=${list.mem_no }">
 						<img src="/img/store/${list.sto_img }" 
 							class="img-thumbnail img-responsive" height="50px" width="150px"
 							title="${list.sto_name } 매장 이미지" alt="${list.sto_name } 매장 이미지">
 					</a>
 				</td>
-				<td class="text-center"><a href="storeDetail.gt?mem_no=${list.mem_no }">${list.sto_name }</a></td>
-				<td class="text-center">${list.mem_address }</td>
-				<td class="text-center">${list.mem_phone }</td>
+				<td><a href="storeDetail.gt?mem_no=${list.mem_no }">${list.sto_name }</a></td>
+				<td>${list.mem_address }</td>
+				<td>${list.mem_phone }</td>
 				<td id="hide">${list.mem_no }</td>
 			</tr>
 			</c:forEach>
