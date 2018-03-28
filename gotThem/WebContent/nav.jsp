@@ -38,7 +38,6 @@ body, table, div, p {
 	-webkit-box-shadow: 0 6px 68px -6px rgba(0, 0, 0, .2);
 	box-shadow: 0 6px 68px -6px rgba(0, 0, 0, .2);
 }
-
 .material-icons {
 	font-family: 'Material Icons';
 	font-weight: normal;
