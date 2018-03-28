@@ -67,40 +67,31 @@
    <table class="listType" border="1" cellspacing="0">
     <caption>결제 목록</caption>
 							<colgroup>
-							<col width="4%" class="tw8"/>
 							<col width="10%" class="cartImg"/>
 							<col width="*" />
-							<col width="13%" class="cartw13" />
-							<col width="10%" class="tNonePre"/>
-							<col width="13%" class="cartw27"/>
-							<col width="14%" class="cartw25"/>
-							<col width="12%" class="tNonePre"/>
+							<col width="10%" class="cartw13" />
+							<col width="5%" class="tNonePre"/>
+							<col width="12%" class="cartw27"/>
+							<col width="12%" class="cartw25"/>
+							<col width="8%" class="tNonePre"/>
+							<%-- <col width="8%" class="tNonePre"/> --%>
 							</colgroup>
     <thead>   
        <tr>
-                   <th scope="col">결제 번호 </th> 
-                   <th scope="col">상품코드</th>
-                   <th scope="col" >상품사진</th>
-                   <th scope="col">상품명</th>
+                   <th scope="col" colspan="2">상품정보</th>
                    <th scope="col">매장명</th>
-                   <th scope="col">수량 </th>
-                   <th scope="col">상품가격</th>
+                   <th scope="col" class="tNonePre">수량 </th>
+                   <th scope="col" >상품가격</th>
                     <th scope="col">결제가격</th>
-                    <th scope="col">상태</th>
-                   <th scope="col" class="tNonePre">결제취소</th>
+                    <th scope="col" class="tNonePre">상태</th>
+                  <!--  <th scope="col" class="tNonePre">결제취소</th> -->
      </tr>
     </thead>
     <tbody id="rowCheck">
       <c:forEach var="row" items="${map.list}" varStatus="i">
                <tr>                
-                  <td> 
-                      ${row.ord_no}
-                  </td>
                   <td class="img" class="tNonePre">
                        <a href="productDetail.gt?pro_code=${row.ord_procode}"><img src="/img/${row.ord_proimg}" style="width:50px; height:50px" class="dn" alt="" /></a>
-                  </td>
-                  <td class="minLeft" >
-                   ${row.ord_procode}
                   </td>
                    <td>
                         ${row.ord_proname}
@@ -108,10 +99,10 @@
                    <td>
                        ${row.sto_name}
                   </td>
-                   <td>
+                   <td class="tNonePre">
                       ${row.ord_stock}
                   </td>
-                  <td class="tNonePre" style="width: 80px" align="right" >
+                  <td  style="width: 80px" align="right" >
                        <fmt:formatNumber pattern="###,###,###" value="${row.ord_proprice}"/>
                   </td>
                   
@@ -121,9 +112,9 @@
                    <td class="tNonePre">
                      ${row.ord_status}
                   </td>
-                  <td>
-                       <input type="button" value="삭제" onclick="button_delete('${row.ord_no}','${row.ord_stock}','${row.ord_procode}');">
-                  </td>
+                  <%-- <td class="tNonePre">
+                       <input type="button" value="취소" onclick="button_delete('${row.ord_no}','${row.ord_stock}','${row.ord_procode}');">
+                  </td> --%>
                 </tr>
                </c:forEach>
     </tbody>
