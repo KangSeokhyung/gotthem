@@ -89,15 +89,16 @@ public class OrderServiceImpl implements OrderService {
         String bas_no = st.nextToken();
     	String bas_proname = st.nextToken();
     	String bas_proprice = st.nextToken(); 
-    	String bas_prostock = st.nextToken();
-    	String bas_procode = st.nextToken();
- 	    String money = st.nextToken();
+    	String aaa = st.nextToken();
+    	String bas_procode = st.nextToken();	    
  	    String bas_proimg = st.nextToken();
     	String bas_procomment = st.nextToken();
         String pro_memno = st.nextToken();
     	String sto_name = st.nextToken();
     	String bas_memno = st.nextToken();
-
+    	String money = st.nextToken();
+    	String bas_prostock = st.nextToken();
+    	
         MultiValueMap<String,String> param = new LinkedMultiValueMap<>();
        
         param.add("cid", "TC0ONETIME");
@@ -105,7 +106,7 @@ public class OrderServiceImpl implements OrderService {
         param.add("partner_user_id",  bas_memno);
         param.add("item_name", bas_proname);
         param.add("quantity", bas_prostock);
-        param.add("total_amount",bas_proprice);
+        param.add("total_amount",money);
         param.add("tax_free_amount", "0"); 
         
         param.add("approval_url", "http://localhost:8080/gotThem/approveOne.gt");
@@ -137,14 +138,15 @@ public class OrderServiceImpl implements OrderService {
         String bas_no = st.nextToken();
     	String bas_proname = st.nextToken();
     	String bas_proprice = st.nextToken(); 
-    	String bas_prostock = st.nextToken();
+    	String aaa = st.nextToken();
     	String bas_procode = st.nextToken();
- 	    String money = st.nextToken();
  	    String bas_proimg = st.nextToken();
     	String bas_procomment = st.nextToken();
         String pro_memno = st.nextToken();
     	String sto_name = st.nextToken();
     	String bas_memno = st.nextToken();
+    	String money = st.nextToken();
+    	String bas_prostock = st.nextToken();
     	
         MultiValueMap<String,String> param = new LinkedMultiValueMap<>();
         param.add("cid", "TC0ONETIME");
@@ -180,15 +182,16 @@ public class OrderServiceImpl implements OrderService {
         String bas_no = st.nextToken();
       	String bas_proname = st.nextToken();
       	String bas_proprice = st.nextToken(); 
-      	String bas_prostock = st.nextToken();
+      	String aaa = st.nextToken();
       	String bas_procode = st.nextToken();
-   	    String money = st.nextToken();
    	    String bas_proimg = st.nextToken();
       	String bas_procomment = st.nextToken();
         String pro_memno = st.nextToken();
       	String sto_name = st.nextToken();
       	String bas_memno = st.nextToken();
-      	
+   	    String money = st.nextToken();
+   	    String bas_prostock = st.nextToken();
+   	    
       	MultiValueMap<String,String> param = new LinkedMultiValueMap<>();
       	param.add("cid", "TC0ONETIME");
         param.add("partner_order_id", sto_name);
@@ -233,15 +236,16 @@ public class OrderServiceImpl implements OrderService {
         String bas_no = st.nextToken();
       	String bas_proname = st.nextToken();
       	String bas_proprice = st.nextToken(); 
-      	String bas_prostock = st.nextToken();
-      	String bas_procode = st.nextToken();
-   	    String money = st.nextToken();
+      	String aaa = st.nextToken();
+      	String bas_procode = st.nextToken();   	    
    	    String bas_proimg = st.nextToken();
       	String bas_procomment = st.nextToken();
         String pro_memno = st.nextToken();
       	String sto_name = st.nextToken();
       	String bas_memno = st.nextToken();
-        
+      	String money = st.nextToken();
+      	String bas_prostock = st.nextToken();
+      	
         MultiValueMap<String,String> param = new LinkedMultiValueMap<>();
         param.add("cid", "TC0ONETIME");
         param.add("tid", (String)session.getAttribute("tid"));

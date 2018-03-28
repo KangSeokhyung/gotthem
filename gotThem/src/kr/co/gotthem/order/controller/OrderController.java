@@ -47,87 +47,6 @@ public class OrderController {
 		this.productService = productService;
 	}
 	
-   /*// 1. 장바구니에서 결제 추가
-   @RequestMapping(value ="insertOrder.gt",method = RequestMethod.GET)
-    public String insertOrder(@RequestParam String bas_no, @RequestParam String bas_prostock, @RequestParam String bas_procode,
-    		            @RequestParam String bas_proname,@RequestParam String money, @RequestParam String bas_proimg, 
-    		            @RequestParam String bas_proprice,@RequestParam String pro_memno,@RequestParam String sto_name,
-    		@ModelAttribute OrderpayBean orderBean,HttpServletRequest req, HttpServletResponse res )throws Exception {
-	   
-	   Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-	   String mem_id = authentication.getName();
-       System.out.println("결제 왔다" );
-       
-       MemberBean memberInfo = memberService.memberInfo(mem_id);
-       int userNo = memberInfo.getMem_no();
-       orderBean.setOrd_memno(userNo);
-   	
-       orderBean.setOrd_proprice(Integer.parseInt(bas_proprice));
-   	   orderBean.setOrd_stock(Integer.parseInt(bas_prostock));
-   	   orderBean.setOrd_procode(Integer.parseInt(bas_procode));
-   	   orderBean.setOrd_proname(bas_proname);
-   	   orderBean.setOrd_price(Integer.parseInt(money)); 
-   	   orderBean.setOrd_basno(Integer.parseInt(bas_no));
-       orderBean.setOrd_proimg(bas_proimg);
-   	   orderBean.setOrd_no(Integer.parseInt(bas_no));
-   	   orderBean.setPro_memno(Integer.parseInt(pro_memno));
-   	   orderBean.setSto_name(sto_name);
- 
-   	   orderService.orderInsert(orderBean);
-   	   orderService.orderUpdateBasket(orderBean);
-   	   orderService.orderDeleteBasket(orderBean);
-   	   System.out.println("결제 완료 변경된 수량" + bas_prostock );
-   	   return "redirect:/orderList.gt";
-   	   }*/
-    
-  // 1.1 장바구니에서 선택 결제
-   @RequestMapping(value = "selectOrder.gt", method = RequestMethod.POST) 
-   public String testCheck(@RequestParam (value= "arrOrder[]") List valueArr,
-   		@ModelAttribute BasketBean basketBean,@ModelAttribute OrderpayBean orderBean,
-   		HttpServletRequest req, HttpServletResponse res) throws Exception {	   
-	   Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-	   String mem_id = authentication.getName();
-	   
-	   MemberBean memberInfo = memberService.memberInfo(mem_id);  
-       int userNo = memberInfo.getMem_no();
-       String A = null;
-       for(int i=0; i<valueArr.size(); i++){
-    	   A = (String) valueArr.get(i);
-    	   System.out.println("선택결제 여기값"+A.toString());
-    	   if ( 2==A.length()) {
-    		   continue;
-    		   } else {
-    	   java.util.StringTokenizer  st = new java.util.StringTokenizer(A,",");
-    	   String bas_no = st.nextToken();
-       	   String bas_proname = st.nextToken();
-       	   String bas_proprice = st.nextToken(); 
-       	   String bas_prostock = st.nextToken();
-       	   String bas_procode = st.nextToken();
-    	   String money = st.nextToken();
-    	   String bas_proimg = st.nextToken();
-       	   String bas_procomment = st.nextToken();
-           String pro_memno = st.nextToken();
-       	   String sto_name = st.nextToken();
-
-       	   orderBean.setOrd_memno(userNo);       
-           orderBean.setOrd_basno(Integer.parseInt(bas_no));        
-           orderBean.setOrd_proname(bas_proname);
-           orderBean.setOrd_proprice(Integer.parseInt(bas_proprice));
-           orderBean.setOrd_stock(Integer.parseInt(bas_prostock));
-           orderBean.setOrd_procode(Integer.parseInt(bas_procode));
-           orderBean.setOrd_price(Integer.parseInt(money));
-           orderBean.setOrd_proimg(bas_proimg);
-           orderBean.setPro_memno(Integer.parseInt(pro_memno));
-           orderBean.setSto_name(sto_name);
-
-           orderService.orderInsert(orderBean);
- 	       orderService.orderUpdateBasket(orderBean);
-   	       orderService.orderDeleteBasket(orderBean); 	 
-   	       System.out.println("선택결제 성공");
-   	       }
-        }
-       return "redirect:/orderList.gt";
-       }
  
       // 3. 아이디별 전체 결제 목록
      @RequestMapping("/orderList.gt")
@@ -174,8 +93,7 @@ public class OrderController {
 
 		Map<String, Object> map = new HashMap<String, Object>();
 		List<OrderpayBean> slistOrder = orderService.storeListOrder(userName);
-/*		List<OrderpayBean> slistOrder = orderService.storeListOrder(userNo);
-*/		System.out.println("storeLisOrder타고 " + slistOrder);
+		System.out.println("storeLisOrder타고 " + slistOrder);
 		map.put("list", slistOrder);
 		mav.setViewName("/store/storeOrderList");
 		mav.addObject("map", map);
@@ -199,9 +117,6 @@ public class OrderController {
 		String to1 = to + " 23:59:59.9";
 		java.sql.Timestamp end = java.sql.Timestamp.valueOf(to1);
 		
-		
-		System.out.println("begin은 " + begin);
-		System.out.println("end은 " + end);
 		Map<String, Object> map = new HashMap<String, Object>();
 		List<OrderpayBean> slistOrder = orderService.storeListOrderTime(userNo, begin, end);
 		System.out.println("Time " + slistOrder);
@@ -243,24 +158,23 @@ public class OrderController {
 		session.removeAttribute("orderOne");
 		String pg_Token = req.getParameter("pg_token");
         System.out.println("pg_Token:승인컨트롤"+pg_Token);
-        System.out.println("승인컨트롤orderOne: "+ orderOne);
         @SuppressWarnings("rawtypes")
         HashMap result = orderService.approveOne(pg_Token,session,HashMap.class,orderOne);
         System.out.println("승인컨트롤 돌아옴 ");
-        System.out.println("orderOne서비스 "+ orderOne);
        
         java.util.StringTokenizer  st = new java.util.StringTokenizer(orderOne,",");
         String bas_no = st.nextToken();
     	String bas_proname = st.nextToken();
     	String bas_proprice = st.nextToken(); 
-    	String bas_prostock = st.nextToken();
-    	String bas_procode = st.nextToken();
- 	    String money = st.nextToken();
+    	String aaa = st.nextToken();
+    	String bas_procode = st.nextToken(); 
  	    String bas_proimg = st.nextToken();
     	String bas_procomment = st.nextToken();
         String pro_memno = st.nextToken();
     	String sto_name = st.nextToken();
     	String bas_memno = st.nextToken();
+    	String money = st.nextToken();
+    	String bas_prostock = st.nextToken();
     	
     	OrderpayBean orderBean = new OrderpayBean();
     	orderBean.setOrd_memno(Integer.parseInt(bas_memno));      
@@ -277,7 +191,7 @@ public class OrderController {
         orderService.orderInsert(orderBean);
 	    orderService.orderUpdateBasket(orderBean);
 	    orderService.orderDeleteBasket(orderBean); 
-	    System.out.println("결제 db연동");
+	    System.out.println("결제 db연동"+orderBean);
 	    
 	    mav.addObject("result", result);
         mav.setViewName("basket/purchase");
@@ -308,10 +222,7 @@ public class OrderController {
     public ModelAndView approve(HttpServletRequest req,HttpSession session, ModelAndView mav) throws Exception {
 		List valueArr = (List)session.getAttribute("valueArr");
 	    session.removeAttribute("valueArr");
-	    System.out.println("valueArr:승인컨트롤"+valueArr);
 	    String oneArr = (String) valueArr.get(0);
-	    /*String oneArr = (String) valueArr[0];*/
-	    System.out.println("oneArr:승인컨트롤"+oneArr);
 	    String pg_Token = req.getParameter("pg_token");
         System.out.println("pg_Token:승인컨트롤"+pg_Token);
         @SuppressWarnings("rawtypes")
@@ -322,22 +233,21 @@ public class OrderController {
         	A = (String) valueArr.get(i);
      	    System.out.println("복수결제 컨드롤"+A.toString());
      	    if ( 2==A.length()) {
-     	    	System.out.println("빈 배열");
      	    	continue;
      	    	} else {
-     	    		System.out.println("빈 배열ㅋㅋ");
      	    		java.util.StringTokenizer  st = new java.util.StringTokenizer(A,",");
      	            String bas_no = st.nextToken();
         	        String bas_proname = st.nextToken();
         	        String bas_proprice = st.nextToken(); 
-        	        String bas_prostock = st.nextToken();
+        	        String aaa = st.nextToken();
         	        String bas_procode = st.nextToken();
-     	            String money = st.nextToken();
      	            String bas_proimg = st.nextToken();
         	        String bas_procomment = st.nextToken();
                     String pro_memno = st.nextToken();
         	        String sto_name = st.nextToken();
         	        String bas_memno = st.nextToken();
+        	        String money = st.nextToken();
+        	        String bas_prostock = st.nextToken();
         	        
         	        OrderpayBean orderBean = new OrderpayBean();
         	        orderBean.setOrd_procode(Integer.parseInt(bas_procode));
