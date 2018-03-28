@@ -137,6 +137,14 @@ body{
         border-radius: 50%;
     }
 }
+.barunPenLogo{
+	font-family:'나눔바른펜';
+	font-size:40px;
+	color:#fff;
+}
+.mt-5, .my-5 {
+    margin-top: 1em !important;
+}
 </style>
 </head>
 <body>
@@ -150,7 +158,8 @@ body{
 						</div>
 					</div>
 					<div class="row">
-						<div class="col-md-12 col-12 mt-5">
+						<div class="col-md-12 col-12 mt-5" style="text-align:center;">
+						<span class="barunPenLogo">Got Them</span><br><br>
 					      	<div class="input-group">
 					        	<div class="input-group-prepend">
 					          		<span class="input-group-text bg-white border-0 p-3"><i class="fa fa-user"></i></span>
@@ -172,9 +181,9 @@ body{
 						</div>
 					</div>
 					<div class="row">
-						<div class="col-md-12 col-12 mt-3">
+						<div class="col-md-12 col-12 mt-3" style="text-align:center;">
 					      	<button type="submit" class="btn btn-info rounded-0 w-100">로그인</button><br><br>
-					      	이 페이지는 관리자만 로그인이 가능합니다.
+					      	<span style="color:#fff;">이 페이지는 관리자만 로그인이 가능합니다.</span>
 						</div>
 					</div>
 					<div class="row">
@@ -191,7 +200,7 @@ body{
 				</form>
 			</div>
 			<div class="col-md-4 offset-md-4 col-12 text-white text-center mt-2 copyright-main">
-				<p>Copyright © 2018 Aatman Infotech,Inc</p>
+				<p>Copyright © 2018 스탑없으 Got Them 프로젝트 </p>
 			</div>
 		</div>
 	</div>

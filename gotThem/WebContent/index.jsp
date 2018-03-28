@@ -157,7 +157,7 @@ color:#fff;
       <li style="background-image: url(resources/image/711.jpg);" class="overlay"></li>
       <li style="background-image: url(resources/image/withme.jpg);" class="overlay"></li>
       <li style="background-image: url(resources/image/gs25.jpg);" class="overlay"></li>
-      <li style="background-image: url(resources/image/CU3.jpg);" class="overlay"></li>
+      <li style="background-image: url(resources/image/도시락3.jpg);" class="overlay"></li>
     </ul>
   </section>
   
