@@ -43,14 +43,12 @@
       <div class="container">
         <div class="row">
           <div class="col-md-8">
-
             <div class="page-title probootstrap-animate">
               <div class="probootstrap-breadcrumbs">
                 <a href="/gotThem">Home</a><span>Cart</span>
               </div>
               <h1>장바구니</h1>
             </div>
-
           </div>
         </div>
       </div>
@@ -60,8 +58,7 @@
       <li style="background-image: url(resources/mainTemplate/img/slider_4.jpg);"></li>
       <li style="background-image: url(resources/mainTemplate/img/slider_2.jpg);"></li>
     </ul>
-  </section>
-    
+  </section>    
 <div class="container">
 <c:choose>
 <c:when test="${map.count == 0}">
@@ -75,10 +72,10 @@
 <c:otherwise>   
   <form name="form1" id="form1" method="post" action="./update.gt" onsubmit="return validate();">
    <!-- del btnArea -->
-					<div class="btnArea nMn">
+					<div class="btnArea nMn"><br><br>
 						<ul class="delTopLeft">
-							<li><a href="#" onclick="button_selDel()"><img src="/img/btn_select_del.gif" alt="선택삭제"/></a></li>
-							<li><a href="#" onclick="button_allDel()"><img src="/img/btn_all_del.gif" alt="전체삭제"/></a></li>
+							<li><a onclick="button_selDel()"><img src="/img/btn_select_del.gif"  alt="선택삭제"/></a></li>					
+							<li><a onclick="button_allDel()"><img src="/img/btn_all_del.gif" alt="전체삭제"/></a></li>
 						</ul>
 					</div>
 					<!-- //del btnArea -->
@@ -98,9 +95,7 @@
     <thead>   
        <tr>
                    <th scope="col"><!-- <input type="checkbox" name="checkAll" id="th_checkAll" /> -->
-                   
                    <a class="con"  name="checkAll" id="th_checkAll" onclick="button_checkAll();" />all</a>
-                   <!-- <input type="button" class="con" value="All" name="checkAll" id="th_checkAll" onclick="button_checkAll();" /> --></th> 
                    <th scope="col" colspan="2">상품정보</th>
                    <th scope="col">매장명</th>
                    <th scope="col" class="tNonePre">가격</th>
@@ -121,7 +116,7 @@
                        <a href="productDetail.gt?pro_code=${row.bas_procode}"><img src="/img/${row.bas_proimg}" style="width:60px; height:60px" class="dn" alt="" /></a>
                   </td>
                   <td class="minLeft" >
-                      <a href="productDetail.gt?pro_code=${row.bas_procode}" style="color: #7e8890;"> ${row.bas_proname}</a>
+                      <a href="productDetail.gt?pro_code=${row.bas_procode}" > ${row.bas_proname}</a>
                   </td>
                    <td>
                        ${row.sto_name}
@@ -144,8 +139,8 @@
                    <td class="tNonePre">
                    		<input type="hidden" id="firstMoney" value="${row.money}">
 						<input type="hidden" name="bas_all" id="bas_all" value="${row.bas_no},${row.bas_proname},${row.bas_proprice},${row.bas_prostock},${row.bas_procode},${row.bas_proimg}, ${row.bas_procomment},${row.pro_memno},${row.sto_name},${row.bas_memno}">
-						<a class="minPurchase" id= "orderOne" onclick="" >바로구매</a><br/>
-						<a href="#" class="minDel02" onclick="button_basDel(${row.bas_no});">상품삭제</a>
+						<a class="minPurchase" id= "orderOne" onclick="" style="font-size:14px;">바로구매</a><br/>
+						<a href="#" class="minDel02" style="font-size:14px; onclick="button_basDel(${row.bas_no});">상품삭제</a>
 				   </td>
                 </tr>
                </c:forEach>
@@ -171,8 +166,8 @@
   </div>
   </form>
   	<div class="btnAreaList">
-		<a href="#" class="sOrder"  id=button_selOrder onclick="button_selOrder();"><p>선택상품 <span>주문하기</span></p></a>&nbsp;&nbsp;
-		<a href="#" class="aOrder" id=button_allOrder onclick="button_allOrder();"><p>전체상품 <span>주문하기</span></p></a>&nbsp;&nbsp;
+		<a href="#" class="sOrder"  id=button_selOrder onclick="button_selOrder();"><p>선택상품 <span>결제하기</span></p></a>&nbsp;&nbsp;&nbsp;&nbsp;
+		<a href="#" class="aOrder" id=button_allOrder onclick="button_allOrder();"><p>전체상품 <span>결제하기</span></p></a>&nbsp;&nbsp;&nbsp;&nbsp;
 		<a href="/gotThem" class="continuation" onclick=""><p>쇼핑 <span>계속하기</span></p></a>
 	</div>
 </c:otherwise>
@@ -269,7 +264,6 @@ function cart(){ //결제 금액 계산
 	}  
 	
 function cart1(){ //결제 금액 계산
-	alert("dhkT");
 	var checkSumArr = [];
 	$("input[name='checkRow']").each(function(i) {
 		checkSumArr.push($(this).parent().next().next().next().next().next().children().next().val());
@@ -409,7 +403,7 @@ $(document).on("click", "#count_up",function(){//수량변경 업
     		}
     });
 
-$(document).on("change", "#pro_stock", function(){//텍스트로 수량 변경	
+$(document).on("change", "#pro_stock", function(){//텍스트로 수량 변경
 	var bas_procode= $(this).prev().prev().val()*1;	
 	var basS =$(this).prev().val()*1;
 	var chaS= $(this).val()*1;
@@ -433,6 +427,7 @@ $(document).on("change", "#pro_stock", function(){//텍스트로 수량 변경
 	    			   success:function(){
 	    				   text.val(chaS);
 	    				   orderSum.text(bb);
+	    				   cart1();
 	    				   }
 	    			   });
 			 } else {
@@ -440,7 +435,7 @@ $(document).on("change", "#pro_stock", function(){//텍스트로 수량 변경
 				 location.reload();
 				 }
 	 });  
-
+    
 
 var access_Token = '${sessionScope.token}';
 Kakao.init("363553076ca8777f012d9c9ce3b92b8c");	
@@ -497,8 +492,8 @@ $(document).on("click", "#button_allOrder",function(){// 복수 결제_전체 ap
 			var checkAllOrder = [];
 			if (Sum1 == null) {	
 			$("input[name='checkRow']").each(function(i){
-				checkAllOrder.push($(this).val());
-				checkAllOrder.push($(this).next().val());
+				checkAllOrder.push($(this).val()+","+$(this).parent().next().next().next().next().next().children().next().val()+","+$(this).parent().next().next().next().next().next().children().children().next().next().val());
+
 				});
 			checkAllOrder.push('[]');
 			} else {
@@ -529,8 +524,7 @@ $(document).on("click", "#button_selOrder",function(){// 복수 결제_선택 ap
 			var checkAllOrder = [];
 			if (Sum1 == null) {
 				$("input[name='checkRow']:checked").each(function(i){
-					checkAllOrder.push($(this).val());
-					checkAllOrder.push($(this).next().val());
+					checkAllOrder.push($(this).val()+","+$(this).parent().next().next().next().next().next().children().next().val()+","+$(this).parent().next().next().next().next().next().children().children().next().next().val());
 					});
 				checkAllOrder.push('[]');
 				} else {
