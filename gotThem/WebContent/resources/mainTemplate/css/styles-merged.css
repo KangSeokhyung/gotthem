@@ -26,8 +26,8 @@ Copyright (c) 2015 Daniel Eden
   animation-fill-mode: both;
 }
 .probootstrap-animated {
-  -webkit-animation-duration: .8s;
-  animation-duration: .8s;
+  -webkit-animation-duration: .1s;
+  animation-duration: .1s;
   -webkit-animation-fill-mode: both;
   animation-fill-mode: both;
 }
@@ -44,14 +44,14 @@ Copyright (c) 2015 Daniel Eden
 
 .animated.bounceIn,
 .animated.bounceOut {
-  -webkit-animation-duration: .75s;
-  animation-duration: .75s;
+  -webkit-animation-duration: .1s;
+  animation-duration: .1s;
 }
 
 .animated.flipOutX,
 .animated.flipOutY {
-  -webkit-animation-duration: .75s;
-  animation-duration: .75s;
+  -webkit-animation-duration: .1s;
+  animation-duration: .1s;
 }
 
 @-webkit-keyframes bounce {

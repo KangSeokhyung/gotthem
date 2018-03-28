@@ -1,12 +1,8 @@
 package kr.co.gotthem.admin.controller;
 
-import java.math.BigDecimal;
 import java.util.List;
-import java.util.Map;
-import java.util.StringTokenizer;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
@@ -33,15 +29,20 @@ public class AdminController {
 
 	@RequestMapping(value = "/admin.ad", method = RequestMethod.GET)
 	public String storeIndex() {
-		System.out.println("아에이오우!");
 		return "admin/adminLogin";
 	}
-
-	@RequestMapping(value = "/control.ad", method = RequestMethod.GET)
+	
+	@RequestMapping(value = "/logout.ad", method = RequestMethod.GET)
+	public String adminLogout(HttpSession session) {
+		session.invalidate();
+		return "admin/adminLogin";
+	}
+	
+	@RequestMapping(value = "/showInfo.ad", method = RequestMethod.GET)
 	public ModelAndView ccc(ModelAndView mav) {
 		System.out.println("최종 관리자 로그인 진입");
 
-		mav.setViewName("admin/controlPage");
+		mav.setViewName("admin/showInfo");
 		
 		return mav;
 	}
@@ -104,6 +105,8 @@ public class AdminController {
 		mav.addObject("nextPage", nextPage);
 		mav.addObject("mlist", mlist);
 		mav.setViewName("admin/memberControl");
+		
+		System.out.println("asdadasda"+mlist);
 
 		return mav;
 
@@ -133,7 +136,7 @@ public class AdminController {
 		
 		memberService.memModi(membean);
 		
-		return "redirect:memcontrol.ad";
+		return "redirect:/admin/memberControl";
 	}
 
 	@RequestMapping(value = "/storecontrol.ad", method = RequestMethod.GET)
@@ -222,7 +225,7 @@ public class AdminController {
 		
 		memberService.memModi(mbean);
 	
-		return "redirect:storecontrol.ad";
+		return "redirect:storeControl.ad";
 
 	}
 	

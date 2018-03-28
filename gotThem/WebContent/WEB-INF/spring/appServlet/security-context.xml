@@ -20,27 +20,27 @@
 	</http>
 	
  	<http pattern="/*.st" auto-config="true" disable-url-rewriting="true" use-expressions="true">
-		<intercept-url pattern="/storeIndex.st" access="permitAll" />
+		<intercept-url pattern="/login.st" access="permitAll" />
 		<intercept-url pattern="/mystore.st" access="hasAnyRole('ROLE_ADMIN', 'ROLE_STORE')" />
 		<intercept-url pattern="/stock.st" access="hasAnyRole('ROLE_ADMIN', 'ROLE_STORE')" />
 		<intercept-url pattern="/mystore.st" access="hasAnyRole('ROLE_ADMIN', 'ROLE_STORE')" />
 		<form-login login-page="/login.st" 
-			default-target-url="/storeIndex.st"
+			default-target-url="/stock.st?pageNo=1"
 			login-processing-url="/login.st"
 			authentication-failure-url="/loginfail.st" 
 			username-parameter="sto_id"
 			password-parameter="sto_pw"
 			 />
-		<logout logout-url="/logout.st" logout-success-url="/storeIndex.st" 
+		<logout logout-url="/logout.st" logout-success-url="/login.st" 
 		 invalidate-session="true"/>
 		<csrf disabled="true" />
 	</http> 
 
 	<http pattern="/*.ad" auto-config="true" disable-url-rewriting="true" use-expressions="true">
 		<intercept-url pattern="/admin.ad" access="permitAll" />
-		<intercept-url pattern="/control.ad" access="hasRole('ROLE_ADMIN')" />
+		<intercept-url pattern="/memcontrol.ad" access="hasRole('ROLE_ADMIN')" />
 		<form-login login-page="/admin.ad" 
-			default-target-url="/control.ad"
+			default-target-url="/memcontrol.ad"
 			authentication-failure-url="/loginfail.gt" 
 			login-processing-url="/admin.ad"
 			username-parameter="admin_id"
