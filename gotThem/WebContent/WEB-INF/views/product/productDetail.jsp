@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html lang="ko">
   <head>
@@ -113,14 +114,15 @@ label { font-size: 17px; font-weight: 500; }
 	
 	function selectCount(idx) {
 		var pro_stock = $("#pro_stock").val();
-		var totalPrice = $("#totalPrice").text() * 1;
+		var totalPrice = $("#totalPrice").val() * 1;
+		var fmtPrice;
 		if (idx == 1) {
 			if (pro_stock == 1) {
 				return false;
 			}
 			$("#pro_stock").val(pro_stock * 1 - 1);
 			totalPrice -= ${productInfo.pro_price };
-			$("#totalPrice").text(totalPrice);
+			$("#totalPrice").val(totalPrice);
 		} else {
 			if (pro_stock >= ${productInfo.pro_stock }) {
 				alert("상품수량보다 적게 입력이 가능합니다.");
@@ -128,8 +130,10 @@ label { font-size: 17px; font-weight: 500; }
 			}
 			$("#pro_stock").val(pro_stock * 1 + 1);
 			totalPrice += ${productInfo.pro_price };
-			$("#totalPrice").text(totalPrice);
+			$("#totalPrice").val(totalPrice);
 		}
+		fmtPrice = Number(totalPrice).toLocaleString('en').split(".")[0];
+		$("#fmtPrice").text(fmtPrice);
 	}
 	
 	function loginForward(pro_code) {
@@ -137,6 +141,7 @@ label { font-size: 17px; font-weight: 500; }
 		alert("로그인하고 이용하실 수 있습니다.\n로그인 창으로 이동합니다.");
 		location.href="login.gt?prevUrl=detailForward.gt&pro_stock=" + pro_stock + "&pro_code=" + pro_code + "&gubun=pdPage";
 	}
+	
 </script>
 </head>
 <body>
@@ -224,7 +229,7 @@ label { font-size: 17px; font-weight: 500; }
     	<div id="main" class="col-xs-12 col-sm-6 col-sm-offset-1">
     		<div style="font-size: 30px; color: #333;">${productInfo.pro_name }</div>
     		<hr style="border-color: black">
-    		<h3>상품 가격 : ${productInfo.pro_price }</h3>
+    		<h3>상품 가격 : <fmt:formatNumber pattern="###,###,###" value="${productInfo.pro_price }" /></h3>
     		<hr>
     		상품 카테고리 : ${productInfo.pro_category }
     		<hr>
@@ -238,7 +243,8 @@ label { font-size: 17px; font-weight: 500; }
 	    		<input type="text" id="pro_stock" name="pro_stock" value="1">
 	    		<input type="button" id="minusBtn" onclick="selectCount(2)" value="+"><br><br>
 	    		<label>합계 가격 : 
-	    		<span id="totalPrice">${productInfo.pro_price }</span></label>
+	    		<span id="fmtPrice"><fmt:formatNumber pattern="###,###,###" value="${productInfo.pro_price }" /></span></label>
+	    		<input type="hidden" id="totalPrice" value="${productInfo.pro_price }">
 	    	</div>
 			<hr>	    	
     		<input type="button" class="btn btnColor2" onclick="" value="결제">

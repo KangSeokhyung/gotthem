@@ -8,10 +8,30 @@
 <meta charset="UTF-8">
 <title>Got Them?</title>
 <style type="text/css">
-thead { color: #4A3E3E; font-size: 16px; font-weight: 600; }
-tbody { font-size: 17px; color: #555; }
+.table>tbody>tr>td, .table>tbody>tr>th, 
+.table>tfoot>tr>td, .table>tfoot>tr>th, 
+.table>thead>tr>td, .table>thead>tr>th {
+    padding: 8px;
+    line-height: 1.42857143;
+    vertical-align: middle;
+}
+thead { color: #4A3E3E; font-weight: 600; }
 tbody a { color: #242D91; }
 tbody a:hover { color: #fa2848; }
+@media (max-width: 540px){
+	.table>tbody>tr>td {
+	    font-size: 12px;
+	}
+	.table>thead>tr>td {
+	    font-size: 13px;
+	}
+}
+@media (max-width: 768px) {
+	.wid {
+		width: 16%;
+	} 
+}
+td { padding:17px 5px 16px; font-size:15px; line-height:1.4; vertical-align:middle; }
 </style>
 </head>
 <body>
@@ -27,12 +47,12 @@ tbody a:hover { color: #fa2848; }
 			</colgroup>
 			<thead>
 				<tr>
-					<td class="text-center">이미지</td>
-					<td class="text-center">상품명</td>
+					<td class="text-center wid2">이미지</td>
+					<td class="text-center wid3">상품명</td>
 					<td class="text-center tNonePre">수량</td>
-					<td class="text-center">금액</td>
-					<td class="text-center">선택</td>
-					<td class="text-center">장바구니</td>
+					<td class="text-center wid4">금액</td>
+					<td class="text-center wid">선택</td>
+					<td class="text-center wid1">장바구니</td>
 				</tr>
 			</thead>
 			<tbody id="rowCheck">
