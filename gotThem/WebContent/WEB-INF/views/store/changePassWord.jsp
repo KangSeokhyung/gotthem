@@ -113,7 +113,7 @@ header {
 			    		</div>
 			    		<div class="form-group">
 			    		</div>
-			    		<input class="btn btn-success colorGreen" type="submit" value="비밀번호 변경">
+			    		<input class="btn btn-success colorGreen" type="submit" value="변경하기">
 			    		<input class="btn btn-success colorGreen" type="button" onclick="history.back()" value="취소하기">
 			    		 <span style="padding-top:10px;color:blue;">※ 사장님~ 비밀번호 유출에 주의해주세요</span>
 			    	</fieldset>

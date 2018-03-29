@@ -24,6 +24,7 @@
 <link rel="stylesheet" href="resources/landy/css/style.default.css"
 	id="theme-stylesheet">
 <style>
+body {font-size: 18px;}
 .btn-primary{
 border-radius:4px;
 margin:1px;
@@ -34,6 +35,7 @@ a {color: #e82424;}
 .container{margin-left:170px;}
 
 @media all and (max-width:767px){
+.container{margin-left:auto;}
 .stocktable .no {display:none}
 .stocktable .category {display:none}
 .stocktable .price {display:none}

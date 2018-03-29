@@ -64,7 +64,7 @@ public class StoreController {
 	}
 	
 	@RequestMapping(value = "/join.st", method = RequestMethod.POST)
-	public String stjoin(HttpServletRequest request, HttpSession session) throws Exception{
+	public ModelAndView stjoin(HttpServletRequest request, HttpSession session, ModelAndView mav) throws Exception{
 		
 		MemberBean stBean = new MemberBean();
 		stBean.setMem_id(request.getParameter("mem_id"));
@@ -80,8 +80,13 @@ public class StoreController {
 		
 		int result = memberService.stjoin(stBean);
 		System.out.println(result);
-	
-		return "store/stLogin";
+		if(result==1) {
+			System.out.println("값 넣었니?");
+			mav.addObject("reMsg","1");
+		}
+		System.out.println("모델에 들어있는 값  : " + mav.getModel());
+		mav.setViewName("store/stLogin");
+		return mav;
 	}
 	
 	@RequestMapping(value = "/login.st", method = RequestMethod.GET)

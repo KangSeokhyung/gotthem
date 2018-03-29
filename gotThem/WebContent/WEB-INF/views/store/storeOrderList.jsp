@@ -45,7 +45,7 @@ td .img{padding:0px;}
 }
 
 .container{
-padding-top:30px;
+padding-top:50px;
 padding-bottom:20px;
 padding-left:0;
 margin-left:170px;
@@ -55,8 +55,6 @@ table th, td {
   text-align: center;
   vertical-align: middle;
 }
-
-
 
 @media all and (max-width:767px){
 table, tr, td {
