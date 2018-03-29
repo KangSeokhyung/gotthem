@@ -496,8 +496,7 @@ $(document).on("click", "#button_allOrder",function(){// 복수 결제_전체 ap
 			var checkAllOrder = [];
 			if (Sum1 == null) {	
 			$("input[name='checkRow']").each(function(i){
-				checkAllOrder.push($(this).val());
-				checkAllOrder.push($(this).next().val());
+				checkAllOrder.push($(this).val()+","+$(this).parent().next().next().next().next().next().children().next().val()+","+$(this).parent().next().next().next().next().next().children().children().next().next().val());
 				});
 			checkAllOrder.push('[]');
 			} else {
@@ -528,8 +527,7 @@ $(document).on("click", "#button_selOrder",function(){// 복수 결제_선택 ap
 			var checkAllOrder = [];
 			if (Sum1 == null) {
 				$("input[name='checkRow']:checked").each(function(i){
-					checkAllOrder.push($(this).val());
-					checkAllOrder.push($(this).next().val());
+					checkAllOrder.push($(this).val()+","+$(this).parent().next().next().next().next().next().children().next().val()+","+$(this).parent().next().next().next().next().next().children().children().next().next().val());
 					});
 				checkAllOrder.push('[]');
 				} else {

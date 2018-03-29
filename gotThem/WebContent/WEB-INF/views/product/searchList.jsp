@@ -16,6 +16,7 @@
     <link rel="stylesheet" href="resources/mainTemplate/css/custom.css">
 	<link rel="stylesheet" href="resources/autocomplete/auto-complete.css">
 	<link rel="stylesheet" type="text/css" href="resources/renew2/css/content.css" />
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
     <!--[if lt IE 9]>
       <script src="resources/mainTemplate/js/vendor/html5shiv.min.js"></script>
@@ -29,48 +30,29 @@
 	-webkit-box-shadow: none;
 	box-shadow: none;
 }
-#btnColor { background: #fa2848; color: white; }
+#btnColor { background: #fa2848; color: white; padding: 0px; width: 100px; }
 .pad { padding: 0px; }
 #map { margin-top: 90px; height: 400px; }
 #hide { display: none; }
-table {
-	font-size: 13px;
+table tbody {
+	font-size: 17px;
 	text-align: center;
 	word-break: keep-all; 
 }
-th { color: black; }
+th { color: black; font-size: 18px; }
+.probootstrap-footer.probootstrap-bg {
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    padding: 2em 0;
+    position: relative;
+    color: rgba(255,255,255,.9);
+}
+.searchStyle { border-radius: 0px; height: 55px; font-size: 17px; }
 </style>  
 <script src="resources/autocomplete/auto-complete.js"></script>
 <script src="https://code.jquery.com/jquery-3.2.1.js"></script>
 <script type="text/javascript">
-	function relatedSearch() {
-		$("#releatedField").html("");
-		var search = $("#search").val();
-		if(search != ""){
-			$.ajax({
-				url : "relatedSearch.gt",
-				data : { "search" : search },
-				type : "post",
-				success : function(relatedData) {
-					var ob = JSON.parse(relatedData);
-					var innerHtml = "<div class='list-group'>";
-					$("#releatedField").html("");
-					for (var i = 0; i < 5; i++) {
-						if (typeof(ob["search" + i]) != "undefined") {
-							innerHtml += "<a href='searchList.gt?search=" +  ob["search" + i] 
-									  + "&pageNo=1' class='list-group-item list-group-item-action'>" 
-									  +  ob["search" + i] + "</a>";
-						}
-					}
-					innerHtml += "</div>"
-					$("#releatedField").append(innerHtml);
-				},
-				error : function(xmlHttpReq, status, error) {
-				}
-			});
-		}
-	}
-	
 	// Google Map API
 	window.onload = function() {
 		initmap();
@@ -128,7 +110,7 @@ th { color: black; }
 				alert(status + '\n 등록된 주소가 올바르지 않거나 시스템 오류입니다.');
 			}
 			
-			var contentString = "<strong><a href='storeDetail.gt?mem_no=" + num + "'>" + storeName + "</a></strong>";
+			var contentString = "<strong><a style='font-size:17px' href='storeDetail.gt?mem_no=" + num + "'>" + storeName + "</a></strong>";
 
 			var infowindow = new google.maps.InfoWindow({
 				content : contentString
@@ -146,16 +128,22 @@ th { color: black; }
 		});
 	}
 	
+	$(document).on("click", "#tdClick", function(event){
+		if(event.target.nodeName.toLowerCase() == "td") {
+			var mem_no = $(this).siblings("#hide").text();
+			location.href="storeDetail.gt?mem_no=" + mem_no;
+		}
+	});
+		
 </script>
 </head>
 <body>
 
-<div class="probootstrap-loader"></div>
 <!-- START: header -->
 <header>
 <%@include file="../../../nav.jsp" %>
 </header>
-  <!-- END: header -->
+<!-- END: header -->
 
 <section id="map" class="probootstrap-section probootstrap-section-lighter">
 	<div class="probootstrap-wrap-banner">
@@ -173,20 +161,22 @@ th { color: black; }
 
 <section class="probootstrap-section">
   <div class="container">
-  	<div class="row">
-  	<div class="col-sm-12">
-	  <form action="searchList.gt" method="get">
-       	<input type="hidden" name="pageNo" value="1">
-		<div class="col-xs-9 col-sm-5 pad">
-			<input type="text" class="form-control" id="autoComplete" name="search"
-				required="required" style="border-radius: 0px;"
-				placeholder="예) 도시락, 서초, 강남  김밥" />
-		</div>
-		<div class="col-xs-3 col-sm-3 pad">
-			<input type="submit" id="btnColor" class="btn btn-sm" value="검색">
-		</div>
-	  </form>
-	</div>
+  	<div class="row" style="margin:auto;">
+		  <form action="searchList.gt" method="get">
+	       	<input type="hidden" name="pageNo" value="1">
+	       	<div class="row">
+				<div class="col-xs-7 col-xs-offset-1 col-sm-5 col-sm-offset-3 pad">
+					<input type="text" class="form-control searchStyle" id="autoComplete" name="search"
+						required="required" placeholder="예) 도시락, 서초, 강남  김밥" />
+				</div>
+				<div class="col-xs-1 col-sm-2 pad">
+					<button type="submit" title="검색" id="btnColor" class="btn searchStyle">
+						<i style="font-size:45px;"class="material-icons">search</i>
+					</button>
+				</div>
+			</div>
+		  </form>
+	<hr>
 	</div>
 	<script type="text/javascript">
 	  var ac = new autoComplete({
@@ -242,13 +232,14 @@ th { color: black; }
 			</c:if>
 			<c:forEach var="list" items="${searchList }">
 			<tr class="rowCount">
-				<td class="tNonePre"><a href="storeDetail.gt?mem_no=${list.mem_no }">
+				<td class="tNonePre">
+					<a href="storeDetail.gt?mem_no=${list.mem_no }">
 						<img src="/img/store/${list.sto_img }" 
 							class="img-thumbnail img-responsive" height="50px" width="150px"
 							title="${list.sto_name } 매장 이미지" alt="${list.sto_name } 매장 이미지">
 					</a>
 				</td>
-				<td><a href="storeDetail.gt?mem_no=${list.mem_no }">${list.sto_name }</a></td>
+				<td id="tdClick"><a href="storeDetail.gt?mem_no=${list.mem_no }">${list.sto_name }</a></td>
 				<td>${list.mem_address }</td>
 				<td>${list.mem_phone }</td>
 				<td id="hide">${list.mem_no }</td>
@@ -293,35 +284,17 @@ th { color: black; }
    </div>
 </section>
 
-  <footer class="probootstrap-footer probootstrap-bg" style="heigth:100px">
-    <div class="container">
-      <div class="row copyright">
-        <div class="col-md-6">
-          <div class="probootstrap-footer-widget">
-            <p>&copy; 2017 <a href="https://uicookies.com/">uiCookies:Haus</a>. Designed by <a href="https://uicookies.com/">uicookies.com</a> <br> Demo Photos from <a href="https://pixabay.com/">Pixabay</a> &amp; <a href="https://unsplash.com/">Unsplash</a></p>
-          </div>
-        </div>
-        <div class="col-md-6">
-          <div class="probootstrap-footer-widget right">
-            <ul class="probootstrap-footer-social">
-              <li><a href="#"><i class="icon-twitter"></i></a></li>
-              <li><a href="#"><i class="icon-facebook"></i></a></li>
-              <li><a href="#"><i class="icon-instagram2"></i></a></li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </div>
-  </footer>
+<!-- START: footer -->
+<%@include file="../../../footer.jsp" %>
+<!-- END: footer -->
 
   <div class="gototop js-top">
     <a href="#" class="js-gotop"><i class="icon-chevron-thin-up"></i></a>
   </div>
   
-
   <script src="resources/mainTemplate/js/scripts.min.js"></script>
   <script src="resources/mainTemplate/js/main.min.js"></script>
   <script src="resources/mainTemplate/js/custom.js"></script>
 
-  </body>
+</body>
 </html>

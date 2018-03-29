@@ -31,7 +31,7 @@ color:#fff;
 .probootstrap-section.probootstrap-bg:before {
     position: absolute;
     content: "";
-    background: rgba(255, 255, 255, 0.6);
+    background: rgba(255, 255, 255, 0.9);
     top: 0;
     left: 0;
     right: 0;
@@ -72,6 +72,7 @@ color:#2fb1bd !important;
     background: rgba(0,0,0,0);
 }
 #marginChg { 
+    padding-left: 60px;
 	padding-bottom: 10px; 
 	margin-top: 340px; 
 	background: none;
@@ -88,6 +89,14 @@ color:#fff;
     animation-duration: 1s;
     -webkit-animation-fill-mode: both;
     animation-fill-mode: both;
+}
+.sb {
+	height : 58px !important;
+	border : 1px solid white;
+}
+.probootstrap-home-search .probootstrap-field-group .probootstrap-fields input, 
+.probootstrap-home-search .probootstrap-field-group .probootstrap-fields select {
+	font-size: 18px;
 }
 </style>  
 <script src="resources/autocomplete/auto-complete.js"></script>
@@ -126,20 +135,21 @@ color:#fff;
       <div class="container">
         <div class="row">
           <div class=" col-md-offset-2">
+          
             <div id="marginChg" class="probootstrap-home-search probootstrap-animate">
               <form action="searchList.gt" method="get">
               	<input type="hidden" name="pageNo" value="1">
 	            <div class="probootstrap-field-group" >
 					<div class="probootstrap-fields">
 						<div class="form-field">
-							<div class="col-xs-9 col-sm-10 col-md-10 col-lg-10 zeroP">
-								<input type="text" class="form-control" id="autoComplete" name="search"
-									required="required"
+							<div class="col-xs-8 col-sm-10 col-md-10 col-lg-10 zeroP">
+								<input type="text" class="form-control sb" id="autoComplete" name="search"
+									required="required" 
 									placeholder="예) 도시락, 서초, 강남  김밥" />
 							</div>
-							<div class="col-xs-3 col-sm-2 col-md-2 col-lg-2 zeroP">
-								<button type="submit" title="검색" id="btnColor" class="btn btn-fill col-xs-4">
-									<i style="font-size:48px;"class="material-icons">search</i>
+							<div class="col-xs-3 col-sm-2 col-md-2  zeroP">
+								<button type="submit" title="검색" id="btnColor" class="btn btn-fill sb" style="width: 100%">
+									<i style="font-size:45px;"class="material-icons">search</i>
 								</button>
 							</div>		
 						</div>

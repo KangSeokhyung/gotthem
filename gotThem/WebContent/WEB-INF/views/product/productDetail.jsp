@@ -15,6 +15,7 @@
     <link rel="stylesheet" href="resources/mainTemplate/css/style.min.css">
     <link rel="stylesheet" href="resources/mainTemplate/css/custom.css">
 	<link rel="stylesheet" href="resources/autocomplete/auto-complete.css">
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 	
     <!--[if lt IE 9]>
       <script src="resources/mainTemplate/js/vendor/html5shiv.min.js"></script>
@@ -30,9 +31,18 @@
 }
 #pro_stock { width: 55px; text-align: center; }
 #btnColor { background: #fa2848; }
-.btnColor2 { background: #70C585; color: white; padding: 10px 20px; }
-.btnColor3 { background: #FD6929; color: white; padding: 10px 20px; }
+.btnColor2 { background: #70C585; color: white; padding: 10px 25px; }
+.btnColor3 { background: #899; color: white; padding: 10px 25px; }
 .zeroP { padding: 0px; }
+.probootstrap-footer.probootstrap-bg {
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    padding: 2em 0;
+    position: relative;
+    color: rgba(255,255,255,.9);
+}
+label { font-size: 17px; font-weight: 500; }
 </style>  
 <script src="resources/autocomplete/auto-complete.js"></script>
 <script src="https://code.jquery.com/jquery-3.2.1.js"></script>
@@ -149,7 +159,9 @@
 									placeholder="예) 도시락, 서초, 강남  김밥" />
 							</div>
 							<div class="col-xs-3 col-sm-2 col-md-2 col-lg-2 zeroP">
-								<input type="submit" id="btnColor" class="btn btn-fill col-xs-4" value="검색">
+								<button type="submit" title="검색" id="btnColor" class="btn btn-fill sb" style="width: 100%">
+									<i style="font-size:45px;"class="material-icons">search</i>
+								</button>
 							</div>		
 						</div>
 					</div>
@@ -204,7 +216,7 @@
     		<br><br>
     	</div>
     	<div class="col-xs-12 col-sm-6 col-sm-offset-1">
-    		<h1>${productInfo.pro_name }</h1>
+    		<div style="font-size: 30px; color: #333;">${productInfo.pro_name }</div>
     		<hr style="border-color: black">
     		<h3>상품 가격 : ${productInfo.pro_price }</h3>
     		<hr>
@@ -238,17 +250,9 @@
   </div>
 </section>
 
-  <footer class="probootstrap-footer probootstrap-bg">
-    <div class="container">
-      <div class="row copyright">
-        <div class="col-md-6">
-          <div class="probootstrap-footer-widget">
-            <p>&copy; 2017 <a href="https://uicookies.com/">uiCookies:Haus</a>. Designed by <a href="https://uicookies.com/">uicookies.com</a> <br> Demo Photos from <a href="https://pixabay.com/">Pixabay</a> &amp; <a href="https://unsplash.com/">Unsplash</a></p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </footer>
+<!-- START: footer -->
+<%@include file="../../../footer.jsp" %>
+<!-- END: footer -->
 
   <div class="gototop js-top">
     <a href="#" class="js-gotop"><i class="icon-chevron-thin-up"></i></a>

@@ -17,6 +17,7 @@
     <link rel="stylesheet" href="resources/mainTemplate/css/custom.css">
     <link rel="stylesheet" href="resources/autocomplete/auto-complete.css">
 	<link rel="stylesheet" type="text/css" href="resources/renew2/css/content.css" >
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 	
     <!--[if lt IE 9]>
       <script src="resources/mainTemplate/js/vendor/html5shiv.min.js"></script>
@@ -31,18 +32,27 @@
 	box-shadow: none;
 }
 #btnColor { background: #fa2848; }
-#btnColor2 { background: #FD6929; color: white; padding: 10px 15px; }
+#btnColor2 { background: #899; color: white; padding: 10px 15px; float: right; }
 .btnColor3 { background: #70C585; color: white; padding: 10px 15px; }
 .btnColor4 { background: #70C585; color: white; padding: 10px 10px; font-size: 15px; }
 #tabStyle { height: 0px; border-bottom: 0px }
-#tabStyle a { color: gray; }
-#tabStyle a:hover { color: #fa2848; font-weight: bold; }
+#tabStyle a { color: #1C1C1C; font-weight: 600; }
+#tabStyle a:hover { color: #fa2848; font-weight: 500; }
 #wordLine { word-break: keep-all; }
 table {
 	font-size: 13px;
 	text-align: center;
 }
 .zeroP { padding: 0px; }
+.probootstrap-footer.probootstrap-bg {
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    padding: 2em 0;
+    position: relative;
+    color: rgba(255,255,255,.9);
+}
+ul li { font-size: 16px; }
 </style>  
 <script src="resources/autocomplete/auto-complete.js"></script>
 <script src="https://code.jquery.com/jquery-3.2.1.js"></script>
@@ -230,7 +240,9 @@ table {
 									placeholder="예) 도시락, 서초, 강남  김밥" />
 							</div>
 							<div class="col-xs-3 col-sm-2 col-md-2 col-lg-2 zeroP">
-								<input type="submit" id="btnColor" class="btn btn-fill col-xs-4" value="검색">
+								<button type="submit" title="검색" id="btnColor" class="btn btn-fill sb" style="width: 100%">
+									<i style="font-size:45px;"class="material-icons">search</i>
+								</button>
 							</div>		
 						</div>
 					</div>
@@ -282,7 +294,7 @@ table {
   <div class="container">
   <div class="row">
     <div class="col-xs-12 col-sm-12">
-    	<h1><strong>${storeInfo.sto_name }</strong></h1>
+    	<div style="font-size: 35px; font-weight: 500; color: #333">${storeInfo.sto_name }</div>
 		<hr>
 		<c:set var="sessionCheck" value="${sessionScope.SPRING_SECURITY_CONTEXT}" />
 		<c:choose>
@@ -344,7 +356,7 @@ table {
 			<img src="/img/store/${storeInfo.sto_img }" width="100%" title="편의점 이미지">
 		</div>
 		<div id="wordLine" class="col-xs-12 col-sm-6">
-			<h3>${storeInfo.sto_name } 편의점 정보</h3>
+			<div style="font-size: 30px; font-weight: 500; color: #333">${storeInfo.sto_name } 정보</div>
 			<hr>
 			
 			<strong>매장주소</strong> : <span id="addr"></span> <br>
@@ -357,17 +369,9 @@ table {
   </div>
 </section>
 
-  <footer class="probootstrap-footer probootstrap-bg" style="height: 100px">
-    <div class="container">
-      <div class="row copyright">
-        <div class="col-md-6">
-          <div class="probootstrap-footer-widget">
-            <p>&copy; 2017 <a href="https://uicookies.com/">uiCookies:Haus</a>. Designed by <a href="https://uicookies.com/">uicookies.com</a> <br> Demo Photos from <a href="https://pixabay.com/">Pixabay</a> &amp; <a href="https://unsplash.com/">Unsplash</a></p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </footer>
+<!-- START: footer -->
+<%@include file="../../../footer.jsp" %>
+<!-- END: footer -->
 
   <div class="gototop js-top">
     <a href="#" class="js-gotop"><i class="icon-chevron-thin-up"></i></a>

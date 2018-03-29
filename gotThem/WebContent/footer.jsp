@@ -12,15 +12,15 @@
 </head>
 <body>
 <footer class="probootstrap-footer probootstrap-bg">
-    <div class="container">
-        <div class="col-md-12">
-          <div id="wordLine" class="probootstrap-footer-widget">
-            <p>&copy; 2018 스탑없으팀 Gotthem 프로젝트 </p>
-            <strong>주소 : </strong>
-            <span>서울광역시 서초구 비트교육센터 별관 503호</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            <strong>개발자 : </strong>
-            <span>최강 101기 강석형, 김성우, 김채윤, 권도용, 이찬희</span>
-          </div>
+    <div class="container" style="height: 50px;">
+        <div id="wordLine" class="probootstrap-footer-widget">
+        	<div class="col-sm-12">
+        		<center>스탑없으 &copy; 2018 GotThem 프로젝트.</center>
+        	</div>
+        	<div class="col-sm-12">
+        		<center><strong>개발자 : </strong>
+       			<span>강석형, 김성우, 김채윤, 권도용, 이찬희</span></center>
+        	</div>
         </div>
     </div>
   </footer>

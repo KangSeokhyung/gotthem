@@ -8,7 +8,10 @@
 <meta charset="UTF-8">
 <title>Got Them?</title>
 <style type="text/css">
-	table { border-top: 0px solid white; }
+thead { color: #4A3E3E; font-size: 16px; font-weight: 600; }
+tbody { font-size: 17px; }
+tbody a { color: #242D91; }
+tbody a:hover { color: #fa2848; }
 </style>
 </head>
 <body>
@@ -24,12 +27,12 @@
 			</colgroup>
 			<thead>
 				<tr>
-					<th class="text-center" scope="col">이미지</th>
-					<th class="text-center" scope="col">상품명</th>
-					<th class="text-center tNonePre" scope="col">수량</th>
-					<th class="text-center" scope="col">금액</th>
-					<th class="text-center" scope="col">선택</th>
-					<th class="text-center" scope="col">장바구니</th>
+					<td class="text-center">이미지</td>
+					<td class="text-center">상품명</td>
+					<td class="text-center tNonePre">수량</td>
+					<td class="text-center">금액</td>
+					<td class="text-center">선택</td>
+					<td class="text-center">장바구니</td>
 				</tr>
 			</thead>
 			<tbody id="rowCheck">
