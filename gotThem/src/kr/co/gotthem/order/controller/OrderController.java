@@ -173,7 +173,6 @@ public class OrderController {
 		String mem_phone = memberInfo.getMem_phone();
 
 		orderService.storeListOrder(model, sto_name, pageNo);
-		model.addAttribute(mem_phone);
 		mav.addObject("mem_phone", mem_phone);
 		mav.setViewName("store/storeOrderList");
 		return mav;
