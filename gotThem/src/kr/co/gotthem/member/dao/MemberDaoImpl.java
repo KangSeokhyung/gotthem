@@ -122,5 +122,10 @@ public class MemberDaoImpl implements MemberDao {
 			System.out.println("카톡으로 회원가입 성공");
 		}
 	}
+
+	@Override
+	public String selectStoName(int pro_memno) {
+		return sqlSessionTemplate.selectOne("selectStoName", pro_memno);
+	}
 	
 }

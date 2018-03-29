@@ -58,8 +58,6 @@ public class BasketController {
         int userNo = memberInfo.getMem_no();
     	basketBean.setBas_memno(userNo);
         
-    	HttpSession session = req.getSession();
-    	List<BasketBean> listBasket = null;
         int count = basketService.countBasket(basketBean.getBas_procode(),basketBean.getBas_memno());
         if (count == 0) {
         	 basketService.insertBasket(basketBean);      	 

@@ -112,7 +112,7 @@ public class ProductController {
 				outputStream = new FileOutputStream(newFile);
 
 				int read = 0;
-				byte[] bytes = new byte[1024 * 10];
+				byte[] bytes = new byte[1024 * 1024];
 
 				while ((read = inputStream.read(bytes)) != -1) {
 					outputStream.write(bytes, 0, read);
@@ -246,11 +246,12 @@ public class ProductController {
 	}
 	
 	@RequestMapping(value = "/productDetail.gt")
-	public String productDetail(Model model, ProductBean productInfo) {
+	public String productDetail(Model model, ProductBean productInfo, String sto_name) {
 		
 		productInfo = productService.productDetail(productInfo.getPro_code());
 		
 		model.addAttribute("productInfo", productInfo);
+		model.addAttribute("sto_name", sto_name);
 		
 		return "product/productDetail";
 	}

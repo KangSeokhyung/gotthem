@@ -73,4 +73,7 @@
 		select pro_stock from product where pro_code = #{pro_code}
 	</select>
 	
+	<select id="selectStoName" resultType="String" >
+		select sto_name from member where mem_no = #{pro_memno}
+	</select>
 </mapper>

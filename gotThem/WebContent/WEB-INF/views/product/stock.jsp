@@ -21,6 +21,31 @@
 <link rel="stylesheet" href="resources/indexTemplate/css/icomoon.css">
 <link rel="stylesheet" href="resources/indexTemplate/css/animate.css">
 <link rel="stylesheet" href="resources/indexTemplate/css/style.css">
+<link rel="stylesheet" href="resources/landy/css/style.default.css"
+	id="theme-stylesheet">
+<style>
+.btn-primary{
+border-radius:4px;
+margin:1px;
+padding: 0.6rem 1rem;
+}
+
+
+@media all and (max-width:767px){
+.stocktable .no {display:none}
+.stocktable .category {display:none}
+.stocktable .price {display:none}
+td .img{weight:10%}
+td .name{weight:70%}
+td .stock{weight:20%}
+}
+
+.pb-5{
+padding-top:50px;
+padding-bottom:20px;
+padding-left:0;
+}
+</style>
 </head>
 <body>
 	<header>
@@ -33,7 +58,16 @@
 		<a href="#" class="probootstrap-toggle js-probootstrap-toggle"><span
 			class="oi oi-menu"></span></a>
 		<div class="probootstrap-main-site-logo">
-			<a href="storeIndex.st">GOT THEM</a>
+			<c:set var="sessionCheck"
+						value="${sessionScope.SPRING_SECURITY_CONTEXT}" />
+			<c:choose>
+				<c:when test="${sessionCheck eq null}">
+			<a href="login.st">GOT THEM</a>
+			</c:when>
+				<c:otherwise>
+					<a href="stock.st?pageNo=1" class="mb-2 d-block probootstrap-logo">GOTTHEM</a>
+				</c:otherwise>
+			</c:choose>
 		</div>
 	</div>
 
@@ -41,27 +75,27 @@
 
 	<div class="cover-container pb-5">
 		<div class="cover-inner container">
-			<table class="table table-user-information">
+			<table class="table stocktable">
 				<tr>
-					<th>번호</th>
-					<td>사진</td>
-					<th>상품명</th>
-					<th>분류</th>
-					<th>가격</th>
-					<th>재고</th>
+					<th class="no" scope="col">번호</th>
+					<th class="img" scope="col">사진</th>
+					<th class="name" scope="col">상품명</th>
+					<th class="category" scope="col">분류</th>
+					<th class="price" scope="col">가격</th>
+					<th class="stock" scope="col">재고</th>
 				</tr>
 				<c:forEach var="dto" items="${plist }">
 
 					<tr>
-						<td>${dto.pro_code }</td>
-						<td><img src="/img/${dto.pro_img }"
+						<td class="no">${dto.pro_code }</td>
+						<td class="img" style="padding:.4rem"><img src="/img/${dto.pro_img }"
 							style="width: 50px; height: 50px; cursor: pointer"
 							onclick="location='detail.st?pageNo=${pageNo}&code=${dto.pro_code }'" /></td>
-						<td><a
+						<td class="name"><a
 							href="detail.st?pageNo=${pageNo}&code=${dto.pro_code }">${dto.pro_name }</a></td>
-						<td>${dto.pro_category }</td>
-						<td>${dto.pro_price }</td>
-						<td>${dto.pro_stock }</td>
+						<td class="category">${dto.pro_category }</td>
+						<td class="price">${dto.pro_price }</td>
+						<td class="stock">${dto.pro_stock }&nbsp;&nbsp;</td>
 					</tr>
 				</c:forEach>
 			</table>
@@ -97,7 +131,8 @@
 				</c:if>
 			</div>
 			<div align="right">
-				<input type="button" value="상품추가" onclick="location='insert.st?pageNo=${pageNo}'"/>
+				<input type="button" value="상품추가" class="btn btn-primary"
+				 onclick="location='insert.st?pageNo=${pageNo}'"/>
 			</div>
 		</div>
 	</div>

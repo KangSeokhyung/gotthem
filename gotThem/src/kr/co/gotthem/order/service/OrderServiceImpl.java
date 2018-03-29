@@ -1,6 +1,7 @@
 package kr.co.gotthem.order.service;
 
 import java.sql.Timestamp;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -118,8 +119,7 @@ public class OrderServiceImpl implements OrderService {
         RestTemplate restTemplate = new RestTemplate();
         
         try {
-        	System.out.println("zzx고 ");
-        return restTemplate.postForObject("https://kapi.kakao.com/v1/payment/ready",entity, type);
+        	return restTemplate.postForObject("https://kapi.kakao.com/v1/payment/ready", entity, type);
         } catch (Exception e) {
             throw new RuntimeException("카카오 API 실행 오류!",e);
         }
@@ -252,11 +252,12 @@ public class OrderServiceImpl implements OrderService {
         param.add("partner_order_id", sto_name);
         param.add("partner_user_id", bas_memno);
         param.add("pg_token", pg_Token);
-        System.out.println("승인파람" + param);
+        
         HttpEntity<MultiValueMap<String,String>> entity = new HttpEntity<>(param, headers);
         RestTemplate restTemplate = new RestTemplate();
+        
         try {
-        return restTemplate.postForObject("https://kapi.kakao.com/v1/payment/approve",entity, type);
+        	return restTemplate.postForObject("https://kapi.kakao.com/v1/payment/approve", entity, type);
         } catch (Exception e) {
             throw new RuntimeException("카카오 API 실행 오류!",e);
         }

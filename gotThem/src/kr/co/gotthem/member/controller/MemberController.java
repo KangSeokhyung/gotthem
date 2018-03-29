@@ -419,7 +419,9 @@ public class MemberController {
     	
     	Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
     	String mem_id = authentication.getName();
-    
+    	
+    	String sto_name = memberService.selectStoName(product.getPro_memno());
+    	
     	MemberBean memberInfo = memberService.memberInfo(mem_id);  
         int userNo = memberInfo.getMem_no();
     	basketBean.setBas_memno(userNo);
@@ -429,6 +431,7 @@ public class MemberController {
     	basketBean.setBas_prostock(1);
     	basketBean.setBas_proprice(product.getPro_price());
     	basketBean.setBas_proimg(product.getPro_img());
+    	basketBean.setSto_name(sto_name);
     	
     	if (gubun.equals("pdPage")) {
     		basketBean.setBas_prostock(pro_stock);
@@ -475,6 +478,8 @@ public class MemberController {
         int userNo = memberInfo.getMem_no();
         basketBean.setBas_memno(userNo); 
         
+        // 세션 제거 필요 (stodetail.gt에서 3개다)
+        String sto_name = (String) session.getAttribute("sto_name");
         List checkList = (List) session.getAttribute("checkList");
         String checkOne = (String) session.getAttribute("checkOne");
         
@@ -498,6 +503,7 @@ public class MemberController {
 			basketBean.setBas_proprice(Integer.parseInt(bas_proprice));
 			basketBean.setBas_proimg(bas_proimg);
 			basketBean.setPro_memno(Integer.parseInt(pro_memno));
+			basketBean.setSto_name(sto_name);
 			
 	        int count = basketService.countBasket(basketBean.getBas_procode(),basketBean.getBas_memno());
 	        if (count == 0) {
@@ -531,6 +537,7 @@ public class MemberController {
 				basketBean.setBas_proprice(Integer.parseInt(bas_proprice));
 				basketBean.setBas_proimg(bas_proimg);
 				basketBean.setPro_memno(Integer.parseInt(pro_memno));
+				basketBean.setSto_name(sto_name);
 				
 		        int count = basketService.countBasket(basketBean.getBas_procode(),basketBean.getBas_memno());
 		        if (count == 0) {
@@ -554,13 +561,15 @@ public class MemberController {
     
 	@RequestMapping(value = "/sessionSet.gt")
 	@ResponseBody
-	public void sessionSet(HttpSession session, 
+	public void sessionSet(HttpSession session, String sto_name,
 			@RequestParam (required=false) String checkOne,
 			@RequestParam (required=false, value="checkList[]") List checkList) {
     	if (checkOne != null && !(checkOne.equals(""))) {
     		session.setAttribute("checkOne", checkOne);
+    		session.setAttribute("sto_name", sto_name);
     	} 
     	session.setAttribute("checkList", checkList);
+    	session.setAttribute("sto_name", sto_name);
     }
 	
     @RequestMapping(value = "/productList.gt")

@@ -38,7 +38,7 @@
 		AND p.pro_code = b.bas_procode
 		AND b.bas_memno = #{userNo}
 		ORDER BY
-		b.bas_no
+		b.bas_no desc
 	</select>
 
 	<!-- 3. 장바구니 전체 금액 -->

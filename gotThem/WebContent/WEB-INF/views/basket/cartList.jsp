@@ -21,14 +21,16 @@
     <link rel="stylesheet" href="resources/mainTemplate/css/custom.css">
  
 <style>
- #pro_stock {
- padding:0 0 0 15px
+#pro_stock {
+	padding: 0 0 0 15px
 }
-  
-@media ( max-width: 768px ) {
- #pro_stock {
- padding:0 0 0 8px
+tbody a:hover {
+	color: #FA5858;
 }
+@media ( max-width : 768px ) {
+	#pro_stock {
+		padding: 0 0 0 8px
+	}
 }
 </style>
 <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
@@ -94,10 +96,9 @@
 							</colgroup>
     <thead>   
        <tr>
-                   <th scope="col"><!-- <input type="checkbox" name="checkAll" id="th_checkAll" /> -->
-                   <a class="con"  name="checkAll" id="th_checkAll" onclick="button_checkAll();" />all</a>
+                   <th scope="col"><a class="con"  id="th_checkAll" />all</a></th>
                    <th scope="col" colspan="2">상품정보</th>
-                   <th scope="col">매장명</th>
+                   <th scope="col" class="cartw13">매장명</th>
                    <th scope="col" class="tNonePre">가격</th>
                    <th scope="col">수량 </th>
                    <th scope="col"style='width:100px'>주문금액</th>
@@ -113,13 +114,13 @@
                       <input type="hidden" value="${row.money}">
                   </td>
                   <td class="img" class="tNonePre">
-                       <a href="productDetail.gt?pro_code=${row.bas_procode}"><img src="/img/${row.bas_proimg}" style="width:60px; height:60px" class="dn" alt="" /></a>
+                       <a href="productDetail.gt?pro_code=${row.bas_procode}"><img src="/img/${row.bas_proimg}" style="width:70px; height:70px" class="dn" alt="${row.bas_proimg}상품 이미지" /></a>
                   </td>
                   <td class="minLeft" >
                       <a href="productDetail.gt?pro_code=${row.bas_procode}" > ${row.bas_proname}</a>
                   </td>
-                   <td>
-                       ${row.sto_name}
+                   <td class="cartw13">
+                      <a href="storeDetail.gt?mem_no=${row.pro_memno }">${row.sto_name}</a>
                   </td>
                   <td class="tNonePre" style="width: 80px" align="right" id="proprice"><fmt:formatNumber pattern="###,###,###" value="${row.bas_proprice}"/></td>
                   <td id="stock2">
@@ -133,14 +134,14 @@
                     </div>
                     <input type="hidden" value="${row.money }">
 				  </td>
-                  <td class="total"style="width: 80px" align="right" id= orderSum>
+                  <td class="total" style="width: 80px; color:#303030;" align="right" id= orderSum>
                  	<fmt:formatNumber pattern="###,###,###" value="${row.money}"/>원
                   </td>
                    <td class="tNonePre">
                    		<input type="hidden" id="firstMoney" value="${row.money}">
 						<input type="hidden" name="bas_all" id="bas_all" value="${row.bas_no},${row.bas_proname},${row.bas_proprice},${row.bas_prostock},${row.bas_procode},${row.bas_proimg}, ${row.bas_procomment},${row.pro_memno},${row.sto_name},${row.bas_memno}">
 						<a class="minPurchase" id= "orderOne" onclick="" style="font-size:14px;">바로구매</a><br/>
-						<a href="#" class="minDel02" style="font-size:14px; onclick="button_basDel(${row.bas_no});">상품삭제</a>
+						<a class="minDel02" style="font-size:14px; onclick="button_basDel(${row.bas_no});">상품삭제</a>
 				   </td>
                 </tr>
                </c:forEach>
@@ -156,8 +157,8 @@
 							<tbody>
 								<tr>
 									<td class="bg">&nbsp;</td>
-									<td class="total bg">총 주문금액</td>
-									<td class="total bg"><strong><span ID="chkSum"></span></strong> 원</td>
+									<td class="total bg" style="color:#333;">총 주문금액</td>
+									<td class="total bg"><strong><span style="color:#333;" ID="chkSum"></span></strong> 원</td>
 								</tr>
 							</tbody>
 						</table>
@@ -166,39 +167,23 @@
   </div>
   </form>
   	<div class="btnAreaList">
-		<a href="#" class="sOrder"  id=button_selOrder onclick="button_selOrder();"><p>선택상품 <span>결제하기</span></p></a>&nbsp;&nbsp;&nbsp;&nbsp;
-		<a href="#" class="aOrder" id=button_allOrder onclick="button_allOrder();"><p>전체상품 <span>결제하기</span></p></a>&nbsp;&nbsp;&nbsp;&nbsp;
+		<a class="sOrder" id=button_selOrder onclick="button_selOrder();"><p>선택상품 <span>결제하기</span></p></a>&nbsp;&nbsp;&nbsp;&nbsp;
+		<a class="aOrder" id=button_allOrder onclick="button_allOrder();"><p>전체상품 <span>결제하기</span></p></a>&nbsp;&nbsp;&nbsp;&nbsp;
 		<a href="/gotThem" class="continuation" onclick=""><p>쇼핑 <span>계속하기</span></p></a>
 	</div>
 </c:otherwise>
 </c:choose>   
 </div>    
-<br>
- <footer class="probootstrap-footer probootstrap-bg" style="background-image: url(img/slider_3.jpg)">
-    <div class="container">
-        <div class="col-md-6">
-          <div class="probootstrap-footer-widget">
-            <p>&copy; 2017 <a href="https://uicookies.com/">uiCookies:Haus</a>. Designed by <a href="https://uicookies.com/">uicookies.com</a> <br> Demo Photos from <a href="https://pixabay.com/">Pixabay</a> &amp; <a href="https://unsplash.com/">Unsplash</a></p>
-          </div>
-        </div>
-        <div class="col-md-6">
-          <div class="probootstrap-footer-widget right">
-            <ul class="probootstrap-footer-social">
-              <li><a href="#"><i class="icon-twitter"></i></a></li>
-              <li><a href="#"><i class="icon-facebook"></i></a></li>
-              <li><a href="#"><i class="icon-instagram2"></i></a></li>
-            </ul>
-          </div>
-        </div>
-    </div>
-  </footer>
+<br><br><br>
+<!-- START: footer -->
+<%@include file="../../../footer.jsp" %>
+<!-- END: footer -->
 </body>
-
 <script src="resources/mainTemplate/js/scripts.min.js"></script>
- <script src="resources/mainTemplate/js/main.min.js"></script>
- <script src="resources/mainTemplate/js/custom.js"></script>
- <!-- KAKAO API -->
-  <script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
+<script src="resources/mainTemplate/js/main.min.js"></script>
+<script src="resources/mainTemplate/js/custom.js"></script>
+<!-- KAKAO API -->
+<script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
 <script type="text/javascript">
 var Sum1;
 $(document).ready(function(){
@@ -317,7 +302,6 @@ function button_selDel(){  //장바구니 선택 삭제
 	  }
   }  
 	
-
 function button_allDel(){  //장바구니 전체 삭제
 	  var checkAllDel = [];
 	  $("input[name='checkRow']").each(function(i){
@@ -340,8 +324,6 @@ function button_allDel(){  //장바구니 전체 삭제
 		  }
 	  }  
 
-		 
-
 $(document).on("click", "#count_down",function(){// 수량 변경 다운
 	var bas_procode= $(this).parent().prev().prev().prev().prev().val()*1;
 	var basS = $(this).parent().prev().prev().prev().val()*1;
@@ -353,7 +335,6 @@ $(document).on("click", "#count_down",function(){// 수량 변경 다운
 	$(this).parent().parent().next().val(Sum1);
 	var bb = Number(Sum1).toLocaleString('en').split(".")[0] +"원";
 	var orderSum= $(this).parent().parent().parent().next(); 
-
 	if (chaS > 0) {
 		$.ajax({
 			url:"update.gt",
@@ -413,8 +394,7 @@ $(document).on("change", "#pro_stock", function(){//텍스트로 수량 변경
 	Sum1= chaS *price;
 	$(this).val(Sum1);
 	var bb = Number(Sum1).toLocaleString('en').split(".")[0] +"원";
-    var orderSum= $(this).parent().parent().next(); 
-	
+    var orderSum= $(this).parent().parent().next(); 	
 	 if (chaS < 0) {
 		 location.reload();
 		 }else if (chaS <= basS) {
@@ -434,8 +414,7 @@ $(document).on("change", "#pro_stock", function(){//텍스트로 수량 변경
 				 alert("최대 "+ basS+"개 이하 주문이 가능합니다.");
 				 location.reload();
 				 }
-	 });  
-    
+	 });     
 
 var access_Token = '${sessionScope.token}';
 Kakao.init("363553076ca8777f012d9c9ce3b92b8c");	
@@ -443,6 +422,7 @@ Kakao.init("363553076ca8777f012d9c9ce3b92b8c");
 $(document).on("click", "#orderOne",function(){// 단건 결제 api
 	if(!access_Token){
 		console.log('토큰이 없음');
+		alert("결제를 위하여 '카카오 로그인' 절차가 필요합니다.\n진행 하시겠습니까?");
 		loginWithKakao();
 		} else {
 			console.log("토근존재");
@@ -482,10 +462,10 @@ function paymentOne(orderOne){// 단건 결제
 			}
 	}
 
-
 $(document).on("click", "#button_allOrder",function(){// 복수 결제_전체 api
 	if(!access_Token){
 		console.log('토큰이 없음');
+		alert("결제를 위하여 '카카오 로그인' 절차가 필요합니다.\n진행 하시겠습니까?");
 		loginWithKakao();
 		} else {
 			console.log("토근존재");
@@ -493,7 +473,6 @@ $(document).on("click", "#button_allOrder",function(){// 복수 결제_전체 ap
 			if (Sum1 == null) {	
 			$("input[name='checkRow']").each(function(i){
 				checkAllOrder.push($(this).val()+","+$(this).parent().next().next().next().next().next().children().next().val()+","+$(this).parent().next().next().next().next().next().children().children().next().next().val());
-
 				});
 			checkAllOrder.push('[]');
 			} else {
@@ -509,11 +488,11 @@ $(document).on("click", "#button_allOrder",function(){// 복수 결제_전체 ap
 					}
 			}
 			});
-	
-		
+			
 $(document).on("click", "#button_selOrder",function(){// 복수 결제_선택 api
 	if(!access_Token){
 		console.log('토큰이 없음');
+		alert("결제를 위하여 '카카오 로그인' 절차가 필요합니다.\n진행 하시겠습니까?");
 		loginWithKakao();
 		} else {
 			console.log("토근존재");
@@ -539,11 +518,9 @@ $(document).on("click", "#button_selOrder",function(){// 복수 결제_선택 ap
 					return;
 					}
 			}
-
 			});
 				
-
-function payment(checkAllOrder) { // 복수 결제 api
+function payment(checkAllOrder) { // 복수 결제 
 	var chkSum = $("#chkSum").text();
     var sum =  chkSum.replace(/,/g, '');
     $.ajax({
@@ -565,19 +542,20 @@ function payment(checkAllOrder) { // 복수 결제 api
 					}
 				});
 	}
+	
 function loginWithKakao() {
     Kakao.Auth.login({
       success: function(authObj) {
     	  console.log("토큰이없으면 여기");
           access_Token = authObj.access_token;
-          console.log(access_Token)
-          payment();
+          console.log(access_Token);
+          return;
+          /* payment(); */
       },
       fail: function(err) {
         alert(JSON.stringify(err));
       }
     });
-  };
-	
+  };	
 </script>	
 </html>

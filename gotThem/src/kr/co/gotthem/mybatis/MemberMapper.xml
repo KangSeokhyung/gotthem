@@ -46,7 +46,8 @@
 	
 	<update id="storeModi" parameterType="kr.co.gotthem.member.bean.MemberBean">
 		update member set mem_name = #{mem_name}, sto_name=#{sto_name}, mem_email = #{mem_email}, mem_phone = #{mem_phone}, 
-		mem_address = #{mem_address}, enabled = #{enabled} where mem_id = #{mem_id}
+		mem_address = #{mem_address}, sto_img=#{sto_img}, sto_comment=#{sto_comment}, enabled = #{enabled}
+		where mem_id = #{mem_id}
 	</update>
 	
 	<update id="memModi" parameterType="kr.co.gotthem.member.bean.MemberBean">
