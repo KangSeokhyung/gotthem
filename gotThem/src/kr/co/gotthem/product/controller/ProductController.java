@@ -224,8 +224,6 @@ public class ProductController {
 	
 	@RequestMapping(value = "/searchList.gt", method = RequestMethod.GET)
 	public String searchList(Model model, @RequestParam String search, @RequestParam int pageNo) {
-		System.out.println(search+"##");
-		
 		productService.searchList(model, search, pageNo);
 					
 		return "product/searchList";

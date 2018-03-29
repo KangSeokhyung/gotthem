@@ -46,7 +46,7 @@
       <div class="row">
       <div class="alert alert-info alert-dismissable">
           <a class="panel-close close" data-dismiss="alert">×</a> 
-          <h4 style="color:red;">주의!!</h4>회원탈퇴 전에 구매한 상품을 수령해주세요.<br>구매목록에 미수령 상품이 있다면 탈퇴할 수 없습니다.
+          <h4 style="color:red;">주의!!</h4>제휴해지 전에 구매한 상품을 수령해주세요.<br>구매목록에 미수령 상품이 있다면 해지할 수 없습니다.
         </div>
         <div class="col-md-8">
           <form id="form1" action="mystoreDel.st" method="post" class="probootstrap-form mb60">
@@ -60,7 +60,7 @@
               </div>
                        
             <div class="form-group">
-              <input type="button" class="btn btn-primary" value="탈퇴하기" onclick="storeDel()">
+              <input type="button" class="btn btn-primary" value="해지하기" onclick="storeDel()">
               <input type="reset" class="btn btn-primary" value="취소하기">
             </div>              
           </form>
@@ -97,7 +97,7 @@
 </body>
 <script>
 	function storeDel(){
-		if(confirm('정말 탈퇴하시겠습니까?')== true){
+		if(confirm('정말 제휴를 해지하시겠습니까?')== true){
 			document.form1.submit();
 		}else{
 			alert("취소하셨습니다.")

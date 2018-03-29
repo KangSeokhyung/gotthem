@@ -9,7 +9,7 @@
 <title>Got Them?</title>
 <style type="text/css">
 thead { color: #4A3E3E; font-size: 16px; font-weight: 600; }
-tbody { font-size: 17px; }
+tbody { font-size: 17px; color: #555; }
 tbody a { color: #242D91; }
 tbody a:hover { color: #fa2848; }
 </style>

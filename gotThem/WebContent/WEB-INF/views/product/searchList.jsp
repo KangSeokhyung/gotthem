@@ -36,6 +36,7 @@
 #hide { display: none; }
 table tbody {
 	font-size: 17px;
+	color: #555;
 	text-align: center;
 	word-break: keep-all; 
 }
@@ -48,7 +49,15 @@ th { color: black; font-size: 18px; }
     position: relative;
     color: rgba(255,255,255,.9);
 }
+@media not screen and (min-width: 480px) {
+	footer .container {
+		height: 95px !important;
+	}
+}
 .searchStyle { border-radius: 0px; height: 55px; font-size: 17px; }
+a { color: #242D91; }
+a:hover { color: #fa2848; }
+#paging { text-align: center; }
 </style>  
 <script src="resources/autocomplete/auto-complete.js"></script>
 <script src="https://code.jquery.com/jquery-3.2.1.js"></script>
@@ -208,7 +217,10 @@ th { color: black; font-size: 18px; }
   	</script>
    	<div class="row">
    	<div class="col-sm-12">
-   	<h4><strong>${search }</strong> 상품 판매 편의점 : <strong>${totalRows }</strong>건</h4>
+   	<div style="font-size: 15px; color: #666">
+   		<strong>${search }</strong> 상품 판매 편의점 : <strong>${totalRows }</strong>건
+   		<br><br>
+   	</div>
    		<table class="table table-hover">
 		<colgroup>
 			<col width="17%" class="tNonePre" />

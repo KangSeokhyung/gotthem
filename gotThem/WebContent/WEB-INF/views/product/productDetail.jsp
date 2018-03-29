@@ -42,7 +42,13 @@
     position: relative;
     color: rgba(255,255,255,.9);
 }
+@media not screen and (min-width: 480px) {
+	footer .container {
+		height: 95px !important;
+	}
+}
 label { font-size: 17px; font-weight: 500; }
+#main { color: #666; }
 </style>  
 <script src="resources/autocomplete/auto-complete.js"></script>
 <script src="https://code.jquery.com/jquery-3.2.1.js"></script>
@@ -212,10 +218,10 @@ label { font-size: 17px; font-weight: 500; }
   <div class="container">
     <div class="row probootstrap-gutter10">
     	<div class="col-xs-11 col-xs-offset-1 col-sm-4 col-sm-offset-1">
-    		<img src="/img/${productInfo.pro_img }" height="350px" width="280px" title="상품이미지" alt="상품이미지">
+    		<img src="/img/${productInfo.pro_img }" height="350px" width="290px" title="상품이미지" alt="상품이미지">
     		<br><br>
     	</div>
-    	<div class="col-xs-12 col-sm-6 col-sm-offset-1">
+    	<div id="main" class="col-xs-12 col-sm-6 col-sm-offset-1">
     		<div style="font-size: 30px; color: #333;">${productInfo.pro_name }</div>
     		<hr style="border-color: black">
     		<h3>상품 가격 : ${productInfo.pro_price }</h3>

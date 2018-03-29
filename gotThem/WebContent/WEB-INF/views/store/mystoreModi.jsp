@@ -130,17 +130,32 @@ label {
 </style>
 <script type="text/javascript">
 	$(document).ready(
-			function() {
-				var uploadFile = $('.fileBox .uploadBtn');
-				uploadFile.on('change', function() {
-					if (window.FileReader) {
-						var filename = $(this)[0].files[0].name;
-					} else {
-						var filename = $(this).val().split('/').pop().split('\\').pop();
-					}
-					$(this).siblings('.fileName').val(filename);
-				});
+		function() {
+			var uploadFile = $('.fileBox .uploadBtn');
+			uploadFile.on('change', function() {
+				if (window.FileReader) {
+					var filename = $(this)[0].files[0].name;
+				} else {
+					var filename = $(this).val().split('/').pop().split('\\').pop();
+				}
+				$(this).siblings('.fileName').val(filename);
 			});
+			
+		var str = $('#prev_comment').val();
+		str = str.replace(/(?:\r\n|\r|\n)/g, '<br/>');
+		$('#sto_comment').val(str);
+			
+		var str = $('#prev_comment').val();
+		str = str.split('<br/>').join("\r\n");
+		$('#prev_comment').val(str);	
+		
+		$("#prev_comment").keyup(function(){
+			var str = $('#prev_comment').val();
+			str = str.replace(/(?:\r\n|\r|\n)/g, '<br/>');
+			$('#sto_comment').val(str);
+		});
+	});
+	
 </script>
 </head>
 <body>
@@ -175,9 +190,10 @@ label {
 		<div class="cover-inner container">
 			<form action="storeModi.st" method="POST"
 				enctype="multipart/form-data">
-
+				<input type="hidden" name="mem_name" value="${memberInfo.mem_name }" />
 				<input type="hidden" name="mem_id" value="${memberInfo.mem_id}" />
 				<input type="hidden" name="sto_img" value="${memberInfo.sto_img}" />
+				<input type="text" id="sto_comment" name="sto_comment">
 				<table id="myInfo" class="table">
 					<tr>
 						<th nowrap>아이디</th>
@@ -200,7 +216,7 @@ label {
 					<tr>
 						<th nowrap>전화번호</th>
 						<td><input type="text" class="form-control" name="mem_phone"
-							value="${memberInfo.mem_phone}" required="" maxlength="11" /></td>
+							value="${memberInfo.mem_phone}" required="" maxlength="12" /></td>
 					</tr>
 					<tr>
 						<th nowrap>우편번호</th>
@@ -225,9 +241,9 @@ label {
 					</tr>
 					<tr>
 						<th nowrap>코멘트</th>
-						<td><textarea class="form-comment" name="sto_comment"
+						<td><textarea class="form-comment" id="prev_comment"
 								style="height: 100px; resize: none; overflow: visible; text-overflow: ellipsis;"
-								required="" maxlength="100">${memberInfo.sto_comment }</textarea></td>
+								required="" maxlength="2000">${memberInfo.sto_comment }</textarea></td>
 					</tr>
 					<tr>
 						<td nowrap colspan="2" align="right"><button

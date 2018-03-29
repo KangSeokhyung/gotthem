@@ -19,85 +19,133 @@
     
   </head>
 <style type="text/css">
-#releatedField { position: absolute; width: 63%; }
-#releatedField a { color: #66615b; text-decoration: none; }
-.buttonBackgroundColor{
-background-color:#fe490f;
+#releatedField {
+	position: absolute;
+	width: 63%;
 }
-.buttonBackgroundColor:hover{
-background-color:#ff990f;
-color:#fff;
+
+#releatedField a {
+	color: #66615b;
+	text-decoration: none;
 }
+
+.buttonBackgroundColor {
+	background-color: #fe490f;
+}
+
+.buttonBackgroundColor:hover {
+	background-color: #ff990f;
+	color: #fff;
+}
+
 .probootstrap-section.probootstrap-bg:before {
-    position: absolute;
-    content: "";
-    background: rgba(255, 255, 255, 0.9);
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    z-index: -1;
+	position: absolute;
+	content: "";
+	background: rgba(255, 255, 255, 0.9);
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	z-index: -1;
 }
-.colorCyan{
-color:#2fb1bd !important;
+
+.colorCyan {
+	color: #2fb1bd !important;
 }
+
 .btn.btn-primary {
-    border: 2px solid #2fb1bd;
-    background: #2fb1bd;
-    color: #fff;
+	border: 2px solid #2fb1bd;
+	background: #2fb1bd;
+	color: #fff;
 }
+
 .btn.btn-primary:hover {
 	border: 2px solid #1fffff;
-    background: #1fffff;
-    color: #fff;
+	background: #1fffff;
+	color: #fff;
 }
+
 .probootstrap-footer.probootstrap-bg {
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-    padding: 2em 0;
-    position: relative;
-    color: rgba(255,255,255,.9);
+	background-size: cover;
+	background-repeat: no-repeat;
+	background-attachment: fixed;
+	padding: 2em 0;
+	position: relative;
+	color: rgba(255, 255, 255, .9);
 }
-.flexslider, .flexslider .slides>li, .flexslider2, .flexslider2 .slides>li, .slider-height {
-    height: 800px !important;
+
+@media screen and (min-width: 480px) {
+	.flexslider, .flexslider .slides>li, .flexslider2, .flexslider2 .slides>li,
+		.slider-height {
+		display: block;
+		height: 800px !important;
+	}
 }
+@media not screen and (min-width: 480px) {
+	.flexslider, .flexslider .slides>li, .flexslider2, .flexslider2 .slides>li,
+		.slider-height {
+		display: block;
+		height: 530px !important;
+	}
+	
+	#marginChg {
+		margin-top: 280px !important;
+	}
+	
+	footer .container {
+		height: 95px !important;
+	}
+}
+
 .flexslider .overlay, .flexslider2 .overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    bottom: 0;
-    right: 0;
-    z-index: 3;
-    background: rgba(0,0,0,0);
+	position: absolute;
+	top: 0;
+	left: 0;
+	bottom: 0;
+	right: 0;
+	z-index: 3;
+	background: rgba(0, 0, 0, 0);
 }
-#marginChg { 
-    padding-left: 60px;
-	padding-bottom: 10px; 
-	margin-top: 340px; 
+
+#marginChg {
+	padding-left: 60px;
+	padding-bottom: 10px;
+	margin-top: 350px;
 	background: none;
 	-webkit-box-shadow: none;
 	box-shadow: none;
 }
-#btnColor { background: #fa2848; }
-.zeroP { padding: 0px; }
-body{
-color:#fff;
+
+#btnColor {
+	background: #fa2848;
 }
+
+.zeroP {
+	padding: 0px;
+}
+
+body {
+	color: #fff;
+}
+
 .probootstrap-animated {
-    -webkit-animation-duration: .1s;
-    animation-duration: 1s;
-    -webkit-animation-fill-mode: both;
-    animation-fill-mode: both;
+	-webkit-animation-duration: .1s;
+	animation-duration: 1s;
+	-webkit-animation-fill-mode: both;
+	animation-fill-mode: both;
 }
+
 .sb {
-	height : 58px !important;
-	border : 1px solid white;
+	height: 58px !important;
+	border: 1px solid white;
 }
-.probootstrap-home-search .probootstrap-field-group .probootstrap-fields input, 
-.probootstrap-home-search .probootstrap-field-group .probootstrap-fields select {
+
+.probootstrap-home-search .probootstrap-field-group .probootstrap-fields input,
+	.probootstrap-home-search .probootstrap-field-group .probootstrap-fields select
+	{
 	font-size: 18px;
 }
+
 </style>  
 <script src="resources/autocomplete/auto-complete.js"></script>
 <script src="https://code.jquery.com/jquery-3.2.1.js"></script>
@@ -163,7 +211,7 @@ color:#fff;
       </div>
     </div>
     
-    <ul class="slides">
+    <ul class="slides" >
       <li style="background-image: url(resources/mainTemplate/img/slider_1.jpg);" class="overlay"></li>
       <li style="background-image: url(resources/image/711.jpg);" class="overlay"></li>
       <li style="background-image: url(resources/image/withme.jpg);" class="overlay"></li>
