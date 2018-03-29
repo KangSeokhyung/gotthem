@@ -25,6 +25,17 @@
     div .navbar{
     border: 1px;
     }
+    .probootstrap-header {
+    padding-top: 10px !important;
+    padding-bottom: 10px !important;
+    width: 100%;
+    background: #fff;
+    z-index: 12;
+    position: absolute;
+    top: 0;
+    -webkit-box-shadow: 0 6px 68px -6px rgba(0,0,0,.2);
+    box-shadow: 0 6px 68px -6px rgba(0,0,0,.2);
+}
     </style>
   </head>
 <body>

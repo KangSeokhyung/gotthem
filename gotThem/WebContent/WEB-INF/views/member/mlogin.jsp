@@ -99,14 +99,11 @@
             <div class="form-group ">
             <a id="kakao-login-btn" style="cursor:pointer; width:48%; height:49px;"></a>
             </div>
-            <div class="form-group ">
-            <img src="image/naver_Green.png" style="cursor:pointer; width:48%; height:49px;" >
-            </div>
             <div class="form-group">
              <a href="findIDAndPW.gt">아이디를 잊으셨나요?</a>
             </div>
             <div class="form-group">
-             <a href="join.gt">회원 가입이 필요하신가요?</a>
+             <a href="join.gt">아직 아이디가 없으신가요?</a>
             </div>
            
           </form>
