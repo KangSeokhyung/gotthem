@@ -24,6 +24,14 @@
 <link rel="stylesheet" href="resources/landy/css/style.default.css"
 	id="theme-stylesheet">
 <style>
+body{
+font-size:18px !important;
+font-family:나눔스퀘어라운드 !important;
+}
+.btn{
+font-size:16px !important;
+font-family:나눔스퀘어라운드 !important;
+}
 .btn-primary{
 border-radius:4px;
 margin:1px;

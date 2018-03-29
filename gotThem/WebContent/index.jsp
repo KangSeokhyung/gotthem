@@ -24,7 +24,6 @@
 <style type="text/css">
 #releatedField { position: absolute; width: 63%; }
 #releatedField a { color: #66615b; text-decoration: none; }
-.overlay{opacity:1;}
 .buttonBackgroundColor{
 background-color:#fe490f;
 }
@@ -43,11 +42,11 @@ color:#fff;
     z-index: -1;
 }
 .colorCyan{
-color:#1fad9f !important;
+color:#2fb1bd !important;
 }
 .btn.btn-primary {
-    border: 2px solid #1fad9f;
-    background: #1fad9f;
+    border: 2px solid #2fb1bd;
+    background: #2fb1bd;
     color: #fff;
 }
 .btn.btn-primary:hover {
@@ -63,8 +62,18 @@ color:#1fad9f !important;
     position: relative;
     color: rgba(255,255,255,.9);
 }
-
-
+.flexslider, .flexslider .slides>li, .flexslider2, .flexslider2 .slides>li, .slider-height {
+    height: 800px !important;
+}
+.flexslider .overlay, .flexslider2 .overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    z-index: 3;
+    background: rgba(0,0,0,0);
+}
 #marginChg { 
 	padding-bottom: 10px; 
 	margin-top: 340px; 
@@ -73,6 +82,15 @@ color:#1fad9f !important;
 	box-shadow: none;
 }
 #btnColor { background: #fa2848; }
+body{
+color:#fff;
+}
+.probootstrap-animated {
+    -webkit-animation-duration: .1s;
+    animation-duration: 1s;
+    -webkit-animation-fill-mode: both;
+    animation-fill-mode: both;
+}
 </style>  
 <script src="resources/autocomplete/auto-complete.js"></script>
 <script src="https://code.jquery.com/jquery-3.2.1.js"></script>
@@ -98,13 +116,15 @@ color:#1fad9f !important;
 				alert(str);
 		}
 	});
+	
 </script>
 <body>
 <!-- START: header -->
 <%@include file="nav.jsp" %>
 <!-- END: header -->
 
-  <section class="probootstrap-slider flexslider">
+	<section class="probootstrap-slider flexslider2 page-inner">
+    <div class="overlay"></div>
     <div class="probootstrap-wrap-banner">
       <div class="container">
         <div class="row">
@@ -131,25 +151,25 @@ color:#1fad9f !important;
         </div>
       </div>
     </div>
+    
     <ul class="slides">
       <li style="background-image: url(resources/mainTemplate/img/slider_1.jpg);" class="overlay"></li>
       <li style="background-image: url(resources/image/711.jpg);" class="overlay"></li>
       <li style="background-image: url(resources/image/withme.jpg);" class="overlay"></li>
       <li style="background-image: url(resources/image/gs25.jpg);" class="overlay"></li>
-      <li style="background-image: url(resources/image/CU2.jpg);" class="overlay"></li>
-     
-      
+      <li style="background-image: url(resources/image/도시락3.jpg);" class="overlay"></li>
     </ul>
   </section>
+  
   <!-- END: slider  -->
   <section class="probootstrap-section probootstrap-bg" style="background:#fff; background-size:cover;">
     <div class="container text-center probootstrap-animate" data-animate-effect="fadeIn">
-      <h2 class="heading colorCyan"><b>저희와 제휴를 원하시나요?</b></h2><br>
+      <h2 class="heading colorCyan" style="word-break:keep-all;"><b>저희와 제휴를 원하시나요?</b></h2><br>
       <div style="width: 300px; height: auto; overflow: hidden; margin-left: auto; margin-right: auto; ">
 	    <img src="resources/image/캐릭터.png" style="width:150px; height: auto; margin-left: auto; margin-right: auto; display: block;">
 	  </div><br>
-      <p class="sub-heading colorCyan">많은 점주 분들이 <strong>GOT THEM</strong> 과 제휴 한 이후로 매출이 상승했습니다.<br>
-      당신도 이제 <strong>GOT THEM</strong> 과 제휴를 맺고 급격한 매출상승을 이루어보세요! </p>
+      <p class="sub-heading colorCyan" style="word-break:keep-all;">많은 점주 분들이 <strong>GOT THEM</strong> 과 제휴 한 이후로 매출이 상승했습니다.<br>
+      이제 <strong>GOT THEM</strong> 과 제휴를 맺고 급격한 매출상승을 이루어보세요! </p>
       <p><a href="login.st" class="btn btn-primary mb10">제휴페이지</a></p>
     </div>
   </section>

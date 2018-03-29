@@ -20,7 +20,14 @@
 <link rel="stylesheet" href="resources/landy/css/style.default.css" id="theme-stylesheet">
 <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 <style>
-body{font-size:18px;}
+body{
+font-size:18px !important;
+font-family:나눔스퀘어라운드 !important;
+}
+.btn{
+font-size:16px !important;
+font-family:나눔스퀘어라운드 !important;
+}
 a{
 text-decoration: none;
 color: #000000;

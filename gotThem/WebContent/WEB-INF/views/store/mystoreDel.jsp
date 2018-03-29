@@ -16,6 +16,21 @@
 <link rel="stylesheet" href="resources/indexTemplate/css/animate.css">
 <link rel="stylesheet" href="resources/indexTemplate/css/style.css">
 </head>
+<style>
+body{
+font-size:16px !important;
+font-family:나눔스퀘어라운드 !important;
+}
+.btn{
+font-size:16px !important;
+font-family:나눔스퀘어라운드 !important;
+}
+.btn-primary{
+border-radius:4px;
+margin:1px;
+padding: 0.6rem 1rem;
+}
+</style>
 <body>
 <header>
 		<%@include file="nav.jsp"%>

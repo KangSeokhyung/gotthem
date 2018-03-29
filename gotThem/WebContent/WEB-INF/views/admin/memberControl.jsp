@@ -18,31 +18,137 @@
       <script src="resources/mainTemplate/js/vendor/html5shiv.min.js"></script>
       <script src="resources/mainTemplate/js/vendor/respond.min.js"></script>
     <![endif]-->
-    <style>
-    .table-responsive{
-    margin-top: 80px;
-    padding: 50px;
-    }
-    
-    .container{width:1400px;}
-    </style>
+<style>
+/* 푸터 css */
+.probootstrap-footer.probootstrap-bg {
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    padding: 2em 0;
+    position: relative;
+    color: rgba(255,255,255,.9);
+}
+
+.table-responsive {
+	margin-top: 80px;
+	padding: 60px;
+}
+
+.container {
+	width: 1400px;
+}
+
+.probootstrap-main-nav li a {
+	font-size: 20px;
+}
+.probootstrap-main-nav li a:hover {
+	font-size: 25px !important;
+}
+.probootstrap-main-nav{
+	padding-top: 18px;
+}
+
+.probootstrap-header {
+	padding-top: 20px;
+	padding-bottom: 20px;
+	background: #44B3C2;
+}
+.barunPenLogo{
+	font-family:'나눔바른펜';
+	font-size:40px;
+	color:#fff;
+}
+.barunPen{
+	font-family:'나눔바른펜';
+	color:#fff !important;
+}
+.btn.btn-primary {
+    border: 2px solid #44B3C2;
+    background: #44B3C2;
+    color: #fff;
+    border-radius: 12px;
+}
+.btn.btn-primary:active, .btn.btn-primary:focus, .btn.btn-primary:hover {
+    background: #9cfeff;
+    color: #fff;
+    border: 2px solid #9cfeff;
+}
+.pagination>li>a, .pagination>li>span {
+    color: #44B3C2;
+}
+.textMiddle{
+padding-top:3px;
+}
+.table>tbody>tr>td, .table>tbody>tr>th, .table>tfoot>tr>td, .table>tfoot>tr>th, .table>thead>tr>td, .table>thead>tr>th {
+    padding-top: 20px;
+    line-height: 1.42857143;
+    vertical-align: top;
+    border-top: 1px solid #ddd;
+}
+.table>tbody>tr>td>button{
+    padding-top: 10px;
+    line-height: 1.42857143;
+    border-top: 1px solid #ddd;
+}
+.probootstrap-footer.probootstrap-bg:before {
+    position: absolute;
+    content: "";
+    background: #000;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 1;
+    opacity:0.9;
+}
+.btn-magen{
+ 	border: 2px solid #fd3067;
+    background: #fd3067;
+    color: #fff;
+    border-radius: 12px;
+}
+th{
+font-size:22px;
+}
+tr{
+font-size:18px;
+}
+.form-control {
+    display: block;
+    width: 250px;
+}
+.modal-body>section>div{
+width:568px;
+}
+.btn-secondary{
+	border: 2px solid #fd3067;
+    background: #fd3067;
+    color: #fff;
+    border-radius: 12px;
+}
+.btn-secondary:hover{
+	border: 2px solid #ff7b9e;
+    background: #ff7b9e;
+    color: #fff;
+    border-radius: 12px;
+}
+</style>
   </head>
   <body>
-
   <!-- START: header -->
    <header role="banner" class="probootstrap-header">
     <div class="container">
-        <a href="memcontrol.ad" class="probootstrap-logo"><img
-				src="resources/image/GotthemLogo.PNG" height="50" width="200"
-				alt="Gotthem" style="margin-top: 5px;"></a>
+        <a href="memcontrol.ad" class="probootstrap-logo"><span class="barunPenLogo">Got Them</span></a>
         
         <a href="#" class="probootstrap-burger-menu visible-xs" ><i>Menu</i></a>
         <div class="mobile-menu-overlay"></div>
 
         <nav role="navigation" class="probootstrap-nav hidden-xs">
           <ul class="probootstrap-main-nav">
-            <li><a href="memcontrol.ad">회원관리</a></li>
-            <li><a href="storecontrol.ad">점포관리</a></li>
+            <li><a href="memcontrol.ad" class="barunPen">회원관리</a></li>
+            <li><a href="storecontrol.ad" class="barunPen">점포관리</a></li>
+            <li><a href="index.gt" class="barunPen">고객모드</a></li>
+            <li><a href="logout.ad" class="barunPen">로그아웃</a></li>
           </ul>
         </nav>
     </div>
@@ -51,7 +157,8 @@
   <div class="probootstrap-loader"></div>
 	<div class="table-responsive">
 		<table class="table">
-		<h2>회원정보 관리</h2>
+		<center><h1 style="display:inline;"><b>회원정보 관리</b></h1></center>
+		<button style="float:right; margin-right:25px;"class="btn btn-magen">회원등록</button>
 		<hr>
 			<thead>
 				<tr>
@@ -67,7 +174,7 @@
 			</thead>
 			<tbody>
 			<c:forEach var="mlist" items="${requestScope.mlist}">
-					<tr>
+					<tr class="textMiddle">
 						<td>${mlist.mem_id}</td>
 						<td>${mlist.mem_name}</td>
 						<td>${mlist.mem_email}</td>
@@ -106,18 +213,39 @@
 											href="memcontrol.ad?pageNo=${status.index }">${status.index }</a></li>
 									</c:otherwise>
 								</c:choose>
+								
 							</c:forEach>
 						<c:choose>
+						
 							<c:when test="${nextPage ne 0 }">
 								<li class="page-item"><a class="page-link" 
 									href="searchList.gt?pageNo=${nextPage }">&raquo;</a></li>
 							</c:when>
 						</c:choose>
+						
 					</ul>
 					</c:if>
+					<center><form style="height:80px;">
+					<select name="select" style="font-size:20px; height:49px; border-radius: 12px;border:2px solid #44B3C2">
+					    <option value="" selected="selected">선택</option>
+					    <option value="이름">이름</option>
+					    <option value="전화번호" >전화번호</option>
+					    <option value="승인대기">승인대기</option>
+					    <option value="승인">승인</option>
+					    <option value="승인거부">승인거부</option>
+					</select>
+					<input type="text" style="height:49px;border-radius: 12px; border:2px solid #44B3C2">
+					<button type="submit" class="btn btn-primary">검색</button>
+					</form></center>
+					<hr>
 				</div>
-		<hr>
+				
+		
 	</div>
+	
+	
+	
+	
 	  <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"> 
         <div class="modal-dialog"> 
                 <div class="modal-content"> 
@@ -146,28 +274,28 @@
                                 <div class="form-group">
                                     <label class="form-control-label mbr-fonts-style display-7" for="owner-form1-r">회원명</label>
                                     <input type="text" name="mem_id" id="mem_name" class="form-control" name="mem_name" 
-                                    required="" value="${requestScope.mem_name}" >
+                                    value="${requestScope.mem_name}" >
                                 </div>
                          </div>
                           <div class="col-sm-8 multi-horizontal" data-for="email">
                           <div class="form-group">
                                     <label class="form-control-label mbr-fonts-style display-7" for="email-form1-r">이메일</label>
                                     <input type="email" class="form-control" name="mem_email" 
-                                     required="" id="mem_email">
+                                     id="mem_email">
                                 </div>
                             </div>
                           <div class="col-sm-8 multi-horizontal" data-for="phone">
                            <div class="form-group">
                                     <label class="form-control-label mbr-fonts-style display-7" for="phone-form1-r">전화번호</label>
                                     <input type="text" class="form-control" name="mem_phone" 
-                                    value="${stinfo.mem_phone}" required="" id="mem_phone">
+                                    value="${stinfo.mem_phone}" id="mem_phone">
                                 </div>
                             </div>
                          <div class="col-sm-6 multi-horizontal" data-for="postcode">
                             <div class="form-group">
                                     <label class="form-control-label mbr-fonts-style display-7" for="addr1-form1-r">우편번호</label>
-                                    <input type="text" class="form-control address1" name="mem_addr1" required="" id="sample6_postcode"
-                                    value="${st_post }">
+                                    <input type="text" class="form-control address1" name="mem_addr1" id="sample6_postcode"
+                                    value="${st_post }" readOnly>
                                 </div>
                             </div>
                          <div class="col-sm-6 multi-horizontal" data-for="findpostcode">
@@ -179,14 +307,14 @@
                             <div class="form-group">
                                     <label class="form-control-label mbr-fonts-style display-7" for="addr1-form1-r">상세주소1</label>
                                     <input type="text" class="form-control address2" name="mem_addr2" 
-                                     value="${st_address1}" required="" id="sample6_address">
+                                     value="${st_address1}" style="width:568px;" id="sample6_address" readOnly>
                                 </div>
                             </div>
                          <div class="col-sm-12 multi-horizontal" data-for="address2">
                             <div class="form-group">
                                     <label class="form-control-label mbr-fonts-style display-7" for="addr2-form1-r">상세주소2</label>
                                     <input type="text" class="form-control address3" name="mem_addr3" 
-                                    value="${st_address2}" required="" id="sample6_address2">
+                                    value="${st_address2}" style="width:568px;" id="sample6_address2">
                                 </div>
                             </div>
                         <div class="col-sm-12 multi-horizontal" data-for="grade">
@@ -196,10 +324,10 @@
        									<input type="radio" name="enable" value="탈퇴" >탈퇴
                                 </div>
                             </div>
-                             <div class="col-sm-8 multi-horizontal" data-for="button">
+                             <div class="col-sm-12 multi-horizontal" data-for="button" style="width:598px; align:center;">
 
-                              <button type="submit"  class="btn btn-primary">정보수정</button>
-          					<button type="button" class="btn btn-secondary" data-dismiss="modal">취소</button>       
+                             <center> <button type="submit"  class="btn btn-primary" >정보수정</button>
+          					<button type="button" class="btn btn-secondary" data-dismiss="modal">취소</button></center>       
                    			</div>
                     </form>          
         </div>       
@@ -209,6 +337,9 @@
                 </div> 
         	</div> 
 		</div>
+<!-- START: footer -->
+<%@include file="../../../footer.jsp" %>
+<!-- END: footer -->
 <script>
     $(".edit").click(function(){ 
 		
