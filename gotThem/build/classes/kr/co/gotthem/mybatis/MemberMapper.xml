@@ -18,11 +18,11 @@
 	</insert>
 	
 	<select id="mlist" resultType="kr.co.gotthem.member.bean.MemberBean">
-		select * from member where mem_status='ROLE_USER' limit  #{begin}, 5 
+		select * from member where mem_status='ROLE_USER' order by mem_name limit #{begin}, 10 
 	</select>
 	
 	<select id="stlist" resultType="kr.co.gotthem.member.bean.MemberBean">
-		select * from member where mem_status='ROLE_STORE' limit #{begin}, 5
+		select * from member where mem_status='ROLE_STORE' order by mem_name limit #{begin}, 10
 	</select>
 	
 	<select id="duplCheck" parameterType="String" resultType="int">

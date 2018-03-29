@@ -47,5 +47,7 @@ public interface MemberService {
 	public MemberBean storeInfo(int mem_no);
 	
 	public void kakaoJoin(MemberBean memberBean);
+
+	public String selectStoName(int pro_memno);
 	
 }

@@ -34,7 +34,7 @@
 	padding: 60px;
 }
 th{
-font-size:22px;
+font-size:20px;
 }
 tr{
 font-size:18px;
@@ -106,16 +106,18 @@ padding-top:3px;
           <ul class="probootstrap-main-nav">
             <li><a href="memcontrol.ad" class="barunPen">회원관리</a></li>
             <li><a href="storecontrol.ad" class="barunPen">점포관리</a></li>
-            <li><a href="index.gt" class="barunPen">고객모드</a></li>
+            <li><a href="index.gt" class="barunPen">회원메인</a></li>
             <li><a href="logout.ad" class="barunPen">로그아웃</a></li>
           </ul>
         </nav>
     </div>
   </header>
 	<div class="table-responsive">
-		<table class="table">
-		<center><h1><b>점포정보 관리</b></h1></center>
-			<hr>
+		<div style="text-align: center;">
+			<span style="font-size: 33px; color: #333;"><b>점포정보 관리</b></span>
+		</div>
+		<hr>
+		<table class="table table-hover">
 			<thead>
 				<tr>
 					<th>점포아이디</th>
@@ -152,48 +154,50 @@ padding-top:3px;
 			</tbody>
 		</table>
 
-								<div id="paging">
-					<c:if test="${totalPages ne 0}">
-					<ul class="pagination pagination-danger">
+		<div id="paging">
+			<c:if test="${totalPages ne 0}">
+			<ul class="pagination pagination-danger">
+				<c:choose>
+					<c:when test="${prevPage ne 0}">
+						<li class="page-item"><a class="page-link" 
+							href="storecontrol.ad?pageNo=${prevPage}">&laquo;</a></li>
+					</c:when>
+				</c:choose>
+					<c:forEach begin="${beginPage}" end="${endPage }" step="1" varStatus="status">
 						<c:choose>
-							<c:when test="${prevPage ne 0}">
-								<li class="page-item"><a class="page-link" 
-									href="storecontrol.ad?pageNo=${prevPage}">&laquo;</a></li>
+							<c:when test="${nowPage eq status.index}">
+								<li class="page-item active"><a class="page-link" 
+									href="storecontrol.ad?pageNo=${status.index }">${status.index }</a></li>
 							</c:when>
-						</c:choose>
-							<c:forEach begin="${beginPage}" end="${endPage }" step="1" varStatus="status">
-								<c:choose>
-									<c:when test="${nowPage eq status.index}">
-										<li class="page-item active"><a class="page-link" 
-											href="storecontrol.ad?pageNo=${status.index }">${status.index }</a></li>
-									</c:when>
-									<c:otherwise>
-										<li class="page-item"><a class="page-link" 
-											href="storecontrol.ad?pageNo=${status.index }">${status.index }</a></li>
-									</c:otherwise>
-								</c:choose>
-							</c:forEach>
-						<c:choose>
-							<c:when test="${nextPage ne 0 }">
+							<c:otherwise>
 								<li class="page-item"><a class="page-link" 
-									href="searchList.gt?pageNo=${nextPage }">&raquo;</a></li>
-							</c:when>
+									href="storecontrol.ad?pageNo=${status.index }">${status.index }</a></li>
+							</c:otherwise>
 						</c:choose>
-					</ul>
-					</c:if>
-					<center><form style="height:80px;">
-					<select name="select" style="font-size:20px; height:49px; border-radius: 12px;border:2px solid #44B3C2">
-					    <option value="" selected="selected">선택</option>
-					    <option value="이름">이름</option>
-					    <option value="전화번호" >전화번호</option>
-					    <option value="승인대기">승인대기</option>
-					    <option value="승인">승인</option>
-					    <option value="승인거부">승인거부</option>
-					</select>
-					<input type="text" style="height:49px;border-radius: 12px; border:2px solid #44B3C2">
-					<button type="submit" class="btn btn-primary">검색</button>
-					</form></center>
-				</div>
+					</c:forEach>
+				<c:choose>
+					<c:when test="${nextPage ne 0 }">
+						<li class="page-item"><a class="page-link" 
+							href="searchList.gt?pageNo=${nextPage }">&raquo;</a></li>
+					</c:when>
+				</c:choose>
+			</ul>
+			</c:if>
+		</div>
+		
+		<form style="height:80px; text-align: center;">
+		<select name="select" style="font-size:20px; height:49px; border-radius: 12px;border:2px solid #44B3C2">
+		    <option value="" selected="selected">선택</option>
+		    <option value="이름">이름</option>
+		    <option value="전화번호" >전화번호</option>
+		    <option value="승인대기">승인대기</option>
+		    <option value="승인">승인</option>
+		    <option value="승인거부">승인거부</option>
+		</select>
+		<input type="text" style="height:49px;border-radius: 12px; border:2px solid #44B3C2">
+		<button type="submit" class="btn btn-primary">검색</button>
+		</form>
+		
 	</div>
 
 	<div class="modal fade" id="myModal" tabindex="-1" role="dialog"
@@ -298,8 +302,8 @@ padding-top:3px;
 										<div class="col-sm-12 multi-horizontal" data-for="grade">
 											<div class="form-group">
 												<label class="form-control-label mbr-fonts-style display-7"
-													for="addr2-form1-r">회원 상태</label> <br>
-												<input type="radio" name="enable" value="승인완료" checked>승인완료
+													for="addr2-form1-r">회원 상태</label> <br> <input
+													type="radio" name="enable" value="승인완료" checked>승인완료
 												<input type="radio" name="enable" value="승인대기">승인대기
 											</div>
 										</div>
@@ -313,14 +317,14 @@ padding-top:3px;
 						</div>
 
 					</section>
-					
+
 				</div>
 
 			</div>
 		</div>
 	</div>
 
-  </body>
+</body>
   <!-- START: footer -->
 <%@include file="../../../footer.jsp" %>
 <!-- END: footer -->

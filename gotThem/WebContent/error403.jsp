@@ -37,7 +37,7 @@
         </div>
       </div>
       <div class="row text-center">
-        <a href="/gotThem" class="btn btn-primary mb10" >메인페이지로</a> <a href="/gotThem/stLogin.st" class="btn btn-primary mb10">점주메인으로</a>
+        <a href="/gotThem" class="btn btn-primary mb10" >메인페이지로</a> <a href="/gotThem/login.st" class="btn btn-primary mb10">점주메인으로</a>
       </div>
     </div>
   </section>

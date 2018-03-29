@@ -38,6 +38,8 @@ margin:1px;
 padding: 0.6rem 1rem;
 }
 
+td{font-weight: bold;}
+
 @media( max-width: 640px ) {
 	#myInfo,
 	#myInfo thead,

@@ -873,11 +873,11 @@ span.searchStyleSelectBox.changed{background-color: #fff;}
 .listDiv {width:100%; border-top:1px #777 solid; border-bottom:1px #e5e5e5 solid; overflow:hidden;}
 .listDiv.mt {margin:40px 0 0 0;}
 .listType {width:100%; border-width:0; border-spacing:0; border-style:none; font-size:12px;}
-.listType th {border-color:#e5e5e5; border-width:0 0 1px 0; color:#333; border-style:none none solid none; text-align:center; background:#fafafa; padding:17px 5px 16px; font-size:13px; line-height:1.2; vertical-align:middle;}
+.listType th {border-color:#e5e5e5; border-width:0 0 1px 0; color:#333; border-style:none none solid none; text-align:center; background:#fafafa; padding:17px 5px 16px; font-size:16px; line-height:1.2; vertical-align:middle;}
 .listType th span {font-size:13px;}
 .listType th.right {text-align:right; padding:17px 5px 16px;}
 .listType th.bn {border-right:1px #e5e5e5 solid;}
-.listType td {border-color:#e5e5e5; border-width:0 0 1px 0; color:#555; border-style:none none solid none;  text-align:center; background:#fff; padding:17px 5px 16px; font-size:13px; line-height:1.4; vertical-align:middle;}
+.listType td {border-color:#e5e5e5; border-width:0 0 1px 0; color:#555; border-style:none none solid none;  text-align:center; background:#fff; padding:17px 5px 16px; font-size:15px; line-height:1.4; vertical-align:middle;}
 .listType td a {color:#555;}
 .listType td span.noti {display:inline-block; width:40px; height:24px; line-height:22px; font-size:12px; color:#fff; font-weight:600; background:#37c8b6; border-radius:2px;}
 .listType td span.breakFirst {font-size:13px;}

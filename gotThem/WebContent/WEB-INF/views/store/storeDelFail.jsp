@@ -82,16 +82,8 @@
    		var msg= '${resultMsg}';
    		var str;
    		if(msg!=null){
-   			if(msg=='fail1'){
+   			if(msg=='storeDelFail'){
    				str="현재 비밀번호가 맞지 않습니다. 다시 확인해주세요";
-   			}else if(msg=='fail2'){
-   				str="새로운 비밀번호를 정확히 입력하여 주세요";
-   			}else if(msg=='fail3'){
-   				str="비밀번호 변경이 실패하였습니다";
-   			}else if(msg=='success'){
-   				str="비밀번호 변경이 성공하였습니다.";
-   			}else if(msg=='storeDelFail'){
-   				str="회원탈퇴에 실패했습니다. 비밀번호를 확인해주세요";
    				history.back();
    			}
    			if(str!=null)

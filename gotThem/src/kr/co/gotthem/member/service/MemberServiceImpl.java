@@ -115,4 +115,9 @@ public class MemberServiceImpl implements MemberService {
 	public void kakaoJoin(MemberBean memberBean) {
 		memberDao.kakaoJoin(memberBean);
 	}
+
+	@Override
+	public String selectStoName(int pro_memno) {
+		return memberDao.selectStoName(pro_memno);
+	}
 }

@@ -102,6 +102,5 @@ public String toString() {
 			+ ord_findtime + ", ord_status=" + ord_status + ", ord_basno=" + ord_basno + ", ord_proimg=" + ord_proimg
 			+ ", ord_proprice=" + ord_proprice + ", sto_name=" + sto_name + ", pro_memno=" + pro_memno + "]";
 }
-  
-  
+
 }

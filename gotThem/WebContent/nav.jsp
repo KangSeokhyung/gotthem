@@ -54,12 +54,12 @@ body, table, div, p {
 	-webkit-font-smoothing: antialiased;
 }
 .container {
-    padding-bottom: 10px;
-    padding-top: 10px;
+    padding-bottom: 12px;
+    padding-top: 12px;
 }
 .barunPenLogo{
 	font-family:'나눔바른펜';
-	font-size:40px;
+	font-size:43px;
 	color:#fa2848;
 }
 .probootstrap-logo:hover {
@@ -73,39 +73,46 @@ body, table, div, p {
 		value="${sessionScope.SPRING_SECURITY_CONTEXT}" />
 	<header role="banner" id="navbar" class="probootstrap-header">
 		<div class="container">
-			<a href="/gotThem" class="probootstrap-logo barunPenLogo"><img
-				src="resources/image/indexLOGO.PNG" height="50"
-				alt="Gotthem">GotThem</a> <a href="#"
-				class="probootstrap-burger-menu visible-xs"><i>Menu</i></a>
+			<a href="/gotThem" class="probootstrap-logo barunPenLogo">GotThem</a> 
+			<a href="#" class="probootstrap-burger-menu visible-xs"><i>Menu</i></a>
 			<div class="mobile-menu-overlay"></div>
 
-			<nav role="navigation" class="probootstrap-nav hidden-xs">
-				<ul class="probootstrap-main-nav">
-					<li><a href="gotthemInfo.gt" class="nanumbarunpenr">GotThem
-							소개</a></li>
+        <nav role="navigation" class="probootstrap-nav hidden-xs">
+          <ul class="probootstrap-main-nav">
+            <li><a href="/gotThem">GotThem 소개</a></li>
+            <c:choose>
+				<c:when test="${sessionCheck eq null}">
+					<li><a href="login.gt?prevUrl=listBasket.gt">장바구니</a></li>
+				</c:when>
+				<c:otherwise>
 					<li><a href="listBasket.gt">장바구니</a></li>
-					<c:set var="sessionCheck"
-						value="${sessionScope.SPRING_SECURITY_CONTEXT}" />
-					<c:choose>
-						<c:when test="${sessionCheck eq null}">
-							<li><a href="join.gt">회원가입</a></li>
-							<li><a href="login.gt">로그인</a></li>
-						</c:when>
-						<c:otherwise>
-							<li><a href="mypage.gt">마이페이지</a></li>
-							<li><a href="logout.gt">로그아웃</a></li>
-						</c:otherwise>
-					</c:choose>
-				</ul>
-				<div class="extra-text visible-xs">
-					<a href="#" class="probootstrap-burger-menu"><i>메뉴</i></a>
-					<h5>주소</h5>
-					<p>서울광역시 서초구 비트교육센터 별관 503호</p>
-					<h5>개발자</h5>
-					<p>강석형, 김성우, 김채윤, 권도용, 이찬희</p>
-				</div>
-			</nav>
-		</div>
-	</header>
+				</c:otherwise>
+			</c:choose>
+			<c:choose>
+				<c:when test="${sessionCheck eq null}">
+					<li><a href="join.gt">회원가입</a></li>
+					<c:if test="${search ne null }">
+						<li><a href="login.gt?search=${search }">로그인</a></li>
+					</c:if>
+					<c:if test="${search eq null }">
+						<li><a href="login.gt">로그인</a></li>
+					</c:if>
+				</c:when>
+				<c:otherwise>
+					<li><a href="mypage.gt">마이페이지</a></li>
+					<li><a href="logout.gt">로그아웃</a></li>
+				</c:otherwise>
+			</c:choose>
+		  </ul>
+          <div class="extra-text visible-xs"> 
+            <a href="#" class="probootstrap-burger-menu"><i>메뉴</i></a>
+			<h5>주소</h5>
+			<p>서울광역시 서초구 비트교육센터 별관 503호</p>
+			<h5>개발자</h5>
+			<p>강석형, 김성우, 김채윤, 권도용, 이찬희</p>
+          </div>
+        </nav>
+    </div>
+  </header>
 </body>
 </html>

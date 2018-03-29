@@ -31,6 +31,7 @@
 }
 }
 </style>
+<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 </head>
 <body>
 <header>
@@ -62,9 +63,6 @@
   </section>
     
 <div class="container">
-<!--  <div style='float:right; padding: 3px 30px 3px 6px;'>
-  <button type="button" value="상품목록1" id="btnList">계속 쇼핑하기</button> 
- </div> -->
 <c:choose>
 <c:when test="${map.count == 0}">
  <img src="/img/cart_img_empty.gif" style=" width:360px;height:263px;margin-left:auto;margin-right:auto;display:block;"/>
@@ -101,7 +99,7 @@
        <tr>
                    <th scope="col"><!-- <input type="checkbox" name="checkAll" id="th_checkAll" /> -->
                    
-                   <a href="#" class="con"  name="checkAll" id="th_checkAll" onclick="button_checkAll();" />all</a>
+                   <a class="con"  name="checkAll" id="th_checkAll" onclick="button_checkAll();" />all</a>
                    <!-- <input type="button" class="con" value="All" name="checkAll" id="th_checkAll" onclick="button_checkAll();" /> --></th> 
                    <th scope="col" colspan="2">상품정보</th>
                    <th scope="col">매장명</th>
@@ -112,12 +110,12 @@
      </tr>
     </thead>
     <tbody id="rowCheck">
-
              <c:forEach var="row" items="${map.list}" varStatus="i">
                <tr>                
                   <td> 
-                      <input type="checkbox" name="checkRow" class="chk" id="checkRow"  value="${row.bas_no},${row.bas_proname},${row.bas_proprice},${row.bas_prostock},${row.bas_procode},${row.money},${row.bas_proimg}, ${row.bas_procomment},${row.pro_memno},${row.sto_name}"
+                      <input type="checkbox" name="checkRow" class="chk" id="checkRow"  value="${row.bas_no},${row.bas_proname},${row.bas_proprice},${row.bas_prostock},${row.bas_procode},${row.bas_proimg}, ${row.bas_procomment},${row.pro_memno},${row.sto_name},${row.bas_memno}"
                       onclick="cart();" /> 
+                      <input type="hidden" value="${row.money}">
                   </td>
                   <td class="img" class="tNonePre">
                        <a href="productDetail.gt?pro_code=${row.bas_procode}"><img src="/img/${row.bas_proimg}" style="width:60px; height:60px" class="dn" alt="" /></a>
@@ -128,31 +126,31 @@
                    <td>
                        ${row.sto_name}
                   </td>
-                  <td class="tNonePre" style="width: 80px" align="right" >
-                       <fmt:formatNumber pattern="###,###,###" value="${row.bas_proprice}"/>
-                  </td>
-                  <td  id = "stock2">
+                  <td class="tNonePre" style="width: 80px" align="right" id="proprice"><fmt:formatNumber pattern="###,###,###" value="${row.bas_proprice}"/></td>
+                  <td id="stock2">
 					<div class="qty">
                       <input type="hidden" id="bas_procode" name="bas_procode" value="${row.bas_procode}">
                       <input type="hidden" name="stock1" id="stock1" value="${row.stock}"> 
-	    		      <input type="text" id="pro_stock" name="pro_stock" value="${row.bas_prostock}" onChange="asc();">
-	    		      <div class="up"><a href="#" id= count_up ><img src="/img/btn_qty_up.gif" alt="up" /></a></div>
-	    		      <div class="down"><a href="#" id=count_down><img src="/img/btn_qty_down.gif" alt="down" /></a></div>
+	    		      <input type="text" id="pro_stock" name="pro_stock" value="${row.bas_prostock}">
+	    		      <div class="up"><a id= count_up ><img src="/img/btn_qty_up.gif" alt="up" /></a></div>
+	    		      <div class="down"><a id=count_down><img src="/img/btn_qty_down.gif" alt="down" /></a></div>
+	    		      <%-- <input type="text" value="${row.money }"> --%>
                     </div>
+                    <input type="hidden" value="${row.money }">
 				  </td>
-                  <td class="total"style="width: 80px" align="right">
-                       <fmt:formatNumber pattern="###,###,###" value="${row.money}"/>원
+                  <td class="total"style="width: 80px" align="right" id= orderSum>
+                 	<fmt:formatNumber pattern="###,###,###" value="${row.money}"/>원
                   </td>
                    <td class="tNonePre">
-                        <input type="hidden" name="money" value="${row.money}">
-                        <input type="hidden" name="bas_no" value="${row.bas_no}">
-						<a href="#" class="minPurchase" onclick="button_order('${row.bas_no}','${row.bas_proname}','${row.bas_procode}','${row.money}','${row.bas_prostock}','${row.bas_proimg}','${row.bas_proprice}','${row.pro_memno}','${row.sto_name}');">바로구매</a><br/>
+                   		<input type="hidden" id="firstMoney" value="${row.money}">
+						<input type="hidden" name="bas_all" id="bas_all" value="${row.bas_no},${row.bas_proname},${row.bas_proprice},${row.bas_prostock},${row.bas_procode},${row.bas_proimg}, ${row.bas_procomment},${row.pro_memno},${row.sto_name},${row.bas_memno}">
+						<a class="minPurchase" id= "orderOne" onclick="" >바로구매</a><br/>
 						<a href="#" class="minDel02" onclick="button_basDel(${row.bas_no});">상품삭제</a>
 				   </td>
                 </tr>
                </c:forEach>
     </tbody>
-   </table>                    
+   </table> 
     <table class="listType" border="1" cellspacing="0">
 							<caption>결제 목록</caption>
 							<colgroup>
@@ -173,10 +171,9 @@
   </div>
   </form>
   	<div class="btnAreaList">
-		<a href="#" class="sOrder"  onclick="button_selOrder();"><p>선택상품 <span>주문하기</span></p></a>&nbsp;&nbsp;
+		<a href="#" class="sOrder"  id=button_selOrder onclick="button_selOrder();"><p>선택상품 <span>주문하기</span></p></a>&nbsp;&nbsp;
 		<a href="#" class="aOrder" id=button_allOrder onclick="button_allOrder();"><p>전체상품 <span>주문하기</span></p></a>&nbsp;&nbsp;
 		<a href="/gotThem" class="continuation" onclick=""><p>쇼핑 <span>계속하기</span></p></a>
-		<button id = "payBtn" value="ddd" >ddddddd</button>
 	</div>
 </c:otherwise>
 </c:choose>   
@@ -201,13 +198,14 @@
     </div>
   </footer>
 </body>
-<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+
 <script src="resources/mainTemplate/js/scripts.min.js"></script>
  <script src="resources/mainTemplate/js/main.min.js"></script>
  <script src="resources/mainTemplate/js/custom.js"></script>
  <!-- KAKAO API -->
   <script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
 <script type="text/javascript">
+var Sum1;
 $(document).ready(function(){
 	$("#btnList").click(function(){
 		location.href="/gotThem";
@@ -226,17 +224,17 @@ $(document).ready(function(){
  
  var checkSumArr = [];
  $("input[name='checkRow']").each(function(i){
- 	checkSumArr.push($(this).val());
+ 	checkSumArr.push($(this).next().val());
  	});
  var sum=0;
  for(var i = 0; i< checkSumArr.length; i++){
- 	var cartSum = checkSumArr[i].split(',')[5];
- 	cartSum = parseInt(cartSum);
+ 	var cartSum = parseInt(checkSumArr[i]);
  	sum+=cartSum;
  	var str = sum;
   	var bb = Number(str).toLocaleString('en').split(".")[0];	
  	document.getElementById("chkSum").innerHTML = bb;
  	}
+ 
  });
  $(document).on("click", "#rowCheck tr", function(event){
 	if(event.target.nodeName.toLowerCase() == "td") {
@@ -256,18 +254,36 @@ $(document).ready(function(){
 function cart(){ //결제 금액 계산
 	var checkSumArr = [];
 	$("input[name='checkRow']:checked").each(function(i) {
-		checkSumArr.push($(this).val());	
-	});
+		/* $(this).parent().next().next().next().next().next().children().next().css("background-color", "aqua");  */
+		checkSumArr.push($(this).parent().next().next().next().next().next().children().next().val());
+		});
 	var sum=0;
 	for ( var i = 0; i< checkSumArr.length; i++){
-		var cartSum = checkSumArr[i].split(',')[5];
-		cartSum = parseInt(cartSum);
+		var cartSum = parseInt(checkSumArr[i]);
 		sum+=cartSum;
 		var str = sum;
-     	var bb = Number(str).toLocaleString('en').split(".")[0];	
-    	document.getElementById("chkSum").innerHTML = bb;
-    	}
-	}  		   
+     	var bb = Number(str).toLocaleString('en').split(".")[0];
+     	document.getElementById("chkSum").innerHTML = bb;
+     	}
+	return sum;
+	}  
+	
+function cart1(){ //결제 금액 계산
+	var checkSumArr = [];
+	$("input[name='checkRow']").each(function(i) {
+		checkSumArr.push($(this).parent().next().next().next().next().next().children().next().val());
+		});
+	var sum=0;
+	for ( var i = 0; i< checkSumArr.length; i++){
+		var cartSum = parseInt(checkSumArr[i]);
+		sum+=cartSum;
+		var str = sum;
+     	var bb = Number(str).toLocaleString('en').split(".")[0];
+     	document.getElementById("chkSum").innerHTML = bb;
+     	}
+	return sum;
+	}  
+
 function button_basDel(bas_no){  //단건 직접 삭제
 	if (confirm("장바구니에서 상품을 삭제 하시겠습니까?")){
 		location.href="delete.gt?bas_no="+bas_no;
@@ -275,14 +291,7 @@ function button_basDel(bas_no){  //단건 직접 삭제
 			return;
 			}
 	}
-function button_order(bas_no,bas_proname,bas_procode,money,bas_prostock,bas_proimg,bas_proprice,pro_memno,sto_name){
-	if (confirm("상품을 결제 하시겠습니까?")){ //단건결제
-		location.href="insertOrder.gt?bas_no="+bas_no+"&bas_proname="+bas_proname+
-    		"&bas_procode="+bas_procode+"&money="+money+"&bas_prostock="+bas_prostock+"&bas_proimg="+bas_proimg+"&bas_proprice="+bas_proprice+"&pro_memno="+pro_memno+"&sto_name="+sto_name;
-	}else{ 
-		return;
-		}
-	}  
+ 
 function button_selDel(){  //장바구니 선택 삭제
    if( $(":checkbox[name='checkRow']:checked").length==0 ){
 	  alert("삭제할 항목을 체크해주세요.");
@@ -313,35 +322,7 @@ function button_selDel(){  //장바구니 선택 삭제
 	  }
   }  
 	
-function button_selOrder(){  //장바구니 선택 결제
-	if( $(":checkbox[name='checkRow']:checked").length==0 ){
-		alert("결제할 항목을 체크해주세요.");
-		return;
-		}
-	var checkOrder = [];
-	$("input[name='checkRow']:checked").each(function(i){
-		if( $(":checkbox[name='checkRow']:checked").length==1 ){
-			checkOrder.push($(this).val());
-			checkOrder.push('[]');
-		  } else {
-			  checkOrder.push($(this).val());
-			  }
-		});
-	if (confirm("선택한 상품을 결제 하시겠습니까?")){
-		$.ajax({
-			url:"selectOrder.gt",
-			type:"post",
-			dataType: "text",
-			data:{arrOrder:checkOrder
-				},
-				success:function(result){
-					location.href="./orderList.gt";
-					}
-				});
-		}else{ 
-			return;
-			}
-	}
+
 function button_allDel(){  //장바구니 전체 삭제
 	  var checkAllDel = [];
 	  $("input[name='checkRow']").each(function(i){
@@ -365,129 +346,228 @@ function button_allDel(){  //장바구니 전체 삭제
 	  }  
 
 		 
+
 $(document).on("click", "#count_down",function(){// 수량 변경 다운
 	var bas_procode= $(this).parent().prev().prev().prev().prev().val()*1;
 	var basS = $(this).parent().prev().prev().prev().val()*1;
 	var chaS=  $(this).parent().prev().prev().val()*1 -1;
+	var text= $(this).parent().prev().prev();
+	var price1= $(this).parent().parent().parent().prev().text();
+	var price =  price1.replace(/,/g, '');
+	Sum1= chaS *price;
+	$(this).parent().parent().next().val(Sum1);
+	var bb = Number(Sum1).toLocaleString('en').split(".")[0] +"원";
+	var orderSum= $(this).parent().parent().parent().next(); 
+
 	if (chaS > 0) {
-		location.href="update.gt?bas_procode="+bas_procode+"&bas_prostock=" +chaS;
+		$.ajax({
+			url:"update.gt",
+			type:"post",
+			data:{"bas_procode" : bas_procode,
+		    	  "bas_prostock" : chaS
+		    	  },
+		    	  success:function(){
+		    		  text.val(chaS);
+		    		  orderSum.text(bb);
+		    		  cart1();
+		    		  }
+		    	  });
 		} else{
 			return;
 			}
+	
 	});
+	
 $(document).on("click", "#count_up",function(){//수량변경 업
 	var bas_procode= $(this).parent().prev().prev().prev().val()*1;	
 	var basS = $(this).parent().prev().prev().val()*1;
-	var chaS= 1+ $(this).parent().prev().val()*1;    
-    if (chaS <= basS) {
-    	location.href="update.gt?bas_procode="+bas_procode+"&bas_prostock=" +chaS;
+	var chaS= 1+ $(this).parent().prev().val()*1; 
+	var text= $(this).parent().prev();
+	var price1= $(this).parent().parent().parent().prev().text();
+	var price =  price1.replace(/,/g, '');
+	Sum1= chaS *price;
+	$(this).parent().parent().next().val(Sum1);
+	var bb = Number(Sum1).toLocaleString('en').split(".")[0] +"원";
+	var orderSum= $(this).parent().parent().parent().next();
+	if (chaS <= basS) {
+    	$.ajax({
+    		url:"update.gt",
+    		type:"post",
+    		data:{"bas_procode" : bas_procode,
+    			  "bas_prostock" : chaS
+    			  },
+    			  success:function(){
+    				  text.val(chaS);
+		    		  orderSum.text(bb); 
+		    		  cart1();
+    				  }
+    			  });
     	} else{
     		alert("최대 "+ basS+"개 이하 주문이 가능합니다.");
     		location.reload();
     		}
     });
 
-$(document).on("change", "#pro_stock", function(){//텍스트로 수량 변경
+$(document).on("change", "#pro_stock", function(){//텍스트로 수량 변경	
 	var bas_procode= $(this).prev().prev().val()*1;	
 	var basS =$(this).prev().val()*1;
 	var chaS= $(this).val()*1;
+	var text= $(this);
+    var price1= $(this).parent().parent().prev().text();
+    var price =  price1.replace(/,/g, '');
+	Sum1= chaS *price;
+	$(this).val(Sum1);
+	var bb = Number(Sum1).toLocaleString('en').split(".")[0] +"원";
+    var orderSum= $(this).parent().parent().next(); 
+	
 	 if (chaS < 0) {
 		 location.reload();
 		 }else if (chaS <= basS) {
-			 location.href="update.gt?bas_procode="+bas_procode+"&bas_prostock=" +chaS;
-			 } else{
+			 $.ajax({
+				 url:"update.gt",
+				 type:"post",
+				 data:{"bas_procode" : bas_procode,
+	    			   "bas_prostock" : chaS
+	    			   },
+	    			   success:function(){
+	    				   text.val(chaS);
+	    				   orderSum.text(bb);
+	    				   }
+	    			   });
+			 } else {
 				 alert("최대 "+ basS+"개 이하 주문이 가능합니다.");
 				 location.reload();
 				 }
 	 });  
-    
+
 
 var access_Token = '${sessionScope.token}';
-
 Kakao.init("363553076ca8777f012d9c9ce3b92b8c");	
-$('#payBtn').click(()=> {
-	
-     if(!access_Token){
-    	 console.log('토큰이 없음');
-         loginWithKakao();
-     } else {
-    	 console.log("토근존재");
-         payment();
-     }
-}); 
 
-$('#button_allOrder').click(()=> {
-	
-    if(!access_Token){
-   	 console.log('토큰이 없음');
-        loginWithKakao();
-    } else {
-   	 console.log("토근존재");
-        payment();
-    }
-});
-
-/* function button_allOrder(){ //장바구니 전체 주문하기
-	var checkAllOrder = [];
-	$("input[name='checkRow']").each(function(i){
-		checkAllOrder.push($(this).val());		
+$(document).on("click", "#orderOne",function(){// 단건 결제 api
+	if(!access_Token){
+		console.log('토큰이 없음');
+		loginWithKakao();
+		} else {
+			console.log("토근존재");
+			var firstMoney = $(this).prev().prev().val();
+			var orderOne = $(this).prev().val();
+			if (Sum1 == null) {
+				orderOne = orderOne+","+firstMoney+","+$(this).parent().prev().prev().children().children().next().next().val(); 			
+				paymentOne(orderOne);
+			} else {
+				orderOne = orderOne+","+Sum1+","+$(this).parent().prev().prev().children().children().next().next().val(); 
+				paymentOne(orderOne);	
+			}
+			}
 	});
-	checkAllOrder.push('[]');
-		if (confirm("전체 상품을 결제 하시겠습니까?")){
-			$.ajax({
-				url:"selectOrder.gt",
-				type:"post",
-				dataType: "text",
-				data:{arrOrder:checkAllOrder
+
+function paymentOne(orderOne){// 단건 결제
+	if(confirm("상품을 결제 하시겠습니까?")){
+		$.ajax({
+			url : 'paymentOne.gt',
+			data : {
+				accessToken : access_Token,
+				"orderOne": orderOne
+				},
+				method: 'POST',
+				success: (result) => {
+					console.log(result);
+					window.open(result.next_redirect_pc_url,
+							"","width=400, height=700");
+					console.log("온다아아앙");
 					},
-					success:function(result){
-						location.href="./orderList.gt";
+					error: () => {
+						window.alert('payment 서버 실행 오류!');
 						}
 					});
-			}else{ 
-				return;
-				} 
-		}  */
+		}else{
+			return;
+			}
+	}
 
-function payment() {
-	var checkAllOrder = [];
-	$("input[name='checkRow']").each(function(i){
-		checkAllOrder.push($(this).val());		
-	});
-	checkAllOrder.push('[]');
-	if (confirm("전체 상품을 결제 하시겠습니까?")){
-	/* 	$.ajax({
-			url:"selectOrder.gt",
-			type:"post",
-			dataType: "text",
-			data:{arrOrder:checkAllOrder
-				},
-				success:function(result){
-					location.href="./orderList.gt";
+
+$(document).on("click", "#button_allOrder",function(){// 복수 결제_전체 api
+	if(!access_Token){
+		console.log('토큰이 없음');
+		loginWithKakao();
+		} else {
+			console.log("토근존재");
+			var checkAllOrder = [];
+			if (Sum1 == null) {	
+			$("input[name='checkRow']").each(function(i){
+				checkAllOrder.push($(this).val()+","+$(this).parent().next().next().next().next().next().children().next().val()+","+$(this).parent().next().next().next().next().next().children().children().next().next().val());
+				});
+			checkAllOrder.push('[]');
+			} else {
+				$("input[name='checkRow']").each(function(i){
+					checkAllOrder.push($(this).val()+","+$(this).parent().next().next().next().next().next().children().next().val()+","+$(this).parent().next().next().next().next().next().children().children().next().next().val());
+					});
+				checkAllOrder.push('[]');
+			}
+			if (confirm("전체 상품을 결제 하시겠습니까?")){
+				payment(checkAllOrder);
+				} else {
+					return;
 					}
-				}); */
-			
-	$.ajax({
-	 url : 'payment.gt',
-     data: {
-         accessToken : access_Token,
-         arrOrder: checkAllOrder
-     },
-     method: 'POST',
-     success: (result) => {
-    	 console.log(result);
-     	window.open(result.next_redirect_pc_url,
-     			"","width=400, height=700");
-     	console.log("온다아아앙");
-     }, 
-     error: () => {
-         window.alert('payment 서버 실행 오류!');
-     }
-  });
-	}else{ 
-		return;
-		} 
-}
+			}
+			});
+	
+		
+$(document).on("click", "#button_selOrder",function(){// 복수 결제_선택 api
+	if(!access_Token){
+		console.log('토큰이 없음');
+		loginWithKakao();
+		} else {
+			console.log("토근존재");
+			if( $(":checkbox[name='checkRow']:checked").length==0 ){
+				alert("결제할 항목을 체크해주세요.");
+				return;
+				}
+			var checkAllOrder = [];
+			if (Sum1 == null) {
+				$("input[name='checkRow']:checked").each(function(i){
+					checkAllOrder.push($(this).val()+","+$(this).parent().next().next().next().next().next().children().next().val()+","+$(this).parent().next().next().next().next().next().children().children().next().next().val());
+					});
+				checkAllOrder.push('[]');
+				} else {
+					$("input[name='checkRow']:checked").each(function(i){
+						checkAllOrder.push($(this).val()+","+$(this).parent().next().next().next().next().next().children().next().val()+","+$(this).parent().next().next().next().next().next().children().children().next().next().val());
+					});
+					checkAllOrder.push('[]');
+					}
+			if (confirm("선택한 상품을 결제 하시겠습니까?")){
+				payment(checkAllOrder);
+				} else {
+					return;
+					}
+			}
+
+			});
+				
+
+function payment(checkAllOrder) { // 복수 결제 api
+	var chkSum = $("#chkSum").text();
+    var sum =  chkSum.replace(/,/g, '');
+    $.ajax({
+		url : 'payment.gt',
+		data: {
+			accessToken : access_Token,
+			arrOrder: checkAllOrder,
+			sum: sum
+			},
+			method: 'POST',
+			success: (result) => {
+				console.log(result);
+				window.open(result.next_redirect_pc_url,
+						"","width=400, height=700");
+				console.log("온다아아앙");
+				},
+				error: () => {
+					window.alert('payment 서버 실행 오류!');
+					}
+				});
+	}
 function loginWithKakao() {
     Kakao.Auth.login({
       success: function(authObj) {
@@ -501,6 +581,6 @@ function loginWithKakao() {
       }
     });
   };
-
+	
 </script>	
 </html>

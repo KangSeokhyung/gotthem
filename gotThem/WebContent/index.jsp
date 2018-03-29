@@ -1,9 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%
-	session.setAttribute("basketFoward", "/gotThem/listBasket.gt");
-%>
 <!DOCTYPE html>
 <html lang="ko">
   <head>
@@ -22,75 +19,133 @@
     
   </head>
 <style type="text/css">
-#releatedField { position: absolute; width: 63%; }
-#releatedField a { color: #66615b; text-decoration: none; }
-.buttonBackgroundColor{
-background-color:#fe490f;
+#releatedField {
+	position: absolute;
+	width: 63%;
 }
-.buttonBackgroundColor:hover{
-background-color:#ff990f;
-color:#fff;
+
+#releatedField a {
+	color: #66615b;
+	text-decoration: none;
 }
+
+.buttonBackgroundColor {
+	background-color: #fe490f;
+}
+
+.buttonBackgroundColor:hover {
+	background-color: #ff990f;
+	color: #fff;
+}
+
 .probootstrap-section.probootstrap-bg:before {
-    position: absolute;
-    content: "";
-    background: rgba(255, 255, 255, 0.6);
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    z-index: -1;
+	position: absolute;
+	content: "";
+	background: rgba(255, 255, 255, 0.9);
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	z-index: -1;
 }
-.colorCyan{
-color:#2fb1bd !important;
+
+.colorCyan {
+	color: #2fb1bd !important;
 }
+
 .btn.btn-primary {
-    border: 2px solid #2fb1bd;
-    background: #2fb1bd;
-    color: #fff;
+	border: 2px solid #2fb1bd;
+	background: #2fb1bd;
+	color: #fff;
 }
+
 .btn.btn-primary:hover {
 	border: 2px solid #1fffff;
-    background: #1fffff;
-    color: #fff;
+	background: #1fffff;
+	color: #fff;
 }
+
 .probootstrap-footer.probootstrap-bg {
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-    padding: 2em 0;
-    position: relative;
-    color: rgba(255,255,255,.9);
+	background-size: cover;
+	background-repeat: no-repeat;
+	background-attachment: fixed;
+	padding: 2em 0;
+	position: relative;
+	color: rgba(255, 255, 255, .9);
 }
-.flexslider, .flexslider .slides>li, .flexslider2, .flexslider2 .slides>li, .slider-height {
-    height: 800px !important;
+
+@media screen and (min-width: 480px) {
+	.flexslider, .flexslider .slides>li, .flexslider2, .flexslider2 .slides>li,
+		.slider-height {
+		display: block;
+		height: 800px !important;
+	}
 }
+@media not screen and (min-width: 480px) {
+	.flexslider, .flexslider .slides>li, .flexslider2, .flexslider2 .slides>li,
+		.slider-height {
+		display: block;
+		height: 530px !important;
+	}
+	
+	#marginChg {
+		margin-top: 280px !important;
+	}
+	
+	footer .container {
+		height: 95px !important;
+	}
+}
+
 .flexslider .overlay, .flexslider2 .overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    bottom: 0;
-    right: 0;
-    z-index: 3;
-    background: rgba(0,0,0,0);
+	position: absolute;
+	top: 0;
+	left: 0;
+	bottom: 0;
+	right: 0;
+	z-index: 3;
+	background: rgba(0, 0, 0, 0);
 }
-#marginChg { 
-	padding-bottom: 10px; 
-	margin-top: 340px; 
+
+#marginChg {
+	padding-left: 60px;
+	padding-bottom: 10px;
+	margin-top: 350px;
 	background: none;
 	-webkit-box-shadow: none;
 	box-shadow: none;
 }
-#btnColor { background: #fa2848; }
-body{
-color:#fff;
+
+#btnColor {
+	background: #fa2848;
 }
+
+.zeroP {
+	padding: 0px;
+}
+
+body {
+	color: #fff;
+}
+
 .probootstrap-animated {
-    -webkit-animation-duration: .1s;
-    animation-duration: 1s;
-    -webkit-animation-fill-mode: both;
-    animation-fill-mode: both;
+	-webkit-animation-duration: .1s;
+	animation-duration: 1s;
+	-webkit-animation-fill-mode: both;
+	animation-fill-mode: both;
 }
+
+.sb {
+	height: 58px !important;
+	border: 1px solid white;
+}
+
+.probootstrap-home-search .probootstrap-field-group .probootstrap-fields input,
+	.probootstrap-home-search .probootstrap-field-group .probootstrap-fields select
+	{
+	font-size: 18px;
+}
+
 </style>  
 <script src="resources/autocomplete/auto-complete.js"></script>
 <script src="https://code.jquery.com/jquery-3.2.1.js"></script>
@@ -116,7 +171,6 @@ color:#fff;
 				alert(str);
 		}
 	});
-	
 </script>
 <body>
 <!-- START: header -->
@@ -128,21 +182,26 @@ color:#fff;
     <div class="probootstrap-wrap-banner">
       <div class="container">
         <div class="row">
-          <div class="col-md-8 col-md-offset-2">
+          <div class=" col-md-offset-2">
+          
             <div id="marginChg" class="probootstrap-home-search probootstrap-animate">
               <form action="searchList.gt" method="get">
               	<input type="hidden" name="pageNo" value="1">
 	            <div class="probootstrap-field-group" >
 					<div class="probootstrap-fields">
 						<div class="form-field">
-							<input type="text" class="form-control" id="autoComplete" name="search"
-								required="required"
-								placeholder="예) 도시락, 서초, 강남  김밥" />
+							<div class="col-xs-8 col-sm-10 col-md-10 col-lg-10 zeroP">
+								<input type="text" class="form-control sb" id="autoComplete" name="search"
+									required="required" 
+									placeholder="예) 도시락, 서초, 강남  김밥" />
+							</div>
+							<div class="col-xs-3 col-sm-2 col-md-2  zeroP">
+								<button type="submit" title="검색" id="btnColor" class="btn btn-fill sb" style="width: 100%">
+									<i style="font-size:45px;"class="material-icons">search</i>
+								</button>
+							</div>		
 						</div>
 					</div>
-					<button title="검색" onclick="submit();" id="btnColor" class="btn">
-					<i style="font-size:48px;"class="material-icons">search</i>
-					</button>
 				</div>
               </form>
             </div>
@@ -152,7 +211,7 @@ color:#fff;
       </div>
     </div>
     
-    <ul class="slides">
+    <ul class="slides" >
       <li style="background-image: url(resources/mainTemplate/img/slider_1.jpg);" class="overlay"></li>
       <li style="background-image: url(resources/image/711.jpg);" class="overlay"></li>
       <li style="background-image: url(resources/image/withme.jpg);" class="overlay"></li>
@@ -160,6 +219,35 @@ color:#fff;
       <li style="background-image: url(resources/image/도시락3.jpg);" class="overlay"></li>
     </ul>
   </section>
+  
+  <script type="text/javascript">
+	  var ac = new autoComplete({
+		    selector: "#autoComplete",
+		  	minChars: 0,
+		    source: function(term, suggest){
+		    	term = term.toLocaleUpperCase();
+		    	$.ajax({
+					url : "relatedSearch.gt",
+					data : { "search" : term },
+					type : "post",
+					success : function(relatedData) {
+						if (term != "") {
+							var suggestions = [];	
+							var ob = JSON.parse(relatedData);
+							for (var i = 0; i < 5; i++) {
+								if (typeof(ob["search" + i]) != "undefined") {
+									suggestions.push(ob["search" + i]);
+								}
+							}
+							suggest(suggestions);
+						}
+					},
+					error : function(xmlHttpReq, status, error) {
+					}
+				});
+		     }
+	  });  
+  	</script>
   
   <!-- END: slider  -->
   <section class="probootstrap-section probootstrap-bg" style="background:#fff; background-size:cover;">
@@ -189,4 +277,3 @@ color:#fff;
   </body>
 
 </html>
-

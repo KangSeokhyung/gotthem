@@ -123,6 +123,8 @@ body {font-family:나눔스퀘어라운드;}
 	<script src="resources/indexTemplate/js/imagesloaded.pkgd.min.js"></script>
 	<script src="resources/indexTemplate/js/main.js"></script>
 	<script type="text/javascript">
+	
+	//join
 	$().ready(function(){
    		var msg= '${reMsg}';
    		var str;
@@ -136,6 +138,19 @@ body {font-family:나눔스퀘어라운드;}
    		}
    	});
 	
+	//delete
+	$().ready(function(){
+   		var msg= '${resultMsg}';
+   		var str;
+   		console.log(msg);
+   		if(msg!=null){
+   			if(msg=='DelSuccess')
+   				str="제휴해지가 정상적으로 처리되었습니다.\n이용해주셔서 감사합니다.";
+   				
+   			if(str!=null)
+   				alert(str);
+   		}
+   	});
 	</script>
 
 </body>

@@ -31,11 +31,12 @@ function msg_time() {	// 1초씩 카운트
 	}
 	
 }
-
+window.opener.location="orderList.gt;"
 window.onload = function TimerStart(){ tid=setInterval('msg_time()',1000) };
 
-opener=self;
+/* opener=self; */
 setTimeout('self.close()',3000);
+
 
 </script>
 </html>

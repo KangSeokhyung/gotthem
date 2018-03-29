@@ -233,9 +233,11 @@ public class StoreController {
 		int result = memberService.memberDelete(bean);
 		if(result==1) {	//탈퇴 성공하면
 			session.invalidate();
+			System.out.println("해지성공");
 			mav.addObject("resultMsg", "DelSuccess");
 			mav.setViewName("store/stLogin");
 		}else {
+			System.out.println("해지실패");
 			mav.addObject("resultMsg", "storeDelFail");
 			mav.setViewName("store/storeDelFail");
 		}
