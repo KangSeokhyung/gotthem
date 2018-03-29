@@ -108,7 +108,10 @@ padding-top:3px;
     border-radius: 12px;
 }
 th{
-font-size:20px;
+font-size:22px;
+}
+tr{
+font-size:18px;
 }
 .form-control {
     display: block;
@@ -144,6 +147,7 @@ width:568px;
           <ul class="probootstrap-main-nav">
             <li><a href="memcontrol.ad" class="barunPen">회원관리</a></li>
             <li><a href="storecontrol.ad" class="barunPen">점포관리</a></li>
+            <li><a href="index.gt" class="barunPen">고객모드</a></li>
             <li><a href="logout.ad" class="barunPen">로그아웃</a></li>
           </ul>
         </nav>
@@ -153,7 +157,7 @@ width:568px;
   <div class="probootstrap-loader"></div>
 	<div class="table-responsive">
 		<table class="table">
-		<h1 style="display:inline;">회원정보 관리</h1>
+		<center><h1 style="display:inline;"><b>회원정보 관리</b></h1></center>
 		<button style="float:right; margin-right:25px;"class="btn btn-magen">회원등록</button>
 		<hr>
 			<thead>
@@ -209,18 +213,39 @@ width:568px;
 											href="memcontrol.ad?pageNo=${status.index }">${status.index }</a></li>
 									</c:otherwise>
 								</c:choose>
+								
 							</c:forEach>
 						<c:choose>
+						
 							<c:when test="${nextPage ne 0 }">
 								<li class="page-item"><a class="page-link" 
 									href="searchList.gt?pageNo=${nextPage }">&raquo;</a></li>
 							</c:when>
 						</c:choose>
+						
 					</ul>
 					</c:if>
+					<center><form style="height:80px;">
+					<select name="select" style="font-size:20px; height:49px; border-radius: 12px;border:2px solid #44B3C2">
+					    <option value="" selected="selected">선택</option>
+					    <option value="이름">이름</option>
+					    <option value="전화번호" >전화번호</option>
+					    <option value="승인대기">승인대기</option>
+					    <option value="승인">승인</option>
+					    <option value="승인거부">승인거부</option>
+					</select>
+					<input type="text" style="height:49px;border-radius: 12px; border:2px solid #44B3C2">
+					<button type="submit" class="btn btn-primary">검색</button>
+					</form></center>
+					<hr>
 				</div>
-		<hr>
+				
+		
 	</div>
+	
+	
+	
+	
 	  <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"> 
         <div class="modal-dialog"> 
                 <div class="modal-content"> 

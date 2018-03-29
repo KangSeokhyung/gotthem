@@ -53,6 +53,19 @@ body, table, div, p {
 	-webkit-font-feature-settings: 'liga';
 	-webkit-font-smoothing: antialiased;
 }
+.container {
+    padding-bottom: 10px;
+    padding-top: 10px;
+}
+.barunPenLogo{
+	font-family:'나눔바른펜';
+	font-size:40px;
+	color:#fa2848;
+}
+.probootstrap-logo:hover {
+    color: #fa2848;
+}
+
 </style>
 </head>
 <body>
@@ -60,9 +73,9 @@ body, table, div, p {
 		value="${sessionScope.SPRING_SECURITY_CONTEXT}" />
 	<header role="banner" id="navbar" class="probootstrap-header">
 		<div class="container">
-			<a href="/gotThem" class="probootstrap-logo"><img
-				src="resources/image/GotthemLogo.PNG" height="50" width="200"
-				alt="Gotthem" style="margin-top: 5px;"></a> <a href="#"
+			<a href="/gotThem" class="probootstrap-logo barunPenLogo"><img
+				src="resources/image/indexLOGO.PNG" height="50"
+				alt="Gotthem">GotThem</a> <a href="#"
 				class="probootstrap-burger-menu visible-xs"><i>Menu</i></a>
 			<div class="mobile-menu-overlay"></div>
 

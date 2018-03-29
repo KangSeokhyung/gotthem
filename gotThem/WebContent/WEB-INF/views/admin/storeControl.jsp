@@ -33,7 +33,12 @@
 	margin-top: 80px;
 	padding: 60px;
 }
-
+th{
+font-size:22px;
+}
+tr{
+font-size:18px;
+}
 .container {
 	width: 1400px;
 }
@@ -101,6 +106,7 @@ padding-top:3px;
           <ul class="probootstrap-main-nav">
             <li><a href="memcontrol.ad" class="barunPen">회원관리</a></li>
             <li><a href="storecontrol.ad" class="barunPen">점포관리</a></li>
+            <li><a href="index.gt" class="barunPen">고객모드</a></li>
             <li><a href="logout.ad" class="barunPen">로그아웃</a></li>
           </ul>
         </nav>
@@ -108,7 +114,7 @@ padding-top:3px;
   </header>
 	<div class="table-responsive">
 		<table class="table">
-		<h2>점포정보 관리</h2>
+		<center><h1><b>점포정보 관리</b></h1></center>
 			<hr>
 			<thead>
 				<tr>
@@ -175,6 +181,18 @@ padding-top:3px;
 						</c:choose>
 					</ul>
 					</c:if>
+					<center><form style="height:80px;">
+					<select name="select" style="font-size:20px; height:49px; border-radius: 12px;border:2px solid #44B3C2">
+					    <option value="" selected="selected">선택</option>
+					    <option value="이름">이름</option>
+					    <option value="전화번호" >전화번호</option>
+					    <option value="승인대기">승인대기</option>
+					    <option value="승인">승인</option>
+					    <option value="승인거부">승인거부</option>
+					</select>
+					<input type="text" style="height:49px;border-radius: 12px; border:2px solid #44B3C2">
+					<button type="submit" class="btn btn-primary">검색</button>
+					</form></center>
 				</div>
 	</div>
 
@@ -295,11 +313,17 @@ padding-top:3px;
 						</div>
 
 					</section>
+					
 				</div>
 
 			</div>
 		</div>
 	</div>
+
+  </body>
+  <!-- START: footer -->
+<%@include file="../../../footer.jsp" %>
+<!-- END: footer -->
 
 <script>
     $(".edit").click(function(){ 
@@ -340,7 +364,4 @@ padding-top:3px;
   <script src="resources/mainTemplate/js/scripts.min.js"></script>
   <script src="resources/mainTemplate/js/main.min.js"></script>
   <script src="resources/mainTemplate/js/custom.js"></script>
-
-  </body>
-
 </html>

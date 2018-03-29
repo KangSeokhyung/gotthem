@@ -8,15 +8,20 @@
 <title>Insert title here</title>
 </head>
 <body>
+
 <footer class="probootstrap-footer probootstrap-bg">
     <div class="container">
+    <c:set var="sessionCheck" value="${sessionScope.SPRING_SECURITY_CONTEXT.authentication.authorities}" />
+					<c:choose>
+						<c:when test="${sessionCheck eq '[ROLE_ADMIN]'}">
+							<a href="memcontrol.ad" style="float:right; color:666;">관리자모드</a>
+						</c:when>
+					</c:choose>
         <div class="col-md-12">
           <div class="probootstrap-footer-widget">
-            <p>&copy; 2018 스탑없으팀 Gotthem 프로젝트 </p>
-            <strong>주소 : </strong>
-            <span>서울광역시 서초구 비트교육센터 별관 503호</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <center><p>스탑없으 &copy; 2018 GotThem 프로젝트 </p>
             <strong>개발자 : </strong>
-            <span>최강 101기 강석형, 김성우, 김채윤, 권도용, 이찬희</span>
+            <span style="word-break:keep-all;">강석형, 김성우, 김채윤, 권도용, 이찬희</span></center>
           </div>
         </div>
     </div>
