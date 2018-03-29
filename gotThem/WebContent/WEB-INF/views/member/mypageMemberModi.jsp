@@ -11,33 +11,24 @@
     <link rel="stylesheet" href="resources/mainTemplate/css/styles-merged.css">
     <link rel="stylesheet" href="resources/mainTemplate/css/style.min.css">
     <link rel="stylesheet" href="resources/mainTemplate/css/custom.css">
-
-    <!--[if lt IE 9]>
-      <script src="resources/mainTemplate/js/vendor/html5shiv.min.js"></script>
-      <script src="resources/mainTemplate/js/vendor/respond.min.js"></script>
-    <![endif]-->
+<style>
+.btn-primary{
+border-radius: 12px;
+}
+</style>
 </head>
 <body>
 	<div class="service">
          <div class="alert alert-info alert-dismissable">
           <a class="panel-close close" data-dismiss="alert">×</a> 
-          여기에서 회원정보 수정이 가능합니다..
+          여기에서 회원정보 수정이 가능합니다.
         </div>
           <form action="memberModi.gt" method="post" class="probootstrap-form mb60">
-            <div class="row">
-              <div class="col-sm-6">
-                <div class="form-group">
-                  <label for="mem_id">아이디</label>
-                  <input type="text" class="form-control" id="mem_id" disabled="disabled" value="${memberInfo.mem_id }">
-                  <input type="hidden" name="mem_id" value="${memberInfo.mem_id }">
-                </div>
-              </div>
-              </div>
             <div class="row">
               <div class="col-md-6">
                 <div class="form-group">
                   <label for="lname">이름</label>
-                  <input type="text" class="form-control" name="mem_name" id="mem_name" value="${memberInfo.mem_name }">
+                  <input type="text" class="form-control" name="mem_name" id="mem_name" value="${memberInfo.mem_name }" autofocus>
                 </div>
               </div>
             </div>
@@ -66,7 +57,7 @@
             </div>
             </div>
            <div class="row">
-            <div class="col-md-9">
+            <div class="col-md-12">
             <div class="form-group">
               <label for="email">상세주소1</label>
               <input type="text" class="form-control" id="mem_address1" name="mem_address1" value="${mem_address1}">
@@ -74,16 +65,16 @@
             </div>
             </div>
             <div class="row">
-            <div class="col-md-9">
+            <div class="col-md-12">
             <div class="form-group">
               <label for="email">상세주소2</label>
               <input type="text" class="form-control" id="mem_address2" name="mem_address2" value="${mem_address2}">
             </div>
             </div>
-            </div>                   
+            </div>                   <br>
             <div class="form-group">
-              <input type="submit" class="btn btn-primary" name="submit" value="변경">
-              <input type="reset" class="btn btn-primary" value="취소">
+              <center><input type="submit" class="btn btn-primary" name="submit" value="변경" style="padding:5px 0px; width:36%; margin-right:10px;">
+              <input type="reset" class="btn btn-primary" value="취소" style="padding:5px;width:36%; margin-right:10px;"></center>
             </div>              
           </form>
         </div> 

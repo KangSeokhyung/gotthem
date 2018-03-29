@@ -18,8 +18,8 @@
 						</c:when>
 					</c:choose>
         <div class="col-md-12">
-          <div class="probootstrap-footer-widget">
-            <center><p>스탑없으 &copy; 2018 GotThem 프로젝트 </p>
+          <div class="probootstrap-footer-widget" style="color:#fff !important;">
+            <center><span>스탑없으 &copy; 2018 GotThem 프로젝트<span><br><br>
             <strong>개발자 : </strong>
             <span style="word-break:keep-all;">강석형, 김성우, 김채윤, 권도용, 이찬희</span></center>
           </div>

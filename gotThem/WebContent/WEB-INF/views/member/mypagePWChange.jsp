@@ -8,8 +8,9 @@
 <title>회원 비밀번호 확인</title>
 </head>
 <body>
+<center>
  <section class="probootstrap-section">
-         <div class="alert alert-info alert-dismissable">
+         <div class="alert alert-info alert-dismissable" style="word-break:keep-all;">
           <a class="panel-close close" data-dismiss="alert">×</a> 
           여기에서 비밀번호 변경이 가능합니다.
         </div>
@@ -18,38 +19,38 @@
         <div class="col-md-8">
           <form action="passChange.gt" method="post" class="probootstrap-form mb60">
             <div class="row">
-              <div class="col-sm-6">
+              <div class="col-sm-12" >
                 <div class="form-group">
                   <label for="mem_pw">현재 비밀번호</label>
-                  <input type="password" class="form-control" id="mem_pw" name="mem_pw">
+                  <input type="password" style="width:280px;" class="form-control" id="mem_pw" name="mem_pw" autofocus>
                 </div>
               </div>
               </div>
             <div class="row">
-              <div class="col-md-6">
+              <div class="col-md-12">
                 <div class="form-group">
                   <label for="new_pw">새로운 비밀번호</label>
-                  <input type="password" class="form-control" id="new_pw" name="new_pw">
+                  <input type="password" style="width:280px;" class="form-control" id="new_pw" name="new_pw">
                 </div>
               </div>
             </div>
            <div class="row">
-            <div class="col-md-6">
+            <div class="col-md-12">
             <div class="form-group">
               <label for="new_pw2">새로운 비밀번호 확인</label>
-              <input type="password" class="form-control" id="new_pw2" name="new_pw2">
+              <input type="password" style="width:280px;" class="form-control" id="new_pw2" name="new_pw2">
             </div>
             </div>
             </div>            
             <div class="form-group">
-              <input type="submit" class="btn btn-primary" id="submit" name="submit" value="비밀번호변경">
-              <input type="reset" class="btn btn-primary" id="cancel" value="취소하기">
-            </div>              
+              <input type="submit" class="btn btn-primary" id="submit" name="submit" value="변경" style="padding:5px 0px; text-align:center; width:23%; margin-right:10px;">
+              <input type="reset" class="btn btn-primary" id="cancel" value="취소" style="padding:5px 0px; text-align:center; width:23%; margin-right:10px;">
+            </div>           
           </form>
-        </div> 
+       </div> 
+	</div> 
 	</div>
-	</div>
-  </section> 
+  </section> </center>
 </body>
 
 <script>

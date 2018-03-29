@@ -8,19 +8,19 @@
 </head>
 <body>
 <section class="probootstrap-section">
-         <div class="alert alert-info alert-dismissable">
+         <center><div class="alert alert-info alert-dismissable" style="word-break:keep-all;">
           <a class="panel-close close" data-dismiss="alert">×</a> 
           <h4 style="color:red;">주의!!</h4>회원탈퇴 전에 구매한 상품을 수령해주세요. 수령받지 않으시면 탈퇴할 수 없습니다
-        </div>
+        </div></center>
     <div class="container">
       <div class="row">
-        <div class="col-md-8">
+        <div class="col-md-8"><center>
           <form id="form1" action="mypageMemberDel.gt" method="post" class="probootstrap-form mb60">
             <div class="row">
-              <div class="col-sm-6">
+              <div class="col-sm-12">
                 <div class="form-group">
                   <label for="fname">현재 비밀번호</label>
-                  <input type="password" class="form-control" id="fname" name="mem_pw">
+                  <input type="password" class="form-control" id="fname" name="mem_pw" style="width:280px;">
                 </div>
               </div>
               </div>
@@ -29,7 +29,7 @@
               <input type="button" class="btn btn-primary" value="탈퇴하기" onclick="memberDel()">
               <input type="button" class="btn btn-primary" onclick="histiry.back()" value="돌아가기">
             </div>              
-          </form>
+          </form></center>
         </div> 
 	</div>
 	</div>
