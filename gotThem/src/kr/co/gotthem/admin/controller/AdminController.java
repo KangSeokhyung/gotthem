@@ -105,8 +105,6 @@ public class AdminController {
 		mav.addObject("mlist", mlist);
 		mav.setViewName("admin/memberControl");
 		
-		System.out.println("asdadasda"+mlist);
-
 		return mav;
 
 	}
@@ -224,7 +222,7 @@ public class AdminController {
 		
 		memberService.memModi(mbean);
 	
-		return "redirect:storeControl.ad";
+		return "redirect:/admin/storeControl";
 
 	}
 	

@@ -60,8 +60,13 @@ public class OrderDaoImpl implements OrderDao {
     
 	// 3.1 사장님 아이디별 전체 결제 목록
 	@Override
-	public List<OrderpayBean> storeListOrder(String userName) {
-		return sqlSessionTemplate.selectList("storeListOrder", userName);
+	public List<OrderpayBean> storeListOrder(HashMap<String, Object> map) {
+		return sqlSessionTemplate.selectList("storeListOrder", map);
+	}
+	
+	@Override
+	public int storeListOrderCount(String sto_name) {
+		return sqlSessionTemplate.selectOne("storeListOrderCount", sto_name);
 	}
 
 	// 3.2 사장님 아이디별 기간 결제 목록

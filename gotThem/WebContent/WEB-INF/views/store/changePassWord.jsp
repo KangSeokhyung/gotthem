@@ -20,6 +20,7 @@
 <link rel="stylesheet" href="resources/landy/css/style.default.css" id="theme-stylesheet">
 <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 <style>
+body{font-size:18px;}
 a{
 text-decoration: none;
 color: #000000;
@@ -30,6 +31,7 @@ margin-top:130px;
 }
 .form-control {
     width: 100%;
+    height:50px;
     margin:auto;
 }
 input[type="submit"].btn-block, input[type="reset"].btn-block, input[type="button"].btn-block {
@@ -57,6 +59,12 @@ margin-bottom:0px;
     background: #1FAD9F;
     hover:
 }
+.btn-success{
+border-radius:4px;
+margin:1px;
+padding: 0.6rem 1rem;
+align:center;
+}
 .btn-success:hover,
 .btn-success:focus,
 .btn-success:active,
@@ -83,31 +91,30 @@ header {
     	<h3>사장님 비밀번호 변경하러 오셨어요?</h3>&nbsp;<br>
     		<div class="panel panel-default">
 			  	<div class="panel-heading">
-			    	<h3 class="panel-title">비밀번호 변경</h3>
+			    	<h4><strong>비밀번호 변경</strong></h4>
 			 	</div>
 			  	<div class="panel-body">
 			    	<form accept-charset="UTF-8" role="form" action="<c:url value='/passWordChange.st' />"method="post">
                     <fieldset>
 			    	  	<div class="form-group mBottom0px">
-			    		    <input class="form-control" placeholder="현재 비밀번호를 입력해주세요" name="mem_pw" type="password">
+			    	  	<span>현재 비밀번호</span>
+			    		    <input class="form-control" placeholder="현재 비밀번호를 입력해주세요." name="mem_pw" type="password">
 			    		</div>
 			    		<div class="form-group">
-			    		    <span class="formform">현재 비밀번호를 입력해주세요</span>
 			    		</div>
 			    		<div class="form-group mBottom0px">
-			    			<input class="form-control" placeholder="새로운 비밀번호를 입력해주세요" name="new_pw1" type="password" value="">
+			    			<span>새로운 비밀번호</span>
+			    			<input class="form-control" placeholder="새로운 비밀번호를 입력해주세요." name="new_pw1" type="password" value="">
 			    		</div>
 			    		<div class="form-group">
-			    		    <span class="formform">새로운 비밀번호를 입력해주세요</span>
 			    		</div>
 			    		<div class="form-group mBottom0px">
-			    			<input class="form-control" placeholder="다시 한번 입력해주세요" name="new_pw2" type="password" value="">
+			    			<input class="form-control" placeholder="다시 한번 입력해주세요." name="new_pw2" type="password" value="">
 			    		</div>
 			    		<div class="form-group">
-			    		    <span class="formform">다시한번 입력해주세요</span>
 			    		</div>
-			    		<input class="btn btn-lg btn-success btn-block colorGreen" type="submit" value="비밀번호 변경"><br>
-			    		<input class="btn btn-lg btn-success btn-block colorGreen" type="button" onclick="history.back()" value="취소하기">
+			    		<input class="btn btn-success colorGreen" type="submit" value="비밀번호 변경">
+			    		<input class="btn btn-success colorGreen" type="button" onclick="history.back()" value="취소하기">
 			    		 <span style="padding-top:10px;color:blue;">※ 사장님~ 비밀번호 유출에 주의해주세요</span>
 			    	</fieldset>
 			      	</form>

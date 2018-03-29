@@ -35,7 +35,7 @@
 label {
 	margin-bottom: 0px;
 }
-
+#comment{width:500px;}
 .form-comment {
 	display: block;
 	width: 253px;
@@ -78,6 +78,7 @@ label {
 	.pb-5 {
 		padding-top: 7%;
 	}
+	#comment{width:253px;}
 }
 
 .form-control {
@@ -225,9 +226,9 @@ label {
 					</tr>
 					<tr>
 						<th nowrap>코멘트</th>
-						<td><textarea class="form-comment" name="sto_comment"
-								style="height: 100px; resize: none; overflow: visible; text-overflow: ellipsis;"
-								required="" maxlength="100">${memberInfo.sto_comment }</textarea></td>
+						<td><textarea class="form-comment" name="sto_comment" id="comment"
+								style="height: 180px; resize: none; overflow: visible; text-overflow: ellipsis;"
+								required="" maxlength="2000">${memberInfo.sto_comment }</textarea></td>
 					</tr>
 					<tr>
 						<td nowrap colspan="2" align="right"><button

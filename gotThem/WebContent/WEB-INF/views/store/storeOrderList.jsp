@@ -24,6 +24,13 @@
 <link rel="stylesheet" href="resources/indexTemplate/css/style.css">
 </head>
 <style>
+body {font-size: 16px;}
+.table td, .table th {
+    padding: 5px;
+    vertical-align: middle;
+    border-top: 1px solid #e9ecef;
+}
+
 .btn-primary{
 border-radius:4px;
 margin:1px;
@@ -38,10 +45,10 @@ td .img{padding:0px;}
 }
 
 .container{
-padding-top:50px;
+padding-top:30px;
 padding-bottom:20px;
 padding-left:0;
-margin-left:180px;
+margin-left:170px;
 }
 
 table th, td {
@@ -55,6 +62,8 @@ table th, td {
 table, tr, td {
     display: block;
     font-size:16px;
+    text-align: center;
+	vertical-align: middle;
 }
 
 td:first-child {
@@ -117,6 +126,7 @@ margin-left:0px;
 }
 
 .datePick{display:none;}
+.no{display: none;}
 }
 </style>
 <body>
@@ -128,34 +138,33 @@ margin-left:0px;
 		<a href="#" class="probootstrap-toggle js-probootstrap-toggle"><span
 			class="oi oi-menu"></span></a>
 		<div class="probootstrap-main-site-logo">
-			<a href="index.html">GOT THEM</a>
+			<c:set var="sessionCheck"
+						value="${sessionScope.SPRING_SECURITY_CONTEXT}" />
+			<c:choose>
+				<c:when test="${sessionCheck eq null}">
+			<a href="login.st">GOT THEM</a>
+			</c:when>
+				<c:otherwise>
+					<a href="stock.st?pageNo=1" class="mb-2 d-block probootstrap-logo">GOTTHEM</a>
+				</c:otherwise>
+			</c:choose>
 		</div>
 	</div>
 	<br><br>
 	<div class="cover-container pb-5">
 		<div class="cover-inner container">
-	<form action="./storeOrderListTime.st"><br>
-		<div>
-			<label for="fromDate"><span class="datePick">기간: &nbsp;&nbsp; </span></label><input type="date"
-				id="fromDate" name="from" class="form-control" required="" /> <label for="toDate"><span class="datePick">~</span></label>
-			<input type="date" id="toDate" class="form-control" name="to" required="" max=""/>&nbsp;&nbsp;
-			<input type="submit" class="btn btn-primary" value="조회" /><strong>&nbsp;&nbsp;&nbsp;총 결제 금액:&nbsp; <span id="chkSum"></span>
-			</strong>
-		</div>
-	</form>
 			<table class="table table-user-information" id="mytable">
 				<tr>
-					<th class="no">no.</th>
+					<th class="no">번호</th>
 					<th class="img">사진</th>
 					<th class="name">상품명</th>
 					<th class="stock">수량</th>
 					<th class="price">가격</th>
 					<th class="status">상태</th>
 					<th class="findtime">결제 시간</th>
-					<th class="info">고객정보</th>
-					<th class="delete">결제취소</th>
+					<th class="info">전화번호</th>
 				</tr>
-				<c:forEach var="row" items="${map.list}" varStatus="i">
+				<c:forEach var="row" items="${storeListOrder}" varStatus="i">
 					<tr>
 						<td class="no">${row.ord_no}</td>
 						<td class="img"><img src="/img/${row.ord_proimg}" 
@@ -167,16 +176,41 @@ margin-left:0px;
 							value="${row.ord_price}"></td>
 						<td class="status">${row.ord_status}</td>
 						<td class="findtime">${row.ord_findtime}</td>
-						<td class="info"><input type="button" value="상세" class="btn btn-primary"
-							onclick="button_detail('${row.ord_no}','${row.ord_stock}','${row.ord_procode}');">
-						</td>
-						<td class="delete"><input type="button" value="취소" class="btn btn-primary"
-							onclick="button_delete('${row.ord_no}','${row.ord_stock}','${row.ord_procode}');">
-						</td>
-						
+						<td class="info">${mem_phone}</td>
 					</tr>
 				</c:forEach>
 			</table>
+			<div id="paging" align="center">
+				<c:if test="${totalPages ne 0}">
+					<ul class="pagination pagination-danger">
+						<c:choose>
+							<c:when test="${prevPage ne 0}">
+								<li class="page-item"><a class="page-link"
+									href="storeOrderList.st?pageNo=${prevPage }">&laquo;</a></li>
+							</c:when>
+						</c:choose>
+						<c:forEach begin="${beginPage }" end="${endPage }" step="1"
+							varStatus="status">
+							<c:choose>
+								<c:when test="${nowPage eq status.index }">
+									<li class="page-item active"><a class="page-link"
+										href="storeOrderList.st?pageNo=${status.index }">${status.index }</a></li>
+								</c:when>
+								<c:otherwise>
+									<li class="page-item"><a class="page-link"
+										href="storeOrderList.st?pageNo=${status.index }">${status.index }</a></li>
+								</c:otherwise>
+							</c:choose>
+						</c:forEach>
+						<c:choose>
+							<c:when test="${nextPage ne 0 }">
+								<li class="page-item"><a class="page-link"
+									href="storeOrderList.st?pageNo=${nextPage }">&raquo;</a></li>
+							</c:when>
+						</c:choose>
+					</ul>
+				</c:if>
+			</div>
 
 	</div>
 	</div>
@@ -215,15 +249,6 @@ margin-left:0px;
 				document.getElementById("chkSum").innerHTML = bb;
 			}
 		});
-		jQuery(function($) {
-			$('#fromDate').on('change', function() {
-				$('#toDate').prop('min', $(this).val());
-			});
-			$('#toDate').on('change', function() {
-				$('#fromDate').prop('max', $(this).val());
-			});
-		});
-		document.getElementById('toDate').valueAsDate = new Date();
 		</script> 
 	<script src="resources/indexTemplate/js/popper.min.js"></script> <script
 		src="resources/indexTemplate/js/bootstrap.min.js"></script> <script

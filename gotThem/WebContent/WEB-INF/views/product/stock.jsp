@@ -30,6 +30,8 @@ margin:1px;
 padding: 0.6rem 1rem;
 }
 
+a {color: #e82424;}
+.container{margin-left:170px;}
 
 @media all and (max-width:767px){
 .stocktable .no {display:none}

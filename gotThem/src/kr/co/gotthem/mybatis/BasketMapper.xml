@@ -136,9 +136,13 @@
     <!-- 3.1 사장님 아이디별 전체 결제 목록 -->
 	<select id="storeListOrder" parameterType="java.util.HashMap" resultType="kr.co.gotthem.order.bean.OrderpayBean">
 		SELECT * FROM orderpay
-		WHERE sto_name = #{userName}
-		ORDER BY ord_no desc
+		WHERE sto_name = #{sto_name}
+		ORDER BY ord_no desc limit #{beginList}, 10 
 	</select> 
+	
+	<select id="storeListOrderCount" resultType="int" parameterType="String">
+		select count(*) from orderpay where sto_name = #{sto_name}
+	</select>
 	
     <!-- 3.2 사장님 아이디별 기간 결제 목록 -->  
 	<select id="storeListOrderTime" parameterType="java.util.HashMap" resultType="kr.co.gotthem.order.bean.OrderpayBean">

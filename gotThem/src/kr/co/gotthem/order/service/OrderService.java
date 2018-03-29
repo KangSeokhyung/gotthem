@@ -5,6 +5,8 @@ import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
+import org.springframework.ui.Model;
+
 import kr.co.gotthem.basket.bean.BasketBean;
 import kr.co.gotthem.order.bean.OrderpayBean;
 
@@ -31,7 +33,7 @@ public interface OrderService {
    public List<OrderpayBean> listOrder(int userNo);
  
    // 3.1 사장님 아이디별 전체 결제 목록
-   public List<OrderpayBean> storeListOrder(String userName);
+   public List<OrderpayBean> storeListOrder(Model model, String sto_name, int pageNo);
    
    // 3.2 사장님 아이디별 기간  결제 목록 
    public List<OrderpayBean> storeListOrderTime(int userNo, Timestamp begin, Timestamp end );
@@ -40,4 +42,5 @@ public interface OrderService {
    public <T> T pay(String accessToken, Class<T> type, List valueArr);
    
    public <T> T approve(String pg_Token, HttpSession session, Class<T> type);
+
 }

@@ -2,6 +2,7 @@ package kr.co.gotthem.order.service;
 
 import java.sql.Timestamp;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -9,6 +10,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
+import org.springframework.ui.Model;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
 import org.springframework.web.client.RestTemplate;
@@ -65,9 +67,57 @@ public class OrderServiceImpl implements OrderService {
     
     // 3.1 사장님 아이디별 전체 결제 목록
     @Override
-    public List<OrderpayBean> storeListOrder(String userName) {
-        return orderDao.storeListOrder(userName);
-    }
+    public List<OrderpayBean> storeListOrder(Model model, String sto_name, int pageNo) {
+    	final int rowPerPage = 10;
+		int beginList = (pageNo - 1) * rowPerPage;
+
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		map.put("beginList", beginList);
+		map.put("sto_name", sto_name);
+
+		List storeListOrder = orderDao.storeListOrder(map);
+
+		// 전체 게시물 수
+		int totalRows = orderDao.storeListOrderCount(sto_name);
+		// 전체 페이지 번호 수
+		int totalPages = (int) Math.ceil((double) totalRows / rowPerPage);
+
+		// 화면 하단에 표시될 페이지의 개수
+		final int pagePerPage = 5;
+
+		// 하단에 표시될 페이지의 범위 개수
+		int totalRanges = (int) Math.ceil((double) totalPages / pagePerPage);
+
+		// 현재 페이지의 범위 번호
+		int currentRange = (int) Math.ceil((double) pageNo / pagePerPage);
+
+		int beginPage = (currentRange - 1) * pagePerPage + 1;
+		int endPage = currentRange * pagePerPage;
+
+		if (currentRange == totalRanges) {
+			endPage = totalPages;
+		}
+
+		int prevPage = 0;
+		if (currentRange != 1) {
+			prevPage = (currentRange - 2) * pagePerPage + 1;
+		}
+
+		int nextPage = 0;
+		if (currentRange != totalRanges) {
+			nextPage = currentRange * pagePerPage + 1;
+		}
+
+		model.addAttribute("pageNo", pageNo);
+		model.addAttribute("beginPage", beginPage);
+		model.addAttribute("endPage", endPage);
+		model.addAttribute("prevPage", prevPage);
+		model.addAttribute("nextPage", nextPage);
+		model.addAttribute("totalPages", totalPages);
+		model.addAttribute("storeListOrder", storeListOrder);
+
+		return storeListOrder;
+	}
     
     // 3.2 사장님 아이디별 기간  결제 목록
     @Override

@@ -11,6 +11,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -163,59 +164,19 @@ public class OrderController {
      
 	// 3. 사장님 아이디별 전체 결제 목록
 	@RequestMapping("/storeOrderList.st")
-	public ModelAndView listOrderStore( ModelAndView mav) throws Exception {
+	public ModelAndView listOrderStore(Model model, @RequestParam int pageNo, ModelAndView mav) throws Exception {
 
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 		String mem_id = authentication.getName();
 		MemberBean memberInfo = memberService.memberInfo(mem_id);
-	
-		int userNo = memberInfo.getMem_no();
-		String userName = memberInfo.getSto_name();
+		String sto_name = memberInfo.getSto_name();
+		String mem_phone = memberInfo.getMem_phone();
 
-		Map<String, Object> map = new HashMap<String, Object>();
-		List<OrderpayBean> slistOrder = orderService.storeListOrder(userName);
-/*		List<OrderpayBean> slistOrder = orderService.storeListOrder(userNo);
-*/		System.out.println("storeLisOrder타고 " + slistOrder);
-		map.put("list", slistOrder);
-		mav.setViewName("/store/storeOrderList");
-		mav.addObject("map", map);
+		orderService.storeListOrder(model, sto_name, pageNo);
+		model.addAttribute(mem_phone);
+		mav.addObject("mem_phone", mem_phone);
+		mav.setViewName("store/storeOrderList");
 		return mav;
-	}
-	
-
-	// 3.1 사장님 아이디 기간별 결제 목록
-	@RequestMapping("/storeOrderListTime.st")
-	public ModelAndView listOrderStore(@RequestParam String from, @RequestParam String to, ModelAndView mav)
-			throws Exception {
-
-		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-		String mem_id = authentication.getName();
-		MemberBean memberInfo = memberService.memberInfo(mem_id);
-		int userNo = memberInfo.getMem_no();
-		String userName = memberInfo.getSto_name();
-
-		String from1 = from + " 00:00:00.0";
-		java.sql.Timestamp begin = java.sql.Timestamp.valueOf(from1);
-		String to1 = to + " 23:59:59.9";
-		java.sql.Timestamp end = java.sql.Timestamp.valueOf(to1);
-		
-		
-		System.out.println("begin은 " + begin);
-		System.out.println("end은 " + end);
-		Map<String, Object> map = new HashMap<String, Object>();
-		List<OrderpayBean> slistOrder = orderService.storeListOrderTime(userNo, begin, end);
-		System.out.println("Time " + slistOrder);
-		
-		map.put("begin", from);
-		map.put("end", to);
-		map.put("list", slistOrder);
-		mav.setViewName("/store/storeOrderListTime");
-		mav.addObject("map", map);
-		return mav;
-	}
-	@RequestMapping("/test.gt")
-	public String test2() {
-		return "basket/purchase";
 	}
 	
 	@RequestMapping(value="/payment.gt", method = RequestMethod.POST)
