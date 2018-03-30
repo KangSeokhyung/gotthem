@@ -158,7 +158,10 @@ public class MemberController {
 	}
 	
 	@RequestMapping(value = "/joinSccess.gt", method = RequestMethod.POST)
-	public String joinSccess(HttpServletRequest request, MemberBean memberBean, HttpServletResponse response) throws Exception {
+	public String joinSccess(HttpServletRequest request, MemberBean memberBean, 
+			@RequestParam(required=false) String gubun, 
+			HttpServletResponse response) throws Exception {
+		
 		//email 세팅하기
 		String emailid = request.getParameter("mem_emailid");
 		String emailadd = request.getParameter("mem_emailadd");
@@ -176,8 +179,16 @@ public class MemberController {
 		memberBean.setMem_address(request.getParameter("mem_post")+"/"+
 		request.getParameter("mem_address1")+"/"+request.getParameter("mem_address2"));
 		
-		System.out.println(memberBean);
-		memberService.join(memberBean);
+		// admin에서 회원가입 시 아이디와 동일한 비밀번호
+		if (gubun.equals("joinToAdmin") && gubun != null) {
+			memberBean.setMem_pw(memberBean.getMem_id());
+			memberService.join(memberBean);
+			return "redirect:memcontrol.ad";
+		} else {
+			System.out.println(memberBean);
+			memberService.join(memberBean);
+		}
+		
 		return "redirect:index.gt";
 	}
 	

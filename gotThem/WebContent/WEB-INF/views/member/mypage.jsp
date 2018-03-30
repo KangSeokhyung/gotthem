@@ -112,10 +112,10 @@
             <a href="#tab-4" data-toggle="tab" class="hoverColor colorBl">회원 탈퇴</a>
             </span></li>
              <li><i class="xi-cart"></i><span>
-            <a href="listBasket.gt" class="hoverColor colorBl" >장바구니 정보</a>
+            <a href="listBasket.gt" class="hoverColor colorBl" >장바구니</a>
             </span></li>
              <li><i class="xi-truck"></i><span>
-            <a href="orderList.gt" class="hoverColor colorBl">찾아갈 상품</a>
+            <a href="orderList.gt" class="hoverColor colorBl">결제 정보</a>
             </span></li>
            	
           </ul>

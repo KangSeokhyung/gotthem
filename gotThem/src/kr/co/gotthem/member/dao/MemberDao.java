@@ -46,5 +46,7 @@ public interface MemberDao {
 	public void kakaoJoin(MemberBean memberBean);
 
 	public String selectStoName(int pro_memno);
+
+	public List<MemberBean> selectSearch(int begin, String select, String search);
 	
 }

@@ -53,6 +53,9 @@ table {
     color: rgba(255,255,255,.9);
 }
 ul li { font-size: 16px; }
+.sb {
+	border: 1px solid white;
+}
 @media not screen and (min-width: 480px) {
 	footer .container {
 		height: 95px !important;
@@ -245,7 +248,7 @@ ul li { font-size: 16px; }
 									placeholder="예) 도시락, 서초, 강남  김밥" />
 							</div>
 							<div class="col-xs-3 col-sm-2 col-md-2 col-lg-2 zeroP">
-								<button type="submit" title="검색" id="btnColor" class="btn btn-fill sb" style="width: 100%">
+								<button type="submit" title="검색" id="btnColor sb" class="btn btn-fill sb" style="width: 100%">
 									<i style="font-size:45px;"class="material-icons">search</i>
 								</button>
 							</div>		

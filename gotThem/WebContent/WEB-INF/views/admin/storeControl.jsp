@@ -39,10 +39,6 @@ font-size:20px;
 tr{
 font-size:18px;
 }
-.container {
-	width: 1400px;
-}
-
 .probootstrap-main-nav li a {
 	font-size: 20px;
 }
@@ -91,6 +87,95 @@ padding-top:3px;
     border-top: 1px solid #ddd;
 }
 </style>
+<script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+<script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
+<script type="text/javascript">
+	$(document).ready(function() {
+		$("#rowClick tr").click(function(event) {
+			if(event.target.nodeName.toLowerCase() == "td") {
+				$("#myModal").modal("show");
+				var tr = $(this);
+				var td = tr.children();
+				
+				console.log("클릭한 Row의 모든 데이터 : "+tr.text());
+				
+				var userid = td.eq(0).text();
+				var username = td.eq(1).text();
+				var stoname = td.eq(2).text();
+				var email = td.eq(3).text();
+				var phone = td.eq(4).text();
+				var address = td.eq(5).text(); 
+				addrarray = address.split('/');
+				var addr1 = addrarray[0];
+				var addr2 = addrarray[1];
+				var addr3 = addrarray[2];
+				var enableParse = td.eq(7).text();
+				enable = enableParse.match("탈퇴");
+				
+				$("#mem_id").val(userid);
+				$("#mem_id2").val(userid);
+				$("#sto_name").val(stoname);
+				$("#mem_name").val(username);
+				$("#mem_email").val(email);
+				$("#mem_phone").val(phone);
+				$("#sample6_postcode").val(addr1);
+				$("#sample6_address").val(addr2);
+				$("#sample6_address2").val(addr3);
+				
+				if (enable == "탈퇴") {
+					$("[name='enable'][value='탈퇴']").attr("checked", true);
+				}
+				
+			}
+		});
+	});
+	
+	function sample6_execDaumPostcode(gubun) {
+		new daum.Postcode({
+			oncomplete : function(data) {
+				// 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
+				// 각 주소의 노출 규칙에 따라 주소를 조합한다.
+				// 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
+				var fullAddr = ''; // 최종 주소 변수
+				var extraAddr = ''; // 조합형 주소 변수
+				// 사용자가 선택한 주소 타입에 따라 해당 주소 값을 가져온다.
+				if (data.userSelectedType === 'R') { // 사용자가 도로명 주소를 선택했을 경우
+					fullAddr = data.roadAddress;
+				} else { // 사용자가 지번 주소를 선택했을 경우(J)
+					fullAddr = data.jibunAddress;
+				}
+				// 사용자가 선택한 주소가 도로명 타입일때 조합한다.
+				if (data.userSelectedType === 'R') {
+					//법정동명이 있을 경우 추가한다.
+					if (data.bname !== '') {
+						extraAddr += data.bname;
+					}
+					// 건물명이 있을 경우 추가한다.
+					if (data.buildingName !== '') {
+						extraAddr += (extraAddr !== '' ? ', '
+								+ data.buildingName : data.buildingName);
+					}
+					// 조합형주소의 유무에 따라 양쪽에 괄호를 추가하여 최종 주소를 만든다.
+					fullAddr += (extraAddr !== '' ? ' (' + extraAddr
+							+ ')' : '');
+				}
+				
+				if (gubun == 1) {
+					document.getElementById('sample6_postcode_j').value = data.zonecode; //5자리 새우편번호 사용
+					document.getElementById('sample6_address_j').value = fullAddr;
+	
+					document.getElementById('sample6_address2_j').focus();
+				} 
+				document.getElementById('sample6_postcode').value = data.zonecode; //5자리 새우편번호 사용
+				document.getElementById('sample6_address').value = fullAddr;
+	
+				document.getElementById('sample6_address2').focus();
+				
+					
+			}
+		}).open();
+	}
+</script>
   </head>
   <body>
 
@@ -128,10 +213,9 @@ padding-top:3px;
 					<th>주소</th>
 					<th>가입일</th>
 					<th>계정상태</th>
-					<th>수정</th>
 				</tr>
 			</thead>
-			<tbody>
+			<tbody id="rowClick"> 
 				<c:forEach var="stlist" items="${requestScope.stlist}">
 					<tr>
 						<td>${stlist.mem_id}</td>
@@ -147,8 +231,6 @@ padding-top:3px;
 								<c:when test="${stlist.enabled eq 1 }">
 						승인완료</c:when>
 							</c:choose></td>
-						<td><button type="button" class="btn btn-primary edit"
-								data-toggle="modal" data-target="#myModal">수정</button></td>
 					</tr>
 				</c:forEach>
 			</tbody>
@@ -211,17 +293,15 @@ padding-top:3px;
 				</div>
 				<div class="modal-body">
 					<section class="mbr-section form1 cid-qIWKYtQnJh" id="form1-r">
-						<div class="container">
+						<div class="container-fluid">
 							<div class="row justify-content-center">
-								<div data-form-alert="" hidden="">Thanks for filling out
-									the form!</div>
-								<form class="mbr-form" action="storemodify.ad" method="post"
+							
+								<form action="storemodify.ad" method="post"
 									data-form-title="Mobirise Form">
-									<input type="hidden" name="email" data-form-email="true"
-										value="v71UZV7rSGKmNdtMTJcCzvbgvRKs8I889PXLsAjbR6NuKJtPYoKYEe+DT90N7gqVmrsYQhYLqTnSDAVjImF7Eb8KP/1hIcQUbq5w77EmgcHnu38hK1G/QmJo9v9/aFIP"
-										data-form-field="Email">
+									
 									<div class="row row-sm-offset">
-										<div class="col-sm-8 multi-horizontal" data-for="id">
+									
+										<div class="col-sm-3 multi-horizontal" data-for="id">
 											<div class="form-group">
 												<label class="form-control-label mbr-fonts-style display-7"
 													for="name-form1-r">아이디</label> <input type="text"
@@ -230,6 +310,7 @@ padding-top:3px;
 												<input type="hidden" id="mem_id2" name="mem_id">
 											</div>
 										</div>
+									
 										<div class="col-sm-8 multi-horizontal" data-for="ownername">
 											<div class="form-group">
 												<label class="form-control-label mbr-fonts-style display-7"
@@ -239,6 +320,7 @@ padding-top:3px;
 													data-form-field="owner">
 											</div>
 										</div>
+										
 										<div class="col-sm-8 multi-horizontal" data-for="storename">
 											<div class="form-group">
 												<label class="form-control-label mbr-fonts-style display-7"
@@ -248,6 +330,7 @@ padding-top:3px;
 													required="" id="sto_name">
 											</div>
 										</div>
+										
 										<div class="col-sm-8 multi-horizontal" data-for="email">
 											<div class="form-group">
 												<label class="form-control-label mbr-fonts-style display-7"
@@ -257,6 +340,7 @@ padding-top:3px;
 													required="" id="mem_email">
 											</div>
 										</div>
+										
 										<div class="col-sm-8 multi-horizontal" data-for="phone">
 											<div class="form-group">
 												<label class="form-control-label mbr-fonts-style display-7"
@@ -266,6 +350,7 @@ padding-top:3px;
 													required="" id="mem_phone">
 											</div>
 										</div>
+										
 										<div class="col-sm-6 multi-horizontal" data-for="postcode">
 											<div class="form-group">
 												<label class="form-control-label mbr-fonts-style display-7"
@@ -275,12 +360,14 @@ padding-top:3px;
 													value="${st_post }">
 											</div>
 										</div>
+										
 										<div class="col-sm-6 multi-horizontal" data-for="findpostcode">
 											<div class="form-group" style="margin: 23px 0px;">
 												<button onclick="sample6_execDaumPostcode()"
 													class="btn btn-primary btn-form display-4">우편번호찾기</button>
 											</div>
 										</div>
+										
 										<div class="col-sm-12 multi-horizontal" data-for="address1">
 											<div class="form-group">
 												<label class="form-control-label mbr-fonts-style display-7"
@@ -290,6 +377,7 @@ padding-top:3px;
 													id="sample6_address">
 											</div>
 										</div>
+										
 										<div class="col-sm-12 multi-horizontal" data-for="address2">
 											<div class="form-group">
 												<label class="form-control-label mbr-fonts-style display-7"
@@ -299,23 +387,29 @@ padding-top:3px;
 													id="sample6_address2">
 											</div>
 										</div>
+										
 										<div class="col-sm-12 multi-horizontal" data-for="grade">
 											<div class="form-group">
 												<label class="form-control-label mbr-fonts-style display-7"
-													for="addr2-form1-r">회원 상태</label> <br> <input
-													type="radio" name="enable" value="승인완료" checked>승인완료
+													for="addr2-form1-r">회원 상태</label> <br> 
+												<input type="radio" name="enable" value="승인완료" checked>승인완료
 												<input type="radio" name="enable" value="승인대기">승인대기
+												<input type="radio" name="enable" value="승인거부">승인거부
 											</div>
 										</div>
+										
 										<div class="col-sm-8 multi-horizontal" data-for="button">
-											<button type="submit" class="btn btn-primary">정보수정</button>
-											<button type="button" class="btn btn-secondary"
-												data-dismiss="modal">취소</button>
+											<center>
+												<button type="submit" class="btn btn-primary">정보수정</button>
+												<button type="button" class="btn btn-secondary"
+													data-dismiss="modal">취소</button>
+											</center>
 										</div>
+									</div>
 								</form>
+								
 							</div>
 						</div>
-
 					</section>
 
 				</div>
@@ -329,42 +423,6 @@ padding-top:3px;
 <%@include file="../../../footer.jsp" %>
 <!-- END: footer -->
 
-<script>
-    $(".edit").click(function(){ 
-		
-		var str = ""
-		var edit = $(this);
-		
-		// checkBtn.parent() : checkBtn의 부모는 <td>이다.
-		// checkBtn.parent().parent() : <td>의 부모이므로 <tr>이다.
-		var tr = edit.parent().parent();
-		var td = tr.children();
-		
-		console.log("클릭한 Row의 모든 데이터 : "+tr.text());
-		
-		var userid = td.eq(0).text();
-		var username = td.eq(1).text();
-		var email = td.eq(2).text();
-		var phone = td.eq(3).text();
-		var address = td.eq(4).text();
-		addrarray = address.split('/');
-		var addr1 = addrarray[0];
-		var addr2 = addrarray[1];
-		var addr3 = addrarray[2];
-		var regdate = td.eq(5).text();		
-		
-		console.log(addrarray);
-		
-		$("#mem_id").val(userid);
-		$("#mem_id2").val(userid);
-		$("#mem_name").val(username);
-		$("#mem_email").val(email);
-		$("#mem_phone").val(phone);
-		$("#sample6_postcode").val(addr1);
-		$("#sample6_address").val(addr2);
-		$("#sample6_address2").val(addr3);
-	});
-    </script>
   <script src="resources/mainTemplate/js/scripts.min.js"></script>
   <script src="resources/mainTemplate/js/main.min.js"></script>
   <script src="resources/mainTemplate/js/custom.js"></script>
