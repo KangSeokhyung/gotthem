@@ -31,7 +31,7 @@
 	box-shadow: none;
 }
 #pro_stock { width: 55px; text-align: center; }
-#btnColor { background: #fa2848; }
+#btnColor { background: #fa2848; border: 1px solid white; }
 .btnColor2 { background: #70C585; color: white; padding: 10px 25px; }
 .btnColor3 { background: #899; color: white; padding: 10px 25px; }
 .zeroP { padding: 0px; }
