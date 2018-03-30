@@ -44,7 +44,7 @@
             </div>            
             <div class="form-group">
               <input type="submit" class="btn btn-primary" id="submit" name="submit" value="변경" style="padding:5px 0px; text-align:center; width:23%; margin-right:10px;">
-              <input type="reset" class="btn btn-primary" id="cancel" value="취소" style="padding:5px 0px; text-align:center; width:23%; margin-right:10px;">
+              <input type="reset" class="btn btn-primary" id="cancel" value="리셋" style="padding:5px 0px; text-align:center; width:23%; margin-right:10px;">
             </div>           
           </form>
        </div> 

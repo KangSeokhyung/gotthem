@@ -26,8 +26,7 @@
               </div>
                        
             <div class="form-group">
-              <input type="button" class="btn btn-primary" value="탈퇴하기" onclick="memberDel()">
-              <input type="button" class="btn btn-primary" onclick="histiry.back()" value="돌아가기">
+              <input type="button" class="btn btn-primary" style="width:280px;" value="탈퇴하기" onclick="memberDel()">
             </div>              
           </form></center>
         </div> 

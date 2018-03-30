@@ -62,6 +62,7 @@
     </style>
   </head>
 <body>
+
 <!-- START: header -->
    <header>
 		<%@include file="../../../nav.jsp"%>
@@ -145,6 +146,7 @@
   
 </body>
     <!-- Javascript files-->
+      <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
     <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
      <script src="resources/mainTemplate/js/scripts.min.js"></script>
   	<script src="resources/mainTemplate/js/main.min.js"></script>
