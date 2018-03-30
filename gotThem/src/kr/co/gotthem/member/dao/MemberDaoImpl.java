@@ -56,7 +56,6 @@ public class MemberDaoImpl implements MemberDao {
 	
 	@Override
 	public void memModi(MemberBean memberBean) {
-		System.out.println(memberBean);
 		int result = sqlSessionTemplate.update("memModi", memberBean);
 		System.out.println("회원정보 관리자 수정 후 결과는 : " + result);
 	}
@@ -132,13 +131,16 @@ public class MemberDaoImpl implements MemberDao {
 	}
 
 	@Override
-	public List<MemberBean> selectSearch(int begin, String select, String search) {
+	public List<MemberBean> selectSearch(int begin, String select, String search, String gubun) {
 		Map map = new HashMap();
 		map.put("begin", begin);
 		map.put("select", select);
 		map.put("search", search);
 		
-		return sqlSessionTemplate.selectList("selectSearch", map);
+		if (gubun.equals("회원")) {
+			return sqlSessionTemplate.selectList("selectSearch", map);
+		}
+		return sqlSessionTemplate.selectList("selectSearch_j", map);
 	}
 	
 }

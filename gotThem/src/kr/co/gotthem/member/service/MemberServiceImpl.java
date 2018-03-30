@@ -116,7 +116,7 @@ public class MemberServiceImpl implements MemberService {
 	}
 
 	@Override
-	public List<MemberBean> selectSearch(int begin, String select, String search) {
-		return memberDao.selectSearch(begin, select, search);
+	public List<MemberBean> selectSearch(int begin, String select, String search, String gubun) {
+		return memberDao.selectSearch(begin, select, search, gubun);
 	}
 }

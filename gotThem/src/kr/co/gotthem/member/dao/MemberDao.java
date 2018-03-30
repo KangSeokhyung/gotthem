@@ -47,6 +47,6 @@ public interface MemberDao {
 
 	public String selectStoName(int pro_memno);
 
-	public List<MemberBean> selectSearch(int begin, String select, String search);
+	public List<MemberBean> selectSearch(int begin, String select, String search, String gubun);
 	
 }

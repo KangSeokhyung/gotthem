@@ -18,18 +18,18 @@
       <script src="resources/mainTemplate/js/vendor/html5shiv.min.js"></script>
       <script src="resources/mainTemplate/js/vendor/respond.min.js"></script>
     <![endif]-->
-    <style>
-    header{
-    padding-bottom:80px;
-    }
-    #sample6_postcode{
-    margin-left: -10px;
-    }
-    
-    input[type="number"]::-webkit-outer-spin-button,
-	input[type="number"]::-webkit-inner-spin-button {
-    -webkit-appearance: none;
-	text-align:center;
+<style>
+header{
+padding-bottom:80px;
+}
+#sample6_postcode{
+margin-left: -10px;
+}
+   
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+-webkit-appearance: none;
+text-align:center;
 }
 .paddingRight30{
 	padding-right:30px;

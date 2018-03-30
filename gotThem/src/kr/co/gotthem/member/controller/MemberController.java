@@ -195,6 +195,7 @@ public class MemberController {
 	@RequestMapping(value = "/duplCheck.gt", method = RequestMethod.POST)
 	public String duplCheck(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		String mem_id = request.getParameter("mem_id");
+		System.out.println(mem_id);
 		int result = 0;
 		
 		result = memberService.duplCheck(mem_id);

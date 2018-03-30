@@ -106,8 +106,6 @@ public class AdminController {
 		mav.addObject("mlist", mlist);
 		mav.setViewName("admin/memberControl");
 		
-		System.out.println("회원리스트 : "+mlist);
-
 		return mav;
 	}
 	
@@ -203,35 +201,18 @@ public class AdminController {
 		@RequestParam(required=false) String enable, 
 		MemberBean mbean, HttpServletRequest request, HttpSession session) {		
 		
-		int approve = 0;
-		
-		if(enable.equals("승인완료")) {
-			approve = 1;
-		} else {
-			approve = 0;
-		}
-
-		mbean.setMem_id(request.getParameter("mem_id"));
-		mbean.setMem_name(request.getParameter("mem_name"));
-		mbean.setSto_name(request.getParameter("sto_name"));
-		mbean.setMem_email(request.getParameter("mem_email"));
-		mbean.setMem_phone(request.getParameter("mem_phone"));
 		mbean.setMem_address(request.getParameter("mem_addr1")+"/"+
 		request.getParameter("mem_addr2")+"/"+request.getParameter("mem_addr3"));
-		mbean.setEnabled(approve);
 		
 		memberService.memModi(mbean);
 	
-		return "redirect:storeControl.ad";
-
+		return "redirect:/storecontrol.ad";
 	}
 	
 	@RequestMapping(value = "/selectSearch.ad", method = RequestMethod.GET)
 	public ModelAndView selectSearch(ModelAndView mav, String select, String search,
-			@RequestParam(defaultValue="1") int pageNo) {
-		if (search == null) {
-			search = "";
-		}
+			@RequestParam(defaultValue="1") int pageNo, 
+			@RequestParam(defaultValue="회원") String gubun) {
 		if (search.equals("가입") || search.equals("가") || search.equals("입")) {
 			search = "1";
 		}
@@ -245,12 +226,10 @@ public class AdminController {
 		int begin = (pageNo - 1) * ROW_PER_PAGE;
 		int end = pageNo * ROW_PER_PAGE;
 		
-		mlist = memberService.selectSearch(begin, select, search);// 시작 페이지와 끝 페이지를 조건으로 리스트 가져오기
-		
+		mlist = memberService.selectSearch(begin, select, search, gubun);
 		
 		int totalRows = mlist.size(); // 전체 게시물 갯수
 		int totalPages = (int) Math.ceil((double) totalRows / ROW_PER_PAGE);
-		// 전체 페이지 갯수
 
 		final int PAGE_PER_PAGE = 5; // 화면당 페이지 출력 갯수
 		int totalRanges = (int) Math.ceil((double) totalPages

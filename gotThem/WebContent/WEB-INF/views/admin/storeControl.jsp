@@ -18,8 +18,20 @@
       <script src="resources/mainTemplate/js/vendor/html5shiv.min.js"></script>
       <script src="resources/mainTemplate/js/vendor/respond.min.js"></script>
     <![endif]-->
-    <style>
-/* 푸터 css */
+<style type="text/css">
+html, body {
+    margin:0;
+    padding:0;
+    height:1000px;
+}
+#wrap {
+	min-height: 100%; 
+	position: relative;
+}
+footer {
+	bottom: 0;
+	width: 100%;
+}    
 .probootstrap-footer.probootstrap-bg {
     background-size: cover;
     background-repeat: no-repeat;
@@ -86,6 +98,18 @@ padding-top:3px;
     vertical-align: top;
     border-top: 1px solid #ddd;
 }
+.btn-secondary{
+	border: 2px solid #fd3067;
+    background: #fd3067;
+    color: #fff;
+    border-radius: 12px;
+}
+.btn-secondary:hover{
+	border: 2px solid #ff7b9e;
+    background: #ff7b9e;
+    color: #fff;
+    border-radius: 12px;
+}
 </style>
 <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
 <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
@@ -94,6 +118,7 @@ padding-top:3px;
 		$("#rowClick tr").click(function(event) {
 			if(event.target.nodeName.toLowerCase() == "td") {
 				$("#myModal").modal("show");
+				
 				var tr = $(this);
 				var td = tr.children();
 				
@@ -109,8 +134,18 @@ padding-top:3px;
 				var addr1 = addrarray[0];
 				var addr2 = addrarray[1];
 				var addr3 = addrarray[2];
-				var enableParse = td.eq(7).text();
-				enable = enableParse.match("탈퇴");
+				var enable = td.eq(7).children().val();
+				
+				if (enable == "승인대기") {
+					$("[name='sto_permitstatus'][value='승인대기']").prop("checked", true);
+					$("#enabled").val(0);
+				} else if (enable == "승인거부") {
+					$("[name='sto_permitstatus'][value='승인거부']").prop("checked", true);
+					$("#enabled").val(0);
+				} else if (enable == "승인완료") {
+					$("[name='sto_permitstatus'][value='승인완료']").prop("checked", true);
+					$("#enabled").val(1);
+				}
 				
 				$("#mem_id").val(userid);
 				$("#mem_id2").val(userid);
@@ -121,13 +156,18 @@ padding-top:3px;
 				$("#sample6_postcode").val(addr1);
 				$("#sample6_address").val(addr2);
 				$("#sample6_address2").val(addr3);
-				
-				if (enable == "탈퇴") {
-					$("[name='enable'][value='탈퇴']").attr("checked", true);
-				}
-				
 			}
 		});
+		
+		$("[name=sto_permitstatus]").click(function(){
+			var status = $(this).val();
+			if (status == "승인완료") {
+				$("#enabled").val(1);
+			} else {
+				$("#enabled").val(0);
+			}
+		})
+		
 	});
 	
 	function sample6_execDaumPostcode(gubun) {
@@ -159,29 +199,30 @@ padding-top:3px;
 					fullAddr += (extraAddr !== '' ? ' (' + extraAddr
 							+ ')' : '');
 				}
-				
-				if (gubun == 1) {
-					document.getElementById('sample6_postcode_j').value = data.zonecode; //5자리 새우편번호 사용
-					document.getElementById('sample6_address_j').value = fullAddr;
-	
-					document.getElementById('sample6_address2_j').focus();
-				} 
 				document.getElementById('sample6_postcode').value = data.zonecode; //5자리 새우편번호 사용
 				document.getElementById('sample6_address').value = fullAddr;
-	
-				document.getElementById('sample6_address2').focus();
 				
-					
+				document.getElementById('sample6_address2').focus();
 			}
 		}).open();
 	}
+	
+	function removeChar(event) {
+		event = event || window.event;
+		var keyID = (event.which) ? event.which : event.keyCode;
+		if ( keyID == 8 || keyID == 46 || keyID == 37 || keyID == 39 ) 
+			return;
+		else
+			event.target.value = event.target.value.replace(/[^0-9]/g, "");
+	}
+	
 </script>
   </head>
   <body>
 
   <!-- START: header -->
    <header role="banner" class="probootstrap-header">
-    <div class="container">
+    <div class="container" style="width: 1400px;">
         <a href="memcontrol.ad" class="probootstrap-logo"><span class="barunPenLogo">Got Them</span></a>
         
         <a href="#" class="probootstrap-burger-menu visible-xs" ><i>Menu</i></a>
@@ -197,6 +238,8 @@ padding-top:3px;
         </nav>
     </div>
   </header>
+  
+<div id="wrap">
 	<div class="table-responsive">
 		<div style="text-align: center;">
 			<span style="font-size: 33px; color: #333;"><b>점포정보 관리</b></span>
@@ -225,12 +268,19 @@ padding-top:3px;
 						<td>${stlist.mem_phone}</td>
 						<td>${stlist.mem_address}</td>
 						<td>${stlist.mem_regdate}</td>
-						<td><c:choose>
-								<c:when test="${stlist.enabled eq 0 }">
-						승인대기</c:when>
-								<c:when test="${stlist.enabled eq 1 }">
-						승인완료</c:when>
-							</c:choose></td>
+						<td>
+							<c:choose>
+								<c:when test="${stlist.sto_permitstatus eq '승인완료' }">
+									승인완료<input type="hidden" value="승인완료">
+								</c:when>
+								<c:when test="${stlist.sto_permitstatus eq '승인대기' }">
+									승인대기<input type="hidden" value="승인대기">
+								</c:when>
+								<c:when test="${stlist.sto_permitstatus eq '승인거부' }">
+									승인거부<input type="hidden" value="승인거부">
+								</c:when>
+							</c:choose>
+						</td>
 					</tr>
 				</c:forEach>
 			</tbody>
@@ -267,19 +317,19 @@ padding-top:3px;
 			</c:if>
 		</div>
 		
-		<form style="height:80px; text-align: center;">
+		<form action="selectSearch.ad" method="get" style="height:80px; text-align: center;">
+		<input type="hidden" name="gubun" value="점포">
 		<select name="select" style="font-size:20px; height:49px; border-radius: 12px;border:2px solid #44B3C2">
 		    <option value="" selected="selected">선택</option>
-		    <option value="이름">이름</option>
-		    <option value="전화번호" >전화번호</option>
-		    <option value="승인대기">승인대기</option>
-		    <option value="승인">승인</option>
-		    <option value="승인거부">승인거부</option>
+		    <option value="mem_name">이름</option>
+		    <option value="mem_phone">전화번호</option>
+		    <option value="sto_name">점포명</option>
+		    <option value="sto_permitstatus">계정상태</option>
 		</select>
-		<input type="text" style="height:49px;border-radius: 12px; border:2px solid #44B3C2">
+		<input type="text" name="search" style="height:49px;border-radius: 12px; border:2px solid #44B3C2">
 		<button type="submit" class="btn btn-primary">검색</button>
 		</form>
-		
+		<hr>
 	</div>
 
 	<div class="modal fade" id="myModal" tabindex="-1" role="dialog"
@@ -287,7 +337,7 @@ padding-top:3px;
 		<div class="modal-dialog">
 			<div class="modal-content">
 				<div class="modal-header">
-					<h4 class="modal-title" id="myModalLabel">회원정보수정</h4>
+					<h2 class="modal-title" id="myModalLabel">회원정보수정</h2>
 					<button type="button" class="close" data-dismiss="modal"
 						aria-hidden="true">&times;</button>
 				</div>
@@ -301,7 +351,7 @@ padding-top:3px;
 									
 									<div class="row row-sm-offset">
 									
-										<div class="col-sm-3 multi-horizontal" data-for="id">
+										<div class="col-sm-8 multi-horizontal" data-for="id">
 											<div class="form-group">
 												<label class="form-control-label mbr-fonts-style display-7"
 													for="name-form1-r">아이디</label> <input type="text"
@@ -314,9 +364,9 @@ padding-top:3px;
 										<div class="col-sm-8 multi-horizontal" data-for="ownername">
 											<div class="form-group">
 												<label class="form-control-label mbr-fonts-style display-7"
-													for="owner-form1-r">점주명</label> <input type="text"
+													for="owner-form1-r">점주명</label> <input type="text" 
 													id="mem_name" class="form-control" name="mem_name"
-													value="${stinfo.mem_name }" required=""
+													value="${stinfo.mem_name }" required="required"
 													data-form-field="owner">
 											</div>
 										</div>
@@ -327,7 +377,7 @@ padding-top:3px;
 													for="stoname-form1-r">점포명</label> <input type="text"
 													class="form-control" name="sto_name"
 													value="${stinfo.sto_name }" data-form-field="owner"
-													required="" id="sto_name">
+													required="required" id="sto_name">
 											</div>
 										</div>
 										
@@ -337,7 +387,7 @@ padding-top:3px;
 													for="email-form1-r">이메일</label> <input type="email"
 													class="form-control" name="mem_email"
 													value="${stinfo.mem_email}" data-form-field="Name"
-													required="" id="mem_email">
+													required="required" id="mem_email">
 											</div>
 										</div>
 										
@@ -345,9 +395,9 @@ padding-top:3px;
 											<div class="form-group">
 												<label class="form-control-label mbr-fonts-style display-7"
 													for="phone-form1-r">전화번호</label> <input type="text"
-													class="form-control" name="mem_phone"
+													class="form-control" name="mem_phone" onkeyup="removeChar(event);"
 													value="${stinfo.mem_phone}" data-form-field="Name"
-													required="" id="mem_phone">
+													required="required" id="mem_phone">
 											</div>
 										</div>
 										
@@ -356,7 +406,7 @@ padding-top:3px;
 												<label class="form-control-label mbr-fonts-style display-7"
 													for="addr1-form1-r">우편번호</label> <input type="text"
 													class="form-control address1" name="mem_addr1"
-													data-form-field="Name" required="" id="sample6_postcode"
+													data-form-field="Name" required="required" id="sample6_postcode"
 													value="${st_post }">
 											</div>
 										</div>
@@ -373,7 +423,7 @@ padding-top:3px;
 												<label class="form-control-label mbr-fonts-style display-7"
 													for="addr1-form1-r">매장 상세주소1</label> <input type="text"
 													class="form-control address2" name="mem_addr2"
-													value="${st_address1}" data-form-field="Name" required=""
+													value="${st_address1}" data-form-field="Name" required="required"
 													id="sample6_address">
 											</div>
 										</div>
@@ -383,7 +433,7 @@ padding-top:3px;
 												<label class="form-control-label mbr-fonts-style display-7"
 													for="addr2-form1-r">매장 상세주소2</label> <input type="text"
 													class="form-control address3" name="mem_addr3"
-													value="${st_address2}" data-form-field="Name" required=""
+													value="${st_address2}" data-form-field="Name" required="required"
 													id="sample6_address2">
 											</div>
 										</div>
@@ -392,38 +442,36 @@ padding-top:3px;
 											<div class="form-group">
 												<label class="form-control-label mbr-fonts-style display-7"
 													for="addr2-form1-r">회원 상태</label> <br> 
-												<input type="radio" name="enable" value="승인완료" checked>승인완료
-												<input type="radio" name="enable" value="승인대기">승인대기
-												<input type="radio" name="enable" value="승인거부">승인거부
+												<input type="radio" name="sto_permitstatus" value="승인완료">승인완료
+												<input type="radio" name="sto_permitstatus" value="승인대기">승인대기
+												<input type="radio" name="sto_permitstatus" value="승인거부">승인거부
+												<input type="hidden" id="enabled" name="enabled">
 											</div>
 										</div>
-										
-										<div class="col-sm-8 multi-horizontal" data-for="button">
-											<center>
+										<hr><hr><hr><hr>
+										<div class="col-sm-12 multi-horizontal" data-for="button" style="text-align: center;">
 												<button type="submit" class="btn btn-primary">정보수정</button>
 												<button type="button" class="btn btn-secondary"
 													data-dismiss="modal">취소</button>
-											</center>
 										</div>
 									</div>
 								</form>
-								
 							</div>
 						</div>
 					</section>
-
 				</div>
-
 			</div>
 		</div>
 	</div>
-
+</div>
 </body>
-  <!-- START: footer -->
+
+<!-- START: footer -->
 <%@include file="../../../footer.jsp" %>
 <!-- END: footer -->
 
   <script src="resources/mainTemplate/js/scripts.min.js"></script>
   <script src="resources/mainTemplate/js/main.min.js"></script>
   <script src="resources/mainTemplate/js/custom.js"></script>
+  
 </html>
