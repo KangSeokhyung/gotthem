@@ -54,12 +54,12 @@ body, table, div, p {
 	-webkit-font-smoothing: antialiased;
 }
 .container {
-    padding-bottom: 10px;
-    padding-top: 10px;
+    padding-bottom: 12px;
+    padding-top: 12px;
 }
 .barunPenLogo{
 	font-family:'나눔바른펜';
-	font-size:40px;
+	font-size:43px;
 	color:#fa2848;
 	text-transform:uppercase;
 }
@@ -74,13 +74,8 @@ body, table, div, p {
 		value="${sessionScope.SPRING_SECURITY_CONTEXT}" />
 	<header role="banner" id="navbar" class="probootstrap-header">
 		<div class="container">
-			<a href="/gotThem" class="probootstrap-logo barunPenLogo"><img
-				src="resources/image/indexLOGO.PNG" height="70"  vertical-align="bottom"
-				alt="Gotthem"> GotThem</a> 
-				
-				
-				<a href="#"
-				class="probootstrap-burger-menu visible-xs"><i>Menu</i></a>
+			<a href="/gotThem" class="probootstrap-logo barunPenLogo">GotThem</a> 
+			<a href="#" class="probootstrap-burger-menu visible-xs"><i>Menu</i></a>
 			<div class="mobile-menu-overlay"></div>
 
         <nav role="navigation" class="probootstrap-nav hidden-xs">

@@ -2,10 +2,8 @@ package kr.co.gotthem.order.service;
 
 import java.sql.Timestamp;
 import java.util.List;
-
 import javax.servlet.http.HttpSession;
-
-import kr.co.gotthem.basket.bean.BasketBean;
+import org.springframework.ui.Model;
 import kr.co.gotthem.order.bean.OrderpayBean;
 
 public interface OrderService {
@@ -18,20 +16,12 @@ public interface OrderService {
    
    // 1.2. 결제되면, 장바구니 삭제
    public void orderDeleteBasket(OrderpayBean orderBean);
-    
-  
-   // 2. 결제 취소 삭제
-   public void orderDelete(int ord_no);
-   
-   //2.1. 결제 취소되면, 결제된 수량만큼  상품에 수량 더하기
-   public void orderUpdateProduct(OrderpayBean orderBean);   
-   
    
    // 3. 아이디별 전체 결제 목록
    public List<OrderpayBean> listOrder(int userNo);
  
    // 3.1 사장님 아이디별 전체 결제 목록
-   public List<OrderpayBean> storeListOrder(String userName);
+   public List<OrderpayBean> storeListOrder(Model model, String sto_name, int pageNo);
    
    // 3.2 사장님 아이디별 기간  결제 목록 
    public List<OrderpayBean> storeListOrderTime(int userNo, Timestamp begin, Timestamp end );
@@ -45,7 +35,7 @@ public interface OrderService {
    // 5. 복수 결제 api 
    public <T> T pay(String accessToken, Class<T> type, String oneArr, String sum);
    
-   // 5. 복수 승인 api 
+   // 5.1 복수 승인 api 
    public <T> T approve(String pg_Token, HttpSession session, Class<T> type, String oneArr);
    
    

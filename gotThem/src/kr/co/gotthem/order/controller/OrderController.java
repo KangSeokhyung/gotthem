@@ -5,48 +5,35 @@ import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
-import kr.co.gotthem.basket.bean.BasketBean;
-import kr.co.gotthem.basket.service.BasketService;
 import kr.co.gotthem.member.bean.MemberBean;
 import kr.co.gotthem.member.service.MemberService;
 import kr.co.gotthem.order.bean.OrderpayBean;
 import kr.co.gotthem.order.service.OrderService;
-import kr.co.gotthem.product.service.ProductService;
 
 @Controller
 public class OrderController {
 	
 	private OrderService orderService;
 	private MemberService memberService;
-	private BasketService basketService;
-	private ProductService productService;
-	
+
 	public void setOrderService(OrderService orderService) {
 		this.orderService = orderService;
 	}
 	public void setMemberService(MemberService memberService) {
 		this.memberService = memberService;
 	}
-	public void setBasketService(BasketService basketService) {
-		this.basketService = basketService;
-	}
-	public void setProductService(ProductService productService) {
-		this.productService = productService;
-	}
-	
  
       // 3. 아이디별 전체 결제 목록
      @RequestMapping("/orderList.gt")
@@ -64,87 +51,31 @@ public class OrderController {
          mav.addObject("map", map);
          return mav;
          }
-
-     // 3. 결제 취소 삭제
-     @RequestMapping("deleteOrder.gt")
-     public String deleteAOrder(@RequestParam int ord_no,@RequestParam int ord_stock,@RequestParam int ord_procode,
-    		 @ModelAttribute OrderpayBean orderBean )throws Exception {
-    	    
-    	 orderBean.setOrd_stock(ord_stock);
-    	 orderBean.setOrd_procode(ord_procode);
-    	 orderService.orderDelete(ord_no);
-    	 orderService.orderUpdateProduct(orderBean);
-	     System.out.println("Order삭제 실행");
-	     return "redirect:/orderList.gt";
-	     }
-     
-
      
 	// 3. 사장님 아이디별 전체 결제 목록
 	@RequestMapping("/storeOrderList.st")
-	public ModelAndView listOrderStore( ModelAndView mav) throws Exception {
+	public ModelAndView listOrderStore(Model model, @RequestParam int pageNo, ModelAndView mav) throws Exception {
 
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 		String mem_id = authentication.getName();
 		MemberBean memberInfo = memberService.memberInfo(mem_id);
-	
-		int userNo = memberInfo.getMem_no();
-		String userName = memberInfo.getSto_name();
+		String sto_name = memberInfo.getSto_name();
+		String mem_phone = memberInfo.getMem_phone();
 
-		Map<String, Object> map = new HashMap<String, Object>();
-		List<OrderpayBean> slistOrder = orderService.storeListOrder(userName);
-		System.out.println("storeLisOrder타고 " + slistOrder);
-		map.put("list", slistOrder);
-		mav.setViewName("/store/storeOrderList");
-		mav.addObject("map", map);
+		orderService.storeListOrder(model, sto_name, pageNo);
+		mav.addObject("mem_phone", mem_phone);
+		mav.setViewName("store/storeOrderList");
 		return mav;
 	}
-	
-
-	// 3.1 사장님 아이디 기간별 결제 목록
-	@RequestMapping("/storeOrderListTime.st")
-	public ModelAndView listOrderStore(@RequestParam String from, @RequestParam String to, ModelAndView mav)
-			throws Exception {
-
-		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-		String mem_id = authentication.getName();
-		MemberBean memberInfo = memberService.memberInfo(mem_id);
-		int userNo = memberInfo.getMem_no();
-		String userName = memberInfo.getSto_name();
-
-		String from1 = from + " 00:00:00.0";
-		java.sql.Timestamp begin = java.sql.Timestamp.valueOf(from1);
-		String to1 = to + " 23:59:59.9";
-		java.sql.Timestamp end = java.sql.Timestamp.valueOf(to1);
-		
-		Map<String, Object> map = new HashMap<String, Object>();
-		List<OrderpayBean> slistOrder = orderService.storeListOrderTime(userNo, begin, end);
-		System.out.println("Time " + slistOrder);
-		
-		map.put("begin", from);
-		map.put("end", to);
-		map.put("list", slistOrder);
-		mav.setViewName("/store/storeOrderListTime");
-		mav.addObject("map", map);
-		return mav;
-	}
-	@RequestMapping("/test.gt")
-	public String test2() {
-		return "basket/purchase";
-	}
-	
-	
- 
 	
 	// 4.단건 결제 api
 	@RequestMapping(value="/paymentOne.gt", method = RequestMethod.POST)
 	@ResponseBody
-	public HashMap paymentOne(String accessToken, HttpSession session,
-			@RequestParam String orderOne) throws Exception{
+	public HashMap paymentOne(String accessToken, HttpSession session,@RequestParam String orderOne) throws Exception{
 		System.out.println("접속된 토큰 : " + accessToken);
 		@SuppressWarnings("rawtypes")
 		HashMap result = orderService.payOne(accessToken, HashMap.class, orderOne);
-		System.out.println("orderOne : " + orderOne);
+		System.out.println("orderOne컨트롤: " + orderOne);
 		session.setAttribute("tid",result.get("tid"));
         session.setAttribute("accessToken", accessToken);
         session.setAttribute("orderOne", orderOne);
@@ -157,10 +88,8 @@ public class OrderController {
 		String orderOne = (String)session.getAttribute("orderOne");
 		session.removeAttribute("orderOne");
 		String pg_Token = req.getParameter("pg_token");
-        System.out.println("pg_Token:승인컨트롤"+pg_Token);
         @SuppressWarnings("rawtypes")
         HashMap result = orderService.approveOne(pg_Token,session,HashMap.class,orderOne);
-        System.out.println("승인컨트롤 돌아옴 ");
        
         java.util.StringTokenizer  st = new java.util.StringTokenizer(orderOne,",");
         String bas_no = st.nextToken();
@@ -201,20 +130,18 @@ public class OrderController {
 	// 5. 복수 결제 api
 	@RequestMapping(value="/payment.gt", method = RequestMethod.POST)
     @ResponseBody
-	public HashMap payment(String accessToken, HttpSession session,
-			@RequestParam (value= "arrOrder[]") List valueArr,@RequestParam String sum) throws Exception {
+	public HashMap payment(String accessToken, HttpSession session,@RequestParam (value= "arrOrder[]") List valueArr,@RequestParam String sum) throws Exception {
 		System.out.println("sum : " + sum);
 		System.out.println("접속된 토큰 : " + accessToken);
 		String oneArr = (String) valueArr.get(0);
 		@SuppressWarnings("rawtypes")
-		
         HashMap result = orderService.pay(accessToken, HashMap.class, oneArr, sum);
-        System.out.println("페이한 결과 : " + result);
+        
 		session.setAttribute("tid",result.get("tid"));
         session.setAttribute("accessToken", accessToken);
         session.setAttribute("valueArr", valueArr);
-    return result;
-    }
+        return result;
+        }
 	
 	
 	// 5.1 복수 승인 api
@@ -231,11 +158,10 @@ public class OrderController {
         String A = null;
         for(int i=0; i<valueArr.size(); i++){
         	A = (String) valueArr.get(i);
-     	    System.out.println("복수결제 컨드롤"+A.toString());
-     	    if ( 2==A.length()) {
-     	    	continue;
-     	    	} else {
-     	    		java.util.StringTokenizer  st = new java.util.StringTokenizer(A,",");
+        	if ( 2==A.length()) {
+        		continue;
+        		} else {
+        			java.util.StringTokenizer  st = new java.util.StringTokenizer(A,",");
      	            String bas_no = st.nextToken();
         	        String bas_proname = st.nextToken();
         	        String bas_proprice = st.nextToken(); 
@@ -266,7 +192,7 @@ public class OrderController {
                     orderService.orderDeleteBasket(orderBean);
                     System.out.println("복수결제 DB orderBean:"+orderBean);
                     }
-     	    }
+        	}
         mav.addObject("result", result);
         mav.setViewName("basket/purchase");
         return mav;

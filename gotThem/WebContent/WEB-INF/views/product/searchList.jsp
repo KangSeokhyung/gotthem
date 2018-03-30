@@ -23,6 +23,12 @@
       <script src="resources/mainTemplate/js/vendor/respond.min.js"></script>
     <![endif]-->
 <style type="text/css">
+.table>tbody>tr>td, .table>tbody>tr>th, .table>tfoot>tr>td, .table>tfoot>tr>th, .table>thead>tr>td, .table>thead>tr>th {
+    padding: 8px;
+    line-height: 1.42857143;
+    vertical-align: middle;
+    border-top: 1px solid #ddd;
+}
 #marginChg { 
 	padding-bottom: 10px; 
 	margin-top: 340px; 
@@ -35,11 +41,12 @@
 #map { margin-top: 90px; height: 400px; }
 #hide { display: none; }
 table tbody {
-	font-size: 17px;
+	font-size: 16px;
+	color: #555;
 	text-align: center;
 	word-break: keep-all; 
 }
-th { color: black; font-size: 18px; }
+th { color: black; font-size: 16px; }
 .probootstrap-footer.probootstrap-bg {
     background-size: cover;
     background-repeat: no-repeat;
@@ -48,7 +55,24 @@ th { color: black; font-size: 18px; }
     position: relative;
     color: rgba(255,255,255,.9);
 }
+@media not screen and (min-width: 480px) {
+	footer .container {
+		height: 95px !important;
+	}
+}
 .searchStyle { border-radius: 0px; height: 55px; font-size: 17px; }
+a { color: #242D91; }
+a:hover { color: #fa2848; }
+#paging { text-align: center; }
+@media (max-width: 540px){
+	.table>tbody>tr>td {
+	    font-size: 13px;
+	}
+	.table>thead>tr>th {
+	    font-size: 14px;
+	    font-weight: 600;
+	}
+}
 </style>  
 <script src="resources/autocomplete/auto-complete.js"></script>
 <script src="https://code.jquery.com/jquery-3.2.1.js"></script>
@@ -110,7 +134,7 @@ th { color: black; font-size: 18px; }
 				alert(status + '\n 등록된 주소가 올바르지 않거나 시스템 오류입니다.');
 			}
 			
-			var contentString = "<strong><a style='font-size:17px' href='storeDetail.gt?mem_no=" + num + "'>" + storeName + "</a></strong>";
+			var contentString = "<strong><a style='font-size:16px' href='storeDetail.gt?mem_no=" + num + "'>" + storeName + "</a></strong>";
 
 			var infowindow = new google.maps.InfoWindow({
 				content : contentString
@@ -208,7 +232,10 @@ th { color: black; font-size: 18px; }
   	</script>
    	<div class="row">
    	<div class="col-sm-12">
-   	<h4><strong>${search }</strong> 상품 판매 편의점 : <strong>${totalRows }</strong>건</h4>
+   	<div style="font-size: 15px; color: #666">
+   		<strong>${search }</strong> 상품 판매 편의점 : <strong>${totalRows }</strong>건
+   		<br><br>
+   	</div>
    		<table class="table table-hover">
 		<colgroup>
 			<col width="17%" class="tNonePre" />

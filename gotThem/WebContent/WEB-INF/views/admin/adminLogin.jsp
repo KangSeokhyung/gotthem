@@ -200,7 +200,7 @@ body{
 				</form>
 			</div>
 			<div class="col-md-4 offset-md-4 col-12 text-white text-center mt-2 copyright-main">
-				<p>Copyright © 2018 스탑없으 Got Them 프로젝트 </p>
+				<p>Copyright © 2018 스탑없으 Got Them 프로젝트. </p>
 			</div>
 		</div>
 	</div>

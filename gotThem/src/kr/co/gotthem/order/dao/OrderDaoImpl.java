@@ -20,8 +20,6 @@ public class OrderDaoImpl implements OrderDao {
 		this.sqlSessionTemplate = sqlSessionTemplate;
 	}
 
-
-	
 	// 1.장바구니에서 결제 추가
     @Override
     public void orderInsert(OrderpayBean orderBean) {
@@ -37,31 +35,22 @@ public class OrderDaoImpl implements OrderDao {
     public void orderDeleteBasket(OrderpayBean orderBean) {
     	sqlSessionTemplate.delete("orderDeleteBasket", orderBean);
     }
-
-    
-   // 2. 결제 취소 삭제
-    @Override
-    public void orderDelete(int ord_no) {
-    	sqlSessionTemplate.delete("orderDelete", ord_no);
-    }
-    //2.1. 결제 취소되면, 결제된 수량만큼  상품에 수량 더하기
-    @Override
-    public void orderUpdateProduct(OrderpayBean orderBean) {
-    	sqlSessionTemplate.update("orderUpdateProduct", orderBean);
-    }    
-    
     
 	// 3. 아이디별 전체 결제 목록
     @Override
     public List<OrderpayBean> listOrder(int userNo) {
         return sqlSessionTemplate.selectList("listOrder",userNo);
     }
-   
-    
+      
 	// 3.1 사장님 아이디별 전체 결제 목록
 	@Override
-	public List<OrderpayBean> storeListOrder(String userName) {
-		return sqlSessionTemplate.selectList("storeListOrder", userName);
+	public List<OrderpayBean> storeListOrder(HashMap<String, Object> map) {
+		return sqlSessionTemplate.selectList("storeListOrder", map);
+	}
+	
+	@Override
+	public int storeListOrderCount(String sto_name) {
+		return sqlSessionTemplate.selectOne("storeListOrderCount", sto_name);
 	}
 
 	// 3.2 사장님 아이디별 기간 결제 목록

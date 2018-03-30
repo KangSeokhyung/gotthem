@@ -64,7 +64,7 @@ public class AdminController {
 		}
 		
 		
-		final int ROW_PER_PAGE = 5; // 페이지당 레코드 출력 갯수
+		final int ROW_PER_PAGE = 10; // 페이지당 레코드 출력 갯수
 		int begin = (pageNo - 1) * ROW_PER_PAGE;
 		int end = pageNo * ROW_PER_PAGE;
 		mlist = memberService.mlist(begin, end);// 시작 페이지와 끝 페이지를 조건으로 리스트 가져오기
@@ -106,10 +106,7 @@ public class AdminController {
 		mav.addObject("mlist", mlist);
 		mav.setViewName("admin/memberControl");
 		
-		System.out.println("asdadasda"+mlist);
-
 		return mav;
-
 	}
 	
 	@RequestMapping(value = "/memmodify.ad", method = RequestMethod.POST)
@@ -124,10 +121,8 @@ public class AdminController {
 			approve = 0;
 		}
 		
-		String id = (String)membean.getMem_id();
-
 		membean.setMem_id(request.getParameter("mem_id"));
-		membean.setMem_name(request.getParameter("mem_name"));
+		membean.setMem_name(membean.getMem_name());
 		membean.setMem_email(request.getParameter("mem_email"));
 		membean.setMem_phone(request.getParameter("mem_phone"));
 		membean.setMem_address(request.getParameter("mem_addr1")+"/"+
@@ -136,7 +131,7 @@ public class AdminController {
 		
 		memberService.memModi(membean);
 		
-		return "redirect:/admin/memberControl";
+		return "redirect:memcontrol.ad";
 	}
 
 	@RequestMapping(value = "/storecontrol.ad", method = RequestMethod.GET)
@@ -155,7 +150,7 @@ public class AdminController {
 		}
 		
 		
-		final int ROW_PER_PAGE = 5; // 페이지당 레코드 출력 갯수
+		final int ROW_PER_PAGE = 10; // 페이지당 레코드 출력 갯수
 		int begin = (pageNo - 1) * ROW_PER_PAGE;
 		int end = pageNo * ROW_PER_PAGE;
 		stlist = memberService.stlist(begin);// 시작 페이지와 끝 페이지를 조건으로 리스트 가져오기
@@ -225,7 +220,7 @@ public class AdminController {
 		
 		memberService.memModi(mbean);
 	
-		return "redirect:storeControl.ad";
+		return "redirect:/admin/storeControl";
 
 	}
 	

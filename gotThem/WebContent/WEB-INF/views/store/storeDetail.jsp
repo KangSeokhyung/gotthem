@@ -53,6 +53,11 @@ table {
     color: rgba(255,255,255,.9);
 }
 ul li { font-size: 16px; }
+@media not screen and (min-width: 480px) {
+	footer .container {
+		height: 95px !important;
+	}
+}
 </style>  
 <script src="resources/autocomplete/auto-complete.js"></script>
 <script src="https://code.jquery.com/jquery-3.2.1.js"></script>
@@ -294,19 +299,26 @@ ul li { font-size: 16px; }
   <div class="container">
   <div class="row">
     <div class="col-xs-12 col-sm-12">
-    	<div style="font-size: 35px; font-weight: 500; color: #333">${storeInfo.sto_name }</div>
+    	<div style="font-size: 35px; font-weight: 500; color: #333; word-break: keep-all;">
+    		${storeInfo.sto_name }
+    	</div>
 		<hr>
-		<c:set var="sessionCheck" value="${sessionScope.SPRING_SECURITY_CONTEXT}" />
-		<c:choose>
-			<c:when test="${sessionCheck eq null}">
-				<input type="button" onclick="loginForward2();" class="btn" id="btnColor2"
-				 	value="장바구니 이동">
-			</c:when>
-			<c:otherwise>
-				<input type="button" onclick="location.href='listBasket.gt'" 
-					id="btnColor2" class="btn" value="장바구니 이동">
-			</c:otherwise>
-		</c:choose>
+		<div class="col-xs-5" style="font-size: 12px; height: 50px; vertical-align: bottom; word-break: keep-all;">
+			* 장바구니 이동 후 결제하시면 됩니다.
+		</div>
+		<div class="col-xs-5 col-xs-offset-2">
+			<c:set var="sessionCheck" value="${sessionScope.SPRING_SECURITY_CONTEXT}" />
+			<c:choose>
+				<c:when test="${sessionCheck eq null}">
+					<input type="button" onclick="loginForward2();" class="btn" id="btnColor2"
+					 	value="장바구니 이동">
+				</c:when>
+				<c:otherwise>
+					<input type="button" onclick="location.href='listBasket.gt'" 
+						id="btnColor2" class="btn" value="장바구니 이동">
+				</c:otherwise>
+			</c:choose>
+		</div>
     </div>
     <p style="margin-bottom: 0px">&nbsp;</p>
       <div class="col-sm-12">
@@ -362,8 +374,6 @@ ul li { font-size: 16px; }
 			<strong>매장주소</strong> : <span id="addr"></span> <br>
 			<strong>매장번호</strong> : ${storeInfo.mem_phone } <br><br>
 			${storeInfo.sto_comment } <br>
-			김밥 종류 5~10% 행사 중!!<br>
-			백종원 도시락 신메뉴 입고!!
 		</div>
     </div>
   </div>
