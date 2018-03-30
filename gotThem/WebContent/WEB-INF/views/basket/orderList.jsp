@@ -130,8 +130,8 @@ tbody a:hover {
   </div>
   </form>
   	<div class="btnAreaList">
-		<a href="./listBasket.gt" class="aOrder" ><p>장바구니 <span>돌아가기</span></p></a>&nbsp;&nbsp;
-		<a href="/gotThem" class="continuation" onclick=""><p>쇼핑 <span>계속하기</span></p></a>
+		<a href="./listBasket.gt" class="aOrder" ><p>장바구니 &nbsp;돌아가기</p></a>&nbsp;&nbsp;&nbsp;&nbsp;
+		<a href="/gotThem" class="continuation" onclick=""><p>쇼핑 &nbsp;계속하기</p></a>
 	</div>
 </div>    
 <br>

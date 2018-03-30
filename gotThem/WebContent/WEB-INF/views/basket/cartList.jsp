@@ -141,7 +141,7 @@ tbody a:hover {
                    		<input type="hidden" id="firstMoney" value="${row.money}">
 						<input type="hidden" name="bas_all" id="bas_all" value="${row.bas_no},${row.bas_proname},${row.bas_proprice},${row.bas_prostock},${row.bas_procode},${row.bas_proimg}, ${row.bas_procomment},${row.pro_memno},${row.sto_name},${row.bas_memno}">
 						<a class="minPurchase" id= "orderOne" onclick="" style="font-size:14px;">바로구매</a><br/>
-						<a class="minDel02" style="font-size:14px; onclick="button_basDel(${row.bas_no});">상품삭제</a>
+						<a class="minDel02" onclick="button_basDel(${row.bas_no});" style="font-size:14px;">상품삭제</a>
 				   </td>
                 </tr>
                </c:forEach>
@@ -167,9 +167,9 @@ tbody a:hover {
   </div>
   </form>
   	<div class="btnAreaList">
-		<a class="sOrder" id=button_selOrder onclick="button_selOrder();"><p>선택상품 <span>결제하기</span></p></a>&nbsp;&nbsp;&nbsp;&nbsp;
-		<a class="aOrder" id=button_allOrder onclick="button_allOrder();"><p>전체상품 <span>결제하기</span></p></a>&nbsp;&nbsp;&nbsp;&nbsp;
-		<a href="/gotThem" class="continuation" onclick=""><p>쇼핑 <span>계속하기</span></p></a>
+		<a class="sOrder" id=button_selOrder onclick="button_selOrder();"><p>선택상품 &nbsp;결제하기</p></a>&nbsp;&nbsp;&nbsp;&nbsp;
+		<a class="aOrder" id=button_allOrder onclick="button_allOrder();"><p>전체상품 &nbsp;결제하기</p></a>&nbsp;&nbsp;&nbsp;&nbsp;
+		<a href="/gotThem" class="continuation" onclick=""><p>쇼핑 &nbsp;계속하기</p></a>
 	</div>
 </c:otherwise>
 </c:choose>   
