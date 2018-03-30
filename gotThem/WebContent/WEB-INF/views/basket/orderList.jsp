@@ -25,7 +25,9 @@
 tbody a:hover {
 	color: #FA5858;
 }
-
+a{
+cursor:pointer;
+}
 @media ( max-width : 768px ) {
 	#pro_stock {
 		padding: 0 0 0 8px
@@ -42,6 +44,23 @@ tbody a:hover {
 	.explain {
 		width: 45%;
 	}
+	@media screen and (min-width: 480px) {
+	.flexslider.page-inner, .flexslider.page-inner .slides>li, 
+	.flexslider2.page-inner, .flexslider2.page-inner .slides>li {
+   		display: block;
+		height: 400px !important;
+	}
+}
+@media not screen and (min-width: 480px) {
+	.flexslider.page-inner, .flexslider.page-inner .slides>li, 
+	.flexslider2.page-inner, .flexslider2.page-inner .slides>li {
+   		display: block;
+		height: 300px !important;
+	}
+	footer .container {
+		height: 95px !important;
+	}
+}
 }
 </style>
 </head>
@@ -74,7 +93,7 @@ tbody a:hover {
     </ul>
   </section>    
 <div class="container"> 
-<h2 >결제 확인 목록</h2> 
+<h2 >결제 확인</h2> 
   <form name="form1" id="form1" method="post" action="./update.gt" onsubmit="return validate();">
    <div class="listDiv">
    <table class="listType" border="1" cellspacing="0">
@@ -130,8 +149,8 @@ tbody a:hover {
   </div>
   </form>
   	<div class="btnAreaList">
-		<a href="./listBasket.gt" class="aOrder" ><p>장바구니 &nbsp;돌아가기</p></a>&nbsp;&nbsp;&nbsp;&nbsp;
-		<a href="/gotThem" class="continuation" onclick=""><p>쇼핑 &nbsp;계속하기</p></a>
+		<a href="./listBasket.gt" class="aOrder" ><p>장바구니<span>돌아가기</span></p></a>&nbsp;&nbsp;&nbsp;&nbsp;
+		<a href="/gotThem" class="continuation" onclick=""><p>쇼핑<span>계속하기</span></p></a>
 	</div>
 </div>    
 <br>

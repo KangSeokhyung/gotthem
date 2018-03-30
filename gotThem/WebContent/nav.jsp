@@ -8,7 +8,7 @@
 <title>Insert title here</title>
 <style>
 body, table, div, p {
-	font-family: '나눔고딕';
+	font-family: '나눔스퀘어라운드 Regular';
 }
 
 .probootstrap-main-nav li a:hover {

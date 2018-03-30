@@ -27,10 +27,57 @@
 tbody a:hover {
 	color: #FA5858;
 }
+a{
+cursor:pointer;
+}
+.hhh:hover {
+color:#555;
+}
+#kaka{
+	float:right;
+	padding:66px 0 0 0; 
+	margin:0; 
+	font-size:15px;
+	}
 @media ( max-width : 768px ) {
 	#pro_stock {
-		padding: 0 0 0 8px
+		padding: 0 0 0 8px;
 	}
+	#kaka{
+	float:right;
+	padding:0; 
+	margin:1; 
+	font-size:11px;
+	}
+	.minDel03{
+	width:80px; 
+	height:24px;
+	line-height:24px;
+	font-weight:580;
+	}
+	.delTopLeft{
+	margin:0;
+	padding:100px;
+	}
+	
+@media screen and (min-width: 480px) {
+	.flexslider.page-inner, .flexslider.page-inner .slides>li, 
+	.flexslider2.page-inner, .flexslider2.page-inner .slides>li {
+   		display: block;
+		height: 400px !important;
+	}
+}
+@media not screen and (min-width: 480px) {
+	.flexslider.page-inner, .flexslider.page-inner .slides>li, 
+	.flexslider2.page-inner, .flexslider2.page-inner .slides>li {
+   		display: block;
+		height: 300px !important;
+	}
+	
+	footer .container {
+		height: 95px !important;
+	}
+}
 }
 </style>
 <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
@@ -74,11 +121,12 @@ tbody a:hover {
 <c:otherwise>   
   <form name="form1" id="form1" method="post" action="./update.gt" onsubmit="return validate();">
    <!-- del btnArea -->
-					<div class="btnArea nMn"><br><br>
+					<div class="btnArea nMn"><br>
 						<ul class="delTopLeft">
-							<li><a onclick="button_selDel()"><img src="/img/btn_select_del.gif"  alt="선택삭제"/></a></li>					
-							<li><a onclick="button_allDel()"><img src="/img/btn_all_del.gif" alt="전체삭제"/></a></li>
-						</ul>
+							<li><a class="minDel03" onclick="button_selDel()" style="font-size:14px;">✓ 선택삭제</a></li>
+							<li><a class="minDel03" onclick="button_allDel()" style="font-size:14px;">✗ 전체삭제</a></li>
+	                   </ul>
+						<p id="kaka">※ 결제는 카카오페이로만 진행됩니다.&nbsp;&nbsp;</p>
 					</div>
 					<!-- //del btnArea -->
    <div class="listDiv">
@@ -96,7 +144,7 @@ tbody a:hover {
 							</colgroup>
     <thead>   
        <tr>
-                   <th scope="col"><a class="con"  id="th_checkAll" />all</a></th>
+                   <th scope="col"><a class="con"  id="th_checkAll" style="redius:2" />all</a></th>
                    <th scope="col" colspan="2">상품정보</th>
                    <th scope="col" class="cartw13">매장명</th>
                    <th scope="col" class="tNonePre">가격</th>
@@ -110,7 +158,7 @@ tbody a:hover {
                <tr>                
                   <td> 
                       <input type="checkbox" name="checkRow" class="chk" id="checkRow"  value="${row.bas_no},${row.bas_proname},${row.bas_proprice},${row.bas_prostock},${row.bas_procode},${row.bas_proimg}, ${row.bas_procomment},${row.pro_memno},${row.sto_name},${row.bas_memno}"
-                      onclick="cart();" /> 
+                      onclick="cart();"  style="cursor:pointer"/> 
                       <input type="hidden" value="${row.money}">
                   </td>
                   <td class="img" class="tNonePre">
@@ -140,7 +188,7 @@ tbody a:hover {
                    <td class="tNonePre">
                    		<input type="hidden" id="firstMoney" value="${row.money}">
 						<input type="hidden" name="bas_all" id="bas_all" value="${row.bas_no},${row.bas_proname},${row.bas_proprice},${row.bas_prostock},${row.bas_procode},${row.bas_proimg}, ${row.bas_procomment},${row.pro_memno},${row.sto_name},${row.bas_memno}">
-						<a class="minPurchase" id= "orderOne" onclick="" style="font-size:14px;">바로구매</a><br/>
+						<a class="minPurchase" id= "orderOne" onclick="" style="font-size:14px;">바로결제</a><br/>
 						<a class="minDel02" onclick="button_basDel(${row.bas_no});" style="font-size:14px;">상품삭제</a>
 				   </td>
                 </tr>
@@ -167,9 +215,9 @@ tbody a:hover {
   </div>
   </form>
   	<div class="btnAreaList">
-		<a class="sOrder" id=button_selOrder onclick="button_selOrder();"><p>선택상품 &nbsp;결제하기</p></a>&nbsp;&nbsp;&nbsp;&nbsp;
-		<a class="aOrder" id=button_allOrder onclick="button_allOrder();"><p>전체상품 &nbsp;결제하기</p></a>&nbsp;&nbsp;&nbsp;&nbsp;
-		<a href="/gotThem" class="continuation" onclick=""><p>쇼핑 &nbsp;계속하기</p></a>
+		<a class="sOrder" id=button_selOrder onclick="button_selOrder();" ><p>선택상품<span>결제하기</span></p></a>&nbsp;&nbsp;&nbsp;&nbsp;
+		<a class="aOrder" id=button_allOrder onclick="button_allOrder();"><p>전체상품<span>결제하기</span></p></a>&nbsp;&nbsp;&nbsp;&nbsp;
+		<a href="/gotThem" class="continuation" onclick=""><p>쇼핑<span>계속하기</span></p></a>
 	</div>
 </c:otherwise>
 </c:choose>   

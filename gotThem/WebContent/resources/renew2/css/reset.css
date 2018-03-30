@@ -6,13 +6,13 @@
 @import url('http://fonts.googleapis.com/earlyaccess/nanumgothic.css');
 @import url('http://fonts.googleapis.com/earlyaccess/nanummyeongjo.css');
 @font-face{
-	font-family:'NanumGothic';
+	font-family:'나눔스퀘어라운드 Regular','NanumGothic';
 	font-style:normal;
 	font-weight:normal;
 	src: url('../font/NanumGothic.eot');
 	src: local('NanumGothic'), url('../font/NanumGothic.woff') format('woff'), url('../font/NanumGothic.ttf') format('truetype');
 }
-* {font-family:'NanumGothic','Nanum Gothic', '나눔고딕', 'Dotum', 'Gulim', 'Arial', sans-serif;}
+* {font-family:'나눔스퀘어라운드 Regular','NanumGothic','Nanum Gothic', '나눔고딕', 'Dotum', 'Gulim', 'Arial', sans-serif;}
 
 /* CSS reset */
 html, body, div, span, applet, object, iframe,
@@ -31,7 +31,7 @@ table, caption, tbody, tfoot, thead, tr, th, td {
 	vertical-align:baseline;
 	background:transparent;
 	-webkit-text-size-adjust:none;
-	font-family:'NanumGothic','Nanum Gothic', '나눔고딕', 'Dotum', 'Gulim', 'Arial', sans-serif;
+	font-family:'나눔스퀘어라운드 Regular','NanumGothic','Nanum Gothic', '나눔고딕', 'Dotum', 'Gulim', 'Arial', sans-serif;
 	list-style:none;
 	line-height:1;
 }
@@ -50,9 +50,9 @@ fieldset{margin:0;padding:0;border:0 none;}
 legend, caption, .skip{position:absolute; left:-9999px; width:0; height:0; font-size:0; line-height:0; overflow:hidden;}
 caption{position:static;}
 
-html, body,input,button,textarea{font-size:12px; color:#888; font-family:'NanumGothic', '나눔고딕', sans-serif, 'Dotum', 'Gulim', 'Arial', sans-serif;}
+html, body,input,button,textarea{font-size:12px; color:#888; font-family:'나눔스퀘어라운드 Regular','NanumGothic', '나눔고딕', sans-serif, 'Dotum', 'Gulim', 'Arial', sans-serif;}
 
-a {color:#a7a7a7; text-decoration:none; font-family:'NanumGothic','Nanum Gothic', '나눔고딕', 'Dotum', 'Gulim', 'Arial', sans-serif;}
+a {color:#a7a7a7; text-decoration:none; font-family:'나눔스퀘어라운드 Regular','NanumGothic','Nanum Gothic', '나눔고딕', 'Dotum', 'Gulim', 'Arial', sans-serif;}
 a:hover {color:#a7a7a7; text-decoration:none;}
 img,input{vertical-align:top;}
 label{vertical-align:middle; font-size:14px; cursor:pointer;}
@@ -60,7 +60,7 @@ select {height:24px; margin:0; border: 1px solid #dcdcdc; padding:0; font-size:1
 textarea {border:1px solid #dcdcdc; color:#888; font-size:13px; line-height:18px; padding:5px; overflow-y:auto; resize:none;}
 
 h1,h2,h3,h4,h5,h6,th,strong {font-weight:600;}
-select {font-family:'NanumGothic','Nanum Gothic', '나눔고딕', sans-serif, 'Dotum', 'Gulim', 'Arial', sans-serif;}
+select {font-family:'나눔스퀘어라운드 Regular','NanumGothic','Nanum Gothic', '나눔고딕', sans-serif, 'Dotum', 'Gulim', 'Arial', sans-serif;}
 
 /* html5 reset */
 header, footer, section, article, aside, nav, hgroup, details, menu, figure, figcaption, canvas{display:block; margin:0; padding:0; border:0; font-size:100%; font:inherit; vertical-align:baseline;}

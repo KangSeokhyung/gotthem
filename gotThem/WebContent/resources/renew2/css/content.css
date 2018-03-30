@@ -1278,6 +1278,8 @@ span.searchStyleSelectBox.changed{background-color: #fff;}
 .minDel:hover {color:#fff;}
 .minDel02 {display:inline-block; width:70px; height:24px; line-height:24px; text-align:center; font-size:14px; font-weight:600; color:#555; background:#fff; border:1px #d2d2d2 solid; border-radius:2px; margin:5.5px auto;}
 .minDel02:hover {color:#555;}
+.minDel03 {display:inline-block; width:95px; height:30px; line-height:30px; text-align:center; font-size:14px; font-weight:600; color:#fff; background:#999; border:1px #d2d2d2 solid; border-radius:5px; margin:5.5px auto;}
+.minDel03:hover {color:#555;}
 
 .addressBtn {display:inline-block; width:94px; height:38px; line-height:38px; font-size:13px; color:#555; font-weight:600; text-align:center; background:#fff; border:1px #cdcdcd solid; border-radius:2px;}
 .addressBtn:hover {color:#555;}
@@ -1301,7 +1303,7 @@ span.searchStyleSelectBox.changed{background-color: #fff;}
 .continuation span {font-size:16px;}
 .continuation:hover {color:#fff;}
 
-.con {display:inline-block; width:23px; height:20px; line-height:1.4; text-align:center; font-size:13px; font-weight:600; color:#fff !important; background:#FA5858; border-radius:2px; margin:2px auto;}
+.con {display:inline-block; width:23px; height:23px; line-height:1.9; text-align:center; font-size:13px; font-weight:600; color:#fff !important; background:#FA5858; border-radius:5px; margin:2px auto;}
 
 
 .infoBtn {font-size:13px; color:#555; font-weight:600; line-height:1.4; padding:0 0 0 38px;}

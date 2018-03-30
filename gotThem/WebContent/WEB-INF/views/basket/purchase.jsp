@@ -21,7 +21,7 @@
 body, th, td, input, select, textarea, button {
     font-size: 14px;
     line-height: 1.5;
-    font-family: 'Apple SD Gothic Neo','Malgun Gothic','맑은 고딕',sans-serif;
+    font-family: '나눔스퀘어라운드 Regular',''Apple SD Gothic Neo','Malgun Gothic','맑은 고딕',sans-serif;
     color: #111;
 }
 .inner_kakaopay .layer_head {
