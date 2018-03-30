@@ -25,6 +25,15 @@
     div .navbar{
     border: 1px;
     }
+    a.colorBl {
+    color: #666;
+    font-size:20px;
+}
+
+.hoverColor:active, .hoverColor:hover, .hoverColor:focus  {
+    color:#fff !important;
+	background: #999;
+}
     .probootstrap-header {
     padding-top: 10px !important;
     padding-bottom: 10px !important;
@@ -36,9 +45,24 @@
     -webkit-box-shadow: 0 6px 68px -6px rgba(0,0,0,.2);
     box-shadow: 0 6px 68px -6px rgba(0,0,0,.2);
 }
+.barunPenLogo {
+    font-family: '나눔바른펜' !important;
+    font-size: 40px !important;
+    color: #fa2848;
+}
+.probootstrap-logo {
+    float: left;
+    color: #fa2848;
+    padding-left: 20px;
+    font-size: 20px;
+    display: block;
+    text-transform: uppercase;
+    font-weight: 900;
+}
     </style>
   </head>
 <body>
+
 <!-- START: header -->
    <header>
 		<%@include file="../../../nav.jsp"%>
@@ -55,7 +79,7 @@
               <div class="probootstrap-breadcrumbs">
                 <a href="#">Home</a><span>Mypage</span>
               </div>
-              <h1>회원정보수정</h1>
+              <h1>회원정보</h1>
             </div>
           </div>
         </div>
@@ -63,8 +87,8 @@
     </div>
     <ul class="slides">
       <li style="background-image: url(resources/mainTemplate/img/slider_1.jpg);"></li>
-      <li style="background-image: url(resources/mainTemplate/img/slider_4.jpg);"></li>
-      <li style="background-image: url(resources/mainTemplate/img/slider_2.jpg);"></li>
+      <li style="background-image: url(resources/image/진열대2.jpg);"></li>
+      <li style="background-image: url(resources/image/도시락3.jpg);"></li>
     </ul>
   </section>
   <!-- END: slider  -->
@@ -72,26 +96,26 @@
     <div class="container">
       <div class="row">
         <div class="col-md-3">
-			<h2>마이페이지</h2>
+			<h1><strong>&nbsp;&nbsp;&nbsp;마이페이지</strong></h1>
 			<div class="navbar">
           <ul class="with-icon colored">
              <li><i class="xi-user"></i><span>
-            <a href="#tab-1" data-toggle="tab">회원정보</a>
+            <a href="#tab-1" data-toggle="tab" class="hoverColor colorBl">회원정보 확인</a>
             </span></li>
              <li><i class="xi-pen"></i><span>
-            <a href="#tab-2" data-toggle="tab">회원정보 수정</a>
+            <a href="#tab-2" data-toggle="tab" class="hoverColor colorBl">회원정보 수정</a>
             </span></li>
             <li><i class="xi-key"></i><span>
-            <a href="#tab-3" data-toggle="tab">비밀번호 변경</a>
+            <a href="#tab-3" data-toggle="tab" class="hoverColor colorBl">비밀번호 변경</a>
             </span></li>
             <li><i class="xi-airplay"></i><span>
-            <a href="#tab-4" data-toggle="tab">회원 탈퇴</a>
+            <a href="#tab-4" data-toggle="tab" class="hoverColor colorBl">회원 탈퇴</a>
             </span></li>
              <li><i class="xi-cart"></i><span>
-            <a href="listBasket.gt" >장바구니 정보</a>
+            <a href="listBasket.gt" class="hoverColor colorBl" >장바구니 정보</a>
             </span></li>
              <li><i class="xi-truck"></i><span>
-            <a href="orderList.gt" >찾아갈 상품</a>
+            <a href="orderList.gt" class="hoverColor colorBl">찾아갈 상품</a>
             </span></li>
            	
           </ul>
@@ -116,10 +140,13 @@
       </div>
     </div>
   </section>
-
+<!-- START: footer -->
+<%@include file="../../../footer.jsp" %>
+<!-- END: footer -->
   
 </body>
     <!-- Javascript files-->
+      <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
     <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
      <script src="resources/mainTemplate/js/scripts.min.js"></script>
   	<script src="resources/mainTemplate/js/main.min.js"></script>
@@ -159,5 +186,4 @@
 			$('#tab-4').html(data);
 		});
 	</script>
-</body>
 </html>
