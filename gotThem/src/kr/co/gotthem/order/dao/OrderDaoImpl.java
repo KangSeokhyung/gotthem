@@ -80,5 +80,10 @@ public class OrderDaoImpl implements OrderDao {
 
 		return sqlSessionTemplate.selectList("storeListOrderTime", count);
 	}
+
+	@Override
+	public void statusChange(int ord_no) {
+		sqlSessionTemplate.update("statusChange", ord_no);
+	}
     
 }

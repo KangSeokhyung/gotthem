@@ -43,7 +43,7 @@ margin-bottom:0px;
 }
 
 .pb-5{
-padding-top:5%;
+padding-top:7%;
 }
 
 .form-control {
@@ -98,6 +98,11 @@ padding-top:5%;
 .fileBox .btn_file {background:#1FAD9F;color:#fff;border-radius:4px;display:inline-block;width:100px;height:30px;font-size:0.8em;line-height:30px;text-align:center;vertical-align:middle;margin-top:2px;}
 .fileBox input[type="file"] {position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);border:0}
 .fileBox .btn_file:hover {color:#fff;background-color:#178277;}
+@media( max-width: 640px ){
+.form-control{width:auto;}
+span{width:40px;}
+td{padding:10px !important;}
+}
 </style>
 <script type="text/javascript">
 	function fnList() {
@@ -144,6 +149,8 @@ $(document).ready(function(){
 
 	<div class="cover-container pb-5">
 		<div class="cover-inner container">
+		<h2>상품상세정보</h2>
+		<hr><br>
 			<form method="post" action="update.st" enctype="multipart/form-data">
 
 				<div class="row">
@@ -157,7 +164,7 @@ $(document).ready(function(){
 							type="hidden" name="pro_img" value="${pro.pro_img}" />
 						<table class="table table-user-information">
 							<tr>
-								<td><span>제품번호</span></td>
+								<td><span>번호</span></td>
 								<td>${pro.pro_code }</td>
 							</tr>
 							<tr>
@@ -174,7 +181,7 @@ $(document).ready(function(){
 								</select>
 							</tr>
 							<tr>
-								<td><span>제품명</span></td>
+								<td><span>품명</span></td>
 								<td><input type="text" name="pro_name" class="form-control"
 									value="${pro.pro_name }" required="" maxlength="20"/></td>
 							</tr>
@@ -189,7 +196,7 @@ $(document).ready(function(){
 									value="${pro.pro_stock }" required="" maxlength="10"/></td>
 							</tr>
 							<tr>
-								<td><span>상품사진</span></td>
+								<td><span>사진</span></td>
 								<td>
 								<div class="fileBox">
 									<input type="text" class="fileName" readonly="readonly">

@@ -38,8 +38,7 @@ margin:1px;
 padding: 0.6rem 1rem;
 }
 
-td{font-weight: bold;}
-
+.pb-5{padding-top:20px;}
 @media( max-width: 640px ) {
 	#myInfo,
 	#myInfo thead,
@@ -96,6 +95,7 @@ td{font-weight: bold;}
 
 <div class="cover-container pb-5">
 <div class="cover-inner container">
+<h2 align="center">매장정보</h2>
 <input type="hidden" name="mem_no" value="${info.mem_no }"/> 
 <table id="myInfo" class="table">
 	<tr>

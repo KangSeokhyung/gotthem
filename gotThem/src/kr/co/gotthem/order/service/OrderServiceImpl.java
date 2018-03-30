@@ -312,6 +312,11 @@ public class OrderServiceImpl implements OrderService {
             throw new RuntimeException("카카오 API 실행 오류!",e);
         }
     }
+
+	@Override
+	public void statusChange(int ord_no) {
+		orderDao.statusChange(ord_no);
+	}
     
   
 }

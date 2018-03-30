@@ -43,6 +43,7 @@ font-family:나눔스퀘어라운드 !important;
 label {
 	margin-bottom: 0px;
 }
+.pb-5{padding-top:20px;}
 #comment{width:500px;}
 .form-comment {
 	display: block;
@@ -197,6 +198,7 @@ label {
 
 	<div class="cover-container pb-5">
 		<div class="cover-inner container">
+		<h2 align="center">매장정보수정</h2>
 			<form action="storeModi.st" method="POST"
 				enctype="multipart/form-data">
 				<input type="hidden" name="mem_name" value="${memberInfo.mem_name }" />
@@ -250,7 +252,7 @@ label {
 					<tr>
 						<th nowrap>코멘트</th>
 						<td><textarea class="form-comment" name="sto_comment" id="comment"
-								style="height: 180px; resize: none; overflow: visible; text-overflow: ellipsis;"
+								style="height: 160px; resize: none; overflow: visible; text-overflow: ellipsis;"
 								required="" maxlength="2000">${memberInfo.sto_comment }</textarea></td>
 					</tr>
 					<tr>

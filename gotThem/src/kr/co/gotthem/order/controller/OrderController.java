@@ -97,7 +97,15 @@ public class OrderController {
 		return mav;
 	}
 	
-	
+	@RequestMapping(value = "/statusChange.st", method = RequestMethod.POST)
+	protected ModelAndView statusChange(HttpServletRequest req, @RequestParam int pageNo) {
+
+		int ord_no = Integer.parseInt(req.getParameter("ord_no"));
+		orderService.statusChange(ord_no);
+		ModelAndView mav = new ModelAndView("redirect:/stock.st?pageNo=" + pageNo);
+
+		return mav;
+	}
 	
  
 	

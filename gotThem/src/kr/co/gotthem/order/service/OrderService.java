@@ -49,6 +49,8 @@ public interface OrderService {
    
    // 5. 복수 승인 api 
    public <T> T approve(String pg_Token, HttpSession session, Class<T> type, String oneArr);
+
+   public void statusChange(int ord_no);
    
    
 

@@ -30,6 +30,16 @@ border-radius:4px;
 margin:1px;
 padding: 0.6rem 1rem;
 }
+.container {
+    max-width: 500px;
+    margin-left:180px;
+}
+.form-control {
+    display: block;
+    width: 300%;
+    padding: .5rem .75rem;
+}
+
 </style>
 <body>
 <header>
@@ -58,10 +68,10 @@ padding: 0.6rem 1rem;
 <section class="probootstrap-section">
          
     <div class="container">
-      <div class="row">
+    <div class="cover-inner container">
       <div class="alert alert-info alert-dismissable">
           <a class="panel-close close" data-dismiss="alert">×</a> 
-          <h4 style="color:red;">주의!!</h4>제휴해지 전에 구매한 상품을 수령해주세요.<br>구매목록에 미수령 상품이 있다면 해지할 수 없습니다.
+          <h4 style="color:red;">※주의!!</h4>제휴해지 전에 구매한 상품을 수령해주세요.<br>구매목록에 미수령 상품이 있다면 해지할 수 없습니다.
         </div>
         <div class="col-md-8">
           <form id="form1" class="form1" action="mystoreDel.st" method="post">

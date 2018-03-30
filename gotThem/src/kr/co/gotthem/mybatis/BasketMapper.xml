@@ -151,4 +151,10 @@
 		ORDER BY ord_no desc
 	</select>
 	
+	<update id="statusChange">
+		UPDATE orderpay
+		SET ord_status = '수령'
+		WHERE ord_no = #{ord_no}
+	</update>
+	
 </mapper>
