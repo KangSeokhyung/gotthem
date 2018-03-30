@@ -35,8 +35,8 @@
 	</insert>
 	
 	<insert id="stjoin" parameterType="kr.co.gotthem.member.bean.MemberBean">
-		insert into member(mem_id, mem_pw, mem_name, sto_name, mem_email, mem_phone, mem_address, mem_regdate, mem_status, enabled)
-		values(#{mem_id}, #{mem_pw}, #{mem_name}, #{sto_name}, #{mem_email}, #{mem_phone}, #{mem_address}, curdate(), 'ROLE_STORE' , 0)
+		insert into member(mem_id, mem_pw, mem_name, sto_name, mem_email, mem_phone, mem_address, mem_regdate, mem_status, enabled, sto_permitstatus)
+		values(#{mem_id}, #{mem_pw}, #{mem_name}, #{sto_name}, #{mem_email}, #{mem_phone}, #{mem_address}, curdate(), 'ROLE_STORE' , 0, #{sto_permitstatus})
 	</insert>
 	
 	<update id="memberModi" parameterType="kr.co.gotthem.member.bean.MemberBean">
@@ -90,4 +90,34 @@
     <select id="storeInfo" parameterType="int" resultType="kr.co.gotthem.member.bean.MemberBean">
 		select * from member where mem_no = #{mem_no}
 	</select> 
+	
+	<select id="selectSearch" parameterType="java.util.HashMap" resultType="kr.co.gotthem.member.bean.MemberBean">
+		select * 
+		from member 
+		where mem_status ='ROLE_USER' 
+		<choose>
+			<when test='select!=null and select.equals("")'>
+				and (mem_id like concat('%', #{search}, '%')
+				or mem_name like concat('%', #{search}, '%')
+				or mem_email like concat('%', #{search}, '%')
+				or mem_phone like concat('%', #{search}, '%')
+				or mem_address like concat('%', #{search}, '%')
+				or enabled like concat('%', #{search}, '%'))
+			</when>
+			<when test='select!=null and select.equals("mem_name")'>
+				and mem_name like concat('%', #{search}, '%')	
+			</when>
+			<when test='select!=null and select.equals("mem_phone")'>
+				and mem_phone like concat('%', #{search}, '%')	
+			</when> 
+			<when test='select!=null and select.equals("mem_address")'>
+				and mem_address like concat('%', #{search}, '%')	
+			</when> 
+			<when test='select!=null and select.equals("enabled")'>
+				and enabled like concat('%', #{search}, '%')	
+			</when> 
+		</choose> 
+		order by mem_name 
+		limit #{begin}, 10 
+	</select>
 </mapper>

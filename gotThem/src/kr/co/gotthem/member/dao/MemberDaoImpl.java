@@ -1,6 +1,9 @@
 package kr.co.gotthem.member.dao;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+
 import org.mybatis.spring.SqlSessionTemplate;
 import kr.co.gotthem.member.bean.MemberBean;
 
@@ -126,6 +129,16 @@ public class MemberDaoImpl implements MemberDao {
 	@Override
 	public String selectStoName(int pro_memno) {
 		return sqlSessionTemplate.selectOne("selectStoName", pro_memno);
+	}
+
+	@Override
+	public List<MemberBean> selectSearch(int begin, String select, String search) {
+		Map map = new HashMap();
+		map.put("begin", begin);
+		map.put("select", select);
+		map.put("search", search);
+		
+		return sqlSessionTemplate.selectList("selectSearch", map);
 	}
 	
 }

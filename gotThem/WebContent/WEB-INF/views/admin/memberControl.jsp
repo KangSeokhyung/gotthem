@@ -352,16 +352,15 @@ width:568px;
 			</ul>
 			</c:if>
 		</div>
-		<form style="height:80px; text-align: center;">
+		<form action="selectSearch.ad" method="get" style="height:80px; text-align: center;">
 			<select name="select" style="font-size:20px; height:49px; border-radius: 12px;border:2px solid #44B3C2">
 			    <option value="" selected="selected">선택</option>
-			    <option value="이름">이름</option>
-			    <option value="전화번호" >전화번호</option>
-			    <option value="승인대기">승인대기</option>
-			    <option value="승인">승인</option>
-			    <option value="승인거부">승인거부</option>
+			    <option value="mem_name">이름</option>
+			    <option value="mem_phone">전화번호</option>
+			    <option value="mem_address">주소</option>
+			    <option value="enabled">계정상태</option>
 			</select>
-			<input type="text" style="height:49px;border-radius: 12px; border:2px solid #44B3C2">
+			<input type="text" name="search" required="required" style="height:49px; border-radius: 12px; border:2px solid #44B3C2">
 			<button type="submit" class="btn btn-primary">검색</button>
 		</form>
 	<hr>
@@ -372,8 +371,8 @@ width:568px;
         <div class="modal-dialog"> 
                 <div class="modal-content"> 
                  <div class="modal-header"> 
-                  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button> 
-                  <h4 class="modal-title" id="myModalLabel">회원정보수정</h4> 
+	                  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button> 
+	                  <h4 class="modal-title" id="myModalLabel">회원정보수정</h4> 
                   </div> 
                   <div class="modal-body">
                  
@@ -391,7 +390,7 @@ width:568px;
 										<div class="col-sm-8 multi-horizontal" data-for="id">
 											<div class="form-group">
 												<label class="form-control-label mbr-fonts-style display-7"
-													for="name-form1-r">아이디</label> <input type="text" required="required"
+													for="name-form1-r">아이디</label> <input type="text" required="required" autocomplete="false"
 													pattern="[A-Za-z0-9]{0,15}" autofocus onkeyup="duplCheck()" maxlength="20"
  													name="mem_id" class="form-control" id="mem_id_j"> 
  													<p id="idcheck" class="text-mute">아이디를 입력해주세요</p>
@@ -409,16 +408,16 @@ width:568px;
 										<div class="col-sm-12 multi-horizontal" data-for="email">
 											<div class="form-group">
 												<label class="form-control-label mbr-fonts-style display-7"
-													for="email-form1-r">이메일</label> 
-													<input maxlength="20" type="text" class="form-control" id="mem_emailid" required="required" name="mem_emailid" style="width:45%; display:inline;">&nbsp;@
-                 									<input maxlength="20" type="text" class="form-control" id="mem_emailadd" required="required" name="mem_emailadd" style="width:46%; display:inline;">
+													for="email-form1-r">이메일</label> <br>
+													<input maxlength="20" type="text" class="form-control" id="mem_emailid" required="required" name="mem_emailid" style="width:40%; display:inline;">&nbsp;@
+                 									<input maxlength="20" type="text" class="form-control" id="mem_emailadd" required="required" name="mem_emailadd" style="width:40%; display:inline;">
 											</div>
 										</div>
 										
 										<div class="col-sm-12 multi-horizontal" data-for="phone">
 											<div class="form-group">
 												<label class="form-control-label mbr-fonts-style display-7"
-													for="phone-form1-r">전화번호</label>
+													for="phone-form1-r">전화번호</label><br>
 														<input type="text" class="form-control" maxlength="3" id="mem_phoneFront" name="mem_phoneFront" required="required" style="width:30%; display:inline;">&nbsp;-
 										                <input type="text" class="form-control" maxlength="4" id="mem_phoneMiddle" name="mem_phoneMiddle" required="required" style="width:30%; display:inline;">&nbsp;-
 										                <input type="text" class="form-control" maxlength="4" id="mem_phoneLast" name="mem_phoneLast" required="required" style="width:30%; display:inline;">
@@ -429,13 +428,13 @@ width:568px;
 											<div class="form-group">
 												<label class="form-control-label mbr-fonts-style display-7"
 													for="addr1-form1-r">우편번호</label> <input type="text"
-													class="form-control address1" name="mem_addr1"
+													class="form-control address1" name="mem_addr1" required="required"
 													id="sample6_postcode_j" readOnly>
 											</div>
 										</div>
 										<div class="col-sm-6 multi-horizontal" data-for="findpostcode">
 											<div class="form-group" style="margin: 23px 0px; padding-top: 4px;">
-												<input type="button" onclick="sample6_execDaumPostcode(1)"
+												<input type="button" onclick="sample6_execDaumPostcode(1)" name="mem_post"
 													class="btn btn-primary btn-sm" value="우편번호 찾기">
 											</div>
 										</div>
@@ -444,15 +443,15 @@ width:568px;
 											<div class="form-group">
 												<label class="form-control-label mbr-fonts-style display-7"
 													for="addr1-form1-r">상세주소1</label> <input type="text"
-													class="form-control address2" name="mem_addr2"
+													class="form-control address2" name="mem_address1" required="required"
 													style="width: 568px;" id="sample6_address_j" readOnly>
 											</div>
 										</div>
 										<div class="col-sm-12 multi-horizontal" data-for="address2">
 											<div class="form-group">
 												<label class="form-control-label mbr-fonts-style display-7"
-													for="addr2-form1-r">상세주소2</label> <input type="text"
-													class="form-control address3" name="mem_addr3" style="width: 568px;"
+													for="addr2-form1-r">상세주소2</label> <input type="text" required="required"
+													class="form-control address3" name="mem_address2" style="width: 568px;"
 													id="sample6_address2_j">
 											</div>
 										</div>
@@ -471,7 +470,9 @@ width:568px;
 							</div>
 						</div>
 					</section>
-				</div>    
+					
+				</div> 
+  
                 </div> 
         	</div> 
 		</div>
