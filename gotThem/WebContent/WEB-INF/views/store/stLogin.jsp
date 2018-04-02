@@ -24,6 +24,10 @@
 <link rel="stylesheet" type="text/css"
 	href="resources/stlogin/css/my-login.css">
 <style>
+.btn{font-size:16px;}
+.card-wrapper1{border:1px solid #b9b9b9; border-radius:4px;}
+.fat{height:500px;}
+
 @media screen and (min-width: 768px) {
 	.my-login-page .card-wrapper1 {
 		width: 400px;
@@ -41,16 +45,16 @@ body {font-family:나눔스퀘어라운드;}
 				<div class="row justify-content-md-center">
 					<div class="box">
 						<div class="brand">
-							<img src="resources/stlogin/img/logo.jpg">
+							<img src="resources/image/indexLOGO.PNG" height="120px">
 						</div>
 						<div class="row">
 							<div class="col-md-6 col-sm-6">
 								<div class="card-wrapper1">
 									<div class="card fat">
-										<div class="card-body" style="margin-bottom: 19px;">
+										<div class="card-body" style="margin-bottom: 19px;"><br>
 											<h4 class="card-title">
 												<strong>사장님 로그인</strong>
-											</h4>
+											</h4><br>
 											<form method="POST">
 												<div class="form-group">
 													<input id="text"
@@ -61,7 +65,7 @@ body {font-family:나눔스퀘어라운드;}
 													<input id="password"
 														type="password" class="form-control" name="sto_pw"
 														required data-eye placeholder="비밀번호">
-												</div>
+												</div><br>
 												<div class="form-group no-margin">
 													<button type="submit" class="btn btn-primary btn-block">
 														Login</button>
@@ -78,17 +82,25 @@ body {font-family:나눔스퀘어라운드;}
 							<div class="col-md-6 col-sm-6">
 								<div class="card-wrapper1">
 									<div class="card fat" style="padding-top: 25px; padding-bottom: 20px;">
+										<div class="card-body">
 										<h4 class="card-title">
-											<strong>아직 GOTTHEM 식구가<br>아니신가요?
+											<strong>GOTTHEM 식구가 아니신가요?
 											</strong>
 										</h4>
-										<h6 class="card-description" style="font-family:나눔스퀘어라운드;"><strong>
-											제휴 신청 버튼을 눌러 가입합니다. 지정된 양식을 쓰고 제출버튼을 누르면 끝! 
-											마지막으로 관리자의 최종 승인이 나면 GOT THEM의 제휴 가맹점이 됩니다.<br><br><br>
-											제휴신청 후 일정기간 승인 대기상태가됩니다.<br> 제휴신청 회원가입을 해 주시면 담당자가 검토후 연락을 드리겠습니다.<br>
-											<br><br></strong>
-											<br>
-										</h6>
+										
+										<div class="card-description" style="font-family:나눔스퀘어라운드; font-size:20px;">
+											<span><strong>&nbsp;&nbsp;제휴신청 방법!</strong></span><br>
+											<ol style="font-family:나눔바른펜; font-size:18px;">
+												<li>하단의 제휴신청 버튼 클릭</li>
+												<li>지정된 양식을 작성하고 제휴 회원가입 신청</li>
+												<li>담당자 검토 후 신청 사장님과의 연락 및 미팅</li>
+												<li>담당자의 승인이 끝나면 제휴 가입 끝!</li>
+											</ol>
+											
+										</div>
+										<span style="color:red; font-size:16px; word-break:keep-all;">
+										※ 제휴 신청 후 일정기간 승인대기상태가 되어 사이트 이용이 제한됩니다.${reMsg}</span>
+										</div>
 										<input type="button" class="btn btn-primary btn-block"
 											value="제휴신청하기" onclick="location='join.st'">
 									</div>
@@ -103,7 +115,6 @@ body {font-family:나눔스퀘어라운드;}
 				</div>
 			</div>
 		</section>
-
 	<script src="resources/indexTemplate/js/jquery-3.2.1.slim.min.js"></script>
 	<script src="resources/indexTemplate/js/popper.min.js"></script>
 	<script src="resources/indexTemplate/js/bootstrap.min.js"></script>
@@ -111,6 +122,36 @@ body {font-family:나눔스퀘어라운드;}
 	<script src="resources/indexTemplate/js/jquery.waypoints.min.js"></script>
 	<script src="resources/indexTemplate/js/imagesloaded.pkgd.min.js"></script>
 	<script src="resources/indexTemplate/js/main.js"></script>
+	<script type="text/javascript">
+	
+	//join
+	$().ready(function(){
+   		var msg= '${reMsg}';
+   		var str;
+   		console.log(msg);
+   		if(msg!=null){
+   			if(msg==1)
+   				str="회원가입을 축하합니다!\n지금 회원님은 승인 대기상태 입니다.\n승인까지는 2~5영업일이 소요됩니다.";
+   				
+   			if(str!=null)
+   				alert(str);
+   		}
+   	});
+	
+	//delete
+	$().ready(function(){
+   		var msg= '${resultMsg}';
+   		var str;
+   		console.log(msg);
+   		if(msg!=null){
+   			if(msg=='DelSuccess')
+   				str="제휴해지가 정상적으로 처리되었습니다.\n이용해주셔서 감사합니다.";
+   				
+   			if(str!=null)
+   				alert(str);
+   		}
+   	});
+	</script>
 
 </body>
 </html>

@@ -24,26 +24,38 @@
 <link rel="stylesheet" href="resources/landy/css/style.default.css"
 	id="theme-stylesheet">
 <style>
+body{
+font-size:16px !important;
+font-family:나눔스퀘어라운드 !important;
+}
+.btn{
+font-size:16px !important;
+font-family:나눔스퀘어라운드 !important;
+}
 .btn-primary{
 border-radius:4px;
 margin:1px;
 padding: 0.6rem 1rem;
 }
 
+a {color: #e82424;}
+.container{margin-left:170px;}
+.pb-5{padding-top:10px;padding-bottom:0px;}
+h2{font-family:나눔스퀘어라운드 !important;}
 
 @media all and (max-width:767px){
+.container{margin-left:auto;}
 .stocktable .no {display:none}
 .stocktable .category {display:none}
 .stocktable .price {display:none}
 td .img{weight:10%}
 td .name{weight:70%}
 td .stock{weight:20%}
-}
 
 .pb-5{
 padding-top:50px;
-padding-bottom:20px;
 padding-left:0;
+}
 }
 </style>
 </head>
@@ -75,11 +87,23 @@ padding-left:0;
 
 	<div class="cover-container pb-5">
 		<div class="cover-inner container">
+		<h2 align="center">점포재고관리</h2>
+		<div class="search" style="text-align:right;">
+		<form>
+		<select name="select" style="font-size:16px; height:30px; border-radius: 4px;border:2px solid #44B3C2">
+		    <option value="" selected="selected">선택</option>
+		    <option value="품명">품명</option>
+		    <option value="분류" >분류</option>
+		</select>
+		<input type="text" style="height:30px;border-radius: 4px; border:2px solid #44B3C2">
+		<button type="submit" class="btn btn-primary" style="height:30px; padding-top:0px; padding-bottom:0px">검색</button>
+		</form>
+		</div>
 			<table class="table stocktable">
 				<tr>
 					<th class="no" scope="col">번호</th>
 					<th class="img" scope="col">사진</th>
-					<th class="name" scope="col">상품명</th>
+					<th class="name" scope="col">품명</th>
 					<th class="category" scope="col">분류</th>
 					<th class="price" scope="col">가격</th>
 					<th class="stock" scope="col">재고</th>

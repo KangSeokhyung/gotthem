@@ -56,6 +56,14 @@
 	    }
 </script>
 <style>
+body{
+font-size:16px !important;
+font-family:나눔스퀘어라운드 !important;
+}
+.btn{
+font-size:16px !important;
+font-family:나눔스퀘어라운드 !important;
+}
 .btn-primary{
 border-radius:4px;
 margin:1px;
@@ -63,7 +71,7 @@ padding: 0.6rem 1rem;
 }
 
 .pb-5{
-padding-top:5%;
+padding-top:7%;
 }
 </style>
 </head>
@@ -91,6 +99,8 @@ padding-top:5%;
 	</div>
 	<div class="cover-container pb-5">
 		<div class="cover-inner container">
+		<h2>상품상세정보</h2>
+		<hr><br>
 			<div class="row">
 				<div class="col-sm-3">
 					<img src="/img/${pro.pro_img }" style="width: 250px; height: 250px" />

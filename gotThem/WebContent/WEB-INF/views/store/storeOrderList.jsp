@@ -22,8 +22,40 @@
 <link rel="stylesheet" href="resources/indexTemplate/css/icomoon.css">
 <link rel="stylesheet" href="resources/indexTemplate/css/animate.css">
 <link rel="stylesheet" href="resources/indexTemplate/css/style.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script>
+function statusChange(ord_no, pageNo){
+	var ord_no = ord_no;
+	alert("ord_no"+ord_no);
+	if(confirm("고객에게 상품을 전달하셨습니까?")==true){
+		$.ajax({
+			type:"POST",
+			url:"statusChange.st",			
+			data:"ord_no="+ord_no+"&pageNo="+pageNo,
+			success:function(data){
+				if(data!=1){
+					alert("처리되었습니다.");
+					location.replace("storeOrderList.st?pageNo="+pageNo);
+				}else{
+					alert("처리에 문제가 발생했습니다.");
+					
+				}
+			}
+		});
+	} else{
+		location.history.go(0);
+	}
+    }
+</script>
 </head>
 <style>
+body {font-size: 16px;font-family:나눔스퀘어라운드 !important;}
+.table td, .table th {
+    padding: 5px;
+    vertical-align: middle;
+    border-top: 1px solid #e9ecef;
+}
+h2{font-weight:bold;}
 .btn-primary{
 border-radius:4px;
 margin:1px;
@@ -38,10 +70,10 @@ td .img{padding:0px;}
 }
 
 .container{
-padding-top:50px;
-padding-bottom:20px;
+padding-top:10px;
+padding-bottom:10px;
 padding-left:0;
-margin-left:180px;
+margin-left:170px;
 }
 
 table th, td {
@@ -49,12 +81,12 @@ table th, td {
   vertical-align: middle;
 }
 
-
-
 @media all and (max-width:767px){
 table, tr, td {
     display: block;
     font-size:16px;
+    text-align: center;
+	vertical-align: middle;
 }
 
 td:first-child {
@@ -80,7 +112,7 @@ td:first-child {
     content: '사진:';
   }
   td:nth-child(3):before {
-    content: '상품명:';
+    content: '품명:';
   }
   td:nth-child(4):before {
     content: '수량:';
@@ -89,13 +121,13 @@ td:first-child {
     content: '가격:';
   }
   td:nth-child(6):before {
-    content: '상태:';
-  }
-  td:nth-child(7):before {
     content: '결제시간:';
   }
+  td:nth-child(7):before {
+    content: '전화번호:';
+  }
   td:nth-child(8):before {
-    content: '고객정보:';
+    content: '상태:';
   }
   td:nth-child(9):before {
     content: '결제취소:';
@@ -117,6 +149,7 @@ margin-left:0px;
 }
 
 .datePick{display:none;}
+.no{display: none;}
 }
 </style>
 <body>
@@ -128,55 +161,102 @@ margin-left:0px;
 		<a href="#" class="probootstrap-toggle js-probootstrap-toggle"><span
 			class="oi oi-menu"></span></a>
 		<div class="probootstrap-main-site-logo">
-			<a href="index.html">GOT THEM</a>
+			<c:set var="sessionCheck"
+						value="${sessionScope.SPRING_SECURITY_CONTEXT}" />
+			<c:choose>
+				<c:when test="${sessionCheck eq null}">
+			<a href="login.st">GOT THEM</a>
+			</c:when>
+				<c:otherwise>
+					<a href="stock.st?pageNo=1" class="mb-2 d-block probootstrap-logo">GOTTHEM</a>
+				</c:otherwise>
+			</c:choose>
 		</div>
 	</div>
 	<br><br>
 	<div class="cover-container pb-5">
 		<div class="cover-inner container">
-	<form action="./storeOrderListTime.st"><br>
-		<div>
-			<label for="fromDate"><span class="datePick">기간: &nbsp;&nbsp; </span></label><input type="date"
-				id="fromDate" name="from" class="form-control" required="" /> <label for="toDate"><span class="datePick">~</span></label>
-			<input type="date" id="toDate" class="form-control" name="to" required="" max=""/>&nbsp;&nbsp;
-			<input type="submit" class="btn btn-primary" value="조회" /><strong>&nbsp;&nbsp;&nbsp;총 결제 금액:&nbsp; <span id="chkSum"></span>
-			</strong>
+		<h2 align="center">점포재고관리</h2>
+		<div class="search" style="text-align:right;">
+		<form>
+		<select name="select" style="font-size:16px; height:30px; border-radius: 4px;border:2px solid #44B3C2">
+		    <option value="" selected="selected">선택</option>
+		    <option value="전화번호" >전화번호</option>
+		    <option value="미수령">미수령</option>
+		    <option value="수령">수령</option>
+		    <option value="품명">품명</option>
+		</select>
+		<input type="text" style="height:30px;border-radius: 4px; border:2px solid #44B3C2">
+		<button type="submit" class="btn btn-primary" style="height:30px; padding-top:0px; padding-bottom:0px">검색</button>
+		</form>
 		</div>
-	</form>
 			<table class="table table-user-information" id="mytable">
 				<tr>
-					<th class="no">no.</th>
+					<th class="no">번호</th>
 					<th class="img">사진</th>
-					<th class="name">상품명</th>
+					<th class="name">품명</th>
 					<th class="stock">수량</th>
 					<th class="price">가격</th>
-					<th class="status">상태</th>
 					<th class="findtime">결제 시간</th>
-					<th class="info">고객정보</th>
-					<th class="delete">결제취소</th>
+					<th class="info">전화번호</th>
+					<th class="status">수령/미수령</th>
 				</tr>
-				<c:forEach var="row" items="${map.list}" varStatus="i">
+				<c:forEach var="row" items="${storeListOrder}" varStatus="i">
 					<tr>
 						<td class="no">${row.ord_no}</td>
 						<td class="img"><img src="/img/${row.ord_proimg}" 
 							style="width: 50px; height: 50px" /></td>
 						<td class="name">${row.ord_proname}</td>
-						<td class="stock">${row.ord_stock}</td>
+						<td class="stock">${row.ord_stock}개</td>
 						<td class="price"><fmt:formatNumber pattern="###,###,###"
-								value="${row.ord_price}" /> <input type="hidden" name="sum"
-							value="${row.ord_price}"></td>
-						<td class="status">${row.ord_status}</td>
+								value="${row.ord_price}" /><input type="hidden" name="sum"
+							value="${row.ord_price}">원</td>
 						<td class="findtime">${row.ord_findtime}</td>
-						<td class="info"><input type="button" value="상세" class="btn btn-primary"
-							onclick="button_detail('${row.ord_no}','${row.ord_stock}','${row.ord_procode}');">
-						</td>
-						<td class="delete"><input type="button" value="취소" class="btn btn-primary"
-							onclick="button_delete('${row.ord_no}','${row.ord_stock}','${row.ord_procode}');">
-						</td>
-						
+						<td class="info">${mem_phone}</td>
+						<c:choose>
+							<c:when test="${row.ord_status == '미수령'}">
+								<td class="status">
+								<input type="button" onclick="statusChange(${row.ord_no}, ${pageNo })" 
+								class="btn btn-primary" value="${row.ord_status}" /></td>
+							</c:when>
+							<c:otherwise>
+								<td class="status">${row.ord_status}</td>
+							</c:otherwise>
+						</c:choose>
 					</tr>
 				</c:forEach>
 			</table>
+			<div id="paging" align="center">
+				<c:if test="${totalPages ne 0}">
+					<ul class="pagination pagination-danger">
+						<c:choose>
+							<c:when test="${prevPage ne 0}">
+								<li class="page-item"><a class="page-link"
+									href="storeOrderList.st?pageNo=${prevPage }">&laquo;</a></li>
+							</c:when>
+						</c:choose>
+						<c:forEach begin="${beginPage }" end="${endPage }" step="1"
+							varStatus="status">
+							<c:choose>
+								<c:when test="${nowPage eq status.index }">
+									<li class="page-item active"><a class="page-link"
+										href="storeOrderList.st?pageNo=${status.index }">${status.index }</a></li>
+								</c:when>
+								<c:otherwise>
+									<li class="page-item"><a class="page-link"
+										href="storeOrderList.st?pageNo=${status.index }">${status.index }</a></li>
+								</c:otherwise>
+							</c:choose>
+						</c:forEach>
+						<c:choose>
+							<c:when test="${nextPage ne 0 }">
+								<li class="page-item"><a class="page-link"
+									href="storeOrderList.st?pageNo=${nextPage }">&raquo;</a></li>
+							</c:when>
+						</c:choose>
+					</ul>
+				</c:if>
+			</div>
 
 	</div>
 	</div>
@@ -198,7 +278,7 @@ margin-left:0px;
 			</div>
 		</div>
 	</div>
-	<script src="resources/indexTemplate/js/jquery-3.2.1.slim.min.js"></script>
+	
 	<script type="text/javascript">
 		$(document).ready(function() {
 			var checkSumArr = [];
@@ -215,15 +295,6 @@ margin-left:0px;
 				document.getElementById("chkSum").innerHTML = bb;
 			}
 		});
-		jQuery(function($) {
-			$('#fromDate').on('change', function() {
-				$('#toDate').prop('min', $(this).val());
-			});
-			$('#toDate').on('change', function() {
-				$('#fromDate').prop('max', $(this).val());
-			});
-		});
-		document.getElementById('toDate').valueAsDate = new Date();
 		</script> 
 	<script src="resources/indexTemplate/js/popper.min.js"></script> <script
 		src="resources/indexTemplate/js/bootstrap.min.js"></script> <script

@@ -15,24 +15,88 @@
     <!--     Fonts and icons     -->
     <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
     <link href='http://fonts.googleapis.com/css?family=Roboto:400,700,300' rel='stylesheet' type='text/css'>
-        
+        <style>
+        .text-center2 {
+    text-align: left !important;
+}
+table.type07 {
+    border-collapse: collapse;
+    text-align: left;
+    line-height: 1.5;
+    margin: 0px;
+    border-radius: 30px;
+}
+table.type07 thead {
+    border-right: 1px solid #ccc;
+    border-left: 1px solid #ccc;
+    background: #fa2848;
+}
+table.type07 thead th {
+    padding: 10px;
+    font-weight: bold;
+    vertical-align: top;
+    color: #fff;
+}
+table.type07 tbody th {
+    width: 150px;
+    padding: 10px;
+    font-weight: bold;
+    vertical-align: center;
+    border-bottom: 1px solid #ccc;
+    background: #999;
+    color: #fff;
+}
+table.type07 tbody{
+border-top:1px solid #ccc;
+border-right:1px solid #ccc;
+}
+table.type07 td {
+    width: 80%;
+    padding: 10px;
+    vertical-align: top;
+    border-bottom: 1px solid #ccc;
+}
+table{
+font-size:16px;
+color:#111;
+}
+th{
+font-size:16px;
+}
+table.type07 thead th {
+font-size:22px;
+text-align:center;
+}
+.textBreak{
+word-break:keep-all;
+}
+</style>
 </head>
 <body>
- 	<div class="service text-center">
-            <div class="icon"><i class="icon-magnifying-glass"></i></div>
-            <h1 class="heading">${memberInfo.mem_id }님의 회원정보</h1>
-             <h2 class="heading">아이디</h2>
-            <p>${memberInfo.mem_id }</p>
-            <h2 class="heading">이름</h2>
-            <p>${memberInfo.mem_name }</p>
-             <h2 class="heading">이메일</h2>
-            <p>${memberInfo.mem_email}</p>
-            <h2 class="heading">핸드폰 번호</h2>
-            <p>${memberInfo.mem_phone}</p>
-             <h2 class="heading">주소</h2>
-            <p>${memberInfo.mem_address}</p>
-             <h2 class="heading">가입일</h2>
-            <p>${memberInfo.mem_regdate}</p>
+ 	<div class="service text-center2">
+            <h1 class="heading"><Strong style="color:#337ab7; font-size:25px;">${memberInfo.mem_name }</Strong> 님 정보입니다.</h1>
+            <br>
+            
+		<table class="type07">
+			<tbody>
+				<tr>
+					<th scope="row" class="col-sm-12 textBreak">이메일</th>
+					<td class="col-sm-12">${memberInfo.mem_email}</td>
+				</tr>
+				<tr>
+					<th scope="row" class="col-sm-12 textBreak">핸드폰 번호</th>
+					<td class="col-sm-12">${memberInfo.mem_phone}</td>
+				</tr>
+				<tr>
+					<th scope="row" class="col-sm-12">주소</th>
+					<td class="col-sm-12 textBreak">${mem_post}<br>${mem_address1} &nbsp; ${mem_address2}</td>
+				</tr>
+				<tr>
+					<th scope="row" class="col-sm-12 textBreak">가입일</th>
+					<td class="col-sm-12">${memberInfo.mem_regdate}</td>
+				</tr>
+			</tbody>
+		</table>
           </div>      
 <body>
 </body>

@@ -33,7 +33,7 @@
 					<li class="probootstrap-animate" data-animate-effect="fadeInLeft"><a
 						href="mystore.st">점포관리</a></li>
 					<li class="probootstrap-animate" data-animate-effect="fadeInLeft"><a
-						href="storeOrderList.st">결제관리</a></li>
+						href="storeOrderList.st?pageNo=1">결제관리</a></li>
 					<c:set var="sessionCheck"
 						value="${sessionScope.SPRING_SECURITY_CONTEXT}" />
 					<c:choose>

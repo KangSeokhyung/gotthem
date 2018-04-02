@@ -24,12 +24,21 @@
 <link rel="stylesheet" href="resources/landy/css/style.default.css"
 	id="theme-stylesheet">
 <style>
+body{
+font-size:18px !important;
+font-family:나눔스퀘어라운드 !important;
+}
+.btn{
+font-size:16px !important;
+font-family:나눔스퀘어라운드 !important;
+}
 .btn-primary{
 border-radius:4px;
 margin:1px;
 padding: 0.6rem 1rem;
 }
 
+.pb-5{padding-top:20px;}
 @media( max-width: 640px ) {
 	#myInfo,
 	#myInfo thead,
@@ -86,6 +95,7 @@ padding: 0.6rem 1rem;
 
 <div class="cover-container pb-5">
 <div class="cover-inner container">
+<h2 align="center">매장정보</h2>
 <input type="hidden" name="mem_no" value="${info.mem_no }"/> 
 <table id="myInfo" class="table">
 	<tr>

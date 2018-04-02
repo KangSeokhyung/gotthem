@@ -117,7 +117,7 @@
                          <div class="col-sm-6 multi-horizontal" data-for="postcode">
                             <div class="form-group">
                                     <label class="form-control-label mbr-fonts-style display-7" for="addr1-form1-r">우편번호</label>
-                                    <input type="text" class="form-control" name="mem_addr1" data-form-field="Name" required="" id="sample6_postcode">
+                                    <input type="text" class="form-control" name="mem_addr1" data-form-field="Name" required="" id="sample6_postcode" readonly>
                                 </div>
                             </div>
                          <div class="col-sm-6 multi-horizontal" data-for="findpostcode">

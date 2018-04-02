@@ -21,20 +21,19 @@ public class BasketDaoImpl implements BasketDao {
     public void insertBasket(BasketBean basketBean) {
     	sqlSessionTemplate.insert("insertBasket", basketBean);
     }    
-   // 1.1 상품 삭제
+    // 1.1 상품 삭제
     @Override
     public void deleteproduct(int bas_no) {
     	sqlSessionTemplate.insert("deleteproduct", bas_no);
     }
- 
-	
+ 	
 	// 2. 장바구니 목록
     @Override
     public List<BasketBean> listBasket(int userNo) {
         return sqlSessionTemplate.selectList("listBasket", userNo);
     }
     
-   // 3. 장바구니 삭제
+    // 3. 장바구니 삭제
     @Override
     public void deleteBasket(BasketBean basketBean) {
     	sqlSessionTemplate.delete("deleteBasket", basketBean);
@@ -72,10 +71,5 @@ public class BasketDaoImpl implements BasketDao {
     @Override
     public void deleteBasketAll(int a) {
     	sqlSessionTemplate.delete("deleteBasketAll", a);
-    }
-	/*@Override
-	public MemberBean login(String id) {
-		return sqlSessionTemplate.selectOne("login", id);
-	}*/
-	
+    }	
 }

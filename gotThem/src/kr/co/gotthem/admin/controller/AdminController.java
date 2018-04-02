@@ -266,8 +266,6 @@ public class AdminController {
 		} else {
 			mav.setViewName("admin/memberControl");
 		}
-		
-		
 		return mav;
 	}
 	

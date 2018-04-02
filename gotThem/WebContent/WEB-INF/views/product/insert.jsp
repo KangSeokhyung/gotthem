@@ -25,6 +25,14 @@
 	id="theme-stylesheet">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <style>
+body{
+font-size:16px !important;
+font-family:나눔스퀘어라운드 !important;
+}
+.btn{
+font-size:16px !important;
+font-family:나눔스퀘어라운드 !important;
+}
 .btn-primary{
 border-radius:4px;
 margin:1px;
@@ -36,7 +44,7 @@ margin-bottom:0px;
 }
 
 .pb-5{
-padding-top:5%;
+padding-top:7%;
 }
 .form-control {
 	width: 253px;
@@ -89,6 +97,11 @@ padding-top:5%;
 .fileBox .btn_file {background:#1FAD9F;color:#fff;border-radius:4px;display:inline-block;width:100px;height:30px;font-size:0.8em;line-height:30px;text-align:center;vertical-align:middle;margin-top:2px;}
 .fileBox input[type="file"] {position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);border:0}
 .fileBox .btn_file:hover {color:#fff;background-color:#178277;}
+@media( max-width: 640px ){
+.form-control{width:auto;}
+span{width:40px;}
+td{padding:10px !important;}
+}
 </style>
 <script type="text/javascript">
 	function fnList() {
@@ -135,6 +148,8 @@ $(document).ready(function(){
 
 	<div class="cover-container pb-5">
 		<div class="cover-inner container">
+		<h2>상품상세정보</h2>
+		<br><hr><br>
 			<form action="insert.st?pageNo=${pageNo }" method="post"
 				enctype="multipart/form-data">
 				<input type="hidden" name="mem_no" value="${pro.mem_no }" />
@@ -153,7 +168,7 @@ $(document).ready(function(){
 						</select>
 					</tr>
 					<tr>
-						<td><span>제품명</span></td>
+						<td><span>품명</span></td>
 						<td><input type="text" class="form-control" name="pro_name" required="" maxlength="20"/></td>
 					</tr>
 					<tr>
@@ -165,7 +180,7 @@ $(document).ready(function(){
 						<td><input type="text" class="form-control" name="pro_stock" required="" maxlength="10"/></td>
 					</tr>
 					<tr>
-						<td><span>상품사진</span></td>
+						<td><span>사진</span></td>
 						<td><!-- <input type="file" name="file" /> -->
 						<div class="fileBox">
 							<input type="text" class="fileName" readonly="readonly">

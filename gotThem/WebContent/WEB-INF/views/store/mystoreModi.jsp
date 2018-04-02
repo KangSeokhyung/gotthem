@@ -26,6 +26,14 @@
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <style>
+body{
+font-size:16px !important;
+font-family:나눔스퀘어라운드 !important;
+}
+.btn{
+font-size:16px !important;
+font-family:나눔스퀘어라운드 !important;
+}
 .btn-primary {
 	border-radius: 4px;
 	margin: 1px;
@@ -35,7 +43,8 @@
 label {
 	margin-bottom: 0px;
 }
-
+.pb-5{padding-top:20px;}
+#comment{width:500px;}
 .form-comment {
 	display: block;
 	width: 253px;
@@ -78,6 +87,7 @@ label {
 	.pb-5 {
 		padding-top: 7%;
 	}
+	#comment{width:253px;}
 }
 
 .form-control {
@@ -188,12 +198,12 @@ label {
 
 	<div class="cover-container pb-5">
 		<div class="cover-inner container">
+		<h2 align="center">매장정보수정</h2>
 			<form action="storeModi.st" method="POST"
 				enctype="multipart/form-data">
 				<input type="hidden" name="mem_name" value="${memberInfo.mem_name }" />
 				<input type="hidden" name="mem_id" value="${memberInfo.mem_id}" />
 				<input type="hidden" name="sto_img" value="${memberInfo.sto_img}" />
-				<input type="text" id="sto_comment" name="sto_comment">
 				<table id="myInfo" class="table">
 					<tr>
 						<th nowrap>아이디</th>
@@ -241,8 +251,8 @@ label {
 					</tr>
 					<tr>
 						<th nowrap>코멘트</th>
-						<td><textarea class="form-comment" id="prev_comment"
-								style="height: 100px; resize: none; overflow: visible; text-overflow: ellipsis;"
+						<td><textarea class="form-comment" name="sto_comment" id="comment"
+								style="height: 160px; resize: none; overflow: visible; text-overflow: ellipsis;"
 								required="" maxlength="2000">${memberInfo.sto_comment }</textarea></td>
 					</tr>
 					<tr>
