@@ -8,6 +8,7 @@ import java.util.StringTokenizer;
 
 import org.springframework.ui.Model;
 
+import kr.co.gotthem.member.bean.MemberBean;
 import kr.co.gotthem.product.bean.ProductBean;
 import kr.co.gotthem.product.dao.ProductDao;
 
@@ -228,5 +229,10 @@ public class ProductServiceImpl implements ProductService {
 	@Override
 	public int productSearchStock(int pro_code) {
 		return productDao.productSearchStock(pro_code);
+	}
+	
+	@Override
+	public List<ProductBean> proSelectSearch(int begin, String select, String search, int pro_memno) {
+		return productDao.proSelectSearch(begin, select, search, pro_memno);
 	}
 }

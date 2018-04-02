@@ -1,15 +1,9 @@
 package kr.co.gotthem.member.service;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-
-import org.springframework.ui.Model;
-import org.springframework.web.servlet.ModelAndView;
 
 import kr.co.gotthem.member.bean.MemberBean;
 import kr.co.gotthem.member.dao.MemberDao;
-import kr.co.gotthem.member.dao.MemberDaoImpl;
 
 public class MemberServiceImpl implements MemberService {
 	
@@ -119,5 +113,10 @@ public class MemberServiceImpl implements MemberService {
 	@Override
 	public String selectStoName(int pro_memno) {
 		return memberDao.selectStoName(pro_memno);
+	}
+
+	@Override
+	public List<MemberBean> selectSearch(int begin, String select, String search, String gubun) {
+		return memberDao.selectSearch(begin, select, search, gubun);
 	}
 }

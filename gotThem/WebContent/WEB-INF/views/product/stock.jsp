@@ -89,15 +89,17 @@ padding-left:0;
 		<div class="cover-inner container">
 		<h2 align="center">점포재고관리</h2>
 		<div class="search" style="text-align:right;">
-		<form>
+		
+		<form action="selectSearch.st" method="get">
 		<select name="select" style="font-size:16px; height:30px; border-radius: 4px;border:2px solid #44B3C2">
 		    <option value="" selected="selected">선택</option>
-		    <option value="품명">품명</option>
-		    <option value="분류" >분류</option>
+		    <option value="pro_name">품명</option>
+		    <option value="pro_category" >분류</option>
 		</select>
-		<input type="text" style="height:30px;border-radius: 4px; border:2px solid #44B3C2">
+		<input type="text" name="search" required="required" style="height:30px;border-radius: 4px; border:2px solid #44B3C2">
 		<button type="submit" class="btn btn-primary" style="height:30px; padding-top:0px; padding-bottom:0px">검색</button>
 		</form>
+		
 		</div>
 			<table class="table stocktable">
 				<tr>

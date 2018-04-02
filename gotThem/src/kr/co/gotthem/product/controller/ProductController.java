@@ -253,4 +253,60 @@ public class ProductController {
 		
 		return "product/productDetail";
 	}
+	
+	@RequestMapping(value = "/selectSearch.st", method = RequestMethod.GET)
+	public ModelAndView selectSearch(ModelAndView mav, String select, String search,
+			@RequestParam(defaultValue="1") int pageNo) {
+		
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+		String mem_id = authentication.getName();
+		MemberBean memberInfo = memberService.memberInfo(mem_id);
+		int pro_memno = memberInfo.getMem_no();
+		
+		List<ProductBean> plist = null;
+		
+		final int ROW_PER_PAGE = 10; // 페이지당 레코드 출력 갯수
+		int begin = (pageNo - 1) * ROW_PER_PAGE;
+		int end = pageNo * ROW_PER_PAGE;
+		
+		plist = productService.proSelectSearch(begin, select, search, pro_memno);
+		System.out.println();
+		
+		int totalRows = plist.size(); // 전체 게시물 갯수
+		int totalPages = (int) Math.ceil((double) totalRows / ROW_PER_PAGE);
+
+		final int PAGE_PER_PAGE = 5; // 화면당 페이지 출력 갯수
+		int totalRanges = (int) Math.ceil((double) totalPages
+				/ PAGE_PER_PAGE); // 전체 Range 갯수
+		int currentRange = (int) Math.ceil((double) pageNo / PAGE_PER_PAGE);
+		//요청된 pageNo의 현재 range
+		int beginPage = (currentRange - 1) * PAGE_PER_PAGE + 1; // 시작 페이지 번호
+		int endPage = currentRange * PAGE_PER_PAGE; // 마지막 페이지 번호
+		if (currentRange == totalRanges)
+			endPage = totalPages; // currentRange가 맨 마지막 range인 경우
+
+		int prevPage = 0;
+		if (currentRange != 1)
+			prevPage = (currentRange - 2) * PAGE_PER_PAGE + 1;
+		int nextPage = 0;
+		if (currentRange != totalRanges)
+			nextPage = currentRange * PAGE_PER_PAGE + 1;
+		
+		mav.addObject("ROW_PER_PAGE", ROW_PER_PAGE);
+		mav.addObject("begin", begin); 
+		mav.addObject("end", end); 
+		mav.addObject("pageNo", pageNo);
+		mav.addObject("totalRows", totalRows); 
+		mav.addObject("totalPages",totalPages); 
+		mav.addObject("totalRanges",totalRanges);
+		mav.addObject("currentRange",currentRange);
+		mav.addObject("beginPage", beginPage); 
+		mav.addObject("endPage", endPage); 
+		mav.addObject("prevPage", prevPage);
+		mav.addObject("nextPage", nextPage);
+		mav.addObject("plist", plist);
+		mav.setViewName("product/stock");
+		
+		return mav;
+	}
 }

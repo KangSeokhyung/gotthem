@@ -40,4 +40,6 @@ public interface OrderDao {
     public List<OrderpayBean> storeListOrderTime(int userNo, Timestamp begin, Timestamp end);
 
 	public void statusChange(int ord_no);
+	
+	public List<OrderpayBean> orderSelectSearch(int begin, String select, String search);
 }

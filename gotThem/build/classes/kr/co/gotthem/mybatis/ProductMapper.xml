@@ -76,4 +76,24 @@
 	<select id="selectStoName" resultType="String" >
 		select sto_name from member where mem_no = #{pro_memno}
 	</select>
+	
+	<select id="proSelectSearch" parameterType="java.util.HashMap" resultType="kr.co.gotthem.product.bean.ProductBean">
+		select * 
+		from product 
+		where pro_memno = #{pro_memno} 
+		<choose>
+			<when test='select!=null and select.equals("")'>
+				and (pro_name like concat('%', #{search}, '%')
+				or pro_category like concat('%', #{search}, '%'))
+			</when>
+			<when test='select!=null and select.equals("pro_name")'>
+				and pro_name like concat('%', #{search}, '%')	
+			</when>
+			<when test='select!=null and select.equals("pro_category")'>
+				and pro_category like concat('%', #{search}, '%')	
+			</when> 
+		</choose> 
+		order by pro_name 
+		limit #{begin}, 10 
+	</select>
 </mapper>

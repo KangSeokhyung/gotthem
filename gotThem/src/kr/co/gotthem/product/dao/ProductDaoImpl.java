@@ -6,6 +6,7 @@ import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 
+import kr.co.gotthem.member.bean.MemberBean;
 import kr.co.gotthem.product.bean.ProductBean;
 
 public class ProductDaoImpl implements ProductDao {
@@ -88,6 +89,17 @@ public class ProductDaoImpl implements ProductDao {
 	@Override
 	public int productSearchStock(int pro_code) {
 		return sqlSessionTemplate.selectOne("productSearchStock", pro_code);
+	}
+	
+	@Override
+	public List<ProductBean> proSelectSearch(int begin, String select, String search, int pro_memno) {
+		Map map = new HashMap();
+		map.put("begin", begin);
+		map.put("select", select);
+		map.put("search", search);
+		map.put("pro_memno", pro_memno);
+		
+		return sqlSessionTemplate.selectList("proSelectSearch", map);
 	}
 
 }

@@ -1,6 +1,9 @@
 package kr.co.gotthem.member.dao;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+
 import org.mybatis.spring.SqlSessionTemplate;
 import kr.co.gotthem.member.bean.MemberBean;
 
@@ -53,7 +56,6 @@ public class MemberDaoImpl implements MemberDao {
 	
 	@Override
 	public void memModi(MemberBean memberBean) {
-		System.out.println(memberBean);
 		int result = sqlSessionTemplate.update("memModi", memberBean);
 		System.out.println("회원정보 관리자 수정 후 결과는 : " + result);
 	}
@@ -126,6 +128,19 @@ public class MemberDaoImpl implements MemberDao {
 	@Override
 	public String selectStoName(int pro_memno) {
 		return sqlSessionTemplate.selectOne("selectStoName", pro_memno);
+	}
+
+	@Override
+	public List<MemberBean> selectSearch(int begin, String select, String search, String gubun) {
+		Map map = new HashMap();
+		map.put("begin", begin);
+		map.put("select", select);
+		map.put("search", search);
+		
+		if (gubun.equals("회원")) {
+			return sqlSessionTemplate.selectList("selectSearch", map);
+		}
+		return sqlSessionTemplate.selectList("selectSearch_j", map);
 	}
 	
 }

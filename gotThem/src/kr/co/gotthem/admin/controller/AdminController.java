@@ -201,27 +201,69 @@ public class AdminController {
 		@RequestParam(required=false) String enable, 
 		MemberBean mbean, HttpServletRequest request, HttpSession session) {		
 		
-		int approve = 0;
-		
-		if(enable.equals("승인완료")) {
-			approve = 1;
-		} else {
-			approve = 0;
-		}
-
-		mbean.setMem_id(request.getParameter("mem_id"));
-		mbean.setMem_name(request.getParameter("mem_name"));
-		mbean.setSto_name(request.getParameter("sto_name"));
-		mbean.setMem_email(request.getParameter("mem_email"));
-		mbean.setMem_phone(request.getParameter("mem_phone"));
 		mbean.setMem_address(request.getParameter("mem_addr1")+"/"+
 		request.getParameter("mem_addr2")+"/"+request.getParameter("mem_addr3"));
-		mbean.setEnabled(approve);
 		
 		memberService.memModi(mbean);
 	
-		return "redirect:/admin/storeControl";
+		return "redirect:/storecontrol.ad";
+	}
+	
+	@RequestMapping(value = "/selectSearch.ad", method = RequestMethod.GET)
+	public ModelAndView selectSearch(ModelAndView mav, String select, String search,
+			@RequestParam(defaultValue="1") int pageNo, 
+			@RequestParam(defaultValue="회원") String gubun) {
+		if (search.equals("가입") || search.equals("가") || search.equals("입")) {
+			search = "1";
+		}
+		if (search.equals("탈퇴") || search.equals("탈") || search.equals("퇴")) {
+			search = "0";
+		}
+		
+		List<MemberBean> mlist = null;
+		
+		final int ROW_PER_PAGE = 10; // 페이지당 레코드 출력 갯수
+		int begin = (pageNo - 1) * ROW_PER_PAGE;
+		int end = pageNo * ROW_PER_PAGE;
+		
+		mlist = memberService.selectSearch(begin, select, search, gubun);
+		
+		int totalRows = mlist.size(); // 전체 게시물 갯수
+		int totalPages = (int) Math.ceil((double) totalRows / ROW_PER_PAGE);
 
+		final int PAGE_PER_PAGE = 5; // 화면당 페이지 출력 갯수
+		int totalRanges = (int) Math.ceil((double) totalPages
+				/ PAGE_PER_PAGE); // 전체 Range 갯수
+		int currentRange = (int) Math.ceil((double) pageNo / PAGE_PER_PAGE);
+		//요청된 pageNo의 현재 range
+		int beginPage = (currentRange - 1) * PAGE_PER_PAGE + 1; // 시작 페이지 번호
+		int endPage = currentRange * PAGE_PER_PAGE; // 마지막 페이지 번호
+		if (currentRange == totalRanges)
+			endPage = totalPages; // currentRange가 맨 마지막 range인 경우
+
+		int prevPage = 0;
+		if (currentRange != 1)
+			prevPage = (currentRange - 2) * PAGE_PER_PAGE + 1;
+		int nextPage = 0;
+		if (currentRange != totalRanges)
+			nextPage = currentRange * PAGE_PER_PAGE + 1;
+		
+		mav.addObject("ROW_PER_PAGE", ROW_PER_PAGE);
+		mav.addObject("begin", begin); 
+		mav.addObject("end", end); 
+		mav.addObject("pageNo", pageNo);
+		mav.addObject("totalRows", totalRows); 
+		mav.addObject("totalPages",totalPages); 
+		mav.addObject("totalRanges",totalRanges);
+		mav.addObject("currentRange",currentRange);
+		mav.addObject("beginPage", beginPage); 
+		mav.addObject("endPage", endPage); 
+		mav.addObject("prevPage", prevPage);
+		mav.addObject("nextPage", nextPage);
+		mav.addObject("mlist", mlist);
+		mav.setViewName("admin/memberControl");
+		
+		return mav;
 	}
 	
 }

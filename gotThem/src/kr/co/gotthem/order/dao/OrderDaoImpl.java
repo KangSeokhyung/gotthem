@@ -85,5 +85,14 @@ public class OrderDaoImpl implements OrderDao {
 	public void statusChange(int ord_no) {
 		sqlSessionTemplate.update("statusChange", ord_no);
 	}
-    
+	
+	@Override
+	public List<OrderpayBean> orderSelectSearch(int begin, String select, String search) {
+		Map map = new HashMap();
+		map.put("begin", begin);
+		map.put("select", select);
+		map.put("search", search);
+		
+		return sqlSessionTemplate.selectList("orderSelectSearch", map);
+	}
 }

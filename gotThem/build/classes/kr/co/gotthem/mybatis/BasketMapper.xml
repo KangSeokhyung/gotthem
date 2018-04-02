@@ -157,4 +157,24 @@
 		WHERE ord_no = #{ord_no}
 	</update>
 	
+	<select id="orderSelectSearch" parameterType="java.util.HashMap" resultType="kr.co.gotthem.order.bean.OrderpayBean">
+		select * 
+		from orderpay 
+		where sto_name = #{sto_name} 
+		<choose>
+			<when test='select!=null and select.equals("")'>
+				and (ord_proname like concat('%', #{search}, '%')
+				or ord_status like concat('%', #{search}, '%'))
+			</when>
+			<when test='select!=null and select.equals("ord_proname")'>
+				and ord_proname like concat('%', #{search}, '%')	
+			</when>
+			<when test='select!=null and select.equals("ord_status")'>
+				and ord_status like concat('%', #{search}, '%')	
+			</when> 
+		</choose> 
+		order by ord_proname 
+		limit #{begin}, 10 
+	</select>
+	
 </mapper>

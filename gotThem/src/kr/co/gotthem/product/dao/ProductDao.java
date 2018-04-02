@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import kr.co.gotthem.member.bean.MemberBean;
 import kr.co.gotthem.product.bean.ProductBean;
 
 public interface ProductDao {
@@ -34,4 +35,6 @@ public interface ProductDao {
 	public ProductBean productDetail(int pro_code);
 	
 	public int productSearchStock(int pro_code);
+	
+	public List<ProductBean> proSelectSearch(int begin, String select, String search, int pro_memno);
 }

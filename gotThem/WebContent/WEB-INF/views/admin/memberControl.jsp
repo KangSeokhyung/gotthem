@@ -19,8 +19,21 @@
       <script src="resources/mainTemplate/js/vendor/html5shiv.min.js"></script>
       <script src="resources/mainTemplate/js/vendor/respond.min.js"></script>
     <![endif]-->
-<style>
-/* 푸터 css */
+<style type="text/css">
+html, body {
+    margin:0;
+    padding:0;
+    height:1200px;
+}
+#wrap {
+	min-height: 100%; 
+	position: relative;
+}
+footer {
+	position: absolute !important;
+	bottom: 0;
+	width: 100%;
+}
 .probootstrap-footer.probootstrap-bg {
     background-size: cover;
     background-repeat: no-repeat;
@@ -172,92 +185,125 @@ width:568px;
 				if (enable == "탈퇴") {
 					$("[name='enable'][value='탈퇴']").attr("checked", true);
 				}
-				
+			}
+		});
+		
+		$("#mem_id_j").keyup(function(event) {
+			if (!(event.keyCode >= 37 && event.keyCode <= 40)) {
+				var inputVal = $(this).val();
+				$(this).val(inputVal.replace(/[^a-z0-9]/gi, ''));
 			}
 		});
 	});
-	
+
 	function sample6_execDaumPostcode(gubun) {
-		new daum.Postcode({
-			oncomplete : function(data) {
-				// 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
-				// 각 주소의 노출 규칙에 따라 주소를 조합한다.
-				// 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
-				var fullAddr = ''; // 최종 주소 변수
-				var extraAddr = ''; // 조합형 주소 변수
-				// 사용자가 선택한 주소 타입에 따라 해당 주소 값을 가져온다.
-				if (data.userSelectedType === 'R') { // 사용자가 도로명 주소를 선택했을 경우
-					fullAddr = data.roadAddress;
-				} else { // 사용자가 지번 주소를 선택했을 경우(J)
-					fullAddr = data.jibunAddress;
-				}
-				// 사용자가 선택한 주소가 도로명 타입일때 조합한다.
-				if (data.userSelectedType === 'R') {
-					//법정동명이 있을 경우 추가한다.
-					if (data.bname !== '') {
-						extraAddr += data.bname;
-					}
-					// 건물명이 있을 경우 추가한다.
-					if (data.buildingName !== '') {
-						extraAddr += (extraAddr !== '' ? ', '
-								+ data.buildingName : data.buildingName);
-					}
-					// 조합형주소의 유무에 따라 양쪽에 괄호를 추가하여 최종 주소를 만든다.
-					fullAddr += (extraAddr !== '' ? ' (' + extraAddr
-							+ ')' : '');
-				}
-				
-				if (gubun == 1) {
-					document.getElementById('sample6_postcode_j').value = data.zonecode; //5자리 새우편번호 사용
-					document.getElementById('sample6_address_j').value = fullAddr;
+		new daum.Postcode(
+				{
+					oncomplete : function(data) {
+						// 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
+						// 각 주소의 노출 규칙에 따라 주소를 조합한다.
+						// 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
+						var fullAddr = ''; // 최종 주소 변수
+						var extraAddr = ''; // 조합형 주소 변수
+						// 사용자가 선택한 주소 타입에 따라 해당 주소 값을 가져온다.
+						if (data.userSelectedType === 'R') { // 사용자가 도로명 주소를 선택했을 경우
+							fullAddr = data.roadAddress;
+						} else { // 사용자가 지번 주소를 선택했을 경우(J)
+							fullAddr = data.jibunAddress;
+						}
+						// 사용자가 선택한 주소가 도로명 타입일때 조합한다.
+						if (data.userSelectedType === 'R') {
+							//법정동명이 있을 경우 추가한다.
+							if (data.bname !== '') {
+								extraAddr += data.bname;
+							}
+							// 건물명이 있을 경우 추가한다.
+							if (data.buildingName !== '') {
+								extraAddr += (extraAddr !== '' ? ', '
+										+ data.buildingName : data.buildingName);
+							}
+							// 조합형주소의 유무에 따라 양쪽에 괄호를 추가하여 최종 주소를 만든다.
+							fullAddr += (extraAddr !== '' ? ' (' + extraAddr
+									+ ')' : '');
+						}
 
-					document.getElementById('sample6_address2_j').focus();
-				} 
-				document.getElementById('sample6_postcode').value = data.zonecode; //5자리 새우편번호 사용
-				document.getElementById('sample6_address').value = fullAddr;
+						if (gubun == 1) {
+							document.getElementById('sample6_postcode_j').value = data.zonecode; //5자리 새우편번호 사용
+							document.getElementById('sample6_address_j').value = fullAddr;
 
-				document.getElementById('sample6_address2').focus();
-				
-					
-			}
-		}).open();
+							document.getElementById('sample6_address2_j')
+									.focus();
+						}
+						document.getElementById('sample6_postcode').value = data.zonecode; //5자리 새우편번호 사용
+						document.getElementById('sample6_address').value = fullAddr;
+
+						document.getElementById('sample6_address2').focus();
+
+					}
+				}).open();
+	}
+
+	function duplCheck() {
+		var mem_id = $('#mem_id_j').val();
+		var idExp = /^[a-z0-9]{0,15}/;
+		if (!idExp.test(mem_id)) {
+			$('#mem_id').val("");
+			$('#mem_id').focus();
+			$('#duplicate').val('N');
+			$('#idcheck').html('숫자와 영어를 조합하여 아이디를 입력하세요').css('color', 'red');
+			return false;
+		} else {
+			$.ajax({
+				type : 'post',
+				url : 'duplCheck.gt',
+				data : {
+					"mem_id" : mem_id
+				},
+				success : function(data) {
+					if (data == "0") {
+						$("#idcheck").html(
+								'<p style="color:blue"> 사용가능한 아이디입니다.</p>');
+						$('#duplicate').val('Y');
+					} else if (data != "0") {
+						$("#idcheck").html(
+								'<p style="color:red"> 이미 사용중입니다.</p>');
+						$('#duplicate').val('F');
+					}
+				},
+				error : function(jqXHR, textStatus, errorThrown) {
+					alert('시스템 문제발생');
+					console.log(jqXHR);
+					console.log(textStatus);
+					console.log(errorThrown);
+				}
+			});
+		}
 	}
 	
-	function duplCheck() {	
-		var mem_id = $('#mem_id').val();
-			var idExp = /^[a-z0-9]{0,15}/;
-			if (!idExp.test(mem_id)){
-				$('#mem_id').val("");
-				$('#mem_id').focus();
-				$('#duplicate').val('N');
-				$('#idcheck').html('숫자와 영어를 조합하여 아이디를 입력하세요').css('color', 'red');
-                return false;
-			} else {
-			 $.ajax({ 
-	                type : 'post',
-	                url  : 'duplCheck.gt',
-	                data : {"mem_id": mem_id},
-	                success : function(data){
-		                   if(data=="0"){
-		                	   $("#idcheck").html('<p style="color:blue"> 사용가능한 아이디입니다.</p>');
-		                	   $('#duplicate').val('Y');
-		                   }else if(data!="0"){
-		                	   $("#idcheck").html('<p style="color:red"> 이미 사용중입니다.</p>');
-		                	   $('#duplicate').val('F');
-		                   }
-		             },
-	                error : function(jqXHR, textStatus, errorThrown) { 
-	                	alert('시스템 문제발생');
-	                	console.log(jqXHR);
-	            	 	console.log(textStatus);
-	            	 	console.log(errorThrown);
-	                }
-	           }); 
-			}
+	function execution() {
+		var duplicate = $("#duplicate").val();
+		if (duplicate == "N") {
+			alert("중복확인이 필요합니다.")
+			return false;
+		} else if (duplicate == "F") {
+			alert("이미 사용중인 아이디입니다.")
+			return false;
 		}
+		alert("회원가입 되었습니다.");
+	}
+	
+	function removeChar(event) {
+		event = event || window.event;
+		var keyID = (event.which) ? event.which : event.keyCode;
+		if ( keyID == 8 || keyID == 46 || keyID == 37 || keyID == 39 ) 
+			return;
+		else
+			event.target.value = event.target.value.replace(/[^0-9]/g, "");
+	}
 </script>
   </head>
   <body style="padding-right: 0px !important">
+
   <!-- START: header -->
    <header role="banner" class="probootstrap-header">
     <div class="container">
@@ -276,7 +322,8 @@ width:568px;
         </nav>
     </div>
   </header>
-
+  
+<div id="wrap">
   <div class="probootstrap-loader"></div>
 	<div class="table-responsive">
 		<div style="text-align: center;">
@@ -352,16 +399,15 @@ width:568px;
 			</ul>
 			</c:if>
 		</div>
-		<form style="height:80px; text-align: center;">
+		<form action="selectSearch.ad" method="get" style="height:80px; text-align: center;">
 			<select name="select" style="font-size:20px; height:49px; border-radius: 12px;border:2px solid #44B3C2">
 			    <option value="" selected="selected">선택</option>
-			    <option value="이름">이름</option>
-			    <option value="전화번호" >전화번호</option>
-			    <option value="승인대기">승인대기</option>
-			    <option value="승인">승인</option>
-			    <option value="승인거부">승인거부</option>
+			    <option value="mem_name">이름</option>
+			    <option value="mem_phone">전화번호</option>
+			    <option value="mem_address">주소</option>
+			    <option value="enabled">계정상태</option>
 			</select>
-			<input type="text" style="height:49px;border-radius: 12px; border:2px solid #44B3C2">
+			<input type="text" name="search" required="required" style="height:49px; border-radius: 12px; border:2px solid #44B3C2">
 			<button type="submit" class="btn btn-primary">검색</button>
 		</form>
 	<hr>
@@ -372,8 +418,8 @@ width:568px;
         <div class="modal-dialog"> 
                 <div class="modal-content"> 
                  <div class="modal-header"> 
-                  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button> 
-                  <h4 class="modal-title" id="myModalLabel">회원정보수정</h4> 
+	                  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button> 
+	                  <h4 class="modal-title" id="myModalLabel">회원정보수정</h4> 
                   </div> 
                   <div class="modal-body">
                  
@@ -381,17 +427,17 @@ width:568px;
 						<div class="container">
 							<div class="row justify-content-center">
 								
-								<form action="joinSccess.gt" method="post"
+								<form action="joinSccess.gt" method="post" onsubmit="return execution();"
 									data-form-title="Mobirise Form">
 										
 									<div class="row row-sm-offset">
 										
 										<input type="hidden" name="gubun" value="joinToAdmin">
-										
+										<input type="hidden" id="duplicate" value="N">
 										<div class="col-sm-8 multi-horizontal" data-for="id">
 											<div class="form-group">
 												<label class="form-control-label mbr-fonts-style display-7"
-													for="name-form1-r">아이디</label> <input type="text" required="required"
+													for="name-form1-r">아이디</label> <input type="text" required="required" autocomplete="false"
 													pattern="[A-Za-z0-9]{0,15}" autofocus onkeyup="duplCheck()" maxlength="20"
  													name="mem_id" class="form-control" id="mem_id_j"> 
  													<p id="idcheck" class="text-mute">아이디를 입력해주세요</p>
@@ -409,19 +455,19 @@ width:568px;
 										<div class="col-sm-12 multi-horizontal" data-for="email">
 											<div class="form-group">
 												<label class="form-control-label mbr-fonts-style display-7"
-													for="email-form1-r">이메일</label> 
-													<input maxlength="20" type="text" class="form-control" id="mem_emailid" required="required" name="mem_emailid" style="width:45%; display:inline;">&nbsp;@
-                 									<input maxlength="20" type="text" class="form-control" id="mem_emailadd" required="required" name="mem_emailadd" style="width:46%; display:inline;">
+													for="email-form1-r">이메일</label> <br>
+													<input maxlength="20" type="text" class="form-control" id="mem_emailid" required="required" name="mem_emailid" style="width:40%; display:inline;">&nbsp;@
+                 									<input maxlength="20" type="text" class="form-control" id="mem_emailadd" required="required" name="mem_emailadd" style="width:40%; display:inline;">
 											</div>
 										</div>
 										
 										<div class="col-sm-12 multi-horizontal" data-for="phone">
 											<div class="form-group">
 												<label class="form-control-label mbr-fonts-style display-7"
-													for="phone-form1-r">전화번호</label>
-														<input type="text" class="form-control" maxlength="3" id="mem_phoneFront" name="mem_phoneFront" required="required" style="width:30%; display:inline;">&nbsp;-
-										                <input type="text" class="form-control" maxlength="4" id="mem_phoneMiddle" name="mem_phoneMiddle" required="required" style="width:30%; display:inline;">&nbsp;-
-										                <input type="text" class="form-control" maxlength="4" id="mem_phoneLast" name="mem_phoneLast" required="required" style="width:30%; display:inline;">
+													for="phone-form1-r">전화번호</label><br>
+														<input type="text" class="form-control" maxlength="3" id="mem_phoneFront" name="mem_phoneFront" required="required" style="width:30%; display:inline;" onkeyup="removeChar(event)">&nbsp;-
+										                <input type="text" class="form-control" maxlength="4" id="mem_phoneMiddle" name="mem_phoneMiddle" required="required" style="width:30%; display:inline;" onkeyup="removeChar(event)">&nbsp;-
+										                <input type="text" class="form-control" maxlength="4" id="mem_phoneLast" name="mem_phoneLast" required="required" style="width:30%; display:inline;" onkeyup="removeChar(event)">
 											</div>
 										</div>
 										
@@ -429,13 +475,13 @@ width:568px;
 											<div class="form-group">
 												<label class="form-control-label mbr-fonts-style display-7"
 													for="addr1-form1-r">우편번호</label> <input type="text"
-													class="form-control address1" name="mem_addr1"
+													class="form-control address1" name="mem_addr1" required="required"
 													id="sample6_postcode_j" readOnly>
 											</div>
 										</div>
 										<div class="col-sm-6 multi-horizontal" data-for="findpostcode">
 											<div class="form-group" style="margin: 23px 0px; padding-top: 4px;">
-												<input type="button" onclick="sample6_execDaumPostcode(1)"
+												<input type="button" onclick="sample6_execDaumPostcode(1)" name="mem_post"
 													class="btn btn-primary btn-sm" value="우편번호 찾기">
 											</div>
 										</div>
@@ -444,26 +490,24 @@ width:568px;
 											<div class="form-group">
 												<label class="form-control-label mbr-fonts-style display-7"
 													for="addr1-form1-r">상세주소1</label> <input type="text"
-													class="form-control address2" name="mem_addr2"
+													class="form-control address2" name="mem_address1" required="required"
 													style="width: 568px;" id="sample6_address_j" readOnly>
 											</div>
 										</div>
 										<div class="col-sm-12 multi-horizontal" data-for="address2">
 											<div class="form-group">
 												<label class="form-control-label mbr-fonts-style display-7"
-													for="addr2-form1-r">상세주소2</label> <input type="text"
-													class="form-control address3" name="mem_addr3" style="width: 568px;"
+													for="addr2-form1-r">상세주소2</label> <input type="text" required="required"
+													class="form-control address3" name="mem_address2" style="width: 568px;"
 													id="sample6_address2_j">
 											</div>
 										</div>
 										
 										<div class="col-sm-12 multi-horizontal" data-for="button"
-											style="width: 598px; align: center;">
-											<center>
+											style="width: 598px; text-align: center;">
 												<button type="submit" class="btn btn-primary">가입</button>
 												<button type="button" class="btn btn-secondary"
 													data-dismiss="modal">취소</button>
-											</center>
 										</div>
 									</div>
 								</form>
@@ -471,7 +515,9 @@ width:568px;
 							</div>
 						</div>
 					</section>
-				</div>    
+					
+				</div> 
+  
                 </div> 
         	</div> 
 		</div>
@@ -483,7 +529,7 @@ width:568px;
                 <div class="modal-content"> 
                  <div class="modal-header"> 
                   <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button> 
-                  <h4 class="modal-title" id="myModalLabel">회원정보수정</h4> 
+                  <h2 class="modal-title" id="myModalLabel">회원정보수정</h2> 
                   </div> 
                   <div class="modal-body">
                  
@@ -578,12 +624,10 @@ width:568px;
 										</div>
 										
 										<div class="col-sm-12 multi-horizontal" data-for="button"
-											style="width: 598px; align: center;">
-											<center>
-												<button type="submit" class="btn btn-primary">정보수정</button>
-												<button type="button" class="btn btn-secondary"
-													data-dismiss="modal">취소</button>
-											</center>
+											style="width: 598px; text-align: center;">
+											<button type="submit" class="btn btn-primary">정보수정</button>
+											<button type="button" class="btn btn-secondary"
+												data-dismiss="modal">취소</button>
 										</div>
 									</div>
 								</form>
@@ -595,6 +639,7 @@ width:568px;
                 </div> 
         	</div> 
 		</div>
+		
 <!-- START: footer -->
 <%@include file="../../../footer.jsp" %>
 <!-- END: footer -->
@@ -602,7 +647,7 @@ width:568px;
   <script src="resources/mainTemplate/js/scripts.min.js"></script>
   <script src="resources/mainTemplate/js/main.min.js"></script>
   <script src="resources/mainTemplate/js/custom.js"></script>
-
+</div>
   </body>
 
 </html>

@@ -60,7 +60,7 @@ th { color: black; font-size: 16px; }
 		height: 95px !important;
 	}
 }
-.searchStyle { border-radius: 0px; height: 55px; font-size: 17px; }
+.searchStyle { border-radius: 0px; height: 55px; font-size: 17px; padding: 1px solid white;}
 a { color: #242D91; }
 a:hover { color: #fa2848; }
 #paging { text-align: center; }

@@ -19,6 +19,7 @@ import org.springframework.web.client.RestTemplate;
 import kr.co.gotthem.basket.bean.BasketBean;
 import kr.co.gotthem.order.bean.OrderpayBean;
 import kr.co.gotthem.order.dao.OrderDao;
+import kr.co.gotthem.product.bean.ProductBean;
 
 
 public class OrderServiceImpl implements OrderService {
@@ -318,5 +319,9 @@ public class OrderServiceImpl implements OrderService {
 		orderDao.statusChange(ord_no);
 	}
     
+	@Override
+	public List<OrderpayBean> orderSelectSearch(int begin, String select, String search) {
+		return orderDao.orderSelectSearch(begin, select, search);
+	}
   
 }

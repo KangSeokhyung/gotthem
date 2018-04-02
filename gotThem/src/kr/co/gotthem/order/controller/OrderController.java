@@ -25,6 +25,7 @@ import kr.co.gotthem.member.bean.MemberBean;
 import kr.co.gotthem.member.service.MemberService;
 import kr.co.gotthem.order.bean.OrderpayBean;
 import kr.co.gotthem.order.service.OrderService;
+import kr.co.gotthem.product.bean.ProductBean;
 import kr.co.gotthem.product.service.ProductService;
 
 @Controller
@@ -244,4 +245,56 @@ public class OrderController {
         mav.setViewName("basket/purchase");
         return mav;
         }
+	
+	@RequestMapping(value = "/orderSelectSearch.st", method = RequestMethod.GET)
+	public ModelAndView selectSearch(ModelAndView mav, String select, String search,
+			@RequestParam(defaultValue="1") int pageNo) {
+		
+		
+		List<OrderpayBean> storeListOrder = null;
+		
+		final int ROW_PER_PAGE = 10; // 페이지당 레코드 출력 갯수
+		int begin = (pageNo - 1) * ROW_PER_PAGE;
+		int end = pageNo * ROW_PER_PAGE;
+		
+		storeListOrder = orderService.orderSelectSearch(begin, select, search);
+		
+		int totalRows = storeListOrder.size(); // 전체 게시물 갯수
+		int totalPages = (int) Math.ceil((double) totalRows / ROW_PER_PAGE);
+
+		final int PAGE_PER_PAGE = 5; // 화면당 페이지 출력 갯수
+		int totalRanges = (int) Math.ceil((double) totalPages
+				/ PAGE_PER_PAGE); // 전체 Range 갯수
+		int currentRange = (int) Math.ceil((double) pageNo / PAGE_PER_PAGE);
+		//요청된 pageNo의 현재 range
+		int beginPage = (currentRange - 1) * PAGE_PER_PAGE + 1; // 시작 페이지 번호
+		int endPage = currentRange * PAGE_PER_PAGE; // 마지막 페이지 번호
+		if (currentRange == totalRanges)
+			endPage = totalPages; // currentRange가 맨 마지막 range인 경우
+
+		int prevPage = 0;
+		if (currentRange != 1)
+			prevPage = (currentRange - 2) * PAGE_PER_PAGE + 1;
+		int nextPage = 0;
+		if (currentRange != totalRanges)
+			nextPage = currentRange * PAGE_PER_PAGE + 1;
+		
+		mav.addObject("ROW_PER_PAGE", ROW_PER_PAGE);
+		mav.addObject("begin", begin); 
+		mav.addObject("end", end); 
+		mav.addObject("pageNo", pageNo);
+		mav.addObject("totalRows", totalRows); 
+		mav.addObject("totalPages",totalPages); 
+		mav.addObject("totalRanges",totalRanges);
+		mav.addObject("currentRange",currentRange);
+		mav.addObject("beginPage", beginPage); 
+		mav.addObject("endPage", endPage); 
+		mav.addObject("prevPage", prevPage);
+		mav.addObject("nextPage", nextPage);
+		mav.addObject("storeListOrder", storeListOrder);
+		mav.setViewName("store/storeOrderList");
+		
+		return mav;
+	}
+	
 }

@@ -31,7 +31,7 @@
 	-webkit-box-shadow: none;
 	box-shadow: none;
 }
-#btnColor { background: #fa2848; }
+#btnColor { background: #fa2848; border: 1px solid white; }
 #btnColor2 { background: #899; color: white; padding: 10px 15px; float: right; }
 .btnColor3 { background: #70C585; color: white; padding: 10px 15px; }
 .btnColor4 { background: #70C585; color: white; padding: 10px 10px; font-size: 15px; }

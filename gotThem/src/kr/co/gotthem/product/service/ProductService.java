@@ -5,6 +5,7 @@ import java.util.Map;
 
 import org.springframework.ui.Model;
 
+import kr.co.gotthem.member.bean.MemberBean;
 import kr.co.gotthem.product.bean.ProductBean;
 
 public interface ProductService {
@@ -31,5 +32,7 @@ public interface ProductService {
 	public ProductBean productDetail(int pro_code);
 	
 	public int productSearchStock(int pro_code);
+	
+	public List<ProductBean> proSelectSearch(int begin, String select, String search, int pro_memno);
 	
 }
