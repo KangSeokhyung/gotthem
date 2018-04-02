@@ -39,10 +39,6 @@
 #tabStyle a { color: #1C1C1C; font-weight: 600; }
 #tabStyle a:hover { color: #fa2848; font-weight: 500; }
 #wordLine { word-break: keep-all; }
-table {
-	font-size: 13px;
-	text-align: center;
-}
 .zeroP { padding: 0px; }
 .probootstrap-footer.probootstrap-bg {
     background-size: cover;

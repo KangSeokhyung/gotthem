@@ -136,7 +136,7 @@ public class AdminController {
 
 	@RequestMapping(value = "/storecontrol.ad", method = RequestMethod.GET)
 	public ModelAndView store(ModelAndView mav, HttpServletRequest request) {
-		List<MemberBean> stlist = null;
+		List<MemberBean> mlist = null;
 		
 		String tempNo = request.getParameter("pageNo");
 		int pageNo = 1;
@@ -153,7 +153,7 @@ public class AdminController {
 		final int ROW_PER_PAGE = 10; // 페이지당 레코드 출력 갯수
 		int begin = (pageNo - 1) * ROW_PER_PAGE;
 		int end = pageNo * ROW_PER_PAGE;
-		stlist = memberService.stlist(begin);// 시작 페이지와 끝 페이지를 조건으로 리스트 가져오기
+		mlist = memberService.stlist(begin);// 시작 페이지와 끝 페이지를 조건으로 리스트 가져오기
 		
 		
 		int totalRows = memberService.stcountRow(); // 전체 게시물 갯수
@@ -190,7 +190,7 @@ public class AdminController {
 		mav.addObject("endPage", endPage); 
 		mav.addObject("prevPage", prevPage);
 		mav.addObject("nextPage", nextPage);
-		mav.addObject("stlist", stlist);
+		mav.addObject("mlist", mlist);
 		mav.setViewName("admin/storeControl");
 
 		return mav;
@@ -261,7 +261,12 @@ public class AdminController {
 		mav.addObject("prevPage", prevPage);
 		mav.addObject("nextPage", nextPage);
 		mav.addObject("mlist", mlist);
-		mav.setViewName("admin/memberControl");
+		if (gubun.equals("점포")) {
+			mav.setViewName("admin/storeControl");
+		} else {
+			mav.setViewName("admin/memberControl");
+		}
+		
 		
 		return mav;
 	}

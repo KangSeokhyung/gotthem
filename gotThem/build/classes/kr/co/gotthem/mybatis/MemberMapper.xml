@@ -121,36 +121,6 @@
 		limit #{begin}, 10 
 	</select>
 	
-	<select id="selectSearch" parameterType="java.util.HashMap" resultType="kr.co.gotthem.member.bean.MemberBean">
-		select * 
-		from member 
-		where mem_status ='ROLE_USER' 
-		<choose>
-			<when test='select!=null and select.equals("")'>
-				and (mem_id like concat('%', #{search}, '%')
-				or mem_name like concat('%', #{search}, '%')
-				or mem_email like concat('%', #{search}, '%')
-				or mem_phone like concat('%', #{search}, '%')
-				or mem_address like concat('%', #{search}, '%')
-				or enabled like concat('%', #{search}, '%'))
-			</when>
-			<when test='select!=null and select.equals("mem_name")'>
-				and mem_name like concat('%', #{search}, '%')	
-			</when>
-			<when test='select!=null and select.equals("mem_phone")'>
-				and mem_phone like concat('%', #{search}, '%')	
-			</when> 
-			<when test='select!=null and select.equals("mem_address")'>
-				and mem_address like concat('%', #{search}, '%')	
-			</when> 
-			<when test='select!=null and select.equals("enabled")'>
-				and enabled like concat('%', #{search}, '%')	
-			</when> 
-		</choose> 
-		order by mem_name 
-		limit #{begin}, 10 
-	</select>
-	
 	<select id="selectSearch_j" parameterType="java.util.HashMap" resultType="kr.co.gotthem.member.bean.MemberBean">
 		select * 
 		from member 

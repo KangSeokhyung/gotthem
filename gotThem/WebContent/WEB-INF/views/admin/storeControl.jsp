@@ -259,7 +259,7 @@ padding-top:3px;
 				</tr>
 			</thead>
 			<tbody id="rowClick"> 
-				<c:forEach var="stlist" items="${requestScope.stlist}">
+				<c:forEach var="stlist" items="${requestScope.mlist}">
 					<tr>
 						<td>${stlist.mem_id}</td>
 						<td>${stlist.mem_name}</td>

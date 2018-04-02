@@ -60,7 +60,7 @@ th { color: black; font-size: 16px; }
 		height: 95px !important;
 	}
 }
-.searchStyle { border-radius: 0px; height: 55px; font-size: 17px; padding: 1px solid white;}
+.searchStyle { border-radius: 0px; height: 55px; font-size: 17px; }
 a { color: #242D91; }
 a:hover { color: #fa2848; }
 #paging { text-align: center; }
@@ -73,6 +73,7 @@ a:hover { color: #fa2848; }
 	    font-weight: 600;
 	}
 }
+#autocomplete { border: 1px solid white; }
 </style>  
 <script src="resources/autocomplete/auto-complete.js"></script>
 <script src="https://code.jquery.com/jquery-3.2.1.js"></script>
@@ -97,7 +98,36 @@ a:hover { color: #fa2848; }
 			center : latlng
 		}
 		map = new google.maps.Map(document.getElementById('map'), mapOptions);
+		var infoWindow = new google.maps.InfoWindow({map: map});
+		
+		if (navigator.geolocation) {
+	        navigator.geolocation.getCurrentPosition(function(position) {
+	          var pos = {
+	            lat: position.coords.latitude,
+	            lng: position.coords.longitude
+	          };
+				
+	          var marker = new google.maps.Marker({
+					map : map,
+					position : pos,
+					icon : 'resources/mainTemplate/img/my.png',
+					title : '나의 위치'
+				});
+	          map.setCenter(pos);
+	        }, function() {
+	          handleLocationError(true, infoWindow, map.getCenter());
+	        });
+	      } else {
+	        handleLocationError(false, infoWindow, map.getCenter());
+	      }
 	}
+	
+	function handleLocationError(browserHasGeolocation, infoWindow, pos) {
+        infoWindow.setPosition(pos);
+        infoWindow.setContent(browserHasGeolocation ?
+             'Error: The Geolocation service failed.' :
+             'Error: Your browser doesn\'t support geolocation.');
+    }
 
 	function codeAddress() {
 		var storeName = "";

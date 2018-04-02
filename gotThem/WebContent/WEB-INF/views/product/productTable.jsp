@@ -31,7 +31,8 @@ tbody a:hover { color: #fa2848; }
 		width: 16%;
 	} 
 }
-td { padding:17px 5px 16px; font-size:15px; line-height:1.4; vertical-align:middle; }
+
+td { padding:17px 5px 16px; font-size:17px; line-height:1.4; vertical-align:middle; }
 </style>
 </head>
 <body>
@@ -47,12 +48,12 @@ td { padding:17px 5px 16px; font-size:15px; line-height:1.4; vertical-align:midd
 			</colgroup>
 			<thead>
 				<tr>
-					<td class="text-center wid2">이미지</td>
-					<td class="text-center wid3">상품명</td>
+					<td class="text-center">이미지</td>
+					<td class="text-center">상품명</td>
 					<td class="text-center tNonePre">수량</td>
-					<td class="text-center wid4">금액</td>
+					<td class="text-center">금액</td>
 					<td class="text-center wid">선택</td>
-					<td class="text-center wid1">장바구니</td>
+					<td class="text-center">장바구니</td>
 				</tr>
 			</thead>
 			<tbody id="rowCheck">
