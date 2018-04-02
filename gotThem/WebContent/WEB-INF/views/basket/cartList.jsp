@@ -126,7 +126,7 @@ color:#555;
 							<li><a class="minDel03" onclick="button_selDel()" style="font-size:14px;">✓ 선택삭제</a></li>
 							<li><a class="minDel03" onclick="button_allDel()" style="font-size:14px;">✗ 전체삭제</a></li>
 	                   </ul>
-						<p id="kaka">※ 결제는 카카오페이로만 진행됩니다.&nbsp;&nbsp;</p>
+						<!-- <p id="kaka">※ 결제는 카카오페이로만 진행됩니다.&nbsp;&nbsp;</p> -->
 					</div>
 					<!-- //del btnArea -->
    <div class="listDiv">
@@ -272,12 +272,16 @@ $(document).ready(function(){
 		if (checkbox.is(":checked")) {
 			checkbox.prop("checked", false);
 			cart();
+			 if( $('.chk:checked').length == 0){
+				cart1();
+			} 
 		} else {
 			checkbox.prop("checked", true);
-			cart();
+			cart(); 
 		}
 	}
 }); 
+
 
 function cart(){ //결제 금액 계산
 	var checkSumArr = [];
@@ -410,8 +414,8 @@ $(document).on("click", "#count_up",function(){//수량변경 업
 	var price1= $(this).parent().parent().parent().prev().text();
 	var price =  price1.replace(/,/g, '');
 	Sum1= chaS *price;
-	$(this).parent().parent().next().val(Sum1);
-	var bb = Number(Sum1).toLocaleString('en').split(".")[0] +"원";
+ 	$(this).parent().parent().next().val(Sum1);
+ 	var bb = Number(Sum1).toLocaleString('en').split(".")[0] +"원";
 	var orderSum= $(this).parent().parent().parent().next();
 	if (chaS <= basS) {
     	$.ajax({
@@ -423,6 +427,7 @@ $(document).on("click", "#count_up",function(){//수량변경 업
     			  success:function(){
     				  text.val(chaS);
 		    		  orderSum.text(bb); 
+		    		  alert("dhkTek");
 		    		  cart1();
     				  }
     			  });
@@ -440,7 +445,7 @@ $(document).on("change", "#pro_stock", function(){//텍스트로 수량 변경
     var price1= $(this).parent().parent().prev().text();
     var price =  price1.replace(/,/g, '');
 	Sum1= chaS *price;
-	$(this).val(Sum1);
+	$(this).parent().next().val(Sum1); 
 	var bb = Number(Sum1).toLocaleString('en').split(".")[0] +"원";
     var orderSum= $(this).parent().parent().next(); 	
 	 if (chaS < 0) {
