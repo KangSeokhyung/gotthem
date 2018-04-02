@@ -250,6 +250,10 @@ public class OrderController {
 	public ModelAndView selectSearch(ModelAndView mav, String select, String search,
 			@RequestParam(defaultValue="1") int pageNo) {
 		
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+		String mem_id = authentication.getName();
+		MemberBean memberInfo = memberService.memberInfo(mem_id);
+		String sto_name = memberInfo.getSto_name();
 		
 		List<OrderpayBean> storeListOrder = null;
 		
@@ -257,7 +261,7 @@ public class OrderController {
 		int begin = (pageNo - 1) * ROW_PER_PAGE;
 		int end = pageNo * ROW_PER_PAGE;
 		
-		storeListOrder = orderService.orderSelectSearch(begin, select, search);
+		storeListOrder = orderService.orderSelectSearch(begin, select, search, sto_name);
 		
 		int totalRows = storeListOrder.size(); // 전체 게시물 갯수
 		int totalPages = (int) Math.ceil((double) totalRows / ROW_PER_PAGE);

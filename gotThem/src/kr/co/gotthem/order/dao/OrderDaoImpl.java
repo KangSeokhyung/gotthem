@@ -87,11 +87,12 @@ public class OrderDaoImpl implements OrderDao {
 	}
 	
 	@Override
-	public List<OrderpayBean> orderSelectSearch(int begin, String select, String search) {
+	public List<OrderpayBean> orderSelectSearch(int begin, String select, String search, String sto_name) {
 		Map map = new HashMap();
 		map.put("begin", begin);
 		map.put("select", select);
 		map.put("search", search);
+		map.put("sto_name", sto_name);
 		
 		return sqlSessionTemplate.selectList("orderSelectSearch", map);
 	}

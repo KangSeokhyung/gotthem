@@ -164,10 +164,14 @@
 		<choose>
 			<when test='select!=null and select.equals("")'>
 				and (ord_proname like concat('%', #{search}, '%')
+				or ord_phone like concat('%', #{search}, '%')
 				or ord_status like concat('%', #{search}, '%'))
 			</when>
 			<when test='select!=null and select.equals("ord_proname")'>
 				and ord_proname like concat('%', #{search}, '%')	
+			</when>
+			<when test='select!=null and select.equals("ord_phone")'>
+				and ord_phone like concat('%', #{search}, '%')	
 			</when>
 			<when test='select!=null and select.equals("ord_status")'>
 				and ord_status like concat('%', #{search}, '%')	

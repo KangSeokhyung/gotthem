@@ -41,5 +41,5 @@ public interface OrderDao {
 
 	public void statusChange(int ord_no);
 	
-	public List<OrderpayBean> orderSelectSearch(int begin, String select, String search);
+	public List<OrderpayBean> orderSelectSearch(int begin, String select, String search, String sto_name);
 }

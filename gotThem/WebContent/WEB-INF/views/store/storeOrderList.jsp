@@ -181,9 +181,9 @@ margin-left:0px;
 		<form action="orderSelectSearch.st" method="get">
 		<select name="select" style="font-size:16px; height:30px; border-radius: 4px;border:2px solid #44B3C2">
 		    <option value="" selected="selected">선택</option>
-		    <option value="품명">품명</option>
-		    <option value="전화번호" >전화번호</option>
-		    <option value="수령유무">수령</option>
+		    <option value="ord_proname">품명</option>
+		    <option value="ord_phone" >전화번호</option>
+		    <option value="ord_status">수령</option>
 		</select>
 		<input type="text" name="search" style="height:30px;border-radius: 4px; border:2px solid #44B3C2">
 		<button type="submit" class="btn btn-primary" style="height:30px; padding-top:0px; padding-bottom:0px">검색</button>

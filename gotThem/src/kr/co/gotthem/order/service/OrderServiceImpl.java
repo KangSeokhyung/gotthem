@@ -320,8 +320,8 @@ public class OrderServiceImpl implements OrderService {
 	}
     
 	@Override
-	public List<OrderpayBean> orderSelectSearch(int begin, String select, String search) {
-		return orderDao.orderSelectSearch(begin, select, search);
+	public List<OrderpayBean> orderSelectSearch(int begin, String select, String search, String sto_name) {
+		return orderDao.orderSelectSearch(begin, select, search, sto_name);
 	}
   
 }
