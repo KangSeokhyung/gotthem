@@ -29,9 +29,8 @@ function statusChange(ord_no, pageNo){
 	if(confirm("고객이 상품을 수령하였습니까?")==true){
 		$.ajax({
 			type:"POST",
-			url:"statusChange.st",
+			url:"statusChange.st",			
 			data:"ord_no="+ord_no+"&pageNo="+pageNo,
-
 			success:function(data){
 				if(data!=1){
 					alert("처리되었습니다.");
@@ -182,8 +181,8 @@ margin-left:0px;
 		<select name="select" style="font-size:16px; height:30px; border-radius: 4px;border:2px solid #44B3C2">
 		    <option value="" selected="selected">선택</option>
 		    <option value="ord_proname">품명</option>
-		    <option value="ord_phone" >전화번호</option>
-		    <option value="ord_status">수령</option>
+		    <option value="mem_phone" >전화번호</option>
+		    <option value="ord_status">수령여부</option>
 		</select>
 		<input type="text" name="search" style="height:30px;border-radius: 4px; border:2px solid #44B3C2">
 		<button type="submit" class="btn btn-primary" style="height:30px; padding-top:0px; padding-bottom:0px">검색</button>
@@ -211,12 +210,12 @@ margin-left:0px;
 								value="${row.ord_price}" /><input type="hidden" name="sum"
 							value="${row.ord_price}">원</td>
 						<td class="findtime">${row.ord_findtime}</td>
-						<td class="info">${mem_phone}</td>
+						<td class="info">${row.mem_phone}</td>
 						<c:choose>
 							<c:when test="${row.ord_status == '미수령'}">
 								<td class="status">
-								<input type="button" onclick="statusChange(${row.ord_no}, ${pageNo})" 
-								class="btn btn-primary" value="${row.ord_status}" /></td>
+								<a onclick="statusChange(${row.ord_no}, ${pageNo})" 
+								style="cursor:pointer; color:#fa2848;"><strong>${row.ord_status}</strong></a></td>
 							</c:when>
 							<c:otherwise>
 								<td class="status"><strong>${row.ord_status}</strong></td>
@@ -278,23 +277,6 @@ margin-left:0px;
 		</div>
 	</div>
 	
-		<script type="text/javascript">
-		$(document).ready(function() {
-			var checkSumArr = [];
-			$("input[name='sum']").each(function(i) {
-				checkSumArr.push($(this).val());
-			});
-			var sum = 0;
-			for (var i = 0; i < checkSumArr.length; i++) {
-				var cartSum = checkSumArr[i];
-				cartSum = parseInt(cartSum);
-				sum += cartSum;
-				var str = sum;
-		     	var bb = Number(str).toLocaleString('en').split(".")[0];	
-				document.getElementById("chkSum").innerHTML = bb;
-			}
-		});
-		</script> 
 	<script src="resources/indexTemplate/js/popper.min.js"></script> <script
 		src="resources/indexTemplate/js/bootstrap.min.js"></script> <script
 		src="resources/indexTemplate/js/owl.carousel.min.js"></script> <script

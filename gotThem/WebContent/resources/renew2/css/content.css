@@ -842,7 +842,7 @@ span.searchStyleSelectBox.changed{background-color: #fff;}
 .btnArea .delLeft {float:left; padding:0 0 0 20px;}
 .btnArea .delLeft li {float:left; padding:0 6px 0 0;}
 .btnArea .delTopLeft {float:left; padding:10px 0;}
-.btnArea .delTopLeft li {float:left; padding:0 6px 0 0;}
+.btnArea .delTopLeft li {float:left; padding:6px 15px 0 0;}
 .btnArea.nMn {margin:0;}
 
 /* paging */
@@ -1270,14 +1270,16 @@ span.searchStyleSelectBox.changed{background-color: #fff;}
 .pCancelBtn p {font-size:16px; color:#fff; font-weight:600; padding:17px 0 0 0;}
 .pCancelBtn:hover {color:#fff;}
 
-.minPurchase {display:inline-block; width:70px; height:24px; line-height:24px; text-align:center; font-size:13px; font-weight:600; color:#fff !important; background:#FA5858; border-radius:2px; margin:2px auto;}
+.minPurchase {display:inline-block; width:70px; height:24px; line-height:24px; text-align:center; font-size:14px; font-weight:600; color:#fff !important; background:#FA5858; border-radius:2px; margin:5.5px auto;}
 .minPurchase:hover {color:#fff;}
-.minCart {display:inline-block; width:70px; height:24px; line-height:24px; text-align:center; font-size:13px; font-weight:600; color:#fff !important; background:#555; border-radius:2px; margin:2px auto;}
+.minCart {display:inline-block; width:70px; height:24px; line-height:24px; text-align:center; font-size:14px; font-weight:600; color:#fff !important; background:#555; border-radius:2px; margin:5.5px auto;}
 .minCart:hover {color:#fff;}
-.minDel {display:inline-block; width:70px; height:24px; line-height:24px; text-align:center; font-size:13px; font-weight:600; color:#fff !important; background:#999; border-radius:2px; margin:2px auto;}
+.minDel {display:inline-block; width:70px; height:24px; line-height:24px; text-align:center; font-size:14px; font-weight:600; color:#fff !important; background:#999; border-radius:2px; margin:5.5px auto;}
 .minDel:hover {color:#fff;}
-.minDel02 {display:inline-block; width:68px; height:22px; line-height:24px; text-align:center; font-size:13px; font-weight:600; color:#555; background:#fff; border:1px #d2d2d2 solid; border-radius:2px; margin:2px auto;}
+.minDel02 {display:inline-block; width:70px; height:24px; line-height:24px; text-align:center; font-size:14px; font-weight:600; color:#555; background:#fff; border:1px #d2d2d2 solid; border-radius:2px; margin:5.5px auto;}
 .minDel02:hover {color:#555;}
+.minDel03 {display:inline-block; width:95px; height:30px; line-height:30px; text-align:center; font-size:14px; font-weight:600; color:#fff; background:#999; border:1px #d2d2d2 solid; border-radius:5px; margin:5.5px auto;}
+.minDel03:hover {color:#555;}
 
 .addressBtn {display:inline-block; width:94px; height:38px; line-height:38px; font-size:13px; color:#555; font-weight:600; text-align:center; background:#fff; border:1px #cdcdcd solid; border-radius:2px;}
 .addressBtn:hover {color:#555;}
@@ -1301,7 +1303,7 @@ span.searchStyleSelectBox.changed{background-color: #fff;}
 .continuation span {font-size:16px;}
 .continuation:hover {color:#fff;}
 
-.con {display:inline-block; width:23px; height:20px; line-height:1.4; text-align:center; font-size:13px; font-weight:600; color:#fff !important; background:#FA5858; border-radius:2px; margin:2px auto;}
+.con {display:inline-block; width:23px; height:23px; line-height:1.9; text-align:center; font-size:13px; font-weight:600; color:#fff !important; background:#FA5858; border-radius:5px; margin:2px auto;}
 
 
 .infoBtn {font-size:13px; color:#555; font-weight:600; line-height:1.4; padding:0 0 0 38px;}
@@ -2680,8 +2682,8 @@ span.searchStyleSelectBox{height:32px; font-size:12px; background:url('../images
 .pCancelBtn {width:100px; height:32px;}
 .pCancelBtn p {padding:9px 0 0 0; font-size:14px;}
 .minPurchase {font-size:12px;}
-.minCart {font-size:12px;}
-.minDel {font-size:12px;}
+.minCart {font-size:14px;}
+.minDel {font-size:14px;}
 .dStateBtn {font-size:13px; width:82px; height:32px; line-height:32px;}
 .dokBtn {font-size:13px; width:82px; height:32px; line-height:32px;}
 .addressBtn {font-size:12px; width:72px; height:30px; line-height:28px;}

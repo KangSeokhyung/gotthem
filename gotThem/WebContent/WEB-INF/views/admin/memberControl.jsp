@@ -407,7 +407,9 @@ width:568px;
 			    <option value="mem_address">주소</option>
 			    <option value="enabled">계정상태</option>
 			</select>
-			<input type="text" name="search" required="required" style="height:49px; border-radius: 12px; border:2px solid #44B3C2">
+			<input type="text" name="search" pattern="[A-Z|a-z|0-9|ㄱ-ㅎ|ㅏ-ㅣ|가-힣]{2,}"
+				title="두글자 이상 입력해주세요." autocomplete="off" required="required"
+				style="height:49px; border-radius: 12px; border:2px solid #44B3C2">
 			<button type="submit" class="btn btn-primary">검색</button>
 		</form>
 	<hr>

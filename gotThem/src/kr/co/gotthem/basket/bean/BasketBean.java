@@ -105,6 +105,4 @@ public class BasketBean {
 				+ bas_procomment + ", money=" + money + ", sto_name=" + sto_name + ", pro_memno=" + pro_memno
 				+ ", stock=" + stock + "]";
 	}
-	
-    
 }

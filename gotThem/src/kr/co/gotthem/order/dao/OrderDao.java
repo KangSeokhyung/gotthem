@@ -19,15 +19,7 @@ public interface OrderDao {
    
     // 1.2 결제되면, 장바구니 삭제
     public void orderDeleteBasket(OrderpayBean orderBean);
-   
-   
-    // 2. 결제 취소 삭제
-    public void orderDelete(int ord_no);
-    
-    //2.1. 결제 취소되면, 결제된 수량만큼  상품에 수량 더하기
-    public void orderUpdateProduct(OrderpayBean orderBean);
-    
-    
+     
     // 3. 아이디별 전체 결제 목록
     public List<OrderpayBean> listOrder(int userNo);
    

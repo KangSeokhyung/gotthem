@@ -33,7 +33,4 @@ public interface BasketDao {
 	
 	// 8. 장바구니 all삭제
     public void deleteBasketAll(int a);
-	
-	
-	/*public MemberBean login(String id);*/
 }

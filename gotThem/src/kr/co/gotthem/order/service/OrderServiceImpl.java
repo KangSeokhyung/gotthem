@@ -1,13 +1,11 @@
 package kr.co.gotthem.order.service;
 
 import java.sql.Timestamp;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
-
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
@@ -16,7 +14,6 @@ import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
 import org.springframework.web.client.RestTemplate;
 
-import kr.co.gotthem.basket.bean.BasketBean;
 import kr.co.gotthem.order.bean.OrderpayBean;
 import kr.co.gotthem.order.dao.OrderDao;
 import kr.co.gotthem.product.bean.ProductBean;
@@ -48,19 +45,6 @@ public class OrderServiceImpl implements OrderService {
     	orderDao.orderDeleteBasket(orderBean);
     }
    
-    // 2. 결제 취소 삭제
-    @Override
-    public void orderDelete(int ord_no) {
-    	orderDao.orderDelete(ord_no);
-    }
-  
-    //2.1. 결제 취소되면, 결제된 수량만큼  상품에 수량 더하기
-    @Override
-    public void orderUpdateProduct(OrderpayBean orderBean) {
-    	orderDao.orderUpdateProduct(orderBean);
-    }
-    
-    
     // 3. 아이디별 전체 결제 목록
     @Override
     public List<OrderpayBean> listOrder(int userNo) {
@@ -78,7 +62,7 @@ public class OrderServiceImpl implements OrderService {
 		map.put("sto_name", sto_name);
 
 		List storeListOrder = orderDao.storeListOrder(map);
-
+			System.out.println(storeListOrder+"asdasda");
 		// 전체 게시물 수
 		int totalRows = orderDao.storeListOrderCount(sto_name);
 		// 전체 페이지 번호 수
@@ -136,7 +120,6 @@ public class OrderServiceImpl implements OrderService {
         headers.setAccept(Arrays.asList(new MediaType[]{MediaType.ALL}));
         headers.set("Authorization", "Bearer " + accessToken);
  
-        System.out.println("orderOne서비스 "+ orderOne);
         java.util.StringTokenizer  st = new java.util.StringTokenizer(orderOne,",");
         String bas_no = st.nextToken();
     	String bas_proname = st.nextToken();
@@ -160,21 +143,19 @@ public class OrderServiceImpl implements OrderService {
         param.add("quantity", bas_prostock);
         param.add("total_amount",money);
         param.add("tax_free_amount", "0"); 
-        
         param.add("approval_url", "http://localhost:8080/gotThem/approveOne.gt");
         param.add("cancel_url", "http://localhost:8080/gotThem/index.jsp");
         param.add("fail_url", "http://localhost:8080/gotThem/index.jsp");
-        System.out.println("파람 : " + param + "\n헤더 : " + headers);
+        System.out.println("orderOne서비스 파람 : " + param + "\n헤더 : " + headers);
         
         HttpEntity<MultiValueMap<String,String>> entity = new HttpEntity<>(param, headers);
         RestTemplate restTemplate = new RestTemplate();
-        
         try {
         	return restTemplate.postForObject("https://kapi.kakao.com/v1/payment/ready", entity, type);
-        } catch (Exception e) {
-            throw new RuntimeException("카카오 API 실행 오류!",e);
+        	} catch (Exception e) {
+        		throw new RuntimeException("카카오 API 실행 오류!",e);
+        		}
         }
-    }
     
     //4.1 단건 승인 api 
     @Override
@@ -184,7 +165,6 @@ public class OrderServiceImpl implements OrderService {
         headers.setAccept(Arrays.asList(new MediaType[]{MediaType.ALL}));
         headers.set("Authorization", "Bearer " + session.getAttribute("accessToken"));
         
-        System.out.println("orderOne서비스 "+ orderOne);
         java.util.StringTokenizer  st = new java.util.StringTokenizer(orderOne,",");
         String bas_no = st.nextToken();
     	String bas_proname = st.nextToken();
@@ -205,18 +185,15 @@ public class OrderServiceImpl implements OrderService {
         param.add("partner_order_id", sto_name);
         param.add("partner_user_id", bas_memno);
         param.add("pg_token", pg_Token);
-        System.out.println("승인서비스파람" + param);
+        System.out.println("orderOne서비스 파람" + param);
         HttpEntity<MultiValueMap<String,String>> entity = new HttpEntity<>(param, headers);
         RestTemplate restTemplate = new RestTemplate();
-        
         try {
-        	System.out.println(entity);
-        System.out.println("승인서비스끝 ");
-        return restTemplate.postForObject("https://kapi.kakao.com/v1/payment/approve",entity, type);
-        } catch (Exception e) {
-            throw new RuntimeException("카카오 API 실행 오류!",e);
+        	return restTemplate.postForObject("https://kapi.kakao.com/v1/payment/approve",entity, type);
+        	} catch (Exception e) {
+        		throw new RuntimeException("카카오 API 실행 오류!",e);
+        		}
         }
-    }
 
     
     //5. 복수 결제 api 
@@ -227,8 +204,6 @@ public class OrderServiceImpl implements OrderService {
         headers.setAccept(Arrays.asList(new MediaType[]{MediaType.ALL}));
         headers.set("Authorization", "Bearer " + accessToken);
        
-        
-        System.out.println("oneArr서비스 "+ oneArr);
         java.util.StringTokenizer  st = new java.util.StringTokenizer(oneArr,",");
         String bas_no = st.nextToken();
       	String bas_proname = st.nextToken();
@@ -250,28 +225,19 @@ public class OrderServiceImpl implements OrderService {
         param.add("item_name", bas_proname+" 등");
         param.add("quantity", bas_prostock);
         param.add("total_amount",sum);
-        param.add("tax_free_amount", "0"); 
-  
-  
+        param.add("tax_free_amount", "0");   
         param.add("approval_url", "http://localhost:8080/gotThem/approve.gt");
         param.add("cancel_url", "http://localhost:8080/gotThem/index.jsp");
-        param.add("fail_url", "http://localhost:8080/gotThem/index.jsp");
-        
-       /* System.out.println("파람 : " + param + "\n헤더 : " + headers);*/
-     	
-     	
+        param.add("fail_url", "http://localhost:8080/gotThem/index.jsp");      
+        System.out.println("order서비스 파람 : " + param + "\n헤더 : " + headers);
         HttpEntity<MultiValueMap<String,String>> entity = new HttpEntity<>(param, headers);
-        System.out.println("엔티티 : "+entity);
-        System.out.println("파람 : " + param );
         RestTemplate restTemplate = new RestTemplate();
-        
         try {
-        	System.out.println("zzx고 ");
-        return restTemplate.postForObject("https://kapi.kakao.com/v1/payment/ready",entity, type);
-        } catch (Exception e) {
-            throw new RuntimeException("카카오 API 실행 오류!",e);
+        	return restTemplate.postForObject("https://kapi.kakao.com/v1/payment/ready",entity, type);
+        	} catch (Exception e) {
+        		throw new RuntimeException("카카오 API 실행 오류!",e);
+        		}
         }
-    }
  	 
     
     //5.1  복수 승인 api 
@@ -281,8 +247,7 @@ public class OrderServiceImpl implements OrderService {
         headers.setContentType(MediaType.APPLICATION_FORM_URLENCODED);
         headers.setAccept(Arrays.asList(new MediaType[]{MediaType.ALL}));
         headers.set("Authorization", "Bearer " + session.getAttribute("accessToken"));
-        
-        System.out.println("oneArr서비스 "+ oneArr);
+ 
         java.util.StringTokenizer  st = new java.util.StringTokenizer(oneArr,",");
         String bas_no = st.nextToken();
       	String bas_proname = st.nextToken();
@@ -306,13 +271,14 @@ public class OrderServiceImpl implements OrderService {
         
         HttpEntity<MultiValueMap<String,String>> entity = new HttpEntity<>(param, headers);
         RestTemplate restTemplate = new RestTemplate();
-        
         try {
         	return restTemplate.postForObject("https://kapi.kakao.com/v1/payment/approve", entity, type);
-        } catch (Exception e) {
-            throw new RuntimeException("카카오 API 실행 오류!",e);
+        	} catch (Exception e) {
+        		throw new RuntimeException("카카오 API 실행 오류!",e);
+        		}
         }
-    }
+    
+
 
 	@Override
 	public void statusChange(int ord_no) {
@@ -325,3 +291,4 @@ public class OrderServiceImpl implements OrderService {
 	}
   
 }
+
