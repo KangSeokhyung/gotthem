@@ -26,7 +26,7 @@
 <script>
 function statusChange(ord_no, pageNo){
 	var ord_no = ord_no;
-	if(confirm("고객에게 상품을 전달하셨습니까?")==true){
+	if(confirm("고객이 상품을 수령하였습니까?")==true){
 		$.ajax({
 			type:"POST",
 			url:"statusChange.st",
@@ -216,11 +216,11 @@ margin-left:0px;
 						<c:choose>
 							<c:when test="${row.ord_status == '미수령'}">
 								<td class="status">
-								<input type="button" onclick="statusChange(${row.ord_no}, ${pageNo })" 
+								<input type="button" onclick="statusChange(${row.ord_no}, ${pageNo})" 
 								class="btn btn-primary" value="${row.ord_status}" /></td>
 							</c:when>
 							<c:otherwise>
-								<td class="status">${row.ord_status}</td>
+								<td class="status"><strong>${row.ord_status}</strong></td>
 							</c:otherwise>
 						</c:choose>
 					</tr>
@@ -278,8 +278,8 @@ margin-left:0px;
 			</div>
 		</div>
 	</div>
-	<script src="resources/indexTemplate/js/jquery-3.2.1.slim.min.js"></script>
-	<script type="text/javascript">
+	
+		<script type="text/javascript">
 		$(document).ready(function() {
 			var checkSumArr = [];
 			$("input[name='sum']").each(function(i) {

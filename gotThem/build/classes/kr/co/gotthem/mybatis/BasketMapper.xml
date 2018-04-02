@@ -153,7 +153,7 @@
 	
 	<update id="statusChange">
 		UPDATE orderpay
-		SET ord_status = '수령'
+		SET ord_status = '수령완료'
 		WHERE ord_no = #{ord_no}
 	</update>
 	
