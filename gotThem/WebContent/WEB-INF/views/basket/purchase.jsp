@@ -37,7 +37,7 @@ body, th, td, input, select, textarea, button {
 <div class="kakaopay_layer">
 		<div class="inner_kakaopay">
 			<div class="layer_head">
-				<img src="/img/payk.png"alt="카카오페이 로고이미지"  style="width:55px; height:18px" />
+				<img src="resources/image/payk.png"alt="카카오페이 로고이미지"  style="width:55px; height:18px" />
 			</div>
 			<div class="layer_body">
 				<h2 style="color:#333;">결제가 완료되었습니다.<br>이용해 주셔서 감사합니다.</h2>				

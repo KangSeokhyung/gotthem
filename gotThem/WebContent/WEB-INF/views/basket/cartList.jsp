@@ -111,7 +111,7 @@ color:#555;
 <div class="container">
 <c:choose>
 <c:when test="${map.count == 0}">
- <img src="/img/cart_img_empty.gif" style=" width:360px;height:263px;margin-left:auto;margin-right:auto;display:block;"/>
+ <img src="resources/image/cart_img_empty.gif" style=" width:360px;height:263px;margin-left:auto;margin-right:auto;display:block;"/>
  <div>  
             <div style='float:right; padding: 3px 30px 3px 6px;'>
             <a href="/gotThem" class="continuation" onclick=""><p>쇼핑 <span>계속하기</span></p></a>
@@ -176,8 +176,8 @@ color:#555;
                       <input type="hidden" id="bas_procode" name="bas_procode" value="${row.bas_procode}">
                       <input type="hidden" name="stock1" id="stock1" value="${row.stock}"> 
 	    		      <input type="text" id="pro_stock" name="pro_stock" value="${row.bas_prostock}">
-	    		      <div class="up"><a id= count_up ><img src="/img/btn_qty_up.gif" alt="up" /></a></div>
-	    		      <div class="down"><a id=count_down><img src="/img/btn_qty_down.gif" alt="down" /></a></div>
+	    		      <div class="up"><a id= count_up ><img src="resources/image/btn_qty_up.gif" alt="up" /></a></div>
+	    		      <div class="down"><a id=count_down><img src="resources/image/btn_qty_down.gif" alt="down" /></a></div>
 	    		      <%-- <input type="text" value="${row.money }"> --%>
                     </div>
                     <input type="hidden" value="${row.money }">
