@@ -68,6 +68,18 @@ public class OrderController {
 		return mav;
 	}
 	
+
+	@RequestMapping(value = "/statusChange.st", method = RequestMethod.POST)
+	protected ModelAndView statusChange(HttpServletRequest req, @RequestParam int pageNo) {
+		int ord_no = Integer.parseInt(req.getParameter("ord_no"));
+		orderService.statusChange(ord_no);
+		ModelAndView mav = new ModelAndView("redirect:/stock.st?pageNo=" + pageNo);
+
+		return mav;
+	}
+	
+ 
+	
 	// 4.단건 결제 api
 	@RequestMapping(value="/paymentOne.gt", method = RequestMethod.POST)
 	@ResponseBody
@@ -131,7 +143,7 @@ public class OrderController {
 	@RequestMapping(value="/payment.gt", method = RequestMethod.POST)
     @ResponseBody
 	public HashMap payment(String accessToken, HttpSession session,@RequestParam (value= "arrOrder[]") List valueArr,@RequestParam String sum) throws Exception {
-		System.out.println("sum : " + sum);
+		System.out.println("sum ㅋㅋ: " + sum);
 		System.out.println("접속된 토큰 : " + accessToken);
 		String oneArr = (String) valueArr.get(0);
 		@SuppressWarnings("rawtypes")

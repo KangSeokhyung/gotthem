@@ -30,4 +30,6 @@ public interface OrderDao {
     
     // 3.2 사장님 아이디별 기간  결제 목록 
     public List<OrderpayBean> storeListOrderTime(int userNo, Timestamp begin, Timestamp end);
+
+	public void statusChange(int ord_no);
 }
