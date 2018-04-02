@@ -96,7 +96,7 @@ cursor:pointer;
 <h2 >결제 확인</h2> 
   <form name="form1" id="form1" method="post" action="./update.gt" onsubmit="return validate();">
    <div class="listDiv">
-   <table class="listType" border="1" cellspacing="0">
+   <table class="listType" border="1" style="word-break: keep-all;">
     <caption>결제 목록</caption>
 							<colgroup>
 							<col width="15%" class="cartImg"/>

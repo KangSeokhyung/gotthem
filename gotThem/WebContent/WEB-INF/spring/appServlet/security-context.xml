@@ -7,7 +7,7 @@
 	<!-- 검사 URL -->
     <http pattern="/*.gt" auto-config="true" disable-url-rewriting="true" use-expressions="true">
 		<intercept-url pattern="/" access="permitAll" />
-		<intercept-url pattern="/mypage.gt" access="hasAnyRole('ROLE_USER, ROLE_ADMIN')" />
+		<intercept-url pattern="/mypage.gt" access="hasAnyRole('ROLE_USER, ROLE_ADMIN, ROLE_STORE')" />
 		<form-login login-page="/login.gt" 
 			default-target-url="/"
 			login-processing-url="/login.gt"

@@ -427,7 +427,6 @@ $(document).on("click", "#count_up",function(){//수량변경 업
     			  success:function(){
     				  text.val(chaS);
 		    		  orderSum.text(bb); 
-		    		  alert("dhkTek");
 		    		  cart1();
     				  }
     			  });
