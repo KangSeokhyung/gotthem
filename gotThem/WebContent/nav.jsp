@@ -8,7 +8,7 @@
 <title>Insert title here</title>
 <style>
 body, table, div, p {
-	font-family: '나눔스퀘어라운드 Regular';
+	font-family: '나눔스퀘어라운드';
 }
 
 .probootstrap-main-nav li a:hover {
@@ -58,23 +58,27 @@ body, table, div, p {
     padding-top: 12px;
 }
 .barunPenLogo{
-	font-family:'나눔바른펜';
-	font-size:43px;
+	font-family:'나눔스퀘어라운드';
+	font-weight:400;
+	font-size:40px;
 	color:#fa2848;
 	text-transform:uppercase;
 }
 .probootstrap-logo:hover {
     color: #fa2848;
 }
-
+.navLogoPadding{
+padding-top:3.5px;
+padding-bottom:3.5px;
+}
 </style>
 </head>
 <body>
 	<c:set var="sessionCheck"
 		value="${sessionScope.SPRING_SECURITY_CONTEXT}" />
 	<header role="banner" id="navbar" class="probootstrap-header">
-		<div class="container">
-			<a href="/gotThem" class="probootstrap-logo barunPenLogo">GotThem</a> 
+		<div class="container navCenter">
+			<a href="/gotThem" class="probootstrap-logo barunPenLogo navLogoPadding">GotThem</a> 
 			<a href="#" class="probootstrap-burger-menu visible-xs"><i>Menu</i></a>
 			<div class="mobile-menu-overlay"></div>
 

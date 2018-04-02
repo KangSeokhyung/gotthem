@@ -73,17 +73,17 @@ text-align:center;
   	<section class="probootstrap-section">
     <div class="container">
       <div class="row">
-        <div class="col-md-3">
-			<h4>WELCOME TO GOT THEM</h4>
+        <div class="col-md-3" style="word-break:keep-all;">
+			<h4>GOTTHEM에 오신 것을 환영합니다.</h4>
           <ul class="with-icon colored">
-            <li>아이디는 자 이내의 영문, 숫자만<br>가능합니다.</li>
-            <li>gotthem@gmail.com</li>
-            <li>02-123-4567</li>
+            <li><i style="color:#fa5858;" class="icon-location2"></i> <span>서울특별시 서초구 비트아카데미 빌딩 3층</span></li>
+            <li><i style="color:#fa5858;" class="icon-mail"></i><span>gotthem@gmail.com</span></li>
+            <li><i style="color:#fa5858;" class="icon-phone2"></i><span>02-123-4567</span></li>
           </ul>
 
-          <h4>문의사항이 있으신가요?</h4>
-          <p>저희 Gotthem은 평일 오전 09:00 ~ 17:00 까지 전화문의가 가능합니다</p>
-          <p><a href="#">Learn More</a></p>
+          <h4>Feedback</h4>
+          <p style="word-break:keep-all;">궁금하신 점이 있으면, 언제라도 문의 주세요.<br> Gotthem은 고객만족에 최선을 다합니다.</p>
+          <p><a href="gotthemInfo.gt">더 궁금하신가요?</a></p>
         </div>
         <div class="col-md-8 col-md-push-1">
            <form action="joinSccess.gt" method="post" class="probootstrap-form mb60">
@@ -145,7 +145,7 @@ text-align:center;
                 <div class="card-block">
 									<div class="col-md-6 paddingRight30" style="padding-left: 0px;">
 										<div class="form-group">
-											<input type="text" value="" id="mem_post" readonly="readonly"
+											<input type="text" value="" id="mem_post" name="mem_post" readonly="readonly"
 												class="form-control" maxlength="5">
 										</div>
 									</div>
@@ -160,7 +160,7 @@ text-align:center;
               <div class="col-md-9">
                 <div class="form-group">
                   <label for="lname">상세주소1</label>
-                  <input type="text" class="form-control" id="mem_address1" name="sample6_address" readonly="readonly" maxlength="30">
+                  <input type="text" class="form-control" id="mem_address1" name="mem_address1" readonly="readonly" maxlength="30">
                 </div>
               </div>
             </div>
@@ -168,7 +168,7 @@ text-align:center;
               <div class="col-md-9">
                 <div class="form-group">
                   <label for="lname">상세주소2</label>
-                  <input type="text" class="form-control" id="mem_address2" name="sample6_address2" maxlength="30">
+                  <input type="text" class="form-control" id="mem_address2" name="mem_address2" maxlength="30">
                 </div>
               </div>
             </div>

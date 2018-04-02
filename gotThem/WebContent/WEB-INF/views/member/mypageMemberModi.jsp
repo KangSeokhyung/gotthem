@@ -12,9 +12,12 @@
     <link rel="stylesheet" href="resources/mainTemplate/css/style.min.css">
     <link rel="stylesheet" href="resources/mainTemplate/css/custom.css">
 <style>
-.btn-primary{
-border-radius: 12px;
+
+.labelSize{
+font-size:18px !important;
+font-weight:bold !important;
 }
+
 </style>
 </head>
 <body>
@@ -27,7 +30,7 @@ border-radius: 12px;
             <div class="row">
               <div class="col-md-6">
                 <div class="form-group">
-                  <label for="lname">이름</label>
+                  <label for="lname" class="labelSize">이름</label>
                   <input type="text" class="form-control" name="mem_name" id="mem_name" value="${memberInfo.mem_name }" autofocus>
                 </div>
               </div>
@@ -35,7 +38,7 @@ border-radius: 12px;
            <div class="row">
             <div class="col-md-6">
             <div class="form-group">
-              <label for="email">이메일</label>
+              <label for="email" class="labelSize">이메일</label>
               <input type="email" class="form-control" name="mem_email" id="email" value="${memberInfo.mem_email}">
             </div>
             </div>
@@ -43,14 +46,14 @@ border-radius: 12px;
             <div class="row">
             <div class="col-md-6">
             <div class="form-group">
-              <label for="email">핸드폰번호</label>
+              <label for="email" class="labelSize">핸드폰번호</label>
               <input type="text" class="form-control" name="mem_phone" id="mem_phone" maxlength="11" value="${memberInfo.mem_phone}">
             </div>
             </div>
             </div>
 			<div class="row">
 				<div class="col-md-12">
-					<label for="lname">우편번호</label>
+					<label for="lname" class="labelSize">우편번호</label>
 					<div class="card-block">
 						<div class="col-md-6 paddingRight30" style="padding-left: 0px;">
 							<div class="form-group">
@@ -58,7 +61,7 @@ border-radius: 12px;
 							</div>
 						</div>
 						<div class="col-md-6 padding0">
-							<input type="button" class="btn btn-primary"
+							<input type="button" class="btn btn-colorRed"
 								onclick="sample6_execDaumPostcode()" value="우편번호 찾기">
 						</div>
 					</div>
@@ -67,7 +70,7 @@ border-radius: 12px;
 			<div class="row">
             <div class="col-md-12">
             <div class="form-group">
-              <label for="email">상세주소1</label>
+              <label for="email" class="labelSize">상세주소1</label>
               <input type="text" class="form-control" id="mem_address1" name="mem_address1" value="${mem_address1}" readOnly>
             </div>
             </div>
@@ -75,14 +78,14 @@ border-radius: 12px;
             <div class="row">
             <div class="col-md-12">
             <div class="form-group">
-              <label for="email">상세주소2</label>
+              <label for="email" class="labelSize">상세주소2</label>
               <input type="text" class="form-control" id="mem_address2" name="mem_address2" value="${mem_address2}">
             </div>
             </div>
             </div>                   <br>
             <div class="form-group">
-              <center><input type="submit" class="btn btn-primary" name="submit" value="변경" style="padding:5px 0px; width:36%; margin-right:10px;">
-              <input type="reset" class="btn btn-primary" value="되돌리기" style="padding:5px;width:36%; margin-right:10px;"></center>
+              <center><input type="submit" class="btn btn-colorRed" name="submit" value="변경" style="padding:5px 0px; width:36%; height:49px; margin-right:10px;">
+              <input type="reset" class="btn btn-colorRed" value="되돌리기" style="padding:5px;width:36%; height:49px;"></center>
             </div>              
           </form>
         </div> 
@@ -124,6 +127,7 @@ border-radius: 12px;
 	       document.getElementById('mem_address1').value = fullAddr;
 			
 	       // 커서를 상세주소 필드로 이동한다.
+	       document.getElementById('mem_address2').value = null;
 	       document.getElementById('mem_address2').focus();
 	       
 	      

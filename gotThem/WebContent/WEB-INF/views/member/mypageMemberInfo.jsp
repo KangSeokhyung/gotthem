@@ -26,24 +26,13 @@ table.type07 {
     margin: 0px;
     border-radius: 30px;
 }
-table.type07 thead {
-    border-right: 1px solid #ccc;
-    border-left: 1px solid #ccc;
-    background: #fa2848;
-}
-table.type07 thead th {
-    padding: 10px;
-    font-weight: bold;
-    vertical-align: top;
-    color: #fff;
-}
 table.type07 tbody th {
     width: 150px;
     padding: 10px;
     font-weight: bold;
     vertical-align: center;
     border-bottom: 1px solid #ccc;
-    background: #999;
+    background: #fa2848;
     color: #fff;
 }
 table.type07 tbody{
@@ -63,10 +52,6 @@ color:#111;
 th{
 font-size:16px;
 }
-table.type07 thead th {
-font-size:22px;
-text-align:center;
-}
 .textBreak{
 word-break:keep-all;
 }
@@ -74,7 +59,7 @@ word-break:keep-all;
 </head>
 <body>
  	<div class="service text-center2">
-            <h1 class="heading"><Strong style="color:#337ab7; font-size:25px;">${memberInfo.mem_name }</Strong> 님 정보입니다.</h1>
+            <h1 class="heading"><Strong style="color:#fa2848; font-size:25px;">${memberInfo.mem_name }</Strong> 님 정보입니다.</h1>
             <br>
             
 		<table class="type07">
