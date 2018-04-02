@@ -290,8 +290,8 @@ public class MemberController {
 			mav.setViewName("member/mypageFailPassChange");
 		}else if(!new_pw.equals(new_pw2)){
 			System.out.println("새로운 비밀번호와 비밀번호 확인이 안 맞을때");
-			mav.addObject("resultMsg", "mypageFailPassChange");
-			mav.setViewName("member/mypage");
+			mav.addObject("resultMsg", "fail2");
+			mav.setViewName("member/mypageFailPassChange");
 		}else {
 			System.out.println("잘 들어왔네");
 			bean.setMem_pw(new_pw);
@@ -302,8 +302,8 @@ public class MemberController {
 				mav.addObject("resultMsg", "success");
 				mav.setViewName("member/mypage");
 			}else {
-				mav.addObject("resultMsg", "mypageFailPassChange");
-				mav.setViewName("member/mypage");
+				mav.addObject("resultMsg", "fail3");
+				mav.setViewName("member/mypageFailPassChange");
 			}
 			
 		}

@@ -27,7 +27,13 @@
     backgroundColor{
     background: #2866AB;
     }
-    
+    .btn-colorRed {
+	border-radius: 4px;
+	backgroud:#fa2848;
+    border: 2px solid #fa5858;
+    background: #fa5858;
+    color: #fff;
+}
     </style>
   </head>
 <body>
@@ -63,17 +69,17 @@
 	  <section class="probootstrap-section">
     <div class="container">
       <div class="row">
-        <div class="col-md-3">
-			<h4>WELCOME TO GOT THEM</h4>
+        <div class="col-md-3" style="word-break:keep-all;">
+			<h4>GOTTHEM에 오신 것을 환영합니다.</h4>
           <ul class="with-icon colored">
-            <li><i class="icon-location2"></i> <span>서울특별시 서초구 비트아카데미 빌딩 3층</span></li>
-            <li><i class="icon-mail"></i><span>gotthembit@gmail.com</span></li>
-            <li><i class="icon-phone2"></i><span>02-123-4567</span></li>
+            <li><i style="color:#fa5858;" class="icon-location2"></i> <span>서울특별시 서초구 비트아카데미 빌딩 3층</span></li>
+            <li><i style="color:#fa5858;" class="icon-mail"></i><span>gotthem@gmail.com</span></li>
+            <li><i style="color:#fa5858;" class="icon-phone2"></i><span>02-123-4567</span></li>
           </ul>
 
           <h4>Feedback</h4>
-          <p>궁금하신 점이 있으면, 언제라도 문의 주세요.<br> Gotthem은 항상 열려 있습니다.</p>
-          <p><a href="gotthemInfo.gt">Learn More</a></p>
+          <p style="word-break:keep-all;">궁금하신 점이 있으면, 언제라도 문의 주세요.<br> Gotthem은 고객만족에 최선을 다합니다.</p>
+          <p><a href="gotthemInfo.gt">더 궁금하신가요?</a></p>
         </div>
         <div class="col-md-8 col-md-push-1">
                   <form id="kakaoLogin" method="post" class="probootstrap-form mb60">
@@ -96,8 +102,11 @@
             <div class="form-group ">
               <input type="submit" class="btn btn-primary" name="submit" value="로그인하기" style="width:48%;" onclick="loginResult()">
             </div>
-            <div class="form-group ">
-            <a id="kakao-login-btn" style="cursor:pointer; width:48%; height:49px;"></a>
+            <div class="form-group " >
+            <!-- <a id="kakao-login-btn" style="cursor:pointer;"></a> -->
+            <a id="custom-login-btn" href="javascript:loginWithKakao()">
+			<img src="//mud-kage.kakao.com/14/dn/btqbjxsO6vP/KPiGpdnsubSq3a0PHEGUK1/o.jpg" width="360px;"/>
+			</a>
             </div>
             <div class="form-group">
              <a href="findIDAndPW.gt">아이디를 잊으셨나요?</a>
@@ -130,35 +139,34 @@
   //<![CDATA[
     // 사용할 앱의 JavaScript 키를 설정해 주세요.
     Kakao.init('363553076ca8777f012d9c9ce3b92b8c');
-    // 카카오 로그인 버튼을 생성합니다.
-    Kakao.Auth.createLoginButton({
-      container: '#kakao-login-btn',
-      success: function(authObj) {
-    	  Kakao.API.request({
-    		    url: '/v1/user/me',
-    		    success: function(res) {
-    		    	  alert(authObj.access_token);
-    		      if(document.getElementById('mem_id').value !=null || document.getElementById('mem_pw').value !=null){
-    		    	  document.getElementById('mem_id').value = null;
-    		    	  document.getElementById('mem_pw').value = null;
-    		      }
-    		    document.getElementById('kakao_email').value = res.kaccount_email;
-    		    document.getElementById('kakao_id').value = res.id;
-    		    document.getElementById('kakao_name').value = res.properties.nickname;
-    		    document.getElementById('kakao_token').value = authObj.access_token;
-    		    document.getElementById("kakaoForm").submit();
-    		    },
-    		    fail: function(error) {
-    		      alert(JSON.stringify(error))
-    		    }
-    		});
-    	  
-      },
-      fail: function(err) {
-         alert("Login Fail");
-      }
-    });
-  //]]>
+    function loginWithKakao() {
+      // 로그인 창을 띄웁니다.
+      Kakao.Auth.login({
+    	  success: function(authObj) {
+        	  Kakao.API.request({
+        		    url: '/v1/user/me',
+        		    success: function(res) {
+        		      if(document.getElementById('mem_id').value !=null || document.getElementById('mem_pw').value !=null){
+        		    	  document.getElementById('mem_id').value = null;
+        		    	  document.getElementById('mem_pw').value = null;
+        		      }
+        		    document.getElementById('kakao_email').value = res.kaccount_email;
+        		    document.getElementById('kakao_id').value = res.id;
+        		    document.getElementById('kakao_name').value = res.properties.nickname;
+        		    document.getElementById('kakao_token').value = authObj.access_token;
+        		    document.getElementById("kakaoForm").submit();
+        		    },
+        		    fail: function(error) {
+        		      alert(JSON.stringify(error))
+        		    }
+        		});
+        	  
+          },
+          fail: function(err) {
+             alert("Login Fail");
+          }
+      });
+    };
 </script>
   	<script>
   	$().ready(function(){

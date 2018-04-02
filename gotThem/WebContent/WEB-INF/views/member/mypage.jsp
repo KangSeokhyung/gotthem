@@ -29,10 +29,18 @@
     color: #666;
     font-size:20px;
 }
+.btn-colorRed {
+	border-radius: 4px;
+    border: 2px solid #fa2848;
+    background:#fa2848;
+    color: #fff;
+}
 
-.hoverColor:active, .hoverColor:hover, .hoverColor:focus  {
-    color:#fff !important;
-	background: #999;
+.hoverColor:active, .hoverColor:hover, .hoverColor:focus, .hoverColor:after  {
+ 	text-decoration:underline;
+ 	width: 50px;
+  	border-bottom: red;
+  	padding:10px;
 }
     .probootstrap-header {
     padding-top: 10px !important;
@@ -45,19 +53,35 @@
     -webkit-box-shadow: 0 6px 68px -6px rgba(0,0,0,.2);
     box-shadow: 0 6px 68px -6px rgba(0,0,0,.2);
 }
-.barunPenLogo {
-    font-family: '나눔바른펜' !important;
-    font-size: 40px !important;
-    color: #fa2848;
+.barunPenLogo{
+	font-family:'나눔스퀘어라운드' !important;
+	font-weight:400;
+	font-size:40px;
+	color:#fa2848;
 }
 .probootstrap-logo {
+    font-size: 40px !important;
     float: left;
     color: #fa2848;
     padding-left: 20px;
-    font-size: 20px;
     display: block;
     text-transform: uppercase;
-    font-weight: 900;
+    font-weight: 400 !important;
+}
+.alert-info {
+    color: #333 !important;
+    background-color: #fdd !important;
+    border-color: #fdd !important; 
+}
+.probootstrap-main-nav {
+    padding: 20px 0 !important;
+}
+#navbar{
+padding:0px !important;
+}
+.probootstrap-main-nav li a {
+    text-transform: none !important;
+    font-size: 15px !important;
 }
     </style>
   </head>

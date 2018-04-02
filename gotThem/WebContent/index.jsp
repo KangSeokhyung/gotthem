@@ -65,15 +65,6 @@ color:#2fb1bd !important;
 .flexslider, .flexslider .slides>li, .flexslider2, .flexslider2 .slides>li, .slider-height {
     height: 800px !important;
 }
-.flexslider .overlay, .flexslider2 .overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    bottom: 0;
-    right: 0;
-    z-index: 3;
-    background: rgba(0,0,0,0);
-}
 #marginChg { 
 	padding-bottom: 10px; 
 	margin-top: 340px; 

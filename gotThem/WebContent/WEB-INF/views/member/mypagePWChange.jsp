@@ -6,6 +6,12 @@
 <head>
 <meta charset="UTF-8">
 <title>회원 비밀번호 확인</title>
+<style>
+.labelSize{
+font-size:18px !important;
+font-weight:bold !important;
+}
+</style>
 </head>
 <body>
 <center>
@@ -21,7 +27,7 @@
             <div class="row">
               <div class="col-sm-12" >
                 <div class="form-group">
-                  <label for="mem_pw">현재 비밀번호</label>
+                  <label for="mem_pw" class="labelSize">현재 비밀번호</label>
                   <input type="password" style="width:280px;" class="form-control" id="mem_pw" name="mem_pw" autofocus>
                 </div>
               </div>
@@ -29,7 +35,7 @@
             <div class="row">
               <div class="col-md-12">
                 <div class="form-group">
-                  <label for="new_pw">새로운 비밀번호</label>
+                  <label for="new_pw" class="labelSize">새로운 비밀번호</label>
                   <input type="password" style="width:280px;" class="form-control" id="new_pw" name="new_pw">
                 </div>
               </div>
@@ -37,14 +43,14 @@
            <div class="row">
             <div class="col-md-12">
             <div class="form-group">
-              <label for="new_pw2">새로운 비밀번호 확인</label>
+              <label for="new_pw2" class="labelSize">비밀번호 확인</label>
               <input type="password" style="width:280px;" class="form-control" id="new_pw2" name="new_pw2">
             </div>
             </div>
             </div>            
             <div class="form-group">
-              <input type="submit" class="btn btn-primary" id="submit" name="submit" value="변경" style="padding:5px 0px; text-align:center; width:23%; margin-right:10px;">
-              <input type="reset" class="btn btn-primary" id="cancel" value="리셋" style="padding:5px 0px; text-align:center; width:23%; margin-right:10px;">
+              <input type="submit" class="btn btn-colorRed" id="submit" name="submit" value="변경" style=" text-align:center; width:23%; height:46px; margin-right:10px;">
+              <input type="reset" class="btn btn-colorRed" id="cancel" value="리셋" style="text-align:center; width:23%; height:46px; margin-right:10px;">
             </div>           
           </form>
        </div> 

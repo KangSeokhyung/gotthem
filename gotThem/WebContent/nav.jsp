@@ -8,7 +8,7 @@
 <title>Insert title here</title>
 <style>
 body, table, div, p {
-	font-family: '나눔고딕';
+	font-family: '나눔스퀘어라운드';
 }
 
 .probootstrap-main-nav li a:hover {
@@ -58,7 +58,8 @@ body, table, div, p {
     padding-top: 10px;
 }
 .barunPenLogo{
-	font-family:'나눔바른펜';
+	font-family:'나눔스퀘어라운드';
+	font-weight:400;
 	font-size:40px;
 	color:#fa2848;
 }
@@ -73,9 +74,7 @@ body, table, div, p {
 		value="${sessionScope.SPRING_SECURITY_CONTEXT}" />
 	<header role="banner" id="navbar" class="probootstrap-header">
 		<div class="container">
-			<a href="/gotThem" class="probootstrap-logo barunPenLogo"><img
-				src="resources/image/indexLOGO.PNG" height="50"
-				alt="Gotthem">GotThem</a> <a href="#"
+			<a href="/gotThem" class="probootstrap-logo barunPenLogo">GotThem</a> <a href="#"
 				class="probootstrap-burger-menu visible-xs"><i>Menu</i></a>
 			<div class="mobile-menu-overlay"></div>
 

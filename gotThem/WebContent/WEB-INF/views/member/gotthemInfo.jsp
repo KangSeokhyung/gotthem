@@ -36,7 +36,7 @@
               <div class="probootstrap-breadcrumbs">
                 <span>Hello</span>
               </div>
-              <h1>안녕하세요? Got Them 입니다.</h1>
+              <h1>GOTTHEM 을 알고 계신가요?</h1>
             </div>
 
           </div>
@@ -44,12 +44,21 @@
       </div>
     </div>
     <ul class="slides">
-      <li style="background-image: url(resources/mainTemplate/img/slider_1.jpg);"></li>
-      <li style="background-image: url(resources/mainTemplate/img/slider_4.jpg);"></li>
-      <li style="background-image: url(resources/mainTemplate/img/slider_2.jpg);"></li>
+      <li style="background-image: url(resources/image/도시락3.jpg);"></li>
+      <li style="background-image: url(resources/image/진열대2.jpg);"></li>
+      <li style="background-image: url(resources/image/진열대3.jpg);"></li>
     </ul>
   </section>
   
+  <section class="probootstrap-section probootstrap-section-lighter">
+    <div class="container">
+    	<div class="row">
+    		<div class="col-md-12">
+    			<h1>GOTTHEM은 항상 최선을 다합니다.</h1>
+    		</div>
+    	</div>
+    </div>
+  </section>
   <section class="probootstrap-section probootstrap-section-lighter">
     <div class="container">
       <div class="row">
