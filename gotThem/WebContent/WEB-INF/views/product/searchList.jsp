@@ -76,7 +76,6 @@ a:hover { color: #fa2848; }
 	    font-weight: 600;
 	}
 }
-#autocomplete { border: 1px solid white; }
 </style>  
 <script src="resources/autocomplete/auto-complete.js"></script>
 <script src="https://code.jquery.com/jquery-3.2.1.js"></script>

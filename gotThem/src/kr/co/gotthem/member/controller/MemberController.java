@@ -1,6 +1,7 @@
 package kr.co.gotthem.member.controller;
 
 import java.io.PrintWriter;
+import java.net.URLEncoder;
 import java.util.List;
 import java.util.Random;
 import java.util.StringTokenizer;
@@ -86,6 +87,7 @@ public class MemberController {
         out.println("</script>");
 	}
     
+	@SuppressWarnings("deprecation")
 	@RequestMapping(value = "/login.gt", method = RequestMethod.GET)
 	public String login(HttpSession session, HttpServletRequest request, 
 			ProductBean product, BasketBean basketBean,
@@ -95,29 +97,8 @@ public class MemberController {
 			@RequestParam (defaultValue="NO") String gubun,
 			@RequestParam (required=false) String checkOne) {
 		
-		String referer = request.getHeader("referer");
-		String path = request.getScheme() + "://"
-				+ request.getServerName() + ":"
-				+ request.getServerPort()
-				+ request.getContextPath()+"/";
-		String url = null;
-		StringTokenizer st = null;
-		String qs = null;
-		String prevUrl2 = null;
-		
-		prevUrl2 = referer.substring(path.length());
-		session.setAttribute("prevUrl", prevUrl2);
-		
-		if (prevUrl2.length() < 2) {
-			session.removeAttribute("prevUrl");
-		}
-		
 		if (search != null) {
-			url = referer.substring(path.length());
-			st = new StringTokenizer(url, "&");
-			qs = st.nextToken();
-			prevUrl = qs + "&search=" + search; 
-			
+			prevUrl = "searchList.gt?pageNo=1&search=" + URLEncoder.encode(search); 
 			session.setAttribute("prevUrl", prevUrl);
 		}
 		
