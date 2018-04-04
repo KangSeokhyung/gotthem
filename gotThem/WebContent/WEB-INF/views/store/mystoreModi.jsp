@@ -174,7 +174,6 @@ label {
 		<%@include file="nav.jsp"%>
 	</header>
 	
-	
 	<main role="main" class="probootstrap-main js-probootstrap-main">
 	<div class="probootstrap-bar">
 		<a href="#" class="probootstrap-toggle js-probootstrap-toggle"><span
@@ -193,8 +192,6 @@ label {
 		</div>
 	</div>
 
-
-	<!--Main content code to be written here -->
 
 	<div class="cover-container pb-5">
 		<div class="cover-inner container">
@@ -269,8 +266,6 @@ label {
 	</div>
 
 	
-
-
 	<div class="container-fluid d-md-none">
 		<div class="row">
 			<div class="col-md-12">
@@ -297,5 +292,6 @@ label {
 	<script src="resources/indexTemplate/js/jquery.waypoints.min.js"></script>
 	<script src="resources/indexTemplate/js/imagesloaded.pkgd.min.js"></script>
 	<script src="resources/indexTemplate/js/main.js"></script>
+	
 </body>
 </html>
