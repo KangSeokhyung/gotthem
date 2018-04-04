@@ -192,7 +192,7 @@ body {
 						<div class="form-field">
 							<div class="col-xs-8 col-sm-10 col-md-10 col-lg-10 zeroP">
 								<input type="text" class="form-control sb" id="autoComplete" name="search"
-									required="required" 
+									required="required" maxlength="20"
 									placeholder="예) 도시락, 서초, 강남  김밥" />
 							</div>
 							<div class="col-xs-3 col-sm-2 col-md-2  zeroP">

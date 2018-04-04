@@ -223,7 +223,8 @@ a:hover { color: #fa2848; }
 	       	<div class="row">
 				<div class="col-xs-7 col-xs-offset-1 col-sm-5 col-sm-offset-3 pad">
 					<input type="text" class="form-control searchStyle" id="autoComplete" name="search"
-						required="required" placeholder="예) 도시락, 서초, 강남  김밥" />
+						required="required" maxlength="20" 
+						placeholder="예) 도시락, 서초, 강남  김밥" />
 				</div>
 				<div class="col-xs-1 col-sm-2 pad">
 					<button type="submit" title="검색" id="btnColor" class="btn searchStyle sb">

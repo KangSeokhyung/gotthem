@@ -22,6 +22,7 @@
       <script src="resources/mainTemplate/js/vendor/html5shiv.min.js"></script>
       <script src="resources/mainTemplate/js/vendor/respond.min.js"></script>
     <![endif]-->
+    
 <style type="text/css">
 #marginChg { 
 	padding-bottom: 10px; 
@@ -166,7 +167,7 @@ label { font-size: 17px; font-weight: 500; }
 						<div class="form-field">
 							<div class="col-xs-9 col-sm-10 col-md-10 col-lg-10 zeroP">
 								<input type="text" class="form-control" id="autoComplete" name="search"
-									required="required"
+									required="required" maxlength="20"
 									placeholder="예) 도시락, 서초, 강남  김밥" />
 							</div>
 							<div class="col-xs-3 col-sm-2 col-md-2 col-lg-2 zeroP">

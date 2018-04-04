@@ -160,7 +160,7 @@ public class MemberController {
 		memberBean.setMem_address(request.getParameter("mem_post")+"/"+
 		request.getParameter("mem_address1")+"/"+request.getParameter("mem_address2"));
 		
-		// admin에서 회원가입 시 아이디와 동일한 비밀번호
+		// admin에서 회원가입 시 아이디와 동일한 비밀번호 생성
 		if (gubun.equals("joinToAdmin") && gubun != null) {
 			memberBean.setMem_pw(memberBean.getMem_id());
 			memberService.join(memberBean);
