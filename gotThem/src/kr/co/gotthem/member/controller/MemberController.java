@@ -235,11 +235,19 @@ public class MemberController {
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 		String mem_id = authentication.getName();
 		MemberBean memberInfo = memberService.memberInfo(mem_id);
+		String mem_phone = memberInfo.getMem_phone();
+		StringTokenizer  st1 = new StringTokenizer(mem_phone,"-");
+		String mem_phoneFirst = st1.nextToken();
+		String mem_phoneMiddle = st1.nextToken();
+		String mem_phoneLast = st1.nextToken();
 		String mem_address = memberInfo.getMem_address();
 		StringTokenizer  st = new StringTokenizer(mem_address,"/");
 		String post = st.nextToken();       
 		String address1 = st.nextToken();      
-		String address2 = st.nextToken();      
+		String address2 = st.nextToken();   
+		mav.addObject("mem_phoneFirst", mem_phoneFirst);
+		mav.addObject("mem_phoneMiddle", mem_phoneMiddle);
+		mav.addObject("mem_phoneLast", mem_phoneLast);
 		mav.addObject("mem_post", post);
 		mav.addObject("mem_address1", address1);
 		mav.addObject("mem_address2", address2);
@@ -250,12 +258,14 @@ public class MemberController {
 	
 	@RequestMapping(value = "/memberModi.gt", method = RequestMethod.POST)
 	public String memberUpdate(MemberBean bean, @RequestParam("mem_address1") String address1,
-			@RequestParam("mem_address2") String address2, @RequestParam("mem_post") String post) {
+			@RequestParam("mem_address2") String address2, @RequestParam("mem_post") String post,
+			@RequestParam String mem_phoneFirst,@RequestParam String mem_phoneMiddle,@RequestParam String mem_phoneLast) {
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 		String mem_id = authentication.getName();
 		bean.setMem_id(mem_id);
+		String mem_phone = mem_phoneFirst +"-" + mem_phoneMiddle + "-" + mem_phoneLast;
+		bean.setMem_phone(mem_phone);
 		String mem_address = post + "/" + address1 + "/" + address2;
-		System.out.println(bean);
 		bean.setMem_address(mem_address);
 		memberService.memberModifi(bean);
 		return "member/mypage";

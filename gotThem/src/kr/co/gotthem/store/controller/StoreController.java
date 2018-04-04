@@ -64,7 +64,8 @@ public class StoreController {
 	}
 	
 	@RequestMapping(value = "/join.st", method = RequestMethod.POST)
-	public ModelAndView stjoin(HttpServletRequest request, HttpSession session, ModelAndView mav) throws Exception{
+	public ModelAndView stjoin(HttpServletRequest request, HttpSession session, ModelAndView mav, 
+			@RequestParam String mem_phoneFirst, @RequestParam String mem_phoneMiddle, @RequestParam String mem_phoneLast) throws Exception{
 		
 		MemberBean stBean = new MemberBean();
 		stBean.setSto_permitstatus("승인대기");
@@ -72,7 +73,8 @@ public class StoreController {
 		stBean.setMem_pw(request.getParameter("mem_pw"));
 		stBean.setMem_name(request.getParameter("mem_name"));
 		stBean.setSto_name(request.getParameter("sto_name"));
-		stBean.setMem_phone(request.getParameter("mem_phone"));
+		String mem_phone = mem_phoneFirst + "-" + mem_phoneMiddle + "-" + mem_phoneLast;
+		stBean.setMem_phone(mem_phone);
 		stBean.setMem_address(request.getParameter("mem_addr1") + "/" +
 				request.getParameter("mem_addr2") + "/" + request.getParameter("mem_addr3"));
 		stBean.setMem_email(request.getParameter("mem_email"));

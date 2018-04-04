@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -50,35 +51,42 @@ font-size:16px;
 color:#111;
 }
 th{
+align:center;
 font-size:16px;
 }
 .textBreak{
 word-break:keep-all;
 }
+.text-center{
+text-align:center;
+}
+.leftPd10{
+padding-left:10px;
+}
 </style>
 </head>
 <body>
  	<div class="service text-center2">
-            <h1 class="heading"><Strong style="color:#fa2848; font-size:25px;">${memberInfo.mem_name }</Strong> 님 정보입니다.</h1>
+            <h1 class="heading"><Strong style="color:#8e646b; font-size:25px;">${memberInfo.mem_name }</Strong> 님 정보입니다.</h1>
             <br>
             
 		<table class="type07">
 			<tbody>
 				<tr>
-					<th scope="row" class="col-sm-12 textBreak">이메일</th>
+					<th scope="row" class="col-sm-12 textBreak text-center">이메일</th>
 					<td class="col-sm-12">${memberInfo.mem_email}</td>
 				</tr>
 				<tr>
-					<th scope="row" class="col-sm-12 textBreak">핸드폰 번호</th>
+					<th scope="row" class="col-sm-12 textBreak text-center">핸드폰 번호</th>
 					<td class="col-sm-12">${memberInfo.mem_phone}</td>
 				</tr>
 				<tr>
-					<th scope="row" class="col-sm-12">주소</th>
-					<td class="col-sm-12 textBreak">${mem_post}<br>${mem_address1} &nbsp; ${mem_address2}</td>
+					<th scope="row" class="col-sm-12 text-center">주소</th>
+					<td class="col-sm-12 textBreak">${mem_address1} &nbsp; ${mem_address2}</td>
 				</tr>
 				<tr>
-					<th scope="row" class="col-sm-12 textBreak">가입일</th>
-					<td class="col-sm-12">${memberInfo.mem_regdate}</td>
+					<th scope="row" class="col-sm-12 textBreak text-center">가입일</th>
+					<td class="col-sm-12"><fmt:formatDate pattern="yyyy년  MM월 dd일" value="${memberInfo.mem_regdate}"/></td>
 				</tr>
 			</tbody>
 		</table>
