@@ -17,6 +17,10 @@
 	<bean id="adminController" class="kr.co.gotthem.admin.controller.AdminController">
 		<property name="memberService" ref="memberService" />
 	</bean>
+	
+	<bean id="noticeController" class="kr.co.gotthem.notice.controller.NoticeController">
+		<property name="noticeService" ref="noticeService" />
+	</bean>
 
 	<!-- Service -->
 	<bean id="productService" class="kr.co.gotthem.product.service.ProductServiceImpl">
@@ -27,12 +31,20 @@
 		<property name="memberDao" ref="memberDao" />
 	</bean>
 	
+	<bean id="noticeService" class="kr.co.gotthem.notice.service.NoticeServiceImpl">
+		<property name="noticeDao" ref="noticeDao" />
+	</bean>
+	
 	<!-- DAO -->
 	<bean id="memberDao" class="kr.co.gotthem.member.dao.MemberDaoImpl">
 		<property name="sqlSessionTemplate" ref="sqlSessionTemplate" />
 	</bean>
 	
 	<bean id="productDao" class="kr.co.gotthem.product.dao.ProductDaoImpl">
+		<property name="sqlSessionTemplate" ref="sqlSessionTemplate" />
+	</bean>
+	
+	<bean id="noticeDao" class="kr.co.gotthem.notice.dao.NoticeDaoImpl">
 		<property name="sqlSessionTemplate" ref="sqlSessionTemplate" />
 	</bean>
 	

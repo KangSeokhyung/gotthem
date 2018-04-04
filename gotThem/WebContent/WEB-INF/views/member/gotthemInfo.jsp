@@ -54,7 +54,21 @@
     <div class="container">
     	<div class="row">
     		<div class="col-md-12">
-    			<h1>GOTTHEM은 항상 최선을 다합니다.</h1>
+    		GOTTHEM  그거있니? 
+
+
+
+
+
+빠른 검색과 쉬운 결제로 소비자들의 편리함을 최우선으로 합니다.
+저희 GOTTHEM은 아래의 3가지를 목표로 하고 있습니다.
+    		
+    			<h1 style="word-break:keep-all;"><span style="color:red;">GOTTHEM</span>은 그것들이 있니!? 라는 의미로</h1><br>
+    			<h1 style="word-break:keep-all;">여러 브랜드 편의점의 즉석 식품을 </h1><br>
+    			<h1 style="word-break:keep-all;">한 번에 검색, 결제하여 바로 찾아갈 수 있습니다.</h1><br><br>
+    			<h1 style="word-break:keep-all;">편의점 즉석 식품의 재고를 통합 관리하여</h1><br>
+    			<h1 style="word-break:keep-all;">한 번에 검색, 결제하여 바로 찾아갈 수 있습니다.</h1><br>
+    			<h1 style="word-break:keep-all;">저희 <span style="color:red;">GOTTHEM</span>은 아래의 3가지를 목표로 하고 있습니다. </h1>
     		</div>
     	</div>
     </div>
@@ -68,7 +82,7 @@
               <img src="resources/mainTemplate/img/flaticon/svg/001-prize.svg" class="svg" alt="Free HTML5 Template by uicookies.com">
             </div>
             <div class="probootstrap-card-text">
-              <h2 class="probootstrap-card-heading">항상 최고의 서비스를!</h2>
+              <h2 class="probootstrap-card-heading">고객 가치  최고의 서비스</h2>
             </div>
           </div>
         </div>

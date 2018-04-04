@@ -84,7 +84,8 @@ padding-bottom:3.5px;
 
         <nav role="navigation" class="probootstrap-nav hidden-xs">
           <ul class="probootstrap-main-nav">
-            <li><a href="/gotThem">GotThem 소개</a></li>
+            <li><a href="gotthemInfo.gt">GotThem 소개</a></li>
+            <li><a href="notice.gt" class="nanumbarunpenr">공지사항</a></li>
             <c:choose>
 				<c:when test="${sessionCheck eq null}">
 					<li><a href="login.gt?prevUrl=listBasket.gt">장바구니</a></li>

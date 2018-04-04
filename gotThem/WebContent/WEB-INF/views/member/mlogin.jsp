@@ -100,7 +100,7 @@
               </div>
             </div>
             <div class="form-group ">
-              <input type="submit" class="btn btn-primary" name="submit" value="로그인하기" style="width:48%;" onclick="loginResult()">
+              <input type="submit" class="btn btn-primary" name="submit" value="로그인하기" style="width:360px;"onclick="loginResult()">
             </div>
             <div class="form-group " >
             <!-- <a id="kakao-login-btn" style="cursor:pointer;"></a> -->

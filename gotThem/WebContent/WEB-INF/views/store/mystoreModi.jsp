@@ -173,8 +173,8 @@ label {
 	<header>
 		<%@include file="nav.jsp"%>
 	</header>
-
-
+	
+	
 	<main role="main" class="probootstrap-main js-probootstrap-main">
 	<div class="probootstrap-bar">
 		<a href="#" class="probootstrap-toggle js-probootstrap-toggle"><span
@@ -251,9 +251,12 @@ label {
 					</tr>
 					<tr>
 						<th nowrap>코멘트</th>
-						<td><textarea class="form-comment" name="sto_comment" id="comment"
+						<td><textarea class="form-comment" name="prev_comment" id="prev_comment"
 								style="height: 160px; resize: none; overflow: visible; text-overflow: ellipsis;"
-								required="" maxlength="2000">${memberInfo.sto_comment }</textarea></td>
+								maxlength="2000">${memberInfo.sto_comment }</textarea>
+							<input type="hidden" name="sto_comment" id="sto_comment">
+						</td>
+								
 					</tr>
 					<tr>
 						<td nowrap colspan="2" align="right"><button
@@ -261,12 +264,11 @@ label {
 							<button class="btn btn-primary" onclick="history.go(-1)">취소</button></td>
 					</tr>
 				</table>
-
 			</form>
 		</div>
 	</div>
 
-
+	
 
 
 	<div class="container-fluid d-md-none">

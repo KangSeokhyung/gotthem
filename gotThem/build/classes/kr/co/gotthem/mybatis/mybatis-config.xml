@@ -9,6 +9,7 @@
 		<mapper resource="kr/co/gotthem/mybatis/ProductMapper.xml" />
 		<mapper resource="kr/co/gotthem/mybatis/MemberMapper.xml" />
 		<mapper resource="kr/co/gotthem/mybatis/BasketMapper.xml" />
+		<mapper resource="kr/co/gotthem/mybatis/NoticeMapper.xml" />
 	</mappers>
 	
 </configuration>

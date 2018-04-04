@@ -18,56 +18,89 @@
     <link rel="stylesheet" href="resources/mainTemplate/css/style.min.css">
     <link rel="stylesheet" href="resources/mainTemplate/css/custom.css"> 
 <style>
-#pro_stock {
-	padding: 0 0 0 15px
-}
-
-tbody a:hover {
-	color: #FA5858;
-}
-a{
-cursor:pointer;
-}
+.probootstrap-header{height:91px;line-height:-20%;} 
+body, table, div, p {font-family: '나눔스퀘어라운드';}
+.probootstrap-main-nav li a:hover {color: #ea1313;}
+.probootstrap-main-nav li a {text-transform: none;padding: 10px 0;color: #000;font-size: 15px;border-bottom: 2px solid transparent;}
+.probootstrap-main-nav {padding: 20px 0;}
+.probootstrap-header {padding-top: 0px;padding-bottom: 0px;width: 100%;background: #fff;z-index: 12;position: absolute;
+	top: 0;-webkit-box-shadow: 0 6px 68px -6px rgba(0, 0, 0, .2);box-shadow: 0 6px 68px -6px rgba(0, 0, 0, .2);}
+.container {padding-bottom: 12px;padding-top: 12px;}
+.barunPenLogo{font-family:'나눔스퀘어라운드';font-weight:400;font-size:40px;color:#fa2848;text-transform:uppercase;}
+.probootstrap-logo:hover { color: #fa2848;}
+ .navLogoPadding{padding-top:13.5px;} 
+ .padding{padding-top:4px;} 
+#pro_stock {padding: 0 0 0 15px}
+tbody a:hover {color: #FA5858;}
+a{cursor:pointer;}
 @media ( max-width : 768px ) {
-	#pro_stock {
-		padding: 0 0 0 8px
-	}
-	.cartw27 {
-		width: 15%;
-	}
-	.cartw13 {
-		width: 17%;
-	}
-	.cartw25 {
-		width: 15%;
-	}
-	.explain {
-		width: 45%;
-	}
+	#pro_stock {padding: 0 0 0 8px}
+	.cartw27 {width: 15%;}
+	.cartw13 {width: 17%;}
+	.cartw25 {width: 15%;}
+	.explain {width: 45%;}
 	@media screen and (min-width: 480px) {
 	.flexslider.page-inner, .flexslider.page-inner .slides>li, 
 	.flexslider2.page-inner, .flexslider2.page-inner .slides>li {
-   		display: block;
-		height: 400px !important;
-	}
+   		display: block;height: 400px !important;}
 }
 @media not screen and (min-width: 480px) {
 	.flexslider.page-inner, .flexslider.page-inner .slides>li, 
 	.flexslider2.page-inner, .flexslider2.page-inner .slides>li {
-   		display: block;
-		height: 300px !important;
-	}
-	footer .container {
-		height: 95px !important;
-	}
+   		display: block;height: 300px !important;}
+	footer .container {height: 95px !important;}
 }
-}
+} 
 </style>
+<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 </head>
 <body>
-<header>
-<%@include file="../../../nav.jsp" %>
-</header>
+<c:set var="sessionCheck"
+		value="${sessionScope.SPRING_SECURITY_CONTEXT}" />
+	<header role="banner" id="navbar" class="probootstrap-header">
+		<div class="container navCenter">
+			<a href="/gotThem" class="probootstrap-logo barunPenLogo navLogoPadding">GotThem</a> 
+			<a href="#" class="probootstrap-burger-menu visible-xs"><i>Menu</i></a>
+			<div class="mobile-menu-overlay"></div>
+
+        <nav role="navigation" class="probootstrap-nav hidden-xs padding">
+          <ul class="probootstrap-main-nav">
+            <li><a href="/gotThem">GotThem 소개</a></li>
+            <li><a href="notice.gt" class="nanumbarunpenr">공지사항</a></li>
+            <c:choose>
+				<c:when test="${sessionCheck eq null}">
+					<li><a href="login.gt?prevUrl=listBasket.gt">장바구니</a></li>
+				</c:when>
+				<c:otherwise>
+					<li><a href="listBasket.gt">장바구니</a></li>
+				</c:otherwise>
+			</c:choose>
+			<c:choose>
+				<c:when test="${sessionCheck eq null}">
+					<li><a href="join.gt">회원가입</a></li>
+					<c:if test="${search ne null }">
+						<li><a href="login.gt?search=${search }">로그인</a></li>
+					</c:if>
+					<c:if test="${search eq null }">
+						<li><a href="login.gt">로그인</a></li>
+					</c:if>
+				</c:when>
+				<c:otherwise>
+					<li><a href="mypage.gt">마이페이지</a></li>
+					<li><a href="logout.gt">로그아웃</a></li>
+				</c:otherwise>
+			</c:choose>
+		  </ul>
+          <div class="extra-text visible-xs"> 
+            <a href="#" class="probootstrap-burger-menu"><i>메뉴</i></a>
+			<h5>주소</h5>
+			<p>서울광역시 서초구 비트교육센터 별관 503호</p>
+			<h5>개발자</h5>
+			<p>강석형, 김성우, 김채윤, 권도용, 이찬희</p>
+          </div>
+        </nav>
+    </div>
+  </header>
  <section class="probootstrap-slider flexslider2 page-inner">
     <div class="overlay"></div>
     <div class="probootstrap-wrap-banner">
@@ -149,8 +182,8 @@ cursor:pointer;
   </div>
   </form>
   	<div class="btnAreaList">
-		<a href="./listBasket.gt" class="aOrder" ><p>장바구니<span>돌아가기</span></p></a>&nbsp;&nbsp;&nbsp;&nbsp;
-		<a href="/gotThem" class="continuation" onclick=""><p>쇼핑<span>계속하기</span></p></a>
+		<a href="./listBasket.gt" class="aOrder" ><p>장바구니&nbsp;<span>돌아가기</span></p></a>&nbsp;&nbsp;&nbsp;&nbsp;
+		<a href="/gotThem" class="continuation" onclick=""><p>쇼핑&nbsp;<span>계속하기</span></p></a>
 	</div>
 </div>    
 <br>

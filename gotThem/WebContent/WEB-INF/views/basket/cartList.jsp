@@ -71,6 +71,7 @@ body, table, div, p {font-family: '나눔스퀘어라운드';}
         <nav role="navigation" class="probootstrap-nav hidden-xs padding">
           <ul class="probootstrap-main-nav">
             <li><a href="/gotThem">GotThem 소개</a></li>
+            <li><a href="notice.gt" class="nanumbarunpenr">공지사항</a></li>
             <c:choose>
 				<c:when test="${sessionCheck eq null}">
 					<li><a href="login.gt?prevUrl=listBasket.gt">장바구니</a></li>
@@ -234,9 +235,9 @@ body, table, div, p {font-family: '나눔스퀘어라운드';}
   </div>
   </form>
   	<div class="btnAreaList">
-		<a class="sOrder" id=button_selOrder onclick="button_selOrder();" ><p>선택상품<span>결제하기</span></p></a>&nbsp;&nbsp;&nbsp;&nbsp;
-		<a class="aOrder" id=button_allOrder onclick="button_allOrder();"><p>전체상품<span>결제하기</span></p></a>&nbsp;&nbsp;&nbsp;&nbsp;
-		<a href="/gotThem" class="continuation" onclick=""><p>쇼핑<span>계속하기</span></p></a>
+		<a class="sOrder" id=button_selOrder onclick="button_selOrder();" ><p>선택상품&nbsp;<span>결제하기</span></p></a>&nbsp;&nbsp;&nbsp;&nbsp;
+		<a class="aOrder" id=button_allOrder onclick="button_allOrder();"><p>전체상품&nbsp;<span>결제하기</span></p></a>&nbsp;&nbsp;&nbsp;&nbsp;
+		<a href="/gotThem" class="continuation" onclick=""><p>쇼핑&nbsp;<span>계속하기</span></p></a>
 	</div>
 </c:otherwise>
 </c:choose>   

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+              "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+              
+<mapper namespace="kr.co.gotthem.mybatis.NoticeMapper">
+
+	<select id="noticeListSelect" resultType="kr.co.gotthem.notice.bean.NoticeBean" parameterType="int">
+		select * from noticebo where not_writer='관리자' order by not_no desc limit  #{begin}, 10 
+	</select>
+	
+	<select id="noticeCount" resultType="int">
+        select count(*) from noticebo where not_writer='관리자'
+    </select>
+    
+    <insert id="createContent" parameterType="kr.co.gotthem.notice.bean.NoticeBean">
+		insert into noticebo(not_title, not_date, not_hit, not_writer, not_content)
+		values(#{not_title}, #{not_date}, 0, #{not_writer}, #{not_content})
+	</insert>
+	
+	<select id="selectContent" resultType="kr.co.gotthem.notice.bean.NoticeBean">
+        select * from noticebo where not_writer='관리자' and not_no=#{not_no}
+    </select>
+    
+    <update id="hit" parameterType="int">
+        update noticebo set not_hit = not_hit +1 where not_no=#{not_no}
+    </update>
+    
+    <delete id="contentDelete" parameterType="int">
+        delete from noticebo where not_no=#{not_no}
+    </delete>
+    
+    <update id="contentUpdate" parameterType="kr.co.gotthem.notice.bean.NoticeBean">
+        update noticebo set not_title=#{not_title}, not_content=#{not_content} where not_no=#{not_no}
+    </update>
+</mapper>
