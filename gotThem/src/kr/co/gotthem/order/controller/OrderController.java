@@ -81,7 +81,9 @@ public class OrderController {
 	@ResponseBody
 	public HashMap paymentOne(String accessToken, HttpSession session,@RequestParam String orderOne) throws Exception{
 		System.out.println("접속된 토큰 : " + accessToken);
+		System.out.println("orderOne : " + orderOne);
 		@SuppressWarnings("rawtypes")
+		
 		HashMap result = orderService.payOne(accessToken, HashMap.class, orderOne);
 		System.out.println("orderOne컨트롤: " + orderOne);
 		session.setAttribute("tid",result.get("tid"));

@@ -143,8 +143,8 @@ body, table, div, p {font-family: '나눔스퀘어라운드';}
    <!-- del btnArea -->
 					<div class="btnArea nMn"><br>
 						<ul class="delTopLeft">
-							<li><a class="minDel03" onclick="button_selDel()" style="font-size:14px;">✓ 선택삭제</a></li>
-							<li><a class="minDel03" onclick="button_allDel()" style="font-size:14px;">✗ 전체삭제</a></li>
+							<li><a class="minDel03" onclick="button_selDel()" style="font-size:14px;">선택삭제</a></li>
+							<li><a class="minDel03" onclick="button_allDel()" style="font-size:14px;">전체삭제</a></li>
 	                   </ul>
 						<!-- <p id="kaka">※ 결제는 카카오페이로만 진행됩니다.&nbsp;&nbsp;</p> -->
 					</div>
@@ -235,7 +235,7 @@ body, table, div, p {font-family: '나눔스퀘어라운드';}
   </div>
   </form>
   	<div class="btnAreaList">
-		<a class="sOrder" id=button_selOrder onclick="button_selOrder();" ><p>선택상품&nbsp;<span>결제하기</span></p></a>&nbsp;&nbsp;&nbsp;&nbsp;
+		<a class="aOrder" id=button_selOrder onclick="button_selOrder();" ><p>선택상품&nbsp;<span>결제하기</span></p></a>&nbsp;&nbsp;&nbsp;&nbsp;
 		<a class="aOrder" id=button_allOrder onclick="button_allOrder();"><p>전체상품&nbsp;<span>결제하기</span></p></a>&nbsp;&nbsp;&nbsp;&nbsp;
 		<a href="/gotThem" class="continuation" onclick=""><p>쇼핑&nbsp;<span>계속하기</span></p></a>
 	</div>
