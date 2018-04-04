@@ -258,7 +258,16 @@ body {
 	  </div><br>
       <p class="sub-heading colorCyan" style="word-break:keep-all;">많은 점주 분들이 <strong>GOT THEM</strong> 과 제휴 한 이후로 매출이 상승했습니다.<br>
       이제 <strong>GOT THEM</strong> 과 제휴를 맺고 급격한 매출상승을 이루어보세요! </p>
-      <p><a href="login.st" class="btn btn-primary mb10">제휴페이지</a></p>
+      <c:set var="sessionCheck"
+						value="${sessionScope.SPRING_SECURITY_CONTEXT.authentication.authorities}" />
+			<c:choose>
+			<c:when test="${sessionCheck eq '[ROLE_ADMIN]' or sessionCheck eq '[ROLE_STORE]'}">
+			<p><a href="stock.st?pageNo=1" class="btn btn-primary mb10">제휴페이지</a></p>
+      </c:when>
+				<c:otherwise>
+				<p><a href="login.st" class="btn btn-primary mb10">제휴페이지</a></p>
+				</c:otherwise>
+			</c:choose>
     </div>
   </section>
 

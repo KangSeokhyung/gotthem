@@ -24,6 +24,7 @@
 		<intercept-url pattern="/mystore.st" access="hasAnyRole('ROLE_ADMIN', 'ROLE_STORE')" />
 		<intercept-url pattern="/stock.st" access="hasAnyRole('ROLE_ADMIN', 'ROLE_STORE')" />
 		<intercept-url pattern="/mystore.st" access="hasAnyRole('ROLE_ADMIN', 'ROLE_STORE')" />
+		<intercept-url pattern="/*" access="hasAnyRole('ROLE_ADMIN', 'ROLE_STORE')"/>
 		<form-login login-page="/login.st" 
 			default-target-url="/stock.st?pageNo=1"
 			login-processing-url="/login.st"

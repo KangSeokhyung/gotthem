@@ -80,6 +80,8 @@ table th, td {
   vertical-align: middle;
 }
 
+.pagination{padding-left: 400px;}
+
 @media all and (max-width:767px){
 table, tr, td {
     display: block;

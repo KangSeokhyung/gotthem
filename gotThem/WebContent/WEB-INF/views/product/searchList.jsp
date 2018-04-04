@@ -99,6 +99,7 @@ a:hover { color: #fa2848; }
 			zoom : 15,
 			center : latlng
 		}
+		
 		map = new google.maps.Map(document.getElementById('map'), mapOptions);
 		var infoWindow = new google.maps.InfoWindow({map: map});
 		
@@ -108,7 +109,6 @@ a:hover { color: #fa2848; }
 	            lat: position.coords.latitude,
 	            lng: position.coords.longitude
 	          };
-				
 	          var marker = new google.maps.Marker({
 					map : map,
 					position : pos,
