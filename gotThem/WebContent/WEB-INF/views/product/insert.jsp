@@ -159,12 +159,8 @@ $(document).ready(function(){
 						<td><select name="pro_category">
 								<option value="도시락">도시락</option>
 								<option value="김밥">김밥</option>
-								<option value="삼각김밥">삼각김밥</option>
 								<option value="샌드위치">샌드위치</option>
-								<option value="햄버거">햄버거</option>
-								<option value="주먹밥">주먹밥</option>
-								<option value="과일">과일</option>
-								<option value="셀러드">셀러드</option>
+								<option value="기타">기타</option>
 						</select>
 					</tr>
 					<tr>
