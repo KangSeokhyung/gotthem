@@ -130,9 +130,9 @@ body, table, div, p {font-family: '나눔스퀘어라운드';}
   </section>    
 <div class="container">
 <c:choose>
-<c:when test="${map.count == 0}">
+<c:when test="${map.count == 0}"><br>
  <img src="resources/image/cart_img_empty.gif" style=" width:360px;height:263px;margin-left:auto;margin-right:auto;display:block;"/>
- <div>  
+ <div><br> 
             <div style='float:right; padding: 3px 30px 3px 6px;'>
             <a href="/gotThem" class="continuation" onclick=""><p>쇼핑 <span>계속하기</span></p></a>
             </div>
