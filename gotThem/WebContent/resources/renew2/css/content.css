@@ -903,7 +903,7 @@ span.searchStyleSelectBox.changed{background-color: #fff;}
 .listType .qty {position:relative; width:98px; margin:0 auto; text-align:left; overflow:hidden;}
 .listType .qty input {width:46px; height:39px; line-height:39px; color:#777; border:1px #ddd solid; border-right:0; padding:0 0 0 10px;}
 .listType .qty .up {position:absolute; left:46px; top:0;}
-.listType .qty .down {position:absolute; left:46px; top:19px;}
+.listType .qty .down {position:absolute; left:46px; top:18.8px;}
 
 
 /* view */
@@ -2225,12 +2225,13 @@ span.ui-radio-state-checked-hover {background-position:0 -200px;}
 .listType .qty input {width:30px; height:28px; line-height:28px;}
 .listType .qty .up {left:30px;}
 .listType .qty .up img {width:30px;}
-.listType .qty .down {left:30px; top:14px;}
+.listType .qty .down {left:30px; top:13.8px;}
 .listType .qty .down img {width:30px;}
 
 /* table */
 .cartImg {width:15%;}
-.cartw25 {width:19%;}
+.cartw25 {width:22%;}
+.cartw13 {width:20%;}
 .cartw28 {width:20%;}
 .cartw29 {width:22%;}
 
