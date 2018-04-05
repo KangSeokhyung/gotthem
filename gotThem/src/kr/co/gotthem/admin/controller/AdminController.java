@@ -265,6 +265,7 @@ public class AdminController {
 		mav.addObject("prevPage", prevPage);
 		mav.addObject("nextPage", nextPage);
 		mav.addObject("mlist", mlist);
+		
 		if (gubun.equals("owner")) {
 			mav.setViewName("admin/storeControl");
 		} else {
