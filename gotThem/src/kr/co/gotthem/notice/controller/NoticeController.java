@@ -46,7 +46,7 @@ public class NoticeController {
 		int totalPages = (int) Math.ceil((double) totalRows / ROW_PER_PAGE);
 		// 전체 페이지 갯수
 
-		final int PAGE_PER_PAGE = 10; // 화면당 페이지 출력 갯수
+		final int PAGE_PER_PAGE = 5; // 화면당 페이지 출력 갯수
 		int totalRanges = (int) Math.ceil((double) totalPages
 				/ PAGE_PER_PAGE); // 전체 Range 갯수
 		int currentRange = (int) Math.ceil((double) pageNo / PAGE_PER_PAGE);
