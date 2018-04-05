@@ -18,8 +18,8 @@
     <link rel="stylesheet" href="resources/mainTemplate/css/style.min.css">
     <link rel="stylesheet" href="resources/mainTemplate/css/custom.css"> 
 <style>
-/* html, body { height: 1187.8px !important;
-} */
+html, body { height: 100%; }
+#wrap { min-height: 50%; position: relative; }
 .probootstrap-header{height:91px;line-height:-20%;} 
 body, table, div, p {font-family: '나눔스퀘어라운드';}
 .probootstrap-main-nav li a:hover {color: #ea1313;}
@@ -102,6 +102,7 @@ a{cursor:pointer;}
         </nav>
     </div>
   </header>
+
  <section class="probootstrap-slider flexslider2 page-inner">
     <div class="overlay"></div>
     <div class="probootstrap-wrap-banner">
@@ -126,6 +127,7 @@ a{cursor:pointer;}
       <li style="background-image: url(resources/mainTemplate/img/slider_2.jpg);"></li>
     </ul>
   </section>    
+<div id="wrap">
 <div class="container"> 
 <h2 >결제 확인</h2> 
   <form name="form1" id="form1" method="post" action="./update.gt" onsubmit="return validate();">
@@ -186,7 +188,8 @@ a{cursor:pointer;}
 		<a href="./listBasket.gt" class="aOrder" ><p>장바구니&nbsp;<span>돌아가기</span></p></a>&nbsp;&nbsp;&nbsp;&nbsp;
 		<a href="/gotThem" class="continuation" onclick=""><p>쇼핑&nbsp;<span>계속하기</span></p></a>
 	</div>
-</div>    
+</div>  
+</div>  
 <br>
 <!-- START: footer -->
 <%@include file="../../../footer.jsp" %>

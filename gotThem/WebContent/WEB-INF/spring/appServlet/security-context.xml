@@ -42,7 +42,7 @@
 		<intercept-url pattern="/admin.ad" access="permitAll" />
 		<intercept-url pattern="/memcontrol.ad" access="hasRole('ROLE_ADMIN')" />
 		<form-login login-page="/admin.ad" 
-			default-target-url="/memcontrol.ad"
+			default-target-url="/storecontrol.ad"
 			authentication-failure-url="/loginfail.gt" 
 			login-processing-url="/admin.ad"
 			username-parameter="admin_id"
