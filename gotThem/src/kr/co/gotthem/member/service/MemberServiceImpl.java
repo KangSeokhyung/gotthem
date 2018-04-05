@@ -119,4 +119,9 @@ public class MemberServiceImpl implements MemberService {
 	public List<MemberBean> selectSearch(int begin, String select, String search, String gubun) {
 		return memberDao.selectSearch(begin, select, search, gubun);
 	}
+
+	@Override
+	public int selectSearchCount(int begin, String select, String search, String gubun) {
+		return memberDao.selectSearchCount(begin, select, search, gubun);
+	}
 }

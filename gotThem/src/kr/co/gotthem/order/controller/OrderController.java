@@ -41,6 +41,12 @@ public class OrderController {
     	 
     	 Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
     	 String mem_id = authentication.getName();
+    	 
+    	 if (mem_id.equals("anonymousUser")) {
+ 	    	mav.setViewName("redirect:/login.gt");
+ 	    	return mav;
+ 	     } 
+    	 
     	 MemberBean memberInfo = memberService.memberInfo(mem_id);
     	 int userNo = memberInfo.getMem_no();
     	 
@@ -208,7 +214,7 @@ public class OrderController {
                     orderService.orderInsert(orderBean);
                     orderService.orderUpdateBasket(orderBean);
                     orderService.orderDeleteBasket(orderBean);
-                    System.out.println("복수결제 DB orderBean:"+orderBean);
+                    System.out.println("ㅋ복수결제 DB orderBean:"+orderBean);
                     }
         	}
         mav.addObject("result", result);

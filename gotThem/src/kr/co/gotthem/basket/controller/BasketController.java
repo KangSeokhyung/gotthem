@@ -73,9 +73,16 @@ public class BasketController {
 			BasketBean basketBean) throws Exception {
     	Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 	    String mem_id = authentication.getName();
-	
+	    
+	    if (mem_id.equals("anonymousUser")) {
+	    	mav.setViewName("redirect:/login.gt");
+	    	return mav;
+	    }
+	    
      	MemberBean memberInfo = memberService.memberInfo(mem_id);
         int userNo = memberInfo.getMem_no();
+        
+        
         Map<String, Object> map = new HashMap<String, Object>();
         List<BasketBean> listBasket = basketService.listBasket(userNo); // 장바구니 정보 
         int sumMoney = basketService.sumMoney(userNo);// 장바구니 전체 금액 호출
@@ -148,7 +155,7 @@ public class BasketController {
 		basketBean.setBas_prostock(bas_prostock);
 		basketBean.setBas_procode(bas_procode);
 		basketService.modifyBasket(basketBean);
-		System.out.println("수량만 변경");
+		System.out.println("수량 변경");
     }
     
     // 5. 편의점 상세에서 장바구니 선택 추가

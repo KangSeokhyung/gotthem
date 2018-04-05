@@ -112,7 +112,8 @@ public class AdminController {
 	@RequestMapping(value = "/memmodify.ad", method = RequestMethod.POST)
 	public String memmodi(@RequestParam(required=false) String enable,
 			MemberBean membean, HttpServletRequest request) {
-		
+		System.out.println("테스트"+enable);
+	
 		int approve = 0;
 
 		if(enable.equals("가입")) {
@@ -128,6 +129,7 @@ public class AdminController {
 		membean.setMem_address(request.getParameter("mem_addr1")+"/"+
 		request.getParameter("mem_addr2")+"/"+request.getParameter("mem_addr3"));
 		membean.setEnabled(approve);
+		membean.setSto_permitstatus("완료");
 		
 		memberService.memModi(membean);
 		
@@ -228,7 +230,7 @@ public class AdminController {
 		
 		mlist = memberService.selectSearch(begin, select, search, gubun);
 		
-		int totalRows = mlist.size(); // 전체 게시물 갯수
+		int totalRows = memberService.selectSearchCount(begin, select, search, gubun);
 		int totalPages = (int) Math.ceil((double) totalRows / ROW_PER_PAGE);
 
 		final int PAGE_PER_PAGE = 5; // 화면당 페이지 출력 갯수
@@ -248,6 +250,8 @@ public class AdminController {
 		if (currentRange != totalRanges)
 			nextPage = currentRange * PAGE_PER_PAGE + 1;
 		
+		mav.addObject("select", select);
+		mav.addObject("search", search);
 		mav.addObject("ROW_PER_PAGE", ROW_PER_PAGE);
 		mav.addObject("begin", begin); 
 		mav.addObject("end", end); 
@@ -261,7 +265,8 @@ public class AdminController {
 		mav.addObject("prevPage", prevPage);
 		mav.addObject("nextPage", nextPage);
 		mav.addObject("mlist", mlist);
-		if (gubun.equals("점포")) {
+		
+		if (gubun.equals("owner")) {
 			mav.setViewName("admin/storeControl");
 		} else {
 			mav.setViewName("admin/memberControl");
