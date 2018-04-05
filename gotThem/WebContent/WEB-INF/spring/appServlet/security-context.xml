@@ -21,9 +21,11 @@
 	
  	<http pattern="/*.st" auto-config="true" disable-url-rewriting="true" use-expressions="true">
 		<intercept-url pattern="/login.st" access="permitAll" />
+		<intercept-url pattern="/join.st" access="permitAll" />
 		<intercept-url pattern="/mystore.st" access="hasAnyRole('ROLE_ADMIN', 'ROLE_STORE')" />
 		<intercept-url pattern="/stock.st" access="hasAnyRole('ROLE_ADMIN', 'ROLE_STORE')" />
 		<intercept-url pattern="/mystore.st" access="hasAnyRole('ROLE_ADMIN', 'ROLE_STORE')" />
+		<intercept-url pattern="/*" access="hasAnyRole('ROLE_ADMIN', 'ROLE_STORE')"/>
 		<form-login login-page="/login.st" 
 			default-target-url="/stock.st?pageNo=1"
 			login-processing-url="/login.st"
@@ -45,6 +47,8 @@
 			login-processing-url="/admin.ad"
 			username-parameter="admin_id"
 			password-parameter="admin_pw" />
+		<logout logout-url="/logout.ad" logout-success-url="/admin.ad" 
+		 	invalidate-session="true"/>
 		<csrf disabled="true" />
 	</http> 
 

@@ -34,5 +34,7 @@ public interface ProductService {
 	public int productSearchStock(int pro_code);
 	
 	public List<ProductBean> proSelectSearch(int begin, String select, String search, int pro_memno);
+
+	public int proSelectSearchCount(String select, String search, int pro_memno);
 	
 }

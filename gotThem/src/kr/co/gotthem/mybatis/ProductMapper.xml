@@ -96,4 +96,22 @@
 		order by pro_name 
 		limit #{begin}, 10 
 	</select>
+	
+	<select id="proSelectSearchCount" parameterType="java.util.HashMap" resultType="int">
+		select count(*) 
+		from product 
+		where pro_memno = #{pro_memno} 
+		<choose>
+			<when test='select!=null and select.equals("")'>
+				and (pro_name like concat('%', #{search}, '%')
+				or pro_category like concat('%', #{search}, '%'))
+			</when>
+			<when test='select!=null and select.equals("pro_name")'>
+				and pro_name like concat('%', #{search}, '%')	
+			</when>
+			<when test='select!=null and select.equals("pro_category")'>
+				and pro_category like concat('%', #{search}, '%')	
+			</when> 
+		</choose> 
+	</select>
 </mapper>

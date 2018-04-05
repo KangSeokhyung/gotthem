@@ -40,7 +40,6 @@ a{cursor:pointer;}
 	.flexslider.page-inner, .flexslider.page-inner .slides>li, 
 	.flexslider2.page-inner, .flexslider2.page-inner .slides>li {
    		display: block;height: 300px !important;}
-	footer .container {height: 95px !important;}
 }
 }
   .probootstrap-header{height:91px;line-height:-20%;} 

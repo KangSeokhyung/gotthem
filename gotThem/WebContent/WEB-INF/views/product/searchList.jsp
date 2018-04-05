@@ -58,11 +58,6 @@ th { color: #303030; font-size: 16px; }
 .sb {
 	border: 1px solid white;
 }
-@media not screen and (min-width: 480px) {
-	footer .container {
-		height: 95px !important;
-	}
-}
 .searchStyle { border-radius: 0px; height: 55px; font-size: 17px; }
 a { color: #242D91; }
 a:hover { color: #fa2848; }
@@ -99,6 +94,7 @@ a:hover { color: #fa2848; }
 			zoom : 15,
 			center : latlng
 		}
+		
 		map = new google.maps.Map(document.getElementById('map'), mapOptions);
 		var infoWindow = new google.maps.InfoWindow({map: map});
 		
@@ -108,7 +104,6 @@ a:hover { color: #fa2848; }
 	            lat: position.coords.latitude,
 	            lng: position.coords.longitude
 	          };
-				
 	          var marker = new google.maps.Marker({
 					map : map,
 					position : pos,

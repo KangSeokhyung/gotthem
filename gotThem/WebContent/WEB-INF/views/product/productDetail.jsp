@@ -44,11 +44,6 @@
     position: relative;
     color: rgba(255,255,255,.9);
 }
-@media not screen and (min-width: 480px) {
-	footer .container {
-		height: 95px !important;
-	}
-}
 label { font-size: 17px; font-weight: 500; }
 #main { color: #666; }
 </style>  

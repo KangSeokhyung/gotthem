@@ -49,11 +49,6 @@
     color: rgba(255,255,255,.9);
 }
 ul li { font-size: 16px; }
-@media not screen and (min-width: 480px) {
-	footer .container {
-		height: 95px !important;
-	}
-}
 </style>  
 <script src="resources/autocomplete/auto-complete.js"></script>
 <script src="https://code.jquery.com/jquery-3.2.1.js"></script>

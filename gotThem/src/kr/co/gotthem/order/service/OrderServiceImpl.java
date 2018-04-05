@@ -289,6 +289,11 @@ public class OrderServiceImpl implements OrderService {
 	public List<OrderpayBean> orderSelectSearch(int begin, String select, String search, String sto_name) {
 		return orderDao.orderSelectSearch(begin, select, search, sto_name);
 	}
+
+	@Override
+	public int orderSelectSearchCount(String select, String search, String sto_name) {
+		return orderDao.orderSelectSearchCount(select, search, sto_name);
+	}
   
 }
 

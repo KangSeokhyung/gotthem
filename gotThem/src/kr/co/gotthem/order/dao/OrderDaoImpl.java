@@ -80,4 +80,14 @@ public class OrderDaoImpl implements OrderDao {
 		
 		return sqlSessionTemplate.selectList("orderSelectSearch", map);
 	}
+
+	@Override
+	public int orderSelectSearchCount(String select, String search, String sto_name) {
+		Map map = new HashMap();
+		map.put("select", select);
+		map.put("search", search);
+		map.put("sto_name", sto_name);
+		
+		return sqlSessionTemplate.selectOne("orderSelectSearchCount", map);
+	}
 }

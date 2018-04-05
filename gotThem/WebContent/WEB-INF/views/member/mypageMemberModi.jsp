@@ -1,63 +1,88 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-	<meta charset="utf-8" />
-	    <meta name="description" content="Free Bootstrap Theme by uicookies.com">
-    <meta name="keywords" content="free website templates, free bootstrap themes, free template, free bootstrap, free website template">
-    
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400" rel="stylesheet">
-    <link rel="stylesheet" href="resources/mainTemplate/css/styles-merged.css">
-    <link rel="stylesheet" href="resources/mainTemplate/css/style.min.css">
-    <link rel="stylesheet" href="resources/mainTemplate/css/custom.css">
+<meta charset="utf-8" />
+<meta name="description" content="Free Bootstrap Theme by uicookies.com">
+<meta name="keywords"
+	content="free website templates, free bootstrap themes, free template, free bootstrap, free website template">
+
+<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400"
+	rel="stylesheet">
+<link rel="stylesheet"
+	href="resources/mainTemplate/css/styles-merged.css">
+<link rel="stylesheet" href="resources/mainTemplate/css/style.min.css">
+<link rel="stylesheet" href="resources/mainTemplate/css/custom.css">
 <style>
-
-.labelSize{
-font-size:18px !important;
-font-weight:bold !important;
+.labelSize {
+	font-size: 18px !important;
+	font-weight: bold !important;
 }
-
 </style>
 </head>
 <body>
 	<div class="service">
-         <div class="alert alert-info alert-dismissable">
-          <a class="panel-close close" data-dismiss="alert">×</a> 
-          여기에서 회원정보 수정이 가능합니다.
-        </div>
-          <form action="memberModi.gt" method="post" class="probootstrap-form mb60">
-            <div class="row">
-              <div class="col-md-6">
-                <div class="form-group">
-                  <label for="lname" class="labelSize">이름</label>
-                  <input type="text" class="form-control" name="mem_name" id="mem_name" value="${memberInfo.mem_name }" autofocus>
-                </div>
-              </div>
-            </div>
-           <div class="row">
-            <div class="col-md-6">
-            <div class="form-group">
-              <label for="email" class="labelSize">이메일</label>
-              <input type="email" class="form-control" name="mem_email" id="email" value="${memberInfo.mem_email}">
-            </div>
-            </div>
-            </div>
-            <div class="row">
-            <div class="col-md-6">
-            <div class="form-group">
-              <label for="email" class="labelSize">핸드폰번호</label>
-              <input type="text" class="form-control" name="mem_phone" id="mem_phone" maxlength="11" value="${memberInfo.mem_phone}">
-            </div>
-            </div>
-            </div>
+		<div class="alert alert-info alert-dismissable">
+			<a class="panel-close close" data-dismiss="alert">×</a> 여기에서 회원정보 수정이
+			가능합니다.
+		</div>
+		<form action="memberModi.gt" method="post"
+			class="probootstrap-form mb60">
+			<div class="row">
+				<div class="col-md-6">
+					<div class="form-group">
+						<label for="lname" class="labelSize">이름</label> <input type="text"
+							class="form-control" name="mem_name" id="mem_name"
+							value="${memberInfo.mem_name }" autofocus>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-6">
+					<div class="form-group">
+						<label for="email" class="labelSize">이메일</label> <input
+							type="email" class="form-control" name="mem_email" id="email"
+							value="${memberInfo.mem_email}">
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-3">
+					<div class="form-group">
+						<label for="email" class="labelSize">핸드폰번호</label><br> <input
+							type="number" class="form-control col-md-3" name="mem_phoneFirst"
+							id="mem_phone" maxlength="3" value="${mem_phoneFirst}"
+							oninput="maxLengthCheck(this)" style="display: inline;">
+					</div>
+				</div>
+				<div class="col-md-3">
+					<div class="form-group">
+					<label for="email" class="labelSize">&nbsp;</label><br> 
+						<input type="number" class="form-control col-md-3"
+							name="mem_phoneMiddle" id="mem_phone" maxlength="4"
+							value="${mem_phoneMiddle}" oninput="maxLengthCheck(this)"
+							style="display: inline;">
+					</div>
+				</div>
+				<div class="col-md-3">
+					<div class="form-group">
+					<label for="email" class="labelSize">&nbsp;</label><br> 
+						<input type="number"
+							class="form-control col-md-3" name="mem_phoneLast" id="mem_phone"
+							maxlength="4" value="${mem_phoneLast}"
+							oninput="maxLengthCheck(this)" style="display: inline;">
+					</div>
+				</div>
+			</div>
 			<div class="row">
 				<div class="col-md-12">
 					<label for="lname" class="labelSize">우편번호</label>
 					<div class="card-block">
 						<div class="col-md-6 paddingRight30" style="padding-left: 0px;">
 							<div class="form-group">
-								<input type="text" class="form-control" id="mem_post" name="mem_post" value="${mem_post}" readOnly>
+								<input type="text" class="form-control" id="mem_post"
+									name="mem_post" value="${mem_post}" readOnly>
 							</div>
 						</div>
 						<div class="col-md-6 padding0">
@@ -68,33 +93,46 @@ font-weight:bold !important;
 				</div>
 			</div>
 			<div class="row">
-            <div class="col-md-12">
-            <div class="form-group">
-              <label for="email" class="labelSize">상세주소1</label>
-              <input type="text" class="form-control" id="mem_address1" name="mem_address1" value="${mem_address1}" readOnly>
-            </div>
-            </div>
-            </div>
-            <div class="row">
-            <div class="col-md-12">
-            <div class="form-group">
-              <label for="email" class="labelSize">상세주소2</label>
-              <input type="text" class="form-control" id="mem_address2" name="mem_address2" value="${mem_address2}">
-            </div>
-            </div>
-            </div>                   <br>
-            <div class="form-group">
-              <center><input type="submit" class="btn btn-colorRed" name="submit" value="변경" style="padding:5px 0px; width:36%; height:49px; margin-right:10px;">
-              <input type="reset" class="btn btn-colorRed" value="되돌리기" style="padding:5px;width:36%; height:49px;"></center>
-            </div>              
-          </form>
-        </div> 
-        
+				<div class="col-md-12">
+					<div class="form-group">
+						<label for="email" class="labelSize">상세주소1</label> <input
+							type="text" class="form-control" id="mem_address1"
+							name="mem_address1" value="${mem_address1}" readOnly>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<div class="form-group">
+						<label for="email" class="labelSize">상세주소2</label> <input
+							type="text" class="form-control" id="mem_address2"
+							name="mem_address2" value="${mem_address2}">
+					</div>
+				</div>
+			</div>
+			<br>
+			<div class="form-group">
+				<center>
+					<input type="submit" class="btn btn-colorRed" name="submit"
+						value="변경"
+						style="padding: 5px 0px; width: 36%; height: 49px; margin-right: 10px;">
+					<input type="reset" class="btn btn-colorRed" value="되돌리기"
+						style="padding: 5px; width: 36%; height: 49px;">
+				</center>
+			</div>
+		</form>
+	</div>
 
-  <script src="resources/mainTemplate/js/scripts.min.js"></script>
-  <script src="resources/mainTemplate/js/main.min.js"></script>
-  <script src="resources/mainTemplate/js/custom.js"></script>
-  <script>
+
+	<script src="resources/mainTemplate/js/scripts.min.js"></script>
+	<script src="resources/mainTemplate/js/main.min.js"></script>
+	<script src="resources/mainTemplate/js/custom.js"></script>
+	<script>
+  function maxLengthCheck(object){
+	    if (object.value.length > object.maxLength){
+	        object.value = object.value.slice(0, object.maxLength);
+	    }    
+	}
 	function sample6_execDaumPostcode() {
 			 new daum.Postcode({
 	 	  oncomplete: function(data) {

@@ -108,12 +108,16 @@
                                     <input type="email" class="form-control" name="mem_email" data-form-field="Name" required="" id="mem_email">
                                 </div>
                             </div>
+                          <!--  ----  -->
                           <div class="col-sm-8 multi-horizontal" data-for="phone">
                            <div class="form-group">
-                                    <label class="form-control-label mbr-fonts-style display-7" for="phone-form1-r">전화번호</label>
-                                    <input type="text" class="form-control" name="mem_phone" data-form-field="Name" required="" id="mem_phone">
+                                    <label class="form-control-label mbr-fonts-style display-7" for="phone-form1-r">전화번호</label><br>
+                                    <input type="number" class="form-control col-sm-3" style="display:inline;" name="mem_phoneFirst" maxlength="3" data-form-field="Name" required="required" oninput="maxLengthCheck(this)"> - 
+                                	<input type="number" class="form-control col-sm-4" style="display:inline;" name="mem_phoneMiddle" maxlength="4" data-form-field="Name" required="required" oninput="maxLengthCheck(this)"> - 
+                                	<input type="number" class="form-control col-sm-4" style="display:inline;" name="mem_phoneLast" maxlength="4" data-form-field="Name" required="required" oninput="maxLengthCheck(this)">
                                 </div>
-                            </div>
+                          </div>
+                         <!--  ---- -->
                          <div class="col-sm-6 multi-horizontal" data-for="postcode">
                             <div class="form-group">
                                     <label class="form-control-label mbr-fonts-style display-7" for="addr1-form1-r">우편번호</label>
@@ -122,7 +126,7 @@
                             </div>
                          <div class="col-sm-6 multi-horizontal" data-for="findpostcode">
                             <div class="form-group" style="margin:23px 0px;">
-                            <button onclick="sample6_execDaumPostcode()" class="btn btn-primary btn-form display-4">우편번호찾기</button>
+                            <button onclick="sample6_execDaumPostcode()" class="btn btn-primary btn-form display-4" style="border-radius:4px !important;">우편번호찾기</button>
                            </div>
                          </div>
                         <div class="col-sm-12 multi-horizontal" data-for="address1">
@@ -139,7 +143,7 @@
                             </div>
                         </div>
                         <span class="input-group-btn">
-                            <button type="submit" class="btn btn-primary btn-form display-4">제휴신청</button>
+                            <button type="submit" class="btn btn-primary btn-form display-4" style="border-radius:4px !important;">제휴신청</button>
                         </span>
                     </form>
             </div>
@@ -158,6 +162,11 @@
 	<script src="resources/indexTemplate/js/main.js"></script>
 	<script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
 	<script>
+	function maxLengthCheck(object){
+	    if (object.value.length > object.maxLength){
+	        object.value = object.value.slice(0, object.maxLength);
+	    }    
+	}
 		function sample6_execDaumPostcode() {
 			new daum.Postcode(
 					{

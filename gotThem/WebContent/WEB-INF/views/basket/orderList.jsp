@@ -18,6 +18,8 @@
     <link rel="stylesheet" href="resources/mainTemplate/css/style.min.css">
     <link rel="stylesheet" href="resources/mainTemplate/css/custom.css"> 
 <style>
+/* html, body { height: 1187.8px !important;
+} */
 .probootstrap-header{height:91px;line-height:-20%;} 
 body, table, div, p {font-family: '나눔스퀘어라운드';}
 .probootstrap-main-nav li a:hover {color: #ea1313;}
@@ -48,7 +50,6 @@ a{cursor:pointer;}
 	.flexslider.page-inner, .flexslider.page-inner .slides>li, 
 	.flexslider2.page-inner, .flexslider2.page-inner .slides>li {
    		display: block;height: 300px !important;}
-	footer .container {height: 95px !important;}
 }
 } 
 </style>
@@ -129,7 +130,7 @@ a{cursor:pointer;}
 <h2 >결제 확인</h2> 
   <form name="form1" id="form1" method="post" action="./update.gt" onsubmit="return validate();">
    <div class="listDiv">
-   <table class="listType" border="1" style="word-break: keep-all;">
+   <table class="listType" border="1">
     <caption>결제 목록</caption>
 							<colgroup>
 							<col width="15%" class="cartImg"/>

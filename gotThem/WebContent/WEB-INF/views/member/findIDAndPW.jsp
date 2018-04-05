@@ -41,8 +41,8 @@ margin-bottom:0px;
 
 .colorGreen{
 	background:#286090;
-    border: 1px solid #2866AB;
-    background: #2866AB;
+    border: 1px solid #fa5858;
+    background: #fa5858;
     hover:
 }
 .btn-success:hover,
@@ -51,8 +51,11 @@ margin-bottom:0px;
 .btn-success.active,
 .open .dropdown-toggle.btn-success{
 color:#fff;
-background-color:#337ab7;
-border-color:#337ab7;
+background-color:#fb2323;
+border-color:#fb2323;
+}
+.form-control:focus {
+    border-color: #fa5858;
 }
 
 </style>

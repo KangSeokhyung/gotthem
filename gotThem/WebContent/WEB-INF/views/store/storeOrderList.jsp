@@ -45,6 +45,33 @@ function statusChange(ord_no, pageNo){
 		location.history.go(0);
 	}
     }
+    
+/* $(function(){
+	setInterval(function() {
+		var pageNo = ${pageNo};
+		$.ajax({
+			type : 'get',
+			url : 'storeOrderList.st',
+			data : {
+				"pageNo" : pageNo
+			},
+			success : function(data) {
+				alert(ord_status);
+				if (ord_status == "미수령") {
+					$("#mi").html('<a onclick="statusChange(${row.ord_no}, ${pageNo})" style="cursor:pointer; color:#fa2848;"><strong>${row.ord_status}</strong></a>');
+				} else if (ord_status == "완료") {
+					$("#wan").html('<strong>${row.ord_status}</strong>');
+				}
+			},
+			error : function(jqXHR, textStatus, errorThrown) {
+				alert('시스템 문제발생');
+				console.log(jqXHR);
+				console.log(textStatus);
+				console.log(errorThrown);
+			}
+		});
+	  }, 3000);
+}); */
 </script>
 </head>
 <style>
@@ -79,6 +106,8 @@ table th, td {
   text-align: center;
   vertical-align: middle;
 }
+
+.pagination{padding-left: 400px;}
 
 @media all and (max-width:767px){
 table, tr, td {
@@ -213,12 +242,12 @@ margin-left:0px;
 						<td class="info">${row.mem_phone}</td>
 						<c:choose>
 							<c:when test="${row.ord_status == '미수령'}">
-								<td class="status">
+								<td id="mi" class="status">
 								<a onclick="statusChange(${row.ord_no}, ${pageNo})" 
 								style="cursor:pointer; color:#fa2848;"><strong>${row.ord_status}</strong></a></td>
 							</c:when>
 							<c:otherwise>
-								<td class="status"><strong>${row.ord_status}</strong></td>
+								<td id="wan" class="status"><strong>${row.ord_status}</strong></td>
 							</c:otherwise>
 						</c:choose>
 					</tr>
@@ -230,7 +259,7 @@ margin-left:0px;
 						<c:choose>
 							<c:when test="${prevPage ne 0}">
 								<li class="page-item"><a class="page-link"
-									href="storeOrderList.st?pageNo=${prevPage }">&laquo;</a></li>
+									href="orderSelectSearch.st?pageNo=${prevPage }">&laquo;</a></li>
 							</c:when>
 						</c:choose>
 						<c:forEach begin="${beginPage }" end="${endPage }" step="1"
@@ -238,18 +267,18 @@ margin-left:0px;
 							<c:choose>
 								<c:when test="${nowPage eq status.index }">
 									<li class="page-item active"><a class="page-link"
-										href="storeOrderList.st?pageNo=${status.index }">${status.index }</a></li>
+										href="orderSelectSearch.st?pageNo=${status.index }&select=${select}&search=${search}">${status.index }</a></li>
 								</c:when>
 								<c:otherwise>
 									<li class="page-item"><a class="page-link"
-										href="storeOrderList.st?pageNo=${status.index }">${status.index }</a></li>
+										href="orderSelectSearch.st?pageNo=${status.index }&select=${select}&search=${search}">${status.index }</a></li>
 								</c:otherwise>
 							</c:choose>
 						</c:forEach>
 						<c:choose>
 							<c:when test="${nextPage ne 0 }">
 								<li class="page-item"><a class="page-link"
-									href="storeOrderList.st?pageNo=${nextPage }">&raquo;</a></li>
+									href="orderSelectSearch.st?pageNo=${nextPage }">&raquo;</a></li>
 							</c:when>
 						</c:choose>
 					</ul>
