@@ -300,7 +300,7 @@ ul li { font-size: 16px; }
     	</div>
 		<hr>
 		<div class="col-xs-5" style="font-size: 12px; height: 50px; vertical-align: bottom; word-break: keep-all;">
-			* 장바구니 이동 후 결제하시면 됩니다.
+			<!-- * 장바구니 이동 후 결제하시면 됩니다. -->
 		</div>
 		<div class="col-xs-5 col-xs-offset-2">
 			<c:set var="sessionCheck" value="${sessionScope.SPRING_SECURITY_CONTEXT}" />
@@ -364,11 +364,11 @@ ul li { font-size: 16px; }
 			<img src="/img/store/${storeInfo.sto_img }" width="100%" title="편의점 이미지">
 		</div>
 		<div id="wordLine" class="col-xs-12 col-sm-6">
-			<div style="font-size: 30px; font-weight: 500; color: #333">${storeInfo.sto_name } 정보</div>
+			<div style="font-size: 30px; font-weight: 500; color: #333">${storeInfo.sto_name }</div>
 			<hr>
 			
 			<strong>매장주소</strong> : <span id="addr"></span> <br>
-			<strong>매장번호</strong> : ${storeInfo.mem_phone } <br><br>
+			<strong>전화번호</strong> : ${storeInfo.mem_phone }<br><br>
 			${storeInfo.sto_comment } <br>
 		</div>
     </div>

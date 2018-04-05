@@ -99,8 +99,8 @@ padding-top:3px;
     border-top: 1px solid #ddd;
 }
 .btn-secondary{
-	border: 2px solid #fd3067;
-    background: #fd3067;
+	border: 2px solid #888;
+    background: #888;
     color: #fff;
     border-radius: 12px;
 }
@@ -109,6 +109,9 @@ padding-top:3px;
     background: #ff7b9e;
     color: #fff;
     border-radius: 12px;
+}
+#fontSize input[type='text'], #fontSize input[type='email'] {
+	font-size: 17px;
 }
 </style>
 <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
@@ -136,14 +139,14 @@ padding-top:3px;
 				var addr3 = addrarray[2];
 				var enable = td.eq(7).children().val();
 				
-				if (enable == "승인대기") {
-					$("[name='sto_permitstatus'][value='승인대기']").prop("checked", true);
+				if (enable == "대기") {
+					$("[name='sto_permitstatus'][value='대기']").prop("checked", true);
 					$("#enabled").val(0);
-				} else if (enable == "승인거부") {
-					$("[name='sto_permitstatus'][value='승인거부']").prop("checked", true);
+				} else if (enable == "거부") {
+					$("[name='sto_permitstatus'][value='거부']").prop("checked", true);
 					$("#enabled").val(0);
-				} else if (enable == "승인완료") {
-					$("[name='sto_permitstatus'][value='승인완료']").prop("checked", true);
+				} else if (enable == "완료") {
+					$("[name='sto_permitstatus'][value='완료']").prop("checked", true);
 					$("#enabled").val(1);
 				}
 				
@@ -161,7 +164,7 @@ padding-top:3px;
 		
 		$("[name=sto_permitstatus]").click(function(){
 			var status = $(this).val();
-			if (status == "승인완료") {
+			if (status == "완료") {
 				$("#enabled").val(1);
 			} else {
 				$("#enabled").val(0);
@@ -270,14 +273,14 @@ padding-top:3px;
 						<td>${stlist.mem_regdate}</td>
 						<td>
 							<c:choose>
-								<c:when test="${stlist.sto_permitstatus eq '승인완료' }">
-									승인완료<input type="hidden" value="승인완료">
+								<c:when test="${stlist.sto_permitstatus eq '완료' }">
+									완료<input type="hidden" value="완료">
 								</c:when>
-								<c:when test="${stlist.sto_permitstatus eq '승인대기' }">
-									승인대기<input type="hidden" value="승인대기">
+								<c:when test="${stlist.sto_permitstatus eq '대기' }">
+									대기<input type="hidden" value="대기">
 								</c:when>
-								<c:when test="${stlist.sto_permitstatus eq '승인거부' }">
-									승인거부<input type="hidden" value="승인거부">
+								<c:when test="${stlist.sto_permitstatus eq '거부' }">
+									거부<input type="hidden" value="거부">
 								</c:when>
 							</c:choose>
 						</td>
@@ -292,25 +295,25 @@ padding-top:3px;
 				<c:choose>
 					<c:when test="${prevPage ne 0}">
 						<li class="page-item"><a class="page-link" 
-							href="storecontrol.ad?pageNo=${prevPage}">&laquo;</a></li>
+							href="selectSearch.ad?pageNo=${prevPage}">&laquo;</a></li>
 					</c:when>
 				</c:choose>
 					<c:forEach begin="${beginPage}" end="${endPage }" step="1" varStatus="status">
 						<c:choose>
 							<c:when test="${nowPage eq status.index}">
 								<li class="page-item active"><a class="page-link" 
-									href="storecontrol.ad?pageNo=${status.index }">${status.index }</a></li>
+									href="selectSearch.ad?pageNo=${status.index }&select=${select }&search=${search }&gubun=owner">${status.index }</a></li>
 							</c:when>
 							<c:otherwise>
 								<li class="page-item"><a class="page-link" 
-									href="storecontrol.ad?pageNo=${status.index }">${status.index }</a></li>
+									href="selectSearch.ad?pageNo=${status.index }&select=${select }&search=${search }&gubun=owner">${status.index }</a></li>
 							</c:otherwise>
 						</c:choose>
 					</c:forEach>
 				<c:choose>
 					<c:when test="${nextPage ne 0 }">
 						<li class="page-item"><a class="page-link" 
-							href="searchList.gt?pageNo=${nextPage }">&raquo;</a></li>
+							href="selectSearch.ad?pageNo=${nextPage }">&raquo;</a></li>
 					</c:when>
 				</c:choose>
 			</ul>
@@ -318,8 +321,8 @@ padding-top:3px;
 		</div>
 		
 		<form action="selectSearch.ad" method="get" style="height:80px; text-align: center;">
-		<input type="hidden" name="gubun" value="점포">
-		<select name="select" style="font-size:20px; height:49px; border-radius: 12px;border:2px solid #44B3C2">
+		<input type="hidden" name="gubun" value="owner">
+		<select name="select" style="font-size:20px; height:49px; border:2px solid #44B3C2; padding-bottom: 1px;">
 		    <option value="" selected="selected">선택</option>
 		    <option value="mem_name">이름</option>
 		    <option value="mem_phone">전화번호</option>
@@ -328,7 +331,7 @@ padding-top:3px;
 		</select>
 		<input type="text" name="search" pattern="[A-Z|a-z|0-9|ㄱ-ㅎ|ㅏ-ㅣ|가-힣]{2,}"
 			title="두글자 이상 입력해주세요." autocomplete="off" required="required"
-			style="height:49px;border-radius: 12px; border:2px solid #44B3C2">
+			style="height:49px; border:2px solid #44B3C2">
 		<button type="submit" class="btn btn-primary">검색</button>
 		</form>
 		<hr>
@@ -339,21 +342,21 @@ padding-top:3px;
 		<div class="modal-dialog">
 			<div class="modal-content">
 				<div class="modal-header">
-					<h2 class="modal-title" id="myModalLabel">회원정보수정</h2>
+					<h1 class="modal-title" id="myModalLabel">점주정보수정</h1>
 					<button type="button" class="close" data-dismiss="modal"
 						aria-hidden="true">&times;</button>
 				</div>
 				<div class="modal-body">
-					<section class="mbr-section form1 cid-qIWKYtQnJh" id="form1-r">
+					<section class="mbr-section form1 cid-qIWKYtQnJh" id="fontSize">
 						<div class="container-fluid">
 							<div class="row justify-content-center">
 							
-								<form action="storemodify.ad" method="post"
+								<form action="storemodify.ad" method="post" style="font-size: 18px"
 									data-form-title="Mobirise Form">
 									
 									<div class="row row-sm-offset">
 									
-										<div class="col-sm-8 multi-horizontal" data-for="id">
+										<div class="col-sm-6 multi-horizontal" data-for="id">
 											<div class="form-group">
 												<label class="form-control-label mbr-fonts-style display-7"
 													for="name-form1-r">아이디</label> <input type="text"
@@ -362,8 +365,7 @@ padding-top:3px;
 												<input type="hidden" id="mem_id2" name="mem_id">
 											</div>
 										</div>
-									
-										<div class="col-sm-8 multi-horizontal" data-for="ownername">
+										<div class="col-sm-6 multi-horizontal" data-for="ownername">
 											<div class="form-group">
 												<label class="form-control-label mbr-fonts-style display-7"
 													for="owner-form1-r">점주명</label> <input type="text" 
@@ -373,7 +375,7 @@ padding-top:3px;
 											</div>
 										</div>
 										
-										<div class="col-sm-8 multi-horizontal" data-for="storename">
+										<div class="col-sm-6 multi-horizontal" data-for="storename">
 											<div class="form-group">
 												<label class="form-control-label mbr-fonts-style display-7"
 													for="stoname-form1-r">점포명</label> <input type="text"
@@ -382,8 +384,17 @@ padding-top:3px;
 													required="required" id="sto_name">
 											</div>
 										</div>
+										<div class="col-sm-6 multi-horizontal" data-for="phone">
+											<div class="form-group">
+												<label class="form-control-label mbr-fonts-style display-7"
+													for="phone-form1-r">전화번호</label> <input type="text"
+													class="form-control" name="mem_phone" onkeyup="removeChar(event);"
+													value="${stinfo.mem_phone}" data-form-field="Name"
+													required="required" id="mem_phone">
+											</div>
+										</div>
 										
-										<div class="col-sm-8 multi-horizontal" data-for="email">
+										<div class="col-sm-12 multi-horizontal" data-for="email">
 											<div class="form-group">
 												<label class="form-control-label mbr-fonts-style display-7"
 													for="email-form1-r">이메일</label> <input type="email"
@@ -393,15 +404,7 @@ padding-top:3px;
 											</div>
 										</div>
 										
-										<div class="col-sm-8 multi-horizontal" data-for="phone">
-											<div class="form-group">
-												<label class="form-control-label mbr-fonts-style display-7"
-													for="phone-form1-r">전화번호</label> <input type="text"
-													class="form-control" name="mem_phone" onkeyup="removeChar(event);"
-													value="${stinfo.mem_phone}" data-form-field="Name"
-													required="required" id="mem_phone">
-											</div>
-										</div>
+										
 										
 										<div class="col-sm-6 multi-horizontal" data-for="postcode">
 											<div class="form-group">
@@ -414,9 +417,9 @@ padding-top:3px;
 										</div>
 										
 										<div class="col-sm-6 multi-horizontal" data-for="findpostcode">
-											<div class="form-group" style="margin: 23px 0px;">
+											<div class="form-group" style="margin: 30px 0px;">
 												<button onclick="sample6_execDaumPostcode()"
-													class="btn btn-primary btn-form display-4">우편번호찾기</button>
+													class="btn btn-primary btn-form btn-sm display-4">우편번호 찾기</button>
 											</div>
 										</div>
 										
@@ -444,15 +447,18 @@ padding-top:3px;
 											<div class="form-group">
 												<label class="form-control-label mbr-fonts-style display-7"
 													for="addr2-form1-r">회원 상태</label> <br> 
-												<input type="radio" name="sto_permitstatus" value="승인완료">승인완료
-												<input type="radio" name="sto_permitstatus" value="승인대기">승인대기
-												<input type="radio" name="sto_permitstatus" value="승인거부">승인거부
+												<input type="radio" id="one" name="sto_permitstatus" value="완료">
+													<label for="one" style="font-weight: 500;">완료</label>&emsp;
+												<input type="radio" id="two" name="sto_permitstatus" value="대기">
+													<label for="two" style="font-weight: 500;">대기</label>&emsp;
+												<input type="radio" id="thr" name="sto_permitstatus" value="거부">
+													<label for="thr" style="font-weight: 500;">거부</label>
 												<input type="hidden" id="enabled" name="enabled">
 											</div>
 										</div>
 										<hr><hr><hr><hr>
 										<div class="col-sm-12 multi-horizontal" data-for="button" style="text-align: center;">
-												<button type="submit" class="btn btn-primary">정보수정</button>
+												<button type="submit" class="btn btn-primary">정보수정</button>&emsp;
 												<button type="button" class="btn btn-secondary"
 													data-dismiss="modal">취소</button>
 										</div>

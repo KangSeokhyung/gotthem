@@ -27,16 +27,15 @@
 			<div class="container">
 				<div class="wrapper" style="margin-top: 120px;">
 					<br> 
+					<form name="updateform" id="updateform" action="contentUpdate.gt" method="POST">
 					<span class="fontSize">제목</span> <input
 						class="form-control" name="not_title" value="${content.not_title}" />
 					<span class="fontSize">작성일</span> <input
 						class="form-control" name="not_date" readOnly value="${content.not_date}" /><br>
 					<span class="fontSize">내용</span>
-					<form name="updateform" id="updateform" action="contentUpdate.gt" method="POST">
 					<textarea class="form-control" name="not_content" style="height: 350px;">${content.not_content}</textarea>
 					<br> 
 					<input type="hidden" name="not_no" value="${content.not_no}">
-					<input type="hidden" name="not_title" value="${content.not_title}">
 					<div class="col-md-4" style="padding: 5px;">
 						<button class="btn btn-primary col-md-12" style="font-size: 20px;"
 							onclick="contentUpdate(${content.not_no})">수정</button>
