@@ -235,4 +235,9 @@ public class ProductServiceImpl implements ProductService {
 	public List<ProductBean> proSelectSearch(int begin, String select, String search, int pro_memno) {
 		return productDao.proSelectSearch(begin, select, search, pro_memno);
 	}
+
+	@Override
+	public int proSelectSearchCount(String select, String search, int pro_memno) {
+		return productDao.proSelectSearchCount(select, search, pro_memno);
+	}
 }

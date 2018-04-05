@@ -237,7 +237,8 @@ public class OrderController {
 		
 		storeListOrder = orderService.orderSelectSearch(begin, select, search, sto_name);
 		
-		int totalRows = storeListOrder.size(); // 전체 게시물 갯수
+		int totalRows = orderService.orderSelectSearchCount(select, search, sto_name); // 전체 게시물 갯수
+		
 		int totalPages = (int) Math.ceil((double) totalRows / ROW_PER_PAGE);
 
 		final int PAGE_PER_PAGE = 5; // 화면당 페이지 출력 갯수
@@ -257,6 +258,8 @@ public class OrderController {
 		if (currentRange != totalRanges)
 			nextPage = currentRange * PAGE_PER_PAGE + 1;
 		
+		mav.addObject("select", select);
+		mav.addObject("search", search);
 		mav.addObject("ROW_PER_PAGE", ROW_PER_PAGE);
 		mav.addObject("begin", begin); 
 		mav.addObject("end", end); 

@@ -270,9 +270,9 @@ public class ProductController {
 		int end = pageNo * ROW_PER_PAGE;
 		
 		plist = productService.proSelectSearch(begin, select, search, pro_memno);
-		System.out.println();
 		
-		int totalRows = plist.size(); // 전체 게시물 갯수
+		int totalRows = productService.proSelectSearchCount(select, search, pro_memno);
+		
 		int totalPages = (int) Math.ceil((double) totalRows / ROW_PER_PAGE);
 
 		final int PAGE_PER_PAGE = 5; // 화면당 페이지 출력 갯수
@@ -292,6 +292,8 @@ public class ProductController {
 		if (currentRange != totalRanges)
 			nextPage = currentRange * PAGE_PER_PAGE + 1;
 		
+		mav.addObject("select", select);
+		mav.addObject("search", search);
 		mav.addObject("ROW_PER_PAGE", ROW_PER_PAGE);
 		mav.addObject("begin", begin); 
 		mav.addObject("end", end); 

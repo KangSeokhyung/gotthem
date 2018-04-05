@@ -134,7 +134,7 @@ padding-left:0;
 						<c:choose>
 							<c:when test="${prevPage ne 0}">
 								<li class="page-item"><a class="page-link"
-									href="stock.st?pageNo=${prevPage }">&laquo;</a></li>
+									href="selectSearch.st?pageNo=${prevPage }">&laquo;</a></li>
 							</c:when>
 						</c:choose>
 						<c:forEach begin="${beginPage }" end="${endPage }" step="1"
@@ -142,18 +142,18 @@ padding-left:0;
 							<c:choose>
 								<c:when test="${nowPage eq status.index }">
 									<li class="page-item active"><a class="page-link"
-										href="stock.st?pageNo=${status.index }">${status.index }</a></li>
+										href="selectSearch.st?pageNo=${status.index }&select=${select}&search=${search}">${status.index }</a></li>
 								</c:when>
 								<c:otherwise>
 									<li class="page-item"><a class="page-link"
-										href="stock.st?pageNo=${status.index }">${status.index }</a></li>
+										href="selectSearch.st?pageNo=${status.index }&select=${select}&search=${search}">${status.index }</a></li>
 								</c:otherwise>
 							</c:choose>
 						</c:forEach>
 						<c:choose>
 							<c:when test="${nextPage ne 0 }">
 								<li class="page-item"><a class="page-link"
-									href="stock.st?pageNo=${nextPage }">&raquo;</a></li>
+									href="selectSearch.st?pageNo=${nextPage }">&raquo;</a></li>
 							</c:when>
 						</c:choose>
 					</ul>

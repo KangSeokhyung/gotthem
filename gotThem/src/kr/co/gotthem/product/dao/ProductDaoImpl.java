@@ -102,4 +102,14 @@ public class ProductDaoImpl implements ProductDao {
 		return sqlSessionTemplate.selectList("proSelectSearch", map);
 	}
 
+	@Override
+	public int proSelectSearchCount(String select, String search, int pro_memno) {
+		Map map = new HashMap();
+		map.put("select", select);
+		map.put("search", search);
+		map.put("pro_memno", pro_memno);
+		
+		return sqlSessionTemplate.selectOne("proSelectSearchCount", map);
+	}
+
 }
