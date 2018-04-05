@@ -38,10 +38,13 @@ margin:1px;
 padding: 0.6rem 1rem;
 }
 
-a {color: #e82424;}
+td a {color: #0e8a7d;}
+td a :hover{text-decoration:underline;}
 .container{margin-left:170px;}
 .pb-5{padding-top:10px;padding-bottom:0px;}
 h2{font-family:나눔스퀘어라운드 !important;}
+
+.pagination{padding-left: 400px;}
 
 @media all and (max-width:767px){
 .container{margin-left:auto;}
@@ -118,7 +121,7 @@ padding-left:0;
 							style="width: 50px; height: 50px; cursor: pointer"
 							onclick="location='detail.st?pageNo=${pageNo}&code=${dto.pro_code }'" /></td>
 						<td class="name"><a
-							href="detail.st?pageNo=${pageNo}&code=${dto.pro_code }">${dto.pro_name }</a></td>
+							href="detail.st?pageNo=${pageNo}&code=${dto.pro_code }"><strong>${dto.pro_name }</strong></a></td>
 						<td class="category">${dto.pro_category }</td>
 						<td class="price">${dto.pro_price }</td>
 						<td class="stock">${dto.pro_stock }&nbsp;&nbsp;</td>
@@ -131,7 +134,7 @@ padding-left:0;
 						<c:choose>
 							<c:when test="${prevPage ne 0}">
 								<li class="page-item"><a class="page-link"
-									href="stock.st?pageNo=${prevPage }">&laquo;</a></li>
+									href="selectSearch.st?pageNo=${prevPage }">&laquo;</a></li>
 							</c:when>
 						</c:choose>
 						<c:forEach begin="${beginPage }" end="${endPage }" step="1"
@@ -139,18 +142,18 @@ padding-left:0;
 							<c:choose>
 								<c:when test="${nowPage eq status.index }">
 									<li class="page-item active"><a class="page-link"
-										href="stock.st?pageNo=${status.index }">${status.index }</a></li>
+										href="selectSearch.st?pageNo=${status.index }&select=${select}&search=${search}">${status.index }</a></li>
 								</c:when>
 								<c:otherwise>
 									<li class="page-item"><a class="page-link"
-										href="stock.st?pageNo=${status.index }">${status.index }</a></li>
+										href="selectSearch.st?pageNo=${status.index }&select=${select}&search=${search}">${status.index }</a></li>
 								</c:otherwise>
 							</c:choose>
 						</c:forEach>
 						<c:choose>
 							<c:when test="${nextPage ne 0 }">
 								<li class="page-item"><a class="page-link"
-									href="stock.st?pageNo=${nextPage }">&raquo;</a></li>
+									href="selectSearch.st?pageNo=${nextPage }">&raquo;</a></li>
 							</c:when>
 						</c:choose>
 					</ul>
