@@ -491,11 +491,18 @@ $(document).on("change", "#pro_stock", function(){//텍스트로 수량 변경
 var access_Token = '${sessionScope.token}';
 Kakao.init("363553076ca8777f012d9c9ce3b92b8c");	
 
-$(document).on("click", "#orderOne",function(){// 단건 결제 api
-	if(!access_Token){
+ $(document).on("click", "#orderOne",function(){// 단건 결제 api
+	 var firstMoney = $(this).prev().prev().val();
+	var orderOne = $(this).prev().val();
+		if (Sum1 == null) {
+			orderOne = orderOne+","+firstMoney+","+$(this).parent().prev().prev().children().children().next().next().val(); 			
+		} else {
+			orderOne = orderOne+","+Sum1+","+$(this).parent().prev().prev().children().children().next().next().val(); 
+		}
+		if(!access_Token){
 		console.log('토큰이 없음');
 		alert("결제를 위하여 '카카오 로그인' 절차가 필요합니다.\n진행 하시겠습니까?");
-		loginWithKakao();
+		loginWithKakao(orderOne);
 		} else {
 			console.log("토근존재");
 			var firstMoney = $(this).prev().prev().val();
@@ -508,8 +515,7 @@ $(document).on("click", "#orderOne",function(){// 단건 결제 api
 				paymentOne(orderOne);	
 			}
 			}
-	});
-
+	}); 
 function paymentOne(orderOne){// 단건 결제
 	if(confirm("상품을 결제 하시겠습니까?")){
 		$.ajax({
@@ -535,63 +541,70 @@ function paymentOne(orderOne){// 단건 결제
 	}
 
 $(document).on("click", "#button_allOrder",function(){// 복수 결제_전체 api
-	if(!access_Token){
-		console.log('토큰이 없음');
-		alert("결제를 위하여 '카카오 로그인' 절차가 필요합니다.\n진행 하시겠습니까?");
-		loginWithKakao();
+	var checkAllOrder = [];
+	if (Sum1 == null) {
+		$("input[name='checkRow']").each(function(i){
+			checkAllOrder.push($(this).val()+","+$(this).parent().next().next().next().next().next().children().next().val()+","+$(this).parent().next().next().next().next().next().children().children().next().next().val());
+			});
+		checkAllOrder.push('[]');
 		} else {
-			console.log("토근존재");
-			var checkAllOrder = [];
-			if (Sum1 == null) {	
 			$("input[name='checkRow']").each(function(i){
 				checkAllOrder.push($(this).val()+","+$(this).parent().next().next().next().next().next().children().next().val()+","+$(this).parent().next().next().next().next().next().children().children().next().next().val());
 				});
 			checkAllOrder.push('[]');
-			} else {
-				$("input[name='checkRow']").each(function(i){
-					checkAllOrder.push($(this).val()+","+$(this).parent().next().next().next().next().next().children().next().val()+","+$(this).parent().next().next().next().next().next().children().children().next().next().val());
-					});
-				checkAllOrder.push('[]');
 			}
+	if(!access_Token){
+		console.log('토큰이 없음');
+		alert("결제를 위하여 '카카오 로그인' 절차가 필요합니다.\n진행 하시겠습니까?");
+		if (confirm("전체 상품을 결제 하시겠습니까?")){
+			loginWithKakao1(checkAllOrder);
+			} else {
+				return;
+				}
+		} else {
+			console.log("토근존재");
 			if (confirm("전체 상품을 결제 하시겠습니까?")){
 				payment(checkAllOrder);
 				} else {
 					return;
 					}
 			}
-			});
-			
+	});			 			 
 $(document).on("click", "#button_selOrder",function(){// 복수 결제_선택 api
-	if(!access_Token){
-		console.log('토큰이 없음');
-		alert("결제를 위하여 '카카오 로그인' 절차가 필요합니다.\n진행 하시겠습니까?");
-		loginWithKakao();
-		} else {
-			console.log("토근존재");
-			if( $(":checkbox[name='checkRow']:checked").length==0 ){
-				alert("결제할 항목을 체크해주세요.");
-				return;
-				}
-			var checkAllOrder = [];
-			if (Sum1 == null) {
+	if( $(":checkbox[name='checkRow']:checked").length==0 ){
+		alert("결제할 항목을 체크해주세요.");
+		return;
+		}
+		var checkAllOrder = [];
+		if (Sum1 == null) {
+			$("input[name='checkRow']:checked").each(function(i){
+				checkAllOrder.push($(this).val()+","+$(this).parent().next().next().next().next().next().children().next().val()+","+$(this).parent().next().next().next().next().next().children().children().next().next().val());
+				});
+			checkAllOrder.push('[]');
+			} else {
 				$("input[name='checkRow']:checked").each(function(i){
 					checkAllOrder.push($(this).val()+","+$(this).parent().next().next().next().next().next().children().next().val()+","+$(this).parent().next().next().next().next().next().children().children().next().next().val());
 					});
 				checkAllOrder.push('[]');
-				} else {
-					$("input[name='checkRow']:checked").each(function(i){
-						checkAllOrder.push($(this).val()+","+$(this).parent().next().next().next().next().next().children().next().val()+","+$(this).parent().next().next().next().next().next().children().children().next().next().val());
-					});
-					checkAllOrder.push('[]');
-					}
+				}
+		if(!access_Token){
+			console.log('토큰이 없음');
 			if (confirm("선택한 상품을 결제 하시겠습니까?")){
-				payment(checkAllOrder);
+				alert("결제를 위하여 '카카오 로그인' 절차가 필요합니다.\n진행 하시겠습니까?");
+				loginWithKakao1(checkAllOrder);
 				} else {
 					return;
 					}
-			}
-			});
-				
+			} else {
+				console.log("토근존재");
+				if (confirm("선택한 상품을 결제 하시겠습니까?")){
+					payment(checkAllOrder);
+					} else {
+						return;
+						}
+				}
+		}); 		
+			 	
 function payment(checkAllOrder) { // 복수 결제 
 	var chkSum = $("#chkSum").text();
     var sum =  chkSum.replace(/,/g, '');
@@ -615,19 +628,31 @@ function payment(checkAllOrder) { // 복수 결제
 				});
 	}
 	
-function loginWithKakao() {
+function loginWithKakao(orderOne) {
     Kakao.Auth.login({
       success: function(authObj) {
     	  console.log("토큰이없으면 여기");
           access_Token = authObj.access_token;
           console.log(access_Token);
-          return;
-          /* payment(); */
+          paymentOne(orderOne); 
       },
       fail: function(err) {
         alert(JSON.stringify(err));
       }
     });
-  };	
+  };
+function loginWithKakao1(checkAllOrder) {
+	Kakao.Auth.login({
+		success: function(authObj) {
+			console.log("토큰이없으면 여기");
+			access_Token = authObj.access_token;
+			console.log(access_Token);
+			payment(checkAllOrder);
+			},
+			fail: function(err) {
+				alert(JSON.stringify(err));
+				}
+			});
+	};
 </script>	
 </html>
