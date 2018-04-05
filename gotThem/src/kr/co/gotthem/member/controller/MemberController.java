@@ -344,12 +344,10 @@ public class MemberController {
 	
     // 아이디 찾기
     @RequestMapping(value = "/findID.gt", method = RequestMethod.POST)
-    public String sendMailId(HttpSession session, @RequestParam("mem_email") String email,
-    		@RequestParam("mem_name") String name, RedirectAttributes ra, MemberBean bean) {
-    	
-        System.out.println(bean);
+    public String sendMailId(HttpSession session, RedirectAttributes ra, MemberBean bean) {
+        System.out.println("앙"+bean);
         MemberBean memberBean =  memberService.findAccount(bean);
-        System.out.println(memberBean);
+        System.out.println("깅모띠:"+memberBean);
         if (memberBean != null) {
             String subject = "Goththem 아이디 찾기 안내 입니다.";
             StringBuilder sb = new StringBuilder();
@@ -359,7 +357,7 @@ public class MemberController {
             } else {
             	System.out.println(" 빈거" + mailService);
             }
-            boolean mailResult = mailService.send(subject, sb.toString(), "gotthembit@gmail.com", email, null);
+            boolean mailResult = mailService.send(subject, sb.toString(), "gotthembit@gmail.com", bean.getMem_email(), null);
             
             System.out.println("이메일 보내기 성공?"+ mailResult);
             
