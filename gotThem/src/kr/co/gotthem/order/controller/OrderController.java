@@ -214,7 +214,7 @@ public class OrderController {
                     orderService.orderInsert(orderBean);
                     orderService.orderUpdateBasket(orderBean);
                     orderService.orderDeleteBasket(orderBean);
-                    System.out.println("ㅋ복수결제 DB orderBean:"+orderBean);
+                    System.out.println("복결제 DB orderBean:"+orderBean);
                     }
         	}
         mav.addObject("result", result);
