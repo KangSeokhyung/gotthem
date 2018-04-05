@@ -317,8 +317,8 @@ width:568px;
 
         <nav role="navigation" class="probootstrap-nav hidden-xs">
           <ul class="probootstrap-main-nav">
-            <li><a href="memcontrol.ad" class="barunPen">회원관리</a></li>
             <li><a href="storecontrol.ad" class="barunPen">점포관리</a></li>
+            <li><a href="memcontrol.ad" class="barunPen">회원관리</a></li>
             <li><a href="index.gt" class="barunPen">회원메인</a></li>
             <li><a href="logout.ad" class="barunPen">로그아웃</a></li>
           </ul>

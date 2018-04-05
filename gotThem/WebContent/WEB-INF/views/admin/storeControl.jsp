@@ -233,8 +233,8 @@ padding-top:3px;
 
         <nav role="navigation" class="probootstrap-nav hidden-xs">
           <ul class="probootstrap-main-nav">
+        	<li><a href="storecontrol.ad" class="barunPen">점포관리</a></li>
             <li><a href="memcontrol.ad" class="barunPen">회원관리</a></li>
-            <li><a href="storecontrol.ad" class="barunPen">점포관리</a></li>
             <li><a href="index.gt" class="barunPen">회원메인</a></li>
             <li><a href="logout.ad" class="barunPen">로그아웃</a></li>
           </ul>
@@ -258,7 +258,7 @@ padding-top:3px;
 					<th>전화번호</th>
 					<th>주소</th>
 					<th>가입일</th>
-					<th>계정상태</th>
+					<th>승인상태</th>
 				</tr>
 			</thead>
 			<tbody id="rowClick"> 
