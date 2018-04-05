@@ -153,4 +153,64 @@
 		order by mem_name 
 		limit #{begin}, 10 
 	</select>
+	
+	<select id="selectSearchCount" parameterType="java.util.HashMap" resultType="int">
+		select count(*) 
+		from member 
+		where mem_status ='ROLE_USER' 
+		<choose>
+			<when test='select!=null and (search.equals("0") or search.equals("1"))'>
+				and enabled like concat('%', #{search}, '%')
+			</when>
+			<when test='select!=null and select.equals("")'>
+				and (mem_id like concat('%', #{search}, '%')
+				or mem_name like concat('%', #{search}, '%')
+				or mem_email like concat('%', #{search}, '%')
+				or mem_phone like concat('%', #{search}, '%')
+				or mem_address like concat('%', #{search}, '%'))
+			</when>
+			<when test='select!=null and select.equals("mem_name")'>
+				and mem_name like concat('%', #{search}, '%')	
+			</when>
+			<when test='select!=null and select.equals("mem_phone")'>
+				and mem_phone like concat('%', #{search}, '%')	
+			</when> 
+			<when test='select!=null and select.equals("mem_address")'>
+				and mem_address like concat('%', #{search}, '%')	
+			</when> 
+			<when test='select!=null and select.equals("enabled")'>
+				and enabled like concat('%', #{search}, '%')	
+			</when> 
+		</choose> 
+	</select>
+	
+	<select id="selectSearchCount_j" parameterType="java.util.HashMap" resultType="int">
+		select count(*) 
+		from member 
+		where mem_status ='ROLE_STORE' 
+		<choose>
+			<when test='select!=null and select.equals("")'>
+				and (mem_id like concat('%', #{search}, '%')
+				or mem_name like concat('%', #{search}, '%')
+				or sto_name like concat('%', #{search}, '%')
+				or mem_email like concat('%', #{search}, '%')
+				or mem_phone like concat('%', #{search}, '%')
+				or mem_address like concat('%', #{search}, '%')
+				or sto_permitstatus like concat('%', #{search}, '%'))
+			</when>
+			<when test='select!=null and select.equals("mem_name")'>
+				and mem_name like concat('%', #{search}, '%')	
+			</when>
+			<when test='select!=null and select.equals("mem_phone")'>
+				and mem_phone like concat('%', #{search}, '%')	
+			</when> 
+			<when test='select!=null and select.equals("sto_name")'>
+				and sto_name like concat('%', #{search}, '%')	
+			</when> 
+			<when test='select!=null and select.equals("sto_permitstatus")'>
+				and sto_permitstatus like concat('%', #{search}, '%')	
+			</when> 
+		</choose> 
+	</select>
+	
 </mapper>

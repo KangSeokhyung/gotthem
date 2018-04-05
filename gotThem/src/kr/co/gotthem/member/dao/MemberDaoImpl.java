@@ -142,5 +142,18 @@ public class MemberDaoImpl implements MemberDao {
 		}
 		return sqlSessionTemplate.selectList("selectSearch_j", map);
 	}
+
+	@Override
+	public int selectSearchCount(int begin, String select, String search, String gubun) {
+		Map map = new HashMap();
+		map.put("begin", begin);
+		map.put("select", select);
+		map.put("search", search);
+		
+		if (gubun.equals("회원")) {
+			return sqlSessionTemplate.selectOne("selectSearchCount", map);
+		}
+		return sqlSessionTemplate.selectOne("selectSearchCount_j", map);
+	}
 	
 }

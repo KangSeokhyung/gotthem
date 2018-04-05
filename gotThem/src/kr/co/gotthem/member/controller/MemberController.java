@@ -153,7 +153,7 @@ public class MemberController {
 		String mem_phoneFront = request.getParameter("mem_phoneFront");
 		String mem_phoneMiddle = request.getParameter("mem_phoneMiddle");
 		String mem_phoneLast = request.getParameter("mem_phoneLast");
-		String mem_phone = mem_phoneFront + mem_phoneMiddle + mem_phoneLast;
+		String mem_phone = mem_phoneFront + "-" + mem_phoneMiddle + "-" + mem_phoneLast;
 		memberBean.setMem_phone(mem_phone);
 		
 		//address 세팅하기

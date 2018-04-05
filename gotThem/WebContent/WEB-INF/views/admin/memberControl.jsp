@@ -135,8 +135,8 @@ font-size:18px;
 width:568px;
 }
 .btn-secondary{
-	border: 2px solid #fd3067;
-    background: #fd3067;
+	border: 2px solid #888;
+    background: #888;
     color: #fff;
     border-radius: 12px;
 }
@@ -145,6 +145,9 @@ width:568px;
     background: #ff7b9e;
     color: #fff;
     border-radius: 12px;
+}
+#fontSize input[type='text'], #fontSize input[type='email'] {
+	font-size: 17px;
 }
 </style>
 <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
@@ -372,27 +375,26 @@ width:568px;
 				<c:choose>
 					<c:when test="${prevPage ne 0}">
 						<li class="page-item"><a class="page-link" 
-							href="memcontrol.ad?pageNo=${prevPage}">&laquo;</a></li>
+							href="selectSearch.ad?pageNo=${prevPage}">&laquo;</a></li>
 					</c:when>
 				</c:choose>
 					<c:forEach begin="${beginPage}" end="${endPage }" step="1" varStatus="status">
 						<c:choose>
 							<c:when test="${nowPage eq status.index}">
 								<li class="page-item active"><a class="page-link" 
-									href="memcontrol.ad?pageNo=${status.index }">${status.index }</a></li>
+									href="selectSearch.ad?pageNo=${status.index }&select=${select }&search=${search }">${status.index }</a></li>
 							</c:when>
 							<c:otherwise>
 								<li class="page-item"><a class="page-link" 
-									href="memcontrol.ad?pageNo=${status.index }">${status.index }</a></li>
+									href="selectSearch.ad?pageNo=${status.index }&select=${select }&search=${search }">${status.index }</a></li>
 							</c:otherwise>
 						</c:choose>
 						
 					</c:forEach>
 				<c:choose>
-				
 					<c:when test="${nextPage ne 0 }">
 						<li class="page-item"><a class="page-link" 
-							href="searchList.gt?pageNo=${nextPage }">&raquo;</a></li>
+							href="selectSearch.ad?pageNo=${nextPage }">&raquo;</a></li>
 					</c:when>
 				</c:choose>
 				
@@ -400,7 +402,7 @@ width:568px;
 			</c:if>
 		</div>
 		<form action="selectSearch.ad" method="get" style="height:80px; text-align: center;">
-			<select name="select" style="font-size:20px; height:49px; border-radius: 12px;border:2px solid #44B3C2">
+			<select name="select" style="font-size:20px; height:49px; border:2px solid #44B3C2; padding-bottom: 1px;">
 			    <option value="" selected="selected">선택</option>
 			    <option value="mem_name">이름</option>
 			    <option value="mem_phone">전화번호</option>
@@ -409,7 +411,7 @@ width:568px;
 			</select>
 			<input type="text" name="search" pattern="[A-Z|a-z|0-9|ㄱ-ㅎ|ㅏ-ㅣ|가-힣]{2,}"
 				title="두글자 이상 입력해주세요." autocomplete="off" required="required"
-				style="height:49px; border-radius: 12px; border:2px solid #44B3C2">
+				style="height:49px; border:2px solid #44B3C2">
 			<button type="submit" class="btn btn-primary">검색</button>
 		</form>
 	<hr>
@@ -421,22 +423,22 @@ width:568px;
                 <div class="modal-content"> 
                  <div class="modal-header"> 
 	                  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button> 
-	                  <h4 class="modal-title" id="myModalLabel">회원정보수정</h4> 
+	                  <h1 class="modal-title" id="myModalLabel">회원등록</h1> 
                   </div> 
                   <div class="modal-body">
                  
-					<section class="mbr-section form1 cid-qIWKYtQnJh" id="form1-r">
+					<section class="mbr-section form1 cid-qIWKYtQnJh" id="fontSize">
 						<div class="container">
 							<div class="row justify-content-center">
 								
-								<form action="joinSccess.gt" method="post" onsubmit="return execution();"
-									data-form-title="Mobirise Form">
+								<form action="joinSccess.gt" method="post" style="font-size: 18px"
+									onsubmit="return execution();" data-form-title="Mobirise Form">
 										
 									<div class="row row-sm-offset">
 										
 										<input type="hidden" name="gubun" value="joinToAdmin">
 										<input type="hidden" id="duplicate" value="N">
-										<div class="col-sm-8 multi-horizontal" data-for="id">
+										<div class="col-sm-5 multi-horizontal" data-for="id">
 											<div class="form-group">
 												<label class="form-control-label mbr-fonts-style display-7"
 													for="name-form1-r">아이디</label> <input type="text" required="required" autocomplete="false"
@@ -446,7 +448,7 @@ width:568px;
 											</div>
 										</div>
 										
-										<div class="col-sm-8 multi-horizontal" data-for="ownername">
+										<div class="col-sm-6 col-sm-offset-1 multi-horizontal" data-for="ownername">
 											<div class="form-group">
 												<label class="form-control-label mbr-fonts-style display-7"
 													for="owner-form1-r">회원명</label> <input type="text" required="required" maxlength="20"
@@ -458,8 +460,8 @@ width:568px;
 											<div class="form-group">
 												<label class="form-control-label mbr-fonts-style display-7"
 													for="email-form1-r">이메일</label> <br>
-													<input maxlength="20" type="text" class="form-control" id="mem_emailid" required="required" name="mem_emailid" style="width:40%; display:inline;">&nbsp;@
-                 									<input maxlength="20" type="text" class="form-control" id="mem_emailadd" required="required" name="mem_emailadd" style="width:40%; display:inline;">
+													<input maxlength="20" type="text" class="form-control" id="mem_emailid" required="required" name="mem_emailid" style="width:45%; display:inline;">&nbsp;@
+                 									<input maxlength="20" type="text" class="form-control" id="mem_emailadd" required="required" name="mem_emailadd" style="width:48%; display:inline;">
 											</div>
 										</div>
 										
@@ -467,9 +469,9 @@ width:568px;
 											<div class="form-group">
 												<label class="form-control-label mbr-fonts-style display-7"
 													for="phone-form1-r">전화번호</label><br>
-														<input type="text" class="form-control" maxlength="3" id="mem_phoneFront" name="mem_phoneFront" required="required" style="width:30%; display:inline;" onkeyup="removeChar(event)">&nbsp;-
+														<input type="text" class="form-control" maxlength="3" id="mem_phoneFront" name="mem_phoneFront" required="required" style="width:31%; display:inline;" onkeyup="removeChar(event)">&nbsp;-
 										                <input type="text" class="form-control" maxlength="4" id="mem_phoneMiddle" name="mem_phoneMiddle" required="required" style="width:30%; display:inline;" onkeyup="removeChar(event)">&nbsp;-
-										                <input type="text" class="form-control" maxlength="4" id="mem_phoneLast" name="mem_phoneLast" required="required" style="width:30%; display:inline;" onkeyup="removeChar(event)">
+										                <input type="text" class="form-control" maxlength="4" id="mem_phoneLast" name="mem_phoneLast" required="required" style="width:31%; display:inline;" onkeyup="removeChar(event)">
 											</div>
 										</div>
 										
@@ -491,9 +493,9 @@ width:568px;
 										<div class="col-sm-12 multi-horizontal" data-for="address1">
 											<div class="form-group">
 												<label class="form-control-label mbr-fonts-style display-7"
-													for="addr1-form1-r">상세주소1</label> <input type="text"
+													for="addr1-form1-r">상세주소1</label> <input type="text" 
 													class="form-control address2" name="mem_address1" required="required"
-													style="width: 568px;" id="sample6_address_j" readOnly>
+													style="width: 97%;" id="sample6_address_j" readOnly>
 											</div>
 										</div>
 										<div class="col-sm-12 multi-horizontal" data-for="address2">
@@ -506,8 +508,8 @@ width:568px;
 										</div>
 										
 										<div class="col-sm-12 multi-horizontal" data-for="button"
-											style="width: 598px; text-align: center;">
-												<button type="submit" class="btn btn-primary">가입</button>
+											style="width: 97%; text-align: center;">
+												<button type="submit" class="btn btn-primary">가입</button>&emsp;
 												<button type="button" class="btn btn-secondary"
 													data-dismiss="modal">취소</button>
 										</div>
@@ -531,33 +533,30 @@ width:568px;
                 <div class="modal-content"> 
                  <div class="modal-header"> 
                   <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button> 
-                  <h2 class="modal-title" id="myModalLabel">회원정보수정</h2> 
+                  <h1 class="modal-title" id="myModalLabel">회원정보수정</h1> 
                   </div> 
                   <div class="modal-body">
                  
-					<section class="mbr-section form1 cid-qIWKYtQnJh" id="form1-r">
+					<section class="mbr-section form1 cid-qIWKYtQnJh" id="fontSize">
 						<div class="container">
 							<div class="row justify-content-center">
 								<div data-form-alert="" hidden=""></div>
 								
-								<form action="memmodify.ad" method="post"
+								<form action="memmodify.ad" method="post" style="font-size: 19px;"
 									data-form-title="Mobirise Form">
-									<input type="hidden" name="email" data-form-email="true"
-										value="v71UZV7rSGKmNdtMTJcCzvbgvRKs8I889PXLsAjbR6NuKJtPYoKYEe+DT90N7gqVmrsYQhYLqTnSDAVjImF7Eb8KP/1hIcQUbq5w77EmgcHnu38hK1G/QmJo9v9/aFIP"
-										data-form-field="Email">
 										
 									<div class="row row-sm-offset">
-										<div class="col-sm-8 multi-horizontal" data-for="id">
+										<div class="col-sm-6 multi-horizontal" data-for="id">
 											<div class="form-group">
 												<label class="form-control-label mbr-fonts-style display-7"
-													for="name-form1-r">아이디</label> <input type="text"
+													for="name-form1-r">아이디</label> <input type="text" 
 													name="mem_id" class="form-control" disabled="disabled"
 													id="mem_id" value="${requestScope.mem_id }"> <input
 													type="hidden" id="mem_id2" name="mem_id" value="">
 											</div>
 										</div>
 										
-										<div class="col-sm-8 multi-horizontal" data-for="ownername">
+										<div class="col-sm-6 multi-horizontal" data-for="ownername">
 											<div class="form-group">
 												<label class="form-control-label mbr-fonts-style display-7"
 													for="owner-form1-r">회원명</label> <input type="text"
@@ -566,7 +565,7 @@ width:568px;
 											</div>
 										</div>
 										
-										<div class="col-sm-8 multi-horizontal" data-for="email">
+										<div class="col-sm-6 multi-horizontal" data-for="email">
 											<div class="form-group">
 												<label class="form-control-label mbr-fonts-style display-7"
 													for="email-form1-r">이메일</label> <input type="email"
@@ -574,7 +573,7 @@ width:568px;
 											</div>
 										</div>
 										
-										<div class="col-sm-8 multi-horizontal" data-for="phone">
+										<div class="col-sm-6 multi-horizontal" data-for="phone">
 											<div class="form-group">
 												<label class="form-control-label mbr-fonts-style display-7"
 													for="phone-form1-r">전화번호</label> <input type="text"
@@ -592,7 +591,7 @@ width:568px;
 											</div>
 										</div>
 										<div class="col-sm-6 multi-horizontal" data-for="findpostcode">
-											<div class="form-group" style="margin: 23px 0px; padding-top: 4px;">
+											<div class="form-group" style="margin: 26px 0px; padding-top: 4px;">
 												<input type="button" onclick="sample6_execDaumPostcode(2)"
 													class="btn btn-primary btn-sm" value="우편번호 찾기">
 											</div>
@@ -603,7 +602,7 @@ width:568px;
 												<label class="form-control-label mbr-fonts-style display-7"
 													for="addr1-form1-r">상세주소1</label> <input type="text"
 													class="form-control address2" name="mem_addr2"
-													value="${st_address1}" style="width: 568px;"
+													value="${st_address1}" style="width: 97%;"
 													id="sample6_address" readOnly>
 											</div>
 										</div>
@@ -612,7 +611,7 @@ width:568px;
 												<label class="form-control-label mbr-fonts-style display-7"
 													for="addr2-form1-r">상세주소2</label> <input type="text"
 													class="form-control address3" name="mem_addr3"
-													value="${st_address2}" style="width: 568px;"
+													value="${st_address2}" style="width: 97%;"
 													id="sample6_address2">
 											</div>
 										</div>
@@ -621,13 +620,16 @@ width:568px;
 											<div class="form-group">
 												<label class="form-control-label mbr-fonts-style display-7"
 													for="addr2-form1-r">회원 상태</label> <br>
-												<input type="radio" name="enable" value="가입" checked>가입
-												<input type="radio" name="enable" value="탈퇴">탈퇴</div>
+												<input type="radio" id="one" name="enable" value="가입" checked>
+													<label for="one" style="font-weight: 500;">가입</label>&emsp;
+												<input type="radio" id="two" name="enable" value="탈퇴">
+													<label for="two" style="font-weight: 500;">탈퇴</label>
+											</div>
 										</div>
 										
 										<div class="col-sm-12 multi-horizontal" data-for="button"
 											style="width: 598px; text-align: center;">
-											<button type="submit" class="btn btn-primary">정보수정</button>
+											<button type="submit" class="btn btn-primary">정보수정</button>&emsp;
 											<button type="button" class="btn btn-secondary"
 												data-dismiss="modal">취소</button>
 										</div>

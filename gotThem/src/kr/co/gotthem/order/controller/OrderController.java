@@ -41,6 +41,12 @@ public class OrderController {
     	 
     	 Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
     	 String mem_id = authentication.getName();
+    	 
+    	 if (mem_id.equals("anonymousUser")) {
+ 	    	mav.setViewName("redirect:/login.gt");
+ 	    	return mav;
+ 	     } 
+    	 
     	 MemberBean memberInfo = memberService.memberInfo(mem_id);
     	 int userNo = memberInfo.getMem_no();
     	 

@@ -52,4 +52,6 @@ public interface MemberService {
 
 	public List<MemberBean> selectSearch(int begin, String select, String search, String gubun);
 
+	public int selectSearchCount(int begin, String select, String search, String gubun);
+
 }
