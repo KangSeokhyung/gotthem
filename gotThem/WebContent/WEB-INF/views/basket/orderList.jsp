@@ -48,7 +48,6 @@ a{cursor:pointer;}
 	.flexslider.page-inner, .flexslider.page-inner .slides>li, 
 	.flexslider2.page-inner, .flexslider2.page-inner .slides>li {
    		display: block;height: 300px !important;}
-	footer .container {height: 95px !important;}
 }
 } 
 </style>
@@ -129,7 +128,7 @@ a{cursor:pointer;}
 <h2 >결제 확인</h2> 
   <form name="form1" id="form1" method="post" action="./update.gt" onsubmit="return validate();">
    <div class="listDiv">
-   <table class="listType" border="1" style="word-break: keep-all;">
+   <table class="listType" border="1">
     <caption>결제 목록</caption>
 							<colgroup>
 							<col width="15%" class="cartImg"/>

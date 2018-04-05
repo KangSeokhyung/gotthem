@@ -42,7 +42,7 @@ border-right:1px solid #ccc;
 }
 table.type07 td {
     width: 80%;
-    padding: 10px;
+    padding: 15px;
     vertical-align: top;
     border-bottom: 1px solid #ccc;
 }

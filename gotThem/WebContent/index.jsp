@@ -91,10 +91,6 @@
 	#marginChg {
 		margin-top: 280px !important;
 	}
-	
-	footer .container {
-		height: 95px !important;
-	}
 }
 
 .flexslider .overlay, .flexslider2 .overlay {
